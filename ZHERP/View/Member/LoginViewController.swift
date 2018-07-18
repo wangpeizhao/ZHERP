@@ -36,7 +36,8 @@ class LoginViewController: UIViewController {
     
     @IBAction func LoginBtn(_ sender: Any) {
         let vc = MemberViewController()
-        self.present(vc, animated: true, completion: nil)
+        let nav = UINavigationController(rootViewController: vc)
+        self.present(nav, animated: true, completion: nil)
     }
     override func viewDidLoad() {
         super.viewDidLoad()

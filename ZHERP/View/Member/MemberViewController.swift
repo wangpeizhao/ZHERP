@@ -35,22 +35,13 @@ class MemberViewController: MemberBaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.navigationItem.title = "Facebook"
-        self.navigationController?.navigationBar.barTintColor = Specs.color.tint
-        self.navigationItem.leftBarButtonItem = splitViewController?.displayModeButtonItem
-        self.navigationItem.leftItemsSupplementBackButton = true
+        // set bar
+        setNavBar(view: self, title: "Facebook")
         
-        self.navigationItem.leftBarButtonItem = self.editButtonItem
-        
-        let addButton = UIBarButtonItem(barButtonSystemItem: .add, target: self,
-                                        action: #selector(insertNewObject))
-        self.navigationItem.rightBarButtonItem = addButton
-        if let split = self.splitViewController {
-            let controllers = split.viewControllers
-            self.detailViewController = (controllers[controllers.count-1] as!
-                UINavigationController).topViewController as? OrderDetailViewController
-        }
-        
+        // set back btn
+        let selector: Selector = #selector(actionBack)
+        setBackBtn(view: self, selector: selector)
+                
         tableView.delegate = self
         tableView.dataSource = self
         view.addSubview(tableView)
@@ -61,8 +52,8 @@ class MemberViewController: MemberBaseViewController {
         view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|-88-[tableView]-0-|", options: .directionLeadingToTrailing, metrics: nil, views: ["tableView": tableView]))
     }
     
-    @objc func insertNewObject() {
-        
+    @objc func actionBack() {
+        _dismiss(view: self)
     }
     
     fileprivate func rows(at section: Int) -> [Any] {
