@@ -1,0 +1,28 @@
+//
+//  TableViewCell.swift
+//  ZHERP
+//
+//  Created by MrParker on 2018/7/16.
+//  Copyright © 2018 MrParker. All rights reserved.
+//
+
+import UIKit
+
+class MemberBaseCell: UITableViewCell {
+    static let identifier: String = "MemberBaseCell"
+    
+    override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
+        super.init(style: .default, reuseIdentifier: reuseIdentifier)
+        
+        backgroundColor = Specs.color.white
+        textLabel?.textColor = Specs.color.black
+        textLabel?.font = Specs.font.large
+        
+        detailTextLabel?.font = Specs.font.small
+        detailTextLabel?.textColor = Specs.color.gray
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("MemberBaseCell:init(coder:) has not been implemented")
+    }
+}
