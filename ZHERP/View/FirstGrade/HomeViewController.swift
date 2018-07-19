@@ -10,9 +10,8 @@ import UIKit
 
 class HomeViewController: UIViewController {
     @IBAction func MemberCenter(_ sender: Any) {
-        // open view
         let vc: UIViewController?
-        if(checkLogin()) {
+        if(checkLoginStatus()) {
             vc = self.storyboard?.instantiateViewController(withIdentifier: "MemberViewController") as! MemberViewController
         } else {
             vc = self.storyboard?.instantiateViewController(withIdentifier: "LoginViewController") as! LoginViewController
@@ -24,10 +23,8 @@ class HomeViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.title = "纵横ERP"
         // Do any additional setup after loading the view.
-        self.navigationItem.title = "Facebook"
-        navigationController?.navigationBar.barTintColor = Specs.color.tint
+        setNavBarTitle(view: self, title: "纵横ERP")
     }
 
     override func didReceiveMemoryWarning() {

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+var userDefault:UserDefaults!
 
 public func getIOSVersion() -> Int{
     // 获取系统版本号
@@ -20,31 +21,46 @@ public func _dismiss(view: UIViewController) {
     })
 }
 
-public func _confirm(view: UIViewController, title: String, message: String){
+public func _confirm(view: UIViewController, title: String, message: String, handler: ((UIAlertAction)->Void)?){
     let alertController = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.alert)
     
-    let DestructiveAction = UIAlertAction(title: "取消", style: UIAlertActionStyle.destructive) {
+    let DestructiveAction = UIAlertAction(title: "取消", style: UIAlertActionStyle.cancel) {
         (result : UIAlertAction) -> Void in
         print("Destructive")
     }
     
-    let okAction = UIAlertAction(title: "确定", style: UIAlertActionStyle.default) {
-        (result : UIAlertAction) -> Void in
-        print("OK")
-    }
+    let okAction = UIAlertAction(title: "确定", style: UIAlertActionStyle.default, handler: handler)
     
     alertController.addAction(DestructiveAction)
     alertController.addAction(okAction)
     view.present(alertController, animated: true, completion: nil)
 }
 
-public func _login(view: UIViewController) {
-    let vc = LoginViewController()
-    view.present(vc, animated: true, completion: nil)
+public func _login() {
+    userDefault.set(true, forKey: "LoginStatus")
 }
 
-public func checkLogin() -> Bool{
-    return false
+public func _logout() {
+    userDefault.set(false, forKey: "LoginStatus")
+}
+
+// 登录状态
+public func checkLoginStatus() -> Bool{
+    userDefault = UserDefaults.standard
+    guard userDefault.bool(forKey: "LoginStatus") else {
+        return false
+    }
+    return true
+}
+
+// 根据登录状态跳转页面
+public func checkLogin(view: UIViewController){
+    let status: Bool = checkLoginStatus()
+    let vc: UIViewController?
+    if(!status) {
+        vc = view.storyboard?.instantiateViewController(withIdentifier: "LoginViewController") as! LoginViewController
+        _open(view: view, vc: vc!)
+    }
 }
 
 public func _open(view: UIViewController, vc: UIViewController) {
@@ -97,7 +113,7 @@ public func setBackBtn(view: UIViewController, selector: Selector) {
     view.navigationItem.leftBarButtonItem = leftBtn;
 }
 
-public func setNavBar(view: UIViewController, title: String) {
+public func setNavBarTitle(view: UIViewController, title: String) {
     view.navigationItem.title = title
     view.navigationController?.navigationBar.barTintColor = Specs.color.tint
     view.navigationController?.navigationBar.tintColor = Specs.color.white

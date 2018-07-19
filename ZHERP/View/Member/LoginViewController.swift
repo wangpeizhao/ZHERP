@@ -10,53 +10,27 @@ import UIKit
 
 class LoginViewController: UIViewController {
     @IBAction func ProtocilDetailBtn(_ sender: Any) {
-        
-        // 黑屏
-        //        let vc = LoginViewController()
-        //        self.present(vc, animated: true, completion: nil)
-        
-        // 正常
-        
-        let sb = UIStoryboard(name: "Main", bundle:nil)
-        let vc = sb.instantiateViewController(withIdentifier: "ProtocolPageViewController") as! ProtocolPageViewController
-                self.present(vc, animated: true, completion: nil)
-        //        self.showDetailViewController(vc, sender: vc)
-//        self.show(vc, sender: ProtocolPageViewController.self)
-        
-        // 正常
-        //        let vc = self.storyboard?.instantiateViewController(withIdentifier: "LoginViewController") as! LoginViewController
-        //        self.present(vc, animated: true, completion: nil)
-        
-        // 没反应
-        //        self.navigationController?.pushViewController(LoginViewController(), animated: true)
-        
-        // 黑屏
-        //        self.present(LoginViewController(), animated: true, completion: nil)
+        // 协议
+        let vc = self.storyboard?.instantiateViewController(withIdentifier: "ProtocolPageViewController") as! ProtocolPageViewController
+        _open(view: self, vc: vc)
     }
     
     @IBAction func LoginBtn(_ sender: Any) {
+        _login()
         let vc = MemberViewController()
         let nav = UINavigationController(rootViewController: vc)
         self.present(nav, animated: true, completion: nil)
     }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        title = "Haha"
-        let leftBtn:UIBarButtonItem=UIBarButtonItem(title: "返回", style: UIBarButtonItemStyle.plain, target: self, action: #selector(_action))
-        
-        leftBtn.title="返回";
-        
-        leftBtn.tintColor=UIColor.white;
-        //        self.navigationItem
-        self.navigationItem.leftBarButtonItem=leftBtn;
-        // Do any additional setup after loading the view.
-//        UIButton
-        // Do any additional setup after loading the view.
+        setNavBarTitle(view: self, title: "登录")
+        let selector: Selector = #selector(actionBack)
+        setBackBtn(view: self, selector: selector)
     }
     
-    @objc func _action() {
-        self.dismiss(animated: true, completion: nil)
-//        self.navigationController?.dismiss(animated: true, completion: nil)
+    @objc func actionBack() {
+        _dismiss(view: self)
     }
 
     override func didReceiveMemoryWarning() {

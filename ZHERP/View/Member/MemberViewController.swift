@@ -36,7 +36,7 @@ class MemberViewController: MemberBaseViewController {
         super.viewDidLoad()
         
         // set bar
-        setNavBar(view: self, title: "Facebook")
+        setNavBarTitle(view: self, title: "Facebook")
         
         // set back btn
         let selector: Selector = #selector(actionBack)
@@ -152,18 +152,25 @@ extension MemberViewController: UITableViewDelegate {
         }
     }
     
+    func logout(_: UIAlertAction)->Void {
+        print("Logout!")
+        _login()
+        let vc = self.storyboard?.instantiateViewController(withIdentifier: "LoginViewController") as! LoginViewController
+        _open(view: self, vc: vc)
+    }
+    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
 //        print((indexPath as NSIndexPath).row)
 //        print(tableViewDataSource[indexPath.section]["rows"]![0][MemberMenus.key])
         let modelForRow = rowModel(at: indexPath)
-//        print(modelForRow[MemberMenus.key]!)
+        print(modelForRow[MemberMenus.key]!)
         if let action: String = modelForRow[MemberMenus.key] {
             switch action {
             case "Back":
                 _dismiss(view: self)
                 break;
             case "Logout":
-                _confirm(view: self, title: "提示", message: "确定要退出吗？")
+                _confirm(view: self, title: "提示", message: "确定要退出吗？", handler: logout)
                 break
             default: break
                 
