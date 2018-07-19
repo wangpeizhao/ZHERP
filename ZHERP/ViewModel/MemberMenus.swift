@@ -17,7 +17,7 @@ public struct MemberMenus {
     static let seeMore = "See More..."
     static let addFavorites = "Add Favorites..."
     static let key = "keyCode"
-    static let logout = "退出当初登录"
+    static let logout = "退出当前登录"
     static let back = "返回"
     
     static func populate(withUser user: Member) -> [[String: Any]] {
@@ -51,11 +51,11 @@ public struct MemberMenus {
                     [self.ImageName: Specs.imageName.helpSupport, self.Title: "Help and Support"]
                 ]
             ],
-            [
-                self.Rows: [
-                    [self.Title: self.back, self.key: "Back"]
-                ]
-            ],
+//            [
+//                self.Rows: [
+//                    [self.Title: self.back, self.key: "Back"]
+//                ]
+//            ],
             [
                 self.Rows: [
                     [self.Title: self.logout, self.key: "Logout"]

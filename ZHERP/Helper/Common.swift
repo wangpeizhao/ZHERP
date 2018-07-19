@@ -21,6 +21,14 @@ public func _dismiss(view: UIViewController) {
     })
 }
 
+func _alert(view: UIViewController, message: String) {
+    let action = UIAlertAction(title: "确定", style: .default, handler: nil)
+    let alertViewController = UIAlertController(title: nil, message: message, preferredStyle: .alert)
+    alertViewController.addAction(action)
+    view.present(alertViewController, animated: true, completion: nil)
+}
+
+
 public func _confirm(view: UIViewController, title: String, message: String, handler: ((UIAlertAction)->Void)?){
     let alertController = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.alert)
     

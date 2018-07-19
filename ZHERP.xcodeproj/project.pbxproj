@@ -19,6 +19,9 @@
 		9E29032E20F7B99B00F11C63 /* ZHERPTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E29032D20F7B99B00F11C63 /* ZHERPTests.swift */; };
 		9E29033920F7B99C00F11C63 /* ZHERPUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E29033820F7B99C00F11C63 /* ZHERPUITests.swift */; };
 		9E523DE020FEB4F100CF921F /* ProtocolPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E523DDF20FEB4F100CF921F /* ProtocolPageViewController.swift */; };
+		9E523DE22100DD0500CF921F /* Protocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E523DE12100DD0500CF921F /* Protocol.swift */; };
+		9E523DE42100DDA900CF921F /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E523DE32100DDA900CF921F /* Service.swift */; };
+		9E523DE62100E21000CF921F /* RegisterVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E523DE52100E21000CF921F /* RegisterVM.swift */; };
 		9E88ED0720FB3B3800DF091F /* PostAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E88ED0620FB3B3800DF091F /* PostAPI.swift */; };
 		9E88ED0F20FB3B7700DF091F /* Response+ObjectMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E88ED0B20FB3B7600DF091F /* Response+ObjectMapper.swift */; };
 		9E88ED1020FB3B7700DF091F /* ObservableType+ObjectMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E88ED0C20FB3B7600DF091F /* ObservableType+ObjectMapper.swift */; };
@@ -88,6 +91,9 @@
 		9E29033A20F7B99C00F11C63 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9E29036020F81C7500F11C63 /* Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Header.h; sourceTree = "<group>"; };
 		9E523DDF20FEB4F100CF921F /* ProtocolPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProtocolPageViewController.swift; sourceTree = "<group>"; };
+		9E523DE12100DD0500CF921F /* Protocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Protocol.swift; sourceTree = "<group>"; };
+		9E523DE32100DDA900CF921F /* Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Service.swift; sourceTree = "<group>"; };
+		9E523DE52100E21000CF921F /* RegisterVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterVM.swift; sourceTree = "<group>"; };
 		9E88ED0620FB3B3800DF091F /* PostAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostAPI.swift; sourceTree = "<group>"; };
 		9E88ED0B20FB3B7600DF091F /* Response+ObjectMapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Response+ObjectMapper.swift"; sourceTree = "<group>"; };
 		9E88ED0C20FB3B7600DF091F /* ObservableType+ObjectMapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ObservableType+ObjectMapper.swift"; sourceTree = "<group>"; };
@@ -226,8 +232,11 @@
 		9E29034720F7B9C400F11C63 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				9E523DE12100DD0500CF921F /* Protocol.swift */,
+				9E523DE32100DDA900CF921F /* Service.swift */,
 				9E88ED1520FB3BA500DF091F /* PostProvider.swift */,
 				9E88ED3A20FCEC5100DF091F /* MemberMenus.swift */,
+				9E523DE52100E21000CF921F /* RegisterVM.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -604,6 +613,7 @@
 				9E523DE020FEB4F100CF921F /* ProtocolPageViewController.swift in Sources */,
 				9E88ED4520FE63AE00DF091F /* LoggingViewController.swift in Sources */,
 				9E88ED3220FCE21000DF091F /* TableViewCell.swift in Sources */,
+				9E523DE62100E21000CF921F /* RegisterVM.swift in Sources */,
 				9E88ED2720FB576200DF091F /* Candy.swift in Sources */,
 				9E88ED2A20FB723600DF091F /* UIColor.swift in Sources */,
 				9E88ED1420FB3B9300DF091F /* Post.swift in Sources */,
@@ -612,10 +622,12 @@
 				9E88ED2320FB530200DF091F /* SearchBar.swift in Sources */,
 				9E88ED1020FB3B7700DF091F /* ObservableType+ObjectMapper.swift in Sources */,
 				9E88ED3920FCEA4500DF091F /* Member.swift in Sources */,
+				9E523DE22100DD0500CF921F /* Protocol.swift in Sources */,
 				9E88ED3520FCE95600DF091F /* MemberBaseViewController.swift in Sources */,
 				9E88ED2D20FB8C7900DF091F /* Specs.swift in Sources */,
 				9E88ED2020FB469000DF091F /* StatisticViewController.swift in Sources */,
 				9E29031920F7B99800F11C63 /* AppDelegate.swift in Sources */,
+				9E523DE42100DDA900CF921F /* Service.swift in Sources */,
 				9E88ED2F20FBA90C00DF091F /* Common.swift in Sources */,
 				9E88ED3B20FCEC5100DF091F /* MemberMenus.swift in Sources */,
 				9E88ED1620FB3BA500DF091F /* PostProvider.swift in Sources */,

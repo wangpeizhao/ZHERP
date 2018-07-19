@@ -21,6 +21,10 @@ class LoginViewController: UIViewController {
         let nav = UINavigationController(rootViewController: vc)
         self.present(nav, animated: true, completion: nil)
     }
+    @IBAction func registerBtn(_ sender: Any) {
+        let vc = self.storyboard?.instantiateViewController(withIdentifier: "RegisterViewController") as! RegisterViewController
+        _open(view: self, vc: vc)
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
