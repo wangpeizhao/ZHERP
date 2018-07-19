@@ -13,6 +13,7 @@ import RxCocoa
 class RegisterViewController: UIViewController {
     
     // 输入文本框Observable流->ViewModel中username对文本框进行监听->然后username调用service进行处理得到usernameUsable结果流->提示lable对usernameUsable进行监听刷新UI
+    // https://www.jianshu.com/p/089ae5bececa
     @IBOutlet weak var usernameTxt: UITextField!
     @IBOutlet weak var usernameTip: UILabel!
     @IBOutlet weak var passwordTxt: UITextField!

@@ -19,6 +19,7 @@ class ValidationService {
     let minCharactersCount = 6
     
     func validateUsername(_ username: String) -> Observable<Result> {
+        print("validateUsername: \(username)")
         if username.count == 0 {
             return .just(.empty)
         }
@@ -35,7 +36,7 @@ class ValidationService {
     }
     
     func validatePassword(_ password: String) -> Result {
-        print("Password: \(password)")
+        print("validatePassword: \(password)")
         if password.count == 0 {
             return .empty
         }
@@ -46,6 +47,7 @@ class ValidationService {
     }
     
     func validateRepassword(_ password: String, repassword: String) -> Result {
+        print("validatePassword: \(password)")
         if password.count == 0 {
             return .empty
         }

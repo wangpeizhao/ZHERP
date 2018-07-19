@@ -34,6 +34,7 @@ class RegisterVM {
         
         passwordUseable = password.asObservable()
             .map { password in
+                print("asObservable password: \(password)")
                 return service.validatePassword(password)
         }.share()
         
