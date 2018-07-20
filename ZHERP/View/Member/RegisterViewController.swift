@@ -21,6 +21,8 @@ class RegisterViewController: UIViewController {
     @IBOutlet weak var repasswordTxt: UITextField!
     @IBOutlet weak var repasswordTip: UILabel!
     
+    @IBOutlet weak var registerBtn: UIButton!
+    @IBOutlet weak var loginBtn: UIButton!
     
     @IBAction func registerBtn(_ sender: Any) {
         
@@ -35,30 +37,71 @@ class RegisterViewController: UIViewController {
         super.viewDidLoad()
         
         let registerVM = RegisterVM()
+        
         usernameTxt.rx.text.orEmpty
-        .bind(to: registerVM.username)
+            .bind(to: registerVM.username)
+            .disposed(by: disposeBag)
+        
+        passwordTxt.rx.text.orEmpty
+            .bind(to: registerVM.password)
+            .disposed(by: disposeBag)
+        
+        repasswordTxt.rx.text.orEmpty
+            .bind(to: registerVM.repassword)
+            .disposed(by: disposeBag)
+        
+        registerBtn.rx.tap
+            .bind(to: registerVM.registerTaps)
         .disposed(by: disposeBag)
+        
         
         registerVM.usernameUseable
             .bind(to: usernameTip.rx.validationResult)
-        .disposed(by: disposeBag)
+            .disposed(by: disposeBag)
         
         registerVM.usernameUseable
-        .bind(to: passwordTxt.rx.inputEnabled)
-        .disposed(by: disposeBag)
+            .bind(to: passwordTxt.rx.inputEnabled)
+            .disposed(by: disposeBag)
         
         registerVM.passwordUseable
-        .bind(to: passwordTip.rx.validationResult)
-        .disposed(by: disposeBag)
+            .bind(to: passwordTip.rx.validationResult)
+            .disposed(by: disposeBag)
         
         registerVM.passwordUseable
-        .bind(to: repasswordTxt.rx.inputEnabled)
-        .disposed(by: disposeBag)
+            .bind(to: repasswordTxt.rx.inputEnabled)
+            .disposed(by: disposeBag)
         
         registerVM.repasswordUseable
-        .bind(to: repasswordTip.rx.validationResult)
+            .bind(to: repasswordTip.rx.validationResult)
+            .disposed(by: disposeBag)
+        
+        registerVM.registerButtonEnabled
+            .subscribe(onNext: { [unowned self] valid in
+                self.registerBtn.isEnabled = valid
+                self.registerBtn.alpha = valid ? 1.0 : 0.5
+            })
+        .disposed(by: disposeBag)
+        
+        registerVM.registerResult
+            .subscribe(onNext: { [unowned self] result in
+                switch result {
+                case let .ok(message):
+                    self.showAlert(message: message)
+                case .empty:
+                    self.showAlert(message: "")
+                case let .failed(message):
+                    self.showAlert(message: message)
+                }
+            })
         .disposed(by: disposeBag)
         // Do any additional setup after loading the view.
+    }
+    
+    func showAlert(message: String) {
+        let action = UIAlertAction(title: "确定", style: .default, handler: nil)
+        let alertViewController = UIAlertController(title: nil, message: message, preferredStyle: .alert)
+        alertViewController.addAction(action)
+        present(alertViewController, animated: true, completion: nil)
     }
 
     override func didReceiveMemoryWarning() {

@@ -557,8 +557,10 @@
                         <viewLayoutGuide key="safeArea" id="b7V-zU-jl2"/>
                     </view>
                     <connections>
+                        <outlet property="loginBtn" destination="3gR-8U-pv8" id="lZz-D1-1x7"/>
                         <outlet property="passwordTip" destination="8Ue-4U-H8s" id="Aq7-CQ-LbJ"/>
                         <outlet property="passwordTxt" destination="tvl-Qf-9pE" id="hgX-ZT-4qd"/>
+                        <outlet property="registerBtn" destination="Gxz-5C-PLV" id="oPu-dJ-e9A"/>
                         <outlet property="repasswordTip" destination="7lA-Vm-QhY" id="aVK-Al-yGs"/>
                         <outlet property="repasswordTxt" destination="bHn-Ln-yyP" id="EGh-0b-JJo"/>
                         <outlet property="usernameTip" destination="Dh8-nA-Qgk" id="mnF-wU-1La"/>
