@@ -10,6 +10,27 @@ import UIKit
 
 class HomeViewController: BaseViewController {
     
+    @IBOutlet weak var pickingBtn: UIButton!
+    @IBOutlet weak var scanSendGoodBtn: UIButton!
+    @IBOutlet weak var allocatingBtn: UIButton!
+    @IBOutlet weak var warehouseBtn: UIButton!
+    @IBOutlet weak var takeStockBtn: UIButton!
+    @IBOutlet weak var settingBtn: UIButton!
+    
+    
+    @IBAction func PickingBtnClicked(_ sender: Any) {
+    }
+    @IBAction func ScanSendGoodBtnClicked(_ sender: Any) {
+    }
+    @IBAction func AllocatingBtnClicked(_ sender: Any) {
+    }
+    @IBAction func WarehouseBtnClicked(_ sender: Any) {
+    }
+    @IBAction func TakeStockBtnClicked(_ sender: Any) {
+    }
+    @IBAction func SettingBtnClicked(_ sender: Any) {
+    }
+    
     var vc: UIViewController!
     var withNav: Bool!
     
@@ -32,6 +53,14 @@ class HomeViewController: BaseViewController {
         // set back btn
         let selector: Selector = #selector(actionGo)
         setBackBtn(view: self, selector: selector, title: "我的", parent: false)
+        
+        // 按钮圆形
+        setUIButtonToCircle(button: pickingBtn)
+        setUIButtonToCircle(button: scanSendGoodBtn)
+        setUIButtonToCircle(button: allocatingBtn)
+        setUIButtonToCircle(button: warehouseBtn)
+        setUIButtonToCircle(button: takeStockBtn)
+        setUIButtonToCircle(button: settingBtn)
     }
     
     @objc func actionGo() {

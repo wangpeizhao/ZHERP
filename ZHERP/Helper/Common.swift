@@ -199,4 +199,12 @@ func setFontSize(size: CGFloat = 15) -> UIFont{
     return UIFont.systemFont(ofSize: size, weight: .light)
 }
 
+func setUIButtonToCircle(button: UIButton, radius: CGFloat = 32.0) {
+    button.layer.borderWidth = Specs.border.width * 2
+    button.layer.borderColor = Specs.color.blue.cgColor
+    button.layer.cornerRadius = radius
+    button.layer.masksToBounds = true
+    button.frame.size = CGSize(width: radius * 2, height: radius * 2)
+}
+
 
