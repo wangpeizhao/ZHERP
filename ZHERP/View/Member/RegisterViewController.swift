@@ -98,10 +98,10 @@ class RegisterViewController: UIViewController {
         .disposed(by: disposeBag)
         // Do any additional setup after loading the view.
         
-        registerBtn.layer.cornerRadius = 5
-        setUITextFileBP(textFiled: usernameTxt, placeholder: "请输入登录手机号码")
-        setUITextFileBP(textFiled: passwordTxt, placeholder: "请输入登录密码(6~16位数字+字母)")
-        setUITextFileBP(textFiled: repasswordTxt, placeholder: "请再次输入登录密码")
+        registerBtn.layer.cornerRadius = Specs.border.radius
+        setUITextFileBP(textFiled: usernameTxt, placeholder: "请输入手机号码")
+        setUITextFileBP(textFiled: passwordTxt, placeholder: "请输入密码(6~16位数字+字母)")
+        setUITextFileBP(textFiled: repasswordTxt, placeholder: "请再次输入密码")
     }
     
     func loginSuccess(message: String) {

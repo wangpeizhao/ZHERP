@@ -14,7 +14,11 @@ class HomeViewController: BaseViewController {
     var withNav: Bool!
     
     @IBAction func MemberCenter(_ sender: Any) {
-        _open(view: self, vcName: "member")
+        if(checkLoginStatus()) {
+            _open(view: self, vcName: "member")
+        } else {
+            _open(view: self, vcName: "login", withNav: false)
+        }
     }
     
     @IBOutlet weak var homeTxt: UIButton!

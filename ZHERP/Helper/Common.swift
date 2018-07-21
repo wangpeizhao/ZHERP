@@ -77,15 +77,26 @@ public func _open(view: UIViewController, vcName: String = "login", withNav: Boo
     switch vcName {
     case "login":
         vc = view.storyboard?.instantiateViewController(withIdentifier: "LoginViewController") as! LoginViewController
+        break
     case "register":
         vc = view.storyboard?.instantiateViewController(withIdentifier: "RegisterViewController") as! RegisterViewController
+        break
     case "home":
         vc = view.storyboard?.instantiateViewController(withIdentifier: "HomeViewController") as! HomeViewController
+        break
     case "member":
         vc = view.storyboard?.instantiateViewController(withIdentifier: "MemberViewController") as! MemberViewController
+        break
+    case "forget":
+        vc = view.storyboard?.instantiateViewController(withIdentifier: "ForgotPwdViewController") as! ForgotPwdViewController
+        break
+    case "resetPwd":
+        vc = view.storyboard?.instantiateViewController(withIdentifier: "ResetPwdViewController") as! ResetPwdViewController
+        break
     default:
         _logout()
         vc = view.storyboard?.instantiateViewController(withIdentifier: "LoginViewController") as! LoginViewController
+        break
     }
     _open(view: view, vc: vc, withNav: withNav)
 }
@@ -137,17 +148,33 @@ public func _open(view: UIViewController, vc: UIViewController, withNav: Bool = 
     //        self.present(LoginViewController(), animated: true, completion: nil)
 }
 
-public func setBackBtn(view: UIViewController, selector: Selector) {
-    let leftBtn: UIBarButtonItem = UIBarButtonItem(title: "返回", style: UIBarButtonItemStyle.plain, target: view, action: selector)
-    leftBtn.title = "返回";
-    leftBtn.tintColor = Specs.color.white
-    view.navigationItem.leftBarButtonItem = leftBtn;
+public func setBackBtn(view: UIViewController, selector: Selector, title: String = "返回", parent: Bool = false) {
+    let backBtn: UIBarButtonItem = UIBarButtonItem(title: title, style: .plain, target: view, action: selector)
+    
+    if parent {
+        // 父类设置有文字并保留箭头
+        view.navigationItem.backBarButtonItem = backBtn
+    } else {
+        // 返回按钮文字颜色
+        backBtn.tintColor = Specs.color.white
+        // 子页面设置时 没箭头
+        view.navigationItem.leftBarButtonItem = backBtn
+    }
 }
 
-public func setNavBarTitle(view: UIViewController, title: String) {
+public func setNavBarTitle(view: UIViewController, title: String, transparent: Bool = false) {
     view.navigationItem.title = title
-    view.navigationController?.navigationBar.barTintColor = Specs.color.tint
+    // 设置导航标题颜色
     view.navigationController?.navigationBar.tintColor = Specs.color.white
+    
+    if transparent != false {
+        // 设置导航背景透明
+        view.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
+        view.navigationController?.navigationBar.shadowImage = UIImage()
+        return
+    }
+    // 设置导航背景颜色
+    view.navigationController?.navigationBar.barTintColor = Specs.color.main
     view.navigationItem.leftItemsSupplementBackButton = true
 }
 

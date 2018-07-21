@@ -19,21 +19,26 @@ class LoginViewController: UIViewController {
         let vc = MemberViewController()
         let nav = UINavigationController(rootViewController: vc)
         self.present(nav, animated: true, completion: nil)
+
+    }
+    @IBAction func ForgetPwdBtn(_ sender: Any) {
+        _open(view: self, vcName: "forget", withNav: true)
+//        self.navigationController?.pushViewController(ForgotPwdViewController(), animated: true)
     }
     @IBAction func RegisterBtnClicked(_ sender: Any) {
-        let vc = self.storyboard?.instantiateViewController(withIdentifier: "RegisterViewController") as! RegisterViewController
-        _open(view: self, vc: vc, withNav: false)
+        _open(view: self, vcName: "register", withNav: false)
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-//        setNavBarTitle(view: self, title: "登录纵横ERP")
-//        let selector: Selector = #selector(actionBack)
-//        setBackBtn(view: self, selector: selector)
         
-        LoginBtn.layer.cornerRadius = 5
-        setUITextFileBP(textFiled: usernameTxt, placeholder: "请输入登录手机号码")
-        setUITextFileBP(textFiled: passwordTxt, placeholder: "请输入登录密码(6~16位数字+字母)")
+        // set back btn
+        let selector: Selector = #selector(actionBack)
+        setBackBtn(view: self, selector: selector, title: "back", parent: true)
+        
+        LoginBtn.layer.cornerRadius = Specs.border.radius
+        setUITextFileBP(textFiled: usernameTxt, placeholder: "请输入手机号码")
+        setUITextFileBP(textFiled: passwordTxt, placeholder: "请输入密码(6~16位数字+字母)")
     }
     
     @objc func actionBack() {

@@ -16,6 +16,7 @@ public struct Specs {
         public let black = UIColor.black
         public let gray = UIColor.lightGray
         public let blue = UIColor.blue
+        public let main = UIColor(hex: 0x152a60)
     }
     
     public struct FontSize {
@@ -50,6 +51,11 @@ public struct Specs {
         public let placeholder = "fb_placeholder"
     }
     
+    public struct Border {
+        public let radius: CGFloat = 5
+        public let width: CGFloat = 1
+    }
+    
     public static var color: Color {
         return Color()
     }
@@ -64,6 +70,10 @@ public struct Specs {
     
     public static var imageName: ImageName {
         return ImageName()
+    }
+    
+    public static var border: Border {
+        return Border()
     }
 }
 
