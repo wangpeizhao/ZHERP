@@ -30,7 +30,7 @@ class ForgotPwdViewController: UIViewController {
         
         // set back btn
         let selector: Selector = #selector(actionBack)
-        setBackBtn(view: self, selector: selector, title: "Back", parent: false)
+        setBackBtn(view: self, selector: selector, title: "", parent: true)
         
         // Do any additional setup after loading the view.
         
