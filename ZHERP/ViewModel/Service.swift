@@ -77,7 +77,7 @@ class ValidationService {
         let filePath = NSHomeDirectory() + "/Documents/users.plist"
         
         if (userDic as NSDictionary).write(toFile: filePath, atomically: true) {
-            return .just(.ok(message: "Success"))
+            return .just(.ok(message: "恭喜注册成功"))
         }
         
         return .just(.failed(message: "Failed"))

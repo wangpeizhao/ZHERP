@@ -28,7 +28,6 @@ func _alert(view: UIViewController, message: String) {
     view.present(alertViewController, animated: true, completion: nil)
 }
 
-
 public func _confirm(view: UIViewController, title: String, message: String, handler: ((UIAlertAction)->Void)?){
     let alertController = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.alert)
     
@@ -49,6 +48,7 @@ public func _login() {
 }
 
 public func _logout() {
+    print("_logout")
     userDefault.set(false, forKey: "LoginStatus")
 }
 
@@ -64,20 +64,43 @@ public func checkLoginStatus() -> Bool{
 // 根据登录状态跳转页面
 public func checkLogin(view: UIViewController){
     let status: Bool = checkLoginStatus()
-    let vc: UIViewController?
     if(!status) {
-        vc = view.storyboard?.instantiateViewController(withIdentifier: "LoginViewController") as! LoginViewController
-        _open(view: view, vc: vc!)
+        _open(view: view, vcName: "login", withNav: false)
     }
 }
 
-public func _open(view: UIViewController, vc: UIViewController) {
-    let nav = UINavigationController(rootViewController: vc)
-    let dict:NSDictionary = [NSAttributedStringKey.foregroundColor: UIColor.white,NSAttributedStringKey.font : UIFont.boldSystemFont(ofSize: 18)]
-    //set title color
-    nav.navigationBar.titleTextAttributes = dict as? [NSAttributedStringKey : AnyObject]
+public func _open(view: UIViewController, vcName: String = "login", withNav: Bool = true) {
+    guard !vcName.isEmpty else {
+        return
+    }
+    let vc: UIViewController!
+    switch vcName {
+    case "login":
+        vc = view.storyboard?.instantiateViewController(withIdentifier: "LoginViewController") as! LoginViewController
+    case "register":
+        vc = view.storyboard?.instantiateViewController(withIdentifier: "RegisterViewController") as! RegisterViewController
+    case "home":
+        vc = view.storyboard?.instantiateViewController(withIdentifier: "HomeViewController") as! HomeViewController
+    case "member":
+        vc = view.storyboard?.instantiateViewController(withIdentifier: "MemberViewController") as! MemberViewController
+    default:
+        _logout()
+        vc = view.storyboard?.instantiateViewController(withIdentifier: "LoginViewController") as! LoginViewController
+    }
+    _open(view: view, vc: vc, withNav: withNav)
+}
+
+public func _open(view: UIViewController, vc: UIViewController, withNav: Bool = true) {
+    if(withNav) {
+        let nav = UINavigationController(rootViewController: vc)
+        let dict:NSDictionary = [NSAttributedStringKey.foregroundColor: UIColor.white,NSAttributedStringKey.font : UIFont.boldSystemFont(ofSize: 18)]
+        //set title color
+        nav.navigationBar.titleTextAttributes = dict as? [NSAttributedStringKey : AnyObject]
+        view.present(nav, animated: true, completion: nil)
+    } else {
+        view.present(vc, animated: true, completion: nil)
+    }
     
-    view.present(nav, animated: true, completion: nil)
     // 方法1
 //    let vc = view.storyboard?.instantiateViewController(withIdentifier: "MemberViewController") as! MemberViewController
 //    view.present(vc, animated: true, completion: nil)
@@ -127,3 +150,26 @@ public func setNavBarTitle(view: UIViewController, title: String) {
     view.navigationController?.navigationBar.tintColor = Specs.color.white
     view.navigationItem.leftItemsSupplementBackButton = true
 }
+
+func setUITextFileBP(textFiled: UITextField, placeholder: String) {
+    // 设置下划线边框
+    let border = CALayer()
+    let width = CGFloat(1.0)
+    let y = textFiled.frame.size.height - width
+    border.borderColor = UIColor.white.cgColor
+    border.frame = CGRect(x: 0, y: y, width: textFiled.frame.size.width, height: textFiled.frame.size.height)
+    border.borderWidth = width
+    textFiled.layer.addSublayer(border)
+    textFiled.layer.masksToBounds = true
+    
+    // 设置占位符颜色和字体大小
+    let placeholserAttributes = [NSAttributedStringKey.foregroundColor: UIColor.white,NSAttributedStringKey.font: setFontSize()]
+    textFiled.attributedPlaceholder = NSAttributedString(string: placeholder, attributes: placeholserAttributes)
+    textFiled.backgroundColor = UIColor.clear
+}
+
+func setFontSize(size: CGFloat = 15) -> UIFont{
+    return UIFont.systemFont(ofSize: size, weight: .light)
+}
+
+

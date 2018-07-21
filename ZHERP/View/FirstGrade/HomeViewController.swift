@@ -8,15 +8,13 @@
 
 import UIKit
 
-class HomeViewController: UIViewController {
+class HomeViewController: BaseViewController {
+    
+    var vc: UIViewController!
+    var withNav: Bool!
+    
     @IBAction func MemberCenter(_ sender: Any) {
-        let vc: UIViewController?
-        if(checkLoginStatus()) {
-            vc = self.storyboard?.instantiateViewController(withIdentifier: "MemberViewController") as! MemberViewController
-        } else {
-            vc = self.storyboard?.instantiateViewController(withIdentifier: "LoginViewController") as! LoginViewController
-        }
-        _open(view: self, vc: vc!)
+        _open(view: self, vcName: "member")
     }
     
     @IBOutlet weak var homeTxt: UIButton!
@@ -25,6 +23,16 @@ class HomeViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         setNavBarTitle(view: self, title: "纵横ERP")
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+//        if(checkLoginStatus()) {
+//            _open(view: self, vcName: "home")
+//        } else {
+//            _open(view: self, vcName: "login", withNav: false)
+//        }
     }
 
     override func didReceiveMemoryWarning() {

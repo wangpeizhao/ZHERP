@@ -25,11 +25,13 @@ class RegisterViewController: UIViewController {
     @IBOutlet weak var loginBtn: UIButton!
     
     @IBAction func registerBtn(_ sender: Any) {
-        
+        guard usernameTxt.text != nil && passwordTxt.text != nil && repasswordTxt.text != nil else {
+            _alert(view: self, message: "请先填写完信息")
+            return
+        }
     }
     @IBAction func LoginBtn(_ sender: Any) {
-        let vc = self.storyboard?.instantiateViewController(withIdentifier: "LoginViewController") as! LoginViewController
-        _open(view: self, vc: vc)
+        _open(view: self, vcName: "login", withNav: false)
     }
     
     let disposeBag = DisposeBag()
@@ -86,22 +88,28 @@ class RegisterViewController: UIViewController {
             .subscribe(onNext: { [unowned self] result in
                 switch result {
                 case let .ok(message):
-                    self.showAlert(message: message)
+                    self.loginSuccess(message: message)
                 case .empty:
-                    self.showAlert(message: "")
+                    _alert(view: self, message: "")
                 case let .failed(message):
-                    self.showAlert(message: message)
+                    _alert(view: self, message: message)
                 }
             })
         .disposed(by: disposeBag)
         // Do any additional setup after loading the view.
+        
+        registerBtn.layer.cornerRadius = 5
+        setUITextFileBP(textFiled: usernameTxt, placeholder: "请输入登录手机号码")
+        setUITextFileBP(textFiled: passwordTxt, placeholder: "请输入登录密码(6~16位数字+字母)")
+        setUITextFileBP(textFiled: repasswordTxt, placeholder: "请再次输入登录密码")
     }
     
-    func showAlert(message: String) {
-        let action = UIAlertAction(title: "确定", style: .default, handler: nil)
-        let alertViewController = UIAlertController(title: nil, message: message, preferredStyle: .alert)
-        alertViewController.addAction(action)
-        present(alertViewController, animated: true, completion: nil)
+    func loginSuccess(message: String) {
+        _alert(view: self, message: message)
+        _login()
+        let vc = self.storyboard?.instantiateViewController(withIdentifier: "MemberViewController") as! MemberViewController
+        _open(view: self, vc: vc)
+        print("Go to MemberViewController")
     }
 
     override func didReceiveMemoryWarning() {

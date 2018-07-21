@@ -22,6 +22,7 @@
 		9E523DE22100DD0500CF921F /* Protocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E523DE12100DD0500CF921F /* Protocol.swift */; };
 		9E523DE42100DDA900CF921F /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E523DE32100DDA900CF921F /* Service.swift */; };
 		9E523DE62100E21000CF921F /* RegisterVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E523DE52100E21000CF921F /* RegisterVM.swift */; };
+		9E523DE82102E46900CF921F /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E523DE72102E46900CF921F /* BaseViewController.swift */; };
 		9E88ED0720FB3B3800DF091F /* PostAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E88ED0620FB3B3800DF091F /* PostAPI.swift */; };
 		9E88ED0F20FB3B7700DF091F /* Response+ObjectMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E88ED0B20FB3B7600DF091F /* Response+ObjectMapper.swift */; };
 		9E88ED1020FB3B7700DF091F /* ObservableType+ObjectMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E88ED0C20FB3B7600DF091F /* ObservableType+ObjectMapper.swift */; };
@@ -94,6 +95,7 @@
 		9E523DE12100DD0500CF921F /* Protocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Protocol.swift; sourceTree = "<group>"; };
 		9E523DE32100DDA900CF921F /* Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Service.swift; sourceTree = "<group>"; };
 		9E523DE52100E21000CF921F /* RegisterVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterVM.swift; sourceTree = "<group>"; };
+		9E523DE72102E46900CF921F /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		9E88ED0620FB3B3800DF091F /* PostAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostAPI.swift; sourceTree = "<group>"; };
 		9E88ED0B20FB3B7600DF091F /* Response+ObjectMapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Response+ObjectMapper.swift"; sourceTree = "<group>"; };
 		9E88ED0C20FB3B7600DF091F /* ObservableType+ObjectMapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ObservableType+ObjectMapper.swift"; sourceTree = "<group>"; };
@@ -267,6 +269,7 @@
 				9E88ED1820FB40F400DF091F /* SecondGrade */,
 				9E88ED1720FB40DE00DF091F /* FirstGrade */,
 				9E29031A20F7B99800F11C63 /* ViewController.swift */,
+				9E523DE72102E46900CF921F /* BaseViewController.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -340,8 +343,8 @@
 		9E88ED3320FCE8DB00DF091F /* Member */ = {
 			isa = PBXGroup;
 			children = (
-				9E88ED4020FE61CD00DF091F /* LoginViewControllerBak.swift */,
 				9E88ED3420FCE95600DF091F /* MemberBaseViewController.swift */,
+				9E88ED4020FE61CD00DF091F /* LoginViewControllerBak.swift */,
 				9E88ED3620FCE9C400DF091F /* MemberViewController.swift */,
 				9E88ED3E20FE5D2C00DF091F /* LoginViewController.swift */,
 				9E88ED4220FE624D00DF091F /* RegisterViewController.swift */,
@@ -608,6 +611,7 @@
 				9E88ED4120FE61CE00DF091F /* LoginViewControllerBak.swift in Sources */,
 				9E88ED1120FB3B7700DF091F /* Single+ObjectMapper.swift in Sources */,
 				9E88ED2520FB53AE00DF091F /* OrderDetailViewController.swift in Sources */,
+				9E523DE82102E46900CF921F /* BaseViewController.swift in Sources */,
 				2C7FAC6C2100547A004AEC10 /* Cookie.swift in Sources */,
 				9E29031B20F7B99800F11C63 /* ViewController.swift in Sources */,
 				9E523DE020FEB4F100CF921F /* ProtocolPageViewController.swift in Sources */,

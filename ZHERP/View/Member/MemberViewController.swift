@@ -34,9 +34,9 @@ class MemberViewController: MemberBaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        view.backgroundColor = Specs.color.gray
         // set bar
-        setNavBarTitle(view: self, title: "Facebook")
+        setNavBarTitle(view: self, title: "我的")
         
         // set back btn
         let selector: Selector = #selector(actionBack)
@@ -153,17 +153,12 @@ extension MemberViewController: UITableViewDelegate {
     }
     
     func logout(_: UIAlertAction)->Void {
-        print("Logout!")
-        _login()
-        let vc = self.storyboard?.instantiateViewController(withIdentifier: "LoginViewController") as! LoginViewController
-        _open(view: self, vc: vc)
+        _logout()
+        _open(view: self, vcName: "login", withNav: false)
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        print((indexPath as NSIndexPath).row)
-//        print(tableViewDataSource[indexPath.section]["rows"]![0][MemberMenus.key])
         let modelForRow = rowModel(at: indexPath)
-        print(modelForRow[MemberMenus.key]!)
         if let action: String = modelForRow[MemberMenus.key] {
             switch action {
             case "Back":

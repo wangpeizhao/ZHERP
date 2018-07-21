@@ -9,28 +9,31 @@
 import UIKit
 
 class LoginViewController: UIViewController {
-    @IBAction func ProtocilDetailBtn(_ sender: Any) {
-        // 协议
-        let vc = self.storyboard?.instantiateViewController(withIdentifier: "ProtocolPageViewController") as! ProtocolPageViewController
-        _open(view: self, vc: vc)
-    }
     
-    @IBAction func LoginBtn(_ sender: Any) {
+    @IBOutlet weak var usernameTxt: UITextField!
+    @IBOutlet weak var passwordTxt: UITextField!
+    @IBOutlet weak var LoginBtn: UIButton!
+    
+    @IBAction func LoginBtnClicked(_ sender: Any) {
         _login()
         let vc = MemberViewController()
         let nav = UINavigationController(rootViewController: vc)
         self.present(nav, animated: true, completion: nil)
     }
-    @IBAction func registerBtn(_ sender: Any) {
+    @IBAction func RegisterBtnClicked(_ sender: Any) {
         let vc = self.storyboard?.instantiateViewController(withIdentifier: "RegisterViewController") as! RegisterViewController
-        _open(view: self, vc: vc)
+        _open(view: self, vc: vc, withNav: false)
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setNavBarTitle(view: self, title: "登录")
-        let selector: Selector = #selector(actionBack)
-        setBackBtn(view: self, selector: selector)
+//        setNavBarTitle(view: self, title: "登录纵横ERP")
+//        let selector: Selector = #selector(actionBack)
+//        setBackBtn(view: self, selector: selector)
+        
+        LoginBtn.layer.cornerRadius = 5
+        setUITextFileBP(textFiled: usernameTxt, placeholder: "请输入登录手机号码")
+        setUITextFileBP(textFiled: passwordTxt, placeholder: "请输入登录密码(6~16位数字+字母)")
     }
     
     @objc func actionBack() {
