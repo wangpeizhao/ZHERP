@@ -752,6 +752,7 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="zxU-eR-DsD"/>
                                 </constraints>
+                                <fontDescription key="fontDescription" type="system" weight="ultraLight" pointSize="15"/>
                                 <state key="normal" title="快速登录">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
@@ -802,16 +803,16 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="纵横ERP - 重置密码" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Z9w-Y9-V3C">
-                                <rect key="frame" x="40" y="56" width="295" height="40"/>
+                                <rect key="frame" x="40" y="56" width="295" height="36"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="40" id="Ie4-1S-4w5"/>
+                                    <constraint firstAttribute="height" constant="36" id="Ie4-1S-4w5"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" weight="ultraLight" pointSize="30"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <textField opaque="NO" alpha="0.80000001192092896" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="请设置密码(6~16位数字+字母)" clearsOnBeginEditing="YES" adjustsFontSizeToFit="NO" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="sgl-9w-DO8">
-                                <rect key="frame" x="40" y="212" width="295" height="40"/>
+                                <rect key="frame" x="40" y="208" width="295" height="40"/>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="bgU-ZO-B4h"/>
@@ -821,7 +822,7 @@
                                 <textInputTraits key="textInputTraits" keyboardType="phonePad" enablesReturnKeyAutomatically="YES" textContentType="tel"/>
                             </textField>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="请重复输入密码" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Hqi-jT-BqG">
-                                <rect key="frame" x="40" y="272" width="295" height="40"/>
+                                <rect key="frame" x="40" y="268" width="295" height="40"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="8p5-VY-f3i"/>
                                 </constraints>
@@ -830,7 +831,7 @@
                                 <textInputTraits key="textInputTraits" secureTextEntry="YES" textContentType="password"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fet-1u-8O8">
-                                <rect key="frame" x="40" y="352" width="295" height="40"/>
+                                <rect key="frame" x="40" y="348" width="295" height="40"/>
                                 <color key="backgroundColor" red="0.1529411765" green="0.46274509800000002" blue="0.91764705879999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="g2e-cc-Sor"/>
@@ -843,6 +844,19 @@
                                     <action selector="RestPwdBtnClicked:" destination="N2C-57-whc" eventType="touchUpInside" id="v2D-hB-GtU"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3eJ-cC-iii">
+                                <rect key="frame" x="156" y="638" width="63" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="y1I-xK-nsA"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" weight="ultraLight" pointSize="15"/>
+                                <state key="normal" title="上一步">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="PrevStepBtnClicked:" destination="N2C-57-whc" eventType="touchUpInside" id="qGj-ph-eWo"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.10980392160000001" green="0.2156862745" blue="0.41568627450000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
@@ -850,9 +864,12 @@
                             <constraint firstItem="sba-hG-AGA" firstAttribute="trailing" secondItem="fet-1u-8O8" secondAttribute="trailing" constant="40" id="6ov-Pl-df9"/>
                             <constraint firstItem="Z9w-Y9-V3C" firstAttribute="leading" secondItem="sba-hG-AGA" secondAttribute="leading" constant="40" id="Neh-6h-ZNq"/>
                             <constraint firstItem="sgl-9w-DO8" firstAttribute="top" secondItem="Z9w-Y9-V3C" secondAttribute="bottom" constant="116" id="Ntt-qu-Rty"/>
+                            <constraint firstItem="sba-hG-AGA" firstAttribute="trailing" secondItem="3eJ-cC-iii" secondAttribute="trailing" constant="156" id="Oir-Oq-rbB"/>
                             <constraint firstItem="sba-hG-AGA" firstAttribute="trailing" secondItem="Z9w-Y9-V3C" secondAttribute="trailing" constant="40" id="REf-du-wkK"/>
+                            <constraint firstItem="3eJ-cC-iii" firstAttribute="top" secondItem="fet-1u-8O8" secondAttribute="bottom" constant="250" id="S3B-Fa-6zS"/>
                             <constraint firstItem="Hqi-jT-BqG" firstAttribute="top" secondItem="sgl-9w-DO8" secondAttribute="bottom" constant="20" id="Ub9-2d-aGr"/>
                             <constraint firstItem="sgl-9w-DO8" firstAttribute="leading" secondItem="sba-hG-AGA" secondAttribute="leading" constant="40" id="ZCb-6o-Rix"/>
+                            <constraint firstItem="3eJ-cC-iii" firstAttribute="leading" secondItem="sba-hG-AGA" secondAttribute="leading" constant="156" id="a9V-Cp-u9T"/>
                             <constraint firstItem="Hqi-jT-BqG" firstAttribute="leading" secondItem="sba-hG-AGA" secondAttribute="leading" constant="40" id="bbu-Mb-VLK"/>
                             <constraint firstItem="fet-1u-8O8" firstAttribute="top" secondItem="Hqi-jT-BqG" secondAttribute="bottom" constant="40" id="cja-Cd-qgs"/>
                             <constraint firstItem="sba-hG-AGA" firstAttribute="trailing" secondItem="Hqi-jT-BqG" secondAttribute="trailing" constant="40" id="mAL-DI-vol"/>

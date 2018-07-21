@@ -15,6 +15,9 @@ class ResetPwdViewController: UIViewController {
     @IBAction func RestPwdBtnClicked(_ sender: Any) {
         _open(view: self, vcName: "login", withNav: false)
     }
+    @IBAction func PrevStepBtnClicked(_ sender: Any) {
+        _dismiss(view: self)
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
