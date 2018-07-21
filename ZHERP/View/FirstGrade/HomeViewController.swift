@@ -26,7 +26,20 @@ class HomeViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-        setNavBarTitle(view: self, title: "纵横ERP")
+        // set bar
+        setNavBarTitle(view: self, title: "纵横ERP", transparent: false)
+        
+        // set back btn
+        let selector: Selector = #selector(actionGo)
+        setBackBtn(view: self, selector: selector, title: "我的", parent: false)
+    }
+    
+    @objc func actionGo() {
+        if(checkLoginStatus()) {
+            _open(view: self, vcName: "member")
+        } else {
+            _open(view: self, vcName: "login", withNav: false)
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
