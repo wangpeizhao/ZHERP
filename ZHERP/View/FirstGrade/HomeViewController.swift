@@ -16,7 +16,16 @@ class HomeViewController: BaseViewController {
     @IBOutlet weak var warehouseBtn: UIButton!
     @IBOutlet weak var takeStockBtn: UIButton!
     @IBOutlet weak var settingBtn: UIButton!
+    @IBOutlet weak var functionalBlock: UIView!
+    @IBOutlet weak var homeNavBar: UINavigationBar!
     
+    @IBAction func memberCenter(_ sender: Any) {
+        if(checkLoginStatus()) {
+            _open(view: self, vcName: "member")
+        } else {
+            _open(view: self, vcName: "login", withNav: false)
+        }
+    }
     
     @IBAction func PickingBtnClicked(_ sender: Any) {
     }
@@ -33,14 +42,6 @@ class HomeViewController: BaseViewController {
     
     var vc: UIViewController!
     var withNav: Bool!
-    
-    @IBAction func MemberCenter(_ sender: Any) {
-        if(checkLoginStatus()) {
-            _open(view: self, vcName: "member")
-        } else {
-            _open(view: self, vcName: "login", withNav: false)
-        }
-    }
     
     @IBOutlet weak var homeTxt: UIButton!
     
@@ -61,6 +62,15 @@ class HomeViewController: BaseViewController {
         setUIButtonToCircle(button: warehouseBtn)
         setUIButtonToCircle(button: takeStockBtn)
         setUIButtonToCircle(button: settingBtn)
+        
+        //
+        functionalBlock.layer.borderWidth = Specs.border.width
+        functionalBlock.layer.borderColor = Specs.color.main.cgColor
+        
+//        view.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
+//        view.navigationController?.navigationBar.shadowImage = UIImage()
+        homeNavBar.layer.backgroundColor = Specs.color.main.cgColor
+        homeNavBar.layer.shadowColor = Specs.color.main.cgColor
     }
     
     @objc func actionGo() {
