@@ -32,11 +32,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //        return true
         
         //判断当前版本是否第一次启动
-        if UserDefaults.isFirstLaunchOfNewVersion() {
+        if !UserDefaults.isFirstLaunchOfNewVersion() {
             //显示新功能介绍页
             print("当前版本第一次启动")
             let introductionViewController = IntroductionViewController()
             self.window!.rootViewController = introductionViewController
+            return true
         }
         
         //判断是否第一次启动（两个都是第一次则以这个为准）
@@ -45,6 +46,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             print("应用第一次启动")
             let guideViewController = GuideViewController()
             self.window!.rootViewController = guideViewController
+            return true
         }
         
         
