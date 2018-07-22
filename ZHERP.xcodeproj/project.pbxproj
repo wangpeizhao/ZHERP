@@ -23,6 +23,16 @@
 		9E523DE62100E21000CF921F /* RegisterVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E523DE52100E21000CF921F /* RegisterVM.swift */; };
 		9E523DE82102E46900CF921F /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E523DE72102E46900CF921F /* BaseViewController.swift */; };
 		9E523DEA21034B2000CF921F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9E523DE921034B2000CF921F /* Assets.xcassets */; };
+		9E523DF2210460B600CF921F /* HHGuidePageHUD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E523DEF210460B600CF921F /* HHGuidePageHUD.swift */; };
+		9E523DF3210460B600CF921F /* guide_btn_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9E523DF0210460B600CF921F /* guide_btn_bg@2x.png */; };
+		9E523DF4210460B600CF921F /* UIImage+GIF.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E523DF1210460B600CF921F /* UIImage+GIF.swift */; };
+		9E523DF92104615700CF921F /* guideImage6.gif in Resources */ = {isa = PBXBuildFile; fileRef = 9E523DF52104615700CF921F /* guideImage6.gif */; };
+		9E523DFA2104615700CF921F /* guideImage8.gif in Resources */ = {isa = PBXBuildFile; fileRef = 9E523DF62104615700CF921F /* guideImage8.gif */; };
+		9E523DFB2104615700CF921F /* 1.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 9E523DF72104615700CF921F /* 1.mp4 */; };
+		9E523DFC2104615800CF921F /* guideImage7.gif in Resources */ = {isa = PBXBuildFile; fileRef = 9E523DF82104615700CF921F /* guideImage7.gif */; };
+		9E523DFE2104661400CF921F /* GuideViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E523DFD2104661400CF921F /* GuideViewController.swift */; };
+		9E523E0021047E7900CF921F /* UserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E523DFF21047E7900CF921F /* UserDefaults.swift */; };
+		9E523E0221047F7700CF921F /* IntroductionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E523E0121047F7700CF921F /* IntroductionViewController.swift */; };
 		9E88ED0720FB3B3800DF091F /* PostAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E88ED0620FB3B3800DF091F /* PostAPI.swift */; };
 		9E88ED0F20FB3B7700DF091F /* Response+ObjectMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E88ED0B20FB3B7600DF091F /* Response+ObjectMapper.swift */; };
 		9E88ED1020FB3B7700DF091F /* ObservableType+ObjectMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E88ED0C20FB3B7600DF091F /* ObservableType+ObjectMapper.swift */; };
@@ -96,6 +106,16 @@
 		9E523DE52100E21000CF921F /* RegisterVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterVM.swift; sourceTree = "<group>"; };
 		9E523DE72102E46900CF921F /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		9E523DE921034B2000CF921F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		9E523DEF210460B600CF921F /* HHGuidePageHUD.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HHGuidePageHUD.swift; sourceTree = "<group>"; };
+		9E523DF0210460B600CF921F /* guide_btn_bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "guide_btn_bg@2x.png"; sourceTree = "<group>"; };
+		9E523DF1210460B600CF921F /* UIImage+GIF.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+GIF.swift"; sourceTree = "<group>"; };
+		9E523DF52104615700CF921F /* guideImage6.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = guideImage6.gif; sourceTree = "<group>"; };
+		9E523DF62104615700CF921F /* guideImage8.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = guideImage8.gif; sourceTree = "<group>"; };
+		9E523DF72104615700CF921F /* 1.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = 1.mp4; sourceTree = "<group>"; };
+		9E523DF82104615700CF921F /* guideImage7.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = guideImage7.gif; sourceTree = "<group>"; };
+		9E523DFD2104661400CF921F /* GuideViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuideViewController.swift; sourceTree = "<group>"; };
+		9E523DFF21047E7900CF921F /* UserDefaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaults.swift; sourceTree = "<group>"; };
+		9E523E0121047F7700CF921F /* IntroductionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntroductionViewController.swift; sourceTree = "<group>"; };
 		9E88ED0620FB3B3800DF091F /* PostAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostAPI.swift; sourceTree = "<group>"; };
 		9E88ED0B20FB3B7600DF091F /* Response+ObjectMapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Response+ObjectMapper.swift"; sourceTree = "<group>"; };
 		9E88ED0C20FB3B7600DF091F /* ObservableType+ObjectMapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ObservableType+ObjectMapper.swift"; sourceTree = "<group>"; };
@@ -201,6 +221,10 @@
 				9E29032120F7B99B00F11C63 /* LaunchScreen.storyboard */,
 				9E29032420F7B99B00F11C63 /* Info.plist */,
 				9E523DE921034B2000CF921F /* Assets.xcassets */,
+				9E523DF72104615700CF921F /* 1.mp4 */,
+				9E523DF52104615700CF921F /* guideImage6.gif */,
+				9E523DF82104615700CF921F /* guideImage7.gif */,
+				9E523DF62104615700CF921F /* guideImage8.gif */,
 			);
 			path = ZHERP;
 			sourceTree = "<group>";
@@ -261,6 +285,24 @@
 			path = API;
 			sourceTree = "<group>";
 		};
+		9E523DEB21045F3300CF921F /* ThirdParty */ = {
+			isa = PBXGroup;
+			children = (
+				9E523DEE210460A800CF921F /* HHGuidePageHUD */,
+			);
+			path = ThirdParty;
+			sourceTree = "<group>";
+		};
+		9E523DEE210460A800CF921F /* HHGuidePageHUD */ = {
+			isa = PBXGroup;
+			children = (
+				9E523DF0210460B600CF921F /* guide_btn_bg@2x.png */,
+				9E523DEF210460B600CF921F /* HHGuidePageHUD.swift */,
+				9E523DF1210460B600CF921F /* UIImage+GIF.swift */,
+			);
+			path = HHGuidePageHUD;
+			sourceTree = "<group>";
+		};
 		9E88ED0520FB3B0600DF091F /* View */ = {
 			isa = PBXGroup;
 			children = (
@@ -270,6 +312,8 @@
 				9E88ED1720FB40DE00DF091F /* FirstGrade */,
 				9E29031A20F7B99800F11C63 /* ViewController.swift */,
 				9E523DE72102E46900CF921F /* BaseViewController.swift */,
+				9E523DFD2104661400CF921F /* GuideViewController.swift */,
+				9E523E0121047F7700CF921F /* IntroductionViewController.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -277,12 +321,14 @@
 		9E88ED0A20FB3B6300DF091F /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				9E523DEB21045F3300CF921F /* ThirdParty */,
 				9E88ED2820FB721700DF091F /* UIColor */,
 				9E88ED2120FB52D300DF091F /* TableView */,
 				9E88ED0E20FB3B7700DF091F /* Observable+ObjectMapper.swift */,
 				9E88ED0C20FB3B7600DF091F /* ObservableType+ObjectMapper.swift */,
 				9E88ED0B20FB3B7600DF091F /* Response+ObjectMapper.swift */,
 				9E88ED0D20FB3B7600DF091F /* Single+ObjectMapper.swift */,
+				9E523DFF21047E7900CF921F /* UserDefaults.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -476,8 +522,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9E523DFB2104615700CF921F /* 1.mp4 in Resources */,
+				9E523DFA2104615700CF921F /* guideImage8.gif in Resources */,
 				9E29032320F7B99B00F11C63 /* LaunchScreen.storyboard in Resources */,
+				9E523DFC2104615800CF921F /* guideImage7.gif in Resources */,
+				9E523DF3210460B600CF921F /* guide_btn_bg@2x.png in Resources */,
 				9E523DEA21034B2000CF921F /* Assets.xcassets in Resources */,
+				9E523DF92104615700CF921F /* guideImage6.gif in Resources */,
 				9E29031E20F7B99800F11C63 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -614,11 +665,14 @@
 				9E523DE82102E46900CF921F /* BaseViewController.swift in Sources */,
 				2C7FAC6C2100547A004AEC10 /* Cookie.swift in Sources */,
 				9E29031B20F7B99800F11C63 /* ViewController.swift in Sources */,
+				9E523DF4210460B600CF921F /* UIImage+GIF.swift in Sources */,
 				9E523DE020FEB4F100CF921F /* ProtocolPageViewController.swift in Sources */,
+				9E523DFE2104661400CF921F /* GuideViewController.swift in Sources */,
 				9E88ED4520FE63AE00DF091F /* ForgotPwdViewController.swift in Sources */,
 				9E88ED3220FCE21000DF091F /* TableViewCell.swift in Sources */,
 				9E523DE62100E21000CF921F /* RegisterVM.swift in Sources */,
 				9E88ED2720FB576200DF091F /* Candy.swift in Sources */,
+				9E523DF2210460B600CF921F /* HHGuidePageHUD.swift in Sources */,
 				9E88ED2A20FB723600DF091F /* UIColor.swift in Sources */,
 				9E88ED1420FB3B9300DF091F /* Post.swift in Sources */,
 				9E88ED1220FB3B7700DF091F /* Observable+ObjectMapper.swift in Sources */,
@@ -629,10 +683,12 @@
 				9E523DE22100DD0500CF921F /* Protocol.swift in Sources */,
 				9E88ED3520FCE95600DF091F /* MemberBaseViewController.swift in Sources */,
 				9E88ED2D20FB8C7900DF091F /* Specs.swift in Sources */,
+				9E523E0221047F7700CF921F /* IntroductionViewController.swift in Sources */,
 				9E88ED2020FB469000DF091F /* StatisticViewController.swift in Sources */,
 				9E29031920F7B99800F11C63 /* AppDelegate.swift in Sources */,
 				9E523DE42100DDA900CF921F /* Service.swift in Sources */,
 				9E88ED2F20FBA90C00DF091F /* Common.swift in Sources */,
+				9E523E0021047E7900CF921F /* UserDefaults.swift in Sources */,
 				9E88ED3B20FCEC5100DF091F /* MemberMenus.swift in Sources */,
 				9E88ED1620FB3BA500DF091F /* PostProvider.swift in Sources */,
 				9E88ED1C20FB462600DF091F /* OrderTableViewController.swift in Sources */,
@@ -811,6 +867,7 @@
 			baseConfigurationReference = 8BD4B1E4B718B1C487039245 /* Pods-ZHERP.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = X63G2JGQU7;
@@ -833,6 +890,7 @@
 			baseConfigurationReference = 829D37B56E7E23231666AB1E /* Pods-ZHERP.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = X63G2JGQU7;

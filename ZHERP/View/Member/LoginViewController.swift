@@ -37,8 +37,8 @@ class LoginViewController: UIViewController {
         setBackBtn(view: self, selector: selector, title: "back", parent: true)
         
         LoginBtn.layer.cornerRadius = Specs.border.radius
-        setUITextFileBP(textFiled: usernameTxt, placeholder: "请输入手机号码")
-        setUITextFileBP(textFiled: passwordTxt, placeholder: "请输入密码(6~16位数字+字母)")
+        setUITextFieldBP(textFiled: usernameTxt, placeholder: "请输入手机号码")
+        setUITextFieldBP(textFiled: passwordTxt, placeholder: "请输入密码(6~16位数字+字母)")
     }
     
     @objc func actionBack() {

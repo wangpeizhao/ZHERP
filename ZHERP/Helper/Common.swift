@@ -146,6 +146,15 @@ public func _open(view: UIViewController, vc: UIViewController, withNav: Bool = 
     
     // 黑屏
     //        self.present(LoginViewController(), animated: true, completion: nil)
+//    
+//    let miaoSB = UIStoryboard(name:"Miao",bundle:nil)
+//    let miaoVC = miaoSB.instantiateInitialViewController()
+//    UIApplication.shared.keyWindow?.rootViewController = miaoVC
+//    
+//    let loginSB = UIStoryboard(name:"Login",bundle:nil)
+//    let loginVC = loginSB.instantiateInitialViewController()
+//    miaoVC?.present(loginVC!, animated: false, completion: nil)
+//    
 }
 
 public func setBackBtn(view: UIViewController, selector: Selector, title: String = "返回", parent: Bool = false) {
@@ -171,6 +180,7 @@ public func setNavBarTitle(view: UIViewController, title: String, transparent: B
         // 设置导航背景透明
         view.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
         view.navigationController?.navigationBar.shadowImage = UIImage()
+        view.navigationController?.navigationBar.isTranslucent = true
         return
     }
     // 设置导航背景颜色
@@ -178,10 +188,10 @@ public func setNavBarTitle(view: UIViewController, title: String, transparent: B
     view.navigationItem.leftItemsSupplementBackButton = true
 }
 
-func setUITextFileBP(textFiled: UITextField, placeholder: String) {
+func setUITextFieldBP(textFiled: UITextField, placeholder: String) {
     // 设置下划线边框
     let border = CALayer()
-    let width = CGFloat(1.0)
+    let width = Specs.border.width
     let y = textFiled.frame.size.height - width
     border.borderColor = UIColor.white.cgColor
     border.frame = CGRect(x: 0, y: y, width: textFiled.frame.size.width, height: textFiled.frame.size.height)
@@ -193,6 +203,18 @@ func setUITextFileBP(textFiled: UITextField, placeholder: String) {
     let placeholserAttributes = [NSAttributedStringKey.foregroundColor: UIColor.white,NSAttributedStringKey.font: setFontSize()]
     textFiled.attributedPlaceholder = NSAttributedString(string: placeholder, attributes: placeholserAttributes)
     textFiled.backgroundColor = UIColor.clear
+}
+
+func setViewWidgetBottomLine(widget: UIView) {
+    // 设置下划线边框
+    let border = CALayer()
+    let width = Specs.border.width
+    let y = widget.frame.size.height - width
+    border.borderColor = UIColor.black.cgColor
+    border.frame = CGRect(x: 0, y: y, width: widget.frame.size.width, height: widget.frame.size.height)
+    border.borderWidth = width
+    widget.layer.addSublayer(border)
+    widget.layer.masksToBounds = true
 }
 
 func setFontSize(size: CGFloat = 15) -> UIFont{

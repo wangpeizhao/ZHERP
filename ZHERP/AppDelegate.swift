@@ -16,6 +16,38 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        
+//        let status: Bool = checkLoginStatus()
+//        let vc: UIViewController!
+//        if status {
+//            vc = HomeViewController()
+//        } else {
+//            vc = LoginViewController()
+//        }
+//        self.window = UIWindow.init(frame: UIScreen.main.bounds)
+//        self.window?.backgroundColor = UIColor.white
+//        let nav = UINavigationController.init(rootViewController: vc)
+//        self.window?.rootViewController = nav
+//        self.window?.makeKeyAndVisible()
+//        return true
+        
+        //判断当前版本是否第一次启动
+        if UserDefaults.isFirstLaunchOfNewVersion() {
+            //显示新功能介绍页
+            print("当前版本第一次启动")
+            let introductionViewController = IntroductionViewController()
+            self.window!.rootViewController = introductionViewController
+        }
+        
+        //判断是否第一次启动（两个都是第一次则以这个为准）
+        if UserDefaults.isFirstLaunch() {
+            //显示新手指导页
+            print("应用第一次启动")
+            let guideViewController = GuideViewController()
+            self.window!.rootViewController = guideViewController
+        }
+        
+        
         return true
     }
 

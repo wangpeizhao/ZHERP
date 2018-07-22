@@ -18,6 +18,16 @@ class HomeViewController: BaseViewController {
     @IBOutlet weak var settingBtn: UIButton!
     @IBOutlet weak var functionalBlock: UIView!
     @IBOutlet weak var homeNavBar: UINavigationBar!
+    @IBOutlet weak var rankingBlock: UIView!
+    @IBOutlet weak var todayBlock: UIView!
+    
+    @IBOutlet weak var todayTotalAmount: UILabel!
+    @IBOutlet weak var historyShipments: UILabel!
+    @IBOutlet weak var todayShipments: UILabel!
+    @IBOutlet weak var residueShipments: UILabel!
+    //    @IBOutlet weak var todayShipments: UILabel!
+//    @IBOutlet weak var residueShipments: UILabel!
+    
     
     @IBAction func memberCenter(_ sender: Any) {
         if(checkLoginStatus()) {
@@ -47,6 +57,16 @@ class HomeViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        // 静态引导页
+        //        self.setStaticGuidePage()
+        
+        // 动态引导页
+        //         self.setDynamicGuidePage()
+        
+        // 视频引导页
+        self.setStaticGuidePage()
+        
         // Do any additional setup after loading the view.
         // set bar
         setNavBarTitle(view: self, title: "纵横ERP", transparent: false)
@@ -64,13 +84,57 @@ class HomeViewController: BaseViewController {
         setUIButtonToCircle(button: settingBtn)
         
         //
-        functionalBlock.layer.borderWidth = Specs.border.width
-        functionalBlock.layer.borderColor = Specs.color.main.cgColor
+//        functionalBlock.layer.borderWidth = Specs.border.width
+//        functionalBlock.layer.borderColor = Specs.color.main.cgColor
         
-//        view.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
-//        view.navigationController?.navigationBar.shadowImage = UIImage()
-        homeNavBar.layer.backgroundColor = Specs.color.main.cgColor
-        homeNavBar.layer.shadowColor = Specs.color.main.cgColor
+//        let controller1 = ViewController()
+//        let navigation = UINavigationController(rootViewController:controller1)
+//        controller1.title = "123"
+//        controller1.navigationController?.navigationBar.barTintColor = Specs.color.main
+//        let navigationDic = [NSAttributedStringKey.font : UIColor.white.cgColor]
+//        controller1.navigationController?.navigationBar.titleTextAttributes = navigationDic
+//        let controller2 = UIViewController()
+//        controller2.view.backgroundColor = UIColor.red
+//        self.addChildViewController(navigation)
+//        self.addChildViewController(controller2)
+//        controller1.tabBarItem.title = "111"
+//        controller2.tabBarItem.title = "222"
+        
+        // Set tabBar background color
+        self.tabBarController?.tabBar.barTintColor = Specs.color.main
+        
+        // Set View Underline
+        setViewWidgetBottomLine(widget: todayBlock)
+        setViewWidgetBottomLine(widget: functionalBlock)
+        setViewWidgetBottomLine(widget: rankingBlock)
+        
+        // set Values
+        todayTotalAmount.text = "123456789"
+        historyShipments.text = "123"
+        todayShipments.text = "456"
+        residueShipments.text = "789"
+    }
+    
+    
+    // MARK: - 静态图片引导页
+    func setStaticGuidePage() {
+        let imageNameArray: [String] = ["guide00", "guide01", "guide02"]
+        let guideView = HHGuidePageHUD.init(imageNameArray: imageNameArray, isHiddenSkipButton: false)
+        self.navigationController?.view.addSubview(guideView)
+    }
+    // MARK: - 动态图片引导页
+    func setDynamicGuidePage() {
+        let imageNameArray: [String] = ["guideImage6.gif", "guideImage7.gif", "guideImage8.gif"]
+        let guideView = HHGuidePageHUD.init(imageNameArray: imageNameArray, isHiddenSkipButton: false)
+        self.navigationController?.view.addSubview(guideView)
+    }
+    
+    // MARK: - 视频引导页
+    func setVideoGuidePage() {
+        let urlStr = Bundle.main.path(forResource: "1.mp4", ofType: nil)
+        let videoUrl = NSURL.fileURL(withPath: urlStr!)
+        let guideView = HHGuidePageHUD.init(videoURL:videoUrl, isHiddenSkipButton: false)
+        self.navigationController?.view.addSubview(guideView)
     }
     
     @objc func actionGo() {

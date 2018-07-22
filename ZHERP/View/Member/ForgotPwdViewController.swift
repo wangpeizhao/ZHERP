@@ -36,8 +36,8 @@ class ForgotPwdViewController: UIViewController {
         
         ForgetPwdBtn.layer.cornerRadius = Specs.border.radius
         verificationCodeBtn.layer.cornerRadius = Specs.border.radius
-        setUITextFileBP(textFiled: usernameTxt, placeholder: "请输入手机号码")
-        setUITextFileBP(textFiled: verificationCodeTxt, placeholder: "请输入手机验证码")
+        setUITextFieldBP(textFiled: usernameTxt, placeholder: "请输入手机号码")
+        setUITextFieldBP(textFiled: verificationCodeTxt, placeholder: "请输入手机验证码")
     }
     
     @objc func actionBack() {

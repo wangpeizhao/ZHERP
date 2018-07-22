@@ -32,8 +32,8 @@ class ResetPwdViewController: UIViewController {
         // Do any additional setup after loading the view.
         
         ResetPwdBtn.layer.cornerRadius = Specs.border.radius
-        setUITextFileBP(textFiled: passwordTxt, placeholder: "请输入新密码")
-        setUITextFileBP(textFiled: repasswordTxt, placeholder: "请重复输入密码")
+        setUITextFieldBP(textFiled: passwordTxt, placeholder: "请输入新密码")
+        setUITextFieldBP(textFiled: repasswordTxt, placeholder: "请重复输入密码")
     }
     
     @objc func actionBack() {
