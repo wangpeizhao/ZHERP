@@ -36,9 +36,17 @@ class LoginViewController: UIViewController {
         let selector: Selector = #selector(actionBack)
         setBackBtn(view: self, selector: selector, title: "back", parent: true)
         
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         LoginBtn.layer.cornerRadius = Specs.border.radius
         setUITextFieldBP(textFiled: usernameTxt, placeholder: "请输入手机号码")
         setUITextFieldBP(textFiled: passwordTxt, placeholder: "请输入密码(6~16位数字+字母)")
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
     }
     
     @objc func actionBack() {

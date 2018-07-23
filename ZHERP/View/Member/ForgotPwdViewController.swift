@@ -36,8 +36,6 @@ class ForgotPwdViewController: UIViewController {
         
         ForgetPwdBtn.layer.cornerRadius = Specs.border.radius
         verificationCodeBtn.layer.cornerRadius = Specs.border.radius
-        setUITextFieldBP(textFiled: usernameTxt, placeholder: "请输入手机号码")
-        setUITextFieldBP(textFiled: verificationCodeTxt, placeholder: "请输入手机验证码")
     }
     
     @objc func actionBack() {
@@ -53,6 +51,12 @@ class ForgotPwdViewController: UIViewController {
 //        leftBtn.tintColor=UIColor.white;
 //        //        self.navigationItem
 //        self.navigationItem.leftBarButtonItem=leftBtn;
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        setUITextFieldBP(textFiled: usernameTxt, placeholder: "请输入手机号码")
+        setUITextFieldBP(textFiled: verificationCodeTxt, placeholder: "请输入手机验证码")
     }
 
     override func didReceiveMemoryWarning() {
