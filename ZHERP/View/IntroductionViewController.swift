@@ -29,7 +29,7 @@ class IntroductionViewController: UIPageViewController, UIScrollViewDelegate{
         scrollView.scrollsToTop = false
         
         let size = UIScreen.main.bounds.size
-        imageArray = ["guideImage5.jpg","adImage4.gif","guideImage7.gif","guideImage3.jpg", "shopping.gif"]
+        imageArray = ["adImage4.gif","guideImage5.jpg","guideImage7.gif","guideImage3.jpg", "shopping.gif"]
         for i in 0..<numOfPages{
 //            let imgfile = "guideImage\(Int(i) + 1).jpg"
             
@@ -91,6 +91,7 @@ class IntroductionViewController: UIPageViewController, UIScrollViewDelegate{
         button.setTitleColor(UIColor.green, for: .normal)
         button.isHidden = true
         button.backgroundColor = Specs.color.white
+        button.layer.cornerRadius = Specs.border.radius
         button.addTarget(self, action: #selector(loginButtonClick), for: .touchUpInside)
         return button
     }()

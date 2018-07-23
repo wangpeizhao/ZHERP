@@ -40,6 +40,7 @@
 		9E523E2E2104D7CE00CF921F /* guideImage3.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 9E523E282104D7CD00CF921F /* guideImage3.jpg */; };
 		9E523E2F2104D7CE00CF921F /* adImage4.gif in Resources */ = {isa = PBXBuildFile; fileRef = 9E523E292104D7CD00CF921F /* adImage4.gif */; };
 		9E523E322104DA1000CF921F /* GifImageOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E523E312104DA1000CF921F /* GifImageOperation.swift */; };
+		9E523E352106170000CF921F /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E523E342106170000CF921F /* SettingViewController.swift */; };
 		9E88ED0720FB3B3800DF091F /* PostAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E88ED0620FB3B3800DF091F /* PostAPI.swift */; };
 		9E88ED0F20FB3B7700DF091F /* Response+ObjectMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E88ED0B20FB3B7600DF091F /* Response+ObjectMapper.swift */; };
 		9E88ED1020FB3B7700DF091F /* ObservableType+ObjectMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E88ED0C20FB3B7600DF091F /* ObservableType+ObjectMapper.swift */; };
@@ -130,6 +131,7 @@
 		9E523E282104D7CD00CF921F /* guideImage3.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = guideImage3.jpg; sourceTree = "<group>"; };
 		9E523E292104D7CD00CF921F /* adImage4.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = adImage4.gif; sourceTree = "<group>"; };
 		9E523E312104DA1000CF921F /* GifImageOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GifImageOperation.swift; sourceTree = "<group>"; };
+		9E523E342106170000CF921F /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
 		9E88ED0620FB3B3800DF091F /* PostAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostAPI.swift; sourceTree = "<group>"; };
 		9E88ED0B20FB3B7600DF091F /* Response+ObjectMapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Response+ObjectMapper.swift"; sourceTree = "<group>"; };
 		9E88ED0C20FB3B7600DF091F /* ObservableType+ObjectMapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ObservableType+ObjectMapper.swift"; sourceTree = "<group>"; };
@@ -340,9 +342,18 @@
 			path = images;
 			sourceTree = "<group>";
 		};
+		9E523E33210616E600CF921F /* Manage */ = {
+			isa = PBXGroup;
+			children = (
+				9E523E342106170000CF921F /* SettingViewController.swift */,
+			);
+			path = Manage;
+			sourceTree = "<group>";
+		};
 		9E88ED0520FB3B0600DF091F /* View */ = {
 			isa = PBXGroup;
 			children = (
+				9E523E33210616E600CF921F /* Manage */,
 				9E88ED3320FCE8DB00DF091F /* Member */,
 				9E88ED3020FCE1EE00DF091F /* Component */,
 				9E88ED1820FB40F400DF091F /* SecondGrade */,
@@ -736,6 +747,7 @@
 				9E88ED3B20FCEC5100DF091F /* MemberMenus.swift in Sources */,
 				9E88ED1620FB3BA500DF091F /* PostProvider.swift in Sources */,
 				9E88ED1C20FB462600DF091F /* OrderTableViewController.swift in Sources */,
+				9E523E352106170000CF921F /* SettingViewController.swift in Sources */,
 				9E88ED3F20FE5D2C00DF091F /* LoginViewController.swift in Sources */,
 				9E88ED0720FB3B3800DF091F /* PostAPI.swift in Sources */,
 			);

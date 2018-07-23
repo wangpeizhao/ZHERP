@@ -32,7 +32,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //        return true
         
         //判断当前版本是否第一次启动
-        if !UserDefaults.isFirstLaunchOfNewVersion() {
+        if UserDefaults.isFirstLaunchOfNewVersion() {
             //显示新功能介绍页
             print("当前版本第一次启动")
             let introductionViewController = IntroductionViewController()
@@ -48,8 +48,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             self.window!.rootViewController = guideViewController
             return true
         }
+//        let appdelegate = UIApplication.shared.delegate as! AppDelegate
+//        let mainStoryboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+//        let homeViewController = mainStoryboard.instantiateViewController(withIdentifier: "HomeViewController") as! HomeViewController
+//        let nav = UINavigationController(rootViewController: homeViewController)
+////        appdelegate.window!.rootViewController = nav
+//        self.window?.rootViewController = nav
+//        self.window?.makeKeyAndVisible()
         
-        
+//        let firstVC = HomeViewController(nibName:nil,bundle: nil)
+//        let navigation = UINavigationController(rootViewController: firstVC)
+//        self.window?.rootViewController = navigation;
+
         return true
     }
 
