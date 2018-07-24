@@ -49,7 +49,7 @@ class PersonalViewController: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = Specs.color.gray
         // set bar
-        setNavBarTitle(view: self, title: "个人信息")
+        setNavBarTitle(view: self, title: "个人信息", ofSize: 18)
         
         // set back btn
         let selector: Selector = #selector(actionBack)
@@ -193,6 +193,14 @@ extension PersonalViewController: UITableViewDelegate {
         vc.personalTitle = modelForRow[MemberMenus.Title]
         vc.personalValue = modelForRow[MemberMenus.Value]
         vc.personalKey = modelForRow[MemberMenus.key]
+        
+        if vc.personalKey == "username" {
+            let selector: Selector = #selector(actionBack)
+            setNavBarBackBtn(view: self, title: "取消", selector: selector)
+        } else {
+            let selector: Selector = #selector(actionBack)
+            setNavBarBackBtn(view: self, title: "个人信息", selector: selector)
+        }
         
         self.hidesBottomBarWhenPushed = true
         self.navigationController?.pushViewController(vc, animated: true)
