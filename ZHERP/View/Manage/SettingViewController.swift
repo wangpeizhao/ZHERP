@@ -8,17 +8,21 @@
 
 import UIKit
 
-class SettingViewController: UIViewController {
+class SettingViewController: UIViewController,UITableViewDataSource ,UITableViewDelegate{
 
-    @IBOutlet weak var tablwView: UITableView!
+    @IBOutlet weak var tableView: UITableView!
     private var dataArray: [String] = []
     private var urlDict: [String:String] = [:]
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.view.backgroundColor = Specs.color.white
+        
 //        setNavBarTitle(view: self, title: "Setting")
-        setNavBarTitle(view: self, title: "Setting")
+        setNavBarTitle(view: self, title: "设置")
+//        setNavBarLeftBtn(view: self, title: "我的", selector: <#T##Selector#>)
+//        setNavBarBackBtn(view: self, title: "我的", selector: selector)
 
 //        // Do any additional setup after loading the view.
 //        let textF=UITextField(frame: CGRect(x: 20, y: 100, width: 320, height: 36))
@@ -65,9 +69,20 @@ class SettingViewController: UIViewController {
         
         makeData()
         
+//        http://www.hangge.com/blog/cache/detail_651.html
+//        let alertController = UIAlertController(title: "保存或删除数据", message: "删除数据将不可恢复",
+//                                                preferredStyle: .actionSheet)
+//        let cancelAction = UIAlertAction(title: "取消", style: .cancel, handler: nil)
+//        let deleteAction = UIAlertAction(title: "删除", style: .destructive, handler: nil)
+//        let archiveAction = UIAlertAction(title: "保存", style: .default, handler: nil)
+//        alertController.addAction(cancelAction)
+//        alertController.addAction(deleteAction)
+//        alertController.addAction(archiveAction)
+//        self.present(alertController, animated: true, completion: nil)
+        
     }
     private func makeData() {
-        
+        // https://www.jianshu.com/p/976e1a6a2811
         urlDict = [
             "系统设置": UIApplicationOpenSettingsURLString,
             "个人热点":"prefs:root=INTERNET_TETHERING",
@@ -90,30 +105,25 @@ class SettingViewController: UIViewController {
         dataArray = Array(urlDict.keys)
     }
     
-    
-}
-
-extension SettingViewController {
-    
     /// 跳转到系统设置主页
     func jumpToSystemSeting() {
         let settingUrl = URL(string: UIApplicationOpenSettingsURLString)
         if let url = settingUrl, UIApplication.shared.canOpenURL(url) {
-            UIApplication.shared.openURL(url)
+            UIApplication.shared.canOpenURL(url)
         }
     }
     /// 定位服务
     func jumpToPosition() {
         let settingUrl = URL(string: "prefs:root=LOCATION_SERVICES")
         if let url = settingUrl, UIApplication.shared.canOpenURL(url) {
-            UIApplication.shared.openURL(url)
+            UIApplication.shared.canOpenURL(url)
         }
     }
     /// wifi服务
     func jumpToWifi() {
         let settingUrl = URL(string: "prefs:root=WIFI")
         if let url = settingUrl, UIApplication.shared.canOpenURL(url) {
-            UIApplication.shared.openURL(url)
+            UIApplication.shared.canOpenURL(url)
         }
     }
     
@@ -121,7 +131,7 @@ extension SettingViewController {
     func jumpToNoti() {
         let settingUrl = URL(string: "prefs:root=NOTIFICATIONS_ID")
         if let url = settingUrl, UIApplication.shared.canOpenURL(url) {
-            UIApplication.shared.openURL(url)
+            UIApplication.shared.canOpenURL(url)
         }
     }
     
@@ -129,12 +139,9 @@ extension SettingViewController {
     func jumpTemplate(strurl: String) {
         let urltemp = URL(string: strurl)
         if let url = urltemp, UIApplication.shared.canOpenURL(url) {
-            UIApplication.shared.openURL(url)
+            UIApplication.shared.canOpenURL(url)
         }
     }
-}
-
-extension SettingViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return dataArray.count
@@ -145,9 +152,6 @@ extension SettingViewController: UITableViewDataSource {
         cell.textLabel?.text = dataArray[indexPath.row]
         return cell
     }
-}
-
-extension SettingViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let url = urlDict[dataArray[indexPath.row]]

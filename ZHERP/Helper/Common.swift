@@ -56,7 +56,7 @@ public func _logout() {
 public func checkLoginStatus() -> Bool{
     userDefault = UserDefaults.standard
     guard userDefault.bool(forKey: "LoginStatus") else {
-        return false
+        return true
     }
     return true
 }
@@ -74,28 +74,30 @@ public func _open(view: UIViewController, vcName: String = "login", withNav: Boo
         return
     }
     let vc: UIViewController!
+    let sb = UIStoryboard(name: "Main", bundle:nil)
+    // view.storyboard?.instantiateViewController
     switch vcName {
     case "login":
-        vc = view.storyboard?.instantiateViewController(withIdentifier: "LoginViewController") as! LoginViewController
+        vc = sb.instantiateViewController(withIdentifier: "LoginViewController") as! LoginViewController
         break
     case "register":
-        vc = view.storyboard?.instantiateViewController(withIdentifier: "RegisterViewController") as! RegisterViewController
+        vc = sb.instantiateViewController(withIdentifier: "RegisterViewController") as! RegisterViewController
         break
     case "home":
-        vc = view.storyboard?.instantiateViewController(withIdentifier: "HomeViewController") as! HomeViewController
+        vc = sb.instantiateViewController(withIdentifier: "HomeViewController") as! HomeViewController
         break
     case "member":
-        vc = view.storyboard?.instantiateViewController(withIdentifier: "MemberViewController") as! MemberViewController
+        vc = sb.instantiateViewController(withIdentifier: "MemberViewController") as! MemberViewController
         break
     case "forget":
-        vc = view.storyboard?.instantiateViewController(withIdentifier: "ForgotPwdViewController") as! ForgotPwdViewController
+        vc = sb.instantiateViewController(withIdentifier: "ForgotPwdViewController") as! ForgotPwdViewController
         break
     case "resetPwd":
-        vc = view.storyboard?.instantiateViewController(withIdentifier: "ResetPwdViewController") as! ResetPwdViewController
+        vc = sb.instantiateViewController(withIdentifier: "ResetPwdViewController") as! ResetPwdViewController
         break
     default:
         _logout()
-        vc = view.storyboard?.instantiateViewController(withIdentifier: "LoginViewController") as! LoginViewController
+        vc = sb.instantiateViewController(withIdentifier: "LoginViewController") as! LoginViewController
         break
     }
     _open(view: view, vc: vc, withNav: withNav)
@@ -172,20 +174,75 @@ public func setBackBtn(view: UIViewController, selector: Selector, title: String
 }
 
 public func setNavBarTitle(view: UIViewController, title: String, transparent: Bool = false) {
-    view.navigationItem.title = title
-    // 设置导航标题颜色
-    view.navigationController?.navigationBar.tintColor = Specs.color.white
+    //    let arr=UIFont.familyNames
+    //    print(arr)
+    //    ["Copperplate", "Heiti SC", "Apple SD Gothic Neo", "Thonburi", "Gill Sans", "Marker Felt", "Hiragino Maru Gothic ProN", "Courier New", "Kohinoor Telugu", "Heiti TC", "Avenir Next Condensed", "Tamil Sangam MN", "Helvetica Neue", "Gurmukhi MN", "Georgia", "Times New Roman", "Sinhala Sangam MN", "Arial Rounded MT Bold", "Kailasa", "Kohinoor Devanagari", "Kohinoor Bangla", "Chalkboard SE", "Apple Color Emoji", "PingFang TC", "Gujarati Sangam MN", "Geeza Pro", "Damascus", "Noteworthy", "Avenir", "Mishafi", "Academy Engraved LET", "Futura", "Party LET", "Kannada Sangam MN", "Arial Hebrew", "Farah", "Arial", "Chalkduster", "Kefa", "Hoefler Text", "Optima", "Palatino", "Malayalam Sangam MN", "Al Nile", "Lao Sangam MN", "Bradley Hand", "Hiragino Mincho ProN", "PingFang HK", "Helvetica", "Courier", "Cochin", "Trebuchet MS", "Devanagari Sangam MN", "Oriya Sangam MN", "Rockwell", "Snell Roundhand", "Zapf Dingbats", "Bodoni 72", "Verdana", "American Typewriter", "Avenir Next", "Baskerville", "Khmer Sangam MN", "Didot", "Savoye LET", "Bodoni Ornaments", "Symbol", "Charter", "Menlo", "Noto Nastaliq Urdu", "Bodoni 72 Smallcaps", "DIN Alternate", "Papyrus", "Hiragino Sans", "PingFang SC", "Myanmar Sangam MN", "Zapfino", "Telugu Sangam MN", "Bodoni 72 Oldstyle", "Euphemia UCAS", "Bangla Sangam MN", "DIN Condensed"]
+    //设置UINavigationBar title的字体和颜色
+//    let titleTextAttributes :[String : AnyObject] = [NSFontAttributeName : UIFont(name: "Helvetica", size: 22) as! AnyObject , NSForegroundColorAttributeName : UIColor(red: 0.2392, green: 0.7137, blue: 0.7451, alpha: 1) as AnyObject]
+//    UINavigationBar.appearance().titleTextAttributes = titleTextAttributes
+    //UITabBar bar 的选中颜色
+//    UITabBar.appearance().tintColor = UIColor(red: 0.2392, green: 0.7137, blue: 0.7451, alpha: 1)
+    //tabbar默认的背景色
+//    UITabBar.appearance().barTintColor = UIColor.clearColor()
     
+    view.navigationItem.title = title
+    // 修改导航栏标题颜色、修改导航栏标题字体和大小
+    view.navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor.white,NSAttributedStringKey.font: UIFont.boldSystemFont(ofSize: 20)]
+//    view.navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor.white,NSAttributedStringKey.font: UIFont(name: "Bobz Type", size: 20) as Any]
+    
+    // 设置导航背景透明
     if transparent != false {
-        // 设置导航背景透明
         view.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
         view.navigationController?.navigationBar.shadowImage = UIImage()
         view.navigationController?.navigationBar.isTranslucent = true
         return
     }
     // 设置导航背景颜色
+//    view.navigationController?.navigationBar.barTintColor = UIColor(red: 55/255, green: 186/255, blue: 89/255, alpha: 1)
     view.navigationController?.navigationBar.barTintColor = Specs.color.main
     view.navigationItem.leftItemsSupplementBackButton = true
+}
+
+// 修改“返回按钮”图标 (需要图片也需要文字)
+public func setNavBarImageBtn(view: UIViewController, selector: Selector) {
+    let button = UIButton(type: .system)
+    button.frame = CGRect(x:0, y:0, width:65, height:30)
+    button.setImage(UIImage(named:"userinfo-icon"), for: .normal)
+    button.setTitle("返回", for: .normal)
+    button.addTarget(view, action: selector, for: .touchUpInside)
+    let leftBarBtn = UIBarButtonItem(customView: button)
+    //用于消除左边空隙，要不然按钮顶不到最前面
+    let spacer = UIBarButtonItem(barButtonSystemItem: .fixedSpace, target: nil, action: nil)
+    spacer.width = -10;
+    view.navigationItem.leftBarButtonItems = [spacer,leftBarBtn]
+}
+
+public func setNavBarBackBtn(view: UIViewController, title: String, selector: Selector) {
+    let backBtn = UIBarButtonItem(title: title, style: .plain, target: view, action: selector)
+    // 返回按钮文字颜色
+    backBtn.tintColor = Specs.color.white
+    view.navigationItem.backBarButtonItem = backBtn
+}
+
+public func setNavBarLeftBtn(view: UIViewController, title: String, selector: Selector) {
+    let leftBtn = UIBarButtonItem(title: title, style: .plain, target: view, action: selector)
+    // 返回按钮文字颜色
+    leftBtn.tintColor = Specs.color.white
+    view.navigationItem.leftBarButtonItem = leftBtn
+}
+
+public func setNavBarRightBtn(view: UIViewController, title: String, selector: Selector) {
+    let rightBtn = UIBarButtonItem(title: title, style: .plain, target: view, action: selector)
+    // 返回按钮文字颜色
+    rightBtn.tintColor = Specs.color.white
+    view.navigationItem.rightBarButtonItem = rightBtn
+}
+
+public func setNavBar(view: UIViewController, title: String, backBtnTitle: String, backBtnSelector: Selector, leftBtnTitle: String, leftBtnSelector: Selector, rightBtnTitle: String, rightBtnSelector: Selector) {
+    setNavBarTitle(view: view, title: title)
+    setNavBarBackBtn(view: view, title: backBtnTitle, selector: backBtnSelector)
+    setNavBarLeftBtn(view: view, title: leftBtnTitle, selector: leftBtnSelector)
+    setNavBarRightBtn(view: view, title: rightBtnTitle, selector: rightBtnSelector)
 }
 
 func setUITextFieldBP(textFiled: UITextField, placeholder: String) {

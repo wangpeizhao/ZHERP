@@ -40,7 +40,7 @@ class MemberViewController: MemberBaseViewController {
         
         // set back btn
         let selector: Selector = #selector(actionBack)
-        setBackBtn(view: self, selector: selector)
+        setNavBarBackBtn(view: self, title: "我的", selector: selector)
                 
         tableView.delegate = self
         tableView.dataSource = self
@@ -155,6 +155,10 @@ extension MemberViewController: UITableViewDelegate {
     func logout(_: UIAlertAction)->Void {
         _logout()
         _open(view: self, vcName: "login", withNav: false)
+//        let sb = UIStoryboard(name: "Main", bundle:nil)
+//        let vc = sb.instantiateViewController(withIdentifier: "LoginViewController") as! LoginViewController
+//        //VC为该界面storyboardID，Main.storyboard中选中该界面View，Identifier inspector中修改
+//        self.present(vc, animated: true, completion: nil)
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -163,6 +167,9 @@ extension MemberViewController: UITableViewDelegate {
             switch action {
             case "Back":
                 _dismiss(view: self)
+                break;
+            case "Setting":
+                self.navigationController?.pushViewController(SettingViewController(), animated: true)
                 break;
             case "Logout":
                 _confirm(view: self, title: "提示", message: "确定要退出吗？", handler: logout)

@@ -77,19 +77,23 @@ class HomeViewController: BaseViewController {
         let selector: Selector = #selector(actionGo)
 //        setBackBtn(view: self, selector: selector, title: "我的", parent: false)
         
-        let leftBtn = UIBarButtonItem(title: "我的", style: .plain, target: self, action: selector)
-        self.navigationItem.leftBarButtonItem = leftBtn
+//        let leftBtn = UIBarButtonItem(title: "我的", style: .plain, target: self, action: selector)
+//        self.navigationItem.leftBarButtonItem = leftBtn
         
-        let backBtn = UIBarButtonItem(title: "", style: .plain, target: self, action: selector)
-        self.navigationItem.backBarButtonItem = backBtn
         
-        // 按钮圆形
-        setUIButtonToCircle(button: pickingBtn)
-        setUIButtonToCircle(button: scanSendGoodBtn)
-        setUIButtonToCircle(button: allocatingBtn)
-        setUIButtonToCircle(button: warehouseBtn)
-        setUIButtonToCircle(button: takeStockBtn)
-        setUIButtonToCircle(button: settingBtn)
+        // 设置左侧按钮
+        let leftBarBtn = UIBarButtonItem(title: "", style: .plain, target: self, action: selector)
+        leftBarBtn.image = UIImage(named: "userinfo-icon")
+        //用于消除左边空隙，要不然按钮顶不到最前面
+        let spacer = UIBarButtonItem(barButtonSystemItem: .fixedSpace, target: nil, action: nil)
+        spacer.width = -20
+        self.navigationItem.leftBarButtonItems = [spacer, leftBarBtn]
+        
+        // back Bar
+//        let backBtn = UIBarButtonItem(title: "首页", style: .plain, target: self, action: selector)
+//        self.navigationItem.backBarButtonItem = backBtn
+//        self.navigationItem.backBarButtonItem?.tintColor = Specs.color.white
+        setNavBarBackBtn(view: self, title: "首页", selector: selector)
         
         //
 //        functionalBlock.layer.borderWidth = Specs.border.width
@@ -109,18 +113,30 @@ class HomeViewController: BaseViewController {
 //        controller2.tabBarItem.title = "222"
         
         // Set tabBar background color
-        self.tabBarController?.tabBar.barTintColor = Specs.color.main
+//        self.tabBarController?.tabBar.barTintColor = Specs.color.main
         
-        // Set View Underline
-        setViewWidgetBottomLine(widget: todayBlock)
-        setViewWidgetBottomLine(widget: functionalBlock)
-        setViewWidgetBottomLine(widget: rankingBlock)
         
         // set Values
         todayTotalAmount.text = "123456789"
         historyShipments.text = "123"
         todayShipments.text = "456"
         residueShipments.text = "789"
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        // 按钮圆形
+        setUIButtonToCircle(button: pickingBtn)
+        setUIButtonToCircle(button: scanSendGoodBtn)
+        setUIButtonToCircle(button: allocatingBtn)
+        setUIButtonToCircle(button: warehouseBtn)
+        setUIButtonToCircle(button: takeStockBtn)
+        setUIButtonToCircle(button: settingBtn)
+        
+        // Set View Underline
+        setViewWidgetBottomLine(widget: todayBlock)
+        setViewWidgetBottomLine(widget: functionalBlock)
+        setViewWidgetBottomLine(widget: rankingBlock)
     }
     
     
