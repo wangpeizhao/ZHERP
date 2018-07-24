@@ -40,7 +40,7 @@ class MemberViewController: MemberBaseViewController {
         
         // set back btn
         let selector: Selector = #selector(actionBack)
-        setBackBtn(view: self, selector: selector, title: "")
+        setBackBtn(view: self, selector: selector)
                 
         tableView.delegate = self
         tableView.dataSource = self
@@ -161,14 +161,8 @@ extension MemberViewController: UITableViewDelegate {
         let modelForRow = rowModel(at: indexPath)
         if let action: String = modelForRow[MemberMenus.key] {
             switch action {
-            case "Setting":
-//                self.navigationController?.pushViewController(SettingViewController(), animated: true)
-//                self.navigationController?.show(SettingViewController(), sender: nil)
-//                self.navigationController?.popToViewController(SettingViewController(), animated: true)
-//                let controller = self.storyboard?.instantiateViewController(withIdentifier: String(describing: type(of: SettingViewController()))) as! SettingViewController
-//                let controller = self.storyboard?.instantiateViewController(withIdentifier: "SettingViewController") as? SettingViewController
-                print(self.navigationController)
-                self.navigationController?.pushViewController(SettingViewController(), animated: true)
+            case "Back":
+                _dismiss(view: self)
                 break;
             case "Logout":
                 _confirm(view: self, title: "提示", message: "确定要退出吗？", handler: logout)
