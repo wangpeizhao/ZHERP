@@ -33,7 +33,10 @@ class HomeViewController: BaseViewController {
         if(checkLoginStatus()) {
 //            _open(view: self, vcName: "member")
 //            let controller = self.storyboard?.instantiateViewController(withIdentifier: String(describing: type(of: MemberViewController()))) as! MemberViewController
+            self.hidesBottomBarWhenPushed = true
             self.navigationController?.pushViewController(MemberViewController(), animated: true)
+            self.hidesBottomBarWhenPushed = false
+            print("hidesBottomBarWhenPushed")
         } else {
             _open(view: self, vcName: "login", withNav: false)
         }
@@ -164,7 +167,11 @@ class HomeViewController: BaseViewController {
     @objc func actionGo() {
         if(checkLoginStatus()) {
 //            _open(view: self, vcName: "member")
+//            self.navigationController?.pushViewController(MemberViewController(), animated: true)
+            self.hidesBottomBarWhenPushed = true
             self.navigationController?.pushViewController(MemberViewController(), animated: true)
+            self.hidesBottomBarWhenPushed = false
+            print("hidesBottomBarWhenPushed")
         } else {
             _open(view: self, vcName: "login", withNav: false)
         }

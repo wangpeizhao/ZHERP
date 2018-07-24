@@ -41,6 +41,7 @@
 		9E523E2F2104D7CE00CF921F /* adImage4.gif in Resources */ = {isa = PBXBuildFile; fileRef = 9E523E292104D7CD00CF921F /* adImage4.gif */; };
 		9E523E322104DA1000CF921F /* GifImageOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E523E312104DA1000CF921F /* GifImageOperation.swift */; };
 		9E523E352106170000CF921F /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E523E342106170000CF921F /* SettingViewController.swift */; };
+		9E523E3721074E8200CF921F /* BaseNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E523E3621074E8200CF921F /* BaseNavigationController.swift */; };
 		9E88ED0720FB3B3800DF091F /* PostAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E88ED0620FB3B3800DF091F /* PostAPI.swift */; };
 		9E88ED0F20FB3B7700DF091F /* Response+ObjectMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E88ED0B20FB3B7600DF091F /* Response+ObjectMapper.swift */; };
 		9E88ED1020FB3B7700DF091F /* ObservableType+ObjectMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E88ED0C20FB3B7600DF091F /* ObservableType+ObjectMapper.swift */; };
@@ -132,6 +133,7 @@
 		9E523E292104D7CD00CF921F /* adImage4.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = adImage4.gif; sourceTree = "<group>"; };
 		9E523E312104DA1000CF921F /* GifImageOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GifImageOperation.swift; sourceTree = "<group>"; };
 		9E523E342106170000CF921F /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
+		9E523E3621074E8200CF921F /* BaseNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseNavigationController.swift; sourceTree = "<group>"; };
 		9E88ED0620FB3B3800DF091F /* PostAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostAPI.swift; sourceTree = "<group>"; };
 		9E88ED0B20FB3B7600DF091F /* Response+ObjectMapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Response+ObjectMapper.swift"; sourceTree = "<group>"; };
 		9E88ED0C20FB3B7600DF091F /* ObservableType+ObjectMapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ObservableType+ObjectMapper.swift"; sourceTree = "<group>"; };
@@ -362,6 +364,7 @@
 				9E523DE72102E46900CF921F /* BaseViewController.swift */,
 				9E523DFD2104661400CF921F /* GuideViewController.swift */,
 				9E523E0121047F7700CF921F /* IntroductionViewController.swift */,
+				9E523E3621074E8200CF921F /* BaseNavigationController.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -717,6 +720,7 @@
 				9E88ED4120FE61CE00DF091F /* ResetPwdViewController.swift in Sources */,
 				9E88ED1120FB3B7700DF091F /* Single+ObjectMapper.swift in Sources */,
 				9E88ED2520FB53AE00DF091F /* OrderDetailViewController.swift in Sources */,
+				9E523E3721074E8200CF921F /* BaseNavigationController.swift in Sources */,
 				9E523DE82102E46900CF921F /* BaseViewController.swift in Sources */,
 				2C7FAC6C2100547A004AEC10 /* Cookie.swift in Sources */,
 				9E29031B20F7B99800F11C63 /* ViewController.swift in Sources */,

@@ -23,6 +23,14 @@ class OrderTableViewController: UITableViewController {
         super.viewDidLoad()
         self.tableView.register(UITableViewCell.self, forCellReuseIdentifier: "Cell")
         
+        // set back btn
+        let selector: Selector = #selector(actionBack)
+        setNavBarBackBtn(view: self, title: "订单", selector: selector)
+        
+        // set bar
+        setNavBarTitle(view: self, title: "订单类型", transparent: true)
+        
+        
         buildSearchBar(searchBar: searchController.searchBar, placeholder: "按订单号搜索")
         searchController.searchResultsUpdater = self
         searchController.dimsBackgroundDuringPresentation = false
@@ -71,6 +79,10 @@ class OrderTableViewController: UITableViewController {
     
     @objc func viewTapped(tap: UITapGestureRecognizer) {
         searchController.resignFirstResponder()
+    }
+    
+    @objc func actionBack() {
+        self.hidesBottomBarWhenPushed = false
     }
     
 //    func setupSearchController() {
@@ -184,10 +196,13 @@ class OrderTableViewController: UITableViewController {
 //                } else {
 //                    candy = candies[(indexPath as NSIndexPath).row]
 //                }
+                self.hidesBottomBarWhenPushed = true
+                
                 candy = candies[(indexPath as NSIndexPath).row]
                 let controller = segue.destination as! OrderDetailViewController
                 controller.detailCandy = candy
                 print(candy.category + "===" + candy.name)
+//                self.hidesBottomBarWhenPushed = false
 //                controller.navigationItem.leftBarButtonItem = splitViewController?.displayModeButtonItem
 //                controller.navigationItem.leftItemsSupplementBackButton = true
             }
