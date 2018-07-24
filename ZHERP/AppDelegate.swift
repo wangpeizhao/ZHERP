@@ -32,7 +32,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //        return true
         
         //判断当前版本是否第一次启动
-        if UserDefaults.isFirstLaunchOfNewVersion() {
+        if !UserDefaults.isFirstLaunchOfNewVersion() {
             //显示新功能介绍页
             print("当前版本第一次启动")
             let introductionViewController = IntroductionViewController()
