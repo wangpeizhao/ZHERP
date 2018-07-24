@@ -1,34 +1,47 @@
 //
-//  MemberViewController.swift
+//  PersonalViewController.swift
 //  ZHERP
 //
-//  Created by MrParker on 2018/7/16.
+//  Created by MrParker on 2018/7/24.
 //  Copyright © 2018 MrParker. All rights reserved.
 //
 
 import UIKit
 
-class MemberViewController: MemberBaseViewController {
-    
+class PersonalViewController: UIViewController {
+
     typealias RowModel = [String: String]
     
-    fileprivate var user: Member {
+    fileprivate var user: Personal {
         get {
-            return Member(name: "BayMax", education: "CMU")
+            let personal: Dictionary<String, String> = [
+                "username": "王培照",
+                "avatar": "bayMax",
+                "wechatID": "Parker",
+                "myQR": "fb_privacy_shortcuts",
+                "address": "番禺区南浦",
+                "sex": "男",
+                "region": "广东省广州市",
+                "signature": "yesterday you said tomorrow",
+                "other": "This is a other message",
+            ]
+            return Personal(personal: personal)
         }
     }
     
     fileprivate var tableViewDataSource: [[String: Any]] {
         get {
-            return MemberMenus.populate(withUser: user)
+            return MemberMenus.personalInfo(withUser: user)
         }
     }
     
     private let tableView: UITableView = {
         let view = UITableView(frame: .zero, style: .grouped)
+//        view.sectionHeaderHeight = view.frame.height - 2
+//        view.sectionFooterHeight = view.frame.height - 2
         //去除表格上放多余的空隙
-        view.contentInset = UIEdgeInsetsMake(-15, 0, 0, 0)
-        view.register(MemberBaseCell.self, forCellReuseIdentifier: MemberBaseCell.identifier)
+        view.contentInset = UIEdgeInsetsMake(-10, 0, 0, 0)
+        view.register(PersonalBaseCell.self, forCellReuseIdentifier: PersonalBaseCell.identifier)
         return view
     }()
     
@@ -36,12 +49,12 @@ class MemberViewController: MemberBaseViewController {
         super.viewDidLoad()
         view.backgroundColor = Specs.color.gray
         // set bar
-        setNavBarTitle(view: self, title: "我")
+        setNavBarTitle(view: self, title: "个人信息")
         
         // set back btn
         let selector: Selector = #selector(actionBack)
-        setNavBarBackBtn(view: self, title: "我", selector: selector)
-                
+        setNavBarBackBtn(view: self, title: "个人信息", selector: selector)
+        
         tableView.delegate = self
         tableView.dataSource = self
         view.addSubview(tableView)
@@ -53,7 +66,7 @@ class MemberViewController: MemberBaseViewController {
     }
     
     @objc func actionBack() {
-//        _dismiss(view: self)
+        //        _dismiss(view: self)
         self.hidesBottomBarWhenPushed = false
         print("MemberViewController actionBack ")
     }
@@ -71,7 +84,7 @@ class MemberViewController: MemberBaseViewController {
     }
 }
 
-extension MemberViewController: UITableViewDataSource {
+extension PersonalViewController: UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
         return tableViewDataSource.count
     }
@@ -84,6 +97,16 @@ extension MemberViewController: UITableViewDataSource {
         return title(at: section)
     }
     
+    //设置分组尾的高度
+    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        return 10
+    }
+    
+    //将分组尾设置为一个空的View
+    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+        return UIView()
+    }
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let modelForRow = rowModel(at: indexPath)
         var cell = UITableViewCell()
@@ -92,21 +115,21 @@ extension MemberViewController: UITableViewDataSource {
             return cell
         }
         
-        if title == user.name {
+        if title == user.username {
             cell = UITableViewCell.init(style: .subtitle, reuseIdentifier: nil)
         } else {
-            cell = tableView.dequeueReusableCell(withIdentifier: MemberBaseCell.identifier, for: indexPath)
+            cell = tableView.dequeueReusableCell(withIdentifier: PersonalBaseCell.identifier, for: indexPath)
         }
         
         cell.textLabel?.text = title
         
-        if let imageName = modelForRow[MemberMenus.ImageName] {
-            cell.imageView?.image = UIImage(named: imageName)
+        if "avatar" == modelForRow[MemberMenus.key], let avatar = modelForRow[MemberMenus.Value] {
+            cell.imageView?.image = UIImage(named: avatar)
         } else if title != MemberMenus.logout && title != MemberMenus.back {
-            cell.imageView?.image = UIImage(named: Specs.imageName.placeholder)
+//            cell.imageView?.image = UIImage(named: Specs.imageName.placeholder)
         }
         
-        if title == user.name {
+        if title == user.username {
             cell.detailTextLabel?.text = modelForRow[MemberMenus.SubTitle]
         }
         
@@ -114,15 +137,15 @@ extension MemberViewController: UITableViewDataSource {
     }
 }
 
-extension MemberViewController: UITableViewDelegate {
+extension PersonalViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         let modelForRow = rowModel(at: indexPath)
         
-        guard let title = modelForRow[MemberMenus.Title] else {
+        guard modelForRow[MemberMenus.Value] != nil else {
             return 0.0
         }
         
-        if title == user.name {
+        if "avatar" == modelForRow[MemberMenus.key] {
             return 64.0
         } else {
             return 44.0
@@ -157,45 +180,33 @@ extension MemberViewController: UITableViewDelegate {
     func logout(_: UIAlertAction)->Void {
         _logout()
         _open(view: self, vcName: "login", withNav: false)
-//        let sb = UIStoryboard(name: "Main", bundle:nil)
-//        let vc = sb.instantiateViewController(withIdentifier: "LoginViewController") as! LoginViewController
-//        //VC为该界面storyboardID，Main.storyboard中选中该界面View，Identifier inspector中修改
-//        self.present(vc, animated: true, completion: nil)
+        //        let sb = UIStoryboard(name: "Main", bundle:nil)
+        //        let vc = sb.instantiateViewController(withIdentifier: "LoginViewController") as! LoginViewController
+        //        //VC为该界面storyboardID，Main.storyboard中选中该界面View，Identifier inspector中修改
+        //        self.present(vc, animated: true, completion: nil)
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let modelForRow = rowModel(at: indexPath)
-        if let action: String = modelForRow[MemberMenus.key] {
-            switch action {
-            case "Back":
-                _dismiss(view: self)
-                break;
-            case "Setting":
-                self.hidesBottomBarWhenPushed = true
-                self.navigationController?.pushViewController(SettingViewController(), animated: true)
-                break;
-            case "Personal":
-                self.hidesBottomBarWhenPushed = true
-                self.navigationController?.pushViewController(PersonalViewController(), animated: true)
-                break;
-            case "Logout":
-                _confirm(view: self, title: "提示", message: "确定要退出吗？", handler: logout)
-                break
-            default: break
-                
-            }
-        }
+        
+        let vc = EditPersonalViewController()
+        vc.personalTitle = modelForRow[MemberMenus.Title]
+        vc.personalValue = modelForRow[MemberMenus.Value]
+        vc.personalKey = modelForRow[MemberMenus.key]
+        
+        self.hidesBottomBarWhenPushed = true
+        self.navigationController?.pushViewController(vc, animated: true)
     }
     
-//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-//        let cell = sender as? UITableViewCell
-//        if segue.identifier == "showProduct" {
-//            if let cell = sender as? UITableViewCell,
-//                let indexPath = tableView.indexPath(for: cell),
-//                let productVC = segue.destination as? ProductViewController {
-//                productVC.product = products?[(indexPath as NSIndexPath).row]
-//            }
-//        }
-//    }
+    //    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+    //        let cell = sender as? UITableViewCell
+    //        if segue.identifier == "showProduct" {
+    //            if let cell = sender as? UITableViewCell,
+    //                let indexPath = tableView.indexPath(for: cell),
+    //                let productVC = segue.destination as? ProductViewController {
+    //                productVC.product = products?[(indexPath as NSIndexPath).row]
+    //            }
+    //        }
+    //    }
 }
 

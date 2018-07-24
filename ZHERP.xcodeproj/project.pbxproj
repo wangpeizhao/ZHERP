@@ -42,6 +42,9 @@
 		9E523E322104DA1000CF921F /* GifImageOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E523E312104DA1000CF921F /* GifImageOperation.swift */; };
 		9E523E352106170000CF921F /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E523E342106170000CF921F /* SettingViewController.swift */; };
 		9E523E3721074E8200CF921F /* BaseNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E523E3621074E8200CF921F /* BaseNavigationController.swift */; };
+		9E523E3A21076B3C00CF921F /* PersonalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E523E3921076B3C00CF921F /* PersonalViewController.swift */; };
+		9E523E3C2107708600CF921F /* Personal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E523E3B2107708600CF921F /* Personal.swift */; };
+		9E523E3E2107819000CF921F /* EditPersonalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E523E3D2107819000CF921F /* EditPersonalViewController.swift */; };
 		9E88ED0720FB3B3800DF091F /* PostAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E88ED0620FB3B3800DF091F /* PostAPI.swift */; };
 		9E88ED0F20FB3B7700DF091F /* Response+ObjectMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E88ED0B20FB3B7600DF091F /* Response+ObjectMapper.swift */; };
 		9E88ED1020FB3B7700DF091F /* ObservableType+ObjectMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E88ED0C20FB3B7600DF091F /* ObservableType+ObjectMapper.swift */; };
@@ -134,6 +137,9 @@
 		9E523E312104DA1000CF921F /* GifImageOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GifImageOperation.swift; sourceTree = "<group>"; };
 		9E523E342106170000CF921F /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
 		9E523E3621074E8200CF921F /* BaseNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseNavigationController.swift; sourceTree = "<group>"; };
+		9E523E3921076B3C00CF921F /* PersonalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonalViewController.swift; sourceTree = "<group>"; };
+		9E523E3B2107708600CF921F /* Personal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Personal.swift; sourceTree = "<group>"; };
+		9E523E3D2107819000CF921F /* EditPersonalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditPersonalViewController.swift; sourceTree = "<group>"; };
 		9E88ED0620FB3B3800DF091F /* PostAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostAPI.swift; sourceTree = "<group>"; };
 		9E88ED0B20FB3B7600DF091F /* Response+ObjectMapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Response+ObjectMapper.swift"; sourceTree = "<group>"; };
 		9E88ED0C20FB3B7600DF091F /* ObservableType+ObjectMapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ObservableType+ObjectMapper.swift"; sourceTree = "<group>"; };
@@ -292,6 +298,7 @@
 				9E88ED1320FB3B9300DF091F /* Post.swift */,
 				9E88ED2620FB576200DF091F /* Candy.swift */,
 				9E88ED3820FCEA4500DF091F /* Member.swift */,
+				9E523E3B2107708600CF921F /* Personal.swift */,
 			);
 			path = Mapper;
 			sourceTree = "<group>";
@@ -350,6 +357,15 @@
 				9E523E342106170000CF921F /* SettingViewController.swift */,
 			);
 			path = Manage;
+			sourceTree = "<group>";
+		};
+		9E523E3821076B0400CF921F /* Personal */ = {
+			isa = PBXGroup;
+			children = (
+				9E523E3921076B3C00CF921F /* PersonalViewController.swift */,
+				9E523E3D2107819000CF921F /* EditPersonalViewController.swift */,
+			);
+			path = Personal;
 			sourceTree = "<group>";
 		};
 		9E88ED0520FB3B0600DF091F /* View */ = {
@@ -440,6 +456,7 @@
 		9E88ED3320FCE8DB00DF091F /* Member */ = {
 			isa = PBXGroup;
 			children = (
+				9E523E3821076B0400CF921F /* Personal */,
 				9E88ED3420FCE95600DF091F /* MemberBaseViewController.swift */,
 				9E88ED4020FE61CD00DF091F /* ResetPwdViewController.swift */,
 				9E88ED3620FCE9C400DF091F /* MemberViewController.swift */,
@@ -720,6 +737,7 @@
 				9E88ED4120FE61CE00DF091F /* ResetPwdViewController.swift in Sources */,
 				9E88ED1120FB3B7700DF091F /* Single+ObjectMapper.swift in Sources */,
 				9E88ED2520FB53AE00DF091F /* OrderDetailViewController.swift in Sources */,
+				9E523E3E2107819000CF921F /* EditPersonalViewController.swift in Sources */,
 				9E523E3721074E8200CF921F /* BaseNavigationController.swift in Sources */,
 				9E523DE82102E46900CF921F /* BaseViewController.swift in Sources */,
 				2C7FAC6C2100547A004AEC10 /* Cookie.swift in Sources */,
@@ -737,6 +755,7 @@
 				9E88ED1220FB3B7700DF091F /* Observable+ObjectMapper.swift in Sources */,
 				9E88ED1A20FB41F800DF091F /* HomeViewController.swift in Sources */,
 				9E88ED2320FB530200DF091F /* SearchBar.swift in Sources */,
+				9E523E3C2107708600CF921F /* Personal.swift in Sources */,
 				9E88ED1020FB3B7700DF091F /* ObservableType+ObjectMapper.swift in Sources */,
 				9E88ED3920FCEA4500DF091F /* Member.swift in Sources */,
 				9E523DE22100DD0500CF921F /* Protocol.swift in Sources */,
@@ -752,6 +771,7 @@
 				9E88ED1620FB3BA500DF091F /* PostProvider.swift in Sources */,
 				9E88ED1C20FB462600DF091F /* OrderTableViewController.swift in Sources */,
 				9E523E352106170000CF921F /* SettingViewController.swift in Sources */,
+				9E523E3A21076B3C00CF921F /* PersonalViewController.swift in Sources */,
 				9E88ED3F20FE5D2C00DF091F /* LoginViewController.swift in Sources */,
 				9E88ED0720FB3B3800DF091F /* PostAPI.swift in Sources */,
 			);

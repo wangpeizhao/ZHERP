@@ -69,6 +69,21 @@ public func checkLogin(view: UIViewController){
     }
 }
 
+public func _push(view: UIViewController, target: UIViewController) {
+    let viewCount = view.childViewControllers.count
+    if viewCount >= 1 {
+        view.hidesBottomBarWhenPushed = true
+    }
+    view.hidesBottomBarWhenPushed = true
+    view.navigationController?.pushViewController(target, animated: true)
+    view.hidesBottomBarWhenPushed = false
+    if viewCount >= 1 {
+        view.hidesBottomBarWhenPushed = false
+    }
+    // 返回到上一个界面
+//    self.navigationController?.popViewControllerAnimated(true)
+}
+
 public func _open(view: UIViewController, vcName: String = "login", withNav: Bool = true) {
     guard !vcName.isEmpty else {
         return
@@ -173,7 +188,7 @@ public func setBackBtn(view: UIViewController, selector: Selector, title: String
     }
 }
 
-public func setNavBarTitle(view: UIViewController, title: String, transparent: Bool = false) {
+public func setNavBarTitle(view: UIViewController, title: String, transparent: Bool = false, ofSize: CGFloat = 20) {
     //    let arr=UIFont.familyNames
     //    print(arr)
     //    ["Copperplate", "Heiti SC", "Apple SD Gothic Neo", "Thonburi", "Gill Sans", "Marker Felt", "Hiragino Maru Gothic ProN", "Courier New", "Kohinoor Telugu", "Heiti TC", "Avenir Next Condensed", "Tamil Sangam MN", "Helvetica Neue", "Gurmukhi MN", "Georgia", "Times New Roman", "Sinhala Sangam MN", "Arial Rounded MT Bold", "Kailasa", "Kohinoor Devanagari", "Kohinoor Bangla", "Chalkboard SE", "Apple Color Emoji", "PingFang TC", "Gujarati Sangam MN", "Geeza Pro", "Damascus", "Noteworthy", "Avenir", "Mishafi", "Academy Engraved LET", "Futura", "Party LET", "Kannada Sangam MN", "Arial Hebrew", "Farah", "Arial", "Chalkduster", "Kefa", "Hoefler Text", "Optima", "Palatino", "Malayalam Sangam MN", "Al Nile", "Lao Sangam MN", "Bradley Hand", "Hiragino Mincho ProN", "PingFang HK", "Helvetica", "Courier", "Cochin", "Trebuchet MS", "Devanagari Sangam MN", "Oriya Sangam MN", "Rockwell", "Snell Roundhand", "Zapf Dingbats", "Bodoni 72", "Verdana", "American Typewriter", "Avenir Next", "Baskerville", "Khmer Sangam MN", "Didot", "Savoye LET", "Bodoni Ornaments", "Symbol", "Charter", "Menlo", "Noto Nastaliq Urdu", "Bodoni 72 Smallcaps", "DIN Alternate", "Papyrus", "Hiragino Sans", "PingFang SC", "Myanmar Sangam MN", "Zapfino", "Telugu Sangam MN", "Bodoni 72 Oldstyle", "Euphemia UCAS", "Bangla Sangam MN", "DIN Condensed"]
@@ -187,7 +202,7 @@ public func setNavBarTitle(view: UIViewController, title: String, transparent: B
     
     view.navigationItem.title = title
     // 修改导航栏标题颜色、修改导航栏标题字体和大小
-    view.navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor.white,NSAttributedStringKey.font: UIFont.boldSystemFont(ofSize: 20)]
+    view.navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor.white,NSAttributedStringKey.font: UIFont.boldSystemFont(ofSize: ofSize)]
 //    view.navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor.white,NSAttributedStringKey.font: UIFont(name: "Bobz Type", size: 20) as Any]
     
     // 设置导航背景透明

@@ -96,7 +96,7 @@ class HomeViewController: BaseViewController {
 //        let backBtn = UIBarButtonItem(title: "首页", style: .plain, target: self, action: selector)
 //        self.navigationItem.backBarButtonItem = backBtn
 //        self.navigationItem.backBarButtonItem?.tintColor = Specs.color.white
-        setNavBarBackBtn(view: self, title: "首页", selector: selector)
+        setNavBarBackBtn(view: self, title: "首页", selector: #selector(actionBack))
         
         //
 //        functionalBlock.layer.borderWidth = Specs.border.width
@@ -166,15 +166,15 @@ class HomeViewController: BaseViewController {
     
     @objc func actionGo() {
         if(checkLoginStatus()) {
-//            _open(view: self, vcName: "member")
-//            self.navigationController?.pushViewController(MemberViewController(), animated: true)
-            self.hidesBottomBarWhenPushed = true
-            self.navigationController?.pushViewController(MemberViewController(), animated: true)
-            self.hidesBottomBarWhenPushed = false
-            print("hidesBottomBarWhenPushed")
+            _push(view: self, target: MemberViewController())
         } else {
             _open(view: self, vcName: "login", withNav: false)
         }
+    }
+    
+    @objc func actionBack() {
+        print("self.hidesBottomBarWhenPushed = false")
+        self.hidesBottomBarWhenPushed = false
     }
     
     override func viewWillAppear(_ animated: Bool) {

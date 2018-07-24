@@ -26,3 +26,22 @@ class MemberBaseCell: UITableViewCell {
         fatalError("MemberBaseCell:init(coder:) has not been implemented")
     }
 }
+
+class PersonalBaseCell: UITableViewCell {
+    static let identifier: String = "PersonalBaseCell"
+    
+    override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
+        super.init(style: .default, reuseIdentifier: reuseIdentifier)
+        
+        backgroundColor = Specs.color.white
+        textLabel?.textColor = Specs.color.black
+        textLabel?.font = Specs.font.large
+        
+        detailTextLabel?.font = Specs.font.small
+        detailTextLabel?.textColor = Specs.color.gray
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("PersonalBaseCell:init(coder:) has not been implemented")
+    }
+}

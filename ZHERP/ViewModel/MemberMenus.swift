@@ -20,11 +20,13 @@ public struct MemberMenus {
     static let logout = "退出当前登录"
     static let back = "返回"
     
+    static let Value = "value"
+    
     static func populate(withUser user: Member) -> [[String: Any]] {
         return [
             [
                 self.Rows: [
-                    [self.ImageName: user.avatarName, self.Title: user.name, self.SubTitle: "View your profile"]
+                    [self.ImageName: user.avatarName, self.Title: user.name, self.SubTitle: "View your profile", self.key: "Personal"]
                 ]
             ],
             [
@@ -59,6 +61,36 @@ public struct MemberMenus {
             [
                 self.Rows: [
                     [self.Title: self.logout, self.key: "Logout"]
+                ]
+            ]
+        ]
+    }
+    
+    static func personalInfo(withUser user: Personal) -> [[String: Any]] {
+        return [
+            [
+                self.Rows: [
+                    [self.Title: "头像", self.Value: user.avatar, self.key: "avatar"]
+                ]
+            ],
+            [
+                self.Rows: [
+                    [self.Title: "名字", self.Value: user.username, self.key: "username"],
+                    [self.Title: "微信号", self.Value: user.wechatID, self.key: "wechatID"],
+                    [self.Title: "我的二维码", self.Value: user.myQR, self.key: "myQR"],
+                    [self.Title: "我的地址", self.Value: user.address, self.key: "address"],
+                ]
+            ],
+            [
+                self.Rows: [
+                    [self.Title: "性别", self.Value: user.sex, self.key: "sex"],
+                    [self.Title: "地区", self.Value: user.region, self.key: "region"],
+                    [self.Title: "个性签名", self.Value: user.signature, self.key: "signature"],
+                ]
+            ],
+            [
+                self.Rows: [
+                    [self.Title: "其它", self.Value: user.other, self.key: "other"]
                 ]
             ]
         ]
