@@ -34,7 +34,7 @@ class LoginViewController: UIViewController {
         
         // set back btn
         let selector: Selector = #selector(actionBack)
-        setBackBtn(view: self, selector: selector, title: "back", parent: true)
+        setBackBtn(view: self, selector: selector, title: "", parent: false)
         
     }
     

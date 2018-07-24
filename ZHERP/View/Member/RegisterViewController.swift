@@ -111,8 +111,9 @@ class RegisterViewController: UIViewController {
     func loginSuccess(message: String) {
         _alert(view: self, message: message)
         _login()
-        let vc = self.storyboard?.instantiateViewController(withIdentifier: "MemberViewController") as! MemberViewController
-        _open(view: self, vc: vc)
+//        let vc = self.storyboard?.instantiateViewController(withIdentifier: "MemberViewController") as! MemberViewController
+//        _open(view: self, vc: vc)
+        self.navigationController?.popToViewController(MemberViewController(), animated: true)
         print("Go to MemberViewController")
     }
 

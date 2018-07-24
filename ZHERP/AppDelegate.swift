@@ -37,6 +37,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             print("当前版本第一次启动")
             let introductionViewController = IntroductionViewController()
             self.window!.rootViewController = introductionViewController
+            return true
         }
         
         //判断是否第一次启动（两个都是第一次则以这个为准）
@@ -45,9 +46,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             print("应用第一次启动")
             let guideViewController = GuideViewController()
             self.window!.rootViewController = guideViewController
+            return true
         }
+//        let appdelegate = UIApplication.shared.delegate as! AppDelegate
+//        let mainStoryboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+//        let homeViewController = mainStoryboard.instantiateViewController(withIdentifier: "HomeViewController") as! HomeViewController
+//        let nav = UINavigationController(rootViewController: homeViewController)
+////        appdelegate.window!.rootViewController = nav
+//        self.window?.rootViewController = nav
+//        self.window?.makeKeyAndVisible()
         
-        
+//        let firstVC = HomeViewController(nibName:nil,bundle: nil)
+//        let navigation = UINavigationController(rootViewController: firstVC)
+//        self.window?.rootViewController = navigation;
+
         return true
     }
 

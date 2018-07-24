@@ -31,7 +31,9 @@ class HomeViewController: BaseViewController {
     
     @IBAction func memberCenter(_ sender: Any) {
         if(checkLoginStatus()) {
-            _open(view: self, vcName: "member")
+//            _open(view: self, vcName: "member")
+//            let controller = self.storyboard?.instantiateViewController(withIdentifier: String(describing: type(of: MemberViewController()))) as! MemberViewController
+            self.navigationController?.pushViewController(MemberViewController(), animated: true)
         } else {
             _open(view: self, vcName: "login", withNav: false)
         }
@@ -57,7 +59,7 @@ class HomeViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+//        http://www.hangge.com/blog/cache/detail_957.html
         // 静态引导页
         //        self.setStaticGuidePage()
         
@@ -65,7 +67,7 @@ class HomeViewController: BaseViewController {
         //         self.setDynamicGuidePage()
         
         // 视频引导页
-        self.setStaticGuidePage()
+//        self.setStaticGuidePage()
         
         // Do any additional setup after loading the view.
         // set bar
@@ -73,7 +75,13 @@ class HomeViewController: BaseViewController {
         
         // set back btn
         let selector: Selector = #selector(actionGo)
-        setBackBtn(view: self, selector: selector, title: "我的", parent: false)
+//        setBackBtn(view: self, selector: selector, title: "我的", parent: false)
+        
+        let leftBtn = UIBarButtonItem(title: "我的", style: .plain, target: self, action: selector)
+        self.navigationItem.leftBarButtonItem = leftBtn
+        
+        let backBtn = UIBarButtonItem(title: "", style: .plain, target: self, action: selector)
+        self.navigationItem.backBarButtonItem = backBtn
         
         // 按钮圆形
         setUIButtonToCircle(button: pickingBtn)
@@ -139,7 +147,8 @@ class HomeViewController: BaseViewController {
     
     @objc func actionGo() {
         if(checkLoginStatus()) {
-            _open(view: self, vcName: "member")
+//            _open(view: self, vcName: "member")
+            self.navigationController?.pushViewController(MemberViewController(), animated: true)
         } else {
             _open(view: self, vcName: "login", withNav: false)
         }
