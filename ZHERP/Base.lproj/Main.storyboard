@@ -315,10 +315,25 @@
             </objects>
             <point key="canvasLocation" x="897" y="801"/>
         </scene>
+        <!--Notify View Controller-->
+        <scene sceneID="KD3-XR-EAk">
+            <objects>
+                <viewController storyboardIdentifier="NotifyViewController" id="XuA-b4-xfR" customClass="NotifyViewController" customModule="ZHERP" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="uPx-9I-V6Y">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="0CW-Yi-uov"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="gNo-FE-3VG" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="894" y="1470"/>
+        </scene>
         <!--Personal View Controller-->
         <scene sceneID="Vnc-kn-0Z7">
             <objects>
-                <viewController id="Lp6-64-mXm" customClass="PersonalViewController" customModule="ZHERP" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="PersonalViewController" id="Lp6-64-mXm" customClass="PersonalViewController" customModule="ZHERP" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="0gL-zy-SFD">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

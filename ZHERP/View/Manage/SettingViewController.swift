@@ -9,170 +9,108 @@
 import UIKit
 
 class SettingViewController: UIViewController,UITableViewDataSource ,UITableViewDelegate{
-
-    @IBOutlet weak var tableView: UITableView!
-    private var dataArray: [String] = []
-    private var urlDict: [String:String] = [:]
+    
+    var tableView: UITableView?
+    var dataArray: Dictionary<Int, [String]>?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         self.view.backgroundColor = Specs.color.white
         
-//        setNavBarTitle(view: self, title: "Setting")
         setNavBarTitle(view: self, title: "设置")
-//        setNavBarLeftBtn(view: self, title: "我的", selector: <#T##Selector#>)
-//        setNavBarBackBtn(view: self, title: "我的", selector: selector)
-
-//        // Do any additional setup after loading the view.
-//        let textF=UITextField(frame: CGRect(x: 20, y: 100, width: 320, height: 36))
-//        //设置textF边框，默认空白边框
-//        textF.borderStyle=UITextBorderStyle.bezel
-//        self.view.addSubview(textF)
-//
-//
-//        //设置背景色
-//        textF.backgroundColor=UIColor.gray
-//        //设置文字颜色
-//        textF.textColor=UIColor.blue
-//        //设置字体颜色等
-//        textF.font=UIFont(name: "Chalkduster", size: 30)
-//        //文字编辑的时候现实清除按钮。默认不显示
-//        textF.clearButtonMode=UITextFieldViewMode.whileEditing
-//        //文本框对应的键盘样式，枚举类型，其他类型大家可以自行尝试
-//        textF.keyboardType=UIKeyboardType.URL
-//        //设置键盘右下角按钮文字
-//        textF.returnKeyType=UIReturnKeyType.search
-//        //点击文本框会调用
-//        textF.addTarget(self, action: Selector(("testAct:")), for: UIControlEvents.touchDown)
-//        //用户点击return按钮后调用的方法，首先设置代理，然后实现textFieldShouldReturn。点击按钮会会调用代理方法
-//        textF.delegate=self as? UITextFieldDelegate
-//
-//        //20, 150, 320, 36
-//        let textF1=UITextField(frame: CGRect(x: 20, y: 150, width: 320, height: 36))
-//        //设置textF边框，默认空白边框
-//        textF1.borderStyle=UITextBorderStyle.none
-//        self.view.addSubview(textF1)
-//
-//        //设置为密码输入框
-//        textF1.isSecureTextEntry=true
-//
-//        let textF2=UITextField(frame: CGRect(x: 20, y: 200, width: 320, height: 36))
-//        //设置textF边框，默认空白边框
-//        textF2.borderStyle=UITextBorderStyle.line
-//        self.view.addSubview(textF2)
-//
-//        let textF3=UITextField(frame: CGRect(x: 20, y: 250, width: 320, height: 36))
-//        //设置textF边框，默认空白边框
-//        textF3.borderStyle=UITextBorderStyle.roundedRect
-//        self.view.addSubview(textF3)
         
-        makeData()
+        //初始化数据，放在属性列表文件里
+        self.dataArray =  [
+            0:[String]([
+                "账号与安全"]),
+            1:[String]([
+                "新消息通知",
+                "隐私",
+                "通用"]),
+            2:[String]([
+                "帮助与反馈",
+                "关于纵横",
+                "当前版本"]),
+            3:[String]([
+                "退出登录"]),
+        ];
+        //创建表视图
+        self.tableView = UITableView(frame:self.view.frame, style:.grouped)
+        //去除表格上放多余的空隙
+        self.tableView!.contentInset = UIEdgeInsetsMake(-10, 0, 0, 0)
+        self.tableView!.delegate = self
+        self.tableView!.dataSource = self
+        //创建一个重用的单元格
+        self.tableView!.register(UITableViewCell.self, forCellReuseIdentifier: "SettingCell")
+        self.view.addSubview(self.tableView!)
         
-//        http://www.hangge.com/blog/cache/detail_651.html
-//        let alertController = UIAlertController(title: "保存或删除数据", message: "删除数据将不可恢复",
-//                                                preferredStyle: .actionSheet)
-//        let cancelAction = UIAlertAction(title: "取消", style: .cancel, handler: nil)
-//        let deleteAction = UIAlertAction(title: "删除", style: .destructive, handler: nil)
-//        let archiveAction = UIAlertAction(title: "保存", style: .default, handler: nil)
-//        alertController.addAction(cancelAction)
-//        alertController.addAction(deleteAction)
-//        alertController.addAction(archiveAction)
-//        self.present(alertController, animated: true, completion: nil)
-        
-    }
-    private func makeData() {
-        // https://www.jianshu.com/p/976e1a6a2811
-        urlDict = [
-            "系统设置": UIApplicationOpenSettingsURLString,
-            "个人热点":"prefs:root=INTERNET_TETHERING",
-            "WIFI设置":"prefs:root=WIFI",
-            "蓝牙设置":"prefs:root=Bluetooth",
-            "系统通知":"prefs:root=NOTIFICATIONS_ID",
-            "通用设置":"prefs:root=General",
-            "显示设置":"prefs:root=DISPLAY&BRIGHTNESS",
-            "壁纸设置":"prefs:root=Wallpaper",
-            "声音设置":"prefs:root=Sounds",
-            "隐私设置":"prefs:root=privacy",
-            "蜂窝网路":"prefs:root=MOBILE_DATA_SETTINGS_ID",
-            "音乐":"prefs:root=MUSIC",
-            "APP Store":"prefs:root=STORE",
-            "Notes":"prefs:root=NOTES",
-            "Safari":"prefs:root=Safari",
-            "Music":"prefs:root=MUSIC",
-            "photo":"prefs:root=Photos"
-        ]
-        dataArray = Array(urlDict.keys)
-    }
-    
-    /// 跳转到系统设置主页
-    func jumpToSystemSeting() {
-        let settingUrl = URL(string: UIApplicationOpenSettingsURLString)
-        if let url = settingUrl, UIApplication.shared.canOpenURL(url) {
-            UIApplication.shared.canOpenURL(url)
-        }
-    }
-    /// 定位服务
-    func jumpToPosition() {
-        let settingUrl = URL(string: "prefs:root=LOCATION_SERVICES")
-        if let url = settingUrl, UIApplication.shared.canOpenURL(url) {
-            UIApplication.shared.canOpenURL(url)
-        }
-    }
-    /// wifi服务
-    func jumpToWifi() {
-        let settingUrl = URL(string: "prefs:root=WIFI")
-        if let url = settingUrl, UIApplication.shared.canOpenURL(url) {
-            UIApplication.shared.canOpenURL(url)
-        }
-    }
-    
-    /// 系统通知
-    func jumpToNoti() {
-        let settingUrl = URL(string: "prefs:root=NOTIFICATIONS_ID")
-        if let url = settingUrl, UIApplication.shared.canOpenURL(url) {
-            UIApplication.shared.canOpenURL(url)
-        }
-    }
-    
-    /// 跳转的模版
-    func jumpTemplate(strurl: String) {
-        let urltemp = URL(string: strurl)
-        if let url = urltemp, UIApplication.shared.canOpenURL(url) {
-            UIApplication.shared.canOpenURL(url)
-        }
-    }
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return dataArray.count
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = UITableViewCell.init(style: .default, reuseIdentifier: "cell")
-        cell.textLabel?.text = dataArray[indexPath.row]
-        return cell
-    }
-    
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let url = urlDict[dataArray[indexPath.row]]
-        if let strUrl = url {
-            jumpTemplate(strurl: strUrl)
-        }
-    }
-
-    func testAct(textF: UITextField){
-        print("asdfasd")
-        print(textF.text!)
-    }
-    func textFieldShouldReturn(textField: UITextField) -> Bool {
-        //打印方法
-        print(textField.text!)
-        return true
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return (self.dataArray?.count)!
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        let dataSection = self.dataArray![section]
+        return dataSection!.count
+    }
+    
+    //设置分组尾的高度
+    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        return 10
+    }
+    
+    //将分组尾设置为一个空的View
+    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+        return UIView()
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        //为了提供表格显示性能，已创建完成的单元需重复使用
+        let identify: String = "SettingCell"
+        let sectionNo = indexPath.section
+        let cell: UITableViewCell?
+        var data = self.dataArray?[sectionNo]
+        //同一形式的单元格重复使用，在声明时已注册
+        if sectionNo == 2, indexPath.row == 2 {
+            cell = UITableViewCell(style: UITableViewCellStyle.value1, reuseIdentifier: identify)
+            cell?.accessoryType = .disclosureIndicator
+            cell?.detailTextLabel?.text = "v1.0.0"
+        } else if sectionNo == 3, indexPath.row == 0 {
+            cell = UITableViewCell(style: UITableViewCellStyle.value1, reuseIdentifier: identify)
+            cell?.accessoryType = .none
+            cell?.textLabel?.textColor = Specs.color.red
+            cell?.textLabel?.textAlignment = .center
+            cell?.textLabel?.centerXAnchor.constraint(equalTo: (cell?.centerXAnchor)!).isActive = true
+//            cell?.detailTextLabel?.text = "v1.0.0"
+        } else {
+            cell = tableView.dequeueReusableCell(
+                withIdentifier: identify, for: indexPath)
+            cell?.accessoryType = .disclosureIndicator
+        }
+        
+        cell?.textLabel?.text = data![indexPath.row]
+        
+        return cell!
+    }
+    
+    // UITableViewDelegate 方法，处理列表项的选中事件
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        self.tableView!.deselectRow(at: indexPath, animated: true)
+        let itemString = self.dataArray![indexPath.section]![indexPath.row]
+        let alertController = UIAlertController(title: "提示!",
+                                                message: "你选中了【\(itemString)】",
+            preferredStyle: .alert)
+        let cancelAction = UIAlertAction(title: "确定", style: .cancel, handler: nil)
+        alertController.addAction(cancelAction)
+        self.present(alertController, animated: true, completion: nil)
     }
     
 

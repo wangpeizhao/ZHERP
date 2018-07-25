@@ -45,6 +45,8 @@
 		9E523E3A21076B3C00CF921F /* PersonalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E523E3921076B3C00CF921F /* PersonalViewController.swift */; };
 		9E523E3C2107708600CF921F /* Personal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E523E3B2107708600CF921F /* Personal.swift */; };
 		9E523E3E2107819000CF921F /* EditPersonalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E523E3D2107819000CF921F /* EditPersonalViewController.swift */; };
+		9E523E402107E99E00CF921F /* NotifyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E523E3F2107E99E00CF921F /* NotifyViewController.swift */; };
+		9E523E422107EB3600CF921F /* TestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E523E412107EB3600CF921F /* TestViewController.swift */; };
 		9E88ED0720FB3B3800DF091F /* PostAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E88ED0620FB3B3800DF091F /* PostAPI.swift */; };
 		9E88ED0F20FB3B7700DF091F /* Response+ObjectMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E88ED0B20FB3B7600DF091F /* Response+ObjectMapper.swift */; };
 		9E88ED1020FB3B7700DF091F /* ObservableType+ObjectMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E88ED0C20FB3B7600DF091F /* ObservableType+ObjectMapper.swift */; };
@@ -140,6 +142,8 @@
 		9E523E3921076B3C00CF921F /* PersonalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonalViewController.swift; sourceTree = "<group>"; };
 		9E523E3B2107708600CF921F /* Personal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Personal.swift; sourceTree = "<group>"; };
 		9E523E3D2107819000CF921F /* EditPersonalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditPersonalViewController.swift; sourceTree = "<group>"; };
+		9E523E3F2107E99E00CF921F /* NotifyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotifyViewController.swift; sourceTree = "<group>"; };
+		9E523E412107EB3600CF921F /* TestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestViewController.swift; sourceTree = "<group>"; };
 		9E88ED0620FB3B3800DF091F /* PostAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostAPI.swift; sourceTree = "<group>"; };
 		9E88ED0B20FB3B7600DF091F /* Response+ObjectMapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Response+ObjectMapper.swift"; sourceTree = "<group>"; };
 		9E88ED0C20FB3B7600DF091F /* ObservableType+ObjectMapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ObservableType+ObjectMapper.swift"; sourceTree = "<group>"; };
@@ -355,6 +359,8 @@
 			isa = PBXGroup;
 			children = (
 				9E523E342106170000CF921F /* SettingViewController.swift */,
+				9E523E3F2107E99E00CF921F /* NotifyViewController.swift */,
+				9E523E412107EB3600CF921F /* TestViewController.swift */,
 			);
 			path = Manage;
 			sourceTree = "<group>";
@@ -729,6 +735,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9E523E422107EB3600CF921F /* TestViewController.swift in Sources */,
 				9E88ED4320FE624D00DF091F /* RegisterViewController.swift in Sources */,
 				9E88ED1E20FB464B00DF091F /* GoodTableViewController.swift in Sources */,
 				9E88ED0F20FB3B7700DF091F /* Response+ObjectMapper.swift in Sources */,
@@ -748,6 +755,7 @@
 				9E88ED4520FE63AE00DF091F /* ForgotPwdViewController.swift in Sources */,
 				9E88ED3220FCE21000DF091F /* TableViewCell.swift in Sources */,
 				9E523DE62100E21000CF921F /* RegisterVM.swift in Sources */,
+				9E523E402107E99E00CF921F /* NotifyViewController.swift in Sources */,
 				9E88ED2720FB576200DF091F /* Candy.swift in Sources */,
 				9E523DF2210460B600CF921F /* HHGuidePageHUD.swift in Sources */,
 				9E88ED2A20FB723600DF091F /* UIColor.swift in Sources */,
