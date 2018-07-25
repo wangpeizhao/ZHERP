@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		2C7FAC6C2100547A004AEC10 /* Cookie.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C7FAC6B2100547A004AEC10 /* Cookie.swift */; };
+		2CC9036B210855B60083D70C /* SystemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CC9036A210855B60083D70C /* SystemViewController.swift */; };
 		43D0F869FCB1EFFD2A515717 /* Pods_ZHERPUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9ADCE7C4B0A7D41C0DA234D6 /* Pods_ZHERPUITests.framework */; };
 		4D5DC0AAB0D07F80968B0079 /* Pods_ZHERP.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 532FEF4AFB84E941C848EBDE /* Pods_ZHERP.framework */; };
 		8F0E2D4FE6DC9F693DE6136E /* Pods_ZHERPTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0018AC5B628E580B5DB4DE45 /* Pods_ZHERPTests.framework */; };
@@ -96,6 +97,7 @@
 		0018AC5B628E580B5DB4DE45 /* Pods_ZHERPTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ZHERPTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		0953297FAA824E19B8F904F9 /* Pods-ZHERPTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZHERPTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ZHERPTests/Pods-ZHERPTests.debug.xcconfig"; sourceTree = "<group>"; };
 		2C7FAC6B2100547A004AEC10 /* Cookie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cookie.swift; sourceTree = "<group>"; };
+		2CC9036A210855B60083D70C /* SystemViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SystemViewController.swift; sourceTree = "<group>"; };
 		30C77E137814C4E429C7FF16 /* Pods-ZHERPUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZHERPUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ZHERPUITests/Pods-ZHERPUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		532FEF4AFB84E941C848EBDE /* Pods_ZHERP.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ZHERP.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		829D37B56E7E23231666AB1E /* Pods-ZHERP.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZHERP.release.xcconfig"; path = "Pods/Target Support Files/Pods-ZHERP/Pods-ZHERP.release.xcconfig"; sourceTree = "<group>"; };
@@ -361,6 +363,7 @@
 				9E523E342106170000CF921F /* SettingViewController.swift */,
 				9E523E3F2107E99E00CF921F /* NotifyViewController.swift */,
 				9E523E412107EB3600CF921F /* TestViewController.swift */,
+				2CC9036A210855B60083D70C /* SystemViewController.swift */,
 			);
 			path = Manage;
 			sourceTree = "<group>";
@@ -744,6 +747,7 @@
 				9E88ED4120FE61CE00DF091F /* ResetPwdViewController.swift in Sources */,
 				9E88ED1120FB3B7700DF091F /* Single+ObjectMapper.swift in Sources */,
 				9E88ED2520FB53AE00DF091F /* OrderDetailViewController.swift in Sources */,
+				2CC9036B210855B60083D70C /* SystemViewController.swift in Sources */,
 				9E523E3E2107819000CF921F /* EditPersonalViewController.swift in Sources */,
 				9E523E3721074E8200CF921F /* BaseNavigationController.swift in Sources */,
 				9E523DE82102E46900CF921F /* BaseViewController.swift in Sources */,

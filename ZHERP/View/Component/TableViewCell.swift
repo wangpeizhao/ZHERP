@@ -31,7 +31,7 @@ class PersonalBaseCell: UITableViewCell {
     static let identifier: String = "PersonalBaseCell"
     
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
-        super.init(style: .default, reuseIdentifier: reuseIdentifier)
+        super.init(style: .value1, reuseIdentifier: reuseIdentifier)
         
         backgroundColor = Specs.color.white
         textLabel?.textColor = Specs.color.black

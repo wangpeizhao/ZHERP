@@ -53,7 +53,6 @@ class MemberViewController: MemberBaseViewController {
     }
     
     @objc func actionBack() {
-//        _dismiss(view: self)
         self.hidesBottomBarWhenPushed = false
         print("MemberViewController actionBack ")
     }
@@ -109,6 +108,7 @@ extension MemberViewController: UITableViewDataSource {
         if title == user.name {
             cell.detailTextLabel?.text = modelForRow[MemberMenus.SubTitle]
         }
+        cell.textLabel?.font = UIFont.systemFont(ofSize: Specs.fontSize.regular)
         
         return cell
     }
@@ -164,6 +164,7 @@ extension MemberViewController: UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
         let modelForRow = rowModel(at: indexPath)
         if let action: String = modelForRow[MemberMenus.key] {
             switch action {
@@ -173,6 +174,10 @@ extension MemberViewController: UITableViewDelegate {
             case "Setting":
                 self.hidesBottomBarWhenPushed = true
                 self.navigationController?.pushViewController(SettingViewController(), animated: true)
+                break;
+            case "System":
+                self.hidesBottomBarWhenPushed = true
+                self.navigationController?.pushViewController(SystemViewController(), animated: true)
                 break;
             case "Personal":
                 self.hidesBottomBarWhenPushed = true

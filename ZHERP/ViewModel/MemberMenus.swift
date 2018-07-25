@@ -50,7 +50,7 @@ public struct MemberMenus {
                 self.Rows: [
                     [self.ImageName: Specs.imageName.settings, self.Title: "Settings", self.key: "Setting"],
                     [self.ImageName: Specs.imageName.privacyShortcuts, self.Title: "Privacy Shortcuts"],
-                    [self.ImageName: Specs.imageName.helpSupport, self.Title: "Help and Support"]
+                    [self.ImageName: Specs.imageName.helpSupport, self.Title: "Help and Support", self.key: "System"]
                 ]
             ],
 //            [

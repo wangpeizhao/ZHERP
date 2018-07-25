@@ -37,8 +37,6 @@ class PersonalViewController: UIViewController {
     
     private let tableView: UITableView = {
         let view = UITableView(frame: .zero, style: .grouped)
-//        view.sectionHeaderHeight = view.frame.height - 2
-//        view.sectionFooterHeight = view.frame.height - 2
         //去除表格上放多余的空隙
         view.contentInset = UIEdgeInsetsMake(-10, 0, 0, 0)
         view.register(PersonalBaseCell.self, forCellReuseIdentifier: PersonalBaseCell.identifier)
@@ -66,7 +64,6 @@ class PersonalViewController: UIViewController {
     }
     
     @objc func actionBack() {
-        //        _dismiss(view: self)
         self.hidesBottomBarWhenPushed = false
         print("MemberViewController actionBack ")
     }
@@ -99,7 +96,7 @@ extension PersonalViewController: UITableViewDataSource {
     
     //设置分组尾的高度
     func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-        return 10
+        return 5
     }
     
     //将分组尾设置为一个空的View
@@ -129,10 +126,10 @@ extension PersonalViewController: UITableViewDataSource {
 //            cell.imageView?.image = UIImage(named: Specs.imageName.placeholder)
         }
         
-        if title == user.username {
-            cell.detailTextLabel?.text = modelForRow[MemberMenus.SubTitle]
-        }
+        cell.detailTextLabel?.text = modelForRow[MemberMenus.Value]
         
+        cell.textLabel?.font = UIFont.systemFont(ofSize: Specs.fontSize.regular)
+        cell.detailTextLabel?.font = UIFont.systemFont(ofSize: Specs.fontSize.regular)
         return cell
     }
 }
@@ -180,13 +177,10 @@ extension PersonalViewController: UITableViewDelegate {
     func logout(_: UIAlertAction)->Void {
         _logout()
         _open(view: self, vcName: "login", withNav: false)
-        //        let sb = UIStoryboard(name: "Main", bundle:nil)
-        //        let vc = sb.instantiateViewController(withIdentifier: "LoginViewController") as! LoginViewController
-        //        //VC为该界面storyboardID，Main.storyboard中选中该界面View，Identifier inspector中修改
-        //        self.present(vc, animated: true, completion: nil)
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
         let modelForRow = rowModel(at: indexPath)
         
         let vc = EditPersonalViewController()
@@ -205,16 +199,5 @@ extension PersonalViewController: UITableViewDelegate {
         self.hidesBottomBarWhenPushed = true
         self.navigationController?.pushViewController(vc, animated: true)
     }
-    
-    //    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-    //        let cell = sender as? UITableViewCell
-    //        if segue.identifier == "showProduct" {
-    //            if let cell = sender as? UITableViewCell,
-    //                let indexPath = tableView.indexPath(for: cell),
-    //                let productVC = segue.destination as? ProductViewController {
-    //                productVC.product = products?[(indexPath as NSIndexPath).row]
-    //            }
-    //        }
-    //    }
 }
 

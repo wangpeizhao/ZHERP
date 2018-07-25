@@ -11,29 +11,34 @@ import UIKit
 class SettingViewController: UIViewController,UITableViewDataSource ,UITableViewDelegate{
     
     var tableView: UITableView?
-    var dataArray: Dictionary<Int, [String]>?
+    var dataArray: Dictionary<Int, [[String]]>?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         self.view.backgroundColor = Specs.color.white
         
+        // set bar
         setNavBarTitle(view: self, title: "设置")
+        
+        // set back btn
+        let selector: Selector = #selector(actionBack)
+        setNavBarBackBtn(view: self, title: "设置", selector: selector)
         
         //初始化数据，放在属性列表文件里
         self.dataArray =  [
-            0:[String]([
-                "账号与安全"]),
-            1:[String]([
-                "新消息通知",
-                "隐私",
-                "通用"]),
-            2:[String]([
-                "帮助与反馈",
-                "关于纵横",
-                "当前版本"]),
-            3:[String]([
-                "退出登录"]),
+            0:[[String]]([
+                ["security","账号与安全"]]),
+            1:[[String]]([
+                ["notify","新消息通知"],
+                ["privacy","隐私"],
+                ["common","通用"]]),
+            2:[[String]]([
+                ["feedback","帮助与反馈"],
+                ["about","关于纵横"],
+                ["version","当前版本"]]),
+            3:[[String]]([
+                ["logout","退出登录"]]),
         ];
         //创建表视图
         self.tableView = UITableView(frame:self.view.frame, style:.grouped)
@@ -43,8 +48,14 @@ class SettingViewController: UIViewController,UITableViewDataSource ,UITableView
         self.tableView!.dataSource = self
         //创建一个重用的单元格
         self.tableView!.register(UITableViewCell.self, forCellReuseIdentifier: "SettingCell")
+        self.tableView!.translatesAutoresizingMaskIntoConstraints = false
         self.view.addSubview(self.tableView!)
         
+    }
+    
+    @objc func actionBack() {
+        self.hidesBottomBarWhenPushed = false
+        print("MemberViewController actionBack ")
     }
 
     override func didReceiveMemoryWarning() {
@@ -63,7 +74,7 @@ class SettingViewController: UIViewController,UITableViewDataSource ,UITableView
     
     //设置分组尾的高度
     func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-        return 10
+        return 5
     }
     
     //将分组尾设置为一个空的View
@@ -76,26 +87,27 @@ class SettingViewController: UIViewController,UITableViewDataSource ,UITableView
         let identify: String = "SettingCell"
         let sectionNo = indexPath.section
         let cell: UITableViewCell?
-        var data = self.dataArray?[sectionNo]
+        var data = self.dataArray?[sectionNo]!
+        let _data = data![indexPath.row as Int]
         //同一形式的单元格重复使用，在声明时已注册
-        if sectionNo == 2, indexPath.row == 2 {
+        if _data[0] == "version" {
             cell = UITableViewCell(style: UITableViewCellStyle.value1, reuseIdentifier: identify)
             cell?.accessoryType = .disclosureIndicator
             cell?.detailTextLabel?.text = "v1.0.0"
-        } else if sectionNo == 3, indexPath.row == 0 {
-            cell = UITableViewCell(style: UITableViewCellStyle.value1, reuseIdentifier: identify)
-            cell?.accessoryType = .none
-            cell?.textLabel?.textColor = Specs.color.red
-            cell?.textLabel?.textAlignment = .center
+        } else if _data[0] == "logout" {
+            cell = UITableViewCell(style: UITableViewCellStyle.default, reuseIdentifier: identify)
             cell?.textLabel?.centerXAnchor.constraint(equalTo: (cell?.centerXAnchor)!).isActive = true
-//            cell?.detailTextLabel?.text = "v1.0.0"
+            cell?.textLabel?.textAlignment = .center
+            cell?.textLabel?.textColor = Specs.color.red
+            cell?.accessoryType = .none
         } else {
-            cell = tableView.dequeueReusableCell(
-                withIdentifier: identify, for: indexPath)
+            cell = tableView.dequeueReusableCell(withIdentifier: identify, for: indexPath)
             cell?.accessoryType = .disclosureIndicator
         }
         
-        cell?.textLabel?.text = data![indexPath.row]
+        cell?.textLabel?.text = _data[1]
+        cell?.textLabel?.font = UIFont.systemFont(ofSize: Specs.fontSize.regular)
+        cell?.detailTextLabel?.font = UIFont.systemFont(ofSize: Specs.fontSize.regular)
         
         return cell!
     }
@@ -104,13 +116,26 @@ class SettingViewController: UIViewController,UITableViewDataSource ,UITableView
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         self.tableView!.deselectRow(at: indexPath, animated: true)
-        let itemString = self.dataArray![indexPath.section]![indexPath.row]
-        let alertController = UIAlertController(title: "提示!",
-                                                message: "你选中了【\(itemString)】",
-            preferredStyle: .alert)
-        let cancelAction = UIAlertAction(title: "确定", style: .cancel, handler: nil)
-        alertController.addAction(cancelAction)
-        self.present(alertController, animated: true, completion: nil)
+        let modelForRow = self.dataArray![indexPath.section]![indexPath.row]
+        let action: String = modelForRow[0]
+        if !action.isEmpty {
+            switch action {
+            case "notify":
+                self.hidesBottomBarWhenPushed = true
+                self.navigationController?.pushViewController(NotifyViewController(), animated: true)
+                break;
+            case "logout":
+                _confirm(view: self, title: "提示", message: "确定要退出吗？", handler: logout)
+                break
+            default: break
+                
+            }
+        }
+    }
+    
+    func logout(_: UIAlertAction)->Void {
+        _logout()
+        _open(view: self, vcName: "login", withNav: false)
     }
     
 
