@@ -110,6 +110,15 @@ public func _open(view: UIViewController, vcName: String = "login", withNav: Boo
     case "resetPwd":
         vc = sb.instantiateViewController(withIdentifier: "ResetPwdViewController") as! ResetPwdViewController
         break
+    case "system":
+        vc = sb.instantiateViewController(withIdentifier: "SystemViewController") as! SystemViewController
+        break
+    case "setting":
+        vc = sb.instantiateViewController(withIdentifier: "SettingViewController") as! SettingViewController
+        break
+    case "personal":
+        vc = sb.instantiateViewController(withIdentifier: "PersonalViewController") as! PersonalViewController
+        break
     default:
         _logout()
         vc = sb.instantiateViewController(withIdentifier: "LoginViewController") as! LoginViewController

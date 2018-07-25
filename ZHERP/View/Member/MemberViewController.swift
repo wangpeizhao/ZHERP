@@ -108,7 +108,7 @@ extension MemberViewController: UITableViewDataSource {
         if title == user.name {
             cell.detailTextLabel?.text = modelForRow[MemberMenus.SubTitle]
         }
-        cell.textLabel?.font = UIFont.systemFont(ofSize: Specs.fontSize.regular)
+        cell.textLabel?.font = UIFont.systemFont(ofSize: Specs.fontSize.large)
         
         return cell
     }
@@ -178,6 +178,7 @@ extension MemberViewController: UITableViewDelegate {
             case "System":
                 self.hidesBottomBarWhenPushed = true
                 self.navigationController?.pushViewController(SystemViewController(), animated: true)
+//                _open(view: self, vcName: "system")
                 break;
             case "Personal":
                 self.hidesBottomBarWhenPushed = true

@@ -106,8 +106,8 @@ class SettingViewController: UIViewController,UITableViewDataSource ,UITableView
         }
         
         cell?.textLabel?.text = _data[1]
-        cell?.textLabel?.font = UIFont.systemFont(ofSize: Specs.fontSize.regular)
-        cell?.detailTextLabel?.font = UIFont.systemFont(ofSize: Specs.fontSize.regular)
+        cell?.textLabel?.font = UIFont.systemFont(ofSize: Specs.fontSize.large)
+        cell?.detailTextLabel?.font = UIFont.systemFont(ofSize: Specs.fontSize.large)
         
         return cell!
     }

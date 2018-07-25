@@ -48,6 +48,9 @@
 		9E523E3E2107819000CF921F /* EditPersonalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E523E3D2107819000CF921F /* EditPersonalViewController.swift */; };
 		9E523E402107E99E00CF921F /* NotifyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E523E3F2107E99E00CF921F /* NotifyViewController.swift */; };
 		9E523E422107EB3600CF921F /* TestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E523E412107EB3600CF921F /* TestViewController.swift */; };
+		9E523E672108C5D400CF921F /* NotifyTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E523E652108C5D400CF921F /* NotifyTableViewCell.swift */; };
+		9E523E682108C5D400CF921F /* NotifyTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9E523E662108C5D400CF921F /* NotifyTableViewCell.xib */; };
+		9E523E6A2108D54600CF921F /* NoDisturbingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E523E692108D54600CF921F /* NoDisturbingViewController.swift */; };
 		9E88ED0720FB3B3800DF091F /* PostAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E88ED0620FB3B3800DF091F /* PostAPI.swift */; };
 		9E88ED0F20FB3B7700DF091F /* Response+ObjectMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E88ED0B20FB3B7600DF091F /* Response+ObjectMapper.swift */; };
 		9E88ED1020FB3B7700DF091F /* ObservableType+ObjectMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E88ED0C20FB3B7600DF091F /* ObservableType+ObjectMapper.swift */; };
@@ -146,6 +149,9 @@
 		9E523E3D2107819000CF921F /* EditPersonalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditPersonalViewController.swift; sourceTree = "<group>"; };
 		9E523E3F2107E99E00CF921F /* NotifyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotifyViewController.swift; sourceTree = "<group>"; };
 		9E523E412107EB3600CF921F /* TestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestViewController.swift; sourceTree = "<group>"; };
+		9E523E652108C5D400CF921F /* NotifyTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotifyTableViewCell.swift; sourceTree = "<group>"; };
+		9E523E662108C5D400CF921F /* NotifyTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NotifyTableViewCell.xib; sourceTree = "<group>"; };
+		9E523E692108D54600CF921F /* NoDisturbingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoDisturbingViewController.swift; sourceTree = "<group>"; };
 		9E88ED0620FB3B3800DF091F /* PostAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostAPI.swift; sourceTree = "<group>"; };
 		9E88ED0B20FB3B7600DF091F /* Response+ObjectMapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Response+ObjectMapper.swift"; sourceTree = "<group>"; };
 		9E88ED0C20FB3B7600DF091F /* ObservableType+ObjectMapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ObservableType+ObjectMapper.swift"; sourceTree = "<group>"; };
@@ -364,6 +370,7 @@
 				9E523E3F2107E99E00CF921F /* NotifyViewController.swift */,
 				9E523E412107EB3600CF921F /* TestViewController.swift */,
 				2CC9036A210855B60083D70C /* SystemViewController.swift */,
+				9E523E692108D54600CF921F /* NoDisturbingViewController.swift */,
 			);
 			path = Manage;
 			sourceTree = "<group>";
@@ -458,6 +465,8 @@
 			isa = PBXGroup;
 			children = (
 				9E88ED3120FCE21000DF091F /* TableViewCell.swift */,
+				9E523E652108C5D400CF921F /* NotifyTableViewCell.swift */,
+				9E523E662108C5D400CF921F /* NotifyTableViewCell.xib */,
 			);
 			path = Component;
 			sourceTree = "<group>";
@@ -603,6 +612,7 @@
 				9E523E2E2104D7CE00CF921F /* guideImage3.jpg in Resources */,
 				9E523DFB2104615700CF921F /* 1.mp4 in Resources */,
 				9E523DFA2104615700CF921F /* guideImage8.gif in Resources */,
+				9E523E682108C5D400CF921F /* NotifyTableViewCell.xib in Resources */,
 				9E29032320F7B99B00F11C63 /* LaunchScreen.storyboard in Resources */,
 				9E523E2D2104D7CE00CF921F /* guideImage4.jpg in Resources */,
 				9E523DFC2104615800CF921F /* guideImage7.gif in Resources */,
@@ -744,6 +754,7 @@
 				9E88ED0F20FB3B7700DF091F /* Response+ObjectMapper.swift in Sources */,
 				9E88ED3720FCE9C400DF091F /* MemberViewController.swift in Sources */,
 				9E523E322104DA1000CF921F /* GifImageOperation.swift in Sources */,
+				9E523E672108C5D400CF921F /* NotifyTableViewCell.swift in Sources */,
 				9E88ED4120FE61CE00DF091F /* ResetPwdViewController.swift in Sources */,
 				9E88ED1120FB3B7700DF091F /* Single+ObjectMapper.swift in Sources */,
 				9E88ED2520FB53AE00DF091F /* OrderDetailViewController.swift in Sources */,
@@ -781,6 +792,7 @@
 				9E523E0021047E7900CF921F /* UserDefaults.swift in Sources */,
 				9E88ED3B20FCEC5100DF091F /* MemberMenus.swift in Sources */,
 				9E88ED1620FB3BA500DF091F /* PostProvider.swift in Sources */,
+				9E523E6A2108D54600CF921F /* NoDisturbingViewController.swift in Sources */,
 				9E88ED1C20FB462600DF091F /* OrderTableViewController.swift in Sources */,
 				9E523E352106170000CF921F /* SettingViewController.swift in Sources */,
 				9E523E3A21076B3C00CF921F /* PersonalViewController.swift in Sources */,

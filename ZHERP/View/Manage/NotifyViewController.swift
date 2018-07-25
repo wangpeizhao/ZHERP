@@ -26,7 +26,12 @@ class NotifyViewController: UIViewController, UITableViewDataSource ,UITableView
         
         self.view.backgroundColor = Specs.color.white
         
+        // set bar title
         setNavBarTitle(view: self, title: "新消息通知")
+        
+        // set back btn
+        let selector: Selector = #selector(actionBack)
+        setNavBarBackBtn(view: self, title: "新消息通知", selector: selector)
         
         //初始化数据，放在属性列表文件里
         self.dataArray =  [
@@ -37,33 +42,43 @@ class NotifyViewController: UIViewController, UITableViewDataSource ,UITableView
             2:[[String]]([
                 ["voice","声音"],
                 ["Vibration","振动"]]),
+//            3:[[String]]([
+//                ["open","开启"],
+//                ["nighttime","只在夜间开启"],
+//                ["close","关闭"]]),
             3:[[String]]([
-                ["open","开启"],
-                ["nighttime","只在夜间开启"],
-                ["close","关闭"]]),
+                ["NoDisturbing","系统功能消息免打扰"]]),
         ];
         self.footerData = [
-            0: "如果你要关闭或开启纵横ERP的新消息通知,请在iPhone的“设置”-“通知”功能中,找到应用程序“纵横ERP”更改.",
-            1: "关闭后,当收到纵横ERP消息时,通知提示将不再显示内容摘要",
-            2: "当纵横ERP在运行时,你可以设置是否需要声音或者振动",
-            3: "设置系统功能消息提示声音的振动的时段.",
+            0: "如果你要关闭或开启纵横ERP的新消息通知,请在iPhone的“设置”-“通知”功能中,找到应用程序“纵横ERP”更改。",
+            1: "关闭后,当收到纵横ERP消息时,通知提示将不再显示内容摘要。",
+            2: "当纵横ERP在运行时,你可以设置是否需要声音或者振动。",
+//            3: "开启后，手机不会振动与发出提示音；如果设置为“只在夜间开启”，则只在22:00到08:00间生效",
+            3: "设置系统功能消息提示声音的振动的时段。"
         ]
-        self.headerData = [3: "系统、功能消息免打扰"]
+//        self.headerData = [3: "系统、功能消息免打扰"]
 //        //创建表视图
         self.tableView = UITableView(frame:self.view.frame, style:.grouped)
 //        //去除表格上放多余的空隙
         self.tableView!.contentInset = UIEdgeInsetsMake(-10, 0, 0, 0)
         self.tableView!.delegate = self
         self.tableView!.dataSource = self
+        //去除单元格分隔线
+        self.tableView!.separatorStyle = .singleLine
         
 //        self.tableViewSwitch.delegate = self
 //        self.tableViewSwitch.dataSource = self
         
         //创建一个重用的单元格
-        self.tableView!.register(UITableViewCell.self, forCellReuseIdentifier: identify)
-        self.tableView!.translatesAutoresizingMaskIntoConstraints = false
+//        self.tableView!.register(UITableViewCell.self, forCellReuseIdentifier: identify)
+        self.tableView?.register(UINib(nibName: "NotifyTableViewCell", bundle: nil), forCellReuseIdentifier: identify)
+//        self.tableView!.translatesAutoresizingMaskIntoConstraints = false
         self.view.addSubview(self.tableView!)
         
+    }
+    
+    @objc func actionBack() {
+        self.hidesBottomBarWhenPushed = false
     }
     
     override func didReceiveMemoryWarning() {
@@ -110,27 +125,35 @@ class NotifyViewController: UIViewController, UITableViewDataSource ,UITableView
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         //为了提供表格显示性能，已创建完成的单元需重复使用
         let sectionNo = indexPath.section
-        let cell: UITableViewCell?
         var data = self.dataArray?[sectionNo]!
         let _data = data![indexPath.row as Int]
         //同一形式的单元格重复使用，在声明时已注册
-        if _data[0] == "Receiving" {
+        if _data[0] == "Receiving" || _data[0] == "NoDisturbing" {
+            let cell: UITableViewCell?
             cell = UITableViewCell(style: UITableViewCellStyle.value1, reuseIdentifier: identify)
-            cell?.accessoryType = .none
-            cell?.detailTextLabel?.text = "已开启"
-            cell?.detailTextLabel?.textColor = UIColor.green
-        } else {
-            cell = tableView.dequeueReusableCell(withIdentifier: identify, for: indexPath)
-            let switchCell = cell?.viewWithTag(1) as! UISwitch
-            switchCell.isOn = true
-            cell?.accessoryType = .none
+            if _data[0] == "Receiving" {
+                cell?.accessoryType = .none
+                cell?.detailTextLabel?.text = "已开启"
+                cell?.detailTextLabel?.textColor = UIColor.green
+            } else {
+                cell?.accessoryType = .disclosureIndicator
+            }
+            
+            cell?.textLabel?.text = _data[1]
+            cell?.textLabel?.font = UIFont.systemFont(ofSize: Specs.fontSize.large)
+            cell?.detailTextLabel?.font = UIFont.systemFont(ofSize: Specs.fontSize.large)
+            return cell!
         }
+//        cell = tableView.dequeueReusableCell(withIdentifier: identify, for: indexPath)
+//        let switchCell = cell?.viewWithTag(1) as! UISwitch
+//        switchCell.isOn = true
         
-        cell?.textLabel?.text = _data[1]
-        cell?.textLabel?.font = UIFont.systemFont(ofSize: Specs.fontSize.regular)
-        cell?.detailTextLabel?.font = UIFont.systemFont(ofSize: Specs.fontSize.regular)
+        let cell: NotifyTableViewCell = tableView.dequeueReusableCell(withIdentifier: identify) as! NotifyTableViewCell
+        cell.NotifyLabel.text = _data[1]
+        cell.NotifySwitch.isOn = true
+        cell.accessoryType = .none
         
-        return cell!
+        return cell
     }
     
     // UITableViewDelegate 方法，处理列表项的选中事件
@@ -141,9 +164,9 @@ class NotifyViewController: UIViewController, UITableViewDataSource ,UITableView
         let action: String = modelForRow[0]
         if !action.isEmpty {
             switch action {
-            case "notify":
+            case "NoDisturbing":
                 self.hidesBottomBarWhenPushed = true
-                self.navigationController?.pushViewController(NotifyViewController(), animated: true)
+                self.navigationController?.pushViewController(NoDisturbingViewController(), animated: true)
                 break;
             case "logout":
                 _confirm(view: self, title: "提示", message: "确定要退出吗？", handler: logout)

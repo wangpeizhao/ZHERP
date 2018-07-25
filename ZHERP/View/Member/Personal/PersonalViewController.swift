@@ -46,7 +46,7 @@ class PersonalViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = Specs.color.gray
-        // set bar
+        // set bar title
         setNavBarTitle(view: self, title: "个人信息", ofSize: 18)
         
         // set back btn
@@ -65,7 +65,6 @@ class PersonalViewController: UIViewController {
     
     @objc func actionBack() {
         self.hidesBottomBarWhenPushed = false
-        print("MemberViewController actionBack ")
     }
     
     fileprivate func rows(at section: Int) -> [Any] {
@@ -128,8 +127,8 @@ extension PersonalViewController: UITableViewDataSource {
         
         cell.detailTextLabel?.text = modelForRow[MemberMenus.Value]
         
-        cell.textLabel?.font = UIFont.systemFont(ofSize: Specs.fontSize.regular)
-        cell.detailTextLabel?.font = UIFont.systemFont(ofSize: Specs.fontSize.regular)
+        cell.textLabel?.font = UIFont.systemFont(ofSize: Specs.fontSize.large)
+        cell.detailTextLabel?.font = UIFont.systemFont(ofSize: Specs.fontSize.large)
         return cell
     }
 }

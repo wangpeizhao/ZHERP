@@ -10,23 +10,34 @@ import UIKit
 
 class SystemViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
-    @IBOutlet weak var firstTableView: UITableView!
+    @IBOutlet var firstTableView: UITableView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        firstTableView!.delegate = self
+        firstTableView!.dataSource = self
+        
+        setNavBarTitle(view: self, title: "系统设置")
         self.view.backgroundColor = Specs.color.white
-//        firstTableView.delegate = self
-//        firstTableView.dataSource = self
-        print(firstTableView)
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
     }
     
     override func didReceiveMemoryWarning() {
+        print("didReceiveMemoryWarning")
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 2
+        return 20
     }
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 1
@@ -35,7 +46,7 @@ class SystemViewController: UIViewController, UITableViewDelegate, UITableViewDa
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath as IndexPath) as UITableViewCell
         
         cell.textLabel?.text = "我是第 \(indexPath.row) 个Cell"
-        
+        print("我是第 \(indexPath.row) 个Cell")
         return cell
     }
     
