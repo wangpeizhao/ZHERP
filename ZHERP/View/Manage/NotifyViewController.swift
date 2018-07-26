@@ -63,8 +63,10 @@ class NotifyViewController: UIViewController, UITableViewDataSource ,UITableView
         
 //        self.tableView!.rowHeight = UITableViewAutomaticDimension;
         
-//        self.tableViewSwitch.delegate = self
-//        self.tableViewSwitch.dataSource = self
+        //设置estimatedRowHeight属性默认值
+//        self.tableView.estimatedRowHeight = 44.0;
+        //rowHeight属性设置为UITableViewAutomaticDimension
+//        self.tableView.rowHeight = UITableViewAutomaticDimension;
         
         //创建一个重用的单元格
 //        self.tableView!.register(UITableViewCell.self, forCellReuseIdentifier: identify)

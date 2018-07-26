@@ -40,6 +40,7 @@ class PersonalViewController: UIViewController {
         //去除表格上放多余的空隙
         view.contentInset = UIEdgeInsetsMake(-10, 0, 0, 0)
         view.register(PersonalBaseCell.self, forCellReuseIdentifier: PersonalBaseCell.identifier)
+        
         return view
     }()
     
@@ -55,6 +56,9 @@ class PersonalViewController: UIViewController {
         
         tableView.delegate = self
         tableView.dataSource = self
+        
+        // 头像
+        tableView.register(UINib(nibName: "ImageRightTableViewCell", bundle: nil), forCellReuseIdentifier: "ImageRightTableViewCell")
         view.addSubview(tableView)
         
         // Set layout for tableView.
@@ -105,6 +109,17 @@ extension PersonalViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let modelForRow = rowModel(at: indexPath)
+        
+        if "avatar" == modelForRow[MemberMenus.key], let avatar = modelForRow[MemberMenus.Value] {
+            // ell.imageView?.image = UIImage(named: avatar)
+            let cell: ImageRightTableViewCell = tableView.dequeueReusableCell(withIdentifier: "ImageRightTableViewCell") as! ImageRightTableViewCell
+            cell.ImageLabel?.text = modelForRow[MemberMenus.Title]
+            cell.ImageTarget?.image = UIImage(named: avatar)
+            cell.accessoryType = .disclosureIndicator
+            
+            return cell
+        }
+        
         var cell = UITableViewCell()
         
         guard let title = modelForRow[MemberMenus.Title] else {
@@ -118,12 +133,6 @@ extension PersonalViewController: UITableViewDataSource {
         }
         
         cell.textLabel?.text = title
-        
-        if "avatar" == modelForRow[MemberMenus.key], let avatar = modelForRow[MemberMenus.Value] {
-            cell.imageView?.image = UIImage(named: avatar)
-        } else if title != MemberMenus.logout && title != MemberMenus.back {
-//            cell.imageView?.image = UIImage(named: Specs.imageName.placeholder)
-        }
         
         cell.detailTextLabel?.text = modelForRow[MemberMenus.Value]
         

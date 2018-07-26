@@ -53,6 +53,8 @@
 		9E523E6A2108D54600CF921F /* NoDisturbingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E523E692108D54600CF921F /* NoDisturbingViewController.swift */; };
 		9E523E6D2109401F00CF921F /* SwitchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E523E6B2109401F00CF921F /* SwitchTableViewCell.swift */; };
 		9E523E6E2109401F00CF921F /* SwitchTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9E523E6C2109401F00CF921F /* SwitchTableViewCell.xib */; };
+		9E523E71210A241500CF921F /* ImageRightTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E523E6F210A241500CF921F /* ImageRightTableViewCell.swift */; };
+		9E523E72210A241500CF921F /* ImageRightTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9E523E70210A241500CF921F /* ImageRightTableViewCell.xib */; };
 		9E88ED0720FB3B3800DF091F /* PostAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E88ED0620FB3B3800DF091F /* PostAPI.swift */; };
 		9E88ED0F20FB3B7700DF091F /* Response+ObjectMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E88ED0B20FB3B7600DF091F /* Response+ObjectMapper.swift */; };
 		9E88ED1020FB3B7700DF091F /* ObservableType+ObjectMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E88ED0C20FB3B7600DF091F /* ObservableType+ObjectMapper.swift */; };
@@ -156,6 +158,8 @@
 		9E523E692108D54600CF921F /* NoDisturbingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoDisturbingViewController.swift; sourceTree = "<group>"; };
 		9E523E6B2109401F00CF921F /* SwitchTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwitchTableViewCell.swift; sourceTree = "<group>"; };
 		9E523E6C2109401F00CF921F /* SwitchTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SwitchTableViewCell.xib; sourceTree = "<group>"; };
+		9E523E6F210A241500CF921F /* ImageRightTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageRightTableViewCell.swift; sourceTree = "<group>"; };
+		9E523E70210A241500CF921F /* ImageRightTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ImageRightTableViewCell.xib; sourceTree = "<group>"; };
 		9E88ED0620FB3B3800DF091F /* PostAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostAPI.swift; sourceTree = "<group>"; };
 		9E88ED0B20FB3B7600DF091F /* Response+ObjectMapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Response+ObjectMapper.swift"; sourceTree = "<group>"; };
 		9E88ED0C20FB3B7600DF091F /* ObservableType+ObjectMapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ObservableType+ObjectMapper.swift"; sourceTree = "<group>"; };
@@ -473,6 +477,8 @@
 				9E523E662108C5D400CF921F /* NotifyTableViewCell.xib */,
 				9E523E6B2109401F00CF921F /* SwitchTableViewCell.swift */,
 				9E523E6C2109401F00CF921F /* SwitchTableViewCell.xib */,
+				9E523E6F210A241500CF921F /* ImageRightTableViewCell.swift */,
+				9E523E70210A241500CF921F /* ImageRightTableViewCell.xib */,
 			);
 			path = Component;
 			sourceTree = "<group>";
@@ -625,6 +631,7 @@
 				9E523DF3210460B600CF921F /* guide_btn_bg@2x.png in Resources */,
 				9E523E2C2104D7CE00CF921F /* shopping.gif in Resources */,
 				9E523DEA21034B2000CF921F /* Assets.xcassets in Resources */,
+				9E523E72210A241500CF921F /* ImageRightTableViewCell.xib in Resources */,
 				9E523E2A2104D7CE00CF921F /* guideImage5.jpg in Resources */,
 				9E523E2B2104D7CE00CF921F /* guideImage7.gif in Resources */,
 				9E523E6E2109401F00CF921F /* SwitchTableViewCell.xib in Resources */,
@@ -801,6 +808,7 @@
 				9E88ED2F20FBA90C00DF091F /* Common.swift in Sources */,
 				9E523E0021047E7900CF921F /* UserDefaults.swift in Sources */,
 				9E88ED3B20FCEC5100DF091F /* MemberMenus.swift in Sources */,
+				9E523E71210A241500CF921F /* ImageRightTableViewCell.swift in Sources */,
 				9E88ED1620FB3BA500DF091F /* PostProvider.swift in Sources */,
 				9E523E6A2108D54600CF921F /* NoDisturbingViewController.swift in Sources */,
 				9E88ED1C20FB462600DF091F /* OrderTableViewController.swift in Sources */,

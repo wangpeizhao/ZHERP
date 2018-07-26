@@ -21,6 +21,16 @@ public func _dismiss(view: UIViewController) {
     })
 }
 
+public func _tip(view: UIViewController) {
+    let alertController = UIAlertController(title: "保存成功!", message: nil, preferredStyle: .alert)
+    //显示提示框
+    view.present(alertController, animated: true, completion: nil)
+    //两秒钟后自动消失
+    DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 2) {
+        view.presentedViewController?.dismiss(animated: false, completion: nil)
+    }
+}
+
 //https://stackoverflow.com/questions/24190277/writing-handler-for-uialertaction
 func _alert(view: UIViewController, message: String, handler: ((UIAlertAction)->Void)? = nil) {
     let action = UIAlertAction(title: "确定", style: .default, handler: handler)
@@ -276,10 +286,11 @@ public func setNavBarLeftBtn(view: UIViewController, title: String, selector: Se
     view.navigationItem.leftBarButtonItem = leftBtn
 }
 
-public func setNavBarRightBtn(view: UIViewController, title: String, selector: Selector) {
+// https://blog.csdn.net/lwjok2007/article/details/48375717
+public func setNavBarRightBtn(view: UIViewController, title: String, selector: Selector, color: UIColor = Specs.color.white) {
     let rightBtn = UIBarButtonItem(title: title, style: .plain, target: view, action: selector)
     // 返回按钮文字颜色
-    rightBtn.tintColor = Specs.color.white
+    rightBtn.tintColor = color
     view.navigationItem.rightBarButtonItem = rightBtn
 }
 
@@ -340,4 +351,33 @@ func setUIButtonToCircle(button: UIButton, radius: CGFloat = 32.0) {
     button.frame.size = CGSize(width: radius * 2, height: radius * 2)
 }
 
+func imageAdaptive(imageView: UIImageView, imageName: String) {
+    //内容图片的宽高比约束
+    var aspectConstraint : NSLayoutConstraint? {
+        didSet {
+            if oldValue != nil {
+                imageView.removeConstraint(oldValue!)
+            }
+            if aspectConstraint != nil {
+                imageView.addConstraint(aspectConstraint!)
+            }
+        }
+    }
+    
+    if let image = UIImage(named: imageName) {
+        //计算原始图片的宽高比
+        let aspect = image.size.width / image.size.height
+        //设置imageView宽高比约束
+        aspectConstraint = NSLayoutConstraint(item: imageView,
+                                              attribute: .width, relatedBy: .equal,
+                                              toItem: imageView, attribute: .height,
+                                              multiplier: aspect, constant: 0.0)
+        //加载图片
+        imageView.image = image
+    }else{
+        //去除imageView里的图片和宽高比约束
+        aspectConstraint = nil
+        imageView.image = nil
+    }
+}
 
