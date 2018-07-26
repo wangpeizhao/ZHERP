@@ -10,16 +10,11 @@ import UIKit
 
 class NotifyViewController: UIViewController, UITableViewDataSource ,UITableViewDelegate{
     
-//    @IBOutlet weak var tableViewSwitch: UITableView!
-//    @IBOutlet weak var tableView: UITableView!
-//    @IBOutlet weak var tableView: UITableView!
-    
     var tableView: UITableView?
     var dataArray: Dictionary<Int, [[String]]>?
     var headerData: Dictionary<Int, String>?
     var footerData: Dictionary<Int, String>?
     let identify: String = "NotifyCell"
-    let identifySwitch: String = "tableViewCellSwitch"
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -66,12 +61,14 @@ class NotifyViewController: UIViewController, UITableViewDataSource ,UITableView
         //去除单元格分隔线
         self.tableView!.separatorStyle = .singleLine
         
+//        self.tableView!.rowHeight = UITableViewAutomaticDimension;
+        
 //        self.tableViewSwitch.delegate = self
 //        self.tableViewSwitch.dataSource = self
         
         //创建一个重用的单元格
 //        self.tableView!.register(UITableViewCell.self, forCellReuseIdentifier: identify)
-        self.tableView?.register(UINib(nibName: "NotifyTableViewCell", bundle: nil), forCellReuseIdentifier: identify)
+        self.tableView?.register(UINib(nibName: "SwitchTableViewCell", bundle: nil), forCellReuseIdentifier: identify)
 //        self.tableView!.translatesAutoresizingMaskIntoConstraints = false
         self.view.addSubview(self.tableView!)
         
@@ -97,10 +94,11 @@ class NotifyViewController: UIViewController, UITableViewDataSource ,UITableView
     
     //设置分组头的高度
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        guard ((self.headerData?[section]) != nil) else {
-            return 5
-        }
-        return tableView.sectionHeaderHeight + 50
+//        guard ((self.headerData?[section]) != nil) else {
+//            return 5
+//        }
+//        return tableView.sectionHeaderHeight + 50
+        return section == 0 ? 0 :tableView.sectionHeaderHeight
     }
     
     //将分组尾设置为一个空的View
@@ -148,9 +146,9 @@ class NotifyViewController: UIViewController, UITableViewDataSource ,UITableView
 //        let switchCell = cell?.viewWithTag(1) as! UISwitch
 //        switchCell.isOn = true
         
-        let cell: NotifyTableViewCell = tableView.dequeueReusableCell(withIdentifier: identify) as! NotifyTableViewCell
-        cell.NotifyLabel.text = _data[1]
-        cell.NotifySwitch.isOn = true
+        let cell: SwitchTableViewCell = tableView.dequeueReusableCell(withIdentifier: identify) as! SwitchTableViewCell
+        cell.SwitchLabel.text = _data[1]
+        cell.SwitchWidget.isOn = true
         cell.accessoryType = .none
         
         return cell

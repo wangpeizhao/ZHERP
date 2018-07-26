@@ -41,7 +41,7 @@ class NoDisturbingViewController: UIViewController, UITableViewDelegate, UITable
         self.tableView!.register(UITableViewCell.self, forCellReuseIdentifier: "SwiftCell")
         //去除单元格分隔线
         self.tableView!.separatorStyle = .singleLine
-        //        //去除表格上放多余的空隙
+        //去除表格上放多余的空隙
         self.tableView!.contentInset = UIEdgeInsetsMake(-10, 0, 0, 0)
         self.view.addSubview(self.tableView!)
     }

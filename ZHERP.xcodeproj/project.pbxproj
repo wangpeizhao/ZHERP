@@ -51,6 +51,8 @@
 		9E523E672108C5D400CF921F /* NotifyTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E523E652108C5D400CF921F /* NotifyTableViewCell.swift */; };
 		9E523E682108C5D400CF921F /* NotifyTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9E523E662108C5D400CF921F /* NotifyTableViewCell.xib */; };
 		9E523E6A2108D54600CF921F /* NoDisturbingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E523E692108D54600CF921F /* NoDisturbingViewController.swift */; };
+		9E523E6D2109401F00CF921F /* SwitchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E523E6B2109401F00CF921F /* SwitchTableViewCell.swift */; };
+		9E523E6E2109401F00CF921F /* SwitchTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9E523E6C2109401F00CF921F /* SwitchTableViewCell.xib */; };
 		9E88ED0720FB3B3800DF091F /* PostAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E88ED0620FB3B3800DF091F /* PostAPI.swift */; };
 		9E88ED0F20FB3B7700DF091F /* Response+ObjectMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E88ED0B20FB3B7600DF091F /* Response+ObjectMapper.swift */; };
 		9E88ED1020FB3B7700DF091F /* ObservableType+ObjectMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E88ED0C20FB3B7600DF091F /* ObservableType+ObjectMapper.swift */; };
@@ -152,6 +154,8 @@
 		9E523E652108C5D400CF921F /* NotifyTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotifyTableViewCell.swift; sourceTree = "<group>"; };
 		9E523E662108C5D400CF921F /* NotifyTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NotifyTableViewCell.xib; sourceTree = "<group>"; };
 		9E523E692108D54600CF921F /* NoDisturbingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoDisturbingViewController.swift; sourceTree = "<group>"; };
+		9E523E6B2109401F00CF921F /* SwitchTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwitchTableViewCell.swift; sourceTree = "<group>"; };
+		9E523E6C2109401F00CF921F /* SwitchTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SwitchTableViewCell.xib; sourceTree = "<group>"; };
 		9E88ED0620FB3B3800DF091F /* PostAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostAPI.swift; sourceTree = "<group>"; };
 		9E88ED0B20FB3B7600DF091F /* Response+ObjectMapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Response+ObjectMapper.swift"; sourceTree = "<group>"; };
 		9E88ED0C20FB3B7600DF091F /* ObservableType+ObjectMapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ObservableType+ObjectMapper.swift"; sourceTree = "<group>"; };
@@ -467,6 +471,8 @@
 				9E88ED3120FCE21000DF091F /* TableViewCell.swift */,
 				9E523E652108C5D400CF921F /* NotifyTableViewCell.swift */,
 				9E523E662108C5D400CF921F /* NotifyTableViewCell.xib */,
+				9E523E6B2109401F00CF921F /* SwitchTableViewCell.swift */,
+				9E523E6C2109401F00CF921F /* SwitchTableViewCell.xib */,
 			);
 			path = Component;
 			sourceTree = "<group>";
@@ -621,6 +627,7 @@
 				9E523DEA21034B2000CF921F /* Assets.xcassets in Resources */,
 				9E523E2A2104D7CE00CF921F /* guideImage5.jpg in Resources */,
 				9E523E2B2104D7CE00CF921F /* guideImage7.gif in Resources */,
+				9E523E6E2109401F00CF921F /* SwitchTableViewCell.xib in Resources */,
 				9E523DF92104615700CF921F /* guideImage6.gif in Resources */,
 				9E29031E20F7B99800F11C63 /* Main.storyboard in Resources */,
 			);
@@ -771,6 +778,7 @@
 				9E88ED3220FCE21000DF091F /* TableViewCell.swift in Sources */,
 				9E523DE62100E21000CF921F /* RegisterVM.swift in Sources */,
 				9E523E402107E99E00CF921F /* NotifyViewController.swift in Sources */,
+				9E523E6D2109401F00CF921F /* SwitchTableViewCell.swift in Sources */,
 				9E88ED2720FB576200DF091F /* Candy.swift in Sources */,
 				9E523DF2210460B600CF921F /* HHGuidePageHUD.swift in Sources */,
 				9E88ED2A20FB723600DF091F /* UIColor.swift in Sources */,
