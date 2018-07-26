@@ -139,54 +139,26 @@ extension MemberViewController: UITableViewDelegate {
         if title == MemberMenus.seeMore || title == MemberMenus.addFavorites {
             cell.textLabel?.textColor = Specs.color.tint
             cell.accessoryType = .none
-        } else if title == MemberMenus.logout {
-            cell.textLabel?.centerXAnchor.constraint(equalTo: cell.centerXAnchor).isActive = true
-            cell.textLabel?.textColor = Specs.color.red
-            cell.textLabel?.textAlignment = .center
-            cell.accessoryType = .none
-        }  else if title == MemberMenus.back {
-            cell.textLabel?.centerXAnchor.constraint(equalTo: cell.centerXAnchor).isActive = true
-            cell.textLabel?.textColor = Specs.color.blue
-            cell.textLabel?.textAlignment = .center
-            cell.accessoryType = .none
         } else {
             cell.accessoryType = .disclosureIndicator
         }
     }
     
-    func logout(_: UIAlertAction)->Void {
-        _logout()
-        _open(view: self, vcName: "login", withNav: false)
-//        let sb = UIStoryboard(name: "Main", bundle:nil)
-//        let vc = sb.instantiateViewController(withIdentifier: "LoginViewController") as! LoginViewController
-//        //VC为该界面storyboardID，Main.storyboard中选中该界面View，Identifier inspector中修改
-//        self.present(vc, animated: true, completion: nil)
-    }
-    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         let modelForRow = rowModel(at: indexPath)
+        self.hidesBottomBarWhenPushed = true
         if let action: String = modelForRow[MemberMenus.key] {
             switch action {
-            case "Back":
-                _dismiss(view: self)
-                break;
             case "Setting":
-                self.hidesBottomBarWhenPushed = true
-                self.navigationController?.pushViewController(SettingViewController(), animated: true)
+                _push(view: self, target: SettingViewController(), rootView: false)
                 break;
             case "System":
-                self.hidesBottomBarWhenPushed = true
-                self.navigationController?.pushViewController(SystemViewController(), animated: true)
-//                _open(view: self, vcName: "system")
+                _push(view: self, target: SystemViewController(), rootView: false)
                 break;
             case "Personal":
-                self.hidesBottomBarWhenPushed = true
-                self.navigationController?.pushViewController(PersonalViewController(), animated: true)
+                _push(view: self, target: PersonalViewController(), rootView: false)
                 break;
-            case "Logout":
-                _confirm(view: self, title: "提示", message: "确定要退出吗？", handler: logout)
-                break
             default: break
                 
             }

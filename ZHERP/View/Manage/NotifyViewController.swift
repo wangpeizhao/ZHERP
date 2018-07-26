@@ -93,13 +93,13 @@ class NotifyViewController: UIViewController, UITableViewDataSource ,UITableView
     }
     
     //设置分组头的高度
-    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-//        guard ((self.headerData?[section]) != nil) else {
-//            return 5
-//        }
-//        return tableView.sectionHeaderHeight + 50
-        return section == 0 ? 0 :tableView.sectionHeaderHeight
-    }
+//    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+////        guard ((self.headerData?[section]) != nil) else {
+////            return 5
+////        }
+////        return tableView.sectionHeaderHeight + 50
+//        return section == 0 ? 0 :tableView.sectionHeaderHeight
+//    }
     
     //将分组尾设置为一个空的View
     //    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
@@ -112,6 +112,12 @@ class NotifyViewController: UIViewController, UITableViewDataSource ,UITableView
         }
         return data
     }
+    
+    //单元格高度
+//    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+////        print(indexPath)
+//        return tableView.sectionHeaderHeight
+//    }
     
     func tableView(_ tableView: UITableView, titleForFooterInSection section: Int) -> String? {
         guard let data = self.footerData?[section] else {
@@ -132,7 +138,7 @@ class NotifyViewController: UIViewController, UITableViewDataSource ,UITableView
             if _data[0] == "Receiving" {
                 cell?.accessoryType = .none
                 cell?.detailTextLabel?.text = "已开启"
-                cell?.detailTextLabel?.textColor = UIColor.green
+                cell?.detailTextLabel?.textColor = Specs.color.green
             } else {
                 cell?.accessoryType = .disclosureIndicator
             }
@@ -145,7 +151,7 @@ class NotifyViewController: UIViewController, UITableViewDataSource ,UITableView
 //        cell = tableView.dequeueReusableCell(withIdentifier: identify, for: indexPath)
 //        let switchCell = cell?.viewWithTag(1) as! UISwitch
 //        switchCell.isOn = true
-        
+//        https://stackoverflow.com/questions/25826383/when-to-use-dequeuereusablecellwithidentifier-vs-dequeuereusablecellwithidentifi
         let cell: SwitchTableViewCell = tableView.dequeueReusableCell(withIdentifier: identify) as! SwitchTableViewCell
         cell.SwitchLabel.text = _data[1]
         cell.SwitchWidget.isOn = true

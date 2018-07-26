@@ -10,16 +10,26 @@ import UIKit
 
 class SystemViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
-    @IBOutlet var firstTableView: UITableView!
+//    @IBOutlet var firstTableView: UITableView!
+    var tableView: UITableView?
+    let identify: String = "NotifyCell"
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        firstTableView!.delegate = self
-        firstTableView!.dataSource = self
+        self.tableView = UITableView(frame:self.view.frame, style:.grouped)
+        
+        self.tableView!.delegate = self
+        self.tableView!.dataSource = self
         
         setNavBarTitle(view: self, title: "系统设置")
         self.view.backgroundColor = Specs.color.white
+        
+        //创建一个重用的单元格
+        //        self.tableView!.register(UITableViewCell.self, forCellReuseIdentifier: identify)
+        self.tableView?.register(UINib(nibName: "SwitchTableViewCell", bundle: nil), forCellReuseIdentifier: identify)
+        //        self.tableView!.translatesAutoresizingMaskIntoConstraints = false
+        self.view.addSubview(self.tableView!)
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -31,7 +41,7 @@ class SystemViewController: UIViewController, UITableViewDelegate, UITableViewDa
     }
     
     override func didReceiveMemoryWarning() {
-        print("didReceiveMemoryWarning")
+//        print("didReceiveMemoryWarning")
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
@@ -42,11 +52,15 @@ class SystemViewController: UIViewController, UITableViewDelegate, UITableViewDa
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 1
     }
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath as IndexPath) as UITableViewCell
+//        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath as IndexPath) as UITableViewCell
         
-        cell.textLabel?.text = "我是第 \(indexPath.row) 个Cell"
         print("我是第 \(indexPath.row) 个Cell")
+        let cell: SwitchTableViewCell = tableView.dequeueReusableCell(withIdentifier: identify) as! SwitchTableViewCell
+        cell.SwitchLabel.text = "我是第 \(indexPath.row) 个Cell"
+        cell.SwitchWidget.isOn = true
+        cell.accessoryType = .none
         return cell
     }
     

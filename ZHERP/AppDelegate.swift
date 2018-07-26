@@ -60,6 +60,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //        let navigation = UINavigationController(rootViewController: firstVC)
 //        self.window?.rootViewController = navigation;
 
+        self.window?.backgroundColor = Specs.color.white
         return true
     }
 

@@ -108,6 +108,11 @@ class NoDisturbingViewController: UIViewController, UITableViewDelegate, UITable
         for index in selectedIndexs {
             print(items[index])
         }
+        _alert(view: self, message: "保存成功", handler: _sure)
+    }
+    
+    func _sure(alert: UIAlertAction!) {
+        _back(view: self)
     }
     
     override func didReceiveMemoryWarning() {

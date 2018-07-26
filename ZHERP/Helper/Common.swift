@@ -21,8 +21,8 @@ public func _dismiss(view: UIViewController) {
     })
 }
 
-func _alert(view: UIViewController, message: String) {
-    let action = UIAlertAction(title: "确定", style: .default, handler: nil)
+func _alert(view: UIViewController, message: String, handler: ((UIAlertAction)->Void)? = nil) {
+    let action = UIAlertAction(title: "确定", style: .default, handler: handler)
     let alertViewController = UIAlertController(title: nil, message: message, preferredStyle: .alert)
     alertViewController.addAction(action)
     view.present(alertViewController, animated: true, completion: nil)
@@ -69,17 +69,37 @@ public func checkLogin(view: UIViewController){
     }
 }
 
-public func _push(view: UIViewController, target: UIViewController) {
-    let viewCount = view.childViewControllers.count
-    if viewCount >= 1 {
-        view.hidesBottomBarWhenPushed = true
+public func _close(view: UIViewController) {
+    _dismiss(view: view)
+}
+
+public func _back(view: UIViewController, root: Bool = false) {
+    if root {
+        view.navigationController?.popToRootViewController(animated: true)
+    } else {
+        view.navigationController?.popViewController(animated: true)
     }
+}
+
+public func _back(view: UIViewController, target: UIViewController) {
+    view.navigationController?.popToViewController(target, animated: true)
+}
+
+public func _push(view: UIViewController, target: UIViewController, rootView: Bool = true) {
+//    let viewCount = view.childViewControllers.count
+//    if viewCount >= 1 {
+//        view.hidesBottomBarWhenPushed = true
+//    }
+    
     view.hidesBottomBarWhenPushed = true
     view.navigationController?.pushViewController(target, animated: true)
-    view.hidesBottomBarWhenPushed = false
-    if viewCount >= 1 {
+    if rootView {
         view.hidesBottomBarWhenPushed = false
     }
+    
+//    if viewCount >= 1 {
+//        view.hidesBottomBarWhenPushed = false
+//    }
     // 返回到上一个界面
 //    self.navigationController?.popViewControllerAnimated(true)
 }

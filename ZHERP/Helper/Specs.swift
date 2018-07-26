@@ -18,6 +18,7 @@ public struct Specs {
         public let blue = UIColor.blue
         public let main = UIColor(hex: 0x152a60)
         public let circle = UIColor(hex: 0x1368e5)
+        public let green = UIColor(hex: 0x42b83d)
     }
     
     public struct FontSize {

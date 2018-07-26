@@ -58,11 +58,11 @@ public struct MemberMenus {
 //                    [self.Title: self.back, self.key: "Back"]
 //                ]
 //            ],
-            [
-                self.Rows: [
-                    [self.Title: self.logout, self.key: "Logout"]
-                ]
-            ]
+//            [
+//                self.Rows: [
+//                    [self.Title: self.logout, self.key: "Logout"]
+//                ]
+//            ]
         ]
     }
     
