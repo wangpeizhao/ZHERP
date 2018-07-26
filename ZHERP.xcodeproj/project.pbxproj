@@ -55,6 +55,7 @@
 		9E523E6E2109401F00CF921F /* SwitchTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9E523E6C2109401F00CF921F /* SwitchTableViewCell.xib */; };
 		9E523E71210A241500CF921F /* ImageRightTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E523E6F210A241500CF921F /* ImageRightTableViewCell.swift */; };
 		9E523E72210A241500CF921F /* ImageRightTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9E523E70210A241500CF921F /* ImageRightTableViewCell.xib */; };
+		9E523E74210A379500CF921F /* EditAvatarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E523E73210A379500CF921F /* EditAvatarViewController.swift */; };
 		9E88ED0720FB3B3800DF091F /* PostAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E88ED0620FB3B3800DF091F /* PostAPI.swift */; };
 		9E88ED0F20FB3B7700DF091F /* Response+ObjectMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E88ED0B20FB3B7600DF091F /* Response+ObjectMapper.swift */; };
 		9E88ED1020FB3B7700DF091F /* ObservableType+ObjectMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E88ED0C20FB3B7600DF091F /* ObservableType+ObjectMapper.swift */; };
@@ -160,6 +161,7 @@
 		9E523E6C2109401F00CF921F /* SwitchTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SwitchTableViewCell.xib; sourceTree = "<group>"; };
 		9E523E6F210A241500CF921F /* ImageRightTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageRightTableViewCell.swift; sourceTree = "<group>"; };
 		9E523E70210A241500CF921F /* ImageRightTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ImageRightTableViewCell.xib; sourceTree = "<group>"; };
+		9E523E73210A379500CF921F /* EditAvatarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditAvatarViewController.swift; sourceTree = "<group>"; };
 		9E88ED0620FB3B3800DF091F /* PostAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostAPI.swift; sourceTree = "<group>"; };
 		9E88ED0B20FB3B7600DF091F /* Response+ObjectMapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Response+ObjectMapper.swift"; sourceTree = "<group>"; };
 		9E88ED0C20FB3B7600DF091F /* ObservableType+ObjectMapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ObservableType+ObjectMapper.swift"; sourceTree = "<group>"; };
@@ -388,6 +390,7 @@
 			children = (
 				9E523E3921076B3C00CF921F /* PersonalViewController.swift */,
 				9E523E3D2107819000CF921F /* EditPersonalViewController.swift */,
+				9E523E73210A379500CF921F /* EditAvatarViewController.swift */,
 			);
 			path = Personal;
 			sourceTree = "<group>";
@@ -765,6 +768,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9E523E422107EB3600CF921F /* TestViewController.swift in Sources */,
+				9E523E74210A379500CF921F /* EditAvatarViewController.swift in Sources */,
 				9E88ED4320FE624D00DF091F /* RegisterViewController.swift in Sources */,
 				9E88ED1E20FB464B00DF091F /* GoodTableViewController.swift in Sources */,
 				9E88ED0F20FB3B7700DF091F /* Response+ObjectMapper.swift in Sources */,

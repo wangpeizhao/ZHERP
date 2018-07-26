@@ -34,6 +34,10 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
+	<key>NSPhotoLibraryAddUsageDescription</key>
+	<string>纵横ERP将访问您的相册/相机，请允许！</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>纵横ERP需要访问您的相册，请允许！</string>
 	<key>UISupportedInterfaceOrientations~ipad</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>

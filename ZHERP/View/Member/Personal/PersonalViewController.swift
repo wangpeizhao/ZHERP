@@ -196,16 +196,25 @@ extension PersonalViewController: UITableViewDelegate {
         vc.personalValue = modelForRow[MemberMenus.Value]
         vc.personalKey = modelForRow[MemberMenus.key]
         
+        let selector: Selector = #selector(actionBack)
         if vc.personalKey == "username" {
-            let selector: Selector = #selector(actionBack)
             setNavBarBackBtn(view: self, title: "取消", selector: selector)
-        } else {
-            let selector: Selector = #selector(actionBack)
+            _push(view: self, target: vc, rootView: false)
+        } else if vc.personalKey == "avatar" {
             setNavBarBackBtn(view: self, title: "个人信息", selector: selector)
+            let vca = EditAvatarViewController()
+            vca.personalTitle = modelForRow[MemberMenus.Title]
+            vca.personalValue = modelForRow[MemberMenus.Value]
+            vca.personalKey = modelForRow[MemberMenus.key]
+            _push(view: self, target: vca, rootView: false)
+        } else {
+            setNavBarBackBtn(view: self, title: "个人信息", selector: selector)
+            _push(view: self, target: vc, rootView: false)
         }
+//
+//        self.hidesBottomBarWhenPushed = true
+//        self.navigationController?.pushViewController(vc, animated: true)
         
-        self.hidesBottomBarWhenPushed = true
-        self.navigationController?.pushViewController(vc, animated: true)
     }
 }
 
