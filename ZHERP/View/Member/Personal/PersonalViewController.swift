@@ -18,7 +18,7 @@ class PersonalViewController: UIViewController {
                 "username": "王培照",
                 "avatar": "bayMax",
                 "wechatID": "Parker",
-                "myQR": "fb_privacy_shortcuts",
+                "myQR": "myQR",
                 "address": "番禺区南浦",
                 "sex": "男",
                 "region": "广东省广州市",
@@ -110,7 +110,7 @@ extension PersonalViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let modelForRow = rowModel(at: indexPath)
         
-        if "avatar" == modelForRow[MemberMenus.key], let avatar = modelForRow[MemberMenus.Value] {
+        if ("avatar" == modelForRow[MemberMenus.key] || "myQR" == modelForRow[MemberMenus.key]), let avatar = modelForRow[MemberMenus.Value] {
             // ell.imageView?.image = UIImage(named: avatar)
             let cell: ImageRightTableViewCell = tableView.dequeueReusableCell(withIdentifier: "ImageRightTableViewCell") as! ImageRightTableViewCell
             cell.ImageLabel?.text = modelForRow[MemberMenus.Title]

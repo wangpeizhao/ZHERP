@@ -32,9 +32,9 @@ class EditPersonalViewController: UIViewController, UITableViewDelegate, UITable
         
         
         switch personalKey {
-        case "avatar":
-            _avatar()
-            setNavBarRightBtn(view: self, title: "···", selector: #selector(selectorAvatar))
+        case "myQR":
+            _myQR()
+            setNavBarRightBtn(view: self, title: "···", selector: #selector(selectorMyQR))
             break
         case "username":
             _username()
@@ -62,17 +62,33 @@ class EditPersonalViewController: UIViewController, UITableViewDelegate, UITable
         _tip(view: self)
     }
     
-    @objc func selectorAvatar() {
-        let alertController = UIAlertController(title: "更改头像", message: "", preferredStyle: .actionSheet)
+    @objc func selectorMyQR() {
+        let alertController = UIAlertController(title: "我的二维码", message: "", preferredStyle: .actionSheet)
         let cancelAction = UIAlertAction(title: "取消", style: .cancel, handler: nil)
-        let deleteAction = UIAlertAction(title: "拍照", style: .destructive, handler: nil)
-        let archiveAction = UIAlertAction(title: "从手机相册选择", style: .default, handler: nil)
-        let saveAction = UIAlertAction(title: "保存图片", style: .default, handler: nil)
+        let saveAction = UIAlertAction(title: "保存图片", style: .default, handler: saveBtn)
         alertController.addAction(cancelAction)
-        alertController.addAction(deleteAction)
-        alertController.addAction(archiveAction)
         alertController.addAction(saveAction)
         self.present(alertController, animated: true, completion: nil)
+    }
+    
+    func saveBtn(alert: UIAlertAction) {
+        let frame = self.view.frame
+        UIGraphicsBeginImageContext(CGSize(width: frame.width, height: frame.height - 100))
+        self.view.layer.render(in: UIGraphicsGetCurrentContext()!)
+        let signature: UIImage = UIGraphicsGetImageFromCurrentImageContext()!
+        UIGraphicsEndImageContext()
+        UIImageWriteToSavedPhotosAlbum(signature, self, #selector(saveImage(image:didFinishSavingWithError:contextInfo:)), nil)
+    }
+    
+    @objc private func saveImage(image: UIImage, didFinishSavingWithError error: NSError?, contextInfo: AnyObject) {
+        var showMessage = ""
+        if error != nil{
+            showMessage = "保存失败"
+        }else{
+            showMessage = "保存成功"
+        }
+        //        UIAlertView(title: "提示", message: showMessage, delegate: nil, cancelButtonTitle: "确定").show()
+        _alert(view: self, message: showMessage)
     }
     
     func _sure(alert: UIAlertAction!) {
@@ -101,7 +117,7 @@ class EditPersonalViewController: UIViewController, UITableViewDelegate, UITable
         }
     }
     
-    func _avatar() {
+    func _myQR() {
         self.view.backgroundColor = Specs.color.black
         
         let imageView = UIImageView()
