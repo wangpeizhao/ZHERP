@@ -21,6 +21,7 @@ public func _dismiss(view: UIViewController) {
     })
 }
 
+//https://stackoverflow.com/questions/24190277/writing-handler-for-uialertaction
 func _alert(view: UIViewController, message: String, handler: ((UIAlertAction)->Void)? = nil) {
     let action = UIAlertAction(title: "确定", style: .default, handler: handler)
     let alertViewController = UIAlertController(title: nil, message: message, preferredStyle: .alert)
@@ -299,11 +300,20 @@ func setUITextFieldBP(textFiled: UITextField, placeholder: String) {
     border.borderWidth = width
     textFiled.layer.addSublayer(border)
     textFiled.layer.masksToBounds = true
+    textFiled.borderStyle = UITextBorderStyle.none
     
     // 设置占位符颜色和字体大小
     let placeholserAttributes = [NSAttributedStringKey.foregroundColor: UIColor.white,NSAttributedStringKey.font: setFontSize()]
     textFiled.attributedPlaceholder = NSAttributedString(string: placeholder, attributes: placeholserAttributes)
     textFiled.backgroundColor = UIColor.clear
+    
+    // 设置控件属性
+//    textFiled.font = UIFont(name: "Chalkduster", size: Specs.fontSize.regular)
+    //文字编辑的时候现实清除按钮。默认不显示
+    textFiled.clearButtonMode = UITextFieldViewMode.whileEditing
+    
+//    textFiled.returnKeyType = UIReturnKeyType.go
+    
 }
 
 func setViewWidgetBottomLine(widget: UIView) {

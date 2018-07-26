@@ -30,6 +30,7 @@ PODS:
     - RxSwift (>= 4.0.0)
   - RxSwift (4.2.0)
   - SCLAlertView (0.8)
+  - SnapKit (4.0.0)
   - SwiftFCXRefresh (0.1.1)
   - SwiftyJSON (4.1.0)
 
@@ -44,6 +45,7 @@ DEPENDENCIES:
   - Result
   - RxFlow
   - SCLAlertView
+  - SnapKit (~> 4.0.0)
   - SwiftFCXRefresh
   - SwiftyJSON
 
@@ -61,6 +63,7 @@ SPEC REPOS:
     - RxFlow
     - RxSwift
     - SCLAlertView
+    - SnapKit
     - SwiftFCXRefresh
     - SwiftyJSON
 
@@ -77,9 +80,10 @@ SPEC CHECKSUMS:
   RxFlow: ad8df3694ea306e68f5d3f64a4d7b5055dc46a85
   RxSwift: 99e10317ddfcc7fbe01356aafd118fde4a0be104
   SCLAlertView: 6a77bb2edfc65e04dbe57725546cb4107a506b85
+  SnapKit: a42d492c16e80209130a3379f73596c3454b7694
   SwiftFCXRefresh: 74cad61a77485cb510a23b485913039f347e67ce
   SwiftyJSON: c29297daf073d2aa016295d5809cdd68045c39b3
 
-PODFILE CHECKSUM: 0c2976ec62ef86032391a5fb9418a5198324d6a1
+PODFILE CHECKSUM: b385ed9e8046c576c7399f3eb7c06ea3539c61d8
 
 COCOAPODS: 1.5.3

@@ -20,6 +20,7 @@ def libraries
   pod 'SCLAlertView'
   pod 'PagingMenuController'
   pod 'SwiftFCXRefresh'
+  pod 'SnapKit', '~> 4.0.0'
 end
 
 target 'ZHERP' do

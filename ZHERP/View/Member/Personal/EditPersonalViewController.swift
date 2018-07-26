@@ -7,12 +7,15 @@
 //
 
 import UIKit
+import SnapKit
 
 class EditPersonalViewController: UIViewController {
 
     var personalValue: String? = nil
     var personalTitle: String? = nil
     var personalKey: String? = nil
+    
+    lazy var box = UIView()
     
 //    required init?(coder aDecoder: NSCoder) {
 //        super.init(coder: aDecoder)
@@ -41,7 +44,21 @@ class EditPersonalViewController: UIViewController {
             break
         }
         
+        box.backgroundColor = UIColor.orange
         
+        
+        self.view.addSubview(box)
+        
+        let textF=UITextField(frame: CGRect(x: 0, y: 0, width: 200, height: 50))
+        //设置textF边框，默认空白边框
+        textF.borderStyle=UITextBorderStyle.bezel
+        self.view.addSubview(textF)
+        
+        box.snp.makeConstraints { (make) -> Void in
+            make.width.equalTo(100)
+            make.height.equalTo(100)
+            make.center.equalTo(self.view)
+        }
         
 
         // Do any additional setup after loading the view.
