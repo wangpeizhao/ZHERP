@@ -17,6 +17,11 @@ class OrderDetailViewController: UIViewController {
 //            configureView()
         }
     }
+//    @IBOutlet weak var searchBar: UISearchBar!
+    @IBOutlet var searchBar: UISearchBar!
+    
+//    lazy var searchBar:UISearchBar = UISearchBar(frame: CGRect(x: 0, y: 0, width: 200, height: 20))
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 //        print(detailCandy?.name)
@@ -25,6 +30,15 @@ class OrderDetailViewController: UIViewController {
         // Do any additional setup after loading the view.
         self.navigationItem.title = "Facebook"
         navigationController?.navigationBar.barTintColor = Specs.color.tint
+        
+//        searchBar.placeholder = "搜索"
+        searchBar.backgroundColor = Specs.color.gray
+        let leftNavBarButton = UIBarButtonItem(customView:searchBar)
+        self.navigationItem.leftBarButtonItem = leftNavBarButton
+        
+        
+        
+//        searchController.searchBar.searchBarStyle = .Minimal//搜索框风格
     }
 
     override func didReceiveMemoryWarning() {

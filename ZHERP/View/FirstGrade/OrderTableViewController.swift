@@ -19,6 +19,9 @@ class OrderTableViewController: UITableViewController {
     let searchController = UISearchController(searchResultsController: nil)
     let identifier: String = "OrderIdentifier"
     
+    @IBOutlet var searchBar: UISearchBar!
+//    lazy var searchBar:UISearchBar = UISearchBar(frame: CGRect(x: 0, y: 0, width: 200, height: 20))
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.tableView.register(UITableViewCell.self, forCellReuseIdentifier: "Cell")
@@ -45,7 +48,8 @@ class OrderTableViewController: UITableViewController {
         tap.cancelsTouchesInView = false;
         self.view.addGestureRecognizer(tap);
         
-        
+        let leftNavBarButton = UIBarButtonItem(customView:searchBar)
+        self.navigationItem.leftBarButtonItem = leftNavBarButton
         
         candies = [
             Candy(category: "Chocolate", name: "Chocolate Bar"),

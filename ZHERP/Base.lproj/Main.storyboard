@@ -71,10 +71,16 @@
                         <barButtonItem key="backBarButtonItem" title="订单" id="iEg-c3-btL"/>
                     </navigationItem>
                     <connections>
+                        <outlet property="searchBar" destination="G8j-uz-jKZ" id="G09-Ey-md2"/>
                         <outlet property="searchDisplayController" destination="Gl2-Xt-LvF" id="f1H-ey-ksi"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zBF-FT-2VF" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <searchBar contentMode="redraw" id="G8j-uz-jKZ">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                    <textInputTraits key="textInputTraits"/>
+                </searchBar>
                 <searchDisplayController id="Gl2-Xt-LvF">
                     <connections>
                         <outlet property="delegate" destination="zWb-49-8oy" id="3cI-qk-kS6"/>
@@ -106,13 +112,6 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <searchBar contentMode="center" searchBarStyle="minimal" placeholder="按商品名称/货号" translatesAutoresizingMaskIntoConstraints="NO" id="8bK-TB-7WP">
-                                <rect key="frame" x="0.0" y="88" width="375" height="56"/>
-                                <textInputTraits key="textInputTraits" autocorrectionType="no"/>
-                                <connections>
-                                    <outlet property="delegate" destination="vjU-Pa-ugi" id="McT-9F-GPv"/>
-                                </connections>
-                            </searchBar>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MyR-38-qqu">
                                 <rect key="frame" x="10.000000000000007" y="499" width="111.66666666666669" height="30"/>
                                 <color key="backgroundColor" red="0.66666668650000005" green="0.37655409560000003" blue="0.30399838969999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -154,7 +153,6 @@
                         <constraints>
                             <constraint firstItem="LjH-3R-QRH" firstAttribute="width" secondItem="u4B-VV-ZUX" secondAttribute="width" id="2KW-8v-a7Y"/>
                             <constraint firstItem="16l-Lr-10U" firstAttribute="centerY" secondItem="MyR-38-qqu" secondAttribute="centerY" id="2Wm-y9-Z9o"/>
-                            <constraint firstItem="8bK-TB-7WP" firstAttribute="trailing" secondItem="hgF-dM-bue" secondAttribute="trailing" id="2nr-cf-xlU"/>
                             <constraint firstItem="Qas-p9-Pnm" firstAttribute="width" secondItem="u4B-VV-ZUX" secondAttribute="width" id="2pO-Me-qY0"/>
                             <constraint firstItem="3MT-ad-9Wg" firstAttribute="top" secondItem="hgF-dM-bue" secondAttribute="top" constant="50" id="3JL-ki-FCD"/>
                             <constraint firstItem="u4B-VV-ZUX" firstAttribute="top" secondItem="yea-ng-hnz" secondAttribute="bottom" constant="30" id="6EU-8g-tdY"/>
@@ -166,11 +164,9 @@
                             <constraint firstItem="MyR-38-qqu" firstAttribute="leading" secondItem="hgF-dM-bue" secondAttribute="leading" constant="10" id="Jf6-bT-k3g"/>
                             <constraint firstItem="LjH-3R-QRH" firstAttribute="height" secondItem="u4B-VV-ZUX" secondAttribute="height" id="Jr1-32-Mcz"/>
                             <constraint firstItem="16l-Lr-10U" firstAttribute="leading" secondItem="dvn-Nz-33W" secondAttribute="trailing" constant="10" id="PVS-iI-MFY"/>
-                            <constraint firstItem="8bK-TB-7WP" firstAttribute="top" secondItem="hgF-dM-bue" secondAttribute="top" id="Ugj-3u-A8v"/>
                             <constraint firstItem="yea-ng-hnz" firstAttribute="top" secondItem="3MT-ad-9Wg" secondAttribute="bottom" constant="8" id="VXW-W2-r0d"/>
                             <constraint firstItem="Qas-p9-Pnm" firstAttribute="top" secondItem="u4B-VV-ZUX" secondAttribute="bottom" constant="30" id="Wb0-dB-KvX"/>
                             <constraint firstItem="hgF-dM-bue" firstAttribute="bottom" secondItem="MyR-38-qqu" secondAttribute="bottom" constant="200" id="aeC-Fv-pHq"/>
-                            <constraint firstItem="8bK-TB-7WP" firstAttribute="leading" secondItem="hgF-dM-bue" secondAttribute="leading" id="bL1-7b-d21"/>
                             <constraint firstItem="hgF-dM-bue" firstAttribute="trailing" secondItem="16l-Lr-10U" secondAttribute="trailing" constant="10" id="e8A-6D-RPj"/>
                             <constraint firstItem="16l-Lr-10U" firstAttribute="width" secondItem="MyR-38-qqu" secondAttribute="width" id="eJJ-CR-VlN"/>
                             <constraint firstItem="Qas-p9-Pnm" firstAttribute="height" secondItem="u4B-VV-ZUX" secondAttribute="height" id="hQm-BM-3eT"/>
@@ -189,10 +185,19 @@
                     <connections>
                         <outlet property="OrderPrice" destination="yea-ng-hnz" id="2Vr-oC-QPF"/>
                         <outlet property="OrderTitle" destination="3MT-ad-9Wg" id="aKg-mf-Wa2"/>
+                        <outlet property="searchBar" destination="8bK-TB-7WP" id="FZM-K7-SGg"/>
                         <outlet property="searchDisplayController" destination="YOw-bN-a1K" id="XWA-DZ-hMP"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hQP-qw-0Om" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <searchBar contentMode="center" searchBarStyle="minimal" placeholder="按商品名称/货号" id="8bK-TB-7WP">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="56"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <textInputTraits key="textInputTraits" autocorrectionType="no"/>
+                    <connections>
+                        <outlet property="delegate" destination="vjU-Pa-ugi" id="McT-9F-GPv"/>
+                    </connections>
+                </searchBar>
                 <searchDisplayController id="YOw-bN-a1K">
                     <connections>
                         <outlet property="delegate" destination="vjU-Pa-ugi" id="iZV-lF-sIE"/>
