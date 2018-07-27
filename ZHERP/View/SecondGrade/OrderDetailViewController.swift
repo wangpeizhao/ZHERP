@@ -32,7 +32,7 @@ class OrderDetailViewController: UIViewController {
         navigationController?.navigationBar.barTintColor = Specs.color.tint
         
 //        searchBar.placeholder = "搜索"
-        searchBar.backgroundColor = Specs.color.gray
+        searchBar.backgroundColor = Specs.color.grayBg
         let leftNavBarButton = UIBarButtonItem(customView:searchBar)
         self.navigationItem.leftBarButtonItem = leftNavBarButton
         

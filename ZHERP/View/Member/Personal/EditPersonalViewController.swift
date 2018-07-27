@@ -112,7 +112,7 @@ class EditPersonalViewController: UIViewController, UITableViewDelegate, UITable
         
         field.snp.makeConstraints { (make) -> Void in
             make.left.right.equalTo(0)
-            make.top.equalTo(105)
+            make.top.equalTo(84)
             make.height.equalTo(40)
         }
     }
@@ -158,7 +158,7 @@ class EditPersonalViewController: UIViewController, UITableViewDelegate, UITable
         
         field.snp.makeConstraints { (make) -> Void in
             make.left.right.equalTo(0)
-            make.top.equalTo(105)
+            make.top.equalTo(84)
             make.height.equalTo(100)
         }
     }

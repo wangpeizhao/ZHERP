@@ -1,3 +1,7 @@
 .DS_Store
 ZHERP.xcworkspace
 ZHERP.xcworkspace/xcuserdata/Parker.xcuserdatad/UserInterfaceState.xcuserstate
+node_cache
+/node_cache
+/.DS_Store
+/ZHERP.xcworkspace/xcuserdata/Parker.xcuserdatad/UserInterfaceState.xcuserstate

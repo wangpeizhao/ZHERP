@@ -21,6 +21,7 @@ def libraries
   pod 'PagingMenuController'
   pod 'SwiftFCXRefresh'
   pod 'SnapKit', '~> 4.0.0'
+  pod 'react-native-camera', path: '../node_modules/react-native-camera'
 end
 
 target 'ZHERP' do

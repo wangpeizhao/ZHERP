@@ -48,6 +48,20 @@ class OrderTableViewController: UITableViewController {
         tap.cancelsTouchesInView = false;
         self.view.addGestureRecognizer(tap);
         
+//        searchBar.backgroundColor = Specs.color.graySBg
+//        searchBar.backgroundColor = UIColor.yellow
+        
+        searchBar.barStyle = UIBarStyle.default
+        searchBar.barTintColor = UIColor.clear
+        
+        searchBar.placeholder = "searchbar的使用"
+        searchBar.tintColor = UIColor.red
+        searchBar.searchBarStyle = UISearchBarStyle.minimal
+        
+//        let uiButton = searchBar.value(forKey: "cancelButton") as! UIButton
+//        uiButton.setTitle("搜索", for: .normal)
+//        uiButton.setTitleColor(UIColor.orange,for: .normal)
+        
         let leftNavBarButton = UIBarButtonItem(customView:searchBar)
         self.navigationItem.leftBarButtonItem = leftNavBarButton
         
