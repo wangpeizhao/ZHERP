@@ -56,6 +56,14 @@
 		9E523E71210A241500CF921F /* ImageRightTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E523E6F210A241500CF921F /* ImageRightTableViewCell.swift */; };
 		9E523E72210A241500CF921F /* ImageRightTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9E523E70210A241500CF921F /* ImageRightTableViewCell.xib */; };
 		9E523E74210A379500CF921F /* EditAvatarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E523E73210A379500CF921F /* EditAvatarViewController.swift */; };
+		9E523E77210BF53F00CF921F /* RegisteringViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E523E76210BF53F00CF921F /* RegisteringViewController.swift */; };
+		9E523E79210C13D800CF921F /* LoginingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E523E78210C13D800CF921F /* LoginingViewController.swift */; };
+		9E523E7B210C238400CF921F /* ForgetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E523E7A210C238400CF921F /* ForgetViewController.swift */; };
+		9E523E7D210C23CF00CF921F /* ResetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E523E7C210C23CF00CF921F /* ResetViewController.swift */; };
+		9E523E7F210C5B3000CF921F /* EditQRCodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E523E7E210C5B3000CF921F /* EditQRCodeViewController.swift */; };
+		9E523E85210CCEB000CF921F /* Common.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E523E84210CCEB000CF921F /* Common.swift */; };
+		9E523E87210CCF5400CF921F /* ZHSearchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E523E86210CCF5400CF921F /* ZHSearchController.swift */; };
+		9E523E89210D449300CF921F /* OrderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E523E88210D449300CF921F /* OrderViewController.swift */; };
 		9E88ED0720FB3B3800DF091F /* PostAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E88ED0620FB3B3800DF091F /* PostAPI.swift */; };
 		9E88ED0F20FB3B7700DF091F /* Response+ObjectMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E88ED0B20FB3B7600DF091F /* Response+ObjectMapper.swift */; };
 		9E88ED1020FB3B7700DF091F /* ObservableType+ObjectMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E88ED0C20FB3B7600DF091F /* ObservableType+ObjectMapper.swift */; };
@@ -72,7 +80,7 @@
 		9E88ED2720FB576200DF091F /* Candy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E88ED2620FB576200DF091F /* Candy.swift */; };
 		9E88ED2A20FB723600DF091F /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E88ED2920FB723600DF091F /* UIColor.swift */; };
 		9E88ED2D20FB8C7900DF091F /* Specs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E88ED2C20FB8C7900DF091F /* Specs.swift */; };
-		9E88ED2F20FBA90C00DF091F /* Common.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E88ED2E20FBA90C00DF091F /* Common.swift */; };
+		9E88ED2F20FBA90C00DF091F /* HelperCommon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E88ED2E20FBA90C00DF091F /* HelperCommon.swift */; };
 		9E88ED3220FCE21000DF091F /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E88ED3120FCE21000DF091F /* TableViewCell.swift */; };
 		9E88ED3520FCE95600DF091F /* MemberBaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E88ED3420FCE95600DF091F /* MemberBaseViewController.swift */; };
 		9E88ED3720FCE9C400DF091F /* MemberViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E88ED3620FCE9C400DF091F /* MemberViewController.swift */; };
@@ -162,6 +170,14 @@
 		9E523E6F210A241500CF921F /* ImageRightTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageRightTableViewCell.swift; sourceTree = "<group>"; };
 		9E523E70210A241500CF921F /* ImageRightTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ImageRightTableViewCell.xib; sourceTree = "<group>"; };
 		9E523E73210A379500CF921F /* EditAvatarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditAvatarViewController.swift; sourceTree = "<group>"; };
+		9E523E76210BF53F00CF921F /* RegisteringViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisteringViewController.swift; sourceTree = "<group>"; };
+		9E523E78210C13D800CF921F /* LoginingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginingViewController.swift; sourceTree = "<group>"; };
+		9E523E7A210C238400CF921F /* ForgetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgetViewController.swift; sourceTree = "<group>"; };
+		9E523E7C210C23CF00CF921F /* ResetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResetViewController.swift; sourceTree = "<group>"; };
+		9E523E7E210C5B3000CF921F /* EditQRCodeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditQRCodeViewController.swift; sourceTree = "<group>"; };
+		9E523E84210CCEB000CF921F /* Common.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Common.swift; sourceTree = "<group>"; };
+		9E523E86210CCF5400CF921F /* ZHSearchController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZHSearchController.swift; sourceTree = "<group>"; };
+		9E523E88210D449300CF921F /* OrderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderViewController.swift; sourceTree = "<group>"; };
 		9E88ED0620FB3B3800DF091F /* PostAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostAPI.swift; sourceTree = "<group>"; };
 		9E88ED0B20FB3B7600DF091F /* Response+ObjectMapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Response+ObjectMapper.swift"; sourceTree = "<group>"; };
 		9E88ED0C20FB3B7600DF091F /* ObservableType+ObjectMapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ObservableType+ObjectMapper.swift"; sourceTree = "<group>"; };
@@ -178,7 +194,7 @@
 		9E88ED2620FB576200DF091F /* Candy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Candy.swift; sourceTree = "<group>"; };
 		9E88ED2920FB723600DF091F /* UIColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColor.swift; sourceTree = "<group>"; };
 		9E88ED2C20FB8C7900DF091F /* Specs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Specs.swift; sourceTree = "<group>"; };
-		9E88ED2E20FBA90C00DF091F /* Common.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Common.swift; sourceTree = "<group>"; };
+		9E88ED2E20FBA90C00DF091F /* HelperCommon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelperCommon.swift; sourceTree = "<group>"; };
 		9E88ED3120FCE21000DF091F /* TableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
 		9E88ED3420FCE95600DF091F /* MemberBaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemberBaseViewController.swift; sourceTree = "<group>"; };
 		9E88ED3620FCE9C400DF091F /* MemberViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemberViewController.swift; sourceTree = "<group>"; };
@@ -255,6 +271,7 @@
 		9E29031720F7B99800F11C63 /* ZHERP */ = {
 			isa = PBXGroup;
 			children = (
+				9E523E80210CCD9900CF921F /* Classes */,
 				9E523E232104D79B00CF921F /* Assets */,
 				9E88ED2B20FB8C1D00DF091F /* Helper */,
 				9E88ED0A20FB3B6300DF091F /* Extensions */,
@@ -391,8 +408,42 @@
 				9E523E3921076B3C00CF921F /* PersonalViewController.swift */,
 				9E523E3D2107819000CF921F /* EditPersonalViewController.swift */,
 				9E523E73210A379500CF921F /* EditAvatarViewController.swift */,
+				9E523E7E210C5B3000CF921F /* EditQRCodeViewController.swift */,
 			);
 			path = Personal;
+			sourceTree = "<group>";
+		};
+		9E523E80210CCD9900CF921F /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				9E523E81210CCDA500CF921F /* General */,
+			);
+			path = Classes;
+			sourceTree = "<group>";
+		};
+		9E523E81210CCDA500CF921F /* General */ = {
+			isa = PBXGroup;
+			children = (
+				9E523E82210CCE1F00CF921F /* CommonUI */,
+				9E523E84210CCEB000CF921F /* Common.swift */,
+			);
+			path = General;
+			sourceTree = "<group>";
+		};
+		9E523E82210CCE1F00CF921F /* CommonUI */ = {
+			isa = PBXGroup;
+			children = (
+				9E523E83210CCE4800CF921F /* ZHSearchController */,
+			);
+			path = CommonUI;
+			sourceTree = "<group>";
+		};
+		9E523E83210CCE4800CF921F /* ZHSearchController */ = {
+			isa = PBXGroup;
+			children = (
+				9E523E86210CCF5400CF921F /* ZHSearchController.swift */,
+			);
+			path = ZHSearchController;
 			sourceTree = "<group>";
 		};
 		9E88ED0520FB3B0600DF091F /* View */ = {
@@ -434,6 +485,7 @@
 				9E88ED1B20FB462600DF091F /* OrderTableViewController.swift */,
 				9E88ED1D20FB464B00DF091F /* GoodTableViewController.swift */,
 				9E88ED1F20FB469000DF091F /* StatisticViewController.swift */,
+				9E523E88210D449300CF921F /* OrderViewController.swift */,
 			);
 			path = FirstGrade;
 			sourceTree = "<group>";
@@ -466,7 +518,7 @@
 			isa = PBXGroup;
 			children = (
 				9E88ED2C20FB8C7900DF091F /* Specs.swift */,
-				9E88ED2E20FBA90C00DF091F /* Common.swift */,
+				9E88ED2E20FBA90C00DF091F /* HelperCommon.swift */,
 				2C7FAC6B2100547A004AEC10 /* Cookie.swift */,
 			);
 			path = Helper;
@@ -497,6 +549,10 @@
 				9E88ED4220FE624D00DF091F /* RegisterViewController.swift */,
 				9E88ED4420FE63AE00DF091F /* ForgotPwdViewController.swift */,
 				9E523DDF20FEB4F100CF921F /* ProtocolPageViewController.swift */,
+				9E523E76210BF53F00CF921F /* RegisteringViewController.swift */,
+				9E523E78210C13D800CF921F /* LoginingViewController.swift */,
+				9E523E7A210C238400CF921F /* ForgetViewController.swift */,
+				9E523E7C210C23CF00CF921F /* ResetViewController.swift */,
 			);
 			path = Member;
 			sourceTree = "<group>";
@@ -704,6 +760,7 @@
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-ZHERP/Pods-ZHERP-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/BTNavigationDropdownMenu/BTNavigationDropdownMenu.framework",
 				"${BUILT_PRODUCTS_DIR}/MJRefresh/MJRefresh.framework",
 				"${BUILT_PRODUCTS_DIR}/Moya/Moya.framework",
 				"${BUILT_PRODUCTS_DIR}/Moya-Decodable/Moya_Decodable.framework",
@@ -722,6 +779,7 @@
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/BTNavigationDropdownMenu.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MJRefresh.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Moya.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Moya_Decodable.framework",
@@ -770,6 +828,7 @@
 				9E523E422107EB3600CF921F /* TestViewController.swift in Sources */,
 				9E523E74210A379500CF921F /* EditAvatarViewController.swift in Sources */,
 				9E88ED4320FE624D00DF091F /* RegisterViewController.swift in Sources */,
+				9E523E87210CCF5400CF921F /* ZHSearchController.swift in Sources */,
 				9E88ED1E20FB464B00DF091F /* GoodTableViewController.swift in Sources */,
 				9E88ED0F20FB3B7700DF091F /* Response+ObjectMapper.swift in Sources */,
 				9E88ED3720FCE9C400DF091F /* MemberViewController.swift in Sources */,
@@ -777,17 +836,23 @@
 				9E523E672108C5D400CF921F /* NotifyTableViewCell.swift in Sources */,
 				9E88ED4120FE61CE00DF091F /* ResetPwdViewController.swift in Sources */,
 				9E88ED1120FB3B7700DF091F /* Single+ObjectMapper.swift in Sources */,
+				9E523E7D210C23CF00CF921F /* ResetViewController.swift in Sources */,
 				9E88ED2520FB53AE00DF091F /* OrderDetailViewController.swift in Sources */,
+				9E523E7B210C238400CF921F /* ForgetViewController.swift in Sources */,
 				2CC9036B210855B60083D70C /* SystemViewController.swift in Sources */,
 				9E523E3E2107819000CF921F /* EditPersonalViewController.swift in Sources */,
 				9E523E3721074E8200CF921F /* BaseNavigationController.swift in Sources */,
 				9E523DE82102E46900CF921F /* BaseViewController.swift in Sources */,
 				2C7FAC6C2100547A004AEC10 /* Cookie.swift in Sources */,
 				9E29031B20F7B99800F11C63 /* ViewController.swift in Sources */,
+				9E523E79210C13D800CF921F /* LoginingViewController.swift in Sources */,
 				9E523DF4210460B600CF921F /* UIImage+GIF.swift in Sources */,
 				9E523DE020FEB4F100CF921F /* ProtocolPageViewController.swift in Sources */,
+				9E523E89210D449300CF921F /* OrderViewController.swift in Sources */,
 				9E523DFE2104661400CF921F /* GuideViewController.swift in Sources */,
 				9E88ED4520FE63AE00DF091F /* ForgotPwdViewController.swift in Sources */,
+				9E523E7F210C5B3000CF921F /* EditQRCodeViewController.swift in Sources */,
+				9E523E85210CCEB000CF921F /* Common.swift in Sources */,
 				9E88ED3220FCE21000DF091F /* TableViewCell.swift in Sources */,
 				9E523DE62100E21000CF921F /* RegisterVM.swift in Sources */,
 				9E523E402107E99E00CF921F /* NotifyViewController.swift in Sources */,
@@ -799,6 +864,7 @@
 				9E88ED1220FB3B7700DF091F /* Observable+ObjectMapper.swift in Sources */,
 				9E88ED1A20FB41F800DF091F /* HomeViewController.swift in Sources */,
 				9E88ED2320FB530200DF091F /* SearchBar.swift in Sources */,
+				9E523E77210BF53F00CF921F /* RegisteringViewController.swift in Sources */,
 				9E523E3C2107708600CF921F /* Personal.swift in Sources */,
 				9E88ED1020FB3B7700DF091F /* ObservableType+ObjectMapper.swift in Sources */,
 				9E88ED3920FCEA4500DF091F /* Member.swift in Sources */,
@@ -809,7 +875,7 @@
 				9E88ED2020FB469000DF091F /* StatisticViewController.swift in Sources */,
 				9E29031920F7B99800F11C63 /* AppDelegate.swift in Sources */,
 				9E523DE42100DDA900CF921F /* Service.swift in Sources */,
-				9E88ED2F20FBA90C00DF091F /* Common.swift in Sources */,
+				9E88ED2F20FBA90C00DF091F /* HelperCommon.swift in Sources */,
 				9E523E0021047E7900CF921F /* UserDefaults.swift in Sources */,
 				9E88ED3B20FCEC5100DF091F /* MemberMenus.swift in Sources */,
 				9E523E71210A241500CF921F /* ImageRightTableViewCell.swift in Sources */,

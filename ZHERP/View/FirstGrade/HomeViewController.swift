@@ -31,12 +31,8 @@ class HomeViewController: BaseViewController {
     
     @IBAction func memberCenter(_ sender: Any) {
         if(checkLoginStatus()) {
-//            _open(view: self, vcName: "member")
-//            let controller = self.storyboard?.instantiateViewController(withIdentifier: String(describing: type(of: MemberViewController()))) as! MemberViewController
-            self.hidesBottomBarWhenPushed = true
-            self.navigationController?.pushViewController(MemberViewController(), animated: true)
-            self.hidesBottomBarWhenPushed = false
-            print("hidesBottomBarWhenPushed")
+//            _push(view: self, target: MemberViewController(), rootView: true)
+            _push(view: self, target: RegisteringViewController(), rootView: true)
         } else {
             _open(view: self, vcName: "login", withNav: false)
         }
@@ -167,6 +163,7 @@ class HomeViewController: BaseViewController {
     @objc func actionGo() {
         if(checkLoginStatus()) {
             _push(view: self, target: MemberViewController())
+//            _push(view: self, target: RegisteringViewController(), rootView: true)
         } else {
             _open(view: self, vcName: "login", withNav: false)
         }

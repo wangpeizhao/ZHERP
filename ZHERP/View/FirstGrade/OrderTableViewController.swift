@@ -10,21 +10,37 @@ import UIKit
 
 class OrderTableViewController: UITableViewController {
     
-//    @IBOutlet weak var searchBar: UISearchBar!
+    // MARK: 搜索控制器
+    var searchController: ZHSearchController?
+    
     // 当前IOS系统版本
     var currentVersion: Int!
-    var orderDetailViewController: OrderDetailViewController? = nil
     var candies:[Candy] = []
-    var filteredCandies:[Candy] = []
-    let searchController = UISearchController(searchResultsController: nil)
     let identifier: String = "OrderIdentifier"
+    var orderDetailViewController: OrderDetailViewController? = nil
     
     @IBOutlet var searchBar: UISearchBar!
-//    lazy var searchBar:UISearchBar = UISearchBar(frame: CGRect(x: 0, y: 0, width: 200, height: 20))
+    
+    
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.tableView.register(UITableViewCell.self, forCellReuseIdentifier: "Cell")
+        
+        // 搜索控制器
+        let searchController = ZHSearchController(searchResultsController: UITableViewController())
+        self.searchController = searchController
+        
+        
+        
+        
+        tableView.tableHeaderView = searchController.searchBar
+        
+        
+        
+        
+        
+        self.tableView.register(UITableViewCell.self, forCellReuseIdentifier: identifier)
         
         // set back btn
         let selector: Selector = #selector(actionBack)
@@ -34,7 +50,7 @@ class OrderTableViewController: UITableViewController {
         setNavBarTitle(view: self, title: "订单类型", transparent: true)
         
         
-        buildSearchBar(searchBar: searchController.searchBar, placeholder: "按订单号搜索")
+//        buildSearchBar(searchBar: searchController.searchBar, placeholder: "按订单号搜索")
         searchController.searchResultsUpdater = self
         searchController.dimsBackgroundDuringPresentation = false
         definesPresentationContext = true
@@ -44,9 +60,9 @@ class OrderTableViewController: UITableViewController {
         currentVersion = getIOSVersion()
         
         // 使键盘点击空白处关闭
-        let tap = UITapGestureRecognizer.init(target: self, action: #selector(viewTapped(tap:)));
-        tap.cancelsTouchesInView = false;
-        self.view.addGestureRecognizer(tap);
+//        let tap = UITapGestureRecognizer.init(target: self, action: #selector(viewTapped(tap:)));
+//        tap.cancelsTouchesInView = false;
+//        self.view.addGestureRecognizer(tap);
         
 //        searchBar.backgroundColor = Specs.color.graySBg
 //        searchBar.backgroundColor = UIColor.yellow
@@ -77,16 +93,16 @@ class OrderTableViewController: UITableViewController {
             Candy(category:"Other", name:"Gummi Bear")
         ]
         
-//        setupSearchController()
+        setupSearchController()
         
-//        if let splitViewController = splitViewController {
-//            let controllers = splitViewController.viewControllers
-//            orderDetailViewController = (controllers[controllers.count - 1] as! UINavigationController).topViewController as? OrderDetailViewController
-//        }
+        if let splitViewController = splitViewController {
+            let controllers = splitViewController.viewControllers
+            orderDetailViewController = (controllers[controllers.count - 1] as! UINavigationController).topViewController as? OrderDetailViewController
+        }
         
-//        UISearchBar.appearance().barTintColor = UIColor.candyGreen()
-//        UISearchBar.appearance().tintColor = UIColor.white
-//        UITextField.appearance(whenContainedInInstancesOf: [UISearchBar.self]).tintColor = UIColor.candyGreen()
+        UISearchBar.appearance().barTintColor = UIColor.candyGreen()
+        UISearchBar.appearance().tintColor = UIColor.white
+        UITextField.appearance(whenContainedInInstancesOf: [UISearchBar.self]).tintColor = UIColor.candyGreen()
 
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -96,21 +112,21 @@ class OrderTableViewController: UITableViewController {
     }
     
     @objc func viewTapped(tap: UITapGestureRecognizer) {
-        searchController.resignFirstResponder()
+//        searchController.resignFirstResponder()
     }
     
     @objc func actionBack() {
         self.hidesBottomBarWhenPushed = false
     }
     
-//    func setupSearchController() {
+    func setupSearchController() {
 //        searchController.searchResultsUpdater = self
 //        searchController.dimsBackgroundDuringPresentation = false
 //        definesPresentationContext = true
 //        tableView.tableHeaderView = searchController.searchBar
 //        searchController.searchBar.scopeButtonTitles = ["All", "Chocolate", "Hard", "Other"]
 //        searchController.searchBar.delegate = self
-//    }
+    }
     
 //    func filterContentForSearchText(_ searchText: String, scope: String = "All") {
 //        filteredCandies = candies.filter { candy in
@@ -160,7 +176,7 @@ class OrderTableViewController: UITableViewController {
 //        }
 
         cell.textLabel!.text = candy.name
-        cell.detailTextLabel!.text = candy.category
+//        cell.detailTextLabel!.text = candy.category
 
         return cell
     }
@@ -240,34 +256,38 @@ extension OrderTableViewController: UISearchResultsUpdating {
     }
 }
 
-extension OrderTableViewController: UISearchBarDelegate {
-    func searchBar(_ searchBar: UISearchBar, selectedScopeButtonIndexDidChange selectedScope: Int) {
-        print("UISearchBarDelegate:filterContentForSearchText")
-//        filterContentForSearchText(searchBar.text!, scope: searchBar.scopeButtonTitles![selectedScope])
-    }
-}
-//
 //extension OrderTableViewController: UISearchBarDelegate {
-//
-//    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-//        //        输入时需要进行的操作
-//        print(searchBar.text!)
-//    }
-//    func searchBarShouldBeginEditing(_ searchBar: UISearchBar) -> Bool {
-//        if currentVersion >= 11 {
-////            self.searchController.setPositionAdjustment(UIOffset.zero, for: UISearchBarIcon.search)
-//        }
-//        return true
-//    }
-//    func searchBarShouldEndEditing(_ searchBar: UISearchBar) -> Bool {
-//        if currentVersion >= 11 {
-//            searchBar.setPositionAdjustment(UIOffsetMake((searchBar.frame.size.width - 40.5 - 50 ) / 2 , 0), for: UISearchBarIcon.search)
-//        }
-//        return true
-//    }
-//    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-//        //        输入完成时，点击按钮需要进行的操作
-//        searchBar.resignFirstResponder()
+//    func searchBar(_ searchBar: UISearchBar, selectedScopeButtonIndexDidChange selectedScope: Int) {
+//        print("UISearchBarDelegate:filterContentForSearchText")
+////        filterContentForSearchText(searchBar.text!, scope: searchBar.scopeButtonTitles![selectedScope])
 //    }
 //}
+
+extension OrderTableViewController: UISearchBarDelegate {
+
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        //        输入时需要进行的操作
+        print(searchBar.text!)
+    }
+    func searchBarShouldBeginEditing(_ searchBar: UISearchBar) -> Bool {
+        print("searchBarShouldBeginEditing")
+//        if currentVersion >= 11 {
+            searchBar.setPositionAdjustment(UIOffset.zero, for: UISearchBarIcon.search)
+//            self.searchController.
+//        }
+        return true
+    }
+    func searchBarShouldEndEditing(_ searchBar: UISearchBar) -> Bool {
+        print("searchBarShouldEndEditing")
+//        if currentVersion >= 11 {
+            searchBar.setPositionAdjustment(UIOffsetMake((searchBar.frame.size.width - 40.5 - 50 ) / 2 , 0), for: UISearchBarIcon.search)
+//        }
+        return true
+    }
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        print("searchBarSearchButtonClicked")
+        //        输入完成时，点击按钮需要进行的操作
+        searchBar.resignFirstResponder()
+    }
+}
 

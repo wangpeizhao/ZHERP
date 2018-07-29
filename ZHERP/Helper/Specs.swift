@@ -21,6 +21,7 @@ public struct Specs {
         public let green = UIColor(hex: 0x42b83d)
         public let grayBg = UIColor(hex: 0xefeef4)
         public let graySBg = UIColor(hex: 0xf4f4f4)
+        public let btnBg = UIColor(hex: 0x2869ed)
     }
     
     public struct FontSize {

@@ -21,7 +21,8 @@ def libraries
   pod 'PagingMenuController'
   pod 'SwiftFCXRefresh'
   pod 'SnapKit', '~> 4.0.0'
-  pod 'react-native-camera', path: '../node_modules/react-native-camera'
+  # pod 'react-native-camera', path: '../node_modules/react-native-camera'
+  pod 'BTNavigationDropdownMenu', :git => 'https://github.com/PhamBaTho/BTNavigationDropdownMenu.git'
 end
 
 target 'ZHERP' do

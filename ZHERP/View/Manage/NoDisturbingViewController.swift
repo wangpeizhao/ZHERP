@@ -108,7 +108,8 @@ class NoDisturbingViewController: UIViewController, UITableViewDelegate, UITable
         for index in selectedIndexs {
             print(items[index])
         }
-        _alert(view: self, message: "保存成功", handler: _sure)
+//        _alert(view: self, message: "保存成功", handler: _sure)
+        _tip(view: self, title: "保存成功")
     }
     
     func _sure(alert: UIAlertAction!) {

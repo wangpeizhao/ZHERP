@@ -21,8 +21,8 @@ public func _dismiss(view: UIViewController) {
     })
 }
 
-public func _tip(view: UIViewController) {
-    let alertController = UIAlertController(title: "保存成功!", message: nil, preferredStyle: .alert)
+public func _tip(view: UIViewController, title: String = "保存成功!") {
+    let alertController = UIAlertController(title: title, message: nil, preferredStyle: .alert)
     //显示提示框
     view.present(alertController, animated: true, completion: nil)
     //两秒钟后自动消失
@@ -124,10 +124,10 @@ public func _open(view: UIViewController, vcName: String = "login", withNav: Boo
     // view.storyboard?.instantiateViewController
     switch vcName {
     case "login":
-        vc = sb.instantiateViewController(withIdentifier: "LoginViewController") as! LoginViewController
+        vc = sb.instantiateViewController(withIdentifier: "LoginingViewController") as! LoginingViewController
         break
     case "register":
-        vc = sb.instantiateViewController(withIdentifier: "RegisterViewController") as! RegisterViewController
+        vc = sb.instantiateViewController(withIdentifier: "RegisteringViewController") as! RegisteringViewController
         break
     case "home":
         vc = sb.instantiateViewController(withIdentifier: "HomeViewController") as! HomeViewController
@@ -136,10 +136,10 @@ public func _open(view: UIViewController, vcName: String = "login", withNav: Boo
         vc = sb.instantiateViewController(withIdentifier: "MemberViewController") as! MemberViewController
         break
     case "forget":
-        vc = sb.instantiateViewController(withIdentifier: "ForgotPwdViewController") as! ForgotPwdViewController
+        vc = sb.instantiateViewController(withIdentifier: "ForgetViewController") as! ForgetViewController
         break
     case "resetPwd":
-        vc = sb.instantiateViewController(withIdentifier: "ResetPwdViewController") as! ResetPwdViewController
+        vc = sb.instantiateViewController(withIdentifier: "ResetViewController") as! ResetViewController
         break
     case "system":
         vc = sb.instantiateViewController(withIdentifier: "SystemViewController") as! SystemViewController
@@ -301,6 +301,15 @@ public func setNavBar(view: UIViewController, title: String, backBtnTitle: Strin
     setNavBarRightBtn(view: view, title: rightBtnTitle, selector: rightBtnSelector)
 }
 
+public func setButtonCommon(button: UIButton, title: String, isEnabled: Bool = true) {
+    button.setTitle(title, for: UIControlState())
+    button.setTitleColor(Specs.color.white, for: UIControlState())
+    button.layer.cornerRadius = Specs.border.radius
+    button.layer.masksToBounds = true
+    button.backgroundColor = Specs.color.btnBg
+    button.isEnabled = isEnabled
+}
+
 func setUITextFieldBP(textFiled: UITextField, placeholder: String) {
     // 设置下划线边框
     let border = CALayer()
@@ -325,6 +334,34 @@ func setUITextFieldBP(textFiled: UITextField, placeholder: String) {
     
 //    textFiled.returnKeyType = UIReturnKeyType.go
     
+}
+
+func setTextFieldCommonFeatures(textFiled: UITextField, width: CGFloat = 44, height: CGFloat = 44) {
+    textFiled.leftView = UIView(frame: CGRect(x: 0, y: 0, width: width, height: height))
+    textFiled.leftViewMode = UITextFieldViewMode.always
+    textFiled.returnKeyType = UIReturnKeyType.next
+    textFiled.textColor = Specs.color.white
+    textFiled.clearButtonMode = UITextFieldViewMode.whileEditing
+}
+
+func setTextFieldPlaceholser(textFiled: UITextField, placeholder: String) {
+    // 设置占位符颜色和字体大小
+    let placeholserAttributes = [NSAttributedStringKey.foregroundColor: UIColor.white,NSAttributedStringKey.font: setFontSize()]
+    textFiled.attributedPlaceholder = NSAttributedString(string: placeholder, attributes: placeholserAttributes)
+    textFiled.backgroundColor = UIColor.clear
+}
+
+func setTextFieldBottomLine(textFiled: UITextField) {
+    // 设置下划线边框
+    let border = CALayer()
+    let width = Specs.border.width
+    let y = textFiled.frame.size.height - width
+    border.borderColor = UIColor.white.cgColor
+    border.frame = CGRect(x: 0, y: y, width: textFiled.frame.size.width, height: textFiled.frame.size.height)
+    border.borderWidth = width
+    textFiled.layer.addSublayer(border)
+    textFiled.layer.masksToBounds = true
+    textFiled.borderStyle = UITextBorderStyle.none
 }
 
 func setViewWidgetBottomLine(widget: UIView) {

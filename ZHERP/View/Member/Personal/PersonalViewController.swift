@@ -207,6 +207,16 @@ extension PersonalViewController: UITableViewDelegate {
             vca.personalValue = modelForRow[MemberMenus.Value]
             vca.personalKey = modelForRow[MemberMenus.key]
             _push(view: self, target: vca, rootView: false)
+        }  else if vc.personalKey == "myQR" {
+            setNavBarBackBtn(view: self, title: "个人信息", selector: selector)
+            let vca = EditQRCodeViewController()
+            vca.personalTitle = modelForRow[MemberMenus.Title]
+            vca.personalValue = modelForRow[MemberMenus.Value]
+            vca.personalKey = modelForRow[MemberMenus.key]
+            vca.avatarValue = self.user.avatar
+            vca.usernameValue = self.user.username
+            vca.regionValue = self.user.region
+            _push(view: self, target: vca, rootView: false)
         } else {
             setNavBarBackBtn(view: self, title: "个人信息", selector: selector)
             _push(view: self, target: vc, rootView: false)

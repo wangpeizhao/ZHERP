@@ -64,8 +64,7 @@ class EditAvatarViewController: UIViewController, UIImagePickerControllerDelegat
         }else{
             showMessage = "保存成功"
         }
-//        UIAlertView(title: "提示", message: showMessage, delegate: nil, cancelButtonTitle: "确定").show()
-        _alert(view: self, message: showMessage)
+        _tip(view: self, title: showMessage)
     }
     
     func cameraEvent(alert: UIAlertAction){
