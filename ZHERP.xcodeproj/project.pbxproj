@@ -64,6 +64,12 @@
 		9E523E85210CCEB000CF921F /* Common.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E523E84210CCEB000CF921F /* Common.swift */; };
 		9E523E87210CCF5400CF921F /* ZHSearchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E523E86210CCF5400CF921F /* ZHSearchController.swift */; };
 		9E523E89210D449300CF921F /* OrderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E523E88210D449300CF921F /* OrderViewController.swift */; };
+		9E523E8E210D537B00CF921F /* GoodViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E523E8D210D537B00CF921F /* GoodViewController.swift */; };
+		9E523E90210D540900CF921F /* OrderAllViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E523E8F210D540900CF921F /* OrderAllViewController.swift */; };
+		9E523E92210D543F00CF921F /* OrderPayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E523E91210D543F00CF921F /* OrderPayViewController.swift */; };
+		9E523E94210D544E00CF921F /* OrderUnpayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E523E93210D544E00CF921F /* OrderUnpayViewController.swift */; };
+		9E523E96210D546400CF921F /* OrderCloseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E523E95210D546400CF921F /* OrderCloseViewController.swift */; };
+		9E523E98210D548500CF921F /* OrderCompleteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E523E97210D548500CF921F /* OrderCompleteViewController.swift */; };
 		9E88ED0720FB3B3800DF091F /* PostAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E88ED0620FB3B3800DF091F /* PostAPI.swift */; };
 		9E88ED0F20FB3B7700DF091F /* Response+ObjectMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E88ED0B20FB3B7600DF091F /* Response+ObjectMapper.swift */; };
 		9E88ED1020FB3B7700DF091F /* ObservableType+ObjectMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E88ED0C20FB3B7600DF091F /* ObservableType+ObjectMapper.swift */; };
@@ -178,6 +184,12 @@
 		9E523E84210CCEB000CF921F /* Common.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Common.swift; sourceTree = "<group>"; };
 		9E523E86210CCF5400CF921F /* ZHSearchController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZHSearchController.swift; sourceTree = "<group>"; };
 		9E523E88210D449300CF921F /* OrderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderViewController.swift; sourceTree = "<group>"; };
+		9E523E8D210D537B00CF921F /* GoodViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoodViewController.swift; sourceTree = "<group>"; };
+		9E523E8F210D540900CF921F /* OrderAllViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderAllViewController.swift; sourceTree = "<group>"; };
+		9E523E91210D543F00CF921F /* OrderPayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderPayViewController.swift; sourceTree = "<group>"; };
+		9E523E93210D544E00CF921F /* OrderUnpayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderUnpayViewController.swift; sourceTree = "<group>"; };
+		9E523E95210D546400CF921F /* OrderCloseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderCloseViewController.swift; sourceTree = "<group>"; };
+		9E523E97210D548500CF921F /* OrderCompleteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderCompleteViewController.swift; sourceTree = "<group>"; };
 		9E88ED0620FB3B3800DF091F /* PostAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostAPI.swift; sourceTree = "<group>"; };
 		9E88ED0B20FB3B7600DF091F /* Response+ObjectMapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Response+ObjectMapper.swift"; sourceTree = "<group>"; };
 		9E88ED0C20FB3B7600DF091F /* ObservableType+ObjectMapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ObservableType+ObjectMapper.swift"; sourceTree = "<group>"; };
@@ -446,9 +458,38 @@
 			path = ZHSearchController;
 			sourceTree = "<group>";
 		};
+		9E523E8A210D52BC00CF921F /* PagingMenuController */ = {
+			isa = PBXGroup;
+			children = (
+				9E523E8C210D52DB00CF921F /* Goods */,
+				9E523E8B210D52C800CF921F /* Orders */,
+			);
+			path = PagingMenuController;
+			sourceTree = "<group>";
+		};
+		9E523E8B210D52C800CF921F /* Orders */ = {
+			isa = PBXGroup;
+			children = (
+				9E523E8F210D540900CF921F /* OrderAllViewController.swift */,
+				9E523E91210D543F00CF921F /* OrderPayViewController.swift */,
+				9E523E93210D544E00CF921F /* OrderUnpayViewController.swift */,
+				9E523E95210D546400CF921F /* OrderCloseViewController.swift */,
+				9E523E97210D548500CF921F /* OrderCompleteViewController.swift */,
+			);
+			path = Orders;
+			sourceTree = "<group>";
+		};
+		9E523E8C210D52DB00CF921F /* Goods */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Goods;
+			sourceTree = "<group>";
+		};
 		9E88ED0520FB3B0600DF091F /* View */ = {
 			isa = PBXGroup;
 			children = (
+				9E523E8A210D52BC00CF921F /* PagingMenuController */,
 				9E523E33210616E600CF921F /* Manage */,
 				9E88ED3320FCE8DB00DF091F /* Member */,
 				9E88ED3020FCE1EE00DF091F /* Component */,
@@ -486,6 +527,7 @@
 				9E88ED1D20FB464B00DF091F /* GoodTableViewController.swift */,
 				9E88ED1F20FB469000DF091F /* StatisticViewController.swift */,
 				9E523E88210D449300CF921F /* OrderViewController.swift */,
+				9E523E8D210D537B00CF921F /* GoodViewController.swift */,
 			);
 			path = FirstGrade;
 			sourceTree = "<group>";
@@ -834,6 +876,7 @@
 				9E88ED3720FCE9C400DF091F /* MemberViewController.swift in Sources */,
 				9E523E322104DA1000CF921F /* GifImageOperation.swift in Sources */,
 				9E523E672108C5D400CF921F /* NotifyTableViewCell.swift in Sources */,
+				9E523E8E210D537B00CF921F /* GoodViewController.swift in Sources */,
 				9E88ED4120FE61CE00DF091F /* ResetPwdViewController.swift in Sources */,
 				9E88ED1120FB3B7700DF091F /* Single+ObjectMapper.swift in Sources */,
 				9E523E7D210C23CF00CF921F /* ResetViewController.swift in Sources */,
@@ -852,17 +895,20 @@
 				9E523DFE2104661400CF921F /* GuideViewController.swift in Sources */,
 				9E88ED4520FE63AE00DF091F /* ForgotPwdViewController.swift in Sources */,
 				9E523E7F210C5B3000CF921F /* EditQRCodeViewController.swift in Sources */,
+				9E523E92210D543F00CF921F /* OrderPayViewController.swift in Sources */,
 				9E523E85210CCEB000CF921F /* Common.swift in Sources */,
 				9E88ED3220FCE21000DF091F /* TableViewCell.swift in Sources */,
 				9E523DE62100E21000CF921F /* RegisterVM.swift in Sources */,
 				9E523E402107E99E00CF921F /* NotifyViewController.swift in Sources */,
 				9E523E6D2109401F00CF921F /* SwitchTableViewCell.swift in Sources */,
+				9E523E96210D546400CF921F /* OrderCloseViewController.swift in Sources */,
 				9E88ED2720FB576200DF091F /* Candy.swift in Sources */,
 				9E523DF2210460B600CF921F /* HHGuidePageHUD.swift in Sources */,
 				9E88ED2A20FB723600DF091F /* UIColor.swift in Sources */,
 				9E88ED1420FB3B9300DF091F /* Post.swift in Sources */,
 				9E88ED1220FB3B7700DF091F /* Observable+ObjectMapper.swift in Sources */,
 				9E88ED1A20FB41F800DF091F /* HomeViewController.swift in Sources */,
+				9E523E90210D540900CF921F /* OrderAllViewController.swift in Sources */,
 				9E88ED2320FB530200DF091F /* SearchBar.swift in Sources */,
 				9E523E77210BF53F00CF921F /* RegisteringViewController.swift in Sources */,
 				9E523E3C2107708600CF921F /* Personal.swift in Sources */,
@@ -872,7 +918,9 @@
 				9E88ED3520FCE95600DF091F /* MemberBaseViewController.swift in Sources */,
 				9E88ED2D20FB8C7900DF091F /* Specs.swift in Sources */,
 				9E523E0221047F7700CF921F /* IntroductionViewController.swift in Sources */,
+				9E523E94210D544E00CF921F /* OrderUnpayViewController.swift in Sources */,
 				9E88ED2020FB469000DF091F /* StatisticViewController.swift in Sources */,
+				9E523E98210D548500CF921F /* OrderCompleteViewController.swift in Sources */,
 				9E29031920F7B99800F11C63 /* AppDelegate.swift in Sources */,
 				9E523DE42100DDA900CF921F /* Service.swift in Sources */,
 				9E88ED2F20FBA90C00DF091F /* HelperCommon.swift in Sources */,

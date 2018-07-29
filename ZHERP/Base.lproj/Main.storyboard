@@ -101,19 +101,19 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3MT-ad-9Wg">
-                                <rect key="frame" x="16" y="138" width="343" height="21"/>
+                                <rect key="frame" x="16" y="94" width="343" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yea-ng-hnz">
-                                <rect key="frame" x="16" y="167" width="343" height="21"/>
+                                <rect key="frame" x="16" y="123" width="343" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MyR-38-qqu">
-                                <rect key="frame" x="10.000000000000007" y="499" width="111.66666666666669" height="30"/>
+                                <rect key="frame" x="10.000000000000007" y="548" width="111.66666666666669" height="30"/>
                                 <color key="backgroundColor" red="0.66666668650000005" green="0.37655409560000003" blue="0.30399838969999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="bst-tp-Oyg"/>
@@ -121,17 +121,17 @@
                                 <state key="normal" title="Button"/>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dvn-Nz-33W">
-                                <rect key="frame" x="131.66666666666666" y="499" width="112" height="30"/>
+                                <rect key="frame" x="131.66666666666666" y="548" width="112" height="30"/>
                                 <color key="backgroundColor" red="0.2070906092" green="0.5" blue="0.03588553924" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <state key="normal" title="Button"/>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="16l-Lr-10U">
-                                <rect key="frame" x="253.66666666666666" y="499" width="111.33333333333334" height="30"/>
+                                <rect key="frame" x="253.66666666666666" y="548" width="111.33333333333334" height="30"/>
                                 <color key="backgroundColor" red="0.31054370219999999" green="0.74977736399999995" blue="0.053812330030000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <state key="normal" title="Button"/>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="u4B-VV-ZUX">
-                                <rect key="frame" x="164" y="218" width="46" height="63.666666666666686"/>
+                                <rect key="frame" x="164" y="174" width="46" height="94.666666666666686"/>
                                 <color key="backgroundColor" red="0.31402749990000001" green="0.3287283352" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="46" id="26Z-hx-4QA"/>
@@ -139,12 +139,12 @@
                                 <state key="normal" title="Button"/>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Qas-p9-Pnm">
-                                <rect key="frame" x="164" y="311.66666666666669" width="46" height="64"/>
+                                <rect key="frame" x="164" y="298.66666666666669" width="46" height="95"/>
                                 <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <state key="normal" title="Button"/>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LjH-3R-QRH">
-                                <rect key="frame" x="164" y="405.66666666666669" width="46" height="63.333333333333314"/>
+                                <rect key="frame" x="164" y="423.66666666666669" width="46" height="94.333333333333314"/>
                                 <color key="backgroundColor" red="0.10980392160000001" green="0.2156862745" blue="0.41568627450000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <state key="normal" title="Button"/>
                             </button>
@@ -257,10 +257,10 @@
             </objects>
             <point key="canvasLocation" x="3626" y="535"/>
         </scene>
-        <!--Order View Controller-->
+        <!--Good View Controller-->
         <scene sceneID="Vwb-Et-Jcz">
             <objects>
-                <viewController storyboardIdentifier="OrderViewController" id="voU-KA-qKU" customClass="OrderViewController" customModule="ZHERP" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="GoodViewController" id="voU-KA-qKU" customClass="GoodViewController" customModule="ZHERP" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="UdZ-7r-5NF">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -272,6 +272,22 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oNP-BH-5Ga" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="4456" y="531"/>
+        </scene>
+        <!--Order View Controller-->
+        <scene sceneID="W61-8d-6zm">
+            <objects>
+                <viewController storyboardIdentifier="OrderViewController" id="Fbh-5P-FF0" customClass="OrderViewController" customModule="ZHERP" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="MA7-Ss-KYj">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="EQK-5P-1E9"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="bf2-oK-tML"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="A78-dl-TTn" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="5230" y="531"/>
         </scene>
         <!--货品管理-->
         <scene sceneID="mfP-XS-481">
@@ -300,7 +316,7 @@
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
-                        <segue destination="zWb-49-8oy" kind="relationship" relationship="rootViewController" id="mxr-Ly-bfe"/>
+                        <segue destination="Fbh-5P-FF0" kind="relationship" relationship="rootViewController" id="kDx-TB-de6"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wfZ-7z-KAN" userLabel="First Responder" sceneMemberID="firstResponder"/>
