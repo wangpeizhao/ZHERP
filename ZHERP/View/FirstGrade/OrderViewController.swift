@@ -374,7 +374,7 @@ class OrderViewController: UIViewController {
     }
     @objc func _keyword() {
         searchWord.text = "Hello World!"
-        
+        searchController.searchBar.text = "Hello World!"
     }
     
     @objc func viewTapped(tap: UITapGestureRecognizer) {
@@ -461,6 +461,7 @@ extension OrderViewController: UISearchResultsUpdating
 //        self.searchArray = self.schoolArray.filter { (school) -> Bool in
 //            return school.contains(searchController.searchBar.text!)
 //        }
+        print(searchController.searchBar.text!)
         print("searchBarSearchUISearchResultsUpdatingButtonClicked........................")
     }
 }
