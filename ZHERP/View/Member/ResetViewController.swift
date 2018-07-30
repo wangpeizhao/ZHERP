@@ -40,7 +40,7 @@ class ResetViewController: UIViewController, UITextFieldDelegate {
         self.titleLabel.font = UIFont.systemFont(ofSize: 25)
         self.view.addSubview(self.titleLabel)
         self.titleLabel.snp.makeConstraints { (make) -> Void in
-            make.top.equalTo(84)
+            make.top.equalTo(44)
             make.left.equalTo(self.CV/2)
             make.height.equalTo(self.CV)
         }

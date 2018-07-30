@@ -86,6 +86,9 @@ class EditQRCodeViewController: UIViewController {
             make.centerX.equalTo(self.formView)
         }
         
+        let gesture = UILongPressGestureRecognizer(target:self ,action: #selector(longPress(gesture:)))
+        RQView.addGestureRecognizer(gesture)
+        
         
         
 //        self.RQBg = UIImageView()
@@ -128,6 +131,43 @@ class EditQRCodeViewController: UIViewController {
         }
 
         // Do any additional setup after loading the view.
+    }
+    
+    @objc func longPress (gesture:UILongPressGestureRecognizer) {
+        
+        if (gesture.state ==  UIGestureRecognizerState.began){
+//            let alertView = UIAlertController(title:"信息",message:"长按手势",preferredStyle:UIAlertControllerStyle.alert)
+//            let OKAction = UIAlertAction(title:"OK",style:UIAlertActionStyle.default,handler:{_ in  })
+//            let  CancelAction = UIAlertAction(title:"Cancel", style: UIAlertActionStyle.default, handler: {_ in })
+//            alertView.addAction(OKAction)
+//            alertView.addAction(CancelAction)
+//            self.present(alertView,animated:  true ,completion: nil)
+            let alertController = UIAlertController(title: "保存二维码", message: "", preferredStyle: .actionSheet)
+            let cancelAction = UIAlertAction(title: "取消", style: .cancel, handler: nil)
+            let saveAction = UIAlertAction(title: "保存图片", style: .default, handler: saveBtn)
+            alertController.addAction(cancelAction)
+            alertController.addAction(saveAction)
+            self.present(alertController, animated: true, completion: nil)
+        }
+        
+    }
+    
+    func saveBtn(alert: UIAlertAction) {
+        let frame = self.view.frame
+        UIGraphicsBeginImageContext(CGSize(width: frame.width, height: frame.height - 100))
+        self.view.layer.render(in: UIGraphicsGetCurrentContext()!)
+        let signature: UIImage = UIGraphicsGetImageFromCurrentImageContext()!
+        UIGraphicsEndImageContext()
+        UIImageWriteToSavedPhotosAlbum(signature, self, #selector(saveImage(image:didFinishSavingWithError:contextInfo:)), nil)
+    }
+    @objc private func saveImage(image: UIImage, didFinishSavingWithError error: NSError?, contextInfo: AnyObject) {
+        var showMessage = ""
+        if error != nil{
+            showMessage = "保存失败"
+        }else{
+            showMessage = "保存成功"
+        }
+        _tip(view: self, title: showMessage)
     }
 
     override func didReceiveMemoryWarning() {

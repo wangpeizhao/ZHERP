@@ -28,6 +28,8 @@ class OrderViewController: UIViewController {
     
     var searchWord: UILabel!
     
+    var accessoryView: UIView!
+    
     
     //分页菜单配置
     private struct PagingMenuOptions: PagingMenuControllerCustomizable {
@@ -331,11 +333,11 @@ class OrderViewController: UIViewController {
                 controller.searchBar.setPositionAdjustment(UIOffsetMake((controller.searchBar.frame.size.width - 40.5 - 50 ) / 2 , 0), for: UISearchBarIcon.search)
             }
             //        使键盘点击空白处关闭
-//            let tap = UITapGestureRecognizer.init(target: self, action: #selector(viewTapped(tap:)));
-//            tap.cancelsTouchesInView = false;
-//            self.view.addGestureRecognizer(tap);
+            let tap = UITapGestureRecognizer.init(target: self, action: #selector(viewTapped(tap:)));
+            tap.cancelsTouchesInView = false;
+            self.view.addGestureRecognizer(tap);
             
-            let accessoryView = UIView(frame: CGRect(x: 0, y: 84, width: self.view.frame.width, height: self.view.frame.height - 84))
+            accessoryView = UIView(frame: CGRect(x: 0, y: 84, width: self.view.frame.width, height: self.view.frame.height - 84))
             accessoryView.backgroundColor = UIColor.gray
             
             
@@ -422,6 +424,7 @@ extension OrderViewController: UISearchBarDelegate {
 //        self.searchArray = self.schoolArray
         print("searchBarCancelButtonClicked")
         searchController.searchBar.setPositionAdjustment(UIOffsetMake((searchBar.frame.size.width - 40.5 - 50 ) / 2 , 0), for: UISearchBarIcon.search)
+        accessoryView.frame.size.height = self.view.frame.height - 84
     }
     
     
@@ -437,6 +440,7 @@ extension OrderViewController: UISearchBarDelegate {
             
             searchController.searchBar.setPositionAdjustment(UIOffset.zero, for: UISearchBarIcon.search)
         }
+        accessoryView.frame.size.height = self.view.frame.height - 84 - 125 - 30 - 100
         return true
     }
     func searchBarShouldEndEditing(_ searchBar: UISearchBar) -> Bool {

@@ -43,7 +43,7 @@ class LoginingViewController: UIViewController, UITextFieldDelegate {
         self.titleLabel.font = UIFont.systemFont(ofSize: 25)
         self.view.addSubview(self.titleLabel)
         self.titleLabel.snp.makeConstraints { (make) -> Void in
-            make.top.equalTo(84)
+            make.top.equalTo(44)
             make.left.equalTo(self.CV/2)
             make.height.equalTo(self.CV)
         }
@@ -74,6 +74,7 @@ class LoginingViewController: UIViewController, UITextFieldDelegate {
         self.usernameTxt.delegate = self
         setTextFieldCommonFeatures(textFiled: self.usernameTxt)
         setTextFieldPlaceholser(textFiled: self.usernameTxt, placeholder: "请输入手机号码")
+        self.usernameTxt.tag = 100
         //输入框左侧图标
         self.usernameTxt.leftView?.addSubview(usernameIcon)
         self.formView.addSubview(self.usernameTxt)
@@ -89,6 +90,7 @@ class LoginingViewController: UIViewController, UITextFieldDelegate {
         self.passwordTxt.delegate = self
         setTextFieldCommonFeatures(textFiled: self.passwordTxt)
         setTextFieldPlaceholser(textFiled: self.passwordTxt, placeholder: "请输入密码(6~16位数字+字母)")
+        self.passwordTxt.tag = 101
         //输入框左侧图标
         self.passwordTxt.leftView?.addSubview(passwordIcon)
         self.formView.addSubview(self.passwordTxt)
@@ -196,6 +198,14 @@ class LoginingViewController: UIViewController, UITextFieldDelegate {
         
     }
     
+//    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
+//        view.endEditing(true)
+//    }
+    // 收起键盘
+//    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
+//        self.view.endEditing(true)
+//    }
+    
     @objc func forgetBtnClicked(_ sender: Any) {
         _open(view: self, vcName: "forget", withNav: false)
     }
@@ -207,6 +217,7 @@ class LoginingViewController: UIViewController, UITextFieldDelegate {
             _alert(view: self, message: "请先填写完信息")
             return
         }
+//        sender.resignFirstResponder()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -246,6 +257,7 @@ class LoginingViewController: UIViewController, UITextFieldDelegate {
         default:
             print(textField.text!)
         }
+        textField.resignFirstResponder()
         return true
     }
     
