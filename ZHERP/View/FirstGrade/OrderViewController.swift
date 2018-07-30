@@ -55,7 +55,7 @@ class OrderViewController: UIViewController {
         
         var height: CGFloat = 20
         //选中项为橙色下划线样式
-        var focusMode: MenuFocusMode = .underline(height: 1, color: .blue, horizontalPadding: 0, verticalPadding: 0)
+        var focusMode: MenuFocusMode = .underline(height: 1, color: .orange, horizontalPadding: 0, verticalPadding: 0)
 //        public enum MenuItemDisplayMode {
 //            case text(title: MenuItemText)  //普通标题文本
 //            case multilineText(title: MenuItemText, description: MenuItemText)  //标题+描述文本
@@ -108,7 +108,8 @@ class OrderViewController: UIViewController {
         fileprivate struct MenuItemOrderAll: MenuItemViewCustomizable {
             //自定义菜单项名称
             var displayMode: MenuItemDisplayMode {
-                return .text(title: MenuItemText(text: "全部全部全部全部全部全部", color: .lightGray, selectedColor: .orange, font: UIFont.systemFont(ofSize: 13), selectedFont: UIFont.systemFont(ofSize: 18)))
+//                return .text(title: MenuItemText(text: "全部", color: .lightGray, selectedColor: .orange, font: UIFont.systemFont(ofSize: 14), selectedFont: UIFont.systemFont(ofSize: 14)))
+                return .text(title: MenuItemText(text: "全部"))
             }
         }
         
@@ -131,7 +132,7 @@ class OrderViewController: UIViewController {
         //第4个菜单项
         fileprivate struct MenuItemOrderClose: MenuItemViewCustomizable {
             //该标签的水平边距设为50
-            var horizontalMargin: CGFloat = 50
+//            var horizontalMargin: CGFloat = 5
             //自定义菜单项名称
             var displayMode: MenuItemDisplayMode {
                 return .text(title: MenuItemText(text: "已关闭"))
@@ -141,30 +142,30 @@ class OrderViewController: UIViewController {
         //第5个菜单项
         fileprivate struct MenuItemOrderComplete: MenuItemViewCustomizable {
             //该标签的水平边距设为50
-            var horizontalMargin: CGFloat = 30
-            var height: CGFloat = 20
+//            var horizontalMargin: CGFloat = 5
+//            var height: CGFloat = 20
             //自定义菜单项名称
             var displayMode: MenuItemDisplayMode {
-//                return .text(title: MenuItemText(text: "已完成"))
-                let menuCustomView = UIView(frame: CGRect(x: 0, y: 0, width: 100, height: 30))
-                menuCustomView.layer.backgroundColor = UIColor.gray.cgColor
-                let menuTitle = UILabel()
-                menuTitle.text = "已完成"
-                menuTitle.font = UIFont.systemFont(ofSize: 13)
-                let menuImage = UIImageView()
-                menuImage.image = UIImage(named: "VoiceSearchStartBtn")
-                menuCustomView.addSubview(menuTitle)
-                menuTitle.snp.makeConstraints { (make) -> Void in
-                    make.left.equalTo(5)
-                    make.centerY.equalTo(menuCustomView)
-                }
-                menuCustomView.addSubview(menuImage)
-                menuImage.snp.makeConstraints { (make) -> Void in
-                    make.right.equalTo(5)
-                    make.left.equalTo(menuTitle.snp.right).offset(3)
-                    make.centerY.equalTo(menuCustomView)
-                }
-                return .custom(view: menuCustomView)
+                return .text(title: MenuItemText(text: "已完成"))
+//                let menuCustomView = UIView(frame: CGRect(x: 0, y: 0, width: 100, height: 30))
+//                menuCustomView.layer.backgroundColor = UIColor.gray.cgColor
+//                let menuTitle = UILabel()
+//                menuTitle.text = "已完成"
+//                menuTitle.font = UIFont.systemFont(ofSize: 13)
+//                let menuImage = UIImageView()
+//                menuImage.image = UIImage(named: "VoiceSearchStartBtn")
+//                menuCustomView.addSubview(menuTitle)
+//                menuTitle.snp.makeConstraints { (make) -> Void in
+//                    make.left.equalTo(5)
+//                    make.centerY.equalTo(menuCustomView)
+//                }
+//                menuCustomView.addSubview(menuImage)
+//                menuImage.snp.makeConstraints { (make) -> Void in
+//                    make.right.equalTo(5)
+//                    make.left.equalTo(menuTitle.snp.right).offset(3)
+//                    make.centerY.equalTo(menuCustomView)
+//                }
+//                return .custom(view: menuCustomView)
             }
         }
     }
@@ -173,19 +174,19 @@ class OrderViewController: UIViewController {
         super.viewDidLoad()
         
         self.searchBarView = UIView(frame: CGRect(x: 0, y: 0, width: 300, height: 50))
-        self.searchBarView.layer.backgroundColor = UIColor.gray.cgColor
+        self.searchBarView.layer.backgroundColor = Specs.color.grayBg.cgColor
         self.view.addSubview(self.searchBarView)
         self.searchBarView.snp.makeConstraints { (make) -> Void in
             make.left.right.equalTo(0)
-            make.top.equalTo(100)
-            make.height.equalTo(150)
+            make.top.equalTo(90)
+            make.height.equalTo(40)
         }
         self.pageMenuView = UIView(frame: CGRect(x: 0, y: 50, width: 300, height: 500))
-        self.pageMenuView.layer.backgroundColor = UIColor.brown.cgColor
+        self.pageMenuView.layer.backgroundColor = Specs.color.grayBg.cgColor
         self.view.addSubview(self.pageMenuView)
         self.pageMenuView.snp.makeConstraints { (make) -> Void in
             make.left.right.equalTo(0)
-            make.top.equalTo(170)
+            make.top.equalTo(140)
             make.bottom.equalTo(self.view)
         }
         
@@ -201,29 +202,26 @@ class OrderViewController: UIViewController {
     }
     
     func navigationDropdownMenus() {
-        //导航栏不透明
-//        self.navigationController?.navigationBar.isTranslucent = false
         //导航栏背景色（下拉菜单栏也用同样的颜色）
-        self.navigationController?.navigationBar.barTintColor = UIColor.orange
+        self.navigationController?.navigationBar.barTintColor = Specs.color.main
         //导航栏文字使用白色
-        //        self.navigationController?.navigationBar.titleTextAttributes =
-        //            [NSAttributedStringKey.font: UIColor.white]
         self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor.white,NSAttributedStringKey.font: UIFont.boldSystemFont(ofSize: 18)]
         
         //下拉菜单项
-        let items = ["中华料理", "西餐面点", "东南亚菜", "韩国泡菜"]
+        let items = ["线上订单", "线下订单"]
         
         //创建下拉菜单
-        menuView = BTNavigationDropdownMenu(navigationController: self.navigationController,
-                                            containerView: self.navigationController!.view,
-                                            title: "美食", items: items)
+        menuView = BTNavigationDropdownMenu(
+            navigationController: self.navigationController,
+            containerView: self.navigationController!.view,
+            title: "订单类型", items: items
+        )
         //单元格文字颜色
-        menuView.cellTextLabelColor = UIColor.white
+        menuView.cellTextLabelColor = Specs.color.white
         //单元格背景色
         menuView.cellBackgroundColor = self.navigationController?.navigationBar.barTintColor
         //选中项背景色
-        menuView.cellSelectionColor = UIColor(red: 0xff/255, green: 0xca/255,
-                                              blue: 0x00/255, alpha: 1)
+        menuView.cellSelectionColor = UIColor(hex: 0x0c6bbb)
         //保持选中项的颜色
         menuView.shouldKeepSelectedCellColor = true
         
@@ -290,33 +288,33 @@ class OrderViewController: UIViewController {
         self.searchController = ({
             let controller = UISearchController(searchResultsController: nil)
             controller.searchResultsUpdater = self
-//            controller.delegate = self as? UISearchControllerDelegate
             controller.searchBar.delegate = self
             controller.hidesNavigationBarDuringPresentation = true
             controller.dimsBackgroundDuringPresentation = false
             controller.searchBar.searchBarStyle = .minimal
             controller.searchBar.sizeToFit()
-//            controller.searchBar.searchTextPositionAdjustment = UIOffset(horizontal: 20, vertical: 0)
             controller.searchBar.setBackgroundImage(UIImage(), for: .any, barMetrics: .default)
-//            controller.searchBar.searchFieldBackgroundPositionAdjustment = UIOffset(horizontal: 20, vertical: 0)
-//            controller.searchBar.setScopeBarButtonTitleTextAttributes(<#T##attributes: [String : Any]?##[String : Any]?#>, for: <#T##UIControlState#>)
+            controller.searchBar.backgroundColor = Specs.color.white
 //            controller.searchBar.setImage(UIImage(named: "VoiceSearchStartBtn"), for: .search, state: UIControlState.normal)
             
             controller.searchBar.layer.masksToBounds = true;
-            controller.searchBar.layer.cornerRadius = 4;
-            controller.searchBar.layer.borderWidth = 1;
+            controller.searchBar.layer.cornerRadius = 2;
+            controller.searchBar.layer.borderWidth = 0;
             controller.searchBar.contentMode = .center;
-            controller.searchBar.layer.borderColor = UIColor.init(red: 197/255.0, green: 199/255.0, blue: 200/255.0, alpha: 1).cgColor;
-            //        searchBar弹出的键盘类型设置
-            controller.searchBar.returnKeyType = UIReturnKeyType.done;
-            //        searchBar中的textField设置
+//            controller.searchBar.layer.borderColor = UIColor.clear;
+            // searchBar弹出的键盘类型设置
+            controller.searchBar.returnKeyType = UIReturnKeyType.search;
+            controller.searchBar.placeholder = "搜索订单号"
+//            controller.searchBar.frame = CGRect(x: 0, y: 0, width: 200, height: 30)
+            // searchBar中的textField设置
             let searchField = controller.searchBar.value(forKey: "_searchField") as! UITextField;
-            searchField.setValue(UIFont.systemFont(ofSize: 13), forKeyPath: "_placeholderLabel.font");
+            searchField.setValue(UIFont.systemFont(ofSize: 15), forKeyPath: "_placeholderLabel.font");
             searchField.setValue(UIColor.init(red: 70/255.0, green: 70/255.0, blue: 70/255.0, alpha: 1), forKeyPath: "_placeholderLabel.textColor");
+            
             
             //        判断是不是大于IOS 11
             if currentVersion < 11 {
-                searchField.attributedPlaceholder = NSAttributedString.init(string: "SEARCH", attributes: [NSAttributedStringKey.baselineOffset:-2]);
+                searchField.attributedPlaceholder = NSAttributedString.init(string: "搜索订单号", attributes: [NSAttributedStringKey.baselineOffset:-2]);
             }else
             {
                 //            searchBar中textField的placeholder的宽度可以获取
@@ -330,14 +328,14 @@ class OrderViewController: UIViewController {
                 //            重新布局
                 self.view.layoutSubviews()
                 //            计算偏移量:偏移量 =（searchBar的宽度-label宽度-搜索框图片加上图片和字体之间的宽度）/ 2
-                controller.searchBar.setPositionAdjustment(UIOffsetMake((controller.searchBar.frame.size.width - 40.5 - 50 ) / 2 , 0), for: UISearchBarIcon.search)
+                controller.searchBar.setPositionAdjustment(UIOffsetMake((controller.searchBar.frame.size.width - 40.5 - 80 ) / 2 , 0), for: UISearchBarIcon.search)
             }
             //        使键盘点击空白处关闭
             let tap = UITapGestureRecognizer.init(target: self, action: #selector(viewTapped(tap:)));
             tap.cancelsTouchesInView = false;
             self.view.addGestureRecognizer(tap);
             
-            accessoryView = UIView(frame: CGRect(x: 0, y: 84, width: self.view.frame.width, height: self.view.frame.height - 84))
+            accessoryView = UIView(frame: CGRect(x: 0, y: 84, width: self.view.frame.width, height: self.view.frame.height - 0))
             accessoryView.backgroundColor = UIColor.gray
             
             
