@@ -30,6 +30,8 @@ class OrderViewController: UIViewController {
     
     var accessoryView: UIView!
     
+    var searchBarHeightConstraint: Constraint?
+    
     
     //分页菜单配置
     private struct PagingMenuOptions: PagingMenuControllerCustomizable {
@@ -173,20 +175,20 @@ class OrderViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.searchBarView = UIView(frame: CGRect(x: 0, y: 0, width: 300, height: 30))
-        self.searchBarView.layer.backgroundColor = Specs.color.blue.cgColor
+        self.searchBarView = UIView(frame: CGRect(x: 0, y: 0, width: 300, height: 40))
+        self.searchBarView.layer.backgroundColor = Specs.color.white.cgColor
         self.view.addSubview(self.searchBarView)
         self.searchBarView.snp.makeConstraints { (make) -> Void in
             make.left.right.equalTo(0)
-            make.top.equalTo(64)
-            make.height.equalTo(30)
+            make.top.equalTo(70)
+            self.searchBarHeightConstraint = make.height.equalTo(40).constraint
         }
         self.pageMenuView = UIView(frame: CGRect(x: 0, y: 50, width: 300, height: 500))
-        self.pageMenuView.layer.backgroundColor = Specs.color.grayBg.cgColor
+        self.pageMenuView.layer.backgroundColor = Specs.color.blue.cgColor
         self.view.addSubview(self.pageMenuView)
         self.pageMenuView.snp.makeConstraints { (make) -> Void in
             make.left.right.equalTo(0)
-            make.top.equalTo(114)
+            make.top.equalTo(110)
             make.bottom.equalTo(self.view)
         }
         
@@ -305,7 +307,7 @@ class OrderViewController: UIViewController {
             // searchBar弹出的键盘类型设置
             controller.searchBar.returnKeyType = UIReturnKeyType.search;
             controller.searchBar.placeholder = "搜索订单号"
-//            controller.searchBar.frame = CGRect(x: 0, y: 0, width: 200, height: 30)
+            controller.searchBar.frame = CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: 40)
             // searchBar中的textField设置
             let searchField = controller.searchBar.value(forKey: "_searchField") as! UITextField;
             searchField.setValue(UIFont.systemFont(ofSize: 15), forKeyPath: "_placeholderLabel.font");
@@ -328,7 +330,7 @@ class OrderViewController: UIViewController {
                 //            重新布局
                 self.view.layoutSubviews()
                 //            计算偏移量:偏移量 =（searchBar的宽度-label宽度-搜索框图片加上图片和字体之间的宽度）/ 2
-                controller.searchBar.setPositionAdjustment(UIOffsetMake((controller.searchBar.frame.size.width - 40.5 - 80 ) / 2 , 0), for: UISearchBarIcon.search)
+                controller.searchBar.setPositionAdjustment(UIOffsetMake((controller.searchBar.frame.size.width - 20 - 100 ) / 2 , 0), for: UISearchBarIcon.search)
             }
             //        使键盘点击空白处关闭
             let tap = UITapGestureRecognizer.init(target: self, action: #selector(viewTapped(tap:)));
@@ -401,11 +403,11 @@ class OrderViewController: UIViewController {
 
 extension OrderViewController {
     func setUp() {
-//        navigationDropdownMenus()
+        navigationDropdownMenus()
         
         searchBar()
         
-//        pagingMenus()
+        pagingMenus()
     }
 }
 extension OrderViewController: UISearchBarDelegate {
@@ -421,8 +423,14 @@ extension OrderViewController: UISearchBarDelegate {
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
 //        self.searchArray = self.schoolArray
         print("searchBarCancelButtonClicked")
-        searchController.searchBar.setPositionAdjustment(UIOffsetMake((searchBar.frame.size.width - 40.5 - 50 ) / 2 , 0), for: UISearchBarIcon.search)
-        accessoryView.frame.size.height = self.view.frame.height - 84
+        searchController.searchBar.setPositionAdjustment(UIOffsetMake((searchBar.frame.size.width - 20 - 95 ) / 2 , 0), for: UISearchBarIcon.search)
+        accessoryView.frame.size.height = self.view.frame.height - 94
+//        self.searchBarHeightConstraint?.update(priority: 30)
+        self.searchBarView.snp.remakeConstraints { (make) -> Void in
+            make.left.right.equalTo(0)
+            make.top.equalTo(58)
+            make.height.equalTo(20)
+        }
     }
     
     
@@ -438,7 +446,14 @@ extension OrderViewController: UISearchBarDelegate {
             
             searchController.searchBar.setPositionAdjustment(UIOffset.zero, for: UISearchBarIcon.search)
         }
-        accessoryView.frame.size.height = self.view.frame.height - 84 - 125 - 30 - 100
+        accessoryView.frame.size.height = self.view.frame.height - 84 - 125 - 30 - 110
+        
+        self.searchBarView.backgroundColor = UIColor.clear
+        self.searchBarView.snp.remakeConstraints { (make) -> Void in
+            make.left.right.equalTo(0)
+            make.top.equalTo(25).inset(10)
+            make.height.equalTo(20)
+        }
         return true
     }
     func searchBarShouldEndEditing(_ searchBar: UISearchBar) -> Bool {

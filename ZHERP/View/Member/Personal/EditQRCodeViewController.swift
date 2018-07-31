@@ -25,6 +25,7 @@ class EditQRCodeViewController: UIViewController {
     var RQView: UIView!
     var RQBg: UIImageView!
     var RQ: UIImageView!
+    var tipLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -39,7 +40,7 @@ class EditQRCodeViewController: UIViewController {
             make.left.equalTo(20)
             make.right.equalTo(-20)
             make.center.equalTo(self.view)
-            make.height.equalTo(400)
+            make.height.equalTo(480)
         }
         
         self.avatarView = UIImageView()
@@ -128,6 +129,15 @@ class EditQRCodeViewController: UIViewController {
 //            make.left.equalTo(65)
 //            make.right.equalTo(-65)
             make.center.equalTo(self.RQView)
+        }
+        
+        self.tipLabel = UILabel()
+        self.tipLabel.text = "长按二维码图片保存到手机相册"
+        self.tipLabel.textAlignment = .center
+        self.formView.addSubview(self.tipLabel)
+        self.tipLabel.snp.makeConstraints { (make) -> Void in
+            make.left.right.equalTo(0)
+            make.top.equalTo(self.RQView.snp.bottom).offset(10)
         }
 
         // Do any additional setup after loading the view.
