@@ -330,14 +330,14 @@ class OrderViewController: UIViewController {
                 //            重新布局
                 self.view.layoutSubviews()
                 //            计算偏移量:偏移量 =（searchBar的宽度-label宽度-搜索框图片加上图片和字体之间的宽度）/ 2
-                controller.searchBar.setPositionAdjustment(UIOffsetMake((controller.searchBar.frame.size.width - 20 - 100 ) / 2 , 0), for: UISearchBarIcon.search)
+                controller.searchBar.setPositionAdjustment(UIOffsetMake((controller.searchBar.frame.size.width - 20 - 80 ) / 2 , 0), for: UISearchBarIcon.search)
             }
             //        使键盘点击空白处关闭
             let tap = UITapGestureRecognizer.init(target: self, action: #selector(viewTapped(tap:)));
             tap.cancelsTouchesInView = false;
             self.view.addGestureRecognizer(tap);
             
-            accessoryView = UIView(frame: CGRect(x: 0, y: 94, width: self.view.frame.width, height: self.view.frame.height - 0))
+            accessoryView = UIView(frame: CGRect(x: 0, y: 64, width: self.view.frame.width, height: self.view.frame.height - 0))
             accessoryView.backgroundColor = UIColor.gray
             
             
@@ -423,14 +423,14 @@ extension OrderViewController: UISearchBarDelegate {
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
 //        self.searchArray = self.schoolArray
         print("searchBarCancelButtonClicked")
-        searchController.searchBar.setPositionAdjustment(UIOffsetMake((searchBar.frame.size.width - 20 - 95 ) / 2 , 0), for: UISearchBarIcon.search)
+        searchController.searchBar.setPositionAdjustment(UIOffsetMake((searchBar.frame.size.width - 20 - 80 ) / 2 , 0), for: UISearchBarIcon.search)
         accessoryView.frame.size.height = self.view.frame.height - 94
 //        self.searchBarHeightConstraint?.update(priority: 30)
-        self.searchBarView.snp.remakeConstraints { (make) -> Void in
-            make.left.right.equalTo(0)
-            make.top.equalTo(58)
-            make.height.equalTo(20)
-        }
+//        self.searchBarView.snp.remakeConstraints { (make) -> Void in
+//            make.left.right.equalTo(0)
+//            make.top.equalTo(58)
+//            make.height.equalTo(20)
+//        }
     }
     
     
@@ -446,14 +446,14 @@ extension OrderViewController: UISearchBarDelegate {
             
             searchController.searchBar.setPositionAdjustment(UIOffset.zero, for: UISearchBarIcon.search)
         }
-        accessoryView.frame.size.height = self.view.frame.height - 84 - 125 - 30 - 110
+        accessoryView.frame.size.height = self.view.frame.height - 84 - 125 - 120
         
         self.searchBarView.backgroundColor = UIColor.clear
-        self.searchBarView.snp.remakeConstraints { (make) -> Void in
-            make.left.right.equalTo(0)
-            make.top.equalTo(25).inset(10)
-            make.height.equalTo(20)
-        }
+//        self.searchBarView.snp.remakeConstraints { (make) -> Void in
+//            make.left.right.equalTo(0)
+//            make.top.equalTo(25).inset(10)
+//            make.height.equalTo(20)
+//        }
         return true
     }
     func searchBarShouldEndEditing(_ searchBar: UISearchBar) -> Bool {
