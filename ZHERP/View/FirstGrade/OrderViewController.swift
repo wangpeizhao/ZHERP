@@ -35,7 +35,7 @@ class OrderViewController: UIViewController {
     private struct PagingMenuOptions: PagingMenuControllerCustomizable {
         
         //默认显示第2页
-        var defaultPage: Int = 1
+        var defaultPage: Int = 0
         
         //页面切换动画播放时间为0.5秒
         var animationDuration: TimeInterval = 0.5
@@ -173,20 +173,20 @@ class OrderViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.searchBarView = UIView(frame: CGRect(x: 0, y: 0, width: 300, height: 50))
-        self.searchBarView.layer.backgroundColor = Specs.color.grayBg.cgColor
+        self.searchBarView = UIView(frame: CGRect(x: 0, y: 0, width: 300, height: 30))
+        self.searchBarView.layer.backgroundColor = Specs.color.blue.cgColor
         self.view.addSubview(self.searchBarView)
         self.searchBarView.snp.makeConstraints { (make) -> Void in
             make.left.right.equalTo(0)
-            make.top.equalTo(90)
-            make.height.equalTo(40)
+            make.top.equalTo(64)
+            make.height.equalTo(30)
         }
         self.pageMenuView = UIView(frame: CGRect(x: 0, y: 50, width: 300, height: 500))
         self.pageMenuView.layer.backgroundColor = Specs.color.grayBg.cgColor
         self.view.addSubview(self.pageMenuView)
         self.pageMenuView.snp.makeConstraints { (make) -> Void in
             make.left.right.equalTo(0)
-            make.top.equalTo(140)
+            make.top.equalTo(114)
             make.bottom.equalTo(self.view)
         }
         
@@ -335,7 +335,7 @@ class OrderViewController: UIViewController {
             tap.cancelsTouchesInView = false;
             self.view.addGestureRecognizer(tap);
             
-            accessoryView = UIView(frame: CGRect(x: 0, y: 84, width: self.view.frame.width, height: self.view.frame.height - 0))
+            accessoryView = UIView(frame: CGRect(x: 0, y: 94, width: self.view.frame.width, height: self.view.frame.height - 0))
             accessoryView.backgroundColor = UIColor.gray
             
             
@@ -401,11 +401,11 @@ class OrderViewController: UIViewController {
 
 extension OrderViewController {
     func setUp() {
-        navigationDropdownMenus()
+//        navigationDropdownMenus()
         
         searchBar()
         
-        pagingMenus()
+//        pagingMenus()
     }
 }
 extension OrderViewController: UISearchBarDelegate {
