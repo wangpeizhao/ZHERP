@@ -43,6 +43,8 @@ class OrderViewController: UIViewController {
     
     var viewHeight: CGFloat!
     
+    var searchProv: UIView!
+    
     
     //分页菜单配置
     private struct PagingMenuOptions: PagingMenuControllerCustomizable {
@@ -188,7 +190,12 @@ class OrderViewController: UIViewController {
         self.view.backgroundColor = Specs.color.grayBg
         viewHeight = self.view.frame.height
         //注册监听
-        NotificationCenter.default.addObserver(self, selector: #selector(handleKeyboardDisShow(notification:)), name: NSNotification.Name.UIKeyboardDidShow, object: nil)
+//        NotificationCenter.default.addObserver(self, selector: #selector(handleKeyboardDisShow(notification:)), name: NSNotification.Name.UIKeyboardDidChangeFrame, object: nil)
+        
+        
+        let centerDefault = NotificationCenter.default
+        
+        centerDefault.addObserver(self, selector: #selector(OrderViewController.handleKeyboardDisShow), name: NSNotification.Name.UIKeyboardDidShow, object: nil)
         
         self.navHeight = self.navigationController?.navigationBar.frame.maxY
 //        self.navHeight = self.navHeight + 3
@@ -237,16 +244,31 @@ class OrderViewController: UIViewController {
 //            frame.origin.y = height!
 //            self.textView.frame = frame
 //        })
+        
+        let userinfo: NSDictionary = notification.userInfo! as NSDictionary
+        
+        let nsValue = userinfo.object(forKey: UIKeyboardFrameEndUserInfoKey)
+        
+        let keyboardRec = (nsValue as AnyObject).cgRectValue
+        
+        let height = keyboardRec?.size.height
+        
+//        self.keyHeight = height!
+        
+        print("keyHeight: \(height!)")
+        
+        
+        
         let dic:NSDictionary = notification.userInfo! as NSDictionary
         print(dic["UIKeyboardFrameEndUserInfoKey"]!)
         let a:AnyObject? = dic.object(forKey: UIKeyboardFrameEndUserInfoKey) as AnyObject?
         let endY = a?.cgRectValue.origin.y
         keyboardHeight = endY!
-//        accessoryView.frame.size.height = viewHeight - self.navHeight + keyboardHeight
+        accessoryView.frame.size.height = viewHeight - self.navHeight + keyboardHeight
 //        accessoryView.frame.origin.y = 44
         print(endY,"endY")
         print(accessoryView.frame.origin.y)
-        print(viewHeight - self.navHeight + keyboardHeight)
+//        print(viewHeight - self.navHeight + keyboardHeight)
     }
     
     func setSearchBarBtn() {
@@ -399,7 +421,7 @@ class OrderViewController: UIViewController {
             tap.cancelsTouchesInView = false;
             self.view.addGestureRecognizer(tap);
             
-            accessoryView = UIView(frame: CGRect(x: 0, y: self.navHeight, width: self.view.frame.width, height: viewHeight - self.navHeight - 225 - 60))
+            accessoryView = UIView(frame: CGRect(x: 0, y: self.navHeight, width: self.view.frame.width, height: 200))
             accessoryView.backgroundColor = UIColor.gray
             
             
@@ -417,7 +439,7 @@ class OrderViewController: UIViewController {
             keyword.addTarget(self, action: #selector(_keyword), for: UIControlEvents.touchUpInside)
             accessoryView.addSubview(keyword)
 
-            controller.searchBar.inputAccessoryView = accessoryView
+//            controller.searchBar.inputAccessoryView = accessoryView
             
             return controller
         })()
@@ -477,8 +499,9 @@ extension OrderViewController: UISearchBarDelegate {
         //重做约束
         self.searchBarView.snp.remakeConstraints { (make) -> Void in
             make.left.right.equalTo(0)
-            make.top.equalTo(self.navHeight)
-            make.height.equalTo(searchHeight)
+            make.top.equalTo(self.navHeight - 5)
+//            make.bottom.equalTo(self.pageMenuView.snp.top)
+            make.height.equalTo(searchHeight + 8)
         }
     }
     
@@ -491,10 +514,23 @@ extension OrderViewController: UISearchBarDelegate {
         if currentVersion >= 11 {
             searchController.searchBar.setPositionAdjustment(UIOffset.zero, for: UISearchBarIcon.search)
         }
+//        print("accessoryView.frame.origin.y: \(accessoryView.frame.origin.y)")
 //        accessoryView.frame.size.height = self.view.frame.height - self.navHeight
 //        accessoryView.snp.makeConstraints { (make) -> Void in
 //            make.top.equalTo(self.searchBarView.snp.bottom)
 //        }
+        
+        
+        self.searchProv = UIView()
+        self.searchProv.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.5) //Specs.color.grayBg.cgColor.alpha(0.8)
+        self.view.addSubview(self.searchProv)
+        self.searchProv.snp.makeConstraints { (make) -> Void in
+            make.left.right.equalTo(0)
+            //            self.searchBarHeightConstraint = make.top.equalTo(self.navHeight).constraint
+            make.top.equalTo(self.navHeight)
+            make.height.equalTo(200)
+        }
+        
         return true
     }
     

@@ -16,13 +16,19 @@ class OrderAllViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.contentLabel = UILabel(frame: CGRect(x: 20, y: 20, width: 200, height: 50))
-        self.contentLabel.text = "All"
-        self.view.addSubview(self.contentLabel)
-        self.contentLabel.snp.makeConstraints { (make) -> Void in
+//        self.contentLabel = UILabel(frame: CGRect(x: 20, y: 20, width: 200, height: 50))
+//        self.contentLabel.text = "All"
+//        self.view.addSubview(self.contentLabel)
+//        self.contentLabel.snp.makeConstraints { (make) -> Void in
+//            make.center.equalTo(self.view)
+//        }
+let tx = UITextField(frame: CGRect(x: 20, y: 50, width: 200, height: 250))
+        tx.layer.backgroundColor = UIColor.red.cgColor
+        self.view.addSubview(tx)
+        
+        tx.snp.makeConstraints { (make) -> Void in
             make.center.equalTo(self.view)
         }
-
         // Do any additional setup after loading the view.
     }
 
