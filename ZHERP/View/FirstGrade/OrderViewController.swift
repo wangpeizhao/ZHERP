@@ -503,6 +503,13 @@ extension OrderViewController: UISearchBarDelegate {
 //            make.bottom.equalTo(self.pageMenuView.snp.top)
             make.height.equalTo(searchHeight + 8)
         }
+        
+        
+        if let window = UIApplication.shared.keyWindow{
+            
+            window.viewWithTag(100)?.removeFromSuperview()
+            
+        }
     }
     
     // 输入时需要进行的操作
@@ -523,12 +530,13 @@ extension OrderViewController: UISearchBarDelegate {
         
         self.searchProv = UIView()
         self.searchProv.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.5) //Specs.color.grayBg.cgColor.alpha(0.8)
+        self.searchProv.tag = 100
         self.view.addSubview(self.searchProv)
         self.searchProv.snp.makeConstraints { (make) -> Void in
             make.left.right.equalTo(0)
             //            self.searchBarHeightConstraint = make.top.equalTo(self.navHeight).constraint
             make.top.equalTo(self.navHeight)
-            make.height.equalTo(200)
+            make.height.equalTo(self.view.frame.size.height - self.navHeight)
         }
         
         return true
