@@ -478,7 +478,7 @@ extension OrderViewController: UISearchBarDelegate {
         self.searchBarView.snp.remakeConstraints { (make) -> Void in
             make.left.right.equalTo(0)
             make.top.equalTo(self.navHeight)
-            make.height.equalTo(searchHeight - 5)
+            make.height.equalTo(searchHeight)
         }
     }
     
