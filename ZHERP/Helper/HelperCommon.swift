@@ -418,3 +418,32 @@ func imageAdaptive(imageView: UIImageView, imageName: String) {
     }
 }
 
+
+// 监听键盘通知
+//NotificationCenter.default.addObserver(self, selector: #selector(ComposeViewController.keyboardWillChangeFrame(note:)), name: NSNotification.Name.UIKeyboardWillChangeFrame, object: nil)
+
+//监听键盘的事件
+//func keyboardWillChangeFrame(note: Notification) {
+//    
+//    print(note.userInfo ?? "")
+//    // 1.获取动画执行的时间
+//    let duration = note.userInfo?[UIKeyboardAnimationDurationUserInfoKey] as! TimeInterval
+//    
+//    // 2.获取键盘最终 Y值
+//    let endFrame = (note.userInfo?[UIKeyboardFrameEndUserInfoKey] as! NSValue).cgRectValue
+//    let y = endFrame.origin.y
+//    
+//    //计算工具栏距离底部的间距
+//    let margin = UIScreen.main.bounds.height - y
+//    print(margin)
+//    // 更新约束,执行动画
+//    toolBarBottom.snp.updateConstraints { (make) in
+//        make.left.equalTo(0)
+//        make.right.equalTo(0)
+//        make.height.equalTo(44)
+//        make.bottom.equalTo(-margin)
+//    }
+//    UIView.animate(withDuration: duration) {
+//        self.view.layoutIfNeeded()
+//    }
+//}

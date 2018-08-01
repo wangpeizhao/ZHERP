@@ -19,7 +19,7 @@ class OrderTableViewController: UITableViewController {
     let identifier: String = "OrderIdentifier"
     var orderDetailViewController: OrderDetailViewController? = nil
     
-    @IBOutlet var searchBar: UISearchBar!
+    @IBOutlet var   searchBar: UISearchBar!
     
     
     
@@ -53,6 +53,22 @@ class OrderTableViewController: UITableViewController {
 //        buildSearchBar(searchBar: searchController.searchBar, placeholder: "按订单号搜索")
         searchController.searchResultsUpdater = self
         searchController.dimsBackgroundDuringPresentation = false
+//        searchController.hidesNavigationBarDuringPresentation = true
+//        searchController.searchBar.searchBarStyle = .minimal
+//        searchController.searchBar.sizeToFit()
+//        searchController.searchBar.setBackgroundImage(UIImage(), for: .any, barMetrics: .default)
+//        searchController.searchBar.backgroundColor = Specs.color.white
+        
+//        searchController.searchBar.layer.masksToBounds = true;
+//        searchController.searchBar.layer.cornerRadius = 2;
+//        searchController.searchBar.layer.borderWidth = 0;
+//        searchController.searchBar.contentMode = .center;
+//        // searchBar弹出的键盘类型设置
+//        searchController.searchBar.returnKeyType = UIReturnKeyType.search;
+//        searchController.searchBar.placeholder = "搜索订单号"
+//        searchController.searchBar.frame = CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: 40)
+//
+//        searchController.searchBar.setPositionAdjustment(UIOffsetMake((searchController.searchBar.frame.size.width - 20 - 80 ) / 2 , 0), for: UISearchBarIcon.search)
         definesPresentationContext = true
         tableView.tableHeaderView = searchController.searchBar
         

@@ -289,11 +289,58 @@
             </objects>
             <point key="canvasLocation" x="5230" y="531"/>
         </scene>
+        <!--Search View Controller-->
+        <scene sceneID="JiQ-az-x4L">
+            <objects>
+                <viewController storyboardIdentifier="SearchViewController" id="GLF-P8-CT6" customClass="SearchViewController" customModule="ZHERP" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="htx-fI-OZC">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <searchBar contentMode="redraw" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="QK7-Bu-15G">
+                                <rect key="frame" x="0.0" y="149" width="375" height="56"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </searchBar>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="t7R-B3-xtX"/>
+                    </view>
+                    <connections>
+                        <outlet property="searchBar" destination="QGr-e8-A0K" id="fR0-7j-815"/>
+                        <outlet property="searchDisplayController" destination="RbE-L9-xnE" id="u07-b8-XJD"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="aiw-ze-bwK" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <searchBar contentMode="redraw" searchBarStyle="minimal" placeholder="按订单号搜索" id="QGr-e8-A0K">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="56"/>
+                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                    <textInputTraits key="textInputTraits"/>
+                    <scopeButtonTitles>
+                        <string>Title</string>
+                        <string>Title</string>
+                    </scopeButtonTitles>
+                    <connections>
+                        <outlet property="delegate" destination="GLF-P8-CT6" id="XaG-pE-y9D"/>
+                    </connections>
+                </searchBar>
+                <searchDisplayController id="RbE-L9-xnE">
+                    <connections>
+                        <outlet property="delegate" destination="GLF-P8-CT6" id="74c-0Z-Gn9"/>
+                        <outlet property="searchBar" destination="QGr-e8-A0K" id="Yzv-eE-kr4"/>
+                        <outlet property="searchContentsController" destination="GLF-P8-CT6" id="deb-EW-cY9"/>
+                        <outlet property="searchResultsDataSource" destination="GLF-P8-CT6" id="fqh-o5-uQV"/>
+                        <outlet property="searchResultsDelegate" destination="GLF-P8-CT6" id="E5F-7h-n2i"/>
+                    </connections>
+                </searchDisplayController>
+            </objects>
+            <point key="canvasLocation" x="5903" y="530"/>
+        </scene>
         <!--货品管理-->
         <scene sceneID="mfP-XS-481">
             <objects>
                 <navigationController id="JKd-Jo-AK7" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="货品管理" image="home_take_stock_24_24" id="cHn-tW-XeF"/>
+                    <tabBarItem key="tabBarItem" title="货品管理" image="good_icon" id="cHn-tW-XeF"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="Ex7-tb-KDN">
                         <rect key="frame" x="0.0" y="44" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -310,13 +357,13 @@
         <scene sceneID="8f3-5k-A2S">
             <objects>
                 <navigationController id="oOS-uh-ydK" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="订单" image="home_order_picking_32_32" id="F5f-z3-8hV"/>
+                    <tabBarItem key="tabBarItem" title="订单" image="order_icon" id="F5f-z3-8hV"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="Lno-j2-Q5K">
                         <rect key="frame" x="0.0" y="44" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
-                        <segue destination="Fbh-5P-FF0" kind="relationship" relationship="rootViewController" id="kDx-TB-de6"/>
+                        <segue destination="Fbh-5P-FF0" kind="relationship" relationship="rootViewController" id="gk5-Vc-Amb"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wfZ-7z-KAN" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -575,7 +622,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="EgZ-S0-nrC"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="分析统计" image="home_statistics_24_24" id="Edl-pH-PdQ"/>
+                    <tabBarItem key="tabBarItem" title="分析统计" image="analyze_icon" id="Edl-pH-PdQ"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jZe-wl-7p9" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -1519,7 +1566,7 @@
         <scene sceneID="qJk-Rg-eaa">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="IRE-N3-Szt" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="首页" image="home_warehouse_24_24" id="EtS-PU-cR8"/>
+                    <tabBarItem key="tabBarItem" title="首页" image="home_icon" id="EtS-PU-cR8"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="EnX-eA-6SL">
                         <rect key="frame" x="0.0" y="44" width="375" height="44"/>
@@ -1536,14 +1583,15 @@
         </scene>
     </scenes>
     <resources>
+        <image name="analyze_icon" width="32" height="32"/>
+        <image name="good_icon" width="32" height="32"/>
         <image name="home_allot_32_32" width="32" height="32"/>
+        <image name="home_icon" width="32" height="32"/>
         <image name="home_order_picking_32_32" width="32" height="32"/>
         <image name="home_scan_send_goods_32_32" width="32" height="32"/>
-        <image name="home_statistics_24_24" width="24" height="24"/>
         <image name="home_statistics_32_32" width="32" height="32"/>
-        <image name="home_take_stock_24_24" width="24" height="24"/>
         <image name="home_take_stock_32_32" width="32" height="32"/>
-        <image name="home_warehouse_24_24" width="24" height="24"/>
         <image name="home_warehouse_32_32" width="32" height="32"/>
+        <image name="order_icon" width="32" height="32"/>
     </resources>
 </document>
