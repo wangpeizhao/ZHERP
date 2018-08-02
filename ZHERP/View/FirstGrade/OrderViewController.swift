@@ -245,29 +245,29 @@ class OrderViewController: UIViewController {
 //            self.textView.frame = frame
 //        })
         
-        let userinfo: NSDictionary = notification.userInfo! as NSDictionary
+//        let userinfo: NSDictionary = notification.userInfo! as NSDictionary
+//        
+//        let nsValue = userinfo.object(forKey: UIKeyboardFrameEndUserInfoKey)
+//        
+//        let keyboardRec = (nsValue as AnyObject).cgRectValue
+//        
+//        let height = keyboardRec?.size.height
+//        
+////        self.keyHeight = height!
+//        
+//        print("keyHeight: \(height!)")
         
-        let nsValue = userinfo.object(forKey: UIKeyboardFrameEndUserInfoKey)
         
-        let keyboardRec = (nsValue as AnyObject).cgRectValue
-        
-        let height = keyboardRec?.size.height
-        
-//        self.keyHeight = height!
-        
-        print("keyHeight: \(height!)")
-        
-        
-        
-        let dic:NSDictionary = notification.userInfo! as NSDictionary
-        print(dic["UIKeyboardFrameEndUserInfoKey"]!)
-        let a:AnyObject? = dic.object(forKey: UIKeyboardFrameEndUserInfoKey) as AnyObject?
-        let endY = a?.cgRectValue.origin.y
-        keyboardHeight = endY!
-        accessoryView.frame.size.height = viewHeight - self.navHeight + keyboardHeight
-//        accessoryView.frame.origin.y = 44
-        print(endY,"endY")
-        print(accessoryView.frame.origin.y)
+//
+//        let dic:NSDictionary = notification.userInfo! as NSDictionary
+//        print(dic["UIKeyboardFrameEndUserInfoKey"]!)
+//        let a:AnyObject? = dic.object(forKey: UIKeyboardFrameEndUserInfoKey) as AnyObject?
+//        let endY = a?.cgRectValue.origin.y
+//        keyboardHeight = endY!
+////        accessoryView.frame.size.height = viewHeight - self.navHeight + keyboardHeight
+////        accessoryView.frame.origin.y = 44
+//        print(endY,"endY")
+//        print(accessoryView.frame.origin.y)
 //        print(viewHeight - self.navHeight + keyboardHeight)
     }
     
@@ -420,24 +420,24 @@ class OrderViewController: UIViewController {
             let tap = UITapGestureRecognizer.init(target: self, action: #selector(viewTapped(tap:)));
             tap.cancelsTouchesInView = false;
             self.view.addGestureRecognizer(tap);
-            
-            accessoryView = UIView(frame: CGRect(x: 0, y: self.navHeight, width: self.view.frame.width, height: 200))
-            accessoryView.backgroundColor = UIColor.gray
-            
-            
-            let historyTitle = UILabel(frame: CGRect(x: 0, y: 0, width: 200, height: 30))
-            historyTitle.text = "搜索历史"
-            accessoryView.addSubview(historyTitle)
-            
-            
-            searchWord = UILabel(frame: CGRect(x: 0, y: 30, width: 200, height: 30))
-            accessoryView.addSubview(searchWord)
-            
-            
-            let keyword = UIButton(frame: CGRect(x: 0, y: 60, width: 200, height: 30))
-            keyword.setTitle("Hello world", for: UIControlState.normal)
-            keyword.addTarget(self, action: #selector(_keyword), for: UIControlEvents.touchUpInside)
-            accessoryView.addSubview(keyword)
+//
+//            accessoryView = UIView(frame: CGRect(x: 0, y: self.navHeight, width: self.view.frame.width, height: 200))
+//            accessoryView.backgroundColor = UIColor.gray
+//
+//
+//            let historyTitle = UILabel(frame: CGRect(x: 0, y: 0, width: 200, height: 30))
+//            historyTitle.text = "搜索历史"
+//            accessoryView.addSubview(historyTitle)
+//
+//
+//            searchWord = UILabel(frame: CGRect(x: 0, y: 30, width: 200, height: 30))
+//            accessoryView.addSubview(searchWord)
+//
+//
+//            let keyword = UIButton(frame: CGRect(x: 0, y: 60, width: 200, height: 30))
+//            keyword.setTitle("Hello world", for: UIControlState.normal)
+//            keyword.addTarget(self, action: #selector(_keyword), for: UIControlEvents.touchUpInside)
+//            accessoryView.addSubview(keyword)
 
 //            controller.searchBar.inputAccessoryView = accessoryView
             
@@ -447,6 +447,7 @@ class OrderViewController: UIViewController {
         //将搜索栏添加到页面上
         self.searchBarView.addSubview(searchController.searchBar)
         
+//        UISearchController.buildSearchBar(self.searchController)
         
         print(currentVersion)
     }
@@ -506,9 +507,7 @@ extension OrderViewController: UISearchBarDelegate {
         
         
         if let window = UIApplication.shared.keyWindow{
-            
             window.viewWithTag(100)?.removeFromSuperview()
-            
         }
     }
     

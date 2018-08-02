@@ -71,6 +71,7 @@
 		9E523E94210D544E00CF921F /* OrderUnpayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E523E93210D544E00CF921F /* OrderUnpayViewController.swift */; };
 		9E523E96210D546400CF921F /* OrderCloseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E523E95210D546400CF921F /* OrderCloseViewController.swift */; };
 		9E523E98210D548500CF921F /* OrderCompleteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E523E97210D548500CF921F /* OrderCompleteViewController.swift */; };
+		9E523E9A21127EC800CF921F /* UIView-Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E523E9921127EC800CF921F /* UIView-Extensions.swift */; };
 		9E88ED0720FB3B3800DF091F /* PostAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E88ED0620FB3B3800DF091F /* PostAPI.swift */; };
 		9E88ED0F20FB3B7700DF091F /* Response+ObjectMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E88ED0B20FB3B7600DF091F /* Response+ObjectMapper.swift */; };
 		9E88ED1020FB3B7700DF091F /* ObservableType+ObjectMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E88ED0C20FB3B7600DF091F /* ObservableType+ObjectMapper.swift */; };
@@ -192,6 +193,7 @@
 		9E523E93210D544E00CF921F /* OrderUnpayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderUnpayViewController.swift; sourceTree = "<group>"; };
 		9E523E95210D546400CF921F /* OrderCloseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderCloseViewController.swift; sourceTree = "<group>"; };
 		9E523E97210D548500CF921F /* OrderCompleteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderCompleteViewController.swift; sourceTree = "<group>"; };
+		9E523E9921127EC800CF921F /* UIView-Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView-Extensions.swift"; sourceTree = "<group>"; };
 		9E88ED0620FB3B3800DF091F /* PostAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostAPI.swift; sourceTree = "<group>"; };
 		9E88ED0B20FB3B7600DF091F /* Response+ObjectMapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Response+ObjectMapper.swift"; sourceTree = "<group>"; };
 		9E88ED0C20FB3B7600DF091F /* ObservableType+ObjectMapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ObservableType+ObjectMapper.swift"; sourceTree = "<group>"; };
@@ -517,6 +519,7 @@
 				9E88ED0B20FB3B7600DF091F /* Response+ObjectMapper.swift */,
 				9E88ED0D20FB3B7600DF091F /* Single+ObjectMapper.swift */,
 				9E523DFF21047E7900CF921F /* UserDefaults.swift */,
+				9E523E9921127EC800CF921F /* UIView-Extensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -878,6 +881,7 @@
 				9E88ED0F20FB3B7700DF091F /* Response+ObjectMapper.swift in Sources */,
 				9E88ED3720FCE9C400DF091F /* MemberViewController.swift in Sources */,
 				9E523E322104DA1000CF921F /* GifImageOperation.swift in Sources */,
+				9E523E9A21127EC800CF921F /* UIView-Extensions.swift in Sources */,
 				9E523E672108C5D400CF921F /* NotifyTableViewCell.swift in Sources */,
 				9E523E8E210D537B00CF921F /* GoodViewController.swift in Sources */,
 				9E88ED4120FE61CE00DF091F /* ResetPwdViewController.swift in Sources */,
