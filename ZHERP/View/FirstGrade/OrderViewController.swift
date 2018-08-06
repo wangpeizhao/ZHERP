@@ -11,7 +11,7 @@ import BTNavigationDropdownMenu
 import SnapKit
 import PagingMenuController
 
-class OrderViewController: UIViewController {
+class OrderViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     var searchBarView: UIView!
     var pageMenuView: UIView!
@@ -46,6 +46,13 @@ class OrderViewController: UIViewController {
     var searchProv: UIView!
     var searchHistoryView: UIView!
     var searchResultView: UIView!
+    
+    var tableView: UITableView?
+    
+    var items:[String] = ["开启","只在夜间开启","关闭"]
+    
+    //存储选中单元格的索引
+    var selectedIndexs = [Int]()
     
     
     //分页菜单配置
@@ -336,6 +343,62 @@ class OrderViewController: UIViewController {
         // Pass the selected object to the new view controller.
     }
     */
+    
+    
+    //在本例中，只有一个分区
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 1;
+    }
+    
+    //返回表格行数（也就是返回控件数）
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return self.items.count
+    }
+    //
+    //    //设置分组头的高度
+    //    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+    //        return tableView.sectionHeaderHeight + 50
+    //    }
+    
+    func tableView(_ tableView: UITableView, titleForFooterInSection section: Int) -> String? {
+        return "开启后，手机不会振动与发出提示音；如果设置为“只在夜间开启”，则只在22:00到08:00间生效"
+    }
+    
+    //创建各单元显示内容(创建参数indexPath指定的单元）
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath)
+        -> UITableViewCell {
+            //为了提供表格显示性能，已创建完成的单元需重复使用
+            let identify:String = "SwiftCell"
+            //同一形式的单元格重复使用，在声明时已注册
+            let cell = tableView.dequeueReusableCell(withIdentifier: identify, for: indexPath) as UITableViewCell
+            
+            cell.textLabel?.text = self.items[indexPath.row]
+            
+            //判断是否选中（选中单元格尾部打勾）
+            if selectedIndexs.contains(indexPath.row) {
+                cell.accessoryType = .checkmark
+            } else {
+                cell.accessoryType = .none
+            }
+            
+            return cell
+    }
+    
+    // UITableViewDelegate 方法，处理列表项的选中事件
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        //判断该行原先是否选中
+        if let index = selectedIndexs.index(of: indexPath.row){
+            selectedIndexs.remove(at: index) //原来选中的取消选中
+        }else{
+            selectedIndexs.removeAll() // 单选
+            selectedIndexs.append(indexPath.row) //原来没选中的就选中
+        }
+        
+        //刷新该行
+        //        self.tableView?.reloadRows(at: [indexPath], with: .automatic)
+        
+        self.tableView?.reloadData()
+    }
 
 }
 
@@ -381,25 +444,58 @@ extension OrderViewController: UISearchBarDelegate {
         }
         self.searchProv = UIView()
 //        self.searchProv.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.5) //Specs.color.grayBg.cgColor.alpha(0.8)
-        self.searchProv.backgroundColor = Specs.color.grayBg
+        self.searchProv.backgroundColor = Specs.color.white
         self.searchProv.tag = 100
         self.view.addSubview(self.searchProv)
         self.searchProv.snp.makeConstraints { (make) -> Void in
             make.left.right.equalTo(0)
-            make.top.equalTo(self.navHeight).offset(-5)
+            make.top.equalTo(self.searchBarView.snp.bottom).offset(-30)
             make.height.equalTo(self.view.frame.size.height - self.navHeight + 20)
         }
-        
-        self.searchHistoryView = UIView()
-        self.searchHistoryView.backgroundColor = Specs.color.white
-        self.searchProv.addSubview(self.searchHistoryView)
-        self.searchHistoryView.snp.makeConstraints { (make) -> Void in
-            make.left.right.equalTo(0)
-            make.top.equalTo(self.searchBarView.snp.bottom).offset(-58)
-            make.height.equalTo(self.view.frame.size.height - self.navHeight + 20)
-        }
+        searchBarHistory()
         
         return true
+    }
+    
+    func searchBarHistory() {
+        let historyLabel = UILabel(frame: CGRect(x: 25, y: 15, width: 250, height: 25))
+        historyLabel.text = "搜索历史"
+        self.searchProv.addSubview(historyLabel)
+        historyLabel.snp.makeConstraints { (make) -> Void in
+            make.top.equalTo(15)
+            make.left.right.equalTo(20)
+            make.height.equalTo(25)
+        }
+        
+        
+        self.searchHistoryView = UIView(frame: CGRect(x: 5, y: 35, width: self.view.frame.size.width - 10, height: self.view.frame.size.height))
+        self.searchHistoryView.backgroundColor = Specs.color.blue
+        self.searchProv.addSubview(self.searchHistoryView)
+//        self.searchHistoryView.snp.makeConstraints { (make) -> Void in
+//            make.left.right.equalTo(0)
+//            make.top.equalTo(100).offset(40)
+//            make.height.equalTo(self.view.snp.bottom)
+//        }
+
+        
+        //创建表视图
+        self.tableView = UITableView(frame: self.view.frame, style:.grouped)
+        self.tableView?.backgroundColor = Specs.color.white
+        self.tableView!.delegate = self
+        self.tableView!.dataSource = self
+        //创建一个重用的单元格
+        self.tableView!.register(UITableViewCell.self, forCellReuseIdentifier: "SwiftCell")
+        //去除单元格分隔线
+        self.tableView!.separatorStyle = .singleLine
+        //去除表格上放多余的空隙
+        self.tableView!.contentInset = UIEdgeInsetsMake(10, 0, 0, 0)
+        self.searchHistoryView.addSubview(self.tableView!)
+//
+//        self.tableView!.snp.makeConstraints { (make) -> Void in
+//            make.top.equalTo(35)
+//            make.left.right.equalTo(5)
+//            make.height.equalTo(self.view.snp.bottom)
+//        }
     }
     
     func searchBarShouldEndEditing(_ searchBar: UISearchBar) -> Bool {
