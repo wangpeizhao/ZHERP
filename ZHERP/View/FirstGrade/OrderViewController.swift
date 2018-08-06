@@ -73,13 +73,6 @@ class OrderViewController: UIViewController {
         var height: CGFloat = 20
         //选中项为橙色下划线样式
         var focusMode: MenuFocusMode = .underline(height: 1, color: .orange, horizontalPadding: 0, verticalPadding: 0)
-//        public enum MenuItemDisplayMode {
-//            case text(title: MenuItemText)  //普通标题文本
-//            case multilineText(title: MenuItemText, description: MenuItemText)  //标题+描述文本
-//            case image(image: UIImage, selectedImage: UIImage?)  //图片
-//            case custom(view: UIView)  //自定义视图
-//        }
-        
         
         //Order All 子视图控制器
         private let orderAllView = OrderAllViewController()
@@ -192,22 +185,14 @@ class OrderViewController: UIViewController {
         self.view.backgroundColor = Specs.color.grayBg
         viewHeight = self.view.frame.height
         //注册监听
-//        NotificationCenter.default.addObserver(self, selector: #selector(handleKeyboardDisShow(notification:)), name: NSNotification.Name.UIKeyboardDidChangeFrame, object: nil)
-        
-        
-        let centerDefault = NotificationCenter.default
-        
-        centerDefault.addObserver(self, selector: #selector(OrderViewController.handleKeyboardDisShow), name: NSNotification.Name.UIKeyboardDidShow, object: nil)
         
         self.navHeight = self.navigationController?.navigationBar.frame.maxY
-//        self.navHeight = self.navHeight + 3
         
         self.searchBarView = UIView()
         self.searchBarView.layer.backgroundColor = Specs.color.white.cgColor
         self.view.addSubview(self.searchBarView)
         self.searchBarView.snp.makeConstraints { (make) -> Void in
             make.left.right.equalTo(0)
-//            self.searchBarHeightConstraint = make.top.equalTo(self.navHeight).constraint
             make.top.equalTo(self.navHeight)
             make.height.equalTo(searchHeight)
         }
@@ -234,54 +219,6 @@ class OrderViewController: UIViewController {
     @objc func handleKeyboardDisShow(notification: NSNotification) {
         print(self.view.frame)
         //得到键盘frame
-//        let userInfo: NSDictionary = notification.userInfo! as NSDictionary
-//        let value = userInfo.object(forKey: UIKeyboardFrameEndUserInfoKey)
-//        let keyboardRec = (value as AnyObject).cgRectValue
-//        print(keyboardRec?.size)
-//        keyboardHeight = keyboardRec?.size.height
-//        print("keyboardHeight: \(keyboardHeight!)")
-        //让textView bottom位置在键盘顶部
-//        UITextView.animate(withDuration: 0.1, animations: {
-//            var frame = self.textView.frame
-//            frame.origin.y = height!
-//            self.textView.frame = frame
-//        })
-        
-//        let userinfo: NSDictionary = notification.userInfo! as NSDictionary
-//        
-//        let nsValue = userinfo.object(forKey: UIKeyboardFrameEndUserInfoKey)
-//        
-//        let keyboardRec = (nsValue as AnyObject).cgRectValue
-//        
-//        let height = keyboardRec?.size.height
-//        
-////        self.keyHeight = height!
-//        
-//        print("keyHeight: \(height!)")
-        
-        
-//
-//        let dic:NSDictionary = notification.userInfo! as NSDictionary
-//        print(dic["UIKeyboardFrameEndUserInfoKey"]!)
-//        let a:AnyObject? = dic.object(forKey: UIKeyboardFrameEndUserInfoKey) as AnyObject?
-//        let endY = a?.cgRectValue.origin.y
-//        keyboardHeight = endY!
-////        accessoryView.frame.size.height = viewHeight - self.navHeight + keyboardHeight
-////        accessoryView.frame.origin.y = 44
-//        print(endY,"endY")
-//        print(accessoryView.frame.origin.y)
-//        print(viewHeight - self.navHeight + keyboardHeight)
-    }
-    
-    func setSearchBarBtn() {
-//        self.searchBarBtn = UIButton(frame: CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: 30))
-//        self.searchBarBtn.setTitle("按订单号搜索", for: UIControlState.normal)
-//        self.searchBarBtn.addTarget(self, action: #selector(goSearchView), for: UIControlEvents.touchUpInside)
-//        self.searchBarView.addSubview(self.searchBarBtn)
-//        self.searchBarBtn.snp.makeConstraints { (make) -> Void in
-//            make.left.right.equalTo(0)
-//            make.top.equalTo(64)
-//        }
     }
     
     func navigationDropdownMenus() {
@@ -330,7 +267,6 @@ class OrderViewController: UIViewController {
         //建立父子关系
         addChildViewController(pagingMenuController)
         //分页菜单控制器视图添加到当前视图中
-//        view.addSubview(pagingMenuController.view)
         self.pageMenuView.addSubview(pagingMenuController.view)
         
         
@@ -364,103 +300,13 @@ class OrderViewController: UIViewController {
     }
     
     func searchBar() {
-//        //配置搜索控制器
-//        // searchBar中textField的placeholder的宽度可以获取
-//        let _label = UILabel.init()
-//        _label.text = "搜索订单号"
-//        _label.font = UIFont.systemFont(ofSize: 14)
-//        _label.sizeToFit()
-////        print(_label.frame.width)
-//
-//
-//        self.searchController = ({
-//            let controller = UISearchController(searchResultsController: nil)
-//            print(controller.searchBar.frame.size.width) // 414.0
-//            print(controller.searchBar.frame.size.height) // 56.0
-////            Optional((0.0, 20.0, 414.0, 44.0))
-////            print(self.navigationController?.navigationBar.frame.maxY)
-//            // 计算偏移量:偏移量 =（searchBar的宽度-label宽度-搜索框图片加上图片和字体之间的宽度）/ 2
-//            searchOffset = (controller.searchBar.frame.size.width - _label.frame.width - 50 ) / 2
-//            controller.searchResultsUpdater = self
-//            controller.searchBar.delegate = self
-//            controller.hidesNavigationBarDuringPresentation = true
-//            controller.dimsBackgroundDuringPresentation = false
-//            controller.searchBar.searchBarStyle = .minimal
-//            controller.searchBar.sizeToFit()
-//            controller.searchBar.setBackgroundImage(UIImage(), for: .any, barMetrics: .default)
-//            controller.searchBar.backgroundColor = Specs.color.white
-////            controller.searchBar.setImage(UIImage(named: "VoiceSearchStartBtn"), for: .search, state: UIControlState.normal)
-//
-//            controller.searchBar.layer.masksToBounds = true;
-//            controller.searchBar.layer.cornerRadius = 2;
-//            controller.searchBar.layer.borderWidth = 0;
-//            controller.searchBar.contentMode = .center;
-//            // searchBar弹出的键盘类型设置
-//            controller.searchBar.returnKeyType = UIReturnKeyType.search;
-//            controller.searchBar.placeholder = "搜索订单号"
-//            controller.searchBar.barTintColor = Specs.color.white
-//            //搜索栏取消按钮文字
-//            controller.searchBar.setValue("取消", forKey:"_cancelButtonText")
-//            controller.searchBar.frame = CGRect(x: 0, y: 0, width: controller.searchBar.frame.size.width, height: searchHeight + 10)
-//
-//            // 判断是不是大于IOS 11
-//            if currentVersion < 11 {
-//                // searchBar中的textField设置
-//                let searchField = controller.searchBar.value(forKey: "_searchField") as! UITextField;
-//                searchField.setValue(UIFont.systemFont(ofSize: 14), forKeyPath: "_placeholderLabel.font");
-//                searchField.setValue(UIColor.init(red: 70/255.0, green: 70/255.0, blue: 70/255.0, alpha: 1), forKeyPath: "_placeholderLabel.textColor");
-//                searchField.attributedPlaceholder = NSAttributedString.init(string: "搜索订单号", attributes: [NSAttributedStringKey.baselineOffset:-2]);
-//            }else{
-//                // 获取当前屏幕宽度
-//                self.view.frame.size.width = UIScreen.main.bounds.size.width
-//                // 重新布局
-//                self.view.layoutSubviews()
-//                controller.searchBar.setPositionAdjustment(UIOffsetMake(searchOffset , 0), for: UISearchBarIcon.search)
-////                controller.searchBar.setSearchFieldBackgroundImage(UIImage(named: "searchBg"), for: UIControlState.normal)
-//            }
-//            // 使键盘点击空白处关闭
-//            let tap = UITapGestureRecognizer.init(target: self, action: #selector(viewTapped(tap:)));
-//            tap.cancelsTouchesInView = false;
-//            self.view.addGestureRecognizer(tap);
-////
-////            accessoryView = UIView(frame: CGRect(x: 0, y: self.navHeight, width: self.view.frame.width, height: 200))
-////            accessoryView.backgroundColor = UIColor.gray
-////
-////
-////            let historyTitle = UILabel(frame: CGRect(x: 0, y: 0, width: 200, height: 30))
-////            historyTitle.text = "搜索历史"
-////            accessoryView.addSubview(historyTitle)
-////
-////
-////            searchWord = UILabel(frame: CGRect(x: 0, y: 30, width: 200, height: 30))
-////            accessoryView.addSubview(searchWord)
-////
-////
-////            let keyword = UIButton(frame: CGRect(x: 0, y: 60, width: 200, height: 30))
-////            keyword.setTitle("Hello world", for: UIControlState.normal)
-////            keyword.addTarget(self, action: #selector(_keyword), for: UIControlEvents.touchUpInside)
-////            accessoryView.addSubview(keyword)
-//
-////            controller.searchBar.inputAccessoryView = accessoryView
-//
-//            return controller
-//        })()
-        
-//        UISearchController.buildSearchBar(self.searchController)
-        self.searchController = UISearchController.buildSearchBar(_view: self, searchHeight: &searchHeight, searchOffset: &searchOffset, placeholder: "搜索订单号")
+        self.searchController = UISearchController.buildSearchBar(_view: self, searchHeight: &searchHeight, searchOffset: &searchOffset, placeholder: " 搜索订单号")
         self.searchController.searchBar.delegate = self
         self.searchController.searchResultsUpdater = self
-//        self.searchController.searchBar.fon
-        
-//        self.searchController.searchBar.frame = CGRect(x: 80, y: 44, width: 200, height: 25)
-
-//        searchController.searchBar.content = UIEdgeInsets(top: 0, left: 8, bottom: 0, right: 8)
         
         //将搜索栏添加到页面上
         self.searchBarView.addSubview(searchController.searchBar)
-//        self.definesPresentationContext = YES
         self.definesPresentationContext = true
-        print(currentVersion)
     }
     @objc func _keyword() {
         searchWord.text = "Hello World!"
@@ -506,13 +352,10 @@ extension OrderViewController: UISearchBarDelegate {
     // 点击取消按钮
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         self.searchController.searchBar.setPositionAdjustment(UIOffsetMake(searchOffset , 0), for: UISearchBarIcon.search)
-//        accessoryView.frame.size.height = self.view.frame.height - self.navHeight
-//        self.searchBarHeightConstraint?.update(inset: <#T##ConstraintInsetTarget#>)
         //重做约束
         self.searchBarView.snp.remakeConstraints { (make) -> Void in
             make.left.right.equalTo(0)
             make.top.equalTo(self.navHeight - 10)
-//            make.bottom.equalTo(self.pageMenuView.snp.top)
             make.height.equalTo(searchHeight + 1)
         }
         
@@ -530,16 +373,10 @@ extension OrderViewController: UISearchBarDelegate {
         if currentVersion >= 11 {
             self.searchController.searchBar.setPositionAdjustment(UIOffset.zero, for: UISearchBarIcon.search)
         }
-//        print("accessoryView.frame.origin.y: \(accessoryView.frame.origin.y)")
-//        accessoryView.frame.size.height = self.view.frame.height - self.navHeight
-//        accessoryView.snp.makeConstraints { (make) -> Void in
-//            make.top.equalTo(self.searchBarView.snp.bottom)
-//        }
         
         self.searchBarView.snp.remakeConstraints { (make) -> Void in
             make.left.right.equalTo(0)
             make.top.equalTo(self.navHeight)
-            //            make.bottom.equalTo(self.pageMenuView.snp.top)
             make.height.equalTo(searchHeight)
         }
         self.searchProv = UIView()
@@ -549,12 +386,9 @@ extension OrderViewController: UISearchBarDelegate {
         self.view.addSubview(self.searchProv)
         self.searchProv.snp.makeConstraints { (make) -> Void in
             make.left.right.equalTo(0)
-            //            self.searchBarHeightConstraint = make.top.equalTo(self.navHeight).constraint
             make.top.equalTo(self.navHeight).offset(-5)
             make.height.equalTo(self.view.frame.size.height - self.navHeight + 20)
         }
-//        self.searchController.searchBar.barTintColor = Specs.color.blue
-        
         
         self.searchHistoryView = UIView()
         self.searchHistoryView.backgroundColor = Specs.color.white
