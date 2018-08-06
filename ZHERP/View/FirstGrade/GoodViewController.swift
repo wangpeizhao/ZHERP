@@ -14,9 +14,16 @@ class GoodViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var textField: UITextField!
     var keyHeight = CGFloat() //键盘的高度
     
+    // Search
+    var searchController = UISearchController()
+    var searchOffset: CGFloat!
+    
+    let searchHeight: CGFloat = 35
+    
     var countrySearchController = UISearchController()
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         
         
         textField.delegate = self
