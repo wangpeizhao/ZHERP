@@ -11,7 +11,7 @@ import BTNavigationDropdownMenu
 import SnapKit
 import PagingMenuController
 
-class OrderViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class OrderViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UIGestureRecognizerDelegate {
     
     var searchBarView: UIView!
     var pageMenuView: UIView!
@@ -49,7 +49,7 @@ class OrderViewController: UIViewController, UITableViewDelegate, UITableViewDat
     
     var tableView: UITableView?
     
-    var items:[String] = ["开启","只在夜间开启","关闭"]
+    var items:[String] = ["条目1","条目2","条目3","条目4","条目5"]
     
     //存储选中单元格的索引
     var selectedIndexs = [Int]()
@@ -71,7 +71,7 @@ class OrderViewController: UIViewController, UITableViewDelegate, UITableViewDat
         var backgroundColor: UIColor = .white
         
         //lazy loading的页面数量（默认值就是.three）
-        var lazyLoadingPage: LazyLoadingPage = .all
+//        var lazyLoadingPage: LazyLoadingPage = .all
         
         //不太清楚干嘛用的（默认值就是.multiple）
         var menuControllerSet: MenuControllerSet = .multiple
@@ -370,17 +370,9 @@ class OrderViewController: UIViewController, UITableViewDelegate, UITableViewDat
             //为了提供表格显示性能，已创建完成的单元需重复使用
             let identify:String = "SwiftCell"
             //同一形式的单元格重复使用，在声明时已注册
-            let cell = tableView.dequeueReusableCell(withIdentifier: identify, for: indexPath) as UITableViewCell
-            
+            let cell = tableView.dequeueReusableCell(withIdentifier: identify,
+                                                     for: indexPath)
             cell.textLabel?.text = self.items[indexPath.row]
-            
-            //判断是否选中（选中单元格尾部打勾）
-            if selectedIndexs.contains(indexPath.row) {
-                cell.accessoryType = .checkmark
-            } else {
-                cell.accessoryType = .none
-            }
-            
             return cell
     }
     
@@ -399,9 +391,33 @@ class OrderViewController: UIViewController, UITableViewDelegate, UITableViewDat
         
         self.tableView?.reloadData()
     }
+    //删除按钮点击
+    @IBAction func btnClick(_ sender: AnyObject) {
+        //获取选中项索引
+        var selectedIndexs = [Int]()
+        if let selectedItems = tableView!.indexPathsForSelectedRows {
+            for indexPath in selectedItems {
+                selectedIndexs.append(indexPath.row)
+            }
+        }
+        
+        //删除选中的数据
+        items.removeAt(indexes:selectedIndexs)
+        //重新加载数据
+        self.tableView?.reloadData()
+        //退出编辑状态
+        self.tableView!.setEditing(false, animated:true)
+    }
 
 }
-
+extension Array {
+    //Array方法扩展，支持根据索引数组删除
+    mutating func removeAt(indexes: [Int]) {
+        for i in indexes.sorted(by: >) {
+            self.remove(at: i)
+        }
+    }
+}
 extension OrderViewController {
     func setUp() {
         navigationDropdownMenus()
@@ -479,25 +495,38 @@ extension OrderViewController: UISearchBarDelegate {
 
         
         //创建表视图
-        self.tableView = UITableView(frame: self.view.frame, style:.grouped)
-        self.tableView?.backgroundColor = Specs.color.white
+        self.tableView = UITableView(frame: self.view.frame, style:.plain)
         self.tableView!.delegate = self
         self.tableView!.dataSource = self
         //创建一个重用的单元格
         self.tableView!.register(UITableViewCell.self, forCellReuseIdentifier: "SwiftCell")
-        //去除单元格分隔线
-        self.tableView!.separatorStyle = .singleLine
-        //去除表格上放多余的空隙
-        self.tableView!.contentInset = UIEdgeInsetsMake(10, 0, 0, 0)
         self.searchHistoryView.addSubview(self.tableView!)
-//
-//        self.tableView!.snp.makeConstraints { (make) -> Void in
-//            make.top.equalTo(35)
-//            make.left.right.equalTo(5)
-//            make.height.equalTo(self.view.snp.bottom)
-//        }
+        
+        //表格在编辑状态下允许多选
+        self.tableView?.allowsMultipleSelectionDuringEditing = true
+        
+        //绑定对长按的响应
+        let longPress = UILongPressGestureRecognizer(target:self,action:#selector(OrderViewController.tableviewCellLongPressed(gestureRecognizer:)))
+        //代理
+        longPress.delegate = self
+        longPress.minimumPressDuration = 1.0
+        //将长按手势添加到需要实现长按操作的视图里
+        self.tableView!.addGestureRecognizer(longPress)
     }
     
+    //单元格长按事件响应
+    @objc func tableviewCellLongPressed(gestureRecognizer:UILongPressGestureRecognizer){
+        if (gestureRecognizer.state == .ended){
+            print("UIGestureRecognizerStateEnded");
+            //在正常状态和编辑状态之间切换
+            if(self.tableView!.isEditing == false) {
+                self.tableView!.setEditing(true, animated:true)
+            }
+            else {
+                self.tableView!.setEditing(false, animated:true)
+            }
+        }
+    }
     func searchBarShouldEndEditing(_ searchBar: UISearchBar) -> Bool {
         if currentVersion >= 11 {
 //            searchBar.setPositionAdjustment(UIOffsetMake(searchOffset / 2 , 0), for: UISearchBarIcon.search)

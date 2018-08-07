@@ -72,6 +72,8 @@
 		9E523E96210D546400CF921F /* OrderCloseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E523E95210D546400CF921F /* OrderCloseViewController.swift */; };
 		9E523E98210D548500CF921F /* OrderCompleteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E523E97210D548500CF921F /* OrderCompleteViewController.swift */; };
 		9E523E9A21127EC800CF921F /* UIView-Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E523E9921127EC800CF921F /* UIView-Extensions.swift */; };
+		9E523E9D2119DF2100CF921F /* OrderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E523E9B2119DF2100CF921F /* OrderTableViewCell.swift */; };
+		9E523E9E2119DF2100CF921F /* OrderTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9E523E9C2119DF2100CF921F /* OrderTableViewCell.xib */; };
 		9E88ED0720FB3B3800DF091F /* PostAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E88ED0620FB3B3800DF091F /* PostAPI.swift */; };
 		9E88ED0F20FB3B7700DF091F /* Response+ObjectMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E88ED0B20FB3B7600DF091F /* Response+ObjectMapper.swift */; };
 		9E88ED1020FB3B7700DF091F /* ObservableType+ObjectMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E88ED0C20FB3B7600DF091F /* ObservableType+ObjectMapper.swift */; };
@@ -194,6 +196,8 @@
 		9E523E95210D546400CF921F /* OrderCloseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderCloseViewController.swift; sourceTree = "<group>"; };
 		9E523E97210D548500CF921F /* OrderCompleteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderCompleteViewController.swift; sourceTree = "<group>"; };
 		9E523E9921127EC800CF921F /* UIView-Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView-Extensions.swift"; sourceTree = "<group>"; };
+		9E523E9B2119DF2100CF921F /* OrderTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderTableViewCell.swift; sourceTree = "<group>"; };
+		9E523E9C2119DF2100CF921F /* OrderTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OrderTableViewCell.xib; sourceTree = "<group>"; };
 		9E88ED0620FB3B3800DF091F /* PostAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostAPI.swift; sourceTree = "<group>"; };
 		9E88ED0B20FB3B7600DF091F /* Response+ObjectMapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Response+ObjectMapper.swift"; sourceTree = "<group>"; };
 		9E88ED0C20FB3B7600DF091F /* ObservableType+ObjectMapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ObservableType+ObjectMapper.swift"; sourceTree = "<group>"; };
@@ -479,6 +483,8 @@
 				9E523E93210D544E00CF921F /* OrderUnpayViewController.swift */,
 				9E523E95210D546400CF921F /* OrderCloseViewController.swift */,
 				9E523E97210D548500CF921F /* OrderCompleteViewController.swift */,
+				9E523E9B2119DF2100CF921F /* OrderTableViewCell.swift */,
+				9E523E9C2119DF2100CF921F /* OrderTableViewCell.xib */,
 			);
 			path = Orders;
 			sourceTree = "<group>";
@@ -739,6 +745,7 @@
 				9E523E2C2104D7CE00CF921F /* shopping.gif in Resources */,
 				9E523DEA21034B2000CF921F /* Assets.xcassets in Resources */,
 				9E523E72210A241500CF921F /* ImageRightTableViewCell.xib in Resources */,
+				9E523E9E2119DF2100CF921F /* OrderTableViewCell.xib in Resources */,
 				9E523E2A2104D7CE00CF921F /* guideImage5.jpg in Resources */,
 				9E523E2B2104D7CE00CF921F /* guideImage7.gif in Resources */,
 				9E523E6E2109401F00CF921F /* SwitchTableViewCell.xib in Resources */,
@@ -939,6 +946,7 @@
 				9E523E6A2108D54600CF921F /* NoDisturbingViewController.swift in Sources */,
 				9E88ED1C20FB462600DF091F /* OrderTableViewController.swift in Sources */,
 				9E523E352106170000CF921F /* SettingViewController.swift in Sources */,
+				9E523E9D2119DF2100CF921F /* OrderTableViewCell.swift in Sources */,
 				9E523E3A21076B3C00CF921F /* PersonalViewController.swift in Sources */,
 				9E88ED3F20FE5D2C00DF091F /* LoginViewController.swift in Sources */,
 				9E88ED0720FB3B3800DF091F /* PostAPI.swift in Sources */,

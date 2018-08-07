@@ -8,7 +8,7 @@
 
 import UIKit
 
-class NotifyViewController: UIViewController, UITableViewDataSource ,UITableViewDelegate{
+class NotifyViewController: UIViewController, UITableViewDataSource ,UITableViewDelegate {
     
     var tableView: UITableView?
     var dataArray: Dictionary<Int, [[String]]>?
