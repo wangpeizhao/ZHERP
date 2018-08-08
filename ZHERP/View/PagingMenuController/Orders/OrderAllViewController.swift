@@ -8,28 +8,28 @@
 
 import UIKit
 import SnapKit
+import MJRefresh
 
 class OrderAllViewController: UIViewController, UITableViewDataSource ,UITableViewDelegate {
     
     var tableView: UITableView?
     let identify: String = "OrderCell"
+    // 顶部刷新
+    let header = MJRefreshNormalHeader()
+    // 底部刷新
+    let footer = MJRefreshAutoNormalFooter()
+    
     var dataArray: [Int: [String:String]] = [
-        0: ["imagePath": "bayMax", "suk": "QQ_PPC001", "title": "六神花露水", "price": "17.50"],
-        1: ["imagePath": "bayMax", "suk": "QQ_PPC001", "title": "六神花露水", "price": "17.50"],
-        2: ["imagePath": "bayMax", "suk": "QQ_PPC001", "title": "六神花露水", "price": "17.50"],
-        3: ["imagePath": "bayMax", "suk": "QQ_PPC001", "title": "六神花露水", "price": "17.50"],
-        4: ["imagePath": "bayMax", "suk": "QQ_PPC001", "title": "六神花露水", "price": "17.50"],
-        5: ["imagePath": "bayMax", "suk": "QQ_PPC001", "title": "六神花露水", "price": "17.50"],
-        6: ["imagePath": "bayMax", "suk": "QQ_PPC001", "title": "六神花露水", "price": "17.50"],
-        7: ["imagePath": "bayMax", "suk": "QQ_PPC001", "title": "六神花露水", "price": "17.50"],
-        8: ["imagePath": "bayMax", "suk": "QQ_PPC001", "title": "六神花露水", "price": "17.50"],
-        9: ["imagePath": "bayMax", "suk": "QQ_PPC001", "title": "六神花露水", "price": "17.50"],
-        10: ["imagePath": "bayMax", "suk": "QQ_PPC001", "title": "六神花露水", "price": "17.50"]
+        0: ["imagePath": "bayMax", "suk": "QQ_PPC01", "title": "六神花露水", "price": "17.50"],
+        1: ["imagePath": "bayMax", "suk": "QQ_PPC02", "title": "六神花露水", "price": "17.50"]
     ]
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        print(self.dataArray)
+        
+        refreshItemData()
+        
+//        print(self.dataArray)
         //        //创建表视图
         self.tableView = UITableView(frame:self.view.frame, style:.grouped)
         //        //去除表格上放多余的空隙
@@ -52,7 +52,69 @@ class OrderAllViewController: UIViewController, UITableViewDataSource ,UITableVi
         //        self.tableView!.translatesAutoresizingMaskIntoConstraints = false
         self.view.addSubview(self.tableView!)
         
+        //下拉刷新相关设置
+//        UserDefaults.standard.set(Date(), forKey: MJRefreshHeaderLastTimeText)
+        header.setTitle("下拉可以刷新", for: .idle)
+        header.setTitle("松开立即刷新", for: .pulling)
+        header.setTitle("正在刷新数据...", for: .refreshing)
+//        header.lastUpdatedTimeLabel.isHidden = true
+        header.lastUpdatedTimeLabel.text = "最后更新"
+//        header.lastUpdatedTimeText = Date()
+//        header.lastUpdatedTimeLabel.text = "最后更新"/
+//        "MJRefreshHeaderLastTimeText" = "Last update:";
+//        "MJRefreshHeaderDateTodayText" = "Today";
+//        MJRefreshHeaderLastTimeText = ""
+        header.setTitle("没有更多数据啦~", for: .noMoreData)
+        header.setRefreshingTarget(self, refreshingAction: #selector(OrderAllViewController.headerRefresh))
+        self.tableView!.mj_header = header
         // Do any additional setup after loading the view.
+        
+        
+        
+        // 上拉刷新
+        footer.setRefreshingTarget(self, refreshingAction: #selector(footerRefresh))
+        self.tableView?.mj_footer = footer
+    }
+    
+    @objc func footerRefresh(){
+        print("上拉刷新")
+        self.tableView?.mj_footer.endRefreshing()
+        // 2次后模拟没有更多数据
+        if (self.dataArray.count > 10) {
+            footer.endRefreshingWithNoMoreData()
+        }
+    }
+    
+    //顶部下拉刷新
+    @objc func headerRefresh(){
+        print("下拉刷新.")
+        sleep(1)
+        //重现生成数据
+        refreshItemData()
+        
+//        self.tableView?.mj_header.endRefreshing(.)
+        if (self.dataArray.count > 6) {
+            DispatchQueue.main.async {
+                // 主线程中
+//                self.tableView!.mj_header.state = MJrefreshno
+            }
+            
+        }
+        //重现加载表格数据
+        self.tableView!.reloadData()
+        //结束刷新
+        self.tableView!.mj_header.endRefreshing()
+    }
+    
+    //初始化数据
+    func refreshItemData() {
+        let count = self.dataArray.count
+        print("count:\(count)")
+        for i in 0...2 {
+            print(i)
+            self.dataArray[count + i] = ["imagePath": "bayMax", "suk": "QQ_PPC_\(count + i)", "title": "六神花露水", "price": "17.50"]
+        }
+        print(self.dataArray)
     }
     
     //在本例中，只有一个分区
@@ -77,18 +139,23 @@ class OrderAllViewController: UIViewController, UITableViewDataSource ,UITableVi
     //创建各单元显示内容(创建参数indexPath指定的单元）
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath)
         -> UITableViewCell {
-            let sectionNo = indexPath.section
-            var _data = self.dataArray[sectionNo]!
-//            print(data)
-//            let _data = data[indexPath.row as Int]
-//            //为了提供表格显示性能，已创建完成的单元需重复使用
-//            //同一形式的单元格重复使用，在声明时已注册
+            let count = self.dataArray.count
+            let sectionNo = count - indexPath.row - 1
+            print(sectionNo)
             let cell: OrderTableViewCell = tableView.dequeueReusableCell(withIdentifier: identify) as! OrderTableViewCell
-            cell.orderImage.image = UIImage(named: _data["imagePath"]!)
-            cell.sukLabel.text = _data["suk"]
-            cell.titleLabel.text = _data["title"]
-            cell.priceLabel.text = _data["price"]
-            cell.accessoryType = .disclosureIndicator
+            if !(self.dataArray[sectionNo]?.isEmpty)! {
+                var _data = self.dataArray[sectionNo]!
+                print(_data)
+    //            let _data = data[indexPath.row as Int]
+    //            //为了提供表格显示性能，已创建完成的单元需重复使用
+    //            //同一形式的单元格重复使用，在声明时已注册
+                
+                cell.orderImage.image = UIImage(named: _data["imagePath"]!)
+                cell.sukLabel.text = _data["suk"]
+                cell.titleLabel.text = _data["title"]
+                cell.priceLabel.text = _data["price"]
+                cell.accessoryType = .disclosureIndicator
+            }
             return cell
     }
     

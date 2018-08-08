@@ -14,22 +14,12 @@ class OrderPayViewController: UIViewController, UITableViewDataSource ,UITableVi
     var tableView: UITableView?
     let identify: String = "OrderCell"
     var dataArray: [Int: [String:String]] = [
-        0: ["imagePath": "bayMax", "suk": "QQ_PPC001", "title": "六神花露水", "price": "17.50"],
-        1: ["imagePath": "bayMax", "suk": "QQ_PPC001", "title": "六神花露水", "price": "17.50"],
-        2: ["imagePath": "bayMax", "suk": "QQ_PPC001", "title": "六神花露水", "price": "17.50"],
-        3: ["imagePath": "bayMax", "suk": "QQ_PPC001", "title": "六神花露水", "price": "17.50"],
-        4: ["imagePath": "bayMax", "suk": "QQ_PPC001", "title": "六神花露水", "price": "17.50"],
-        5: ["imagePath": "bayMax", "suk": "QQ_PPC001", "title": "六神花露水", "price": "17.50"],
-        6: ["imagePath": "bayMax", "suk": "QQ_PPC001", "title": "六神花露水", "price": "17.50"],
-        7: ["imagePath": "bayMax", "suk": "QQ_PPC001", "title": "六神花露水", "price": "17.50"],
-        8: ["imagePath": "bayMax", "suk": "QQ_PPC001", "title": "六神花露水", "price": "17.50"],
-        9: ["imagePath": "bayMax", "suk": "QQ_PPC001", "title": "六神花露水", "price": "17.50"],
-        10: ["imagePath": "bayMax", "suk": "QQ_PPC001", "title": "六神花露水", "price": "17.50"]
+        0: ["imagePath": "bayMax", "suk": "RR_PPC001", "title": "六神花露水", "price": "17.50"]
     ]
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        print(self.dataArray)
+//        print(self.dataArray)
         //        //创建表视图
         self.tableView = UITableView(frame:self.view.frame, style:.grouped)
         //        //去除表格上放多余的空隙

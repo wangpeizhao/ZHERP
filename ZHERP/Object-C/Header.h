@@ -9,6 +9,6 @@
 #ifndef Header_h
 #define Header_h
 
-#import "MJRefresh.h"
+//#import "MJRefresh.h"
 
 #endif /* Header_h */

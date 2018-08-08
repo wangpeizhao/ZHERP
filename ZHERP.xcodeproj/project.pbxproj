@@ -74,6 +74,7 @@
 		9E523E9A21127EC800CF921F /* UIView-Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E523E9921127EC800CF921F /* UIView-Extensions.swift */; };
 		9E523E9D2119DF2100CF921F /* OrderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E523E9B2119DF2100CF921F /* OrderTableViewCell.swift */; };
 		9E523E9E2119DF2100CF921F /* OrderTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9E523E9C2119DF2100CF921F /* OrderTableViewCell.xib */; };
+		9E523EA1211B42A800CF921F /* bridge.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E523EA0211B42A800CF921F /* bridge.m */; };
 		9E88ED0720FB3B3800DF091F /* PostAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E88ED0620FB3B3800DF091F /* PostAPI.swift */; };
 		9E88ED0F20FB3B7700DF091F /* Response+ObjectMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E88ED0B20FB3B7600DF091F /* Response+ObjectMapper.swift */; };
 		9E88ED1020FB3B7700DF091F /* ObservableType+ObjectMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E88ED0C20FB3B7600DF091F /* ObservableType+ObjectMapper.swift */; };
@@ -198,6 +199,8 @@
 		9E523E9921127EC800CF921F /* UIView-Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView-Extensions.swift"; sourceTree = "<group>"; };
 		9E523E9B2119DF2100CF921F /* OrderTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderTableViewCell.swift; sourceTree = "<group>"; };
 		9E523E9C2119DF2100CF921F /* OrderTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OrderTableViewCell.xib; sourceTree = "<group>"; };
+		9E523E9F211B42A700CF921F /* ZHERP-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ZHERP-Bridging-Header.h"; sourceTree = "<group>"; };
+		9E523EA0211B42A800CF921F /* bridge.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = bridge.m; sourceTree = "<group>"; };
 		9E88ED0620FB3B3800DF091F /* PostAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostAPI.swift; sourceTree = "<group>"; };
 		9E88ED0B20FB3B7600DF091F /* Response+ObjectMapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Response+ObjectMapper.swift"; sourceTree = "<group>"; };
 		9E88ED0C20FB3B7600DF091F /* ObservableType+ObjectMapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ObservableType+ObjectMapper.swift"; sourceTree = "<group>"; };
@@ -335,6 +338,8 @@
 			isa = PBXGroup;
 			children = (
 				9E29036020F81C7500F11C63 /* Header.h */,
+				9E523EA0211B42A800CF921F /* bridge.m */,
+				9E523E9F211B42A700CF921F /* ZHERP-Bridging-Header.h */,
 			);
 			path = "Object-C";
 			sourceTree = "<group>";
@@ -891,6 +896,7 @@
 				9E523E9A21127EC800CF921F /* UIView-Extensions.swift in Sources */,
 				9E523E672108C5D400CF921F /* NotifyTableViewCell.swift in Sources */,
 				9E523E8E210D537B00CF921F /* GoodViewController.swift in Sources */,
+				9E523EA1211B42A800CF921F /* bridge.m in Sources */,
 				9E88ED4120FE61CE00DF091F /* ResetPwdViewController.swift in Sources */,
 				9E88ED1120FB3B7700DF091F /* Single+ObjectMapper.swift in Sources */,
 				9E523E7D210C23CF00CF921F /* ResetViewController.swift in Sources */,
@@ -1135,7 +1141,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = MrParker.ZHERP;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "ZHERP/Object-C/ZHERP-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1159,7 +1165,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = MrParker.ZHERP;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "ZHERP/Object-C/ZHERP-Bridging-Header.h";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
