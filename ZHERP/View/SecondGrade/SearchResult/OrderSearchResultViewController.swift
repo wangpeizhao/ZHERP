@@ -81,18 +81,52 @@ class OrderSearchResultViewController: UIViewController, UITableViewDataSource ,
     
     // UITableViewDelegate 方法，处理列表项的选中事件
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let orderView = OrderDetailViewController()
+        
+        let sb = UIStoryboard(name:"Main", bundle: nil)
+        let orderView = sb.instantiateViewController(withIdentifier: "OrderDetailViewController") as! OrderDetailViewController
+        
         orderView.hidesBottomBarWhenPushed = true
-        //        _push(view: self, target: OrderDetailViewController(), rootView: true)
+        
         
         let count = self.dataArray.count
         let sectionNo = count - indexPath.row - 1
         var _data = self.dataArray[sectionNo]!
-        orderView.navTitle = _data["title"]
-//        orderView.orderImage.image = UIImage(named: _data["imagePath"]!)
+        orderView.navTitle = _data["suk"]
+        orderView.order_image = _data["imagePath"]
         orderView.order_price = _data["price"]
         orderView.order_title = _data["title"]
-        self.navigationController?.pushViewController(orderView, animated: true)
+        
+        let selector: Selector = #selector(actionBack)
+//        setNavBarBackBtn(view: self, title: "订单", selector: selector)
+//        NSLog(@"%ld %ld",indexPath.section,indexPath.item);
+//        DetailViewController *detail = [[DetailViewController alloc] init] ;
+//        CollectionModel *model = [[CollectionModel alloc] init];
+//        model = self.searchResults[indexPath.item];
+//        detail.name = model.imageName;
+//        [self.presentingViewController.navigationController pushViewController:detail animated:YES];
+//
+//        NSLog(@"%ld %ld",indexPath.section,indexPath.item);
+//        DetailViewController *detail = [[DetailViewController alloc] init] ;
+//        CollectionModel *model = [[CollectionModel alloc] init];
+//        model = self.dataArray[indexPath.item];
+//        detail.name = model.imageName;
+//        [self.navigationController pushViewController:detail animated:YES];
+//
+//        作者：Xcode8
+//        链接：https://www.jianshu.com/p/45c97fe3b65f
+//        來源：简书
+//        简书著作权归作者所有，任何形式的转载都请联系作者获得授权并注明出处。
+//        let order = OrderViewController()
+//        order.searchController.searchBar.resignFirstResponder()
+        
+        let item = UIBarButtonItem(title: "订单", style: .plain, target: self, action: nil)
+        self.navigationItem.backBarButtonItem = item
+//        _push(view: self, target: orderView, rootView: true)
+        self.presentingViewController?.navigationController?.pushViewController(orderView, animated: true)
+    }
+    
+    @objc func actionBack() {
+        
     }
 
     override func didReceiveMemoryWarning() {

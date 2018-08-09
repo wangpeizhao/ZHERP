@@ -346,7 +346,7 @@
                     </connections>
                 </searchDisplayController>
             </objects>
-            <point key="canvasLocation" x="6719" y="531"/>
+            <point key="canvasLocation" x="8292" y="534.97536945812806"/>
         </scene>
         <!--Order Detail View Controller-->
         <scene sceneID="1mC-37-hOh">
@@ -378,6 +378,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="VjT-JP-rJP"/>
                     </view>
+                    <navigationItem key="navigationItem" id="lYq-A1-cgc"/>
                     <connections>
                         <outlet property="OrderPrice" destination="urU-TF-lUk" id="WGu-AC-sLy"/>
                         <outlet property="OrderTitle" destination="fpq-IU-Vof" id="zmz-wE-MQE"/>
@@ -386,7 +387,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GMT-Iv-8wR" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5941.6000000000004" y="530.54187192118229"/>
+            <point key="canvasLocation" x="7498" y="531"/>
         </scene>
         <!--货品管理-->
         <scene sceneID="mfP-XS-481">
@@ -1632,6 +1633,24 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QQZ-UL-H2P" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1789.5999999999999" y="-195.07389162561577"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="GaC-Hv-JBd">
+            <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="R2W-s9-wHV" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="XbR-ON-7Bb" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="7Ax-Wh-BjR">
+                        <rect key="frame" x="0.0" y="44" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="nLt-f4-MpP" kind="relationship" relationship="rootViewController" id="No8-hO-xVB"/>
+                    </connections>
+                </navigationController>
+            </objects>
+            <point key="canvasLocation" x="6644" y="530.54187192118229"/>
         </scene>
     </scenes>
     <resources>

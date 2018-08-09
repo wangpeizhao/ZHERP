@@ -29,18 +29,19 @@ class OrderDetailViewController: UIViewController {
         super.viewDidLoad()
         
         self.view.backgroundColor = Specs.color.white
-        order_price = "order_price"
-        order_title = "order_title"
-        order_image = "bayMax"
-        print(order_price!)
-        print(order_title!)
-
-        print(self.OrderPrice)
-//        self.OrderPrice.text = order_price!
-//        self.OrderTitle.text = order_title!
-//        self.orderImage.image = UIImage(named: order_image!)
         
+        self.OrderPrice.text = order_price!
+        self.OrderTitle.text = order_title!
+        self.orderImage.image = UIImage(named: order_image!)
+        
+//        let selector: Selector = #selector(actionBack)
+//        setNavBarLeftBtn(view: self, title: "Order", selector: selector)
         setNavBarTitle(view: self, title: navTitle!)
+    }
+    
+    @objc func actionBack() {
+        print("close")
+        _close(view: self)
     }
     
     override func viewDidDisappear(_ animated: Bool) {

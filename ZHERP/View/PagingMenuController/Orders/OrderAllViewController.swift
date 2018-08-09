@@ -161,20 +161,28 @@ class OrderAllViewController: UIViewController, UITableViewDataSource ,UITableVi
     
     // UITableViewDelegate 方法，处理列表项的选中事件
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let orderView = OrderDetailViewController()
+        
+        let sb = UIStoryboard(name:"Main", bundle: nil)
+        let orderView = sb.instantiateViewController(withIdentifier: "OrderDetailViewController") as! OrderDetailViewController
+        
         orderView.hidesBottomBarWhenPushed = true
         
         
         let count = self.dataArray.count
         let sectionNo = count - indexPath.row - 1
         var _data = self.dataArray[sectionNo]!
-        orderView.navTitle = _data["title"]
+        orderView.navTitle = _data["suk"]
         orderView.order_image = _data["imagePath"]
         orderView.order_price = _data["price"]
         orderView.order_title = _data["title"]
         
-//        _push(view: self, target: OrderDetailViewController(), rootView: true)
-        self.navigationController?.pushViewController(orderView, animated: true)
+        let selector: Selector = #selector(actionBack)
+        setNavBarBackBtn(view: self, title: "订单", selector: selector)
+        _push(view: self, target: orderView, rootView: true)
+    }
+    
+    @objc func actionBack() {
+        
     }
 
     override func didReceiveMemoryWarning() {

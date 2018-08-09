@@ -205,6 +205,11 @@ class OrderViewController: UIViewController, UITableViewDelegate, UITableViewDat
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = Specs.color.grayBg
+        
+        
+        let selector: Selector = #selector(actionGo)
+        setNavBarBackBtn(view: self, title: "订单", selector: selector)
+        
         viewHeight = self.view.frame.height
         //注册监听
         
@@ -235,6 +240,10 @@ class OrderViewController: UIViewController, UITableViewDelegate, UITableViewDat
         }
         
         self.setUp()
+    }
+    
+    @objc func actionGo() {
+//        _push(view: self, target: OrderDetailViewController())
     }
     
     //MARK: 当键盘显示时
@@ -326,6 +335,9 @@ class OrderViewController: UIViewController, UITableViewDelegate, UITableViewDat
         self.searchController.searchBar.delegate = self
         self.searchController.searchResultsUpdater = self
         
+        self.searchController.dimsBackgroundDuringPresentation = false
+        self.searchController.definesPresentationContext = true
+        self.searchController.hidesNavigationBarDuringPresentation = true
         //将搜索栏添加到页面上
         self.searchBarView.addSubview(searchController.searchBar)
         self.definesPresentationContext = true
@@ -455,6 +467,8 @@ extension OrderViewController: UISearchBarDelegate {
         
         if let window = UIApplication.shared.keyWindow{
             window.viewWithTag(100)?.removeFromSuperview()
+            window.viewWithTag(101)?.removeFromSuperview()
+            print("CancelCancelCancelCancelCancelCancelCancel")
         }
     }
     
@@ -502,6 +516,7 @@ extension OrderViewController: UISearchBarDelegate {
         
         self.searchHistoryView = UIView(frame: CGRect(x: 5, y: 35, width: self.view.frame.size.width - 10, height: self.view.frame.size.height))
         self.searchHistoryView.backgroundColor = Specs.color.blue
+        self.searchHistoryView.tag = 101
         self.searchProv.addSubview(self.searchHistoryView)
 //        self.searchHistoryView.snp.makeConstraints { (make) -> Void in
 //            make.left.right.equalTo(0)
