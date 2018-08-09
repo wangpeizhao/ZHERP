@@ -54,6 +54,21 @@ class OrderViewController: UIViewController, UITableViewDelegate, UITableViewDat
     //存储选中单元格的索引
     var selectedIndexs = [Int]()
     
+    var itemArray : [Int: [String:String]] = [
+        0: ["imagePath": "bayMax", "suk": "AB_PPC01", "title": "六神花露水001", "price": "17.50"],
+        1: ["imagePath": "bayMax", "suk": "BC_PPC02", "title": "六神花露水002", "price": "17.50"],
+        2: ["imagePath": "bayMax", "suk": "CD_PPC03", "title": "六神花露水003", "price": "17.50"],
+        3: ["imagePath": "bayMax", "suk": "DE_PPC04", "title": "六神花露水004", "price": "17.50"],
+        4: ["imagePath": "bayMax", "suk": "EF_PPC05", "title": "六神花露水005", "price": "17.50"],
+        5: ["imagePath": "bayMax", "suk": "FG_PPC06", "title": "六神花露水006", "price": "17.50"],
+        6: ["imagePath": "bayMax", "suk": "GH_PPC07", "title": "六神花露水007", "price": "17.50"],
+        7: ["imagePath": "bayMax", "suk": "HI_PPC08", "title": "六神花露水008", "price": "17.50"],
+        8: ["imagePath": "bayMax", "suk": "IJ_PPC09", "title": "六神花露水009", "price": "17.50"],
+        9: ["imagePath": "bayMax", "suk": "JK_PPC10", "title": "六神花露水010", "price": "17.50"],
+        10: ["imagePath": "bayMax", "suk": "KL_PPC11", "title": "六神花露水011", "price": "17.50"]
+    ]
+    var tempsArray : [Int: [String:String]] = [:]
+    
     
     //分页菜单配置
     private struct PagingMenuOptions: PagingMenuControllerCustomizable {
@@ -446,6 +461,7 @@ extension OrderViewController: UISearchBarDelegate {
     // 输入时需要进行的操作
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
 //        self.searchWord.text = searchText
+        
     }
     
     func searchBarShouldBeginEditing(_ searchBar: UISearchBar) -> Bool {
@@ -544,5 +560,41 @@ extension OrderViewController: UISearchResultsUpdating{
     //实时进行搜索
     func updateSearchResults(for searchController: UISearchController) {
         print(self.searchController.searchBar.text!)
+        
+        let nav_VC = self.searchController.searchResultsController as! UINavigationController
+        let resultVC = nav_VC.topViewController as! OrderSearchResultViewController
+//        let resultVC = OrderSearchResultViewController()
+        self.searchContentForText(searchText: self.searchController.searchBar.text!)
+        print("resultVC.dataArray++++++++++++")
+        print(resultVC.dataArray)
+        resultVC.dataArray = self.tempsArray
+        resultVC.tableView?.reloadData()
+        print("resultVC.dataArray::::::::::::")
+        print(resultVC.dataArray)
     }
+    
+    func searchContentForText(searchText: String){
+        self.tempsArray.removeAll()
+//        for str in self.itemArray {
+//            //
+//            if str.componentsSeparatedByString(searchText).count > 1 {
+//                self.tempsArray.append(str)
+//            }
+//        }
+//        print(self.itemArray)
+        var i: Int = 0
+        for (_,item) in self.itemArray {
+//            self.tempsArray = str.value.filter { candy in
+//                return candy.suk.lowercaseString.containsString(searchText.lowercaseString)
+//            }
+//            print(item["suk"]!)
+            let suk: String = item["suk"]!
+            if suk.contains(searchText) {
+                self.tempsArray[i] = item
+                i += 1
+            }
+        }
+        print(self.tempsArray)
+    }
+
 }

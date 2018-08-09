@@ -30,9 +30,9 @@ class OrderAllViewController: UIViewController, UITableViewDataSource ,UITableVi
         refreshItemData()
         
 //        print(self.dataArray)
-        //        //创建表视图
+        // 创建表视图
         self.tableView = UITableView(frame:self.view.frame, style:.grouped)
-        //        //去除表格上放多余的空隙
+        // 去除表格上放多余的空隙
         self.tableView!.contentInset = UIEdgeInsetsMake(-10, 0, 0, 0)
         self.tableView!.delegate = self
         self.tableView!.dataSource = self
@@ -49,8 +49,8 @@ class OrderAllViewController: UIViewController, UITableViewDataSource ,UITableVi
         //创建一个重用的单元格
         //        self.tableView!.register(UITableViewCell.self, forCellReuseIdentifier: identify)
         self.tableView?.register(UINib(nibName: "OrderTableViewCell", bundle: nil), forCellReuseIdentifier: identify)
-        //        self.tableView!.translatesAutoresizingMaskIntoConstraints = false
         self.view.addSubview(self.tableView!)
+        self.tableView!.translatesAutoresizingMaskIntoConstraints = false
         
         //下拉刷新相关设置
 //        UserDefaults.standard.set(Date(), forKey: MJRefreshHeaderLastTimeText)
@@ -161,7 +161,20 @@ class OrderAllViewController: UIViewController, UITableViewDataSource ,UITableVi
     
     // UITableViewDelegate 方法，处理列表项的选中事件
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        _push(view: self, target: OrderDetailViewController())
+        let orderView = OrderDetailViewController()
+        orderView.hidesBottomBarWhenPushed = true
+        
+        
+        let count = self.dataArray.count
+        let sectionNo = count - indexPath.row - 1
+        var _data = self.dataArray[sectionNo]!
+        orderView.navTitle = _data["title"]
+        orderView.order_image = _data["imagePath"]
+        orderView.order_price = _data["price"]
+        orderView.order_title = _data["title"]
+        
+//        _push(view: self, target: OrderDetailViewController(), rootView: true)
+        self.navigationController?.pushViewController(orderView, animated: true)
     }
 
     override func didReceiveMemoryWarning() {

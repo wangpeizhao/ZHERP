@@ -57,9 +57,6 @@
                                         </label>
                                     </subviews>
                                 </tableViewCellContentView>
-                                <connections>
-                                    <segue destination="vjU-Pa-ugi" kind="show" identifier="OrderDetail" id="ivf-kU-eUJ"/>
-                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -95,7 +92,7 @@
         <!--订单详情-->
         <scene sceneID="N4Y-iE-gI8">
             <objects>
-                <viewController id="vjU-Pa-ugi" customClass="OrderDetailViewController" customModule="ZHERP" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="vjU-Pa-ugi" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Mzc-Gk-OKv">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -183,8 +180,6 @@
                         <barButtonItem key="backBarButtonItem" title="订单" id="RdG-y2-vBS"/>
                     </navigationItem>
                     <connections>
-                        <outlet property="OrderPrice" destination="yea-ng-hnz" id="2Vr-oC-QPF"/>
-                        <outlet property="OrderTitle" destination="3MT-ad-9Wg" id="aKg-mf-Wa2"/>
                         <outlet property="searchBar" destination="8bK-TB-7WP" id="FZM-K7-SGg"/>
                         <outlet property="searchDisplayController" destination="YOw-bN-a1K" id="XWA-DZ-hMP"/>
                     </connections>
@@ -351,7 +346,47 @@
                     </connections>
                 </searchDisplayController>
             </objects>
-            <point key="canvasLocation" x="5903" y="530"/>
+            <point key="canvasLocation" x="6719" y="531"/>
+        </scene>
+        <!--Order Detail View Controller-->
+        <scene sceneID="1mC-37-hOh">
+            <objects>
+                <viewController storyboardIdentifier="OrderDetailViewController" id="nLt-f4-MpP" customClass="OrderDetailViewController" customModule="ZHERP" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="UI8-ch-fZs">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="urU-TF-lUk">
+                                <rect key="frame" x="16" y="396" width="343" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fpq-IU-Vof">
+                                <rect key="frame" x="16" y="445" width="343" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="af7-k4-GZg">
+                                <rect key="frame" x="67" y="205" width="240" height="128"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="VjT-JP-rJP"/>
+                    </view>
+                    <connections>
+                        <outlet property="OrderPrice" destination="urU-TF-lUk" id="WGu-AC-sLy"/>
+                        <outlet property="OrderTitle" destination="fpq-IU-Vof" id="zmz-wE-MQE"/>
+                        <outlet property="orderImage" destination="af7-k4-GZg" id="aev-86-V3t"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="GMT-Iv-8wR" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="5941.6000000000004" y="530.54187192118229"/>
         </scene>
         <!--货品管理-->
         <scene sceneID="mfP-XS-481">

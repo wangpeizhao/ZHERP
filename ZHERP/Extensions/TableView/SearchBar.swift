@@ -22,7 +22,8 @@ public func buildSearchBar(searchBar: UISearchBar, placeholder: String) {
 
 extension UISearchController {
     
-    static let controller: UISearchController = UISearchController(searchResultsController: nil)
+    static let resultVC = UINavigationController(rootViewController: OrderSearchResultViewController())
+    static let controller: UISearchController = UISearchController(searchResultsController: resultVC)
     
     static func buildSearchBar(_view: UIViewController, searchHeight: inout CGFloat, searchOffset: inout CGFloat, placeholder: String) -> UISearchController {
         let currentVersion = getIOSVersion()
@@ -57,7 +58,7 @@ extension UISearchController {
         //搜索栏取消按钮文字
         controller.searchBar.setValue("取消", forKey:"_cancelButtonText")
         controller.searchBar.frame = CGRect(x: 0, y: 0, width: controller.searchBar.frame.size.width, height: searchHeight + 10)
-    
+//        controller.definesPresentationContext = true
     
         let searchField = controller.searchBar.value(forKey: "_searchField") as! UITextField;
         searchField.setValue(UIFont.systemFont(ofSize: 13), forKeyPath: "_placeholderLabel.font");
@@ -77,9 +78,9 @@ extension UISearchController {
             controller.searchBar.setSearchFieldBackgroundImage(UIImage(named: "searchBg"), for: UIControlState.normal)
         }
         // 使键盘点击空白处关闭
-        let tap = UITapGestureRecognizer.init(target: self, action: #selector(viewTapped(tap:)));
-        tap.cancelsTouchesInView = false;
-        _view.view.addGestureRecognizer(tap);
+//        let tap = UITapGestureRecognizer.init(target: self, action: #selector(viewTapped(tap:)));
+//        tap.cancelsTouchesInView = false;
+//        _view.view.addGestureRecognizer(tap);
         
         return controller
     }
