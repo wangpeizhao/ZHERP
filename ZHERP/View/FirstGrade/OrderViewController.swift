@@ -230,7 +230,7 @@ class OrderViewController: UIViewController, UITableViewDelegate, UITableViewDat
         self.pageMenuView.snp.makeConstraints { (make) -> Void in
             make.left.right.equalTo(0)
             make.top.equalTo(self.searchBarView.snp.bottom).offset(8)
-            make.bottom.equalTo(self.view.snp.bottom).offset(-50)
+            make.bottom.equalTo(self.view.snp.bottom).offset(50)
         }
         
         self.contentLabel = UILabel(frame: CGRect(x: 20, y: 20, width: 200, height: 50))
