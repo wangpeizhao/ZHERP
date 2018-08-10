@@ -49,7 +49,7 @@ class OrderViewController: UIViewController, UITableViewDelegate, UITableViewDat
     
     var tableView: UITableView?
     
-    var items:[String] = ["条目1","条目2","条目3","条目4","条目5"]
+    var items:[String] = ["AB_PPC01","BC_PPC02","CD_PPC03","DE_PPC04","EF_PPC05","FG_PPC06","GH_PPC07","HI_PPC08","IJ_PPC09","JK_PPC10"]
     
     //存储选中单元格的索引
     var selectedIndexs = [Int]()
@@ -399,6 +399,9 @@ class OrderViewController: UIViewController, UITableViewDelegate, UITableViewDat
             //同一形式的单元格重复使用，在声明时已注册
             let cell = tableView.dequeueReusableCell(withIdentifier: identify,
                                                      for: indexPath)
+//            if cell == nil {
+//                cell = UITableViewCell(style: UITableViewCellStyle.default, reuseIdentifier: identify)
+//            }
             cell.textLabel?.text = self.items[indexPath.row]
             return cell
     }
@@ -417,6 +420,9 @@ class OrderViewController: UIViewController, UITableViewDelegate, UITableViewDat
         //        self.tableView?.reloadRows(at: [indexPath], with: .automatic)
         
         self.tableView?.reloadData()
+        
+        let keyword: String? = self.items[indexPath.row]
+        self.searchController.searchBar.text = keyword
     }
     //删除按钮点击
     @IBAction func btnClick(_ sender: AnyObject) {
