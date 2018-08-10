@@ -464,11 +464,29 @@ extension OrderViewController: UISearchBarDelegate {
             make.top.equalTo(self.navHeight - 10)
             make.height.equalTo(searchHeight + 1)
         }
-        
+        print("CancelCancelCancelCancelCancelCancelCancel")
         if let window = UIApplication.shared.keyWindow{
             window.viewWithTag(100)?.removeFromSuperview()
             window.viewWithTag(101)?.removeFromSuperview()
-            print("CancelCancelCancelCancelCancelCancelCancel")
+            
+        }
+        if self.view.subviews.count > 0 {
+            let chilrenviews = self.view.subviews
+            print(chilrenviews)
+            var index = 0
+            for chilren in chilrenviews {
+                if (index > 1) {
+                    print(chilren)
+                    chilren.removeFromSuperview()
+                }
+                index += 1
+            }
+//            self.view.subviews.forEach({ $0.removeFromSuperview()});
+            
+            // xcode7会提示 Result of call to map is unused
+            
+            //self.subviews.map { $0.removeFromSuperview()};
+            
         }
     }
     
