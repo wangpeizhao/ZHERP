@@ -126,11 +126,11 @@ class OrderAllViewController: UIViewController, UITableViewDataSource ,UITableVi
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.dataArray.count
     }
-    //
-    //    //设置分组头的高度
-    //    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-    //        return tableView.sectionHeaderHeight + 50
-    //    }
+
+    //设置分组头的高度
+//    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+//        return tableView.sectionHeaderHeight - 50
+//    }
     
 //    func tableView(_ tableView: UITableView, titleForFooterInSection section: Int) -> String? {
 //        return "开启后，手机不会振动与发出提示音；如果设置为“只在夜间开启”，则只在22:00到08:00间生效"

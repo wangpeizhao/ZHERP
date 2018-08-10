@@ -44,6 +44,12 @@ extension UISearchController {
         controller.searchBar.sizeToFit()
         controller.searchBar.setBackgroundImage(UIImage(), for: .any, barMetrics: .default)
         controller.searchBar.backgroundColor = Specs.color.grayBg
+        
+        
+        controller.searchBar.delegate = _view as? UISearchBarDelegate
+        controller.searchResultsUpdater = _view as? UISearchResultsUpdating
+        
+        controller.definesPresentationContext = true
     
         controller.searchBar.tintColor = RGBA(r: 0.12, g: 0.74, b: 0.13, a: 1.00)
     
@@ -57,8 +63,7 @@ extension UISearchController {
         controller.searchBar.barTintColor = Specs.color.white
         //搜索栏取消按钮文字
         controller.searchBar.setValue("取消", forKey:"_cancelButtonText")
-        controller.searchBar.frame = CGRect(x: 0, y: 0, width: controller.searchBar.frame.size.width, height: searchHeight + 10)
-//        controller.definesPresentationContext = true
+        controller.searchBar.frame = CGRect(x: 0, y: 0, width: controller.searchBar.frame.size.width, height: 44)
     
         let searchField = controller.searchBar.value(forKey: "_searchField") as! UITextField;
         searchField.setValue(UIFont.systemFont(ofSize: 13), forKeyPath: "_placeholderLabel.font");
@@ -66,7 +71,6 @@ extension UISearchController {
         // 判断是不是大于IOS 11
         if currentVersion < 11 {
             // searchBar中的textField设置
-            
             searchField.setValue(UIColor.init(red: 70/255.0, green: 70/255.0, blue: 70/255.0, alpha: 1), forKeyPath: "_placeholderLabel.textColor");
             searchField.attributedPlaceholder = NSAttributedString.init(string: placeholder, attributes: [NSAttributedStringKey.baselineOffset: 2]);
         }else{
@@ -77,15 +81,6 @@ extension UISearchController {
             controller.searchBar.setPositionAdjustment(UIOffsetMake(searchOffset + 3 , 0), for: UISearchBarIcon.search)
             controller.searchBar.setSearchFieldBackgroundImage(UIImage(named: "searchBg"), for: UIControlState.normal)
         }
-        // 使键盘点击空白处关闭
-//        let tap = UITapGestureRecognizer.init(target: self, action: #selector(viewTapped(tap:)));
-//        tap.cancelsTouchesInView = false;
-//        _view.view.addGestureRecognizer(tap);
-        
         return controller
-    }
-    
-    @objc func viewTapped(tap: UITapGestureRecognizer) {
-        UISearchController.controller.searchBar.resignFirstResponder()
     }
 }

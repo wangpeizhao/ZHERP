@@ -230,7 +230,7 @@ class OrderViewController: UIViewController, UITableViewDelegate, UITableViewDat
         self.pageMenuView.snp.makeConstraints { (make) -> Void in
             make.left.right.equalTo(0)
             make.top.equalTo(self.searchBarView.snp.bottom).offset(8)
-            make.bottom.equalTo(self.view)
+            make.bottom.equalTo(self.view.snp.bottom).offset(-50)
         }
         
         self.contentLabel = UILabel(frame: CGRect(x: 20, y: 20, width: 200, height: 50))
@@ -332,44 +332,15 @@ class OrderViewController: UIViewController, UITableViewDelegate, UITableViewDat
     
     func searchBar() {
         self.searchController = UISearchController.buildSearchBar(_view: self, searchHeight: &searchHeight, searchOffset: &searchOffset, placeholder: " 搜索订单号")
-        self.searchController.searchBar.delegate = self
-        self.searchController.searchResultsUpdater = self
-        
-        self.searchController.dimsBackgroundDuringPresentation = false
-        self.searchController.definesPresentationContext = true
-        self.searchController.hidesNavigationBarDuringPresentation = true
+        self.definesPresentationContext = true
         //将搜索栏添加到页面上
         self.searchBarView.addSubview(searchController.searchBar)
-        self.definesPresentationContext = true
-    }
-    @objc func _keyword() {
-        searchWord.text = "Hello World!"
-        searchController.searchBar.text = "Hello World!"
-    }
-    
-    @objc func viewTapped(tap: UITapGestureRecognizer) {
-        searchController.searchBar.resignFirstResponder()
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
-    deinit {
-        //移除监听
-        NotificationCenter.default.removeObserver(self)
-    }
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
     
     
     //在本例中，只有一个分区
@@ -381,15 +352,33 @@ class OrderViewController: UIViewController, UITableViewDelegate, UITableViewDat
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.items.count
     }
-    //
-    //    //设置分组头的高度
-    //    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-    //        return tableView.sectionHeaderHeight + 50
-    //    }
+    
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return "搜索历史"
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 35
+    }
+    
+    //设置分组头的高度
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 40
+    }
     
     func tableView(_ tableView: UITableView, titleForFooterInSection section: Int) -> String? {
-        return "开启后，手机不会振动与发出提示音；如果设置为“只在夜间开启”，则只在22:00到08:00间生效"
+        return "长按可删除搜索历史记录"
     }
+    
+    //设置分组尾的高度
+    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        return 30
+    }
+    
+    //将分组尾设置为一个空的View
+//    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+//        return UIView()
+//    }
     
     //创建各单元显示内容(创建参数indexPath指定的单元）
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath)
@@ -403,6 +392,9 @@ class OrderViewController: UIViewController, UITableViewDelegate, UITableViewDat
 //                cell = UITableViewCell(style: UITableViewCellStyle.default, reuseIdentifier: identify)
 //            }
             cell.textLabel?.text = self.items[indexPath.row]
+            cell.textLabel?.textColor = Specs.color.black
+            cell.textLabel?.font = UIFont(name: "Thonburi", size: Specs.fontSize.regular)
+//            cell.accessoryType = .checkmark
             return cell
     }
     
@@ -470,12 +462,6 @@ extension OrderViewController: UISearchBarDelegate {
             make.top.equalTo(self.navHeight - 10)
             make.height.equalTo(searchHeight + 1)
         }
-        print("CancelCancelCancelCancelCancelCancelCancel")
-        if let window = UIApplication.shared.keyWindow{
-            window.viewWithTag(100)?.removeFromSuperview()
-            window.viewWithTag(101)?.removeFromSuperview()
-            
-        }
         if self.view.subviews.count > 0 {
             let chilrenviews = self.view.subviews
             print(chilrenviews)
@@ -487,19 +473,12 @@ extension OrderViewController: UISearchBarDelegate {
                 }
                 index += 1
             }
-//            self.view.subviews.forEach({ $0.removeFromSuperview()});
-            
-            // xcode7会提示 Result of call to map is unused
-            
-            //self.subviews.map { $0.removeFromSuperview()};
-            
         }
     }
     
     // 输入时需要进行的操作
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
 //        self.searchWord.text = searchText
-        
     }
     
     func searchBarShouldBeginEditing(_ searchBar: UISearchBar) -> Bool {
@@ -507,13 +486,15 @@ extension OrderViewController: UISearchBarDelegate {
             self.searchController.searchBar.setPositionAdjustment(UIOffset.zero, for: UISearchBarIcon.search)
         }
         
+        self.searchBarView.backgroundColor = Specs.color.main
         self.searchBarView.snp.remakeConstraints { (make) -> Void in
             make.left.right.equalTo(0)
             make.top.equalTo(self.navHeight)
             make.height.equalTo(searchHeight)
         }
         self.searchProv = UIView()
-//        self.searchProv.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.5) //Specs.color.grayBg.cgColor.alpha(0.8)
+        self.searchProv.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.5)
+        // Specs.color.grayBg.cgColor.alpha(0.8)
         self.searchProv.backgroundColor = Specs.color.white
         self.searchProv.tag = 100
         self.view.addSubview(self.searchProv)
@@ -528,37 +509,27 @@ extension OrderViewController: UISearchBarDelegate {
     }
     
     func searchBarHistory() {
-        let historyLabel = UILabel(frame: CGRect(x: 25, y: 15, width: 250, height: 25))
-        historyLabel.text = "搜索历史"
-        self.searchProv.addSubview(historyLabel)
-        historyLabel.snp.makeConstraints { (make) -> Void in
-            make.top.equalTo(15)
-            make.left.right.equalTo(20)
-            make.height.equalTo(25)
-        }
-        
-        
         self.searchHistoryView = UIView(frame: CGRect(x: 5, y: 35, width: self.view.frame.size.width - 10, height: self.view.frame.size.height))
         self.searchHistoryView.backgroundColor = Specs.color.blue
         self.searchHistoryView.tag = 101
         self.searchProv.addSubview(self.searchHistoryView)
-//        self.searchHistoryView.snp.makeConstraints { (make) -> Void in
-//            make.left.right.equalTo(0)
-//            make.top.equalTo(100).offset(40)
-//            make.height.equalTo(self.view.snp.bottom)
-//        }
-
         
         //创建表视图
-        self.tableView = UITableView(frame: self.view.frame, style:.plain)
+        self.tableView = UITableView(frame: self.view.frame, style:.grouped)
         self.tableView!.delegate = self
         self.tableView!.dataSource = self
         //创建一个重用的单元格
         self.tableView!.register(UITableViewCell.self, forCellReuseIdentifier: "SwiftCell")
+        //去除单元格分隔线
+        self.tableView!.separatorStyle = .singleLine
+        //去除表格上放多余的空隙
+        self.tableView!.contentInset = UIEdgeInsetsMake(-10, 0, 0, 0)
         self.searchHistoryView.addSubview(self.tableView!)
         
         //表格在编辑状态下允许多选
         self.tableView?.allowsMultipleSelectionDuringEditing = true
+        // Set layout for tableView.
+        self.tableView?.translatesAutoresizingMaskIntoConstraints = false
         
         //绑定对长按的响应
         let longPress = UILongPressGestureRecognizer(target:self,action:#selector(OrderViewController.tableviewCellLongPressed(gestureRecognizer:)))
@@ -614,19 +585,8 @@ extension OrderViewController: UISearchResultsUpdating{
     
     func searchContentForText(searchText: String){
         self.tempsArray.removeAll()
-//        for str in self.itemArray {
-//            //
-//            if str.componentsSeparatedByString(searchText).count > 1 {
-//                self.tempsArray.append(str)
-//            }
-//        }
-//        print(self.itemArray)
         var i: Int = 0
         for (_,item) in self.itemArray {
-//            self.tempsArray = str.value.filter { candy in
-//                return candy.suk.lowercaseString.containsString(searchText.lowercaseString)
-//            }
-//            print(item["suk"]!)
             let suk: String = item["suk"]!
             if suk.contains(searchText) {
                 self.tempsArray[i] = item
