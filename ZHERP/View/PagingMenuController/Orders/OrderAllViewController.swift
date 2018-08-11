@@ -36,6 +36,7 @@ class OrderAllViewController: UIViewController, UITableViewDataSource ,UITableVi
         self.tableView!.contentInset = UIEdgeInsetsMake(-10, 0, 0, 0)
         self.tableView!.delegate = self
         self.tableView!.dataSource = self
+        self.tableView!.backgroundColor = Specs.color.white
         //去除单元格分隔线
         self.tableView!.separatorStyle = .singleLine
         
