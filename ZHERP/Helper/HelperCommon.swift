@@ -150,6 +150,9 @@ public func _open(view: UIViewController, vcName: String = "login", withNav: Boo
     case "personal":
         vc = sb.instantiateViewController(withIdentifier: "PersonalViewController") as! PersonalViewController
         break
+    case "search":
+        vc = sb.instantiateViewController(withIdentifier: "SearchViewController") as! SearchViewController
+        break
     default:
         _logout()
         vc = sb.instantiateViewController(withIdentifier: "LoginViewController") as! LoginViewController

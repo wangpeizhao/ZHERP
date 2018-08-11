@@ -9,10 +9,17 @@
 import UIKit
 
 class StatisticViewController: UIViewController {
-
+    
+    lazy var searchBar:UISearchBar = UISearchBar(frame: CGRect(x: 0, y: 0, width: 200, height: 20))
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        
+        searchBar.placeholder = "搜索"
+        let leftNavBarButton = UIBarButtonItem(customView:searchBar)
+        self.navigationItem.leftBarButtonItem = leftNavBarButton
+        
         // Do any additional setup after loading the view.
     }
 

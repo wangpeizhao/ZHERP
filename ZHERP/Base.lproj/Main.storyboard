@@ -259,27 +259,10 @@
                     <view key="view" contentMode="scaleToFill" id="UdZ-7r-5NF">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="6Eu-C9-xGs">
-                                <rect key="frame" x="16" y="391" width="343" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <nil key="textColor"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YJx-t1-ohN">
-                                <rect key="frame" x="164" y="116" width="46" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Button"/>
-                            </button>
-                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="8Kg-1w-k8x"/>
                     </view>
                     <navigationItem key="navigationItem" id="7Hv-Xe-w5H"/>
-                    <connections>
-                        <outlet property="textField" destination="6Eu-C9-xGs" id="YEv-qC-XSW"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oNP-BH-5Ga" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -308,20 +291,9 @@
                     <view key="view" contentMode="scaleToFill" id="htx-fI-OZC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <searchBar contentMode="redraw" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="QK7-Bu-15G">
-                                <rect key="frame" x="0.0" y="149" width="375" height="56"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </searchBar>
-                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="t7R-B3-xtX"/>
                     </view>
-                    <connections>
-                        <outlet property="searchBar" destination="QGr-e8-A0K" id="fR0-7j-815"/>
-                        <outlet property="searchDisplayController" destination="RbE-L9-xnE" id="u07-b8-XJD"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aiw-ze-bwK" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <searchBar contentMode="redraw" searchBarStyle="minimal" placeholder="按订单号搜索" id="QGr-e8-A0K">
@@ -332,19 +304,7 @@
                         <string>Title</string>
                         <string>Title</string>
                     </scopeButtonTitles>
-                    <connections>
-                        <outlet property="delegate" destination="GLF-P8-CT6" id="XaG-pE-y9D"/>
-                    </connections>
                 </searchBar>
-                <searchDisplayController id="RbE-L9-xnE">
-                    <connections>
-                        <outlet property="delegate" destination="GLF-P8-CT6" id="74c-0Z-Gn9"/>
-                        <outlet property="searchBar" destination="QGr-e8-A0K" id="Yzv-eE-kr4"/>
-                        <outlet property="searchContentsController" destination="GLF-P8-CT6" id="deb-EW-cY9"/>
-                        <outlet property="searchResultsDataSource" destination="GLF-P8-CT6" id="fqh-o5-uQV"/>
-                        <outlet property="searchResultsDelegate" destination="GLF-P8-CT6" id="E5F-7h-n2i"/>
-                    </connections>
-                </searchDisplayController>
             </objects>
             <point key="canvasLocation" x="8292" y="534.97536945812806"/>
         </scene>
@@ -1655,7 +1615,6 @@
         <!--Navigation Controller-->
         <scene sceneID="GaC-Hv-JBd">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="R2W-s9-wHV" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="XbR-ON-7Bb" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="7Ax-Wh-BjR">
@@ -1667,6 +1626,7 @@
                         <segue destination="nLt-f4-MpP" kind="relationship" relationship="rootViewController" id="No8-hO-xVB"/>
                     </connections>
                 </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="R2W-s9-wHV" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="6644" y="530.54187192118229"/>
         </scene>
