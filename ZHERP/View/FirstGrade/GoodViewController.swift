@@ -8,98 +8,49 @@
 
 import UIKit
 
-class GoodViewController: UIViewController, UITextFieldDelegate {
-    //搜索控制器
+class GoodViewController: UIViewController {
     
-    @IBOutlet weak var textField: UITextField!
-    var keyHeight = CGFloat() //键盘的高度
-    
-    // Search
-    var searchController = UISearchController()
-    var searchOffset: CGFloat!
-    
-    let searchHeight: CGFloat = 35
-    
-    var countrySearchController = UISearchController()
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.view.backgroundColor = Specs.color.white
+        setNavBarTitle(view: self, title: "货品管理")
+        setNavBarBackBtn(view: self, title: "", selector: #selector(goSearch))
         
-        
-        textField.delegate = self
-        
-        let centerDefault = NotificationCenter.default
-        
-        centerDefault.addObserver(self, selector: #selector(GoodViewController.keyboardWillShow), name: NSNotification.Name.UIKeyboardDidShow, object: nil)
-        
-        //配置搜索控制器
-        self.countrySearchController = ({
-            let controller = UISearchController(searchResultsController: nil)
-            controller.searchResultsUpdater = self   //两个样例使用不同的代理
-            controller.hidesNavigationBarDuringPresentation = false
-            controller.dimsBackgroundDuringPresentation = false
-            controller.searchBar.searchBarStyle = .minimal
-            controller.searchBar.sizeToFit()
-//            self.tableView.tableHeaderView = controller.searchBar
-            
-            return controller
-        })()
-        self.view.frame = CGRect(x: 50, y: 100, width: 200, height: 30)
-        self.view.backgroundColor = UIColor.gray
-self.view.addSubview(countrySearchController.searchBar)
+        searchBarBtn()
         // Do any additional setup after loading the view.
+    }
+    
+    func searchBarBtn() {
+        let frame = self.view.frame.size
+        let navHeight = self.navigationController?.navigationBar.frame.maxY
+        let buttonView = UIView(frame: CGRect(x: 0, y: navHeight!, width: frame.width, height: 50))
+        buttonView.backgroundColor = UIColor(hex: 0xefeef4)
+        self.view.addSubview(buttonView)
+        
+        let button = UIButton(frame: CGRect(x: 10, y: 10, width: frame.width - 20, height: 30))
+        button.setTitle("搜索商品名称/货号", for: UIControlState())
+        button.titleLabel?.font = UIFont.systemFont(ofSize: 14)
+        button.setTitleColor(UIColor(hex: 0x939395), for: UIControlState())
+        button.backgroundColor = Specs.color.white
+        button.layer.borderWidth = 1;
+        button.layer.borderColor = UIColor(hex: 0xd7d7d7).cgColor
+        button.layer.cornerRadius = Specs.border.radius
+        button.layer.masksToBounds = true
+        button.addTarget(self, action: #selector(goSearch), for: .touchUpInside)
+        buttonView.addSubview(button)
+    }
+    
+    @objc func goSearch() {
+//        _push(view: self, target: SearchViewController())
+        _open(view: self, vcName: "search", withNav: false)
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    @objc func keyboardWillShow(aNotification: NSNotification) {
-        
-        let userinfo: NSDictionary = aNotification.userInfo! as NSDictionary
-        
-        let nsValue = userinfo.object(forKey: UIKeyboardFrameEndUserInfoKey)
-        
-        let keyboardRec = (nsValue as AnyObject).cgRectValue
-        
-        let height = keyboardRec?.size.height
-        
-        self.keyHeight = height!
-        
-        print("self.keyHeight: \(self.keyHeight)")
-        
-        
-        UIView.animate(withDuration: 0.05, animations: {
-            
-            var frame = self.view.frame
-            print(frame.origin.y)
-            frame.origin.y = -self.keyHeight
-            
-            self.view.frame = frame
-            
-        }, completion: nil)
-        
-    }
     
-    
-    
-    //键盘隐藏时恢复
-    
-    func textFieldShouldEndEditing(_ textField: UITextField) -> Bool {
-        
-        UIView.animate(withDuration: 0.5, animations: {
-            
-            var frame = self.view.frame
-            
-            frame.origin.y = 0
-            
-            self.view.frame = frame
-            
-        }, completion: nil)
-        
-        return true
-        
-    }
 
     /*
     // MARK: - Navigation
@@ -110,15 +61,4 @@ self.view.addSubview(countrySearchController.searchBar)
         // Pass the selected object to the new view controller.
     }
     */
-
-}
-extension GoodViewController: UISearchResultsUpdating
-{
-    //实时进行搜索
-    func updateSearchResults(for searchController: UISearchController) {
-//        self.searchArray = self.schoolArray.filter { (school) -> Bool in
-//            return school.contains(searchController.searchBar.text!)
-//        }
-        print("dfdfdfdfdfdfdfd..........")
-    }
 }
