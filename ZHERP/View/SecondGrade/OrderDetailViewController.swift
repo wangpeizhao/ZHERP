@@ -29,6 +29,7 @@ class OrderDetailViewController: UIViewController {
         super.viewDidLoad()
         
         self.view.backgroundColor = Specs.color.white
+        setNavBarLeftBtn(view: self, title: "关闭", selector: #selector(actionClose))
         
         self.OrderPrice.text = order_price!
         self.OrderTitle.text = order_title!
@@ -37,6 +38,13 @@ class OrderDetailViewController: UIViewController {
 //        let selector: Selector = #selector(actionBack)
 //        setNavBarLeftBtn(view: self, title: "Order", selector: selector)
         setNavBarTitle(view: self, title: navTitle!)
+    }
+    
+    @objc func actionClose() {
+        print("close")
+//        _close(view: self)
+        self.navigationController?.popToRootViewController(animated: true)
+//        self.navigationController?.popToViewController(GoodViewController() , animated: true)
     }
     
     @objc func actionBack() {

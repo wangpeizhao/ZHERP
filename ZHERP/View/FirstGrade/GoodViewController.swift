@@ -42,8 +42,8 @@ class GoodViewController: UIViewController {
     }
     
     @objc func goSearch() {
-//        _push(view: self, target: SearchViewController())
-        _open(view: self, vcName: "search", withNav: false)
+        _push(view: self, target: SearchViewController())
+//        _open(view: self, vcName: "search", withNav: false)
     }
 
     override func didReceiveMemoryWarning() {

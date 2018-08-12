@@ -37,11 +37,18 @@ class SearchViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
+        setNavBarTitle(view: self, title: "搜索")
+        setNavBarBackBtn(view: self, title: "搜索", selector: #selector(goback))
+        
 //        self.tableView.tableHeaderView = self.searchBar;
         self.view.addSubview(self.searchBar);
         self.view.addSubview(tableView);
         
         tableView.register(UINib(nibName: "OrderTableViewCell", bundle: nil), forCellReuseIdentifier: resultIdentify)
+    }
+    
+    @objc func goback() {
+        
     }
     
     override func didReceiveMemoryWarning() {
@@ -52,7 +59,8 @@ class SearchViewController: UIViewController {
     //使用懒加载方式来创建UITableView
     lazy var tableView: UITableView = {
 //        let tempTableView = UITableView (frame: self.view.bounds, style: UITableViewStyle.plain)
-        let tempTableView = UITableView (frame: CGRect(x: 0, y: 100, width: self.view.bounds.size.width, height: self.view.bounds.size.height), style: UITableViewStyle.plain)
+        // 100
+        let tempTableView = UITableView (frame: CGRect(x: 0, y: 140, width: self.view.bounds.size.width, height: self.view.bounds.size.height), style: UITableViewStyle.plain)
         tempTableView.delegate = self
         tempTableView.dataSource = self
         tempTableView.tableFooterView = UIView.init()
@@ -62,7 +70,8 @@ class SearchViewController: UIViewController {
     
     //使用懒加载方式来创建UISearchBar
     lazy var searchBar: UISearchBar = {
-        let tempSearchBar = UISearchBar(frame:CGRect(x: 0, y: 44, width: self.view.bounds.size.width, height: 30))
+        // 44
+        let tempSearchBar = UISearchBar(frame:CGRect(x: 0, y: 84, width: self.view.bounds.size.width, height: 30))
         //        tempSearchBar.prompt = "查找图书";
         tempSearchBar.placeholder = "请输入搜索关键字";
         tempSearchBar.showsCancelButton = true;
@@ -178,8 +187,13 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
             orderView.order_price = _data["price"]
             orderView.order_title = _data["title"]
             print("push push push push push push push push push push push push push push push push push push push")
+//            print(self.presentingViewController?.navigationController)
+//            print(self.navigationController)
+//            self.present(orderView, animated: true, completion: nil)
             _push(view: self, target: orderView, rootView: false)
-            self.presentingViewController?.navigationController?.pushViewController(orderView, animated: true)
+//            self.presentingViewController?.navigationController?.pushViewController(OrderDetailViewController(), animated: true)
+//            _dismiss(view: self)
+//            _open(view: self, vc: orderView)
         } else {
 //            isSearch = true
             let keyword: String? = tableArray[indexPath.row] as? String
