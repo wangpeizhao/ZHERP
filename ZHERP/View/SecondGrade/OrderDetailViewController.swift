@@ -43,8 +43,9 @@ class OrderDetailViewController: UIViewController {
     @objc func actionClose() {
         print("close")
 //        _close(view: self)
-        self.navigationController?.popToRootViewController(animated: true)
+//        self.navigationController?.popToRootViewController(animated: true)
 //        self.navigationController?.popToViewController(GoodViewController() , animated: true)
+        _back(view: self, root: true)
     }
     
     @objc func actionBack() {

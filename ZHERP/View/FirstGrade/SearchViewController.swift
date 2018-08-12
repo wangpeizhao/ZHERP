@@ -211,7 +211,8 @@ extension SearchViewController: UISearchBarDelegate {
         isSearch = false
         searchBar.resignFirstResponder()
         tableView.reloadData()
-        _dismiss(view: self)
+//        _dismiss(view: self)
+        _back(view: self, root: true)
     }
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {

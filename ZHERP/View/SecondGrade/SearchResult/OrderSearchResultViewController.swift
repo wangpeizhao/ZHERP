@@ -8,7 +8,7 @@
 
 import UIKit
 
-class OrderSearchResultViewController: UIViewController, UITableViewDataSource ,UITableViewDelegate {
+class OrderSearchResultViewController: UIViewController {
     
     let identify = "orderSearchResultCell"
     var tableView: UITableView?
@@ -21,8 +21,7 @@ class OrderSearchResultViewController: UIViewController, UITableViewDataSource ,
             0: ["imagePath": "bayMax", "suk": "QQ_PPC01", "title": "六神花露水", "price": "17.50"],
             1: ["imagePath": "bayMax", "suk": "QQ_PPC02", "title": "六神花露水", "price": "17.50"]
         ]
-        
-        
+                
         let historyLabel = UILabel(frame: CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: 25))
         historyLabel.text = "搜索结果"
         self.view.addSubview(historyLabel)
@@ -32,8 +31,6 @@ class OrderSearchResultViewController: UIViewController, UITableViewDataSource ,
             make.height.equalTo(25)
         }
 
-        
-        
         // 创建表视图
         self.tableView = UITableView(frame: CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: self.view.frame.size.height), style:.grouped)
         // 去除表格上放多余的空隙
@@ -50,7 +47,26 @@ class OrderSearchResultViewController: UIViewController, UITableViewDataSource ,
         self.tableView!.translatesAutoresizingMaskIntoConstraints = false
         // Do any additional setup after loading the view.
     }
+
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
+    }
     
+
+    /*
+    // MARK: - Navigation
+
+    // In a storyboard-based application, you will often want to do a little preparation before navigation
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        // Get the new view controller using segue.destinationViewController.
+        // Pass the selected object to the new view controller.
+    }
+    */
+
+}
+
+extension OrderSearchResultViewController: UITableViewDataSource ,UITableViewDelegate {
     //在本例中，只有一个分区
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1;
@@ -62,17 +78,17 @@ class OrderSearchResultViewController: UIViewController, UITableViewDataSource ,
     }
     //
     //    //设置分组头的高度
-        func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-            return 50
-        }
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 50
+    }
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         return "搜索结果"
     }
     
-        func tableView(_ tableView: UITableView, titleForFooterInSection section: Int) -> String? {
-            return "开启后，手机不会振动与发出提示音；如果设置为“只在夜间开启”，则只在22:00到08:00间生效"
-        }
+    func tableView(_ tableView: UITableView, titleForFooterInSection section: Int) -> String? {
+        return "开启后，手机不会振动与发出提示音；如果设置为“只在夜间开启”，则只在22:00到08:00间生效"
+    }
     
     //创建各单元显示内容(创建参数indexPath指定的单元）
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath)
@@ -110,24 +126,7 @@ class OrderSearchResultViewController: UIViewController, UITableViewDataSource ,
         orderView.order_price = _data["price"]
         orderView.order_title = _data["title"]
         
-//        _push(view: self, target: orderView, rootView: true)
+        //        _push(view: self, target: orderView, rootView: true)
         self.presentingViewController?.navigationController?.pushViewController(orderView, animated: true)
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }
