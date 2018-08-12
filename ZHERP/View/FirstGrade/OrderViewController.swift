@@ -11,7 +11,7 @@ import BTNavigationDropdownMenu
 import SnapKit
 import PagingMenuController
 
-class OrderViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UIGestureRecognizerDelegate {
+class OrderViewController: UIViewController, UIGestureRecognizerDelegate {
     
     var searchBarView: UIView!
     var pageMenuView: UIView!
@@ -217,6 +217,7 @@ class OrderViewController: UIViewController, UITableViewDelegate, UITableViewDat
         
         self.searchBarView = UIView()
         self.searchBarView.layer.backgroundColor = Specs.color.white.cgColor
+        self.searchBarView.backgroundColor = Specs.color.white
         self.view.addSubview(self.searchBarView)
         self.searchBarView.snp.makeConstraints { (make) -> Void in
             make.left.right.equalTo(0)
@@ -343,79 +344,6 @@ class OrderViewController: UIViewController, UITableViewDelegate, UITableViewDat
     }
     
     
-    //在本例中，只有一个分区
-    func numberOfSections(in tableView: UITableView) -> Int {
-        return 1;
-    }
-    
-    //返回表格行数（也就是返回控件数）
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.items.count
-    }
-    
-    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return "搜索历史"
-    }
-    
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 35
-    }
-    
-    //设置分组头的高度
-    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 40
-    }
-    
-    func tableView(_ tableView: UITableView, titleForFooterInSection section: Int) -> String? {
-        return "长按可删除搜索历史记录"
-    }
-    
-    //设置分组尾的高度
-    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-        return 30
-    }
-    
-    //将分组尾设置为一个空的View
-//    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
-//        return UIView()
-//    }
-    
-    //创建各单元显示内容(创建参数indexPath指定的单元）
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath)
-        -> UITableViewCell {
-            //为了提供表格显示性能，已创建完成的单元需重复使用
-            let identify:String = "SwiftCell"
-            //同一形式的单元格重复使用，在声明时已注册
-            let cell = tableView.dequeueReusableCell(withIdentifier: identify,
-                                                     for: indexPath)
-//            if cell == nil {
-//                cell = UITableViewCell(style: UITableViewCellStyle.default, reuseIdentifier: identify)
-//            }
-            cell.textLabel?.text = self.items[indexPath.row]
-            cell.textLabel?.textColor = Specs.color.black
-            cell.textLabel?.font = UIFont(name: "Thonburi", size: Specs.fontSize.regular)
-//            cell.accessoryType = .checkmark
-            return cell
-    }
-    
-    // UITableViewDelegate 方法，处理列表项的选中事件
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        //判断该行原先是否选中
-        if let index = selectedIndexs.index(of: indexPath.row){
-            selectedIndexs.remove(at: index) //原来选中的取消选中
-        }else{
-            selectedIndexs.removeAll() // 单选
-            selectedIndexs.append(indexPath.row) //原来没选中的就选中
-        }
-        
-        //刷新该行
-        //        self.tableView?.reloadRows(at: [indexPath], with: .automatic)
-        
-        self.tableView?.reloadData()
-        
-        let keyword: String? = self.items[indexPath.row]
-        self.searchController.searchBar.text = keyword
-    }
     //删除按钮点击
     @IBAction func btnClick(_ sender: AnyObject) {
         //获取选中项索引
@@ -452,6 +380,83 @@ extension OrderViewController {
         pagingMenus()
     }
 }
+
+extension OrderViewController: UITableViewDelegate, UITableViewDataSource {
+    //在本例中，只有一个分区
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 1;
+    }
+    
+    //返回表格行数（也就是返回控件数）
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return self.items.count
+    }
+    
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return "搜索历史"
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 35
+    }
+    
+    //设置分组头的高度
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 40
+    }
+    
+    func tableView(_ tableView: UITableView, titleForFooterInSection section: Int) -> String? {
+        return "长按可删除搜索历史记录"
+    }
+    
+    //设置分组尾的高度
+    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        return 30
+    }
+    
+    //将分组尾设置为一个空的View
+    //    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+    //        return UIView()
+    //    }
+    
+    //创建各单元显示内容(创建参数indexPath指定的单元）
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath)
+        -> UITableViewCell {
+            //为了提供表格显示性能，已创建完成的单元需重复使用
+            let identify:String = "SwiftCell"
+            //同一形式的单元格重复使用，在声明时已注册
+            let cell = tableView.dequeueReusableCell(withIdentifier: identify,
+                                                     for: indexPath)
+            //            if cell == nil {
+            //                cell = UITableViewCell(style: UITableViewCellStyle.default, reuseIdentifier: identify)
+            //            }
+            cell.textLabel?.text = self.items[indexPath.row]
+            cell.textLabel?.textColor = Specs.color.black
+            cell.textLabel?.font = UIFont(name: "Thonburi", size: Specs.fontSize.regular)
+            //            cell.accessoryType = .checkmark
+            return cell
+    }
+    
+    // UITableViewDelegate 方法，处理列表项的选中事件
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        //判断该行原先是否选中
+        if let index = selectedIndexs.index(of: indexPath.row){
+            selectedIndexs.remove(at: index) //原来选中的取消选中
+        }else{
+            selectedIndexs.removeAll() // 单选
+            selectedIndexs.append(indexPath.row) //原来没选中的就选中
+        }
+        
+        //刷新该行
+        //        self.tableView?.reloadRows(at: [indexPath], with: .automatic)
+        
+        self.tableView?.reloadData()
+        
+        let keyword: String? = self.items[indexPath.row]
+        self.searchController.searchBar.text = keyword
+    }
+}
+
 extension OrderViewController: UISearchBarDelegate {
     // 点击取消按钮
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {

@@ -63,6 +63,9 @@ extension UISearchController {
         controller.searchBar.barTintColor = Specs.color.white
         //搜索栏取消按钮文字
         controller.searchBar.setValue("取消", forKey:"_cancelButtonText")
+//        let uiButton = controller.searchBar.value(forKey: "cancelButton") as! UIButton
+//        uiButton.setTitle("取消", for: .normal)
+//        uiButton.setTitleColor(UIColor.orange,for: .normal)
         controller.searchBar.frame = CGRect(x: 0, y: 0, width: controller.searchBar.frame.size.width, height: 44)
     
         let searchField = controller.searchBar.value(forKey: "_searchField") as! UITextField;
