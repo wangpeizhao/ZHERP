@@ -22,7 +22,7 @@ class OrderViewController: UIViewController, UIGestureRecognizerDelegate {
     // Search
     var searchController = UISearchController()
     
-    var contentLabel: UILabel!
+//    var contentLabel: UILabel!
     
     let currentVersion = getIOSVersion()
     
@@ -35,13 +35,9 @@ class OrderViewController: UIViewController, UIGestureRecognizerDelegate {
     //搜索框图片加上图片和字体之间的距离
     var searchOffset: CGFloat = 0
     
-    var searchHeight: CGFloat = 35
+    var searchHeight: CGFloat = 45
 
     var navHeight: CGFloat!
-    
-    var keyboardHeight: CGFloat = 0
-    
-    var viewHeight: CGFloat!
     
     var searchProv: UIView!
     var searchHistoryView: UIView!
@@ -204,42 +200,52 @@ class OrderViewController: UIViewController, UIGestureRecognizerDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.view.backgroundColor = Specs.color.grayBg
+        self.view.backgroundColor = Specs.color.white
         
         
         let selector: Selector = #selector(actionGo)
         setNavBarBackBtn(view: self, title: "订单", selector: selector)
-        
-        viewHeight = self.view.frame.height
         //注册监听
         
         self.navHeight = self.navigationController?.navigationBar.frame.maxY
         
-        self.searchBarView = UIView()
-        self.searchBarView.layer.backgroundColor = Specs.color.white.cgColor
-        self.searchBarView.backgroundColor = Specs.color.white
+//        self.searchBarView = UIView()
+//        self.searchBarView.layer.backgroundColor = Specs.color.white.cgColor
+//        self.searchBarView.backgroundColor = Specs.color.white
+//        self.view.addSubview(self.searchBarView)
+//        self.searchBarView.snp.makeConstraints { (make) -> Void in
+//            make.left.right.equalTo(0)
+//            make.top.equalTo(self.navHeight)
+//            make.height.equalTo(searchHeight)
+//        }
+        self.searchBarView = UIView(frame: CGRect(x: 0, y: self.navHeight, width: self.view.frame.size.width, height: searchHeight))
+        self.searchBarView.backgroundColor = UIColor.blue
         self.view.addSubview(self.searchBarView)
-        self.searchBarView.snp.makeConstraints { (make) -> Void in
-            make.left.right.equalTo(0)
-            make.top.equalTo(self.navHeight)
-            make.height.equalTo(searchHeight)
-        }
         
-        self.pageMenuView = UIView()
-        self.pageMenuView.layer.backgroundColor = Specs.color.white.cgColor
-        self.view.addSubview(self.pageMenuView)
-        self.pageMenuView.snp.makeConstraints { (make) -> Void in
-            make.left.right.equalTo(0)
-            make.top.equalTo(self.searchBarView.snp.bottom).offset(8)
-            make.bottom.equalTo(self.view.snp.bottom).offset(50)
-        }
+//        self.pageMenuView = UIView()
+//        self.pageMenuView.layer.backgroundColor = Specs.color.white.cgColor
+//        self.view.addSubview(self.pageMenuView)
+//        self.pageMenuView.snp.makeConstraints { (make) -> Void in
+//            make.left.right.equalTo(0)
+//            make.top.equalTo(self.searchBarView.snp.bottom).offset(8)
+//            make.bottom.equalTo(self.view.snp.bottom).offset(50)
+//        }
+        self.self.pageMenuView = UIView(frame: CGRect(x: 0, y: self.navHeight + searchHeight, width: self.view.frame.size.width, height: self.view.frame.size.height))
+        self.pageMenuView.backgroundColor = UIColor.red
+        self.view.addSubview(self.self.pageMenuView)
         
-        self.contentLabel = UILabel(frame: CGRect(x: 20, y: 20, width: 200, height: 50))
-        self.view.addSubview(self.contentLabel)
-        self.contentLabel.snp.makeConstraints { (make) -> Void in
-            make.center.equalTo(self.view)
-        }
+//        self.contentLabel = UILabel(frame: CGRect(x: 20, y: 20, width: 200, height: 50))
+//        self.view.addSubview(self.contentLabel)
+//        self.contentLabel.snp.makeConstraints { (make) -> Void in
+//            make.center.equalTo(self.view)
+//        }
+        self.extendedLayoutIncludesOpaqueBars = true
+//        self.edgesForExtendedLayout = UIRectEdgeNone
+        self.navigationController?.navigationBar.isTranslucent = false
+        self.tabBarController?.tabBar.isTranslucent = false
         
+//        self.setAutomaticallyAdjustsScrollViewInsets = true
+//        self.setExtendedLayoutIncludesOpaqueBars = true
         self.setUp()
     }
     
@@ -280,7 +286,7 @@ class OrderViewController: UIViewController, UIGestureRecognizerDelegate {
         //下拉菜单项选中事件响应
         menuView.didSelectItemAtIndexHandler = {(indexPath: Int) -> Void in
             print("当前点击项的索引: \(indexPath)")
-            self.contentLabel.text = items[indexPath]
+//            self.contentLabel.text = items[indexPath]
         }
         
         //将下拉菜单设置为titleView
@@ -464,12 +470,12 @@ extension OrderViewController: UISearchBarDelegate {
         //重做约束
         self.searchBarView.snp.remakeConstraints { (make) -> Void in
             make.left.right.equalTo(0)
-            make.top.equalTo(self.navHeight - 10)
+            make.top.equalTo(self.navHeight - 5)
             make.height.equalTo(searchHeight + 1)
         }
         if self.view.subviews.count > 0 {
             let chilrenviews = self.view.subviews
-            print(chilrenviews)
+//            print(chilrenviews)
             var index = 0
             for chilren in chilrenviews {
                 if (index > 1) {
@@ -491,6 +497,7 @@ extension OrderViewController: UISearchBarDelegate {
             self.searchController.searchBar.setPositionAdjustment(UIOffset.zero, for: UISearchBarIcon.search)
         }
         
+        UIApplication.shared.statusBarStyle = UIStatusBarStyle.lightContent;
         self.searchBarView.backgroundColor = Specs.color.main
         self.searchBarView.snp.remakeConstraints { (make) -> Void in
             make.left.right.equalTo(0)
@@ -505,8 +512,8 @@ extension OrderViewController: UISearchBarDelegate {
         self.view.addSubview(self.searchProv)
         self.searchProv.snp.makeConstraints { (make) -> Void in
             make.left.right.equalTo(0)
-            make.top.equalTo(self.searchBarView.snp.bottom).offset(-30)
-            make.height.equalTo(self.view.frame.size.height - self.navHeight + 20)
+            make.top.equalTo(self.searchBarView.snp.top)
+            make.height.equalTo(self.view.frame.size.height)
         }
         searchBarHistory()
         
@@ -535,7 +542,7 @@ extension OrderViewController: UISearchBarDelegate {
         self.tableView?.allowsMultipleSelectionDuringEditing = true
         // Set layout for tableView.
         self.tableView?.translatesAutoresizingMaskIntoConstraints = false
-        
+//        self.tableView?.tableHeaderView = self.searchController.searchBar
         //绑定对长按的响应
         let longPress = UILongPressGestureRecognizer(target:self,action:#selector(OrderViewController.tableviewCellLongPressed(gestureRecognizer:)))
         //代理
