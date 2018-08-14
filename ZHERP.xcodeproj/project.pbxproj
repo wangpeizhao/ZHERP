@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		2C7FAC6C2100547A004AEC10 /* Cookie.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C7FAC6B2100547A004AEC10 /* Cookie.swift */; };
+		2CBF4902212294A300199C1D /* CameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CBF4901212294A200199C1D /* CameraViewController.swift */; };
+		2CBF49042122A3B800199C1D /* QRCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CBF49032122A3B800199C1D /* QRCode.swift */; };
 		2CC1319321114279004C8097 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CC1319221114279004C8097 /* SearchViewController.swift */; };
 		2CC9036B210855B60083D70C /* SystemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CC9036A210855B60083D70C /* SystemViewController.swift */; };
 		2CE96F1B211C0D0700B4CE5A /* OrderSearchResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CE96F1A211C0D0700B4CE5A /* OrderSearchResultViewController.swift */; };
@@ -125,6 +127,8 @@
 		0018AC5B628E580B5DB4DE45 /* Pods_ZHERPTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ZHERPTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		0953297FAA824E19B8F904F9 /* Pods-ZHERPTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZHERPTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ZHERPTests/Pods-ZHERPTests.debug.xcconfig"; sourceTree = "<group>"; };
 		2C7FAC6B2100547A004AEC10 /* Cookie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cookie.swift; sourceTree = "<group>"; };
+		2CBF4901212294A200199C1D /* CameraViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraViewController.swift; sourceTree = "<group>"; };
+		2CBF49032122A3B800199C1D /* QRCode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRCode.swift; sourceTree = "<group>"; };
 		2CC1319221114279004C8097 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		2CC9036A210855B60083D70C /* SystemViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SystemViewController.swift; sourceTree = "<group>"; };
 		2CE96F1A211C0D0700B4CE5A /* OrderSearchResultViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderSearchResultViewController.swift; sourceTree = "<group>"; };
@@ -555,6 +559,7 @@
 				9E523E88210D449300CF921F /* OrderViewController.swift */,
 				9E523E8D210D537B00CF921F /* GoodViewController.swift */,
 				2CC1319221114279004C8097 /* SearchViewController.swift */,
+				2CBF4901212294A200199C1D /* CameraViewController.swift */,
 			);
 			path = FirstGrade;
 			sourceTree = "<group>";
@@ -590,6 +595,7 @@
 				9E88ED2C20FB8C7900DF091F /* Specs.swift */,
 				9E88ED2E20FBA90C00DF091F /* HelperCommon.swift */,
 				2C7FAC6B2100547A004AEC10 /* Cookie.swift */,
+				2CBF49032122A3B800199C1D /* QRCode.swift */,
 			);
 			path = Helper;
 			sourceTree = "<group>";
@@ -905,6 +911,7 @@
 				9E88ED3720FCE9C400DF091F /* MemberViewController.swift in Sources */,
 				9E523E322104DA1000CF921F /* GifImageOperation.swift in Sources */,
 				9E523E9A21127EC800CF921F /* UIView-Extensions.swift in Sources */,
+				2CBF49042122A3B800199C1D /* QRCode.swift in Sources */,
 				9E523E672108C5D400CF921F /* NotifyTableViewCell.swift in Sources */,
 				9E523E8E210D537B00CF921F /* GoodViewController.swift in Sources */,
 				9E523EA1211B42A800CF921F /* bridge.m in Sources */,
@@ -920,6 +927,7 @@
 				2C7FAC6C2100547A004AEC10 /* Cookie.swift in Sources */,
 				9E29031B20F7B99800F11C63 /* ViewController.swift in Sources */,
 				9E523E79210C13D800CF921F /* LoginingViewController.swift in Sources */,
+				2CBF4902212294A300199C1D /* CameraViewController.swift in Sources */,
 				2CE96F1B211C0D0700B4CE5A /* OrderSearchResultViewController.swift in Sources */,
 				9E523DF4210460B600CF921F /* UIImage+GIF.swift in Sources */,
 				9E523DE020FEB4F100CF921F /* ProtocolPageViewController.swift in Sources */,

@@ -35,6 +35,7 @@ class SearchViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.view.backgroundColor = Specs.color.white
         // Do any additional setup after loading the view, typically from a nib.
         
         setNavBarTitle(view: self, title: "搜索")

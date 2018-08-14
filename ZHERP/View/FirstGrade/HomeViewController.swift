@@ -41,6 +41,20 @@ class HomeViewController: BaseViewController {
     @IBAction func PickingBtnClicked(_ sender: Any) {
     }
     @IBAction func ScanSendGoodBtnClicked(_ sender: Any) {
+        let qrcodeImg = UIImage(named: "codeBg.png")
+        let ciImage: CIImage = CIImage(image: qrcodeImg!)!
+        
+        let context = CIContext(options: nil)
+        let detector = CIDetector(ofType: CIDetectorTypeQRCode, context: context, options: [CIDetectorAccuracy: CIDetectorAccuracyHigh])
+        
+        let features = detector?.features(in: ciImage)
+        print("扫描到二维码个数：\(features?.count ?? 0)")
+        //遍历所有的二维码，并框出
+        for feature in features as! [CIQRCodeFeature] {
+            print(feature.messageString ?? "")
+        }
+        
+        
     }
     @IBAction func AllocatingBtnClicked(_ sender: Any) {
     }
@@ -55,6 +69,8 @@ class HomeViewController: BaseViewController {
     var withNav: Bool!
     
     @IBOutlet weak var homeTxt: UIButton!
+    
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()

@@ -105,6 +105,21 @@ class EditAvatarViewController: UIViewController, UIImagePickerControllerDelegat
         self.imageView.image = image
 //        let imageUrl: NSURL = info[UIImagePickerControllerImageURL] as! NSURL
 //        print(imageUrl)
+        
+        //二维码读取
+        let ciImage:CIImage=CIImage(image:image)!
+        let context = CIContext(options: nil)
+        let detector = CIDetector(ofType: CIDetectorTypeQRCode, context: context,
+                                  options: [CIDetectorAccuracy:CIDetectorAccuracyHigh])
+        if let features = detector?.features(in: ciImage) {
+            print("扫描到二维码个数：\(features.count)")
+            //遍历所有的二维码，并框出
+            for feature in features as! [CIQRCodeFeature] {
+                print(feature.messageString ?? "")
+            }
+        }
+        
+        
         picker.dismiss(animated: true, completion: nil)
     }
     

@@ -7,22 +7,30 @@
 //
 
 import UIKit
+import AVFoundation
 
 class StatisticViewController: UIViewController {
     
-    lazy var searchBar:UISearchBar = UISearchBar(frame: CGRect(x: 0, y: 0, width: 200, height: 20))
+//    lazy var searchBar:UISearchBar = UISearchBar(frame: CGRect(x: 0, y: 0, width: 200, height: 20))
+    
+    @IBAction func openCamera(_ sender: Any) {
+        _push(view: self, target: CameraViewController())
+        
+        self.hidesBottomBarWhenPushed = true
+        self.navigationController?.pushViewController(CameraViewController(), animated: false)
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         
-        searchBar.placeholder = "搜索"
-        let leftNavBarButton = UIBarButtonItem(customView:searchBar)
-        self.navigationItem.leftBarButtonItem = leftNavBarButton
+//        searchBar.placeholder = "搜索"
+//        let leftNavBarButton = UIBarButtonItem(customView:searchBar)
+//        self.navigationItem.leftBarButtonItem = leftNavBarButton
         
         // Do any additional setup after loading the view.
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
