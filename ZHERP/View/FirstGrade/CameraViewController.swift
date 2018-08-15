@@ -9,7 +9,7 @@
 import UIKit
 import AVFoundation
 
-class CameraViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate, UIAlertViewDelegate {
+class CameraViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate, UIAlertViewDelegate,  UIImagePickerControllerDelegate,UINavigationControllerDelegate {
 
     
     var scanRectView:UIView!
@@ -24,9 +24,76 @@ class CameraViewController: UIViewController, AVCaptureMetadataOutputObjectsDele
         
         self.view.backgroundColor = Specs.color.white
         
+        setNavBarTitle(view: self, title: "二维码/条码")
+        setNavBarRightBtn(view: self, title: "相册", selector: #selector(getCamera))
+        
+        
 //        https://www.jianshu.com/p/2dcb6dc75cd8
+        
         fromCamera(QRCode: false)
+        
         // Do any additional setup after loading the view.
+    }
+    
+    @objc func getCamera() {
+        cameraEvent()
+    }
+    
+    func cameraEvent(){
+        print("cameraEvent")
+        //        let pickerCamera = UIImagePickerController()
+        //        pickerCamera.delegate = self
+        //        self.present(pickerCamera, animated: true, completion: nil)
+        //判断设置是否支持图片库
+        if UIImagePickerController.isSourceTypeAvailable(.photoLibrary){
+            //初始化图片控制器
+            let picker = UIImagePickerController()
+            //设置代理
+            picker.delegate = self
+            //指定图片控制器类型
+            picker.sourceType = UIImagePickerControllerSourceType.photoLibrary
+            //设置是否允许编辑
+//            picker.allowsEditing = true
+            //弹出控制器，显示界面
+            self.present(picker, animated: true, completion: {
+                () -> Void in
+            })
+        }else{
+            print("读取相册错误")
+        }
+    }
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+        print("imagePickerController...")
+        let image: UIImage = info[UIImagePickerControllerOriginalImage] as! UIImage
+//        self.imageView.image = image
+        //        let imageUrl: NSURL = info[UIImagePickerControllerImageURL] as! NSURL
+        //        print(imageUrl)
+        
+        //二维码读取
+        let ciImage:CIImage=CIImage(image:image)!
+        let context = CIContext(options: nil)
+        let detector = CIDetector(ofType: CIDetectorTypeQRCode, context: context, options: [CIDetectorAccuracy:CIDetectorAccuracyHigh])
+        if let features = detector?.features(in: ciImage) {
+            print("扫描到二维码个数：\(features.count)")
+            //遍历所有的二维码，并框出
+            for feature in features as! [CIQRCodeFeature] {
+                print(feature.messageString ?? "")
+//                _alert(view: self, message: feature.messageString!)
+                
+                
+                let alertController = UIAlertController(title: "二维码", message: feature.messageString!,preferredStyle: .alert)
+                let okAction = UIAlertAction(title: "确定", style: .default, handler: {
+                    action in
+                    //继续扫描
+//                    self.session.startRunning()
+                })
+                alertController.addAction(okAction)
+                let cc = CameraViewController()
+                cc.present(alertController, animated: true, completion: nil)
+            }
+        }
+        picker.dismiss(animated: true, completion: nil)
     }
 
     func fromCamera(QRCode: Bool) {
@@ -73,7 +140,7 @@ class CameraViewController: UIViewController, AVCaptureMetadataOutputObjectsDele
             
             //计算中间可探测区域
             let windowSize = UIScreen.main.bounds.size
-            let scanSize = CGSize(width:windowSize.width*2/4, height:windowSize.width*2/4)
+            let scanSize = CGSize(width:windowSize.width*3/4, height:windowSize.width*3/4)
             var scanRect = CGRect(x:(windowSize.width-scanSize.width)/2,
                                   y:(windowSize.height-scanSize.height)/2,
                                   width:scanSize.width, height:scanSize.height)
@@ -93,11 +160,10 @@ class CameraViewController: UIViewController, AVCaptureMetadataOutputObjectsDele
             //添加中间的探测区域绿框
             self.scanRectView = UIView();
             self.view.addSubview(self.scanRectView)
-            self.scanRectView.frame = CGRect(x:0, y:0, width:scanSize.width,
-                                             height:scanSize.height);
-            self.scanRectView.center = CGPoint( x:UIScreen.main.bounds.midX,
-                                                y:UIScreen.main.bounds.midY)
+            self.scanRectView.frame = CGRect(x:0, y:0, width:scanSize.width, height:scanSize.height);
+            self.scanRectView.center = CGPoint( x:UIScreen.main.bounds.midX, y:UIScreen.main.bounds.midY)
             self.scanRectView.layer.borderColor = UIColor.green.cgColor
+//            self.scanRectView.layer.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.5) as! CGColor
             self.scanRectView.layer.borderWidth = 1;
             
             //开始捕获

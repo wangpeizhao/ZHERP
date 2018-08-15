@@ -14,21 +14,27 @@ class StatisticViewController: UIViewController {
 //    lazy var searchBar:UISearchBar = UISearchBar(frame: CGRect(x: 0, y: 0, width: 200, height: 20))
     
     @IBAction func openCamera(_ sender: Any) {
-        _push(view: self, target: CameraViewController())
+//        _push(view: self, target: CameraViewController())
         
-        self.hidesBottomBarWhenPushed = true
+//        self.hidesBottomBarWhenPushed = true
         self.navigationController?.pushViewController(CameraViewController(), animated: false)
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        setNavBarTitle(view: self, title: "分析统计")
+        setNavBarBackBtn(view: self, title: "分析统计", selector: #selector(actionBack))
         
 //        searchBar.placeholder = "搜索"
 //        let leftNavBarButton = UIBarButtonItem(customView:searchBar)
 //        self.navigationItem.leftBarButtonItem = leftNavBarButton
         
         // Do any additional setup after loading the view.
+    }
+    
+    @objc func actionBack() {
+        
     }
     
     override func didReceiveMemoryWarning() {
