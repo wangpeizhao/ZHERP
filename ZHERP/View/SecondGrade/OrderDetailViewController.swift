@@ -23,6 +23,7 @@ class OrderDetailViewController: UIViewController {
     var order_title: String?
     var order_price: String?
     var order_image: String?
+    var actionValue: String?
     
     // MARK:- 生命周期
     override func viewDidLoad() {
@@ -30,9 +31,11 @@ class OrderDetailViewController: UIViewController {
         
         self.view.backgroundColor = Specs.color.white
         setNavBarLeftBtn(view: self, title: "关闭", selector: #selector(actionClose))
-        
+        if (actionValue?.isEmpty)! {
+            actionValue = "1234567890"
+        }
         self.OrderPrice.text = order_price!
-        self.OrderTitle.text = order_title!
+        self.OrderTitle.text = order_title! + "id = " + actionValue!
         self.orderImage.image = UIImage(named: order_image!)
         
 //        let selector: Selector = #selector(actionBack)

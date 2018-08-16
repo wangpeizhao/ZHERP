@@ -125,6 +125,7 @@ extension OrderSearchResultViewController: UITableViewDataSource ,UITableViewDel
         orderView.order_image = _data["imagePath"]
         orderView.order_price = _data["price"]
         orderView.order_title = _data["title"]
+        orderView.actionValue = ""
         
         //        _push(view: self, target: orderView, rootView: true)
         self.presentingViewController?.navigationController?.pushViewController(orderView, animated: true)

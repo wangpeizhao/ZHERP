@@ -187,6 +187,7 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
             orderView.order_image = _data["imagePath"]
             orderView.order_price = _data["price"]
             orderView.order_title = _data["title"]
+            orderView.actionValue = ""
             print("push push push push push push push push push push push push push push push push push push push")
 //            print(self.presentingViewController?.navigationController)
 //            print(self.navigationController)

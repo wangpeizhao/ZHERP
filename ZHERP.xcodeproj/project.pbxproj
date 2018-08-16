@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2C5AC3ED2125695F002FFC80 /* ZHScannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C5AC3EC2125695F002FFC80 /* ZHScannerView.swift */; };
+		2C5AC3EF21256AE3002FFC80 /* ZHQRCode.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 2C5AC3EE21256AE3002FFC80 /* ZHQRCode.bundle */; };
 		2C7FAC6C2100547A004AEC10 /* Cookie.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C7FAC6B2100547A004AEC10 /* Cookie.swift */; };
 		2CBF4902212294A300199C1D /* CameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CBF4901212294A200199C1D /* CameraViewController.swift */; };
 		2CBF49042122A3B800199C1D /* QRCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CBF49032122A3B800199C1D /* QRCode.swift */; };
@@ -129,6 +131,8 @@
 /* Begin PBXFileReference section */
 		0018AC5B628E580B5DB4DE45 /* Pods_ZHERPTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ZHERPTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		0953297FAA824E19B8F904F9 /* Pods-ZHERPTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZHERPTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ZHERPTests/Pods-ZHERPTests.debug.xcconfig"; sourceTree = "<group>"; };
+		2C5AC3EC2125695F002FFC80 /* ZHScannerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ZHScannerView.swift; path = ZHERP/Helper/ZHScannerView.swift; sourceTree = SOURCE_ROOT; };
+		2C5AC3EE21256AE3002FFC80 /* ZHQRCode.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = ZHQRCode.bundle; sourceTree = "<group>"; };
 		2C7FAC6B2100547A004AEC10 /* Cookie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cookie.swift; sourceTree = "<group>"; };
 		2CBF4901212294A200199C1D /* CameraViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraViewController.swift; sourceTree = "<group>"; };
 		2CBF49032122A3B800199C1D /* QRCode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRCode.swift; sourceTree = "<group>"; };
@@ -646,6 +650,7 @@
 				9EE26B4B21247C5B00619D98 /* View */,
 				9EE26B4A21247C5100619D98 /* Config */,
 				9EE26B5021248C2000619D98 /* ZHQRCodeViewController.swift */,
+				2C5AC3EE21256AE3002FFC80 /* ZHQRCode.bundle */,
 			);
 			path = ZHQRCode;
 			sourceTree = "<group>";
@@ -662,6 +667,7 @@
 		9EE26B4B21247C5B00619D98 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				2C5AC3EC2125695F002FFC80 /* ZHScannerView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -788,6 +794,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2C5AC3EF21256AE3002FFC80 /* ZHQRCode.bundle in Resources */,
 				9E523E2F2104D7CE00CF921F /* adImage4.gif in Resources */,
 				9E523E2E2104D7CE00CF921F /* guideImage3.jpg in Resources */,
 				9E523DFB2104615700CF921F /* 1.mp4 in Resources */,
@@ -1004,6 +1011,7 @@
 				9E88ED3B20FCEC5100DF091F /* MemberMenus.swift in Sources */,
 				9E523E71210A241500CF921F /* ImageRightTableViewCell.swift in Sources */,
 				9EE26B4F21247C8C00619D98 /* ZHQRcodeManager.swift in Sources */,
+				2C5AC3ED2125695F002FFC80 /* ZHScannerView.swift in Sources */,
 				9E88ED1620FB3BA500DF091F /* PostProvider.swift in Sources */,
 				9E523E6A2108D54600CF921F /* NoDisturbingViewController.swift in Sources */,
 				9E88ED1C20FB462600DF091F /* OrderTableViewController.swift in Sources */,

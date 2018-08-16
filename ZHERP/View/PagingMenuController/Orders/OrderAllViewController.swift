@@ -176,6 +176,7 @@ class OrderAllViewController: UIViewController, UITableViewDataSource ,UITableVi
         orderView.order_image = _data["imagePath"]
         orderView.order_price = _data["price"]
         orderView.order_title = _data["title"]
+        orderView.actionValue = ""
         
         let selector: Selector = #selector(actionBack)
         setNavBarBackBtn(view: self, title: "订单", selector: selector)
