@@ -238,18 +238,13 @@ class OrderViewController: UIViewController, UIGestureRecognizerDelegate {
 //        self.contentLabel.snp.makeConstraints { (make) -> Void in
 //            make.center.equalTo(self.view)
 //        }
-//        self.extendedLayoutIncludesOpaqueBars = true
-//        self.edgesForExtendedLayout = UIRectEdgeNone
-        self.navigationController?.navigationBar.isTranslucent = false
-//        self.tabBarController?.tabBar.isTranslucent = false
-        
-        self.automaticallyAdjustsScrollViewInsets = true
-//        self.extendedLayoutIncludesOpaqueBars = false
         self.extendedLayoutIncludesOpaqueBars = true
 //        self.edgesForExtendedLayout = UIRectEdgeNone
-//        self.edgesForExtendedLayout = UIRectEdge.all
+        self.navigationController?.navigationBar.isTranslucent = false
+        self.tabBarController?.tabBar.isTranslucent = false
         
-        
+//        self.setAutomaticallyAdjustsScrollViewInsets = true
+//        self.setExtendedLayoutIncludesOpaqueBars = true
         self.setUp()
     }
     
@@ -471,13 +466,12 @@ extension OrderViewController: UISearchBarDelegate {
     // 点击取消按钮
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         self.searchController.searchBar.setPositionAdjustment(UIOffsetMake(searchOffset , 0), for: UISearchBarIcon.search)
-        self.searchController.searchBar.resignFirstResponder()
         //重做约束
-//        self.searchBarView.snp.remakeConstraints { (make) -> Void in
-//            make.left.right.equalTo(0)
-//            make.top.equalTo(self.navHeight - 8)
-//            make.height.equalTo(searchHeight + 1)
-//        }
+        self.searchBarView.snp.remakeConstraints { (make) -> Void in
+            make.left.right.equalTo(0)
+            make.top.equalTo(self.navHeight - 8)
+            make.height.equalTo(searchHeight + 1)
+        }
         if self.view.subviews.count > 0 {
             let chilrenviews = self.view.subviews
 //            print(chilrenviews)
@@ -502,24 +496,24 @@ extension OrderViewController: UISearchBarDelegate {
             self.searchController.searchBar.setPositionAdjustment(UIOffset.zero, for: UISearchBarIcon.search)
         }
         
-//        UIApplication.shared.statusBarStyle = UIStatusBarStyle.lightContent;
+        UIApplication.shared.statusBarStyle = UIStatusBarStyle.lightContent;
 //        self.searchBarView.backgroundColor = Specs.color.main
-//        self.searchBarView.snp.remakeConstraints { (make) -> Void in
-//            make.left.right.equalTo(0)
-//            make.top.equalTo(self.navHeight)
-//            make.height.equalTo(searchHeight)
-//        }
-        self.searchProv = UIView(frame: CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: self.view.frame.size.height))
+        self.searchBarView.snp.remakeConstraints { (make) -> Void in
+            make.left.right.equalTo(0)
+            make.top.equalTo(self.navHeight)
+            make.height.equalTo(searchHeight)
+        }
+        self.searchProv = UIView()
 //        self.searchProv.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.5)
         // Specs.color.grayBg.cgColor.alpha(0.8)
 //        self.searchProv.backgroundColor = Specs.color.white
         self.searchProv.tag = 100
         self.view.addSubview(self.searchProv)
-//        self.searchProv.snp.makeConstraints { (make) -> Void in
-//            make.left.right.equalTo(0)
-//            make.top.equalTo(self.searchBarView.snp.top)
-//            make.height.equalTo(self.view.frame.size.height)
-//        }
+        self.searchProv.snp.makeConstraints { (make) -> Void in
+            make.left.right.equalTo(0)
+            make.top.equalTo(self.searchBarView.snp.top)
+            make.height.equalTo(self.view.frame.size.height)
+        }
         searchBarHistory()
         
         return true
