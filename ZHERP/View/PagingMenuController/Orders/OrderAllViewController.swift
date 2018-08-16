@@ -33,7 +33,7 @@ class OrderAllViewController: UIViewController, UITableViewDataSource ,UITableVi
         // 创建表视图
         self.tableView = UITableView(frame:self.view.frame, style:.grouped)
         // 去除表格上放多余的空隙
-        self.tableView!.contentInset = UIEdgeInsetsMake(-10, 0, 0, 0)
+        self.tableView!.contentInset = UIEdgeInsetsMake(0, 0, 0, 0)
         self.tableView!.delegate = self
         self.tableView!.dataSource = self
         self.tableView!.backgroundColor = Specs.color.white
@@ -49,6 +49,9 @@ class OrderAllViewController: UIViewController, UITableViewDataSource ,UITableVi
         
         //创建一个重用的单元格
         //        self.tableView!.register(UITableViewCell.self, forCellReuseIdentifier: identify)
+        self.navigationController?.navigationBar.isTranslucent = false
+        self.automaticallyAdjustsScrollViewInsets = false
+        self.tableView?.tableHeaderView = UIView.init(frame: CGRect(x: 0, y: 0, width: 0, height: 0.1))
         self.tableView?.register(UINib(nibName: "OrderTableViewCell", bundle: nil), forCellReuseIdentifier: identify)
         self.view.addSubview(self.tableView!)
         self.tableView!.translatesAutoresizingMaskIntoConstraints = false
@@ -129,9 +132,9 @@ class OrderAllViewController: UIViewController, UITableViewDataSource ,UITableVi
     }
 
     //设置分组头的高度
-//    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-//        return tableView.sectionHeaderHeight - 50
-//    }
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return section == 0 ? 0.1 : 8.0
+    }
     
 //    func tableView(_ tableView: UITableView, titleForFooterInSection section: Int) -> String? {
 //        return "开启后，手机不会振动与发出提示音；如果设置为“只在夜间开启”，则只在22:00到08:00间生效"
