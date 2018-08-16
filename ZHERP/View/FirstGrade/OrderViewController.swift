@@ -238,6 +238,7 @@ class OrderViewController: UIViewController, UIGestureRecognizerDelegate {
 //        self.contentLabel.snp.makeConstraints { (make) -> Void in
 //            make.center.equalTo(self.view)
 //        }
+        self.automaticallyAdjustsScrollViewInsets = true
         self.extendedLayoutIncludesOpaqueBars = true
 //        self.edgesForExtendedLayout = UIRectEdgeNone
         self.navigationController?.navigationBar.isTranslucent = false
@@ -341,6 +342,7 @@ class OrderViewController: UIViewController, UIGestureRecognizerDelegate {
         self.definesPresentationContext = true
         //将搜索栏添加到页面上
         self.searchBarView.addSubview(searchController.searchBar)
+        print("self.searchController.searchBar.frame.origin.y:\(self.searchController.searchBar.frame.origin.y)")
     }
 
     override func didReceiveMemoryWarning() {
@@ -467,6 +469,8 @@ extension OrderViewController: UISearchBarDelegate {
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         self.searchController.searchBar.setPositionAdjustment(UIOffsetMake(searchOffset , 0), for: UISearchBarIcon.search)
         //重做约束
+        self.searchController.searchBar.frame = CGRect(x: 0, y: 0, width: self.searchController.searchBar.frame.size.width, height: 44)
+        print("self.searchController.searchBar.frame.origin.y:\(self.searchController.searchBar.frame.origin.y)")
         self.searchBarView.snp.remakeConstraints { (make) -> Void in
             make.left.right.equalTo(0)
             make.top.equalTo(self.navHeight - 8)
