@@ -16,7 +16,7 @@ class OrderSearchResultViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.view.backgroundColor = Specs.color.blue
+        self.view.backgroundColor = Specs.color.white
         self.dataArray = [
             0: ["imagePath": "bayMax", "suk": "QQ_PPC01", "title": "六神花露水", "price": "17.50"],
             1: ["imagePath": "bayMax", "suk": "QQ_PPC02", "title": "六神花露水", "price": "17.50"]
@@ -25,16 +25,16 @@ class OrderSearchResultViewController: UIViewController {
         let historyLabel = UILabel(frame: CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: 25))
         historyLabel.text = "搜索结果"
         self.view.addSubview(historyLabel)
-        historyLabel.snp.makeConstraints { (make) -> Void in
-            make.top.equalTo(0)
-            make.left.right.equalTo(0)
-            make.height.equalTo(25)
-        }
+//        historyLabel.snp.makeConstraints { (make) -> Void in
+//            make.top.equalTo(0)
+//            make.left.right.equalTo(0)
+//            make.height.equalTo(25)
+//        }
 
         // 创建表视图
         self.tableView = UITableView(frame: CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: self.view.frame.size.height), style:.grouped)
         // 去除表格上放多余的空隙
-        self.tableView!.contentInset = UIEdgeInsetsMake(-30, 0, 0, 0)
+//        self.tableView!.contentInset = UIEdgeInsetsMake(-30, 0, 0, 0)
         self.tableView!.delegate = self
         self.tableView!.dataSource = self
         //去除单元格分隔线
@@ -79,7 +79,7 @@ extension OrderSearchResultViewController: UITableViewDataSource ,UITableViewDel
     //
     //    //设置分组头的高度
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 50
+        return 30
     }
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
