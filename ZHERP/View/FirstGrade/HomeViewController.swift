@@ -39,6 +39,8 @@ class HomeViewController: BaseViewController {
     }
     
     @IBAction func PickingBtnClicked(_ sender: Any) {
+        self.hidesBottomBarWhenPushed = true
+        _push(view: self, target: OrderAllViewController(), rootView: true)
     }
     @IBAction func ScanSendGoodBtnClicked(_ sender: Any) {
 //        let qrcodeImg = UIImage(named: "codeBg.png")

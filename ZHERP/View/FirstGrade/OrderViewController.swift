@@ -35,7 +35,7 @@ class OrderViewController: UIViewController, UIGestureRecognizerDelegate {
     //搜索框图片加上图片和字体之间的距离
     var searchOffset: CGFloat = 0
     
-    var searchHeight: CGFloat = 45
+    var searchHeight: CGFloat = 40
 
     var navHeight: CGFloat!
     
@@ -88,7 +88,7 @@ class OrderViewController: UIViewController, UIGestureRecognizerDelegate {
         var menuControllerSet: MenuControllerSet = .multiple
         
         
-        var height: CGFloat = 20
+        var height: CGFloat = 40
         //选中项为橙色下划线样式
         var focusMode: MenuFocusMode = .underline(height: 1, color: .orange, horizontalPadding: 0, verticalPadding: 0)
         

@@ -134,10 +134,11 @@ class EditQRCodeViewController: UIViewController {
         self.tipLabel = UILabel()
         self.tipLabel.text = "长按二维码图片保存到手机相册"
         self.tipLabel.textAlignment = .center
+        self.tipLabel.textColor = Specs.color.white
         self.formView.addSubview(self.tipLabel)
         self.tipLabel.snp.makeConstraints { (make) -> Void in
             make.left.right.equalTo(0)
-            make.top.equalTo(self.RQView.snp.bottom).offset(10)
+            make.top.equalTo(self.RQView.snp.bottom).offset(30)
         }
 
         // Do any additional setup after loading the view.
