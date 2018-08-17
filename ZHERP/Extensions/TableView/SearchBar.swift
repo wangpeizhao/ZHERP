@@ -40,7 +40,7 @@ extension UISearchController {
         searchOffset = (controller.searchBar.frame.size.width - _label.frame.width - 50 ) / 2
         controller.hidesNavigationBarDuringPresentation = true
         controller.dimsBackgroundDuringPresentation = false
-        controller.searchBar.searchBarStyle = .minimal
+        controller.searchBar.searchBarStyle = .prominent
         controller.searchBar.sizeToFit()
         controller.searchBar.setBackgroundImage(UIImage(), for: .any, barMetrics: .default)
         controller.searchBar.backgroundColor = Specs.color.grayBg
@@ -53,7 +53,7 @@ extension UISearchController {
     
         controller.searchBar.tintColor = RGBA(r: 0.12, g: 0.74, b: 0.13, a: 1.00)
     
-        controller.searchBar.layer.masksToBounds = true;
+//        controller.searchBar.layer.masksToBounds = true;
         controller.searchBar.layer.cornerRadius = 2;
         controller.searchBar.layer.borderWidth = 0;
         controller.searchBar.contentMode = .center;
