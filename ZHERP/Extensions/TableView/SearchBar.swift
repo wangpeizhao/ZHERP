@@ -61,6 +61,19 @@ extension UISearchController {
         controller.searchBar.returnKeyType = UIReturnKeyType.search;
         controller.searchBar.placeholder = placeholder
         controller.searchBar.barTintColor = Specs.color.white
+        
+        
+        controller.searchBar.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.size.width, height: 31)
+        controller.searchBar.barStyle = .default
+        controller.searchBar.backgroundColor = .white
+        controller.searchBar.barTintColor = .white
+//        controller.searchBar.delegate = self
+        controller.searchBar.autocapitalizationType = .none
+        controller.searchBar.placeholder = "搜索"
+        controller.searchBar.layer.borderColor = UIColor.white.cgColor
+        controller.searchBar.layer.borderWidth = 1
+        controller.searchBar.layer.masksToBounds = true
+        
         //搜索栏取消按钮文字
         controller.searchBar.setValue("取消", forKey:"_cancelButtonText")
 //        let uiButton = controller.searchBar.value(forKey: "cancelButton") as! UIButton

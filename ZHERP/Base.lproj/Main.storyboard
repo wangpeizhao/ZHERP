@@ -566,6 +566,21 @@
             </objects>
             <point key="canvasLocation" x="3641" y="1213"/>
         </scene>
+        <!--Good Detail View Controller-->
+        <scene sceneID="ma6-21-sSv">
+            <objects>
+                <viewController storyboardIdentifier="GoodDetailViewController" id="fOp-7Z-Xmt" customClass="GoodDetailViewController" customModule="ZHERP" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="W1w-AN-guF">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="hBK-DV-50Q"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="qVn-P1-dlT" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4570" y="1225"/>
+        </scene>
         <!--Statistic View Controller-->
         <scene sceneID="M1T-Nz-j3f">
             <objects>

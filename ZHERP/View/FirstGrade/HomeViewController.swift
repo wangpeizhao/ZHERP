@@ -65,6 +65,8 @@ class HomeViewController: BaseViewController {
     @IBAction func TakeStockBtnClicked(_ sender: Any) {
     }
     @IBAction func SettingBtnClicked(_ sender: Any) {
+        self.hidesBottomBarWhenPushed = true
+        _push(view: self, target: GoodDetailViewController(), rootView: true)
     }
     
     var vc: UIViewController!
