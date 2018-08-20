@@ -23,6 +23,7 @@ def libraries
   pod 'SnapKit', '~> 4.0.0'
   # pod 'react-native-camera', path: '../node_modules/react-native-camera'
   pod 'BTNavigationDropdownMenu', :git => 'https://github.com/PhamBaTho/BTNavigationDropdownMenu.git'
+  pod 'Charts'
 end
 
 target 'ZHERP' do
