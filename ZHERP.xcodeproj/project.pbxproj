@@ -16,6 +16,8 @@
 		2CC1319321114279004C8097 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CC1319221114279004C8097 /* SearchViewController.swift */; };
 		2CC9036B210855B60083D70C /* SystemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CC9036A210855B60083D70C /* SystemViewController.swift */; };
 		2CE96F1B211C0D0700B4CE5A /* OrderSearchResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CE96F1A211C0D0700B4CE5A /* OrderSearchResultViewController.swift */; };
+		2CEA8C4A212A503E00004AE6 /* UIImage-Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CEA8C49212A503E00004AE6 /* UIImage-Extensions.swift */; };
+		2CEA8C4C212AB17500004AE6 /* HomeCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CEA8C4B212AB17400004AE6 /* HomeCollectionViewCell.swift */; };
 		43D0F869FCB1EFFD2A515717 /* Pods_ZHERPUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9ADCE7C4B0A7D41C0DA234D6 /* Pods_ZHERPUITests.framework */; };
 		4D5DC0AAB0D07F80968B0079 /* Pods_ZHERP.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 532FEF4AFB84E941C848EBDE /* Pods_ZHERP.framework */; };
 		8F0E2D4FE6DC9F693DE6136E /* Pods_ZHERPTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0018AC5B628E580B5DB4DE45 /* Pods_ZHERPTests.framework */; };
@@ -141,6 +143,8 @@
 		2CC1319221114279004C8097 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		2CC9036A210855B60083D70C /* SystemViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SystemViewController.swift; sourceTree = "<group>"; };
 		2CE96F1A211C0D0700B4CE5A /* OrderSearchResultViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderSearchResultViewController.swift; sourceTree = "<group>"; };
+		2CEA8C49212A503E00004AE6 /* UIImage-Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage-Extensions.swift"; sourceTree = "<group>"; };
+		2CEA8C4B212AB17400004AE6 /* HomeCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCollectionViewCell.swift; sourceTree = "<group>"; };
 		30C77E137814C4E429C7FF16 /* Pods-ZHERPUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZHERPUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ZHERPUITests/Pods-ZHERPUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		532FEF4AFB84E941C848EBDE /* Pods_ZHERP.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ZHERP.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		829D37B56E7E23231666AB1E /* Pods-ZHERP.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZHERP.release.xcconfig"; path = "Pods/Target Support Files/Pods-ZHERP/Pods-ZHERP.release.xcconfig"; sourceTree = "<group>"; };
@@ -283,6 +287,14 @@
 				2CE96F1A211C0D0700B4CE5A /* OrderSearchResultViewController.swift */,
 			);
 			path = SearchResult;
+			sourceTree = "<group>";
+		};
+		2CEA8C48212A500600004AE6 /* UIImage */ = {
+			isa = PBXGroup;
+			children = (
+				2CEA8C49212A503E00004AE6 /* UIImage-Extensions.swift */,
+			);
+			path = UIImage;
 			sourceTree = "<group>";
 		};
 		38F99A7220F4798064F30D64 /* Frameworks */ = {
@@ -549,6 +561,7 @@
 		9E88ED0A20FB3B6300DF091F /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				2CEA8C48212A500600004AE6 /* UIImage */,
 				9E523DEB21045F3300CF921F /* ThirdParty */,
 				9E88ED2820FB721700DF091F /* UIColor */,
 				9E88ED2120FB52D300DF091F /* TableView */,
@@ -624,6 +637,7 @@
 				9E523E6C2109401F00CF921F /* SwitchTableViewCell.xib */,
 				9E523E6F210A241500CF921F /* ImageRightTableViewCell.swift */,
 				9E523E70210A241500CF921F /* ImageRightTableViewCell.xib */,
+				2CEA8C4B212AB17400004AE6 /* HomeCollectionViewCell.swift */,
 			);
 			path = Component;
 			sourceTree = "<group>";
@@ -1004,12 +1018,14 @@
 				9E88ED2D20FB8C7900DF091F /* Specs.swift in Sources */,
 				9E523E0221047F7700CF921F /* IntroductionViewController.swift in Sources */,
 				9E523E94210D544E00CF921F /* OrderUnpayViewController.swift in Sources */,
+				2CEA8C4C212AB17500004AE6 /* HomeCollectionViewCell.swift in Sources */,
 				9E88ED2020FB469000DF091F /* StatisticViewController.swift in Sources */,
 				9E523E98210D548500CF921F /* OrderCompleteViewController.swift in Sources */,
 				2CC1319321114279004C8097 /* SearchViewController.swift in Sources */,
 				9E29031920F7B99800F11C63 /* AppDelegate.swift in Sources */,
 				9E523DE42100DDA900CF921F /* Service.swift in Sources */,
 				9E88ED2F20FBA90C00DF091F /* HelperCommon.swift in Sources */,
+				2CEA8C4A212A503E00004AE6 /* UIImage-Extensions.swift in Sources */,
 				9E523E0021047E7900CF921F /* UserDefaults.swift in Sources */,
 				9EE26B4D21247C7500619D98 /* ZHQRCodeConfig.swift in Sources */,
 				9E88ED3B20FCEC5100DF091F /* MemberMenus.swift in Sources */,
