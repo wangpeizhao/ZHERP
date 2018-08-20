@@ -12,6 +12,8 @@ import UIKit
 let kScreenH = UIScreen.main.bounds.height
 // 屏幕高度
 let kScreenW = UIScreen.main.bounds.width
+let ScreenHeight = UIScreen.main.bounds.size.height
+let ScreenWidth = UIScreen.main.bounds.size.width
 // tabBar高度
 let kTabBarH: CGFloat = 49.0
 

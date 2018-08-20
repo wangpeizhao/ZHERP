@@ -399,7 +399,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wfZ-7z-KAN" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3618.4000000000001" y="-195.07389162561577"/>
+            <point key="canvasLocation" x="3878" y="-195"/>
         </scene>
         <!--Member View Controller-->
         <scene sceneID="5ky-1d-8yp">
@@ -1230,15 +1230,31 @@
             <point key="canvasLocation" x="4390" y="-850"/>
         </scene>
         <!--Home View Controller-->
+        <scene sceneID="81n-Hc-Gt6">
+            <objects>
+                <viewController storyboardIdentifier="HomeViewController" id="cmd-mk-kXX" customClass="HomeViewController" customModule="ZHERP" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="vcj-tm-6uh">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="V9I-i0-ZGp"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="6Sg-O8-6KD"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="drl-Fi-PmT" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2546" y="-195"/>
+        </scene>
+        <!--View Controller-->
         <scene sceneID="BEG-uq-qC7">
             <objects>
-                <viewController id="nrb-hI-1cH" customClass="HomeViewController" customModule="ZHERP" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="nrb-hI-1cH" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="ocN-nC-x4s">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZA8-yK-Sfm">
-                                <rect key="frame" x="0.0" y="514" width="375" height="215"/>
+                                <rect key="frame" x="0.0" y="546.66666666666663" width="375" height="231.33333333333337"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="排行" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aeb-EX-tmS">
                                         <rect key="frame" x="66" y="14" width="31" height="18"/>
@@ -1283,7 +1299,7 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2ep-c4-WAd">
-                                <rect key="frame" x="0.0" y="299" width="375" height="215"/>
+                                <rect key="frame" x="0.0" y="315.33333333333331" width="375" height="231.33333333333331"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nwW-Vq-eAR">
                                         <rect key="frame" x="50" y="74" width="64" height="25"/>
@@ -1419,7 +1435,7 @@
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kTx-h7-Vi4">
-                                <rect key="frame" x="0.0" y="84" width="375" height="215"/>
+                                <rect key="frame" x="0.0" y="84.000000000000014" width="375" height="231.33333333333337"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1234" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AHH-aO-MjM">
                                         <rect key="frame" x="50" y="132" width="64" height="25"/>
@@ -1557,7 +1573,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="13c-qV-BgZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2732" y="-195.07389162561577"/>
+            <point key="canvasLocation" x="3250" y="-195"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="bXr-9x-aVV">
@@ -1643,7 +1659,7 @@
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="nrb-hI-1cH" kind="relationship" relationship="rootViewController" id="GuR-nI-EU0"/>
+                        <segue destination="cmd-mk-kXX" kind="relationship" relationship="rootViewController" id="svp-ka-cOl"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QQZ-UL-H2P" userLabel="First Responder" sceneMemberID="firstResponder"/>

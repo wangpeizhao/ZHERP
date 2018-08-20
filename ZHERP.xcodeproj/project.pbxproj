@@ -112,6 +112,9 @@
 		9EE26B4D21247C7500619D98 /* ZHQRCodeConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EE26B4C21247C7500619D98 /* ZHQRCodeConfig.swift */; };
 		9EE26B4F21247C8C00619D98 /* ZHQRcodeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EE26B4E21247C8C00619D98 /* ZHQRcodeManager.swift */; };
 		9EE26B5121248C2000619D98 /* ZHQRCodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EE26B5021248C2000619D98 /* ZHQRCodeViewController.swift */; };
+		9EE26B79212B0BE000619D98 /* HomeNavigationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EE26B78212B0BE000619D98 /* HomeNavigationViewController.swift */; };
+		9EE26B7B212B0CA400619D98 /* HomeReportViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EE26B7A212B0CA400619D98 /* HomeReportViewController.swift */; };
+		9EE26B7D212B14F200619D98 /* HomeChartsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EE26B7C212B14F200619D98 /* HomeChartsViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -249,6 +252,9 @@
 		9EE26B4C21247C7500619D98 /* ZHQRCodeConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZHQRCodeConfig.swift; sourceTree = "<group>"; };
 		9EE26B4E21247C8C00619D98 /* ZHQRcodeManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZHQRcodeManager.swift; sourceTree = "<group>"; };
 		9EE26B5021248C2000619D98 /* ZHQRCodeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZHQRCodeViewController.swift; sourceTree = "<group>"; };
+		9EE26B78212B0BE000619D98 /* HomeNavigationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeNavigationViewController.swift; sourceTree = "<group>"; };
+		9EE26B7A212B0CA400619D98 /* HomeReportViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeReportViewController.swift; sourceTree = "<group>"; };
+		9EE26B7C212B14F200619D98 /* HomeChartsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeChartsViewController.swift; sourceTree = "<group>"; };
 		9F01564B284FE65EC6264542 /* Pods-ZHERPUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZHERPUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-ZHERPUITests/Pods-ZHERPUITests.release.xcconfig"; sourceTree = "<group>"; };
 		A20BF83E3F3D312627719EFA /* Pods-ZHERPTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZHERPTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-ZHERPTests/Pods-ZHERPTests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -548,7 +554,7 @@
 				9E88ED3320FCE8DB00DF091F /* Member */,
 				9E88ED3020FCE1EE00DF091F /* Component */,
 				9E88ED1820FB40F400DF091F /* SecondGrade */,
-				9E88ED1720FB40DE00DF091F /* FirstGrade */,
+				9E88ED1720FB40DE00DF091F /* Home */,
 				9E29031A20F7B99800F11C63 /* ViewController.swift */,
 				9E523DE72102E46900CF921F /* BaseViewController.swift */,
 				9E523DFD2104661400CF921F /* GuideViewController.swift */,
@@ -575,7 +581,7 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
-		9E88ED1720FB40DE00DF091F /* FirstGrade */ = {
+		9E88ED1720FB40DE00DF091F /* Home */ = {
 			isa = PBXGroup;
 			children = (
 				9E88ED1920FB41F800DF091F /* HomeViewController.swift */,
@@ -586,8 +592,11 @@
 				9E523E8D210D537B00CF921F /* GoodViewController.swift */,
 				2CC1319221114279004C8097 /* SearchViewController.swift */,
 				2CBF4901212294A200199C1D /* CameraViewController.swift */,
+				9EE26B78212B0BE000619D98 /* HomeNavigationViewController.swift */,
+				9EE26B7A212B0CA400619D98 /* HomeReportViewController.swift */,
+				9EE26B7C212B14F200619D98 /* HomeChartsViewController.swift */,
 			);
-			path = FirstGrade;
+			path = Home;
 			sourceTree = "<group>";
 		};
 		9E88ED1820FB40F400DF091F /* SecondGrade */ = {
@@ -987,9 +996,11 @@
 				2C7FAC6C2100547A004AEC10 /* Cookie.swift in Sources */,
 				9EE26B5121248C2000619D98 /* ZHQRCodeViewController.swift in Sources */,
 				9E29031B20F7B99800F11C63 /* ViewController.swift in Sources */,
+				9EE26B7D212B14F200619D98 /* HomeChartsViewController.swift in Sources */,
 				9E523E79210C13D800CF921F /* LoginingViewController.swift in Sources */,
 				2CBF4902212294A300199C1D /* CameraViewController.swift in Sources */,
 				2CE96F1B211C0D0700B4CE5A /* OrderSearchResultViewController.swift in Sources */,
+				9EE26B79212B0BE000619D98 /* HomeNavigationViewController.swift in Sources */,
 				9E523DF4210460B600CF921F /* UIImage+GIF.swift in Sources */,
 				9E523DE020FEB4F100CF921F /* ProtocolPageViewController.swift in Sources */,
 				9E523E89210D449300CF921F /* OrderViewController.swift in Sources */,
@@ -1012,6 +1023,7 @@
 				9E523E90210D540900CF921F /* OrderAllViewController.swift in Sources */,
 				9E88ED2320FB530200DF091F /* SearchBar.swift in Sources */,
 				9E523E77210BF53F00CF921F /* RegisteringViewController.swift in Sources */,
+				9EE26B7B212B0CA400619D98 /* HomeReportViewController.swift in Sources */,
 				9E523E3C2107708600CF921F /* Personal.swift in Sources */,
 				9E88ED1020FB3B7700DF091F /* ObservableType+ObjectMapper.swift in Sources */,
 				9E88ED3920FCEA4500DF091F /* Member.swift in Sources */,
