@@ -14,17 +14,17 @@ class HomeNavigationViewController: UIViewController, UICollectionViewDelegateFl
     let CELL_CVIEW_ID = "cellCollectView"
     
     let courses = [
-        ["name":"Swift", "key":"","pic":"swift.png"],
-        ["name":"扫描", "key":"scan","pic":"xcode.png"],
-        ["name":"Java", "key":"","pic":"java.png"],
-        ["name":"PHP", "key":"","pic":"php.png"],
-        ["name":"JS", "key":"","pic":"js.png"],
-        ["name":"React", "key":"","pic":"react.png"],
+        ["name":"拣货", "key":"picking","pic":"swift.png"],
+        ["name":"扫码发货", "key":"scanSendGood","pic":"xcode.png"],
+        ["name":"调货", "key":"allocating","pic":"java.png"],
+        ["name":"仓库", "key":"warehouse","pic":"php.png"],
+        ["name":"盘点", "key":"takeStock","pic":"js.png"],
+        ["name":"设置", "key":"setting","pic":"react.png"],
         ["name":"Ruby", "key":"","pic":"ruby.png"],
         ["name":"HTML", "key":"","pic":"html.png"],
         ["name":"C#", "key":"","pic":"c#.png"]
     ]
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -34,7 +34,6 @@ class HomeNavigationViewController: UIViewController, UICollectionViewDelegateFl
     }
     
     func _setup() {
-//        self.view = UIView(frame: CGRect(x: 0, y: 0, width: ScreenWidth, height: 200))
         let layout = UICollectionViewFlowLayout()
         //间隔
         let spacing:CGFloat = 2
@@ -50,8 +49,8 @@ class HomeNavigationViewController: UIViewController, UICollectionViewDelegateFl
         //计算单元格的宽度
         let itemWidth = (collectionViewWidth - spacing * CGFloat(columnsNum-1)) / CGFloat(columnsNum)
         //设置单元格宽度和高度
-        layout.itemSize = CGSize(width:itemWidth, height:112)
-        let frame = CGRect(x: 0, y: 0, width: ScreenWidth, height: 240)
+        layout.itemSize = CGSize(width:itemWidth, height:100)
+        let frame = CGRect(x: 0, y: 0, width: ScreenWidth, height: 200)
         collectionView = UICollectionView(frame: frame, collectionViewLayout: layout)
         
         collectionView!.backgroundColor = UIColor(hex: 0xfcfcfc)
@@ -85,16 +84,24 @@ class HomeNavigationViewController: UIViewController, UICollectionViewDelegateFl
     }
     //item 对应的点击事件
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        print("index is \(indexPath.row)")
         let key: String = courses[indexPath.item]["key"]!
-        let _self = HomeViewController()
         switch key {
-        case "scan":
-            _self.hidesBottomBarWhenPushed = true
-            _push(view: _self, target: ZHQRCodeViewController(), rootView: true)
+        case "scanSendGood":
+            let _target = ZHQRCodeViewController()
+            _target.hidesBottomBarWhenPushed = true
+            _push(view: self, target: _target, rootView: true)
+        case "warehouse":
+            let _target = WarehouseViewController()
+            _target.hidesBottomBarWhenPushed = true
+            _push(view: self, target: _target, rootView: true)
+        case "setting":
+            let _target = SettingsViewController()
+            _target.hidesBottomBarWhenPushed = true
+            _push(view: self, target: _target, rootView: true)
         default:
-            _self.hidesBottomBarWhenPushed = true
-            _push(view: _self, target: GoodDetailViewController(), rootView: true)
+            let _target = GoodDetailViewController()
+            _target.hidesBottomBarWhenPushed = true
+            _push(view: self, target: _target, rootView: true)
         }
         
     }

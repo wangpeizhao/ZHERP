@@ -10,6 +10,25 @@ import UIKit
 
 extension UIImage {
     
+    /**
+     *  重设图片大小
+     */
+    func reSizeImage(reSize:CGSize)->UIImage {
+        UIGraphicsBeginImageContextWithOptions(reSize,false,UIScreen.main.scale)
+        self.draw(in: CGRect(x: 0, y: 0, width: reSize.width, height: reSize.height))
+        let reSizeImage:UIImage = UIGraphicsGetImageFromCurrentImageContext()!
+        UIGraphicsEndImageContext()
+        return reSizeImage
+    }
+    
+    /**
+     *  等比率缩放
+     */
+//    func scaleImage(scaleSize:CGFloat)->UIImage {
+//        let reSize = CGSizeMake(self.size.width * scaleSize, self.size.height * scaleSize)
+//        return reSizeImage(reSize)
+//    }
+    
     // 通过设置imageView圆角来实现
     // 这种方法实际上没有对原始图片进行处理。只不过在展示的时候，通过设置 UIImageView 圆角半径，从而显示成圆形图片。
     func toCircleCover() -> UIImageView{

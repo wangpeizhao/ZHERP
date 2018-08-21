@@ -24,15 +24,38 @@ class HomeChartsViewController: UIViewController {
     }
     
     func _setup() {
-//        self.view = UIView(frame: CGRect(x: 0, y: 0, width: ScreenWidth, height: 100))
         //创建折线图组件对象
         chartView = LineChartView()
-        chartView.frame = CGRect(x: 0, y: 0, width: ScreenWidth, height: 80)
+        //折线图背景色
+        chartView.backgroundColor = UIColor(hex: 0x1a263a)
+        chartView.frame = CGRect(x: 0, y: 0, width: ScreenWidth, height: 70)
+        chartView.chartDescription?.text = ""
+        chartView.legend.enabled = false
+        chartView.leftAxis.enabled = false
+        chartView.rightAxis.enabled = false
+//        chartView.leftAxis.spaceTop = 0.4
+//        chartView.leftAxis.spaceBottom = 0.4
+        chartView.leftAxis.drawGridLinesEnabled = false //不绘制网格线
+        chartView.xAxis.enabled = false
+        chartView.xAxis.labelTextColor = UIColor(hex: 0x1a263a) //刻度文字颜色
+        chartView.xAxis.drawAxisLineEnabled = false //不显示X轴
+        
+        chartView.xAxis.gridColor = UIColor(hex: 0x273347) //x轴对应网格线的颜色
+        chartView.xAxis.gridLineWidth = 2 //x轴对应网格线的大小
         self.view.addSubview(chartView)
+        
+        let showTodayBillBtn = UIButton(frame: CGRect(x: 35, y: 25, width: 90, height: 28))
+        showTodayBillBtn.setTitle("查看今日流水", for: .normal)
+        showTodayBillBtn.titleLabel?.font = UIFont.systemFont(ofSize: 12.0)
+        showTodayBillBtn.setTitleColor(Specs.color.white, for: .normal)
+        showTodayBillBtn.layer.cornerRadius = 10.0
+        showTodayBillBtn.backgroundColor = UIColor(hex: 0x5faaff)
+        showTodayBillBtn.addTarget(self, action: #selector(showTodayBill), for: .touchUpInside)
+        self.view.addSubview(showTodayBillBtn)
         
         //生成20条随机数据
         var dataEntries = [ChartDataEntry]()
-        for i in 0..<14 {
+        for i in 0..<15 {
             let y = arc4random()%100
             let entry = ChartDataEntry.init(x: Double(i), y: Double(y))
             dataEntries.append(entry)
@@ -44,6 +67,41 @@ class HomeChartsViewController: UIViewController {
         
         //设置折现图数据
         chartView.data = chartData
+        
+        chartDataSet.drawCirclesEnabled = true //不绘制转折点
+        chartDataSet.drawValuesEnabled = false //不绘制拐点上的文字
+        //开启填充色绘制
+        chartDataSet.drawFilledEnabled = true
+        //渐变颜色数组
+        let gradientColors = [UIColor(hex: 0x192130).cgColor, UIColor(hex: 0x233a56).cgColor] as CFArray
+        //每组颜色所在位置（范围0~1)
+        let colorLocations:[CGFloat] = [1.0, 0.0]
+        //生成渐变色
+        let gradient = CGGradient.init(colorsSpace: CGColorSpaceCreateDeviceRGB(), colors: gradientColors, locations: colorLocations)
+        //将渐变色作为填充对象s
+        chartDataSet.fill = Fill.fillWithLinearGradient(gradient!, angle: 90.0)
+        //折线线条颜色
+        chartDataSet.colors = [UIColor(hex: 0x273347)]
+        
+//        chartDataSet.lineWidth = 1.75
+//        chartDataSet.circleRadius = 5.0
+//        chartDataSet.circleHoleRadius = 2.5
+//        chartDataSet.setColor(.white)
+//        chartDataSet.setCircleColor(.white)
+//        chartDataSet.highlightColor = .white
+//        chartDataSet.drawValuesEnabled = false
+        
+        chartDataSet.circleColors = [UIColor(hex: 0x495b75)]  //外圆颜色
+        chartDataSet.drawCircleHoleEnabled = false  //不绘制转折点内圆
+//        chartDataSet.circleHoleColor = .red  //内圆颜色
+//        chartDataSet.circleHoleRadius = 2 //内圆半径
+        chartDataSet.circleRadius = 2 //外圆半径
+    }
+    
+    @objc func showTodayBill() {
+        let _GoodDetail = GoodDetailViewController()
+        _GoodDetail.hidesBottomBarWhenPushed = true
+        _push(view: self, target: _GoodDetail, rootView: true)
     }
 
     override func didReceiveMemoryWarning() {

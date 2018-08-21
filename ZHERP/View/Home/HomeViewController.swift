@@ -89,18 +89,20 @@ class HomeViewController: BaseViewController{
         setNavBarBackBtn(view: self, title: "首页", selector: #selector(actionBack))
         
         
-        // set back btn
-        let selector: Selector = #selector(actionGo)
         // 设置左侧按钮
-        let leftBarBtn = UIBarButtonItem(title: "", style: .plain, target: self, action: selector)
+        let leftBarBtn = UIBarButtonItem(title: "", style: .plain, target: self, action: #selector(actionMemeber))
         leftBarBtn.image = UIImage(named: "userinfo-icon")
+        leftBarBtn.tintColor = Specs.color.white
         //用于消除左边空隙，要不然按钮顶不到最前面
-        let spacer = UIBarButtonItem(barButtonSystemItem: .fixedSpace, target: nil, action: nil)
-        spacer.width = -30
-        self.navigationItem.leftBarButtonItems = [spacer, leftBarBtn]
+//        let spacer = UIBarButtonItem(barButtonSystemItem: .fixedSpace, target: nil, action: nil)
+//        spacer.width = 0
+        self.navigationItem.leftBarButtonItems = [leftBarBtn]
         
-//        navigationView = HomeNavigationViewController()
-        
+        // 设置右侧按钮
+        let rightBarBtn = UIBarButtonItem(title: "", style: .plain, target: self, action: #selector(actionScan))
+        rightBarBtn.image = UIImage(named: "scan")
+        rightBarBtn.tintColor = Specs.color.white
+        self.navigationItem.rightBarButtonItems = [rightBarBtn]
         
         //创建表视图
         self.tableView = UITableView(frame: self.view.frame, style:.grouped)
@@ -114,6 +116,22 @@ class HomeViewController: BaseViewController{
 //        self.tableView!.contentInset = UIEdgeInsetsMake(-10, 0, 0, 0)
         self.view.addSubview(self.tableView!)
         
+    }
+    
+    @objc func actionMemeber() {
+        if(checkLoginStatus()) {
+            _push(view: self, target: MemberViewController())
+        } else {
+            _open(view: self, vcName: "login", withNav: false)
+        }
+    }
+    
+    @objc func actionScan() {
+        self.hidesBottomBarWhenPushed = true
+        let _ZHQRCode = ZHQRCodeViewController()
+        _ZHQRCode.actionType = "picking"
+        _push(view: self, target: _ZHQRCode, rootView: true)
+
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -152,15 +170,6 @@ class HomeViewController: BaseViewController{
         let videoUrl = NSURL.fileURL(withPath: urlStr!)
         let guideView = HHGuidePageHUD.init(videoURL:videoUrl, isHiddenSkipButton: false)
         self.navigationController?.view.addSubview(guideView)
-    }
-    
-    @objc func actionGo() {
-        if(checkLoginStatus()) {
-            _push(view: self, target: MemberViewController())
-//            _push(view: self, target: RegisteringViewController(), rootView: true)
-        } else {
-            _open(view: self, vcName: "login", withNav: false)
-        }
     }
     
     @objc func actionBack() {
@@ -218,14 +227,22 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
         print(section)
         if (section == 0) {
             self.reportView = HomeReportViewController()
+            self.addChildViewController(self.reportView!)
+//            self.reportView?.todayTotalValue.text = "23456.00"
+//            self.reportView?.todayReceiptNumberValue.text = "321"
+//            self.reportView?.historyShipmentsValue.text = "3210"
+//            self.reportView?.todayShipmentsValue.text = "6540"
+//            self.reportView?.residueShipmentsValue.text = "9870"
             return self.reportView?.view
         }
         if (section == 1) {
             self.chartsView = HomeChartsViewController()
+            self.addChildViewController(self.chartsView!)
             return self.chartsView?.view
         }
         if (section == 2) {
             self.navigationView = HomeNavigationViewController()
+            self.addChildViewController(self.navigationView!)
             return self.navigationView?.view
         }
         return UIView(frame: CGRect(x: 0, y: 0, width: 0, height: 0))
@@ -234,13 +251,13 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
     //设置分组头的高度
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         if (section == 0) {
-            return 150
+            return 140
         }
         if (section == 1) {
-            return 80
+            return 70
         }
         if (section == 2) {
-            return 240
+            return 205
         }
         return 0
     }
@@ -251,7 +268,7 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
     
     //设置分组尾的高度
     func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-        return 30
+        return 0
     }
     
     //将分组尾设置为一个空的View

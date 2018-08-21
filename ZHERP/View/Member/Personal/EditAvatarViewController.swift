@@ -23,7 +23,12 @@ class EditAvatarViewController: UIViewController, UIImagePickerControllerDelegat
         self.view.backgroundColor = Specs.color.black
         
         setNavBarTitle(view: self, title: personalTitle!, transparent: false, ofSize: 18)
-        setNavBarRightBtn(view: self, title: "···", selector: #selector(selectorAvatar))
+//        setNavBarRightBtn(view: self, title: "···", selector: #selector(selectorAvatar))
+        // 设置右侧按钮
+        let rightBarBtn = UIBarButtonItem(title: "", style: .plain, target: self, action: #selector(selectorAvatar))
+        rightBarBtn.image = UIImage(named: "more")
+        rightBarBtn.tintColor = Specs.color.white
+        self.navigationItem.rightBarButtonItems = [rightBarBtn]
         
         imageAdaptive(imageView: imageView, imageName: personalValue!)
         

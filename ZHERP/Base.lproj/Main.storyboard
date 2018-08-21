@@ -87,7 +87,7 @@
                     </connections>
                 </searchDisplayController>
             </objects>
-            <point key="canvasLocation" x="4490.3999999999996" y="-195.07389162561577"/>
+            <point key="canvasLocation" x="5432.8000000000002" y="-195.07389162561577"/>
         </scene>
         <!--订单详情-->
         <scene sceneID="N4Y-iE-gI8">
@@ -203,7 +203,7 @@
                     </connections>
                 </searchDisplayController>
             </objects>
-            <point key="canvasLocation" x="5229.6000000000004" y="-195.07389162561577"/>
+            <point key="canvasLocation" x="6172" y="-195.07389162561577"/>
         </scene>
         <!--货品管理-->
         <scene sceneID="kRO-Yf-1pJ">
@@ -399,7 +399,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wfZ-7z-KAN" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3878" y="-195"/>
+            <point key="canvasLocation" x="4820" y="-195.07389162561577"/>
         </scene>
         <!--Member View Controller-->
         <scene sceneID="5ky-1d-8yp">
@@ -798,7 +798,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="i0o-Cz-Fgs" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1789.5999999999999" y="-849.01477832512319"/>
+            <point key="canvasLocation" x="2732" y="-849.01477832512319"/>
         </scene>
         <!--Logining View Controller-->
         <scene sceneID="M5R-ZE-wao">
@@ -1016,7 +1016,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="toe-d1-eUY" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2431" y="-849"/>
+            <point key="canvasLocation" x="3372" y="-849.01477832512319"/>
         </scene>
         <!--Forgot Pwd View Controller-->
         <scene sceneID="cz3-rE-60L">
@@ -1125,7 +1125,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="peK-gc-chv" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3080.8000000000002" y="-849.01477832512319"/>
+            <point key="canvasLocation" x="4023.1999999999998" y="-849.01477832512319"/>
         </scene>
         <!--Reset Pwd View Controller-->
         <scene sceneID="BHH-ca-osh">
@@ -1219,7 +1219,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NtX-PC-W5g" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3719" y="-850"/>
+            <point key="canvasLocation" x="4660" y="-850.49261083743841"/>
         </scene>
         <!--Protocol Page View Controller-->
         <scene sceneID="AXK-7H-GBC">
@@ -1227,7 +1227,7 @@
                 <pageViewController storyboardIdentifier="ProtocolPageViewController" autoresizesArchivedViewToFullSize="NO" transitionStyle="pageCurl" navigationOrientation="horizontal" spineLocation="min" id="Pef-aj-Wza" customClass="ProtocolPageViewController" customModule="ZHERP" customModuleProvider="target" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Bmd-Ph-mi2" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4390" y="-850"/>
+            <point key="canvasLocation" x="5332" y="-850.49261083743841"/>
         </scene>
         <!--Home View Controller-->
         <scene sceneID="81n-Hc-Gt6">
@@ -1243,18 +1243,18 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="drl-Fi-PmT" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2546" y="-195"/>
+            <point key="canvasLocation" x="3487.1999999999998" y="-195.07389162561577"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="BEG-uq-qC7">
             <objects>
                 <viewController id="nrb-hI-1cH" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="ocN-nC-x4s">
+                    <view key="view" contentMode="scaleToFill" ambiguous="YES" id="ocN-nC-x4s">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZA8-yK-Sfm">
-                                <rect key="frame" x="0.0" y="546.66666666666663" width="375" height="231.33333333333337"/>
+                            <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ZA8-yK-Sfm">
+                                <rect key="frame" x="0.0" y="546.66666666666652" width="375" height="231.33333333333337"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="排行" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aeb-EX-tmS">
                                         <rect key="frame" x="66" y="14" width="31" height="18"/>
@@ -1298,10 +1298,10 @@
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2ep-c4-WAd">
-                                <rect key="frame" x="0.0" y="315.33333333333331" width="375" height="231.33333333333331"/>
+                            <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2ep-c4-WAd">
+                                <rect key="frame" x="0.0" y="315.33333333333337" width="375" height="231.33333333333337"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nwW-Vq-eAR">
+                                    <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nwW-Vq-eAR">
                                         <rect key="frame" x="50" y="74" width="64" height="25"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="25" id="5Ci-eZ-Kwi"/>
@@ -1309,11 +1309,11 @@
                                         </constraints>
                                         <state key="normal" title="拣货"/>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8gj-XD-Tes">
+                                    <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8gj-XD-Tes">
                                         <rect key="frame" x="261" y="74.666666666666686" width="64" height="25"/>
                                         <state key="normal" title="调货"/>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4uJ-sy-fYr">
+                                    <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4uJ-sy-fYr">
                                         <rect key="frame" x="50" y="180" width="64" height="25"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="25" id="Q5L-im-veJ"/>
@@ -1321,20 +1321,20 @@
                                         </constraints>
                                         <state key="normal" title="仓库"/>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fsK-hu-Tin">
+                                    <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fsK-hu-Tin">
                                         <rect key="frame" x="155.66666666666666" y="180.66666666666669" width="64" height="25"/>
                                         <state key="normal" title="盘点"/>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wjc-ON-Gaf">
+                                    <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wjc-ON-Gaf">
                                         <rect key="frame" x="261" y="180.66666666666669" width="64" height="25"/>
                                         <state key="normal" title="设置"/>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mgI-jg-yOw">
+                                    <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mgI-jg-yOw">
                                         <rect key="frame" x="155.66666666666666" y="74.666666666666686" width="64" height="25"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                         <state key="normal" title="扫码"/>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SgP-QG-rRv">
+                                    <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SgP-QG-rRv">
                                         <rect key="frame" x="50" y="10" width="64" height="64"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="64" id="9Mw-GX-c1Y"/>
@@ -1345,35 +1345,35 @@
                                             <action selector="PickingBtnClicked:" destination="nrb-hI-1cH" eventType="touchUpInside" id="I6O-mg-ByK"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LbG-T8-2rR">
+                                    <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LbG-T8-2rR">
                                         <rect key="frame" x="155.66666666666666" y="10" width="64" height="64"/>
                                         <state key="normal" image="home_scan_send_goods_32_32"/>
                                         <connections>
                                             <action selector="ScanSendGoodBtnClicked:" destination="nrb-hI-1cH" eventType="touchUpInside" id="Hub-nU-xCt"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LRR-sb-MfQ">
+                                    <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LRR-sb-MfQ">
                                         <rect key="frame" x="261" y="10" width="64" height="64"/>
                                         <state key="normal" image="home_allot_32_32"/>
                                         <connections>
                                             <action selector="AllocatingBtnClicked:" destination="nrb-hI-1cH" eventType="touchUpInside" id="I0t-gu-UJr"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Qdh-IA-Olj">
+                                    <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Qdh-IA-Olj">
                                         <rect key="frame" x="155.66666666666666" y="116" width="64" height="64"/>
                                         <state key="normal" image="home_statistics_32_32"/>
                                         <connections>
                                             <action selector="TakeStockBtnClicked:" destination="nrb-hI-1cH" eventType="touchUpInside" id="WK5-z6-cY1"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xcb-6H-n0z">
+                                    <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xcb-6H-n0z">
                                         <rect key="frame" x="261" y="116" width="64" height="64"/>
                                         <state key="normal" image="home_take_stock_32_32"/>
                                         <connections>
                                             <action selector="SettingBtnClicked:" destination="nrb-hI-1cH" eventType="touchUpInside" id="hho-FD-HrN"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cLi-SB-wEj">
+                                    <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cLi-SB-wEj">
                                         <rect key="frame" x="50" y="116" width="64" height="64"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="64" id="9XW-jF-iSO"/>
@@ -1434,10 +1434,10 @@
                                     <constraint firstItem="wjc-ON-Gaf" firstAttribute="height" secondItem="4uJ-sy-fYr" secondAttribute="height" id="z7B-uZ-gw5"/>
                                 </constraints>
                             </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kTx-h7-Vi4">
-                                <rect key="frame" x="0.0" y="84.000000000000014" width="375" height="231.33333333333337"/>
+                            <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="kTx-h7-Vi4">
+                                <rect key="frame" x="0.0" y="84" width="375" height="231.33333333333337"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1234" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AHH-aO-MjM">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="1234" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AHH-aO-MjM">
                                         <rect key="frame" x="50" y="132" width="64" height="25"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="64" id="Ms9-O6-CSV"/>
@@ -1447,19 +1447,19 @@
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1234" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ytq-3G-or5">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="1234" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ytq-3G-or5">
                                         <rect key="frame" x="155.66666666666666" y="132.66666666666666" width="64" height="25"/>
                                         <fontDescription key="fontDescription" type="system" weight="ultraLight" pointSize="20"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1234" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WvP-g7-VYr">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="1234" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WvP-g7-VYr">
                                         <rect key="frame" x="261" y="132.66666666666666" width="64" height="25"/>
                                         <fontDescription key="fontDescription" type="system" weight="ultraLight" pointSize="20"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="历史发货" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="97k-qf-Zcg">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="历史发货" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="97k-qf-Zcg">
                                         <rect key="frame" x="50" y="167" width="64" height="20"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="20" id="3UC-5Y-KKF"/>
@@ -1469,19 +1469,19 @@
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="今日发货" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ind-4C-Bn6">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="今日发货" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ind-4C-Bn6">
                                         <rect key="frame" x="155.66666666666666" y="167" width="64" height="20"/>
                                         <fontDescription key="fontDescription" type="system" weight="ultraLight" pointSize="15"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="剩余发货" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="23k-Px-kRn">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="剩余发货" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="23k-Px-kRn">
                                         <rect key="frame" x="261" y="167" width="64" height="20"/>
                                         <fontDescription key="fontDescription" type="system" weight="ultraLight" pointSize="15"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="今日订单" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="67z-eH-NBa">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="今日订单" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="67z-eH-NBa">
                                         <rect key="frame" x="145" y="15" width="85" height="25"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="25" id="faG-mw-vLB"/>
@@ -1490,7 +1490,7 @@
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1234567890" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0an-ni-vpj">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="1234567890" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0an-ni-vpj">
                                         <rect key="frame" x="91" y="55" width="193" height="45"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="45" id="QBi-vK-ydE"/>
@@ -1573,7 +1573,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="13c-qV-BgZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3250" y="-195"/>
+            <point key="canvasLocation" x="4191.1999999999998" y="-195.07389162561577"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="bXr-9x-aVV">
@@ -1664,7 +1664,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QQZ-UL-H2P" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1789.5999999999999" y="-195.07389162561577"/>
+            <point key="canvasLocation" x="2732" y="-195.07389162561577"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="GaC-Hv-JBd">

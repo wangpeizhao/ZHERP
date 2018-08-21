@@ -15,6 +15,8 @@
 		2CBF49042122A3B800199C1D /* QRCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CBF49032122A3B800199C1D /* QRCode.swift */; };
 		2CC1319321114279004C8097 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CC1319221114279004C8097 /* SearchViewController.swift */; };
 		2CC9036B210855B60083D70C /* SystemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CC9036A210855B60083D70C /* SystemViewController.swift */; };
+		2CE8F4A1212BFEE800037367 /* WarehouseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CE8F4A0212BFEE800037367 /* WarehouseViewController.swift */; };
+		2CE8F4A4212C0AC600037367 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CE8F4A3212C0AC600037367 /* SettingsViewController.swift */; };
 		2CE96F1B211C0D0700B4CE5A /* OrderSearchResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CE96F1A211C0D0700B4CE5A /* OrderSearchResultViewController.swift */; };
 		2CEA8C4A212A503E00004AE6 /* UIImage-Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CEA8C49212A503E00004AE6 /* UIImage-Extensions.swift */; };
 		2CEA8C4C212AB17500004AE6 /* HomeCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CEA8C4B212AB17400004AE6 /* HomeCollectionViewCell.swift */; };
@@ -145,6 +147,8 @@
 		2CBF49032122A3B800199C1D /* QRCode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRCode.swift; sourceTree = "<group>"; };
 		2CC1319221114279004C8097 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		2CC9036A210855B60083D70C /* SystemViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SystemViewController.swift; sourceTree = "<group>"; };
+		2CE8F4A0212BFEE800037367 /* WarehouseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WarehouseViewController.swift; sourceTree = "<group>"; };
+		2CE8F4A3212C0AC600037367 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		2CE96F1A211C0D0700B4CE5A /* OrderSearchResultViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderSearchResultViewController.swift; sourceTree = "<group>"; };
 		2CEA8C49212A503E00004AE6 /* UIImage-Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage-Extensions.swift"; sourceTree = "<group>"; };
 		2CEA8C4B212AB17400004AE6 /* HomeCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -287,6 +291,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2CE8F49F212BFEB100037367 /* Warehouse */ = {
+			isa = PBXGroup;
+			children = (
+				2CE8F4A0212BFEE800037367 /* WarehouseViewController.swift */,
+			);
+			path = Warehouse;
+			sourceTree = "<group>";
+		};
+		2CE8F4A2212C0A9200037367 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				2CE8F4A3212C0AC600037367 /* SettingsViewController.swift */,
+			);
+			path = Settings;
+			sourceTree = "<group>";
+		};
 		2CE96F19211C0CBE00B4CE5A /* SearchResult */ = {
 			isa = PBXGroup;
 			children = (
@@ -549,6 +569,8 @@
 		9E88ED0520FB3B0600DF091F /* View */ = {
 			isa = PBXGroup;
 			children = (
+				2CE8F4A2212C0A9200037367 /* Settings */,
+				2CE8F49F212BFEB100037367 /* Warehouse */,
 				9E523E8A210D52BC00CF921F /* PagingMenuController */,
 				9E523E33210616E600CF921F /* Manage */,
 				9E88ED3320FCE8DB00DF091F /* Member */,
@@ -570,7 +592,7 @@
 				2CEA8C48212A500600004AE6 /* UIImage */,
 				9E523DEB21045F3300CF921F /* ThirdParty */,
 				9E88ED2820FB721700DF091F /* UIColor */,
-				9E88ED2120FB52D300DF091F /* TableView */,
+				9E88ED2120FB52D300DF091F /* SearchBar */,
 				9E88ED0E20FB3B7700DF091F /* Observable+ObjectMapper.swift */,
 				9E88ED0C20FB3B7600DF091F /* ObservableType+ObjectMapper.swift */,
 				9E88ED0B20FB3B7600DF091F /* Response+ObjectMapper.swift */,
@@ -609,12 +631,12 @@
 			path = SecondGrade;
 			sourceTree = "<group>";
 		};
-		9E88ED2120FB52D300DF091F /* TableView */ = {
+		9E88ED2120FB52D300DF091F /* SearchBar */ = {
 			isa = PBXGroup;
 			children = (
 				9E88ED2220FB530200DF091F /* SearchBar.swift */,
 			);
-			path = TableView;
+			path = SearchBar;
 			sourceTree = "<group>";
 		};
 		9E88ED2820FB721700DF091F /* UIColor */ = {
@@ -989,6 +1011,7 @@
 				9E523E7D210C23CF00CF921F /* ResetViewController.swift in Sources */,
 				9E88ED2520FB53AE00DF091F /* OrderDetailViewController.swift in Sources */,
 				9E523E7B210C238400CF921F /* ForgetViewController.swift in Sources */,
+				2CE8F4A1212BFEE800037367 /* WarehouseViewController.swift in Sources */,
 				2CC9036B210855B60083D70C /* SystemViewController.swift in Sources */,
 				9E523E3E2107819000CF921F /* EditPersonalViewController.swift in Sources */,
 				9E523E3721074E8200CF921F /* BaseNavigationController.swift in Sources */,
@@ -1002,6 +1025,7 @@
 				2CE96F1B211C0D0700B4CE5A /* OrderSearchResultViewController.swift in Sources */,
 				9EE26B79212B0BE000619D98 /* HomeNavigationViewController.swift in Sources */,
 				9E523DF4210460B600CF921F /* UIImage+GIF.swift in Sources */,
+				2CE8F4A4212C0AC600037367 /* SettingsViewController.swift in Sources */,
 				9E523DE020FEB4F100CF921F /* ProtocolPageViewController.swift in Sources */,
 				9E523E89210D449300CF921F /* OrderViewController.swift in Sources */,
 				9E523DFE2104661400CF921F /* GuideViewController.swift in Sources */,

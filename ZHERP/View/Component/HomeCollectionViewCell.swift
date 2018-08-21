@@ -41,7 +41,7 @@ class HomeCollectionViewCell: UICollectionViewCell {
         self.addSubview(imageView!)
         
         // 图片上面显示课程名称，居中显示
-        imageLabel = UILabel(frame:CGRect(x:0, y:80, width:itemWidth, height:20))
+        imageLabel = UILabel(frame:CGRect(x:0, y:75, width:itemWidth, height:20))
         imageLabel!.textColor = UIColor.black
         imageLabel!.font = UIFont.systemFont(ofSize: 14)
         imageLabel!.textAlignment = .center
