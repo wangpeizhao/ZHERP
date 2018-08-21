@@ -19,7 +19,7 @@ class HomeReportViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.view.backgroundColor = UIColor.white
+        self.view.backgroundColor = UIColor(hex: 0x192130)
         self._setup()
 
         // Do any additional setup after loading the view.

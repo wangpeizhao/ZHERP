@@ -87,13 +87,14 @@ class HomeNavigationViewController: UIViewController, UICollectionViewDelegateFl
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         print("index is \(indexPath.row)")
         let key: String = courses[indexPath.item]["key"]!
+        let _self = HomeViewController()
         switch key {
         case "scan":
-            self.hidesBottomBarWhenPushed = true
-            _push(view: self, target: ZHQRCodeViewController(), rootView: true)
+            _self.hidesBottomBarWhenPushed = true
+            _push(view: _self, target: ZHQRCodeViewController(), rootView: true)
         default:
-            self.hidesBottomBarWhenPushed = true
-            _push(view: self, target: GoodDetailViewController(), rootView: true)
+            _self.hidesBottomBarWhenPushed = true
+            _push(view: _self, target: GoodDetailViewController(), rootView: true)
         }
         
     }
