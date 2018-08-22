@@ -119,6 +119,8 @@
 		9EE26B7D212B14F200619D98 /* HomeChartsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EE26B7C212B14F200619D98 /* HomeChartsViewController.swift */; };
 		9EE26B81212C734100619D98 /* GoodTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EE26B7F212C734100619D98 /* GoodTableViewCell.swift */; };
 		9EE26B82212C734100619D98 /* GoodTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9EE26B80212C734100619D98 /* GoodTableViewCell.xib */; };
+		9EE26B84212DA13200619D98 /* Common-Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EE26B83212DA13200619D98 /* Common-Extensions.swift */; };
+		9EE26B86212DA33B00619D98 /* OrderPagingMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EE26B85212DA33B00619D98 /* OrderPagingMenuViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -263,6 +265,8 @@
 		9EE26B7C212B14F200619D98 /* HomeChartsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeChartsViewController.swift; sourceTree = "<group>"; };
 		9EE26B7F212C734100619D98 /* GoodTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoodTableViewCell.swift; sourceTree = "<group>"; };
 		9EE26B80212C734100619D98 /* GoodTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GoodTableViewCell.xib; sourceTree = "<group>"; };
+		9EE26B83212DA13200619D98 /* Common-Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Common-Extensions.swift"; sourceTree = "<group>"; };
+		9EE26B85212DA33B00619D98 /* OrderPagingMenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderPagingMenuViewController.swift; sourceTree = "<group>"; };
 		9F01564B284FE65EC6264542 /* Pods-ZHERPUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZHERPUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-ZHERPUITests/Pods-ZHERPUITests.release.xcconfig"; sourceTree = "<group>"; };
 		A20BF83E3F3D312627719EFA /* Pods-ZHERPTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZHERPTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-ZHERPTests/Pods-ZHERPTests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -596,6 +600,7 @@
 				9E88ED0D20FB3B7600DF091F /* Single+ObjectMapper.swift */,
 				9E523DFF21047E7900CF921F /* UserDefaults.swift */,
 				9E523E9921127EC800CF921F /* UIView-Extensions.swift */,
+				9EE26B83212DA13200619D98 /* Common-Extensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -622,6 +627,7 @@
 				9E523E88210D449300CF921F /* OrderViewController.swift */,
 				9E88ED2420FB53AE00DF091F /* OrderDetailViewController.swift */,
 				2CE96F1A211C0D0700B4CE5A /* OrderSearchResultViewController.swift */,
+				9EE26B85212DA33B00619D98 /* OrderPagingMenuViewController.swift */,
 			);
 			path = Order;
 			sourceTree = "<group>";
@@ -1023,6 +1029,7 @@
 				9E523E3E2107819000CF921F /* EditPersonalViewController.swift in Sources */,
 				9E523E3721074E8200CF921F /* BaseNavigationController.swift in Sources */,
 				9E523DE82102E46900CF921F /* BaseViewController.swift in Sources */,
+				9EE26B86212DA33B00619D98 /* OrderPagingMenuViewController.swift in Sources */,
 				2C7FAC6C2100547A004AEC10 /* Cookie.swift in Sources */,
 				9EE26B5121248C2000619D98 /* ZHQRCodeViewController.swift in Sources */,
 				9E29031B20F7B99800F11C63 /* ViewController.swift in Sources */,
@@ -1047,6 +1054,7 @@
 				9E523E6D2109401F00CF921F /* SwitchTableViewCell.swift in Sources */,
 				9E523E96210D546400CF921F /* OrderCloseViewController.swift in Sources */,
 				9E88ED2720FB576200DF091F /* Candy.swift in Sources */,
+				9EE26B84212DA13200619D98 /* Common-Extensions.swift in Sources */,
 				9E523DF2210460B600CF921F /* HHGuidePageHUD.swift in Sources */,
 				9E88ED2A20FB723600DF091F /* UIColor.swift in Sources */,
 				9E88ED1420FB3B9300DF091F /* Post.swift in Sources */,

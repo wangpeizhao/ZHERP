@@ -6,7 +6,7 @@
 //  Copyright © 2018 MrParker. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 
 //删除一个view 下的所有子view

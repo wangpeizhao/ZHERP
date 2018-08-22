@@ -10,7 +10,7 @@ import UIKit
 import SnapKit
 import MJRefresh
 
-class OrderAllViewController: UIViewController, UITableViewDataSource ,UITableViewDelegate {
+class OrderAllViewController: UIViewController {
     
     var navHeight: CGFloat!
     var tableView: UITableView?
@@ -42,7 +42,7 @@ class OrderAllViewController: UIViewController, UITableViewDataSource ,UITableVi
         
 //        print(self.dataArray)
         // 创建表视图
-        self.tableView = UITableView(frame: CGRect(x: 0, y: 0, width: ScreenWidth, height: ScreenHeight - 124), style:.grouped)
+        self.tableView = UITableView(frame: CGRect(x: 0, y: 0, width: ScreenWidth, height: ScreenHeight - 130), style:.grouped)
         // 去除表格上放多余的空隙
         self.tableView!.contentInset = UIEdgeInsetsMake(0, 0, 0, 0)
         self.tableView!.delegate = self
@@ -132,6 +132,31 @@ class OrderAllViewController: UIViewController, UITableViewDataSource ,UITableVi
         print(self.dataArray)
     }
     
+    @objc func actionBack() {
+        
+    }
+
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
+    }
+    
+
+    /*
+    // MARK: - Navigation
+
+    // In a storyboard-based application, you will often want to do a little preparation before navigation
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        // Get the new view controller using segue.destinationViewController.
+        // Pass the selected object to the new view controller.
+    }
+    */
+
+}
+
+extension OrderAllViewController: UITableViewDataSource ,UITableViewDelegate {
+    
+    
     //在本例中，只有一个分区
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1;
@@ -141,15 +166,15 @@ class OrderAllViewController: UIViewController, UITableViewDataSource ,UITableVi
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.dataArray.count
     }
-
+    
     //设置分组头的高度
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return section == 0 ? 0.1 : 8.0
     }
     
-//    func tableView(_ tableView: UITableView, titleForFooterInSection section: Int) -> String? {
-//        return "开启后，手机不会振动与发出提示音；如果设置为“只在夜间开启”，则只在22:00到08:00间生效"
-//    }
+    //    func tableView(_ tableView: UITableView, titleForFooterInSection section: Int) -> String? {
+    //        return "开启后，手机不会振动与发出提示音；如果设置为“只在夜间开启”，则只在22:00到08:00间生效"
+    //    }
     
     //创建各单元显示内容(创建参数indexPath指定的单元）
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath)
@@ -161,9 +186,9 @@ class OrderAllViewController: UIViewController, UITableViewDataSource ,UITableVi
             if !(self.dataArray[sectionNo]?.isEmpty)! {
                 var _data = self.dataArray[sectionNo]!
                 print(_data)
-    //            let _data = data[indexPath.row as Int]
-    //            //为了提供表格显示性能，已创建完成的单元需重复使用
-    //            //同一形式的单元格重复使用，在声明时已注册
+                //            let _data = data[indexPath.row as Int]
+                //            //为了提供表格显示性能，已创建完成的单元需重复使用
+                //            //同一形式的单元格重复使用，在声明时已注册
                 
                 cell.orderImage.image = UIImage(named: _data["imagePath"]!)
                 cell.sukLabel.text = _data["suk"]
@@ -196,25 +221,4 @@ class OrderAllViewController: UIViewController, UITableViewDataSource ,UITableVi
         setNavBarBackBtn(view: self, title: "订单", selector: selector)
         _push(view: self, target: orderView, rootView: true)
     }
-    
-    @objc func actionBack() {
-        
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }

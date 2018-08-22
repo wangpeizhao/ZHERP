@@ -91,6 +91,7 @@ extension WarehouseViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let memberView = UIView()
+        memberView.backgroundColor = Specs.color.white
         
         // 头像
         let _avatar = UIImage(named: "bayMax")?.toCircleTailor()
@@ -156,6 +157,7 @@ extension WarehouseViewController: UITableViewDelegate, UITableViewDataSource {
         let _image = UIImage(named: _data["pic"]!)?.toCircleTailor()
         cell.imageView?.image = _image?.reSizeImage(reSize: reSize)
         cell.textLabel?.text = _data["name"]
+        cell.textLabel?.font = Specs.font.regular
         cell.accessoryType = .disclosureIndicator
         return cell
     }
