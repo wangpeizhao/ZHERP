@@ -256,7 +256,7 @@ class GoodViewController: UIViewController {
             titleButton.titleLabel?.font = UIFont.systemFont(ofSize: Specs.fontSize.regular)
 //            titleButton.setTitle(title, for: .normal)
 //            titleButton.setImage(UIImage(named: "arrange1"), for: .normal)
-            titleButton.set(image: UIImage(named: "arrange1"), title: title, titlePosition: .left, additionalSpacing: 10.0, state: .normal)
+            titleButton.set(image: UIImage(named: "arrange1"), title: title + " ", titlePosition: .left, additionalSpacing: 10.0, state: .normal)
             
             // frame
             if (index == 0) {
@@ -276,7 +276,7 @@ class GoodViewController: UIViewController {
         categoryBtn.frame = CGRect(x: titleButtonW, y: 0, width: titlesView.frame.width * 0.25, height: 45)
 //        categoryBtn.setTitle("分类", for: .normal)
 //        categoryBtn.setImage(UIImage(named: "goodsmanage_list"), for: .normal)
-        titleButton.set(image: UIImage(named: "goodsmanage_list"), title: "分类 ", titlePosition: .left, additionalSpacing: 10.0, state: .normal)
+        categoryBtn.set(image: UIImage(named: "goodsmanage_list"), title: "分类 ", titlePosition: .left, additionalSpacing: 10.0, state: .normal)
         categoryBtn.titleLabel?.font = UIFont.systemFont(ofSize: Specs.fontSize.regular)
         categoryBtn.setTitleColor(normalRGBA(r: 226, g: 80, b: 44, a: 1.0), for: .normal)
         categoryBtn.addTarget(self, action: #selector(showCategory), for: .touchUpInside)
