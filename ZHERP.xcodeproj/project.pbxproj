@@ -121,6 +121,7 @@
 		9EE26B82212C734100619D98 /* GoodTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9EE26B80212C734100619D98 /* GoodTableViewCell.xib */; };
 		9EE26B84212DA13200619D98 /* Common-Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EE26B83212DA13200619D98 /* Common-Extensions.swift */; };
 		9EE26B86212DA33B00619D98 /* OrderPagingMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EE26B85212DA33B00619D98 /* OrderPagingMenuViewController.swift */; };
+		9EE26B89212DE2F900619D98 /* UIButton-Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EE26B88212DE2F900619D98 /* UIButton-Extensions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -267,6 +268,7 @@
 		9EE26B80212C734100619D98 /* GoodTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GoodTableViewCell.xib; sourceTree = "<group>"; };
 		9EE26B83212DA13200619D98 /* Common-Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Common-Extensions.swift"; sourceTree = "<group>"; };
 		9EE26B85212DA33B00619D98 /* OrderPagingMenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderPagingMenuViewController.swift; sourceTree = "<group>"; };
+		9EE26B88212DE2F900619D98 /* UIButton-Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton-Extensions.swift"; sourceTree = "<group>"; };
 		9F01564B284FE65EC6264542 /* Pods-ZHERPUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZHERPUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-ZHERPUITests/Pods-ZHERPUITests.release.xcconfig"; sourceTree = "<group>"; };
 		A20BF83E3F3D312627719EFA /* Pods-ZHERPTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZHERPTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-ZHERPTests/Pods-ZHERPTests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -590,6 +592,7 @@
 		9E88ED0A20FB3B6300DF091F /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				9EE26B87212DE2DB00619D98 /* UIButton */,
 				2CEA8C48212A500600004AE6 /* UIImage */,
 				9E523DEB21045F3300CF921F /* ThirdParty */,
 				9E88ED2820FB721700DF091F /* UIColor */,
@@ -730,6 +733,14 @@
 				9EE26B80212C734100619D98 /* GoodTableViewCell.xib */,
 			);
 			path = Good;
+			sourceTree = "<group>";
+		};
+		9EE26B87212DE2DB00619D98 /* UIButton */ = {
+			isa = PBXGroup;
+			children = (
+				9EE26B88212DE2F900619D98 /* UIButton-Extensions.swift */,
+			);
+			path = UIButton;
 			sourceTree = "<group>";
 		};
 		DF0678E1C24A1C6B44D879C4 /* Pods */ = {
@@ -1068,6 +1079,7 @@
 				9E88ED1020FB3B7700DF091F /* ObservableType+ObjectMapper.swift in Sources */,
 				9E88ED3920FCEA4500DF091F /* Member.swift in Sources */,
 				9E523DE22100DD0500CF921F /* Protocol.swift in Sources */,
+				9EE26B89212DE2F900619D98 /* UIButton-Extensions.swift in Sources */,
 				9E88ED3520FCE95600DF091F /* MemberBaseViewController.swift in Sources */,
 				9E88ED2D20FB8C7900DF091F /* Specs.swift in Sources */,
 				9E523E0221047F7700CF921F /* IntroductionViewController.swift in Sources */,
