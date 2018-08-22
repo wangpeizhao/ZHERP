@@ -12,6 +12,7 @@ import MJRefresh
 
 class OrderAllViewController: UIViewController, UITableViewDataSource ,UITableViewDelegate {
     
+    var navHeight: CGFloat!
     var tableView: UITableView?
     let identify: String = "OrderCell"
     // 顶部刷新
@@ -35,12 +36,13 @@ class OrderAllViewController: UIViewController, UITableViewDataSource ,UITableVi
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.navHeight = self.navigationController?.navigationBar.frame.maxY
         
         refreshItemData()
         
 //        print(self.dataArray)
         // 创建表视图
-        self.tableView = UITableView(frame:self.view.frame, style:.grouped)
+        self.tableView = UITableView(frame: CGRect(x: 0, y: 0, width: ScreenWidth, height: ScreenHeight - self.navHeight - 100), style:.grouped)
         // 去除表格上放多余的空隙
         self.tableView!.contentInset = UIEdgeInsetsMake(0, 0, 0, 0)
         self.tableView!.delegate = self
