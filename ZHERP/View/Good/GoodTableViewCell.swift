@@ -9,7 +9,9 @@
 import UIKit
 
 class GoodTableViewCell: UITableViewCell {
-
+    
+    var gId: Int!
+    @IBOutlet weak var avatar: UIImageView!
     @IBOutlet weak var suk: UILabel!
     @IBOutlet weak var name: UILabel!
     @IBOutlet weak var stock: UILabel!
@@ -19,7 +21,7 @@ class GoodTableViewCell: UITableViewCell {
     
     @IBOutlet weak var moreBtn: UIButton!
     @IBAction func moreBtnClicked(_ sender: Any) {
-        
+        print(self.gId)
     }
     
     override func awakeFromNib() {

@@ -41,7 +41,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="价格：" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HRb-pY-cuA">
-                        <rect key="frame" x="196" y="41" width="43" height="17"/>
+                        <rect key="frame" x="225" y="41" width="43" height="17"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <fontDescription key="fontDescription" type="system" weight="ultraLight" pointSize="14"/>
                         <nil key="textColor"/>
@@ -76,7 +76,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="20" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="c1a-JE-VPm">
-                        <rect key="frame" x="139" y="41" width="17" height="17"/>
+                        <rect key="frame" x="139" y="41" width="56" height="17"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <fontDescription key="fontDescription" type="system" weight="ultraLight" pointSize="14"/>
                         <nil key="textColor"/>
@@ -104,31 +104,38 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="15元/包" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OuW-wN-Ouk">
-                        <rect key="frame" x="231" y="41" width="48" height="17"/>
+                        <rect key="frame" x="260" y="41" width="48" height="17"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <fontDescription key="fontDescription" type="system" weight="ultraLight" pointSize="14"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="p8w-ZR-KwK">
-                        <rect key="frame" x="278" y="69" width="24" height="24"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="p8w-ZR-KwK">
+                        <rect key="frame" x="294" y="65.5" width="24" height="24"/>
                         <color key="backgroundColor" red="0.8666666666666667" green="0.8666666666666667" blue="0.8666666666666667" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <fontDescription key="fontDescription" type="system" weight="ultraLight" pointSize="14"/>
                         <state key="normal" backgroundImage="more_btn"/>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                <integer key="value" value="4"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
                         <connections>
                             <action selector="moreBtnClicked:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="acR-Xp-FiR"/>
                         </connections>
                     </button>
                 </subviews>
                 <constraints>
+                    <constraint firstAttribute="bottom" secondItem="p8w-ZR-KwK" secondAttribute="bottom" constant="10" id="9wX-U7-UCR"/>
                     <constraint firstItem="NTS-Yz-Pzj" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="BMD-Ym-1AW"/>
                     <constraint firstItem="NTS-Yz-Pzj" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="W2s-OJ-RGT"/>
                     <constraint firstAttribute="bottom" secondItem="NTS-Yz-Pzj" secondAttribute="bottom" constant="10" id="eBO-lB-E2Q"/>
+                    <constraint firstAttribute="trailing" secondItem="p8w-ZR-KwK" secondAttribute="trailing" id="eTr-fX-8z3"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
+                <outlet property="avatar" destination="NTS-Yz-Pzj" id="Zm2-nc-Vam"/>
                 <outlet property="cost" destination="Kkn-Gv-PVe" id="lRr-f5-AcU"/>
                 <outlet property="location" destination="gUy-ZE-mgn" id="hBj-a1-h4k"/>
                 <outlet property="moreBtn" destination="p8w-ZR-KwK" id="ODs-zP-eyO"/>

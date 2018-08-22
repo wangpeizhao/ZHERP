@@ -13,6 +13,8 @@ import PagingMenuController
 
 class OrderViewController: UIViewController, UIGestureRecognizerDelegate {
     
+    var _title: String = "订单管理"
+    var _placeholder: String = "搜索商品名称/订单号"
     var searchBarView: UIView!
     var pageMenuView: UIView!
 
@@ -51,15 +53,15 @@ class OrderViewController: UIViewController, UIGestureRecognizerDelegate {
     var selectedIndexs = [Int]()
     
     var itemArray : [Int: [String:String]] = [
-        0: ["imagePath": "bayMax", "suk": "AB_PPC01", "title": "六神花露水001", "price": "17.50"],
-        1: ["imagePath": "bayMax", "suk": "BC_PPC02", "title": "六神花露水002", "price": "17.50"],
+        0: ["imagePath": "html", "suk": "AB_PPC01", "title": "六神花露水001", "price": "17.50"],
+        1: ["imagePath": "java", "suk": "BC_PPC02", "title": "六神花露水002", "price": "17.50"],
         2: ["imagePath": "bayMax", "suk": "CD_PPC03", "title": "六神花露水003", "price": "17.50"],
-        3: ["imagePath": "bayMax", "suk": "DE_PPC04", "title": "六神花露水004", "price": "17.50"],
+        3: ["imagePath": "php", "suk": "DE_PPC04", "title": "六神花露水004", "price": "17.50"],
         4: ["imagePath": "bayMax", "suk": "EF_PPC05", "title": "六神花露水005", "price": "17.50"],
-        5: ["imagePath": "bayMax", "suk": "FG_PPC06", "title": "六神花露水006", "price": "17.50"],
-        6: ["imagePath": "bayMax", "suk": "GH_PPC07", "title": "六神花露水007", "price": "17.50"],
-        7: ["imagePath": "bayMax", "suk": "HI_PPC08", "title": "六神花露水008", "price": "17.50"],
-        8: ["imagePath": "bayMax", "suk": "IJ_PPC09", "title": "六神花露水009", "price": "17.50"],
+        5: ["imagePath": "react", "suk": "FG_PPC06", "title": "六神花露水006", "price": "17.50"],
+        6: ["imagePath": "ruby", "suk": "GH_PPC07", "title": "六神花露水007", "price": "17.50"],
+        7: ["imagePath": "swift", "suk": "HI_PPC08", "title": "六神花露水008", "price": "17.50"],
+        8: ["imagePath": "xcode", "suk": "IJ_PPC09", "title": "六神花露水009", "price": "17.50"],
         9: ["imagePath": "bayMax", "suk": "JK_PPC10", "title": "六神花露水010", "price": "17.50"],
         10: ["imagePath": "bayMax", "suk": "KL_PPC11", "title": "六神花露水011", "price": "17.50"]
     ]
@@ -204,7 +206,7 @@ class OrderViewController: UIViewController, UIGestureRecognizerDelegate {
         
         
         let selector: Selector = #selector(actionGo)
-        setNavBarBackBtn(view: self, title: "订单", selector: selector)
+        setNavBarBackBtn(view: self, title: self._title, selector: selector)
         //注册监听
         
         self.navHeight = self.navigationController?.navigationBar.frame.maxY
@@ -247,6 +249,34 @@ class OrderViewController: UIViewController, UIGestureRecognizerDelegate {
 //        self.setAutomaticallyAdjustsScrollViewInsets = true
 //        self.setExtendedLayoutIncludesOpaqueBars = true
         self.setUp()
+    }
+    
+    func _searchBarBtn() {
+        print("self.navHeight:\(self.navHeight!)")
+        let frame = self.view.frame.size
+        let buttonView = UIView(frame: CGRect(x: 0, y: self.navHeight!, width: frame.width, height: 50))
+        buttonView.backgroundColor = UIColor(hex: 0xefeef4)
+        self.view.addSubview(buttonView)
+        
+        let button = UIButton(frame: CGRect(x: 10, y: 7, width: frame.width - 20, height: 36))
+        button.setTitle(self._placeholder, for: UIControlState())
+        button.titleLabel?.font = UIFont.systemFont(ofSize: 16)
+        button.setTitleColor(UIColor(hex: 0x939395), for: UIControlState())
+        button.backgroundColor = Specs.color.white
+        button.layer.borderWidth = 1;
+        button.layer.borderColor = UIColor(hex: 0xd7d7d7).cgColor
+        button.layer.cornerRadius = Specs.border.radius
+        button.layer.masksToBounds = true
+        button.addTarget(self, action: #selector(goSearch), for: .touchUpInside)
+        buttonView.addSubview(button)
+    }
+    
+    @objc func goSearch() {
+        let _view = SearchViewController()
+        _view.navBarTitle = self._title
+        _view.searchBarPlaceholder = self._placeholder
+        _view.searchType = "order"
+        _push(view: self, target: _view)
     }
     
     @objc func actionGo() {
@@ -382,7 +412,8 @@ extension OrderViewController {
     func setUp() {
         navigationDropdownMenus()
         
-        searchBar()
+//        searchBar()
+        _searchBarBtn()
 
         pagingMenus()
     }

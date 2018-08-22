@@ -19,9 +19,18 @@ class OrderAllViewController: UIViewController, UITableViewDataSource ,UITableVi
     // 底部刷新
     let footer = MJRefreshAutoNormalFooter()
     
-    var dataArray: [Int: [String:String]] = [
-        0: ["imagePath": "bayMax", "suk": "QQ_PPC01", "title": "六神花露水", "price": "17.50"],
-        1: ["imagePath": "bayMax", "suk": "QQ_PPC02", "title": "六神花露水", "price": "17.50"]
+    var dataArray : [Int: [String:String]] = [
+        0: ["imagePath": "html", "suk": "AB_PPC01", "title": "六神花露水001", "price": "17.50"],
+        1: ["imagePath": "java", "suk": "BC_PPC02", "title": "六神花露水002", "price": "17.50"],
+        2: ["imagePath": "bayMax", "suk": "CD_PPC03", "title": "六神花露水003", "price": "17.50"],
+        3: ["imagePath": "php", "suk": "DE_PPC04", "title": "六神花露水004", "price": "17.50"],
+        4: ["imagePath": "bayMax", "suk": "EF_PPC05", "title": "六神花露水005", "price": "17.50"],
+        5: ["imagePath": "react", "suk": "FG_PPC06", "title": "六神花露水006", "price": "17.50"],
+        6: ["imagePath": "ruby", "suk": "GH_PPC07", "title": "六神花露水007", "price": "17.50"],
+        7: ["imagePath": "swift", "suk": "HI_PPC08", "title": "六神花露水008", "price": "17.50"],
+        8: ["imagePath": "xcode", "suk": "IJ_PPC09", "title": "六神花露水009", "price": "17.50"],
+        9: ["imagePath": "bayMax", "suk": "JK_PPC10", "title": "六神花露水010", "price": "17.50"],
+        10: ["imagePath": "bayMax", "suk": "KL_PPC11", "title": "六神花露水011", "price": "17.50"]
     ]
     
     override func viewDidLoad() {
@@ -38,7 +47,7 @@ class OrderAllViewController: UIViewController, UITableViewDataSource ,UITableVi
         self.tableView!.dataSource = self
         self.tableView!.backgroundColor = Specs.color.white
         //去除单元格分隔线
-        self.tableView!.separatorStyle = .singleLine
+//        self.tableView!.separatorStyle = .singleLine
         
         //        self.tableView!.rowHeight = UITableViewAutomaticDimension;
         

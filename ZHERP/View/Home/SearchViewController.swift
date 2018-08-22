@@ -10,6 +10,11 @@ import UIKit
 
 class SearchViewController: UIViewController {
     
+    var navBarTitle: String!
+    var searchBarPlaceholder: String!
+    var searchType: String!
+    var navHeight: CGFloat!
+    var searchBarHeight: CGFloat!
     var tableArray: NSArray = ["AB_PPC01","BC_PPC02","CD_PPC03","DE_PPC04","EF_PPC05","FG_PPC06","GH_PPC07","HI_PPC08","IJ_PPC09","JK_PPC10"]
     
     var itemArray : [Int: [String:String]] = [
@@ -35,20 +40,41 @@ class SearchViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         self.view.backgroundColor = Specs.color.white
-        // Do any additional setup after loading the view, typically from a nib.
+        setNavBarTitle(view: self, title: !self.navBarTitle.isEmpty ? self.navBarTitle : "搜索")
+        setNavBarBackBtn(view: self, title: !self.navBarTitle.isEmpty ? self.navBarTitle : "搜索", selector: #selector(goback))
         
-        setNavBarTitle(view: self, title: "搜索")
-        setNavBarBackBtn(view: self, title: "搜索", selector: #selector(goback))
+        self._setup()
+    }
+    
+    private func _setup() {
+        self.navHeight = self.navigationController?.navigationBar.frame.maxY
+        self.searchBarHeight = 56.0
         
-//        self.tableView.tableHeaderView = self.searchBar;
+        // 设置右侧按钮
+        let rightBarBtn = UIBarButtonItem(title: "", style: .plain, target: self, action: #selector(actionScan))
+        rightBarBtn.image = UIImage(named: "scan")
+        rightBarBtn.tintColor = Specs.color.white
+        self.navigationItem.rightBarButtonItems = [rightBarBtn]
+        
         self.view.addSubview(self.searchBar);
         self.view.addSubview(tableView);
-        
-        tableView.register(UINib(nibName: "OrderTableViewCell", bundle: nil), forCellReuseIdentifier: resultIdentify)
     }
     
     @objc func goback() {
+        
+    }
+    
+    @objc func delHistory() {
+        
+    }
+    
+    @objc func actionScan() {
+        self.hidesBottomBarWhenPushed = true
+        let _ZHQRCode = ZHQRCodeViewController()
+        _ZHQRCode.actionType = "picking"
+        _push(view: self, target: _ZHQRCode, rootView: true)
         
     }
     
@@ -59,22 +85,22 @@ class SearchViewController: UIViewController {
     
     //使用懒加载方式来创建UITableView
     lazy var tableView: UITableView = {
-//        let tempTableView = UITableView (frame: self.view.bounds, style: UITableViewStyle.plain)
-        // 100
-        let tempTableView = UITableView (frame: CGRect(x: 0, y: 140, width: self.view.bounds.size.width, height: self.view.bounds.size.height), style: UITableViewStyle.plain)
+        let tempTableView = UITableView(frame: CGRect(x: 0, y: self.navHeight + self.searchBarHeight, width: ScreenWidth, height: ScreenHeight), style: UITableViewStyle.plain)
         tempTableView.delegate = self
         tempTableView.dataSource = self
         tempTableView.tableFooterView = UIView.init()
         tempTableView.backgroundColor = Specs.color.white
+        tempTableView.register(UINib(nibName: "OrderTableViewCell", bundle: nil), forCellReuseIdentifier: resultIdentify)
+        tempTableView.tableHeaderView = UIView.init(frame: CGRect(x: 0, y: 0, width: 0, height: 0.1))
         return tempTableView
     }()
     
     //使用懒加载方式来创建UISearchBar
     lazy var searchBar: UISearchBar = {
-        // 44
-        let tempSearchBar = UISearchBar(frame:CGRect(x: 0, y: 84, width: self.view.bounds.size.width, height: 30))
-        //        tempSearchBar.prompt = "查找图书";
-        tempSearchBar.placeholder = "请输入搜索关键字";
+        print("self.navHeight:\(self.navHeight!)")
+        print(self.searchType)
+        let tempSearchBar = UISearchBar(frame: CGRect(x: 0, y: self.navHeight, width: ScreenWidth, height: self.searchBarHeight))
+        tempSearchBar.placeholder = !self.searchBarPlaceholder.isEmpty ? self.searchBarPlaceholder : "请输入搜索关键字";
         tempSearchBar.showsCancelButton = true;
         tempSearchBar.delegate = self
         tempSearchBar.sizeToFit()
@@ -82,7 +108,7 @@ class SearchViewController: UIViewController {
         tempSearchBar.backgroundColor = Specs.color.white
         tempSearchBar.barTintColor = Specs.color.white
         tempSearchBar.tintColor = Specs.color.gray
-        tempSearchBar.searchBarStyle = .default
+        tempSearchBar.searchBarStyle = .prominent
         
         let uiButton = tempSearchBar.value(forKey: "cancelButton") as! UIButton
         uiButton.setTitle("取消", for: .normal)
@@ -122,7 +148,7 @@ class SearchViewController: UIViewController {
 }
 
 extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
-    //MARK: UITableViewDelegate
+
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
@@ -134,6 +160,48 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
         else{
             return tableArray.count
         }
+    }
+    
+//    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+//        return "搜索历史"
+//    }
+    
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 40.0
+    }
+    
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let _view = UIView(frame: CGRect(x: 0, y: 0, width: ScreenWidth, height: 40.0))
+        _view.backgroundColor = UIColor(hex: 0xf2f2f2)
+        
+        // 搜索历史
+        let historyTitle = UILabel()
+        historyTitle.text = "搜索历史"
+        historyTitle.sizeToFit()
+        historyTitle.textColor = Specs.color.gray
+        historyTitle.font = Specs.font.smallBold
+        _view.addSubview(historyTitle)
+        historyTitle.snp.makeConstraints{ (make) -> Void in
+            make.left.equalTo(20)
+            make.top.equalTo(10)
+        }
+        
+        // Delete
+        let delBtn = UIButton()
+        delBtn.setTitle("删除搜索历史", for: .normal)
+        delBtn.titleLabel?.font = UIFont.systemFont(ofSize: 12.0)
+        delBtn.setTitleColor(Specs.color.white, for: .normal)
+        delBtn.layer.cornerRadius = 4.0
+        delBtn.backgroundColor = Specs.color.main
+        delBtn.addTarget(self, action: #selector(delHistory), for: .touchUpInside)
+        _view.addSubview(delBtn)
+        delBtn.snp.makeConstraints{ (make) -> Void in
+            make.right.equalTo(-10)
+            make.top.equalTo(historyTitle.snp.top).offset(-5)
+            make.width.equalTo(90)
+        }
+        
+        return _view
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -188,20 +256,12 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
             orderView.order_price = _data["price"]
             orderView.order_title = _data["title"]
             orderView.actionValue = ""
-            print("push push push push push push push push push push push push push push push push push push push")
-//            print(self.presentingViewController?.navigationController)
-//            print(self.navigationController)
-//            self.present(orderView, animated: true, completion: nil)
             _push(view: self, target: orderView, rootView: false)
-//            self.presentingViewController?.navigationController?.pushViewController(OrderDetailViewController(), animated: true)
-//            _dismiss(view: self)
-//            _open(view: self, vc: orderView)
         } else {
-//            isSearch = true
             let keyword: String? = tableArray[indexPath.row] as? String
             searchBar.text = keyword
             searchContentForText(filterStr: keyword!)
-            tableView.reloadData()
+            self.tableView.reloadData()
         }
     }
     
@@ -213,7 +273,6 @@ extension SearchViewController: UISearchBarDelegate {
         isSearch = false
         searchBar.resignFirstResponder()
         tableView.reloadData()
-//        _dismiss(view: self)
         _back(view: self, root: true)
     }
     
