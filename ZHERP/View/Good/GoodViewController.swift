@@ -19,6 +19,12 @@ class GoodViewController: UIViewController {
     let CELL_IDENTIFY_ID = "CELL_IDENTIFY_ID"
     
     var titleButton: UIButton!
+    var titleBottomView: UIView!
+    var buttonTags: Array<Int> = Array<Int>()
+    var selectedButtonTag: Int!
+    let smallMargin: CGFloat = 35.0
+    let titleButtonOffset: CGFloat = 7.0
+    var buttonClick: Int = 0 //记录当前按钮点击的次数
     // 顶部刷新
     let header = MJRefreshNormalHeader()
     // 底部刷新
@@ -65,7 +71,7 @@ class GoodViewController: UIViewController {
         self.view.addSubview(dataView)
         
         // 创建表视图
-        self.tableView = UITableView(frame: CGRect(x: 0, y: 0, width: ScreenWidth, height: ScreenHeight - self.navHeight - 38), style:.grouped)
+        self.tableView = UITableView(frame: CGRect(x: 0, y: 0, width: ScreenWidth, height: ScreenHeight - self.navHeight - 78), style:.grouped)
         self.tableView!.delegate = self
         self.tableView!.dataSource = self
         self.tableView?.register(UINib(nibName: "GoodTableViewCell", bundle: nil), forCellReuseIdentifier: CELL_IDENTIFY_ID)
@@ -121,111 +127,35 @@ class GoodViewController: UIViewController {
     func refreshItemData() {
         let count = self.itemArray.count
         for i in 0...2 {
-            print(i)
+//            print(i)
             self.itemArray[count + i] = ["avatar": "c#", "suk": "AB_PPC\(count + i)", "name": "六神花露水001", "price": "117.50", "stock": "121", "cost": "2150.00", "location": "广州白马1001"]
         }
     }
     
-//    - (void)setupTitlesView
-//    {
-//    // topView
-//    UIView *topView = [[UIView alloc]init];
-//    topView.frame = CGRectMake(0,0, SCREENWIDTH, TopViewH);
-//    topView.backgroundColor = ViewBackgroundColor;
-//    [self.view addSubview:topView];
-//    self.topView = topView;
-//
-//    UISearchBar *searchBar = [[UISearchBar alloc] initWithFrame:CGRectMake(0, 0, SCREENWIDTH , 50)];
-//    [topView addSubview:searchBar];
-//    searchBar.delegate = self;
-//    searchBar.backgroundColor = Color(245, 245, 245, 1);
-//    [[[searchBar.subviews objectAtIndex:0].subviews objectAtIndex:0]removeFromSuperview];
-//
-//    searchBar.placeholder =  @"搜索商品名称/货号";
-//
-//    UIButton *searchBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-//    searchBtn.frame = CGRectMake(0, 0, SCREENWIDTH , 50);
-//    [searchBtn addTarget:self action:@selector(didClickSearchBtn) forControlEvents:UIControlEventTouchUpInside];
-//    [topView addSubview:searchBtn];
-//
-//
-//    // titlesView
-//    UIView *titlesView = [[UIView alloc] init];
-//    titlesView.backgroundColor = [UIColor whiteColor];
-//    titlesView.frame = CGRectMake(0, 50, SCREENWIDTH, TitlesViewH);
-//    [topView addSubview:titlesView];
-//
-//
-//
-//    self.titlesView = titlesView;
-//
-//    // 标签栏内部的标签按钮
-//    NSInteger count = titlesArr.count;
-//    CGFloat titleButtonH = titlesView.height;
-//    CGFloat titleButtonW = (titlesView.width*0.75);
-//
-//    for (int i = 0; i < count; i++) {
-//    // 创建
-//    TitleButton *titleButton = [TitleButton buttonWithType:UIButtonTypeCustom];
-//    [titleButton addTarget:self action:@selector(titleClick:) forControlEvents:UIControlEventTouchUpInside];
-//    self.titleButton = titleButton;
-//    titleButton.tag = 2000+i;
-//    [titleButton setTitleColor:Color(226, 80, 44, 1) forState:UIControlStateSelected];
-//    [titlesView addSubview:titleButton];
-//    [self.titleButtons addObject:titleButton];
-//
-//    // 文字
-//    NSString *title = [titlesArr objectAtIndex:i];
-//    [titleButton setTitle:title forState:UIControlStateNormal];
-//    [titleButton setImage:[UIImage imageNamed:@"arrange1"] forState:UIControlStateNormal];
-//
-//    // frame
-//    if (i==0) {
-//    titleButton.frame = CGRectMake(0, 0, titleButtonW*0.31, titleButtonH);
-//    }
-//    else{
-//    titleButton.frame = CGRectMake(titleButtonW*0.31+(i-1)*titleButtonW*0.23, 0, titleButtonW*0.23, titleButtonH);
-//    }
-//    }
-//
-//    UILabel *lineLabel = [[UILabel alloc] initWithFrame:CGRectMake(titleButtonW, 15, 1, 20)];
-//    lineLabel.backgroundColor = ViewBackgroundColor;
-//    [titlesView addSubview:lineLabel];
-//
-//    categoryBtn = [TitleButton buttonWithType:UIButtonTypeCustom];
-//    categoryBtn.frame = CGRectMake(titleButtonW, 0, titlesView.width*0.25, TitlesViewH);
-//    [categoryBtn setTitle:@"分类" forState:UIControlStateNormal];
-//    [categoryBtn setImage:[UIImage imageNamed:@"goodsmanage_list"] forState:UIControlStateNormal];
-//    [categoryBtn setTitleColor:Color(226, 80, 44, 1) forState:UIControlStateSelected];
-//    [categoryBtn addTarget:self action:@selector(showCategory:) forControlEvents:UIControlEventTouchUpInside];
-//    [titlesView addSubview:categoryBtn];
-//
-//    // 底部的线
-//    UIView *lineView = [[UIView alloc] init];
-//    CGFloat lineViewH = 1;
-//    lineView.frame = CGRectMake(0, titlesView.height - lineViewH, SCREENWIDTH, lineViewH);
-//    lineView.backgroundColor = Color(194, 194, 194, 0.8);
-//    self.lineView = lineView;
-//    [titlesView addSubview:lineView];
-//
-//    // 标签栏底部的指示器控件
-//    UIView *titleBottomView = [[UIView alloc] init];
-//    titleBottomView.backgroundColor = Color(226, 80, 44, 1);
-//    titleBottomView.height = 2;
-//    titleBottomView.y = titlesView.height - titleBottomView.height;
-//    [titlesView addSubview:titleBottomView];
-//    self.titleBottomView = titleBottomView;
-//
-//    // 默认点击最前面的按钮
-//    TitleButton *firstTitleButton = self.titleButtons.firstObject;
-//    [firstTitleButton.titleLabel sizeToFit];
-//    titleBottomView.width = firstTitleButton.titleLabel.width + SmallMargin;
-//    titleBottomView.centerX = firstTitleButton.centerX;
-//    [self titleClick:firstTitleButton];
-//    _buttonTag = 2000;
-//    }
-    
-    @objc func titleClick() {
+    @objc func titleClick(_ sender: UIButton) {
+        // 上一次点击的
+        let _selectedButton: UIButton = self.view.viewWithTag(self.selectedButtonTag) as! UIButton
+        _selectedButton.setImage(UIImage(named: "arrange1"), for: .normal)
+        
+        // 正在点击的
+        let _button: UIButton = self.view.viewWithTag(sender.tag) as! UIButton
+        _button.titleLabel?.sizeToFit()
+        
+        // 连续点击两次
+        var named: String = "arrange3"
+        if (self.selectedButtonTag! == sender.tag) {
+            named = self.buttonClick % 2 == 0 ? "arrange2" : "arrange3"
+            self.buttonClick += 1
+        } else {
+            self.buttonClick = 0
+        }
+        _button.setImage(UIImage(named: named), for: .normal)
+        
+        UIView.animate(withDuration: 0.25) {
+            self.titleBottomView.frame.size.width = (_button.titleLabel?.frame.width)! + self.smallMargin
+            self.titleBottomView.center.x = _button.center.x + self.titleButtonOffset
+        }
+        self.selectedButtonTag = sender.tag
         self.tableView!.mj_header.beginRefreshing()
     }
     
@@ -241,22 +171,24 @@ class GoodViewController: UIViewController {
         // 标签栏内部的标签按钮
         let count: Int = titlesArr.count
         let titleButtonH = titlesView.frame.height
-        let titleButtonW = titlesView.frame.width * 0.75
+        let titleButtonW = titlesView.frame.width * 0.80
         
         for index in 0..<count {
             // 创建
             let titleButton = UIButton()
-            titleButton.addTarget(self, action: #selector(titleClick), for: .touchUpInside)
+            titleButton.addTarget(self, action: #selector(titleClick(_:)), for: .touchUpInside)
             self.titleButton = titleButton
-            titleButton.tag = 2000 + index
-            titleButton.setTitleColor(normalRGBA(r: 226, g: 80, b: 44, a: 1.0), for: .normal)
+            let _tag = 2000 + index
+            titleButton.tag = _tag
+            titleButton.setTitleColor(normalRGBA(r: 114, g: 114, b: 114, a: 1.0), for: .normal)
+            titlesView.addSubview(titleButton)
+            self.buttonTags.append(_tag)
             
             // 文字
             let title: String = titlesArr[index]
             titleButton.titleLabel?.font = UIFont.systemFont(ofSize: Specs.fontSize.regular)
-//            titleButton.setTitle(title, for: .normal)
-//            titleButton.setImage(UIImage(named: "arrange1"), for: .normal)
-            titleButton.set(image: UIImage(named: "arrange1"), title: title + " ", titlePosition: .left, additionalSpacing: 10.0, state: .normal)
+            titleButton.titleLabel?.textAlignment = .center
+            titleButton.set(image: UIImage(named: "arrange1"), title: title + "", titlePosition: .left, additionalSpacing: 20.0, state: .normal)
             
             // frame
             if (index == 0) {
@@ -265,62 +197,58 @@ class GoodViewController: UIViewController {
                 let _titleButtonW = CGFloat(index - 1) * (titleButtonW)
                 titleButton.frame = CGRect(x: (titleButtonW * 0.31 + _titleButtonW * 0.23), y: 0.0, width: titleButtonW * 0.23, height: titleButtonH)
             }
-            titlesView.addSubview(titleButton)
         }
         
         let lineLabel: UILabel = UILabel(frame: CGRect(x: titleButtonW, y: 15, width: 1, height: 20))
         lineLabel.backgroundColor = normalRGBA(r: 247, g: 247, b: 247, a: 1.0)
         titlesView.addSubview(lineLabel)
-//
+
         let categoryBtn = UIButton()
-        categoryBtn.frame = CGRect(x: titleButtonW, y: 0, width: titlesView.frame.width * 0.25, height: 45)
-//        categoryBtn.setTitle("分类", for: .normal)
-//        categoryBtn.setImage(UIImage(named: "goodsmanage_list"), for: .normal)
-        categoryBtn.set(image: UIImage(named: "goodsmanage_list"), title: "分类 ", titlePosition: .left, additionalSpacing: 10.0, state: .normal)
+        categoryBtn.frame = CGRect(x: titleButtonW, y: 0, width: titlesView.frame.width * 0.15, height: 45)
+        categoryBtn.set(image: UIImage(named: "goodsmanage_list"), title: "分类 ", titlePosition: .left, additionalSpacing: 0.0, state: .normal)
         categoryBtn.titleLabel?.font = UIFont.systemFont(ofSize: Specs.fontSize.regular)
-        categoryBtn.setTitleColor(normalRGBA(r: 226, g: 80, b: 44, a: 1.0), for: .normal)
+        categoryBtn.setTitleColor(normalRGBA(r: 114, g: 114, b: 114, a: 1.0), for: .normal)
         categoryBtn.addTarget(self, action: #selector(showCategory), for: .touchUpInside)
         titlesView.addSubview(categoryBtn)
-//
+
         // 底部的线
         let lineView: UIView = UIView()
         let lineViewH: CGFloat = 1
         lineView.frame = CGRect(x: 0, y: titlesView.frame.height - lineViewH, width: ScreenWidth, height: lineViewH)
         lineView.backgroundColor = normalRGBA(r: 194, g: 194, b: 194, a: 0.8)
         titlesView.addSubview(lineView)
-//
+
         // 标签栏底部的指示器控件
         let titleBottomView: UIView = UIView()
         titleBottomView.backgroundColor = normalRGBA(r: 226, g: 80, b: 44, a: 1.0)
         titleBottomView.frame.size.height = 2
         titleBottomView.frame.origin.y = titlesView.frame.height - titleBottomView.frame.height
         titlesView.addSubview(titleBottomView)
-//        self.titleBottomView = titleBottomView;
-//
-//        // 默认点击最前面的按钮
-//        TitleButton *firstTitleButton = self.titleButtons.firstObject;
-//        [firstTitleButton.titleLabel sizeToFit];
-//        titleBottomView.width = firstTitleButton.titleLabel.width + SmallMargin;
-//        titleBottomView.centerX = firstTitleButton.centerX;
-//        [self titleClick:firstTitleButton];
-//        _buttonTag = 2000;
+        self.titleBottomView = titleBottomView
 
+        // 默认点击最前面的按钮
+        let _currTag: Int = self.buttonTags.first!
+        self.selectedButtonTag = _currTag
+        let firstTitleButton: UIButton = self.view.viewWithTag(_currTag) as! UIButton
+        firstTitleButton.titleLabel?.sizeToFit()
+        firstTitleButton.setImage(UIImage(named: "arrange3"), for: .normal)
+        titleBottomView.frame.size.width = (firstTitleButton.titleLabel?.frame.width)! + self.smallMargin
+        titleBottomView.center.x = firstTitleButton.center.x + self.titleButtonOffset
     }
     
     func _searchBarBtn() {
-//        print("self.navHeight:\(self.navHeight!)")
         let frame = self.view.frame.size
         let buttonView = UIView(frame: CGRect(x: 0, y: self.navHeight!, width: frame.width, height: 50))
         buttonView.backgroundColor = UIColor(hex: 0xefeef4)
         self.view.addSubview(buttonView)
         
-        let button = UIButton(frame: CGRect(x: 10, y: 7, width: frame.width - 20, height: 36))
+        let button = UIButton(frame: CGRect(x: 10, y: 10, width: frame.width - 20, height: 30))
         button.setTitle(self._placeholder, for: UIControlState())
-        button.titleLabel?.font = UIFont.systemFont(ofSize: 16)
-        button.setTitleColor(UIColor(hex: 0x939395), for: UIControlState())
+        button.titleLabel?.font = UIFont.systemFont(ofSize: 14)
+        button.setTitleColor(UIColor(hex: 0x8e8e93), for: UIControlState())
         button.backgroundColor = Specs.color.white
-        button.layer.borderWidth = 1;
-        button.layer.borderColor = UIColor(hex: 0xd7d7d7).cgColor
+        button.layer.borderWidth = 0;
+        button.layer.borderColor = UIColor(hex: 0xf5f5f5).cgColor
         button.layer.cornerRadius = Specs.border.radius
         button.layer.masksToBounds = true
         button.addTarget(self, action: #selector(goSearch), for: .touchUpInside)

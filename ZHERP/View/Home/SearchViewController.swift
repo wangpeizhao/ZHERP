@@ -109,9 +109,12 @@ class SearchViewController: UIViewController {
         tempSearchBar.barTintColor = Specs.color.white
         tempSearchBar.tintColor = Specs.color.gray
         tempSearchBar.searchBarStyle = .prominent
+        let searchField = tempSearchBar.value(forKey: "_searchField") as! UITextField;
+        searchField.setValue(UIFont.systemFont(ofSize: Specs.fontSize.regular), forKeyPath: "_placeholderLabel.font");
         
         let uiButton = tempSearchBar.value(forKey: "cancelButton") as! UIButton
         uiButton.setTitle("取消", for: .normal)
+        uiButton.titleLabel?.font = UIFont.systemFont(ofSize: Specs.fontSize.regular)
         uiButton.setTitleColor(UIColor.gray,for: .normal)
         return tempSearchBar
     }()

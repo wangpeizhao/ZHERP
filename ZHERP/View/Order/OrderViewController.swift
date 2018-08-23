@@ -50,13 +50,13 @@ class OrderViewController: UIViewController, UIGestureRecognizerDelegate {
         buttonView.backgroundColor = UIColor(hex: 0xefeef4)
         self.view.addSubview(buttonView)
         
-        let button = UIButton(frame: CGRect(x: 10, y: 7, width: frame.width - 20, height: 36))
+        let button = UIButton(frame: CGRect(x: 10, y: 10, width: frame.width - 20, height: 30))
         button.setTitle(self._placeholder, for: UIControlState())
-        button.titleLabel?.font = UIFont.systemFont(ofSize: 16)
-        button.setTitleColor(UIColor(hex: 0x939395), for: UIControlState())
+        button.titleLabel?.font = UIFont.systemFont(ofSize: 14)
+        button.setTitleColor(UIColor(hex: 0x8e8e93), for: UIControlState())
         button.backgroundColor = Specs.color.white
-        button.layer.borderWidth = 1;
-        button.layer.borderColor = UIColor(hex: 0xd7d7d7).cgColor
+        button.layer.borderWidth = 0;
+        button.layer.borderColor = UIColor(hex: 0xf5f5f5).cgColor
         button.layer.cornerRadius = Specs.border.radius
         button.layer.masksToBounds = true
         button.addTarget(self, action: #selector(goSearch), for: .touchUpInside)
