@@ -23,6 +23,10 @@ class OrderPagingMenuViewController: UIViewController {
         self._pagingMenus()
     }
     
+    func _MenuItemDisplayModeText(title: String) -> MenuItemDisplayMode{
+        return .text(title: MenuItemText(text: title,font: UIFont.systemFont(ofSize: Specs.fontSize.regular)))
+    }
+    
     //分页菜单配置
     private struct _pagingMenuOptions: PagingMenuControllerCustomizable {
         
@@ -39,15 +43,14 @@ class OrderPagingMenuViewController: UIViewController {
         var backgroundColor: UIColor = .white
         
         //lazy loading的页面数量（默认值就是.three）
-        //        var lazyLoadingPage: LazyLoadingPage = .all
+        // var lazyLoadingPage: LazyLoadingPage = .all
         
         //不太清楚干嘛用的（默认值就是.multiple）
         var menuControllerSet: MenuControllerSet = .multiple
+
         
-        
-        var height: CGFloat = 35
-        //选中项为橙色下划线样式
-        var focusMode: MenuFocusMode = .underline(height: 1, color: .orange, horizontalPadding: 0, verticalPadding: 0)
+        //选中项无样式
+        var focusMode: MenuFocusMode = .none
         
         //Order All 子视图控制器
         private let orderAllView = OrderAllViewController()
@@ -74,9 +77,12 @@ class OrderPagingMenuViewController: UIViewController {
         fileprivate struct MenuOptions: MenuViewCustomizable {
             //菜单显示模式
             var displayMode: MenuDisplayMode {
-                //                return .segmentedControl
                 return .infinite(widthMode: .flexible, scrollingMode: .pagingEnabled)
             }
+            //设置菜单标签高度为40
+            var height: CGFloat = 40
+            //选中项为橙色下划线样式
+            var focusMode: MenuFocusMode = .underline(height: 1, color: .orange, horizontalPadding: 0, verticalPadding: 0)
             //菜单项
             var itemsOptions: [MenuItemViewCustomizable] {
                 return [
@@ -93,8 +99,12 @@ class OrderPagingMenuViewController: UIViewController {
         fileprivate struct MenuItemOrderAll: MenuItemViewCustomizable {
             //自定义菜单项名称
             var displayMode: MenuItemDisplayMode {
-                //                return .text(title: MenuItemText(text: "全部", color: .lightGray, selectedColor: .orange, font: UIFont.systemFont(ofSize: 14), selectedFont: UIFont.systemFont(ofSize: 14)))
-                return .text(title: MenuItemText(text: "全部"))
+                return .text(title: MenuItemText(text: "全部",
+                                                 color: .lightGray,
+                                                 selectedColor: .orange,
+                                                 font: UIFont.systemFont(ofSize: Specs.fontSize.regular),
+                                                 selectedFont: UIFont.systemFont(ofSize: Specs.fontSize.regular)
+                ))
             }
         }
         
@@ -102,7 +112,12 @@ class OrderPagingMenuViewController: UIViewController {
         fileprivate struct MenuItemOrderPay: MenuItemViewCustomizable {
             //自定义菜单项名称
             var displayMode: MenuItemDisplayMode {
-                return .text(title: MenuItemText(text: "已支付"))
+                return .text(title: MenuItemText(text: "已支付",
+                                                 color: .lightGray,
+                                                 selectedColor: .orange,
+                                                 font: UIFont.systemFont(ofSize: Specs.fontSize.regular),
+                                                 selectedFont: UIFont.systemFont(ofSize: Specs.fontSize.regular)
+                ))
             }
         }
         
@@ -110,47 +125,38 @@ class OrderPagingMenuViewController: UIViewController {
         fileprivate struct MenuItemOrderUnPay: MenuItemViewCustomizable {
             //自定义菜单项名称
             var displayMode: MenuItemDisplayMode {
-                return .text(title: MenuItemText(text: "未支付"))
+                return .text(title: MenuItemText(text: "未支付",
+                                                 color: .lightGray,
+                                                 selectedColor: .orange,
+                                                 font: UIFont.systemFont(ofSize: Specs.fontSize.regular),
+                                                 selectedFont: UIFont.systemFont(ofSize: Specs.fontSize.regular)
+                ))
             }
         }
         
         //第4个菜单项
         fileprivate struct MenuItemOrderClose: MenuItemViewCustomizable {
-            //该标签的水平边距设为50
-            //            var horizontalMargin: CGFloat = 5
             //自定义菜单项名称
             var displayMode: MenuItemDisplayMode {
-                return .text(title: MenuItemText(text: "已关闭"))
+                return .text(title: MenuItemText(text: "已关闭",
+                                                 color: .lightGray,
+                                                 selectedColor: .orange,
+                                                 font: UIFont.systemFont(ofSize: Specs.fontSize.regular),
+                                                 selectedFont: UIFont.systemFont(ofSize: Specs.fontSize.regular)
+                ))
             }
         }
         
         //第5个菜单项
         fileprivate struct MenuItemOrderComplete: MenuItemViewCustomizable {
-            //该标签的水平边距设为50
-            //            var horizontalMargin: CGFloat = 5
-            //            var height: CGFloat = 20
             //自定义菜单项名称
             var displayMode: MenuItemDisplayMode {
-                return .text(title: MenuItemText(text: "已完成"))
-                //                let menuCustomView = UIView(frame: CGRect(x: 0, y: 0, width: 100, height: 30))
-                //                menuCustomView.layer.backgroundColor = UIColor.gray.cgColor
-                //                let menuTitle = UILabel()
-                //                menuTitle.text = "已完成"
-                //                menuTitle.font = UIFont.systemFont(ofSize: 13)
-                //                let menuImage = UIImageView()
-                //                menuImage.image = UIImage(named: "VoiceSearchStartBtn")
-                //                menuCustomView.addSubview(menuTitle)
-                //                menuTitle.snp.makeConstraints { (make) -> Void in
-                //                    make.left.equalTo(5)
-                //                    make.centerY.equalTo(menuCustomView)
-                //                }
-                //                menuCustomView.addSubview(menuImage)
-                //                menuImage.snp.makeConstraints { (make) -> Void in
-                //                    make.right.equalTo(5)
-                //                    make.left.equalTo(menuTitle.snp.right).offset(3)
-                //                    make.centerY.equalTo(menuCustomView)
-                //                }
-                //                return .custom(view: menuCustomView)
+                return .text(title: MenuItemText(text: "已完成",
+                                                 color: .lightGray,
+                                                 selectedColor: .orange,
+                                                 font: UIFont.systemFont(ofSize: Specs.fontSize.regular),
+                                                 selectedFont: UIFont.systemFont(ofSize: Specs.fontSize.regular)
+                ))
             }
         }
     }

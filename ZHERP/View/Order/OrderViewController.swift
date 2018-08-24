@@ -13,7 +13,7 @@ import BTNavigationDropdownMenu
 class OrderViewController: UIViewController, UIGestureRecognizerDelegate {
     
     var _title: String = "订单管理"
-    var _placeholder: String = "搜索商品名称/订单号"
+    var _placeholder: String = "搜索订单号"
     var pageMenuView: UIView!
     var orderPageMenuView: OrderPagingMenuViewController?
     //下拉菜单

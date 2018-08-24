@@ -10,6 +10,7 @@ import UIKit
 
 class OrderTableViewCell: UITableViewCell {
 
+    @IBOutlet weak var orderId: UILabel!
     @IBOutlet weak var orderView: UIView!
     @IBOutlet weak var orderImage: UIImageView!
     @IBOutlet weak var sukLabel: UILabel!

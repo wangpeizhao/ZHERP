@@ -15,6 +15,7 @@ class GoodViewController: UIViewController {
     var _title: String = "货品管理"
     var _placeholder: String = "搜索商品名称/货号"
     var navHeight: CGFloat!
+    var tabBarHeight: CGFloat!
     var tableView: UITableView!
     let CELL_IDENTIFY_ID = "CELL_IDENTIFY_ID"
     
@@ -22,8 +23,8 @@ class GoodViewController: UIViewController {
     var titleBottomView: UIView!
     var buttonTags: Array<Int> = Array<Int>()
     var selectedButtonTag: Int!
-    let smallMargin: CGFloat = 35.0
-    let titleButtonOffset: CGFloat = 7.0
+    let smallMargin: CGFloat = 38.0
+    let titleButtonOffset: CGFloat = 6.0
     var buttonClick: Int = 0 //记录当前按钮点击的次数
     // 顶部刷新
     let header = MJRefreshNormalHeader()
@@ -63,6 +64,7 @@ class GoodViewController: UIViewController {
     
     private func _setup() {
         self.navHeight = self.navigationController?.navigationBar.frame.maxY
+        self.tabBarHeight = self.navigationController?.toolbar.frame.maxY
         
         self._searchBarBtn()
         self._setupTitlesView()
@@ -71,7 +73,7 @@ class GoodViewController: UIViewController {
         self.view.addSubview(dataView)
         
         // 创建表视图
-        self.tableView = UITableView(frame: CGRect(x: 0, y: 0, width: ScreenWidth, height: ScreenHeight - self.navHeight - 78), style:.grouped)
+        self.tableView = UITableView(frame: CGRect(x: 0, y: 0, width: ScreenWidth, height: ScreenHeight - self.navHeight - 82), style:.grouped)
         self.tableView!.delegate = self
         self.tableView!.dataSource = self
         self.tableView?.register(UINib(nibName: "GoodTableViewCell", bundle: nil), forCellReuseIdentifier: CELL_IDENTIFY_ID)
