@@ -40,9 +40,10 @@ class OrderUnpayViewController: UIViewController {
     
     private func _setup() {
         // 创建表视图
-        self.tableView = UITableView(frame:self.view.frame, style:.grouped)
+        self.tableView = UITableView(frame: CGRect(x: 0, y: 0, width: ScreenWidth, height: ScreenHeight - 166), style:.grouped)
         self.tableView!.delegate = self
         self.tableView!.dataSource = self
+        self.tableView!.backgroundColor = Specs.color.white
         self.tableView?.tableHeaderView = UIView.init(frame: CGRect(x: 0, y: 0, width: 0, height: 0.1))
         self.tableView?.register(UINib(nibName: "OrderTableViewCell", bundle: nil), forCellReuseIdentifier: CELL_IDENTIFY_ID)
         self.view.addSubview(self.tableView!)

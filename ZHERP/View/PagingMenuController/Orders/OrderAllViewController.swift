@@ -44,7 +44,7 @@ class OrderAllViewController: UIViewController {
         
 //        print(self.dataArray)
         // 创建表视图
-        self.tableView = UITableView(frame: CGRect(x: 0, y: 0, width: ScreenWidth, height: ScreenHeight - self.navHeight - self.tabBarHeight - 45), style:.grouped)
+        self.tableView = UITableView(frame: CGRect(x: 0, y: 0, width: ScreenWidth, height: ScreenHeight - self.navHeight - self.tabBarHeight - 29), style:.grouped)
         // 去除表格上放多余的空隙
         self.tableView!.contentInset = UIEdgeInsetsMake(0, 0, 0, 0)
         self.tableView!.delegate = self
