@@ -12,10 +12,11 @@ import MJRefresh
 
 class OrderAllViewController: UIViewController {
     
+    var tableView: UITableView!
+    let CELL_IDENTIFY_ID = "CELL_IDENTIFY_ID"
+    
     var navHeight: CGFloat!
     var tabBarHeight: CGFloat!
-    var tableView: UITableView?
-    let identify: String = "OrderCell"
     // 顶部刷新
     let header = MJRefreshNormalHeader()
     // 底部刷新
@@ -37,12 +38,20 @@ class OrderAllViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.view.backgroundColor = Specs.color.white
+        
+        self._setup()
+        
+        // Do any additional setup after loading the view.
+    }
+    
+    private func _setup() {
         self.navHeight = 44 //self.navigationController?.navigationBar.frame.maxY
         self.tabBarHeight = 49 // self.navigationController?.toolbar.frame.maxY
         
         refreshItemData()
         
-//        print(self.dataArray)
         // 创建表视图
         self.tableView = UITableView(frame: CGRect(x: 0, y: 0, width: ScreenWidth, height: ScreenHeight - self.navHeight - self.tabBarHeight - 29), style:.grouped)
         // 去除表格上放多余的空隙
@@ -53,7 +62,7 @@ class OrderAllViewController: UIViewController {
         self.navigationController?.navigationBar.isTranslucent = false
         self.automaticallyAdjustsScrollViewInsets = false
         self.tableView?.tableHeaderView = UIView.init(frame: CGRect(x: 0, y: 0, width: 0, height: 0.1))
-        self.tableView?.register(UINib(nibName: "OrderTableViewCell", bundle: nil), forCellReuseIdentifier: identify)
+        self.tableView?.register(UINib(nibName: "OrderTableViewCell", bundle: nil), forCellReuseIdentifier: CELL_IDENTIFY_ID)
         self.view.addSubview(self.tableView!)
         self.tableView!.translatesAutoresizingMaskIntoConstraints = false
         
@@ -65,7 +74,6 @@ class OrderAllViewController: UIViewController {
         header.setTitle("没有更多数据啦~", for: .noMoreData)
         header.setRefreshingTarget(self, refreshingAction: #selector(OrderAllViewController.headerRefresh))
         self.tableView!.mj_header = header
-        // Do any additional setup after loading the view.
         
         // 上拉刷新
         footer.setRefreshingTarget(self, refreshingAction: #selector(footerRefresh))
@@ -105,12 +113,14 @@ class OrderAllViewController: UIViewController {
     //初始化数据
     func refreshItemData() {
         let count = self.dataArray.count
-        print("count:\(count)")
+        let imagePaths = ["java","php","html","react","ruby","swift","xcode","bayMax","c#"]
+//        arc4random_uniform(1000) + 1000
+        
         for i in 0...2 {
-            print(i)
-            self.dataArray[count + i] = ["imagePath": "php", "suk": "QQ_PPC_\(count + i)", "title": "六神花露水", "price": "17.50","orderId": "ZH201808242256"]
+            let index = arc4random_uniform(UInt32(imagePaths.count))
+            let _imagePath = imagePaths[Int(index)]
+            self.dataArray[count + i] = ["imagePath": _imagePath, "suk": "QQ_PPC_\(count + i)", "title": "六神花露水\(count + i)", "price": "17.50","orderId": "ZH201808242256"]
         }
-        print(self.dataArray)
     }
     
     @objc func actionBack() {
@@ -162,14 +172,9 @@ extension OrderAllViewController: UITableViewDataSource ,UITableViewDelegate {
         -> UITableViewCell {
             let count = self.dataArray.count
             let sectionNo = count - indexPath.row - 1
-            print(sectionNo)
-            let cell: OrderTableViewCell = tableView.dequeueReusableCell(withIdentifier: identify) as! OrderTableViewCell
+            let cell: OrderTableViewCell = tableView.dequeueReusableCell(withIdentifier: CELL_IDENTIFY_ID) as! OrderTableViewCell
             if !(self.dataArray[sectionNo]?.isEmpty)! {
                 var _data = self.dataArray[sectionNo]!
-                print(_data)
-                //            let _data = data[indexPath.row as Int]
-                //            //为了提供表格显示性能，已创建完成的单元需重复使用
-                //            //同一形式的单元格重复使用，在声明时已注册
                 
                 cell.orderImage.image = UIImage(named: _data["imagePath"]!)
                 cell.sukLabel.text = _data["suk"]
@@ -184,6 +189,7 @@ extension OrderAllViewController: UITableViewDataSource ,UITableViewDelegate {
     // UITableViewDelegate 方法，处理列表项的选中事件
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
+        tableView.deselectRow(at: indexPath, animated: true)
         let sb = UIStoryboard(name:"Main", bundle: nil)
         let orderView = sb.instantiateViewController(withIdentifier: "OrderDetailViewController") as! OrderDetailViewController
         

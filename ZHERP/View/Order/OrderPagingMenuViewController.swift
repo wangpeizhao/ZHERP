@@ -100,7 +100,7 @@ class OrderPagingMenuViewController: UIViewController {
             //自定义菜单项名称
             var displayMode: MenuItemDisplayMode {
                 return .text(title: MenuItemText(text: "全部",
-                                                 color: .lightGray,
+                                                 color: UIColor(hex: 0x727272),
                                                  selectedColor: .orange,
                                                  font: UIFont.systemFont(ofSize: Specs.fontSize.regular),
                                                  selectedFont: UIFont.systemFont(ofSize: Specs.fontSize.regular)
@@ -113,7 +113,7 @@ class OrderPagingMenuViewController: UIViewController {
             //自定义菜单项名称
             var displayMode: MenuItemDisplayMode {
                 return .text(title: MenuItemText(text: "已支付",
-                                                 color: .lightGray,
+                                                 color: UIColor(hex: 0x727272),
                                                  selectedColor: .orange,
                                                  font: UIFont.systemFont(ofSize: Specs.fontSize.regular),
                                                  selectedFont: UIFont.systemFont(ofSize: Specs.fontSize.regular)
@@ -126,7 +126,7 @@ class OrderPagingMenuViewController: UIViewController {
             //自定义菜单项名称
             var displayMode: MenuItemDisplayMode {
                 return .text(title: MenuItemText(text: "未支付",
-                                                 color: .lightGray,
+                                                 color: UIColor(hex: 0x727272),
                                                  selectedColor: .orange,
                                                  font: UIFont.systemFont(ofSize: Specs.fontSize.regular),
                                                  selectedFont: UIFont.systemFont(ofSize: Specs.fontSize.regular)
@@ -139,7 +139,7 @@ class OrderPagingMenuViewController: UIViewController {
             //自定义菜单项名称
             var displayMode: MenuItemDisplayMode {
                 return .text(title: MenuItemText(text: "已关闭",
-                                                 color: .lightGray,
+                                                 color: UIColor(hex: 0x727272),
                                                  selectedColor: .orange,
                                                  font: UIFont.systemFont(ofSize: Specs.fontSize.regular),
                                                  selectedFont: UIFont.systemFont(ofSize: Specs.fontSize.regular)
@@ -152,7 +152,7 @@ class OrderPagingMenuViewController: UIViewController {
             //自定义菜单项名称
             var displayMode: MenuItemDisplayMode {
                 return .text(title: MenuItemText(text: "已完成",
-                                                 color: .lightGray,
+                                                 color: UIColor(hex: 0x727272),
                                                  selectedColor: .orange,
                                                  font: UIFont.systemFont(ofSize: Specs.fontSize.regular),
                                                  selectedFont: UIFont.systemFont(ofSize: Specs.fontSize.regular)

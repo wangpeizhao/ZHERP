@@ -53,9 +53,14 @@ class GoodViewController: UIViewController {
         self.view.backgroundColor = Specs.color.white
         setNavBarTitle(view: self, title: self._title)
         setNavBarBackBtn(view: self, title: self._title, selector: #selector(actionBack))
+        setNavBarRightBtn(view: self, title: "更多", selector: #selector(actionMore))
         
         self._setup()
         // Do any additional setup after loading the view.
+    }
+    
+    @objc func actionMore() {
+        
     }
     
     @objc func actionBack() {
@@ -128,9 +133,11 @@ class GoodViewController: UIViewController {
     //初始化数据
     func refreshItemData() {
         let count = self.itemArray.count
+        let imagePaths = ["java","php","html","react","ruby","swift","xcode","bayMax","c#"]
         for i in 0...2 {
-//            print(i)
-            self.itemArray[count + i] = ["avatar": "c#", "suk": "AB_PPC\(count + i)", "name": "六神花露水001", "price": "117.50", "stock": "121", "cost": "2150.00", "location": "广州白马1001"]
+            let index = arc4random_uniform(UInt32(imagePaths.count))
+            let _imagePath = imagePaths[Int(index)]
+            self.itemArray[count + i] = ["avatar": _imagePath, "suk": "AB_PPC\(count + i)", "name": "六神花露水001", "price": "117.50", "stock": "121", "cost": "2150.00", "location": "广州白马1001"]
         }
     }
     
@@ -206,8 +213,9 @@ class GoodViewController: UIViewController {
         titlesView.addSubview(lineLabel)
 
         let categoryBtn = UIButton()
-        categoryBtn.frame = CGRect(x: titleButtonW, y: 0, width: titlesView.frame.width * 0.15, height: 45)
-        categoryBtn.set(image: UIImage(named: "goodsmanage_list"), title: "分类 ", titlePosition: .left, additionalSpacing: 0.0, state: .normal)
+        categoryBtn.frame = CGRect(x: titleButtonW, y: 0, width: titlesView.frame.width * 0.2, height: 45)
+//        categoryBtn.backgroundColor = UIColor.red
+        categoryBtn.set(image: UIImage(named: "goodsmanage_list"), title: "分类 ", titlePosition: .left, additionalSpacing: -15.0, state: .normal)
         categoryBtn.titleLabel?.font = UIFont.systemFont(ofSize: Specs.fontSize.regular)
         categoryBtn.setTitleColor(normalRGBA(r: 114, g: 114, b: 114, a: 1.0), for: .normal)
         categoryBtn.addTarget(self, action: #selector(showCategory), for: .touchUpInside)
@@ -324,7 +332,7 @@ extension GoodViewController: UITableViewDataSource ,UITableViewDelegate {
     
     // UITableViewDelegate 方法，处理列表项的选中事件
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
+        tableView.deselectRow(at: indexPath, animated: true)
         let sb = UIStoryboard(name:"Main", bundle: nil)
         let orderView = sb.instantiateViewController(withIdentifier: "GoodDetailViewController") as! GoodDetailViewController
 
