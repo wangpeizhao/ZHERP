@@ -32,6 +32,7 @@ class GoodViewController: UIViewController {
     
     // 阴影
     var cover: UIView!
+    var moreView: UIView!
     
     // 分类View
     var categoryTable: UITableView!
@@ -73,10 +74,26 @@ class GoodViewController: UIViewController {
     
     @objc func actionMore() {
         self.hideCategoryTable()
+        
+        if self.moreView.tag == 0 {
+            self.moreView.tag = 1
+            self.moreView.isHidden = false
+        } else {
+            self.moreView.tag = 0
+            self.moreView.isHidden = true
+        }
+        
     }
     
     @objc func actionBack() {
         
+    }
+    
+    @objc func actionMoreItem(_ sender: UIButton) {
+        self.hideCategoryTable()
+        print(sender.tag)
+        self.moreView.tag = 0
+        self.moreView.isHidden = true
     }
     
     private func _setup() {
@@ -98,6 +115,7 @@ class GoodViewController: UIViewController {
         
         self._searchBarBtn()
         self._setupTitlesView()
+        self._moreView()
         
         // 创建表视图
         self.tableView = UITableView(frame: CGRect(x: 0, y: 0, width: ScreenWidth, height: ScreenHeight - self.navHeight - 82), style:.grouped)
@@ -267,6 +285,48 @@ class GoodViewController: UIViewController {
                 self.hideCategoryTable()
             }
         }
+    }
+    
+    // 右上角下拉菜单
+    func _moreView() {
+        self.moreView = UIView(frame: CGRect(x: ScreenWidth - 120, y: self.navHeight, width: 110, height: 145))
+        self.moreView.tag = 0
+        self.moreView.isHidden = true
+        let imgBgTop = UIImageView(frame: CGRect(x: self.moreView.frame.size.width - 35, y: 0, width: 20, height: 10))
+        imgBgTop.image = UIImage(named: "jump_list_bg_top")
+        self.moreView.addSubview(imgBgTop)
+        
+        let vBg = UIView(frame: CGRect(x: 2, y: imgBgTop.frame.size.height, width: self.moreView.frame.size.width, height: self.moreView.frame.size.height))
+        vBg.backgroundColor = normalRGBA(r: 49, g: 58, b: 67, a: 1)
+        vBg.layer.cornerRadius = 5.0
+        vBg.layer.masksToBounds = true
+        self.moreView.addSubview(vBg)
+        
+        
+        let moreArr = ["分组管理", "规格管理", "批量管理", "销量"]
+        let _moreArrCount = moreArr.count
+        if _moreArrCount > 0 {
+            for index in 0..<_moreArrCount {
+                let _moreBtn = UIButton(frame: CGRect(x: 0, y: 45 * index + 10, width: Int(self.moreView.frame.size.width), height: 45))
+                _moreBtn.setTitle(moreArr[index], for: .normal)
+                _moreBtn.setTitleColor(Specs.color.white, for: .normal)
+                let _tag = index
+                _moreBtn.tag = _tag
+                _moreBtn.addTarget(self, action: #selector(actionMoreItem(_:)), for: .touchUpInside)
+                _moreBtn.titleLabel?.font = UIFont.systemFont(ofSize: 15)
+                self.moreView.addSubview(_moreBtn)
+                
+                let _height = _moreBtn.frame.size.height
+                print((_height + 5) * CGFloat(index + 1))
+                // 分割线
+                if index < _moreArrCount - 1 {
+                    let _sigline = UIImageView(frame: CGRect(x: 0, y: (_height + 5) * CGFloat(index + 1), width: _moreBtn.frame.size.width, height: 11))
+                    _sigline.image = UIImage(named: "line1")
+                    self.moreView.addSubview(_sigline)
+                }
+            }
+        }
+        self.view.addSubview(self.moreView)
     }
     
     func _setupTitlesView() {
