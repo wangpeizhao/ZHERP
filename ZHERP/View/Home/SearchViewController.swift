@@ -182,7 +182,7 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
         historyTitle.text = "搜索历史"
         historyTitle.sizeToFit()
         historyTitle.textColor = Specs.color.gray
-        historyTitle.font = Specs.font.smallBold
+        historyTitle.font = Specs.font.regular
         _view.addSubview(historyTitle)
         historyTitle.snp.makeConstraints{ (make) -> Void in
             make.left.equalTo(20)

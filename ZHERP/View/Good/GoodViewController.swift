@@ -26,6 +26,16 @@ class GoodViewController: UIViewController {
     let smallMargin: CGFloat = 38.0
     let titleButtonOffset: CGFloat = 6.0
     var buttonClick: Int = 0 //记录当前按钮点击的次数
+    
+    // 分类按钮
+    var categoryBtn: UIButton!
+    
+    // 阴影
+    var cover: UIView!
+    
+    // 分类View
+    var categoryTable: UITableView!
+    
     // 顶部刷新
     let header = MJRefreshNormalHeader()
     // 底部刷新
@@ -47,6 +57,8 @@ class GoodViewController: UIViewController {
     
     let titlesArr = ["上架时间", "价格", "库存", "销量"]
     
+    let categoryArr = ["最新", "价格", "库存", "销量"]
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -60,7 +72,7 @@ class GoodViewController: UIViewController {
     }
     
     @objc func actionMore() {
-        
+        self.hideCategoryTable()
     }
     
     @objc func actionBack() {
@@ -71,11 +83,21 @@ class GoodViewController: UIViewController {
         self.navHeight = self.navigationController?.navigationBar.frame.maxY
         self.tabBarHeight = self.navigationController?.toolbar.frame.maxY
         
-        self._searchBarBtn()
-        self._setupTitlesView()
-        
         let dataView = UIView(frame: CGRect(x: 0, y: self.navHeight + 95, width: ScreenWidth, height: ScreenHeight))
         self.view.addSubview(dataView)
+        
+        self.cover = UIView(frame: CGRect(x: 0, y: 0, width: ScreenWidth, height: ScreenHeight))
+        self.cover.backgroundColor = normalRGBA(r: 0, g: 0, b: 0, a: 0.3)
+        self.cover.isHidden = true
+        self.view.addSubview(self.cover)
+        
+        let tapCover = UITapGestureRecognizer(target: self, action: #selector(tapCover(_:)))
+//        tapCover.delegate = self
+//        tapCover.addTarget(self, action: #selector(anohterGesAction))
+        self.cover.addGestureRecognizer(tapCover)
+        
+        self._searchBarBtn()
+        self._setupTitlesView()
         
         // 创建表视图
         self.tableView = UITableView(frame: CGRect(x: 0, y: 0, width: ScreenWidth, height: ScreenHeight - self.navHeight - 82), style:.grouped)
@@ -98,6 +120,55 @@ class GoodViewController: UIViewController {
         // 上拉刷新相关设置
         footer.setRefreshingTarget(self, refreshingAction: #selector(footerRefresh))
         self.tableView?.mj_footer = footer
+        
+        self.categoryTable = UITableView(frame: CGRect(x: 0, y: self.navHeight + 95, width: ScreenWidth, height: 0), style: UITableViewStyle.plain)
+        self.categoryTable.delegate = self
+        self.categoryTable.dataSource = self
+        self.categoryTable.backgroundColor = Specs.color.white
+        self.categoryTable.tableFooterView = UIView.init()
+        self.categoryTable.backgroundColor = Specs.color.white
+        self.categoryTable.register(UITableViewCell.self, forCellReuseIdentifier: "CategoryTableCell")
+        self.categoryTable.tableHeaderView = UIView.init(frame: CGRect(x: 0, y: 0, width: 0, height: 0.1))
+        self.view.addSubview(self.categoryTable)
+    }
+    
+//    lazy var categoryTable: UITableView = {
+//        let _categoryTable = UITableView(frame: CGRect(x: 0, y: 122, width: ScreenWidth, height: 0), style: UITableViewStyle.plain)
+//        _categoryTable.delegate = self
+//        _categoryTable.dataSource = self
+//        _categoryTable.backgroundColor = Specs.color.white
+//        _categoryTable.tableFooterView = UIView.init()
+//        _categoryTable.backgroundColor = Specs.color.white
+//        _categoryTable.register(UITableViewCell.self, forCellReuseIdentifier: "CategoryTableCell")
+//        _categoryTable.tableHeaderView = UIView.init(frame: CGRect(x: 0, y: 0, width: 0, height: 0.1))
+//        return _categoryTable
+//    }()
+    
+    private func showCategoryTable() {
+        self.categoryBtn.tag = 1
+        UIView.animate(withDuration: 0.25) {
+            self.cover.isHidden = false
+            if self.categoryArr.count < 7 {
+                self.categoryTable.frame.size.height = CGFloat(self.categoryArr.count * 45)
+            } else {
+                self.categoryTable.frame.size.height = CGFloat(270)
+            }
+            self.tabBarController?.tabBar.isHidden = true
+        }
+    }
+    
+    private func hideCategoryTable() {
+        self.categoryBtn.tag = 0
+        UIView.animate(withDuration: 0.25) {
+            self.cover.isHidden = true
+            self.categoryTable.frame.size.height = CGFloat(0)
+            self.tabBarController?.tabBar.isHidden = false
+        }
+    }
+    // 方法
+    @objc func tapCover(_ tapCover : UITapGestureRecognizer){
+        print("tapGesLocation\(tapCover.location(in: view))")
+        self.hideCategoryTable()
     }
     
     @objc func footerRefresh(){
@@ -169,7 +240,33 @@ class GoodViewController: UIViewController {
     }
     
     @objc func showCategory() {
-        
+        if (self.categoryArr.count > 1) {
+            if (self.categoryBtn.tag == 0) {
+                self.showCategoryTable()
+            }else{
+                self.hideCategoryTable()
+            }
+        }
+        else{
+            if (self.categoryBtn.tag == 0) {
+//                ShowHUBInController
+//                [[FAFApi sharedInstance] getGoodsCate:^(id result) {
+//                    HideHUBInController
+//                    NSArray *dataArr = [result objectForKey:@"data"];
+//                    for (int i=0; i<dataArr.count; i++) {
+//                    GoodTypeModel *item = [GoodTypeModel yy_modelWithDictionary:[dataArr objectAtIndex:i]];
+//                    [categoryArray addObject:item];
+//                    }
+//                    [self.categoryTable reloadData];
+//                    [self showCategoryTable];
+//                    } failure:^(NSString *message) {
+//                    HideHUBInController
+//                    ShowHUBInWindowAutoHid(message)
+//                    }];
+            }else{
+                self.hideCategoryTable()
+            }
+        }
     }
     
     func _setupTitlesView() {
@@ -212,14 +309,12 @@ class GoodViewController: UIViewController {
         lineLabel.backgroundColor = normalRGBA(r: 247, g: 247, b: 247, a: 1.0)
         titlesView.addSubview(lineLabel)
 
-        let categoryBtn = UIButton()
-        categoryBtn.frame = CGRect(x: titleButtonW, y: 0, width: titlesView.frame.width * 0.2, height: 45)
-//        categoryBtn.backgroundColor = UIColor.red
-        categoryBtn.set(image: UIImage(named: "goodsmanage_list"), title: "分类 ", titlePosition: .left, additionalSpacing: -15.0, state: .normal)
-        categoryBtn.titleLabel?.font = UIFont.systemFont(ofSize: Specs.fontSize.regular)
-        categoryBtn.setTitleColor(normalRGBA(r: 114, g: 114, b: 114, a: 1.0), for: .normal)
-        categoryBtn.addTarget(self, action: #selector(showCategory), for: .touchUpInside)
-        titlesView.addSubview(categoryBtn)
+        self.categoryBtn = UIButton(frame: CGRect(x: titleButtonW, y: 0, width: titlesView.frame.width * 0.2, height: 45))
+        self.categoryBtn.set(image: UIImage(named: "goodsmanage_list"), title: "分类 ", titlePosition: .left, additionalSpacing: -15.0, state: .normal)
+        self.categoryBtn.titleLabel?.font = UIFont.systemFont(ofSize: Specs.fontSize.regular)
+        self.categoryBtn.setTitleColor(normalRGBA(r: 114, g: 114, b: 114, a: 1.0), for: .normal)
+        self.categoryBtn.addTarget(self, action: #selector(showCategory), for: .touchUpInside)
+        titlesView.addSubview(self.categoryBtn)
 
         // 底部的线
         let lineView: UIView = UIView()
@@ -297,7 +392,13 @@ extension GoodViewController: UITableViewDataSource ,UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.itemArray.count
+        var rows = 0;
+        if tableView.isEqual(self.tableView) {
+            rows = self.itemArray.count
+        } else if tableView.isEqual(self.categoryTable) {
+            rows = self.categoryArr.count
+        }
+        return rows
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
@@ -310,43 +411,62 @@ extension GoodViewController: UITableViewDataSource ,UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
-        let count = self.itemArray.count
-        let sectionNo = count - indexPath.row - 1
+        if tableView.isEqual(self.tableView) {
+            let count = self.itemArray.count
+            let sectionNo = count - indexPath.row - 1
 
-        let cell: GoodTableViewCell = tableView.dequeueReusableCell(withIdentifier: CELL_IDENTIFY_ID) as! GoodTableViewCell
-        if !(self.itemArray[sectionNo]?.isEmpty)! {
-            var _data = self.itemArray[sectionNo]!
+            let cell: GoodTableViewCell = tableView.dequeueReusableCell(withIdentifier: CELL_IDENTIFY_ID) as! GoodTableViewCell
+            if !(self.itemArray[sectionNo]?.isEmpty)! {
+                var _data = self.itemArray[sectionNo]!
+                
+                cell.avatar.image = UIImage(named: _data["avatar"]!)
+                cell.suk.text = _data["suk"]
+                cell.name.text = _data["name"]
+                cell.stock.text = _data["stock"]
+                cell.stock.text = _data["cost"]
+                cell.stock.text = _data["location"]
+                cell.stock.text = _data["price"]
+                cell.accessoryType = .disclosureIndicator
+            }
+            return cell
+        } else if tableView.isEqual(self.categoryTable) {
+            let count = self.categoryArr.count
+            let sectionNo = count - indexPath.row - 1
             
-            cell.avatar.image = UIImage(named: _data["avatar"]!)
-            cell.suk.text = _data["suk"]
-            cell.name.text = _data["name"]
-            cell.stock.text = _data["stock"]
-            cell.stock.text = _data["cost"]
-            cell.stock.text = _data["location"]
-            cell.stock.text = _data["price"]
-            cell.accessoryType = .disclosureIndicator
+            let cell = tableView.dequeueReusableCell(withIdentifier: "CategoryTableCell", for: indexPath) as UITableViewCell
+            if !(self.itemArray[sectionNo]?.isEmpty)! {
+                let _data = self.categoryArr[sectionNo]
+                cell.textLabel?.text = _data
+                cell.textLabel?.font = Specs.font.regular
+                cell.textLabel?.textColor = normalRGBA(r: 114, g: 114, b: 114, a: 1.0)
+                cell.accessoryType = .checkmark
+            }
+            return cell
         }
-        return cell
+        return UITableViewCell()
     }
     
     // UITableViewDelegate 方法，处理列表项的选中事件
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        let sb = UIStoryboard(name:"Main", bundle: nil)
-        let orderView = sb.instantiateViewController(withIdentifier: "GoodDetailViewController") as! GoodDetailViewController
+        if tableView.isEqual(self.tableView) {
+            let sb = UIStoryboard(name:"Main", bundle: nil)
+            let orderView = sb.instantiateViewController(withIdentifier: "GoodDetailViewController") as! GoodDetailViewController
 
-        let count = self.itemArray.count
-        let sectionNo = count - indexPath.row - 1
-        var _data = self.itemArray[sectionNo]!
-//        orderView.hidesBottomBarWhenPushed = true
-        
-//        orderView.navTitle = _data["suk"]
-//        orderView.order_image = _data["avatar"]
-//        orderView.order_price = _data["price"]
-//        orderView.order_title = _data["name"]
-//        orderView.actionValue = ""
-        
-        _push(view: self, target: orderView, rootView: true)
+            let count = self.itemArray.count
+            let sectionNo = count - indexPath.row - 1
+            var _data = self.itemArray[sectionNo]!
+    //        orderView.hidesBottomBarWhenPushed = true
+            
+    //        orderView.navTitle = _data["suk"]
+    //        orderView.order_image = _data["avatar"]
+    //        orderView.order_price = _data["price"]
+    //        orderView.order_title = _data["name"]
+    //        orderView.actionValue = ""
+            
+            _push(view: self, target: orderView, rootView: true)
+        } else if tableView.isEqual(self.categoryTable) {
+            self.hideCategoryTable()
+        }
     }
 }

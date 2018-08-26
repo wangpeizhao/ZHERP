@@ -294,6 +294,7 @@ public func setNavBarRightBtn(view: UIViewController, title: String, selector: S
     let rightBtn = UIBarButtonItem(title: title, style: .plain, target: view, action: selector)
     // 返回按钮文字颜色
     rightBtn.tintColor = color
+//    self.navigationController?.navigationBar.titleTextAttributes = [ NSFontAttributeName: UIFont(name: "Your Font", size: 34)!, NSForegroundColorAttributeName: UIColor.whiteColor()]
     view.navigationItem.rightBarButtonItem = rightBtn
 }
 
