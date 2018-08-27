@@ -74,15 +74,11 @@ class GoodViewController: UIViewController {
     
     @objc func actionMore() {
         self.hideCategoryTable()
-        
-        if self.moreView.tag == 0 {
-            self.moreView.tag = 1
-            self.moreView.isHidden = false
-        } else {
-            self.moreView.tag = 0
-            self.moreView.isHidden = true
-        }
-        
+        self.moreView.isHidden = !self.moreView.isHidden
+    }
+    
+    @objc func hideMoreMenu(_ sender:UIView) {
+        self.moreView.isHidden = true
     }
     
     @objc func actionBack() {
@@ -91,8 +87,6 @@ class GoodViewController: UIViewController {
     
     @objc func actionMoreItem(_ sender: UIButton) {
         self.hideCategoryTable()
-        print(sender.tag)
-        self.moreView.tag = 0
         self.moreView.isHidden = true
     }
     
@@ -108,10 +102,14 @@ class GoodViewController: UIViewController {
         self.cover.isHidden = true
         self.view.addSubview(self.cover)
         
+        // 弹出阴影层 手势
         let tapCover = UITapGestureRecognizer(target: self, action: #selector(tapCover(_:)))
-//        tapCover.delegate = self
-//        tapCover.addTarget(self, action: #selector(anohterGesAction))
         self.cover.addGestureRecognizer(tapCover)
+        
+        // 右上用下拉菜单 手势
+        let tapMore = UITapGestureRecognizer(target: self, action: #selector(tapMore(_:)))
+        tapMore.cancelsTouchesInView = false
+        self.view.addGestureRecognizer(tapMore)
         
         self._searchBarBtn()
         self._setupTitlesView()
@@ -187,6 +185,11 @@ class GoodViewController: UIViewController {
     @objc func tapCover(_ tapCover : UITapGestureRecognizer){
         print("tapGesLocation\(tapCover.location(in: view))")
         self.hideCategoryTable()
+    }
+    // 方法
+    @objc func tapMore(_ tapMore : UITapGestureRecognizer){
+        print("tapGesLocation\(tapMore.location(in: view))")
+        self.moreView.isHidden = true
     }
     
     @objc func footerRefresh(){
@@ -290,11 +293,11 @@ class GoodViewController: UIViewController {
     // 右上角下拉菜单
     func _moreView() {
         self.moreView = UIView(frame: CGRect(x: ScreenWidth - 120, y: self.navHeight, width: 110, height: 145))
-        self.moreView.tag = 0
         self.moreView.isHidden = true
         let imgBgTop = UIImageView(frame: CGRect(x: self.moreView.frame.size.width - 35, y: 0, width: 20, height: 10))
         imgBgTop.image = UIImage(named: "jump_list_bg_top")
         self.moreView.addSubview(imgBgTop)
+//        self.moreView.addTarget(self, action:#selector(hideMoreMenu(_:)), for:.touchUpInside)
         
         let vBg = UIView(frame: CGRect(x: 2, y: imgBgTop.frame.size.height, width: self.moreView.frame.size.width, height: self.moreView.frame.size.height))
         vBg.backgroundColor = normalRGBA(r: 49, g: 58, b: 67, a: 1)
@@ -303,7 +306,7 @@ class GoodViewController: UIViewController {
         self.moreView.addSubview(vBg)
         
         
-        let moreArr = ["分组管理", "规格管理", "批量管理", "销量"]
+        let moreArr = ["分组管理", "规格管理", "批量管理"]
         let _moreArrCount = moreArr.count
         if _moreArrCount > 0 {
             for index in 0..<_moreArrCount {
@@ -316,11 +319,11 @@ class GoodViewController: UIViewController {
                 _moreBtn.titleLabel?.font = UIFont.systemFont(ofSize: 15)
                 self.moreView.addSubview(_moreBtn)
                 
-                let _height = _moreBtn.frame.size.height
-                print((_height + 5) * CGFloat(index + 1))
+                let _height = _moreBtn.frame.origin.y
+//                print((_height + 5) * CGFloat(index + 1))
                 // 分割线
                 if index < _moreArrCount - 1 {
-                    let _sigline = UIImageView(frame: CGRect(x: 0, y: (_height + 5) * CGFloat(index + 1), width: _moreBtn.frame.size.width, height: 11))
+                    let _sigline = UIImageView(frame: CGRect(x: 0, y: (_height + 40), width: _moreBtn.frame.size.width, height: 11))
                     _sigline.image = UIImage(named: "line1")
                     self.moreView.addSubview(_sigline)
                 }

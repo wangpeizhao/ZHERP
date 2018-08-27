@@ -79,6 +79,7 @@ class HomeNavigationViewController: UIViewController, UICollectionViewDelegateFl
         cell.imageTitle = courses[indexPath.item]["name"]
         cell.imageLabel?.text = courses[indexPath.item]["name"]
         cell.imageView?.image = UIImage(named: courses[indexPath.item]["pic"]!)
+        cell.isHighlighted = true
         return cell;
         
     }
