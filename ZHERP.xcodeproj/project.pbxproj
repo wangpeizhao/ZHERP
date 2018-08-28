@@ -23,6 +23,7 @@
 		43D0F869FCB1EFFD2A515717 /* Pods_ZHERPUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9ADCE7C4B0A7D41C0DA234D6 /* Pods_ZHERPUITests.framework */; };
 		4D5DC0AAB0D07F80968B0079 /* Pods_ZHERP.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 532FEF4AFB84E941C848EBDE /* Pods_ZHERP.framework */; };
 		8F0E2D4FE6DC9F693DE6136E /* Pods_ZHERPTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0018AC5B628E580B5DB4DE45 /* Pods_ZHERPTests.framework */; };
+		9E27D5A321344FF700087D20 /* GoodListPopupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E27D5A221344FF700087D20 /* GoodListPopupViewController.swift */; };
 		9E29031920F7B99800F11C63 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E29031820F7B99800F11C63 /* AppDelegate.swift */; };
 		9E29031B20F7B99800F11C63 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E29031A20F7B99800F11C63 /* ViewController.swift */; };
 		9E29031E20F7B99800F11C63 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9E29031C20F7B99800F11C63 /* Main.storyboard */; };
@@ -162,6 +163,7 @@
 		829D37B56E7E23231666AB1E /* Pods-ZHERP.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZHERP.release.xcconfig"; path = "Pods/Target Support Files/Pods-ZHERP/Pods-ZHERP.release.xcconfig"; sourceTree = "<group>"; };
 		8BD4B1E4B718B1C487039245 /* Pods-ZHERP.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZHERP.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ZHERP/Pods-ZHERP.debug.xcconfig"; sourceTree = "<group>"; };
 		9ADCE7C4B0A7D41C0DA234D6 /* Pods_ZHERPUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ZHERPUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		9E27D5A221344FF700087D20 /* GoodListPopupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoodListPopupViewController.swift; sourceTree = "<group>"; };
 		9E29031520F7B99800F11C63 /* ZHERP.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ZHERP.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9E29031820F7B99800F11C63 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9E29031A20F7B99800F11C63 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -731,6 +733,7 @@
 				9E523E8D210D537B00CF921F /* GoodViewController.swift */,
 				9EE26B7F212C734100619D98 /* GoodTableViewCell.swift */,
 				9EE26B80212C734100619D98 /* GoodTableViewCell.xib */,
+				9E27D5A221344FF700087D20 /* GoodListPopupViewController.swift */,
 			);
 			path = Good;
 			sourceTree = "<group>";
@@ -1042,6 +1045,7 @@
 				9E523DE82102E46900CF921F /* BaseViewController.swift in Sources */,
 				9EE26B86212DA33B00619D98 /* OrderPagingMenuViewController.swift in Sources */,
 				2C7FAC6C2100547A004AEC10 /* Cookie.swift in Sources */,
+				9E27D5A321344FF700087D20 /* GoodListPopupViewController.swift in Sources */,
 				9EE26B5121248C2000619D98 /* ZHQRCodeViewController.swift in Sources */,
 				9E29031B20F7B99800F11C63 /* ViewController.swift in Sources */,
 				9EE26B7D212B14F200619D98 /* HomeChartsViewController.swift in Sources */,

@@ -37,6 +37,8 @@ class GoodViewController: UIViewController {
     // 分类View
     var categoryTable: UITableView!
     
+    var goodListPopupView: GoodListPopupViewController!
+    
     // 顶部刷新
     let header = MJRefreshNormalHeader()
     // 底部刷新
@@ -430,6 +432,11 @@ class GoodViewController: UIViewController {
         _view.searchType = "good"
         _push(view: self, target: _view)
     }
+    
+    @objc func clickedMoreBtn() {
+        self.goodListPopupView = GoodListPopupViewController()
+        self.view.addSubview(self.goodListPopupView)
+    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -486,11 +493,12 @@ extension GoodViewController: UITableViewDataSource ,UITableViewDelegate {
                 cell.suk.text = _data["suk"]
                 cell.name.text = _data["name"]
                 cell.stock.text = _data["stock"]
-                cell.stock.text = _data["cost"]
-                cell.stock.text = _data["location"]
-                cell.stock.text = _data["price"]
+                cell.cost.text = _data["cost"]
+                cell.location.text = _data["location"]
+                cell.price.text = _data["price"]
                 cell.accessoryType = .disclosureIndicator
             }
+            cell.moreBtn.addTarget(self, action: #selector(clickedMoreBtn), for: .touchUpInside)
             return cell
         } else if tableView.isEqual(self.categoryTable) {
             let count = self.categoryArr.count
