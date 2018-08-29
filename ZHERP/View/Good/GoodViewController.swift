@@ -434,12 +434,13 @@ class GoodViewController: UIViewController {
     }
     
     @objc func clickedMoreBtn(_ sender: UIButton) {
-        let goodListPopupView = UIView(frame: CGRect(x: 0, y: 0, width: 200, height: 45))
+        let goodListPopupView = UIView(frame: CGRect(x: 0, y: 0, width: 300, height: 50))
         goodListPopupView.backgroundColor = Specs.color.black
-        let cell = sender.superView(of: GoodTableViewCell.self)!
-        cell.addSubview(goodListPopupView)
+        
         self.goodListPopupView = GoodListPopupViewController()
-        goodListPopupView.addSubview(self.goodListPopupView.view)
+        let cell = sender.superView(of: GoodTableViewCell.self)!
+        cell.addSubview(self.goodListPopupView.view)
+//        goodListPopupView.addSubview(self.goodListPopupView.view)
         
         let indexPath = self.tableView.indexPath(for: cell)
         print("indexPath：\(indexPath!)")

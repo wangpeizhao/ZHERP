@@ -56,7 +56,7 @@ class GoodListPopupViewController: UIViewController {
         for index in 0..<self.titleArr.count {
             let _btn = UIButton(frame: CGRect(x: Int(_width - (rightImage?.size.width)!)/self.titleArr.count * index, y: 0, width: Int(_width - (rightImage?.size.width)!)/self.titleArr.count, height: Int(_height)))
             
-            _btn.set(image: UIImage(named: self.imageArr[index]), title: self.titleArr[index], titlePosition: .bottom, additionalSpacing: -15.0, state: .normal)
+            _btn.set(image: UIImage(named: self.imageArr[index]), title: self.titleArr[index], titlePosition: .bottom, additionalSpacing: 5.0, state: .normal)
             _btn.titleLabel?.font = UIFont.systemFont(ofSize: Specs.fontSize.regular)
             _btn.setTitleColor(Specs.color.white, for: .normal)
             _btn.tag = index
