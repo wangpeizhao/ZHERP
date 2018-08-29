@@ -433,9 +433,20 @@ class GoodViewController: UIViewController {
         _push(view: self, target: _view)
     }
     
-    @objc func clickedMoreBtn() {
+    @objc func clickedMoreBtn(_ sender: UIButton) {
+        let goodListPopupView = UIView(frame: CGRect(x: 0, y: 0, width: 200, height: 45))
+        goodListPopupView.backgroundColor = Specs.color.black
+        let cell = sender.superView(of: GoodTableViewCell.self)!
+        cell.addSubview(goodListPopupView)
         self.goodListPopupView = GoodListPopupViewController()
-        self.view.addSubview(self.goodListPopupView)
+        goodListPopupView.addSubview(self.goodListPopupView.view)
+        
+        let indexPath = self.tableView.indexPath(for: cell)
+        print("indexPath：\(indexPath!)")
+//        let indexpath: NSIndexPath = sender.tag
+//        NSIndexPath *indexpath = [NSIndexPath indexPathForRow:btn.tag - 1000 inSection:0];
+//        GoodsListTableViewCell *cell = (GoodsListTableViewCell *)[self.dataTable cellForRowAtIndexPath:indexpath];
+//        [cell addSubview:self.goodListButtonView];
     }
 
     override func didReceiveMemoryWarning() {
@@ -498,7 +509,8 @@ extension GoodViewController: UITableViewDataSource ,UITableViewDelegate {
                 cell.price.text = _data["price"]
                 cell.accessoryType = .disclosureIndicator
             }
-            cell.moreBtn.addTarget(self, action: #selector(clickedMoreBtn), for: .touchUpInside)
+            cell.moreBtn.tag = indexPath.row
+            cell.moreBtn.addTarget(self, action: #selector(clickedMoreBtn(_:)), for: .touchUpInside)
             return cell
         } else if tableView.isEqual(self.categoryTable) {
             let count = self.categoryArr.count

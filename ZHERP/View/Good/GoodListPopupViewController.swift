@@ -17,13 +17,14 @@ class GoodListPopupViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.view.backgroundColor = Specs.color.white
+        self.view.backgroundColor = Specs.color.black
         
-
+        self.layoutButtons()
         // Do any additional setup after loading the view.
     }
     
     func layoutButtons() {
+        self.view.frame = CGRect(x: 0, y: 0, width: 200, height: 45)
         let popupView = UIView(frame: CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: self.view.frame.size.height))
         popupView.layer.cornerRadius = 5.0
         popupView.backgroundColor = Specs.color.black
