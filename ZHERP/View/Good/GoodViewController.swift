@@ -436,14 +436,13 @@ class GoodViewController: UIViewController {
     
     @objc func clickedMoreBtn(_ sender: UIButton) {
         let goodListPopupView = UIView(frame: CGRect(x: ScreenWidth - 250 - 30, y: 40, width: self.frame_width + 15, height: 50))
-//        goodListPopupView.backgroundColor = Specs.color.black
-//        goodListPopupView.layer.cornerRadius = 5
-//        goodListPopupView.layer.masksToBounds = true
+        goodListPopupView.removeFromSuperview()
         
         let count = self.itemArray.count
         let sectionNo = count - sender.tag - 1
         
         self.goodListPopupView = GoodListPopupViewController()
+//        self.goodListPopupView.removeFromParentViewController()
         self.goodListPopupView.frame_width = self.frame_width
         if !(self.itemArray[sectionNo]?.isEmpty)! {
             var _data = self.itemArray[sectionNo]!
@@ -451,7 +450,6 @@ class GoodViewController: UIViewController {
         }
         
         let cell = sender.superView(of: GoodTableViewCell.self)!
-//        cell.addSubview(self.goodListPopupView.view)
         cell.addSubview(goodListPopupView)
         goodListPopupView.addSubview(self.goodListPopupView.view)
         
