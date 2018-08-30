@@ -11,22 +11,24 @@ import UIKit
 class GoodListPopupViewController: UIViewController {
     
     var good_status: String!
+    var frame_width: CGFloat!
     var titleArr = [String]()
     var imageArr = [String]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.view.backgroundColor = Specs.color.black
+//        self.view.backgroundColor = Specs.color.black
         
         self.layoutButtons()
         // Do any additional setup after loading the view.
     }
     
     func layoutButtons() {
-        self.view.frame = CGRect(x: 0, y: 0, width: 300, height: 50)
+        self.view.frame = CGRect(x: 0, y: 0, width: self.frame_width, height: 50)
         let popupView = UIView(frame: CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: self.view.frame.size.height))
         popupView.layer.cornerRadius = 5.0
+        popupView.layer.masksToBounds = true
         popupView.backgroundColor = Specs.color.black
         self.view.addSubview(popupView)
         
@@ -50,15 +52,18 @@ class GoodListPopupViewController: UIViewController {
         }
         
         let rightImage = UIImage(named: "GoodsManage_rightArrow")
+//        let imageView = UIImageView(frame: CGRect(x: popupView.frame.origin.x + self.frame_width, y: self.view.frame.size.height - 28, width: (rightImage?.size.width)!, height: (rightImage?.size.height)!))
+//        imageView.image = rightImage
+//        self.view.addSubview(imageView)
         
         let _width = self.view.frame.size.width
         let _height = self.view.frame.size.height
         let _pre = Int(_width - (rightImage?.size.width)!)/self.titleArr.count
         for index in 0..<self.titleArr.count {
-            let _btn = UIButton(frame: CGRect(x: _pre * index, y: 0, width: _pre, height: Int(_height)))
+            let _btn = UIButton(frame: CGRect(x: _pre * index, y: 0, width: _pre, height: Int(_height) - 15 ))
             
             _btn.set(image: UIImage(named: self.imageArr[index]), title: self.titleArr[index], titlePosition: .bottom, additionalSpacing: 5.0, state: .normal)
-            _btn.titleLabel?.font = UIFont.systemFont(ofSize: Specs.fontSize.regular)
+            _btn.titleLabel?.font = UIFont.systemFont(ofSize: 12)
             _btn.setTitleColor(Specs.color.white, for: .normal)
             _btn.tag = index
             _btn.addTarget(self, action: #selector(clickedGoodList(_:)), for: .touchUpInside)
