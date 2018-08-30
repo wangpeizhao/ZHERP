@@ -52,9 +52,9 @@ class GoodListPopupViewController: UIViewController {
         }
         
         let rightImage = UIImage(named: "GoodsManage_rightArrow")
-//        let imageView = UIImageView(frame: CGRect(x: popupView.frame.origin.x + self.frame_width, y: self.view.frame.size.height - 28, width: (rightImage?.size.width)!, height: (rightImage?.size.height)!))
-//        imageView.image = rightImage
-//        self.view.addSubview(imageView)
+        let imageView = UIImageView(frame: CGRect(x: popupView.frame.origin.x + self.frame_width, y: self.view.frame.size.height - 28, width: (rightImage?.size.width)!, height: (rightImage?.size.height)!))
+        imageView.image = rightImage
+        self.view.addSubview(imageView)
         
         let _width = self.view.frame.size.width
         let _height = self.view.frame.size.height
@@ -67,7 +67,7 @@ class GoodListPopupViewController: UIViewController {
             _btn.setTitleColor(Specs.color.white, for: .normal)
             _btn.tag = index
             _btn.addTarget(self, action: #selector(clickedGoodList(_:)), for: .touchUpInside)
-            self.view.addSubview(_btn)
+            popupView.addSubview(_btn)
         }
 //        self.view.frame.size.width = 
     }

@@ -435,10 +435,10 @@ class GoodViewController: UIViewController {
     }
     
     @objc func clickedMoreBtn(_ sender: UIButton) {
-        let goodListPopupView = UIView(frame: CGRect(x: ScreenWidth - 250 - 30, y: 40, width: self.frame_width, height: 50))
+        let goodListPopupView = UIView(frame: CGRect(x: ScreenWidth - 250 - 30, y: 40, width: self.frame_width + 15, height: 50))
 //        goodListPopupView.backgroundColor = Specs.color.black
-        goodListPopupView.layer.cornerRadius = 5
-        goodListPopupView.layer.masksToBounds = true
+//        goodListPopupView.layer.cornerRadius = 5
+//        goodListPopupView.layer.masksToBounds = true
         
         let count = self.itemArray.count
         let sectionNo = count - sender.tag - 1
@@ -454,12 +454,6 @@ class GoodViewController: UIViewController {
 //        cell.addSubview(self.goodListPopupView.view)
         cell.addSubview(goodListPopupView)
         goodListPopupView.addSubview(self.goodListPopupView.view)
-        
-        
-        let rightImage = UIImage(named: "GoodsManage_rightArrow")
-        let imageView = UIImageView(frame: CGRect(x: goodListPopupView.frame.origin.x + self.frame_width, y: 22, width: (rightImage?.size.width)!, height: (rightImage?.size.height)!))
-        imageView.image = rightImage
-//        cell.addSubview(imageView)
         
         let indexPath = self.tableView.indexPath(for: cell)
         print("indexPath：\(indexPath!)")
