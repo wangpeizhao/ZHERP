@@ -45,17 +45,17 @@ class GoodViewController: UIViewController {
     let footer = MJRefreshAutoNormalFooter()
     
     var itemArray : [Int: [String:String]] = [
-        0: ["avatar": "bayMax", "suk": "AB_PPC01", "name": "六神花露水001", "price": "117.50", "stock": "121", "cost": "2150.00", "location": "广州白马1001"],
-        1: ["avatar": "c#", "suk": "BC_PPC02", "name": "六神花露水002", "price": "217.50", "stock": "122", "cost": "2250.00", "location": "广州白马1234"],
-        2: ["avatar": "html", "suk": "CD_PPC03", "name": "六神花露水003", "price": "317.50", "stock": "123", "cost": "2350.00", "location": "广州白马3434"],
-        3: ["avatar": "java", "suk": "DE_PPC04", "name": "六神花露水004", "price": "417.50", "stock": "124", "cost": "2450.00", "location": "广州白马4556"],
-        4: ["avatar": "js", "suk": "EF_PPC05", "name": "六神花露水005", "price": "517.50", "stock": "125", "cost": "2550.00", "location": "广州白马6787"],
-        5: ["avatar": "php", "suk": "FG_PPC06", "name": "六神花露水006", "price": "617.50", "stock": "126", "cost": "2650.00", "location": "广州白马7856"],
-        6: ["avatar": "react", "suk": "GH_PPC07", "name": "六神花露水007", "price": "717.50", "stock": "127", "cost": "2570.00", "location": "广州白马4533"],
-        7: ["avatar": "ruby", "suk": "HI_PPC08", "name": "六神花露水008", "price": "817.50", "stock": "128", "cost": "2850.00", "location": "广州白马2131"],
-        8: ["avatar": "swift", "suk": "IJ_PPC09", "name": "六神花露水009", "price": "917.50", "stock": "129", "cost": "2590.00", "location": "广州白马2233"],
-        9: ["avatar": "xcode", "suk": "JK_PPC10", "name": "六神花露水010", "price": "107.50", "stock": "120", "cost": "2500.00", "location": "广州白马3223"],
-        10: ["avatar": "bayMax", "suk": "KL_PPC11", "name": "六神花露水011", "price": "1700.50", "stock": "1200", "cost": "2590.00", "location": "广州白马2345"]
+        0: ["avatar": "bayMax", "suk": "AB_PPC01", "name": "六神花露水001", "price": "117.50", "stock": "121", "cost": "2150.00", "location": "广州白马1001", "status": "0"],
+        1: ["avatar": "c#", "suk": "BC_PPC02", "name": "六神花露水002", "price": "217.50", "stock": "122", "cost": "2250.00", "location": "广州白马1234", "status": "1"],
+        2: ["avatar": "html", "suk": "CD_PPC03", "name": "六神花露水003", "price": "317.50", "stock": "123", "cost": "2350.00", "location": "广州白马3434", "status": "-1"],
+        3: ["avatar": "java", "suk": "DE_PPC04", "name": "六神花露水004", "price": "417.50", "stock": "124", "cost": "2450.00", "location": "广州白马4556", "status": "0"],
+        4: ["avatar": "js", "suk": "EF_PPC05", "name": "六神花露水005", "price": "517.50", "stock": "125", "cost": "2550.00", "location": "广州白马6787", "status": "1"],
+        5: ["avatar": "php", "suk": "FG_PPC06", "name": "六神花露水006", "price": "617.50", "stock": "126", "cost": "2650.00", "location": "广州白马7856", "status": "-1"],
+        6: ["avatar": "react", "suk": "GH_PPC07", "name": "六神花露水007", "price": "717.50", "stock": "127", "cost": "2570.00", "location": "广州白马4533", "status": "0"],
+        7: ["avatar": "ruby", "suk": "HI_PPC08", "name": "六神花露水008", "price": "817.50", "stock": "128", "cost": "2850.00", "location": "广州白马2131", "status": "1"],
+        8: ["avatar": "swift", "suk": "IJ_PPC09", "name": "六神花露水009", "price": "917.50", "stock": "129", "cost": "2590.00", "location": "广州白马2233", "status": "1"],
+        9: ["avatar": "xcode", "suk": "JK_PPC10", "name": "六神花露水010", "price": "107.50", "stock": "120", "cost": "2500.00", "location": "广州白马3223", "status": "1"],
+        10: ["avatar": "bayMax", "suk": "KL_PPC11", "name": "六神花露水011", "price": "1700.50", "stock": "1200", "cost": "2590.00", "location": "广州白马2345", "status": "0"]
     ]
     
     let titlesArr = ["上架时间", "价格", "库存", "销量"]
@@ -231,7 +231,7 @@ class GoodViewController: UIViewController {
         for i in 0...2 {
             let index = arc4random_uniform(UInt32(imagePaths.count))
             let _imagePath = imagePaths[Int(index)]
-            self.itemArray[count + i] = ["avatar": _imagePath, "suk": "AB_PPC\(count + i)", "name": "六神花露水001", "price": "117.50", "stock": "121", "cost": "2150.00", "location": "广州白马1001"]
+            self.itemArray[count + i] = ["avatar": _imagePath, "suk": "AB_PPC\(count + i)", "name": "六神花露水001", "price": "117.50", "stock": "121", "cost": "2150.00", "location": "广州白马1001", "status": "1"]
         }
     }
     
@@ -434,16 +434,25 @@ class GoodViewController: UIViewController {
     }
     
     @objc func clickedMoreBtn(_ sender: UIButton) {
-        let goodListPopupView = UIView(frame: CGRect(x: 0, y: 0, width: 300, height: 50))
+        let goodListPopupView = UIView(frame: CGRect(x: ScreenWidth - 300, y: 100 - 50, width: 300, height: 50))
         goodListPopupView.backgroundColor = Specs.color.black
         
+        let count = self.itemArray.count
+        let sectionNo = count - sender.tag - 1
+        
         self.goodListPopupView = GoodListPopupViewController()
+        if !(self.itemArray[sectionNo]?.isEmpty)! {
+            var _data = self.itemArray[sectionNo]!
+            self.goodListPopupView.good_status = _data["status"]
+        }
+        
         let cell = sender.superView(of: GoodTableViewCell.self)!
         cell.addSubview(self.goodListPopupView.view)
-//        goodListPopupView.addSubview(self.goodListPopupView.view)
         
         let indexPath = self.tableView.indexPath(for: cell)
         print("indexPath：\(indexPath!)")
+        
+//        let _cell = self.tableView.cellForRow(at: indexPath)
 //        let indexpath: NSIndexPath = sender.tag
 //        NSIndexPath *indexpath = [NSIndexPath indexPathForRow:btn.tag - 1000 inSection:0];
 //        GoodsListTableViewCell *cell = (GoodsListTableViewCell *)[self.dataTable cellForRowAtIndexPath:indexpath];
@@ -539,7 +548,7 @@ extension GoodViewController: UITableViewDataSource ,UITableViewDelegate {
 
             let count = self.itemArray.count
             let sectionNo = count - indexPath.row - 1
-            var _data = self.itemArray[sectionNo]!
+//            var _data = self.itemArray[sectionNo]!
     //        orderView.hidesBottomBarWhenPushed = true
             
     //        orderView.navTitle = _data["suk"]

@@ -24,7 +24,7 @@ class GoodListPopupViewController: UIViewController {
     }
     
     func layoutButtons() {
-        self.view.frame = CGRect(x: 0, y: 0, width: 200, height: 45)
+        self.view.frame = CGRect(x: 0, y: 0, width: 300, height: 50)
         let popupView = UIView(frame: CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: self.view.frame.size.height))
         popupView.layer.cornerRadius = 5.0
         popupView.backgroundColor = Specs.color.black
@@ -53,8 +53,9 @@ class GoodListPopupViewController: UIViewController {
         
         let _width = self.view.frame.size.width
         let _height = self.view.frame.size.height
+        let _pre = Int(_width - (rightImage?.size.width)!)/self.titleArr.count
         for index in 0..<self.titleArr.count {
-            let _btn = UIButton(frame: CGRect(x: Int(_width - (rightImage?.size.width)!)/self.titleArr.count * index, y: 0, width: Int(_width - (rightImage?.size.width)!)/self.titleArr.count, height: Int(_height)))
+            let _btn = UIButton(frame: CGRect(x: _pre * index, y: 0, width: _pre, height: Int(_height)))
             
             _btn.set(image: UIImage(named: self.imageArr[index]), title: self.titleArr[index], titlePosition: .bottom, additionalSpacing: 5.0, state: .normal)
             _btn.titleLabel?.font = UIFont.systemFont(ofSize: Specs.fontSize.regular)
@@ -63,6 +64,7 @@ class GoodListPopupViewController: UIViewController {
             _btn.addTarget(self, action: #selector(clickedGoodList(_:)), for: .touchUpInside)
             self.view.addSubview(_btn)
         }
+//        self.view.frame.size.width = 
     }
     
     @objc func clickedGoodList(_ sender: UIButton) {
