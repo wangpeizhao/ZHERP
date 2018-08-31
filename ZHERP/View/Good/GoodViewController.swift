@@ -37,7 +37,8 @@ class GoodViewController: UIViewController {
     // 分类View
     var categoryTable: UITableView!
     
-    var goodListPopupView: GoodListPopupViewController!
+    var goodListPopupViewController: GoodListPopupViewController!
+    var goodListPopupView: UIView!
     var frame_width: CGFloat = 215
     
     // 顶部刷新
@@ -78,6 +79,7 @@ class GoodViewController: UIViewController {
     @objc func actionMore() {
         self.hideCategoryTable()
         self.moreView.isHidden = !self.moreView.isHidden
+        self.hiddenGoodListPopupView()
     }
     
     @objc func hideMoreMenu(_ sender:UIView) {
@@ -186,13 +188,15 @@ class GoodViewController: UIViewController {
     }
     // 方法
     @objc func tapCover(_ tapCover : UITapGestureRecognizer){
-        print("tapGesLocation\(tapCover.location(in: view))")
+//        print("tapGesLocation\(tapCover.location(in: view))")
         self.hideCategoryTable()
+        self.hiddenGoodListPopupView()
     }
     // 方法
     @objc func tapMore(_ tapMore : UITapGestureRecognizer){
-        print("tapGesLocation\(tapMore.location(in: view))")
+//        print("tapGesLocation\(tapMore.location(in: view))")
         self.moreView.isHidden = true
+        self.hiddenGoodListPopupView()
     }
     
     @objc func footerRefresh(){
@@ -434,40 +438,47 @@ class GoodViewController: UIViewController {
         _push(view: self, target: _view)
     }
     
-    @objc func clickedMoreBtn(_ sender: UIButton) {
-        let goodListPopupView = UIView(frame: CGRect(x: 0, y: 40, width: 0, height: 50))
-//        goodListPopupView.removeFromSuperview()
+    private func hiddenGoodListPopupView() {
         if (self.goodListPopupView != nil){
-//            self.goodListPopupView.removeFromParentViewController()
+            // self.goodListPopupView.removeFromParentViewController()
+            self.goodListPopupView.removeFromSuperview()
+            self.goodListPopupView = nil
         }
+    }
+    
+    @objc func clickedMoreBtn(_ sender: UIButton) {
+        self.hiddenGoodListPopupView()
+        self.goodListPopupView = UIView(frame: CGRect(x: 0, y: 40, width: 0, height: 50))
+        self.goodListPopupView.tag = sender.tag
         
         let count = self.itemArray.count
         let sectionNo = count - sender.tag - 1
         
-        self.goodListPopupView = GoodListPopupViewController()
-        self.goodListPopupView.frame_width = self.frame_width
-        print("ScreenWidth.x:\(ScreenWidth)")
-        print("sender.frame.origin.x:\(sender.frame.origin.x)")
-        self.goodListPopupView.popupBtnX = sender.frame.origin.x
+        self.goodListPopupViewController = GoodListPopupViewController()
+        self.goodListPopupViewController.frame_width = self.frame_width
+        
         if !(self.itemArray[sectionNo]?.isEmpty)! {
             var _data = self.itemArray[sectionNo]!
-            self.goodListPopupView.good_status = _data["status"]
+            self.goodListPopupViewController.good_status = _data["status"]
         }
         
-        let cell = sender.superView(of: GoodTableViewCell.self)!
-        cell.addSubview(goodListPopupView)
-        goodListPopupView.addSubview(self.goodListPopupView.view)
+//        let cell = sender.superView(of: GoodTableViewCell.self)!
+//        cell.addSubview(goodListPopupView)
+//        let indexPath = self.tableView.indexPath(for: cell)
         
-        let indexPath = self.tableView.indexPath(for: cell)
-        print("indexPath：\(indexPath!)")
+        let _indexPath: IndexPath = IndexPath(row: sender.tag, section: 0)
+        print("indexPath：\(_indexPath)")
+        let _cell: GoodTableViewCell = self.tableView.cellForRow(at: _indexPath as IndexPath) as! GoodTableViewCell
+        _cell.addSubview(self.goodListPopupView)
+        self.goodListPopupView.addSubview(self.goodListPopupViewController.view)
         
-//        let _cell = self.tableView.cellForRow(at: sender.tag)
 //        let indexpath: NSIndexPath = sender.tag
 //        NSIndexPath *indexpath = [NSIndexPath indexPathForRow:btn.tag - 1000 inSection:0];
 //        GoodsListTableViewCell *cell = (GoodsListTableViewCell *)[self.dataTable cellForRowAtIndexPath:indexpath];
 //        [cell addSubview:self.goodListButtonView];
-        goodListPopupView.frame.size.width = self.goodListPopupView.popupViewWidth
-        goodListPopupView.frame.origin.x = sender.frame.origin.x - self.goodListPopupView.popupViewWidth
+        
+        self.goodListPopupView.frame.size.width = self.goodListPopupViewController.popupViewWidth
+        self.goodListPopupView.frame.origin.x = sender.frame.origin.x - self.goodListPopupViewController.popupViewWidth
     }
 
     override func didReceiveMemoryWarning() {
