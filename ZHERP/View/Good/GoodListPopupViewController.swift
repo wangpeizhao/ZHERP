@@ -12,6 +12,8 @@ class GoodListPopupViewController: UIViewController {
     
     var good_status: String!
     var frame_width: CGFloat!
+    var popupBtnX: CGFloat!
+    var popupViewWidth: CGFloat!
     var titleArr = [String]()
     var imageArr = [String]()
 
@@ -25,7 +27,8 @@ class GoodListPopupViewController: UIViewController {
     }
     
     func layoutButtons() {
-        self.view.frame = CGRect(x: 0, y: 0, width: self.frame_width, height: 50)
+//        self.view.frame = CGRect(x: 0, y: 0, width: self.frame_width, height: 50)
+        self.view.frame = CGRect(x: 0, y: 0, width: 0, height: 50)
         let popupView = UIView(frame: CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: self.view.frame.size.height))
         popupView.layer.cornerRadius = 5.0
         popupView.layer.masksToBounds = true
@@ -51,14 +54,21 @@ class GoodListPopupViewController: UIViewController {
             break
         }
         
+        popupView.frame.size.width = self.frame_width / 3 * CGFloat(self.titleArr.count)
+        
         let rightImage = UIImage(named: "GoodsManage_rightArrow")
-        let imageView = UIImageView(frame: CGRect(x: popupView.frame.origin.x + self.frame_width, y: self.view.frame.size.height - 28, width: (rightImage?.size.width)!, height: (rightImage?.size.height)!))
+//        let imageView = UIImageView(frame: CGRect(x: popupView.frame.origin.x + self.frame_width, y: self.view.frame.size.height - 18, width: (rightImage?.size.width)!, height: (rightImage?.size.height)!))
+        let imageView = UIImageView(frame: CGRect(x: self.popupBtnX - 100, y: self.view.frame.size.height - 18, width: (rightImage?.size.width)!, height: (rightImage?.size.height)!))
+        print("popupBtnX:::\(self.popupBtnX)")
+        print("popupBtnX - rightImage:\(self.popupBtnX - CGFloat((rightImage?.size.width)!))")
         imageView.image = rightImage
         self.view.addSubview(imageView)
+        self.popupViewWidth = popupView.frame.size.width + (rightImage?.size.width)!
+        print("popupViewWidth:\(self.popupViewWidth)")
         
-        let _width = self.view.frame.size.width
+//        let _width = self.view.frame.size.width
         let _height = self.view.frame.size.height
-        let _pre = Int(_width - (rightImage?.size.width)!)/self.titleArr.count
+        let _pre = Int(popupView.frame.size.width - (rightImage?.size.width)!)/self.titleArr.count
         for index in 0..<self.titleArr.count {
             let _btn = UIButton(frame: CGRect(x: _pre * index, y: 0, width: _pre, height: Int(_height) - 15 ))
             

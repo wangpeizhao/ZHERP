@@ -435,15 +435,20 @@ class GoodViewController: UIViewController {
     }
     
     @objc func clickedMoreBtn(_ sender: UIButton) {
-        let goodListPopupView = UIView(frame: CGRect(x: ScreenWidth - 250 - 30, y: 40, width: self.frame_width + 15, height: 50))
-        goodListPopupView.removeFromSuperview()
+        let goodListPopupView = UIView(frame: CGRect(x: 0, y: 40, width: 0, height: 50))
+//        goodListPopupView.removeFromSuperview()
+        if (self.goodListPopupView != nil){
+//            self.goodListPopupView.removeFromParentViewController()
+        }
         
         let count = self.itemArray.count
         let sectionNo = count - sender.tag - 1
         
         self.goodListPopupView = GoodListPopupViewController()
-//        self.goodListPopupView.removeFromParentViewController()
         self.goodListPopupView.frame_width = self.frame_width
+        print("ScreenWidth.x:\(ScreenWidth)")
+        print("sender.frame.origin.x:\(sender.frame.origin.x)")
+        self.goodListPopupView.popupBtnX = sender.frame.origin.x
         if !(self.itemArray[sectionNo]?.isEmpty)! {
             var _data = self.itemArray[sectionNo]!
             self.goodListPopupView.good_status = _data["status"]
@@ -461,6 +466,8 @@ class GoodViewController: UIViewController {
 //        NSIndexPath *indexpath = [NSIndexPath indexPathForRow:btn.tag - 1000 inSection:0];
 //        GoodsListTableViewCell *cell = (GoodsListTableViewCell *)[self.dataTable cellForRowAtIndexPath:indexpath];
 //        [cell addSubview:self.goodListButtonView];
+        goodListPopupView.frame.size.width = self.goodListPopupView.popupViewWidth
+        goodListPopupView.frame.origin.x = sender.frame.origin.x - self.goodListPopupView.popupViewWidth
     }
 
     override func didReceiveMemoryWarning() {
