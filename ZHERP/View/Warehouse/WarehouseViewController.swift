@@ -27,7 +27,7 @@ class WarehouseViewController: UIViewController {
         
         self.view.backgroundColor = Specs.color.white
         setNavBarTitle(view: self, title: "仓库")
-        setBackBtn(view: self, selector: #selector(actionBack), title: "仓库", parent: true)
+        setNavBarBackBtn(view: self, title: "仓库", selector: #selector(actionBack))
         
         self._setup()
         
@@ -46,7 +46,7 @@ class WarehouseViewController: UIViewController {
         //创建一个重用的单元格
         self.tableView!.register(UITableViewCell.self, forCellReuseIdentifier: CELL_IDENTIFY_ID)
         //去除单元格分隔线
-        self.tableView!.separatorStyle = .singleLine
+//        self.tableView!.separatorStyle = .singleLine
         //去除表格上放多余的空隙
 //        self.tableView!.contentInset = UIEdgeInsetsMake(-10, 0, 0, 0)
         self.tableView?.tableHeaderView = UIView.init(frame: CGRect(x: 0, y: 0, width: 0, height: 0.1))
@@ -164,5 +164,34 @@ extension WarehouseViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
+        
+        let key: String = dataArr[indexPath.item]["key"]!
+        switch key {
+        case "goods":
+            let _target = ZHQRCodeViewController()
+            _target.hidesBottomBarWhenPushed = true
+            _push(view: self, target: _target, rootView: true)
+        case "warehouse":
+            let _target = WarehouseLocationViewController()
+            _target.hidesBottomBarWhenPushed = true
+            _push(view: self, target: _target, rootView: true)
+        case "location":
+            let _target = SettingsViewController()
+            _target.hidesBottomBarWhenPushed = true
+            _push(view: self, target: _target, rootView: true)
+        case "classify":
+            let _target = SettingsViewController()
+            _target.hidesBottomBarWhenPushed = true
+            _push(view: self, target: _target, rootView: true)
+        case "supplier":
+            let _target = SettingsViewController()
+            _target.hidesBottomBarWhenPushed = true
+            _push(view: self, target: _target, rootView: true)
+        default:
+            let _target = GoodDetailViewController()
+            _target.hidesBottomBarWhenPushed = true
+            _push(view: self, target: _target, rootView: true)
+        }
+        
     }
 }

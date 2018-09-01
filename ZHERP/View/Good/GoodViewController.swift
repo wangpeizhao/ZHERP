@@ -201,9 +201,10 @@ class GoodViewController: UIViewController {
     
     @objc func footerRefresh(){
         print("上拉刷新")
+//        self.hiddenGoodListPopupView()
         self.tableView?.mj_footer.endRefreshing()
         // 2次后模拟没有更多数据
-        if (self.itemArray.count > 10) {
+        if (self.itemArray.count > 15) {
             footer.endRefreshingWithNoMoreData()
         }
     }
@@ -212,17 +213,18 @@ class GoodViewController: UIViewController {
     @objc func headerRefresh(){
         print("下拉刷新.")
         sleep(1)
+        self.hiddenGoodListPopupView()
         //重现生成数据
         refreshItemData()
         
         // self.tableView?.mj_header.endRefreshing(.)
-        if (self.itemArray.count > 6) {
-            DispatchQueue.main.async {
-                // 主线程中
-                // self.tableView!.mj_header.state = MJrefreshno
-            }
-            
-        }
+//        if (self.itemArray.count > 6) {
+//            DispatchQueue.main.async {
+//                // 主线程中
+//                // self.tableView!.mj_header.state = MJrefreshno
+//            }
+//
+//        }
         //重现加载表格数据
         self.tableView!.reloadData()
         //结束刷新
@@ -467,15 +469,9 @@ class GoodViewController: UIViewController {
 //        let indexPath = self.tableView.indexPath(for: cell)
         
         let _indexPath: IndexPath = IndexPath(row: sender.tag, section: 0)
-        print("indexPath：\(_indexPath)")
         let _cell: GoodTableViewCell = self.tableView.cellForRow(at: _indexPath as IndexPath) as! GoodTableViewCell
         _cell.addSubview(self.goodListPopupView)
         self.goodListPopupView.addSubview(self.goodListPopupViewController.view)
-        
-//        let indexpath: NSIndexPath = sender.tag
-//        NSIndexPath *indexpath = [NSIndexPath indexPathForRow:btn.tag - 1000 inSection:0];
-//        GoodsListTableViewCell *cell = (GoodsListTableViewCell *)[self.dataTable cellForRowAtIndexPath:indexpath];
-//        [cell addSubview:self.goodListButtonView];
         
         self.goodListPopupView.frame.size.width = self.goodListPopupViewController.popupViewWidth
         self.goodListPopupView.frame.origin.x = sender.frame.origin.x - self.goodListPopupViewController.popupViewWidth
@@ -528,7 +524,7 @@ extension GoodViewController: UITableViewDataSource ,UITableViewDelegate {
             let count = self.itemArray.count
             let sectionNo = count - indexPath.row - 1
 
-            let cell: GoodTableViewCell = tableView.dequeueReusableCell(withIdentifier: CELL_IDENTIFY_ID) as! GoodTableViewCell
+            let cell: GoodTableViewCell = tableView.dequeueReusableCell(withIdentifier: CELL_IDENTIFY_ID, for: indexPath) as! GoodTableViewCell
             if !(self.itemArray[sectionNo]?.isEmpty)! {
                 var _data = self.itemArray[sectionNo]!
                 
@@ -541,6 +537,7 @@ extension GoodViewController: UITableViewDataSource ,UITableViewDelegate {
                 cell.price.text = _data["price"]
                 cell.accessoryType = .disclosureIndicator
             }
+            cell.tag = indexPath.row
             cell.moreBtn.tag = indexPath.row
             cell.moreBtn.addTarget(self, action: #selector(clickedMoreBtn(_:)), for: .touchUpInside)
             return cell

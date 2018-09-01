@@ -24,6 +24,8 @@
 		4D5DC0AAB0D07F80968B0079 /* Pods_ZHERP.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 532FEF4AFB84E941C848EBDE /* Pods_ZHERP.framework */; };
 		8F0E2D4FE6DC9F693DE6136E /* Pods_ZHERPTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0018AC5B628E580B5DB4DE45 /* Pods_ZHERPTests.framework */; };
 		9E27D5A321344FF700087D20 /* GoodListPopupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E27D5A221344FF700087D20 /* GoodListPopupViewController.swift */; };
+		9E27D5A5213A727200087D20 /* WarehouseLocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E27D5A4213A727200087D20 /* WarehouseLocationViewController.swift */; };
+		9E27D5A7213AF05C00087D20 /* WarehouseDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E27D5A6213AF05C00087D20 /* WarehouseDetailViewController.swift */; };
 		9E29031920F7B99800F11C63 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E29031820F7B99800F11C63 /* AppDelegate.swift */; };
 		9E29031B20F7B99800F11C63 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E29031A20F7B99800F11C63 /* ViewController.swift */; };
 		9E29031E20F7B99800F11C63 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9E29031C20F7B99800F11C63 /* Main.storyboard */; };
@@ -164,6 +166,8 @@
 		8BD4B1E4B718B1C487039245 /* Pods-ZHERP.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZHERP.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ZHERP/Pods-ZHERP.debug.xcconfig"; sourceTree = "<group>"; };
 		9ADCE7C4B0A7D41C0DA234D6 /* Pods_ZHERPUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ZHERPUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9E27D5A221344FF700087D20 /* GoodListPopupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoodListPopupViewController.swift; sourceTree = "<group>"; };
+		9E27D5A4213A727200087D20 /* WarehouseLocationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WarehouseLocationViewController.swift; sourceTree = "<group>"; };
+		9E27D5A6213AF05C00087D20 /* WarehouseDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WarehouseDetailViewController.swift; sourceTree = "<group>"; };
 		9E29031520F7B99800F11C63 /* ZHERP.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ZHERP.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9E29031820F7B99800F11C63 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9E29031A20F7B99800F11C63 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -307,6 +311,8 @@
 			isa = PBXGroup;
 			children = (
 				2CE8F4A0212BFEE800037367 /* WarehouseViewController.swift */,
+				9E27D5A4213A727200087D20 /* WarehouseLocationViewController.swift */,
+				9E27D5A6213AF05C00087D20 /* WarehouseDetailViewController.swift */,
 			);
 			path = Warehouse;
 			sourceTree = "<group>";
@@ -1073,6 +1079,7 @@
 				9E523DF2210460B600CF921F /* HHGuidePageHUD.swift in Sources */,
 				9E88ED2A20FB723600DF091F /* UIColor.swift in Sources */,
 				9E88ED1420FB3B9300DF091F /* Post.swift in Sources */,
+				9E27D5A7213AF05C00087D20 /* WarehouseDetailViewController.swift in Sources */,
 				9E88ED1220FB3B7700DF091F /* Observable+ObjectMapper.swift in Sources */,
 				9E88ED1A20FB41F800DF091F /* HomeViewController.swift in Sources */,
 				9E523E90210D540900CF921F /* OrderAllViewController.swift in Sources */,
@@ -1110,6 +1117,7 @@
 				9E523E3A21076B3C00CF921F /* PersonalViewController.swift in Sources */,
 				9E88ED3F20FE5D2C00DF091F /* LoginViewController.swift in Sources */,
 				9E88ED0720FB3B3800DF091F /* PostAPI.swift in Sources */,
+				9E27D5A5213A727200087D20 /* WarehouseLocationViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

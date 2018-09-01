@@ -21,7 +21,7 @@ class GoodTableViewCell: UITableViewCell {
     
     @IBOutlet weak var moreBtn: UIButton!
     @IBAction func moreBtnClicked(_ sender: Any) {
-        print(self.gId)
+//        print(self.gId)
     }
     
     override func awakeFromNib() {

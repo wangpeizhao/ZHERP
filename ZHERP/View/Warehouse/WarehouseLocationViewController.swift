@@ -1,32 +1,34 @@
 //
-//  SettingsViewController.swift
+//  WarehouseLocationViewController.swift
 //  ZHERP
 //
-//  Created by MrParker on 2018/8/21.
-//  Copyright © 2018年 MrParker. All rights reserved.
+//  Created by MrParker on 2018/9/1.
+//  Copyright © 2018 MrParker. All rights reserved.
 //
 
 import UIKit
 
-class SettingsViewController: UIViewController {
-
+class WarehouseLocationViewController: UIViewController {
+    
     var tableView: UITableView!
     let CELL_IDENTIFY_ID = "CELL_IDENTIFY_ID"
     
     let dataArr = [
-        ["name":"支付设置", "key":"goods","pic":"swift.png"],
-        ["name":"角色设置", "key":"warehouse","pic":"xcode.png"],
-        ["name":"管理员设置", "key":"location","pic":"java.png"],
-        ["name":"分类管理", "key":"classify","pic":"php.png"],
-        ["name":"供货商管理", "key":"supplier","pic":"c#.png"]
+        ["name":"默认仓库", "id":"1","address":"默认仓库"],
+        ["name":"东莞大仓", "id":"2","address":"海珠仓"],
+        ["name":"珠海大仓", "id":"3","address":"广州海珠"],
+        ["name":"京东大东仓库", "id":"4","address":"广州海珠"],
+        ["name":"广州海珠中大轻纺交易1306", "id":"5","address":"广州萝岗广州萝岗广州萝岗广州萝岗广州萝岗"]
     ]
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         self.view.backgroundColor = Specs.color.white
-        setNavBarTitle(view: self, title: "设置")
-        setNavBarBackBtn(view: self, title: "设置", selector: #selector(actionBack))
+        setNavBarTitle(view: self, title: "仓库管理")
+        setNavBarBackBtn(view: self, title: "", selector: #selector(actionBack))
+        
+        setNavBarRightBtn(view: self, title: "添加", selector: #selector(actionAdd))
         
         self._setup()
         
@@ -37,17 +39,17 @@ class SettingsViewController: UIViewController {
         
     }
     
+    @objc func actionAdd() {
+        
+    }
+    
     private func _setup() {
         //创建表视图
-        self.tableView = UITableView(frame: self.view.frame, style:.grouped)
+        self.tableView = UITableView(frame: self.view.frame, style: .grouped)
         self.tableView!.delegate = self
         self.tableView!.dataSource = self
-        //创建一个重用的单元格
         self.tableView!.register(UITableViewCell.self, forCellReuseIdentifier: CELL_IDENTIFY_ID)
-        //去除单元格分隔线
-        self.tableView!.separatorStyle = .singleLine
-        //去除表格上放多余的空隙
-        //        self.tableView!.contentInset = UIEdgeInsetsMake(-10, 0, 0, 0)
+        self.tableView!.register(SimpleBasicsCell.self, forCellReuseIdentifier: SimpleBasicsCell.identifier)
         self.tableView?.tableHeaderView = UIView.init(frame: CGRect(x: 0, y: 0, width: 0, height: 0.1))
         self.view.addSubview(self.tableView!)
     }
@@ -70,7 +72,7 @@ class SettingsViewController: UIViewController {
     
 }
 
-extension SettingsViewController: UITableViewDelegate, UITableViewDataSource {
+extension WarehouseLocationViewController: UITableViewDelegate, UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1;
@@ -89,53 +91,16 @@ extension SettingsViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let memberView = UIView()
-        memberView.backgroundColor = Specs.color.white
-        
-        // 头像
-        let _avatar = UIImage(named: "bayMax")?.toCircleTailor()
-        let memberAvatar = UIImageView(image: _avatar)
-        memberView.addSubview(memberAvatar)
-        memberAvatar.snp.makeConstraints{ (make) -> Void in
-            make.left.equalTo(20)
-            make.top.equalTo(10)
-            make.width.height.equalTo(64)
-        }
-        
-        // 店铺名称
-        let platformTitle = UILabel()
-        platformTitle.text = "Half Step 原创设计师平台"
-        platformTitle.sizeToFit()
-        platformTitle.textColor = Specs.color.gray
-        platformTitle.font = Specs.font.regularBold
-        memberView.addSubview(platformTitle)
-        platformTitle.snp.makeConstraints{ (make) -> Void in
-            make.left.equalTo(memberAvatar.snp.right).offset(15)
-            make.top.equalTo(memberAvatar.snp.top).offset(5)
-        }
-        
-        // VIP
-        let platformVip = UILabel()
-        platformVip.text = "VIP金牌店"
-        platformVip.sizeToFit()
-        platformVip.textColor = Specs.color.gray
-        platformVip.font = Specs.font.smallBold
-        memberView.addSubview(platformVip)
-        platformVip.snp.makeConstraints{ (make) -> Void in
-            make.left.equalTo(platformTitle.snp.left)
-            make.top.equalTo(platformTitle.snp.bottom).offset(10)
-        }
-        
-        return memberView
+        return UIView()
     }
     
     //设置分组头的高度
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 84
+        return 0
     }
     
     func tableView(_ tableView: UITableView, titleForFooterInSection section: Int) -> String? {
-        return "选项前往更改设置"
+        return "选项前往添加、更新、删除"
     }
     
     //设置分组尾的高度
@@ -150,18 +115,30 @@ extension SettingsViewController: UITableViewDelegate, UITableViewDataSource {
     
     //创建各单元显示内容(创建参数indexPath指定的单元）
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: CELL_IDENTIFY_ID, for: indexPath)
         let _data = dataArr[indexPath.item]
-        let reSize = CGSize(width: 32, height: 32)
-        let _image = UIImage(named: _data["pic"]!)?.toCircleTailor()
-        cell.imageView?.image = _image?.reSizeImage(reSize: reSize)
+//        let cell = tableView.dequeueReusableCell(withIdentifier: CELL_IDENTIFY_ID, for: indexPath)
+//        let cell = UITableViewCell(style: .subtitle, reuseIdentifier: CELL_IDENTIFY_ID)
+        var cell = UITableViewCell()
+        cell = tableView.dequeueReusableCell(withIdentifier: SimpleBasicsCell.identifier, for: indexPath)
+
         cell.textLabel?.text = _data["name"]
         cell.textLabel?.font = Specs.font.regular
+        
+        cell.detailTextLabel?.text = _data["address"]!
+        cell.detailTextLabel?.font = Specs.font.regular
+        
+        cell.tag = Int(_data["id"]!)!
+        
         cell.accessoryType = .disclosureIndicator
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
+        
+        let _target = ZHQRCodeViewController()
+        _target.hidesBottomBarWhenPushed = true
+        _push(view: self, target: _target, rootView: true)
+        
     }
 }

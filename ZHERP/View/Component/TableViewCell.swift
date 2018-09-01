@@ -45,3 +45,22 @@ class PersonalBaseCell: UITableViewCell {
         fatalError("PersonalBaseCell:init(coder:) has not been implemented")
     }
 }
+
+class SimpleBasicsCell: UITableViewCell {
+    static let identifier: String = "SimpleBasicsCell"
+    
+    override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
+        super.init(style: .value1, reuseIdentifier: reuseIdentifier)
+        
+        backgroundColor = Specs.color.white
+        textLabel?.textColor = Specs.color.black
+        textLabel?.font = Specs.font.large
+        
+        detailTextLabel?.font = Specs.font.small
+        detailTextLabel?.textColor = Specs.color.gray
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("SimpleBasicsCell:init(coder:) has not been implemented")
+    }
+}
