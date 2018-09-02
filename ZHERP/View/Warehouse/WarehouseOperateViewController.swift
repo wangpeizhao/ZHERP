@@ -40,7 +40,13 @@ class WarehouseOperateViewController: UIViewController {
     }
     
     @objc func actionSave() {
-        
+        for (_, item) in self.valueArr {
+            if item.isEmpty {
+                _alert(view: self, message: "请完整填写仓库信息")
+                return
+            }
+        }
+        print(self.valueArr)
     }
     
     private func _setup() {
@@ -155,12 +161,19 @@ extension WarehouseOperateViewController: UITableViewDelegate, UITableViewDataSo
         
         let _target = WarehouseDetailViewController()
         _target.navTitle = _data["title"]
-        _target.value = (self.valueArr["detail"] != nil) ? self.valueArr["detail"] : _data["value"]!
+        _target.callBackAssign = {(assignValue: String) -> Void in
+            if (!assignValue.isEmpty) {
+                self.valueArr[key] = assignValue
+                tableView.reloadData()
+            }
+        }
         switch key {
         case "name":
             _target.placeholder = "最多输入十五个字"
+            _target.value = (self.valueArr["name"] != nil) ? self.valueArr["name"] : _data["value"]!
         case "detail":
             _target.placeholder = "请输入仓库详细地址"
+            _target.value = (self.valueArr["detail"] != nil) ? self.valueArr["detail"] : _data["value"]!
         default:
             _target.Id = indexPath.row + 1
         }

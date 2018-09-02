@@ -16,12 +16,14 @@ public struct Specs {
         public let black = UIColor.black
         public let gray = UIColor.lightGray
         public let blue = UIColor.blue
-        public let main = UIColor(hex: 0x20aaf2)
+        public let main = normalRGBA(r: 32, g: 148, b: 226, a: 1) //UIColor(hex: 0x20aaf2)
         public let circle = UIColor(hex: 0x1368e5)
         public let green = UIColor(hex: 0x42b83d)
         public let grayBg = UIColor(hex: 0xefeef4)
         public let graySBg = UIColor(hex: 0xf4f4f4)
         public let btnBg = UIColor(hex: 0x2869ed)
+        public let GlobalTextColor = normalRGBA(r: 51, g: 51, b: 51, a: 1)
+        public let ViewBackgroundColor = normalRGBA(r: 247, g: 247, b: 247, a: 1)
     }
     
     public struct FontSize {

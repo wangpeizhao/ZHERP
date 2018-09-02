@@ -9,6 +9,8 @@
 import UIKit
 import SnapKit
 
+// 用typealias来定义闭包,用来反向传值
+typealias assignValueClosure = (_ assignValue: String) -> Void//声明
 class WarehouseDetailViewController: UIViewController {
     
     var Id: Int = 0
@@ -16,13 +18,16 @@ class WarehouseDetailViewController: UIViewController {
     var value: String? = nil
     var placeholder: String? = nil
     var navHeight: CGFloat!
+    
+    let _value = UITextField()
+    var callBackAssign: assignValueClosure?
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
         self.view.backgroundColor = UIColor(hex: 0xf7f7f7)
         setNavBarTitle(view: self, title: self.navTitle!)
-        setNavBarRightBtn(view: self, title: "保存", selector: #selector(actionSave))
+//        setNavBarRightBtn(view: self, title: "保存", selector: #selector(actionSave))
         
         self._setup()
 
@@ -30,7 +35,15 @@ class WarehouseDetailViewController: UIViewController {
     }
     
     @objc func actionSave() {
-        
+        let value = self._value.text
+        if (value?.isEmpty)! {
+            _alert(view: self, message: "\(self.navTitle!)不能为空！")
+            return
+        }
+        if (self.callBackAssign != nil) {
+            self.callBackAssign!(value!)
+        }
+        _back(view: self)
     }
     
     private func _setup() {
@@ -40,23 +53,22 @@ class WarehouseDetailViewController: UIViewController {
         _view.backgroundColor = Specs.color.white
         self.view.addSubview(_view)
         
-        let _value = UITextField()
-        _value.text = self.value
-        _value.placeholder = self.placeholder
-        _value.textAlignment = .left
-        _value.font = Specs.font.regular
-        _value.textColor = Specs.color.gray
-        _value.clearButtonMode = .whileEditing
-        _value.becomeFirstResponder() // resignFirstResponder
-        _view.addSubview(_value)
-        _value.snp.makeConstraints {(make) -> Void in
+        self._value.text = self.value
+        self._value.placeholder = self.placeholder
+        self._value.textAlignment = .left
+        self._value.font = Specs.font.regular
+        self._value.textColor = Specs.color.gray
+        self._value.clearButtonMode = .whileEditing
+        self._value.becomeFirstResponder() // resignFirstResponder
+        _view.addSubview(self._value)
+        self._value.snp.makeConstraints {(make) -> Void in
             make.top.equalTo(10)
             make.left.equalTo(15)
             make.right.equalTo(-10)
             make.centerY.equalTo(_view)
         }
         
-        let _btn = UIButton(frame: CGRect(x: 10, y: 0, width: ScreenWidth - 20, height: 40))
+        let _btn = UIButton(frame: CGRect(x: 10, y: self.navHeight + 60, width: ScreenWidth - 20, height: 40))
         _btn.setTitle("保存", for: .normal)
         _btn.setTitleColor(Specs.color.white, for: UIControlState())
         _btn.backgroundColor = Specs.color.main
@@ -65,9 +77,6 @@ class WarehouseDetailViewController: UIViewController {
         _btn.titleLabel?.font = UIFont.systemFont(ofSize: Specs.fontSize.regular)
         _btn.addTarget(self, action: #selector(actionSave), for: .touchUpInside)
         self.view.addSubview(_btn)
-        _btn.snp.makeConstraints {(make) -> Void in
-            make.top.equalTo(_value.snp.bottom).offset(15)
-        }
     }
     
     override func didReceiveMemoryWarning() {
