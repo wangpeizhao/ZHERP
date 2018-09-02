@@ -73,27 +73,30 @@ class AddressPickerViewController: UIViewController {
             return
         }
         
-        var row: Int = 0
-        var _cities = [String: AnyObject]()
+        var i: Int = 0
+//        var _cities = [String: AnyObject]()
 //        var _areas = [String: AnyObject]()
         for item in self.addressArray {
             if (item["state"]! as! String == province) {
-                self.provinceIndex = row
-//                let province = self.addressArray[provinceIndex]
-//                _cities = (item["cities"] as! NSArray)[row] as! [String: AnyObject]
-                print(item["cities"]!)
-                _cities = item["cities"]! as! [String : AnyObject]
+                self.provinceIndex = i
+                let _province = self.addressArray[provinceIndex]
+                let _cities = _province["cities"] as! [[String : AnyObject]]
+//                print(_cities)
+                var ii: Int = 0
+                for item in _cities {
+//                    print(item["city"]!)
+                    if (item["city"]! as! String == city) {
+                        cityIndex = ii
+                        break
+                    }
+                    ii = ii + 1
+                }
+
                 break
             }
-            row = row + 1
+            i = i + 1
         }
         
-//        for (index, item) in _cities {
-//            print(item["city"]!)
-////            if (item["city"]! == city) {
-////                cityIndex = index
-////            }
-//        }
     }
     
     public func setAddressPickerView(view: UIViewController){
