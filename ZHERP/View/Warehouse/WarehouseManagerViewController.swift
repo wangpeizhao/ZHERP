@@ -42,6 +42,7 @@ class WarehouseManagerViewController: UIViewController {
     @objc func actionAdd() {
         let _target = WarehouseOperateViewController()
         _target.navTitle = "添加"
+        _target.valueArr = ["name":"", "region":"", "detail":""]
         _target.hidesBottomBarWhenPushed = true
         _push(view: self, target: _target, rootView: false)
     }

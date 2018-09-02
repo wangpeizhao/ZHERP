@@ -16,6 +16,8 @@ class WarehouseOperateViewController: UIViewController {
     var tableView: UITableView!
     let CELL_IDENTIFY_ID = "CELL_IDENTIFY_ID"
     
+    var addressPickerView: UIViewController!
+    
     let dataArr = [
         ["title":"仓库名称", "key":"name","value":"未填写"],
         ["title":"仓库区域", "key":"region","value":"未选择"],
@@ -133,11 +135,11 @@ extension WarehouseOperateViewController: UITableViewDelegate, UITableViewDataSo
         var detailTextLabel: String = ""
         switch key {
         case "name":
-            detailTextLabel = (self.valueArr["name"] != nil) ? self.valueArr["name"]! : _data["value"]!
+            detailTextLabel = !(self.valueArr["name"]?.isEmpty)! ? self.valueArr["name"]! : _data["value"]!
         case "region":
-            detailTextLabel = (self.valueArr["region"] != nil) ? self.valueArr["region"]! : _data["value"]!
+            detailTextLabel = !(self.valueArr["region"]?.isEmpty)! ? self.valueArr["region"]! : _data["value"]!
         case "detail":
-            detailTextLabel = (self.valueArr["detail"] != nil) ? self.valueArr["detail"]! : _data["value"]!
+            detailTextLabel = !(self.valueArr["detail"]?.isEmpty)! ? self.valueArr["detail"]! : _data["value"]!
         default:
             detailTextLabel = ""
         }
@@ -156,6 +158,14 @@ extension WarehouseOperateViewController: UITableViewDelegate, UITableViewDataSo
         let key: String = dataArr[indexPath.item]["key"]!
         
         if (key == "region") {
+            let _target = AddressPickerViewController(province: "广东", city: "广州", area: "越秀")
+            _target.callBackAssign = {(assignValue: String) -> Void in
+                if (!assignValue.isEmpty) {
+                    self.valueArr[key] = assignValue
+                    tableView.reloadData()
+                }
+            }
+            _target.setAddressPickerView(view: self)
             return
         }
         
@@ -170,10 +180,10 @@ extension WarehouseOperateViewController: UITableViewDelegate, UITableViewDataSo
         switch key {
         case "name":
             _target.placeholder = "最多输入十五个字"
-            _target.value = (self.valueArr["name"] != nil) ? self.valueArr["name"] : _data["value"]!
+            _target.value = (self.valueArr["name"] != nil) ? self.valueArr["name"] : _data["value"]
         case "detail":
             _target.placeholder = "请输入仓库详细地址"
-            _target.value = (self.valueArr["detail"] != nil) ? self.valueArr["detail"] : _data["value"]!
+            _target.value = (self.valueArr["detail"] != nil) ? self.valueArr["detail"] : _data["value"]
         default:
             _target.Id = indexPath.row + 1
         }
