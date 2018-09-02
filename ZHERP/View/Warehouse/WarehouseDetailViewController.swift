@@ -7,21 +7,22 @@
 //
 
 import UIKit
+import SnapKit
 
 class WarehouseDetailViewController: UIViewController {
     
-    let Id: Int = 0
+    var Id: Int = 0
+    var navTitle: String? = nil
+    var value: String? = nil
+    var placeholder: String? = nil
+    var navHeight: CGFloat!
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
         self.view.backgroundColor = UIColor(hex: 0xf7f7f7)
-        if(self.Id > 0) {
-            setNavBarTitle(view: self, title: "编辑")
-        } else {
-            setNavBarTitle(view: self, title: "添加")
-        }
-        setNavBarRightBtn(view: self, title: "添加", selector: #selector(actionSave))
+        setNavBarTitle(view: self, title: self.navTitle!)
+        setNavBarRightBtn(view: self, title: "保存", selector: #selector(actionSave))
         
         self._setup()
 
@@ -33,18 +34,40 @@ class WarehouseDetailViewController: UIViewController {
     }
     
     private func _setup() {
-        let nameView = UIView(frame: CGRect(x: 0, y: 5, width: ScreenWidth, height: 40))
-        nameView.backgroundColor = Specs.color.white
-        self.view.addSubview(nameView)
+        self.navHeight = self.navigationController?.navigationBar.frame.maxY
         
-        let name = UILabel(frame: CGRect(x: 10, y: 10, width: ScreenWidth - 10, height: 20))
-        name.text = "仓库名称"
-        name.textColor = Specs.color.gray
-        nameView.addSubview(name)
+        let _view = UIView(frame: CGRect(x: 0, y: self.navHeight + 10, width: ScreenWidth, height: 40))
+        _view.backgroundColor = Specs.color.white
+        self.view.addSubview(_view)
         
-        let addressView = UIView(frame: CGRect(x: 0, y: 50, width: ScreenWidth, height: 40))
-        addressView.backgroundColor = Specs.color.white
-        self.view.addSubview(addressView)
+        let _value = UITextField()
+        _value.text = self.value
+        _value.placeholder = self.placeholder
+        _value.textAlignment = .left
+        _value.font = Specs.font.regular
+        _value.textColor = Specs.color.gray
+        _value.clearButtonMode = .whileEditing
+        _value.becomeFirstResponder() // resignFirstResponder
+        _view.addSubview(_value)
+        _value.snp.makeConstraints {(make) -> Void in
+            make.top.equalTo(10)
+            make.left.equalTo(15)
+            make.right.equalTo(-10)
+            make.centerY.equalTo(_view)
+        }
+        
+        let _btn = UIButton(frame: CGRect(x: 10, y: 0, width: ScreenWidth - 20, height: 40))
+        _btn.setTitle("保存", for: .normal)
+        _btn.setTitleColor(Specs.color.white, for: UIControlState())
+        _btn.backgroundColor = Specs.color.main
+        _btn.layer.cornerRadius = Specs.border.radius
+        _btn.layer.masksToBounds = true
+        _btn.titleLabel?.font = UIFont.systemFont(ofSize: Specs.fontSize.regular)
+        _btn.addTarget(self, action: #selector(actionSave), for: .touchUpInside)
+        self.view.addSubview(_btn)
+        _btn.snp.makeConstraints {(make) -> Void in
+            make.top.equalTo(_value.snp.bottom).offset(15)
+        }
     }
     
     override func didReceiveMemoryWarning() {

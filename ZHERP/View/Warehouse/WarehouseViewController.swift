@@ -165,33 +165,24 @@ extension WarehouseViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         
+        var _target = UIViewController()
         let key: String = dataArr[indexPath.item]["key"]!
         switch key {
         case "goods":
-            let _target = ZHQRCodeViewController()
-            _target.hidesBottomBarWhenPushed = true
-            _push(view: self, target: _target, rootView: true)
+            _target = ZHQRCodeViewController()
         case "warehouse":
-            let _target = WarehouseLocationViewController()
-            _target.hidesBottomBarWhenPushed = true
-            _push(view: self, target: _target, rootView: true)
+            _target = WarehouseManagerViewController()
         case "location":
-            let _target = SettingsViewController()
-            _target.hidesBottomBarWhenPushed = true
-            _push(view: self, target: _target, rootView: true)
+            _target = SettingsViewController()
         case "classify":
-            let _target = SettingsViewController()
-            _target.hidesBottomBarWhenPushed = true
-            _push(view: self, target: _target, rootView: true)
+            _target = SettingsViewController()
         case "supplier":
-            let _target = SettingsViewController()
-            _target.hidesBottomBarWhenPushed = true
-            _push(view: self, target: _target, rootView: true)
+            _target = SettingsViewController()
         default:
-            let _target = GoodDetailViewController()
-            _target.hidesBottomBarWhenPushed = true
-            _push(view: self, target: _target, rootView: true)
+            _target = GoodDetailViewController()
         }
+        _target.hidesBottomBarWhenPushed = true
+        _push(view: self, target: _target, rootView: false)
         
     }
 }

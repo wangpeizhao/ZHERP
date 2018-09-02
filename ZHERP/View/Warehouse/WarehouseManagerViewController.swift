@@ -8,17 +8,17 @@
 
 import UIKit
 
-class WarehouseLocationViewController: UIViewController {
+class WarehouseManagerViewController: UIViewController {
     
     var tableView: UITableView!
     let CELL_IDENTIFY_ID = "CELL_IDENTIFY_ID"
     
     let dataArr = [
-        ["name":"默认仓库", "id":"1","address":"默认仓库"],
-        ["name":"东莞大仓", "id":"2","address":"海珠仓"],
-        ["name":"珠海大仓", "id":"3","address":"广州海珠"],
-        ["name":"京东大东仓库", "id":"4","address":"广州海珠"],
-        ["name":"广州海珠中大轻纺交易1306", "id":"5","address":"广州萝岗广州萝岗广州萝岗广州萝岗广州萝岗"]
+        ["name":"默认仓库", "id":"1", "region":"广东广州海珠", "detail":"海珠大街15号"],
+        ["name":"东莞大仓", "id":"2", "region":"广东广州海珠", "detail":"海珠大街11号"],
+        ["name":"珠海大仓", "id":"3", "region":"广东广州海珠", "detail":"海珠大街101号"],
+        ["name":"京东大东仓库", "id":"4", "region":"广东广州海珠", "detail":"海珠大街21号"],
+        ["name":"中大轻纺交易仓", "id":"5", "region":"广东广州萝岗", "detail":"萝岗大街10号"]
     ]
     
     override func viewDidLoad() {
@@ -26,7 +26,7 @@ class WarehouseLocationViewController: UIViewController {
         
         self.view.backgroundColor = Specs.color.white
         setNavBarTitle(view: self, title: "仓库管理")
-        setNavBarBackBtn(view: self, title: "", selector: #selector(actionBack))
+        setNavBarBackBtn(view: self, title: "仓库管理", selector: #selector(actionBack))
         
         setNavBarRightBtn(view: self, title: "添加", selector: #selector(actionAdd))
         
@@ -40,7 +40,10 @@ class WarehouseLocationViewController: UIViewController {
     }
     
     @objc func actionAdd() {
-        
+        let _target = WarehouseOperateViewController()
+        _target.navTitle = "添加"
+        _target.hidesBottomBarWhenPushed = true
+        _push(view: self, target: _target, rootView: false)
     }
     
     private func _setup() {
@@ -72,7 +75,7 @@ class WarehouseLocationViewController: UIViewController {
     
 }
 
-extension WarehouseLocationViewController: UITableViewDelegate, UITableViewDataSource {
+extension WarehouseManagerViewController: UITableViewDelegate, UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1;
@@ -100,7 +103,7 @@ extension WarehouseLocationViewController: UITableViewDelegate, UITableViewDataS
     }
     
     func tableView(_ tableView: UITableView, titleForFooterInSection section: Int) -> String? {
-        return "选项前往添加、更新、删除"
+        return "选项前往添加、更新，长按删除"
     }
     
     //设置分组尾的高度
@@ -124,7 +127,7 @@ extension WarehouseLocationViewController: UITableViewDelegate, UITableViewDataS
         cell.textLabel?.text = _data["name"]
         cell.textLabel?.font = Specs.font.regular
         
-        cell.detailTextLabel?.text = _data["address"]!
+        cell.detailTextLabel?.text = "\(_data["region"]!) \(_data["detail"]!)"
         cell.detailTextLabel?.font = Specs.font.regular
         
         cell.tag = Int(_data["id"]!)!
@@ -136,9 +139,12 @@ extension WarehouseLocationViewController: UITableViewDelegate, UITableViewDataS
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         
-        let _target = ZHQRCodeViewController()
+        let _data = dataArr[indexPath.item]
+        let _target = WarehouseOperateViewController()
+        _target.navTitle = _data["name"]
+        _target.valueArr = _data
         _target.hidesBottomBarWhenPushed = true
-        _push(view: self, target: _target, rootView: true)
+        _push(view: self, target: _target, rootView: false)
         
     }
 }
