@@ -98,7 +98,7 @@ class AddressPickerViewController: UIViewController {
                         var iii: Int = 0
                         for _item_ in _areas {
                             // area
-                            if (!self.area.isEmpty && _item_ == self.area) {
+                            if (!self.area.isEmpty && _item_.hasPrefix(self.area) == true) {
                                 self.areaIndex = iii
                                 break
                             }
@@ -113,10 +113,10 @@ class AddressPickerViewController: UIViewController {
             }
             i = i + 1
         }
-        let message = "索引：\(provinceIndex)-\(cityIndex)-\(areaIndex)\n"
-            + "值：\(province) - \(city) - \(area)"
-        
-        print("message:\(message)")
+//        let message = "索引：\(provinceIndex)-\(cityIndex)-\(areaIndex)\n"
+//            + "值：\(province) - \(city) - \(area)"
+//        
+//        print("message:\(message)")
 
     }
     

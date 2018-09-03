@@ -37,8 +37,8 @@ class WarehouseOperateViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
     
-    @objc func actionBack() {
-        
+    @objc func actionBack(_: UIAlertAction)->Void {
+        _back(view: self)
     }
     
     @objc func actionSave() {
@@ -49,6 +49,7 @@ class WarehouseOperateViewController: UIViewController {
             }
         }
         print(self.valueArr)
+        _alert(view: self, message: "提交成功", handler: actionBack)
     }
     
     private func _setup() {
@@ -158,10 +159,14 @@ extension WarehouseOperateViewController: UITableViewDelegate, UITableViewDataSo
         let key: String = dataArr[indexPath.item]["key"]!
         
         if (key == "region") {
-            let _target = AddressPickerViewController(province: "广东", city: "广州", area: "越秀区")
+            let _target = AddressPickerViewController(province: self.valueArr["province"]!, city: self.valueArr["city"]!, area: self.valueArr["area"]!)
             _target.callBackAssign = {(assignValue: String) -> Void in
                 if (!assignValue.isEmpty) {
                     self.valueArr[key] = assignValue
+                    let _region : Array = assignValue.components(separatedBy: " ")
+                    self.valueArr["province"] = _region[0]
+                    self.valueArr["city"] = _region[1]
+                    self.valueArr["area"] = _region[2]
                     tableView.reloadData()
                 }
             }

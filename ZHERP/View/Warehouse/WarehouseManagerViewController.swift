@@ -13,12 +13,12 @@ class WarehouseManagerViewController: UIViewController {
     var tableView: UITableView!
     let CELL_IDENTIFY_ID = "CELL_IDENTIFY_ID"
     
-    let dataArr = [
-        ["name":"默认仓库", "id":"1", "region":"广东广州海珠", "detail":"海珠大街15号"],
-        ["name":"东莞大仓", "id":"2", "region":"广东广州海珠", "detail":"海珠大街11号"],
-        ["name":"珠海大仓", "id":"3", "region":"广东广州海珠", "detail":"海珠大街101号"],
-        ["name":"京东大东仓库", "id":"4", "region":"广东广州海珠", "detail":"海珠大街21号"],
-        ["name":"中大轻纺交易仓", "id":"5", "region":"广东广州萝岗", "detail":"萝岗大街10号"]
+    var dataArr = [
+        ["name":"默认仓库", "id":"1", "region":"", "province":"广东", "city":"广州", "area":"海珠区", "detail":"海珠大街15号"],
+        ["name":"东莞大仓", "id":"2", "region":"", "province":"广东", "city":"深圳", "area":"宝安区", "detail":"海珠大街11号"],
+        ["name":"珠海大仓", "id":"3", "region":"", "province":"山东", "city":"日照", "area":"五莲县", "detail":"海珠大街101号"],
+        ["name":"京东大东仓库", "id":"4", "region":"", "province":"福建", "city":"厦门", "area":"同安区", "detail":"海珠大街21号"],
+        ["name":"中大轻纺交易仓", "id":"5", "region":"", "province":"广东", "city":"湛江", "area":"廉江", "detail":"萝岗大街10号"]
     ]
     
     override func viewDidLoad() {
@@ -35,6 +35,11 @@ class WarehouseManagerViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.tableView!.reloadData()
+    }
+    
     @objc func actionBack() {
         
     }
@@ -42,7 +47,7 @@ class WarehouseManagerViewController: UIViewController {
     @objc func actionAdd() {
         let _target = WarehouseOperateViewController()
         _target.navTitle = "添加"
-        _target.valueArr = ["name":"", "region":"", "detail":""]
+        _target.valueArr = ["name":"", "region":"", "province":"", "city":"", "area":"", "detail":""]
         _target.hidesBottomBarWhenPushed = true
         _push(view: self, target: _target, rootView: false)
     }
@@ -119,7 +124,7 @@ extension WarehouseManagerViewController: UITableViewDelegate, UITableViewDataSo
     
     //创建各单元显示内容(创建参数indexPath指定的单元）
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let _data = dataArr[indexPath.item]
+        let _data = self.dataArr[indexPath.item]
 //        let cell = tableView.dequeueReusableCell(withIdentifier: CELL_IDENTIFY_ID, for: indexPath)
 //        let cell = UITableViewCell(style: .subtitle, reuseIdentifier: CELL_IDENTIFY_ID)
         var cell = UITableViewCell()
@@ -128,7 +133,7 @@ extension WarehouseManagerViewController: UITableViewDelegate, UITableViewDataSo
         cell.textLabel?.text = _data["name"]
         cell.textLabel?.font = Specs.font.regular
         
-        cell.detailTextLabel?.text = "\(_data["region"]!) \(_data["detail"]!)"
+        cell.detailTextLabel?.text = "\(_data["province"]!) \(_data["city"]!) \(_data["area"]!) \(_data["detail"]!)"
         cell.detailTextLabel?.font = Specs.font.regular
         
         cell.tag = Int(_data["id"]!)!
@@ -140,12 +145,38 @@ extension WarehouseManagerViewController: UITableViewDelegate, UITableViewDataSo
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         
-        let _data = dataArr[indexPath.item]
+        var _data = self.dataArr[indexPath.item]
+        _data["region"] = "\(_data["province"]!) \(_data["city"]!) \(_data["area"]!)"
         let _target = WarehouseOperateViewController()
         _target.navTitle = _data["name"]
         _target.valueArr = _data
         _target.hidesBottomBarWhenPushed = true
         _push(view: self, target: _target, rootView: false)
         
+    }
+    
+    // Edit mode 点击左上角的“edit”按钮  列表左侧出现删除按钮
+    override func setEditing(_ editing: Bool, animated: Bool) {
+        super.setEditing(editing, animated: animated)
+        tableView.setEditing(editing, animated: true)
+    }
+    
+    // Delete mode 点击删除按钮或者按住列表向左滑动 直接删除
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == UITableViewCellEditingStyle.delete {
+            self.dataArr.remove(at: (indexPath as NSIndexPath).row)
+            tableView.deleteRows(at: [indexPath], with: UITableViewRowAnimation.automatic)
+        }
+    }
+    
+    // Move mode
+    // canMoveRowAt 这 func 可有可无
+    func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
+        return self.isEditing
+    }
+    // 移动列表+保存
+    func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
+        let todo = self.dataArr.remove(at: (sourceIndexPath as NSIndexPath).row)
+        self.dataArr.insert(todo, at: (destinationIndexPath as NSIndexPath).row)
     }
 }
