@@ -13,14 +13,12 @@ class QRCode {
     func _call () {
         //不带图片的二维码图片
         let imageViewIcon1 = UIImageView(frame: CGRect(x:20, y:20, width:150, height:150))
-        imageViewIcon1.image = createQRForString(qrString: "http://www.hangge.com",
-                                                 qrImageName: "")
+        imageViewIcon1.image = createQRForString(qrString: "http://www.hangge.com", qrImageName: "")
 //        self.view.addSubview(imageViewIcon1)
         
         //带图片的二维码图片
         let imageViewIcon2 = UIImageView(frame: CGRect(x:200, y:20, width:150, height:150))
-        imageViewIcon2.image = createQRForString(qrString: "http://www.hangge.com",
-                                                 qrImageName: "logo")
+        imageViewIcon2.image = createQRForString(qrString: "http://www.hangge.com", qrImageName: "logo")
 //        self.view.addSubview(imageViewIcon2)
     }
     

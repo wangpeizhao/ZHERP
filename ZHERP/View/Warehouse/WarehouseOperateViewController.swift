@@ -8,6 +8,8 @@
 
 import UIKit
 
+// 用typealias来定义闭包,用来反向传值
+typealias assignArrayClosure = (_ assignArray: [String: String]) -> Void//声明
 class WarehouseOperateViewController: UIViewController {
     
     let Id: Int = 0
@@ -17,6 +19,8 @@ class WarehouseOperateViewController: UIViewController {
     let CELL_IDENTIFY_ID = "CELL_IDENTIFY_ID"
     
     var addressPickerView: UIViewController!
+    
+    var callBackAssign: assignArrayClosure?
     
     let dataArr = [
         ["title":"仓库名称", "key":"name","value":"未填写"],
@@ -48,7 +52,12 @@ class WarehouseOperateViewController: UIViewController {
                 return
             }
         }
-        print(self.valueArr)
+        if (self.callBackAssign != nil) {
+            if (self.valueArr["maxId"] != nil) {
+                self.valueArr["id"] = self.valueArr["maxId"]
+            }
+            self.callBackAssign!(self.valueArr)
+        }
         _alert(view: self, message: "提交成功", handler: actionBack)
     }
     
@@ -109,7 +118,7 @@ extension WarehouseOperateViewController: UITableViewDelegate, UITableViewDataSo
     }
     
     func tableView(_ tableView: UITableView, titleForFooterInSection section: Int) -> String? {
-        return "请完善仓库信息"
+        return "填写完整后不要忘了点击保存喔。"
     }
     
     //设置分组尾的高度

@@ -451,3 +451,21 @@ func imageAdaptive(imageView: UIImageView, imageName: String) {
 //        self.view.layoutIfNeeded()
 //    }
 //}
+
+func minMax(arr:[Int])->(Int,Int) {
+    
+    var min:Int = arr[0]
+    var max:Int = arr[0]
+    
+    for i in 0..<arr.count {
+        if arr[i] < min {
+            min = arr[i]
+        }
+        
+        if arr[i] > max {
+            max = arr[i]
+        }
+    }
+    
+    return (min,max)
+}

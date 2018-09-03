@@ -8,7 +8,7 @@
 
 import UIKit
 
-class WarehouseManagerViewController: UIViewController {
+class WarehouseManagerViewController: UIViewController, UIGestureRecognizerDelegate {
     
     var tableView: UITableView!
     let CELL_IDENTIFY_ID = "CELL_IDENTIFY_ID"
@@ -23,7 +23,7 @@ class WarehouseManagerViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+//        navigationItem.leftBarButtonItem = editButtonItem
         self.view.backgroundColor = Specs.color.white
         setNavBarTitle(view: self, title: "仓库管理")
         setNavBarBackBtn(view: self, title: "仓库管理", selector: #selector(actionBack))
@@ -45,11 +45,19 @@ class WarehouseManagerViewController: UIViewController {
     }
     
     @objc func actionAdd() {
+        let maxId = self._getMaxId()
         let _target = WarehouseOperateViewController()
         _target.navTitle = "添加"
-        _target.valueArr = ["name":"", "region":"", "province":"", "city":"", "area":"", "detail":""]
+        _target.valueArr = ["name":"", "id": "0", "region":"", "province":"", "city":"", "area":"", "detail":"", "maxId": String(maxId + 1)]
         _target.hidesBottomBarWhenPushed = true
+        self._setCallbackAssign(view: _target)
         _push(view: self, target: _target, rootView: false)
+    }
+    
+    @objc func actionSave() {
+        setNavBarRightBtn(view: self, title: "添加", selector: #selector(actionAdd))
+        self.tableView.isEditing = false
+        print(self.dataArr)
     }
     
     private func _setup() {
@@ -61,6 +69,72 @@ class WarehouseManagerViewController: UIViewController {
         self.tableView!.register(SimpleBasicsCell.self, forCellReuseIdentifier: SimpleBasicsCell.identifier)
         self.tableView?.tableHeaderView = UIView.init(frame: CGRect(x: 0, y: 0, width: 0, height: 0.1))
         self.view.addSubview(self.tableView!)
+        
+        // 长按启动删除、移动排序功能
+        let longPress = UILongPressGestureRecognizer.init(target: self, action: #selector(longPressAction))
+        longPress.delegate = self
+        longPress.minimumPressDuration = 1
+        self.tableView!.addGestureRecognizer(longPress)
+        
+    }
+    
+    private func _setCallbackAssign(view: WarehouseOperateViewController) {
+        view.callBackAssign = {(assignValue: [String: String]) -> Void in
+            if (assignValue.isEmpty) {
+                return
+            }
+            
+            if assignValue["maxId"] != nil {// add
+                self.dataArr.append(assignValue)
+            } else {// edit
+                var _row: Int = 0
+                var i = 0
+                for item in self.dataArr {
+                    if (item["id"] == assignValue["id"]!) {
+                        _row = i
+                        break
+                    }
+                    i = i + 1
+                }
+                self.dataArr.remove(at: _row)
+                self.dataArr.insert(assignValue, at: _row)
+            }
+            self.tableView.reloadData()
+        }
+    }
+    
+    private func _setAssignValue(value: inout [String: String]) {
+        let maxId = self._getMaxId()
+        value["id"] = String(maxId + 1)
+    }
+    
+    private func _getMaxId() -> Int {
+        var idArr = [Int]()
+        for item in self.dataArr {
+            idArr.append(Int(item["id"]!)!)
+        }
+        let maxId = minMax(arr: idArr)
+        return maxId.1
+    }
+    
+    @objc func longPressAction(recognizer: UILongPressGestureRecognizer)  {
+        if recognizer.state == UIGestureRecognizerState.began {
+            print("UIGestureRecognizerStateBegan");
+        }
+        if recognizer.state == UIGestureRecognizerState.changed {
+            print("UIGestureRecognizerStateChanged");
+        }
+        if recognizer.state == UIGestureRecognizerState.ended {
+            print("UIGestureRecognizerStateEnded");
+//            tableView.isEditing = !tableView.isEditing
+            if tableView.isEditing == true {
+                tableView.isEditing = false
+            } else {
+//                tableView.isEditing = true
+                setNavBarRightBtn(view: self, title: "保存", selector: #selector(actionSave))
+                self.setEditing(true,animated: true)
+            }
+        }
     }
     
     override func didReceiveMemoryWarning() {
@@ -109,7 +183,7 @@ extension WarehouseManagerViewController: UITableViewDelegate, UITableViewDataSo
     }
     
     func tableView(_ tableView: UITableView, titleForFooterInSection section: Int) -> String? {
-        return "选项前往添加、更新，长按删除"
+        return "点击可进行编辑；长按可进行删除及上下拖动排序。"
     }
     
     //设置分组尾的高度
@@ -147,7 +221,11 @@ extension WarehouseManagerViewController: UITableViewDelegate, UITableViewDataSo
         
         var _data = self.dataArr[indexPath.item]
         _data["region"] = "\(_data["province"]!) \(_data["city"]!) \(_data["area"]!)"
+        if (_data["maxId"] != nil) {
+            _data["maxId"] = nil
+        }
         let _target = WarehouseOperateViewController()
+        self._setCallbackAssign(view: _target)
         _target.navTitle = _data["name"]
         _target.valueArr = _data
         _target.hidesBottomBarWhenPushed = true
@@ -159,6 +237,8 @@ extension WarehouseManagerViewController: UITableViewDelegate, UITableViewDataSo
     override func setEditing(_ editing: Bool, animated: Bool) {
         super.setEditing(editing, animated: animated)
         tableView.setEditing(editing, animated: true)
+        
+//        tableView.endEditing(true)
     }
     
     // Delete mode 点击删除按钮或者按住列表向左滑动 直接删除
