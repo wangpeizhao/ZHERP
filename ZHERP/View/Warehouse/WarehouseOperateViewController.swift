@@ -158,7 +158,7 @@ extension WarehouseOperateViewController: UITableViewDelegate, UITableViewDataSo
         let key: String = dataArr[indexPath.item]["key"]!
         
         if (key == "region") {
-            let _target = AddressPickerViewController(province: "广东", city: "广州", area: "越秀")
+            let _target = AddressPickerViewController(province: "广东", city: "广州", area: "越秀区")
             _target.callBackAssign = {(assignValue: String) -> Void in
                 if (!assignValue.isEmpty) {
                     self.valueArr[key] = assignValue

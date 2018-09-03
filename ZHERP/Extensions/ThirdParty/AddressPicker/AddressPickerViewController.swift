@@ -32,9 +32,9 @@ class AddressPickerViewController: UIViewController {
     var area: String
     
     init(province: String, city: String, area: String) {
-        self.province = province
-        self.city = city
-        self.area = area
+        self.province = province.trimmingCharacters(in: .whitespaces)
+        self.city = city.trimmingCharacters(in: .whitespaces)
+        self.area = area.trimmingCharacters(in: .whitespaces)
         super.init(nibName: nil, bundle:nil)
     }
     
@@ -68,25 +68,42 @@ class AddressPickerViewController: UIViewController {
     }
     
     private func _setInit() {
-        print(self.addressArray.count)
         if self.addressArray.count == 0 {
             return
         }
         
         var i: Int = 0
-//        var _cities = [String: AnyObject]()
-//        var _areas = [String: AnyObject]()
+        // address
         for item in self.addressArray {
-            if (item["state"]! as! String == province) {
+            // province
+            if (!self.province.isEmpty && item["state"]! as! String == self.province) {
                 self.provinceIndex = i
                 let _province = self.addressArray[provinceIndex]
                 let _cities = _province["cities"] as! [[String : AnyObject]]
-//                print(_cities)
+                
+                if (_cities.count == 0) {
+                    break
+                }
+                
                 var ii: Int = 0
-                for item in _cities {
-//                    print(item["city"]!)
-                    if (item["city"]! as! String == city) {
-                        cityIndex = ii
+                for _item in _cities {
+                    // city
+                    if (!self.city.isEmpty && _item["city"]! as! String == self.city) {
+                        self.cityIndex = ii
+                        let _areas = _item["areas"]! as! [String]
+                        if (_areas.count == 0) {
+                            break
+                        }
+                        
+                        var iii: Int = 0
+                        for _item_ in _areas {
+                            // area
+                            if (!self.area.isEmpty && _item_ == self.area) {
+                                self.areaIndex = iii
+                                break
+                            }
+                            iii = iii + 1
+                        }
                         break
                     }
                     ii = ii + 1
@@ -96,7 +113,11 @@ class AddressPickerViewController: UIViewController {
             }
             i = i + 1
         }
+        let message = "索引：\(provinceIndex)-\(cityIndex)-\(areaIndex)\n"
+            + "值：\(province) - \(city) - \(area)"
         
+        print("message:\(message)")
+
     }
     
     public func setAddressPickerView(view: UIViewController){
@@ -113,11 +134,11 @@ class AddressPickerViewController: UIViewController {
         alertController.view.addSubview(self.pickerView)
         
 //        self.provinceIndex = 5
-        self.cityIndex = 8
-        self.areaIndex = 1
+//        self.cityIndex = 8
+//        self.areaIndex = 1
         self.pickerView.selectRow(self.provinceIndex, inComponent: 0, animated: true)
-        self.pickerView.selectRow(8, inComponent: 1, animated: true)
-        self.pickerView.selectRow(1, inComponent: 2, animated: true)
+        self.pickerView.selectRow(self.cityIndex, inComponent: 1, animated: true)
+        self.pickerView.selectRow(self.areaIndex, inComponent: 2, animated: true)
         self.pickerView.reloadAllComponents()
         
         alertController.addAction(DestructiveAction)
@@ -150,17 +171,17 @@ class AddressPickerViewController: UIViewController {
             self.callBackAssign!("\(province) \(city) \(area)")
         }
         
-        //拼接输出消息
-        let message = "索引：\(provinceIndex)-\(cityIndex)-\(areaIndex)\n"
-            + "值：\(province) - \(city) - \(area)"
-        
-        print("message:\(message)")
-        
-        //消息显示
-        let alertController = UIAlertController(title: "您选择了", message: message, preferredStyle: .alert)
-        let cancelAction = UIAlertAction(title: "确定", style: .cancel, handler: nil)
-        alertController.addAction(cancelAction)
-        self.invokingView.present(alertController, animated: true, completion: nil)
+//        //拼接输出消息
+//        let message = "索引：\(provinceIndex)-\(cityIndex)-\(areaIndex)\n"
+//            + "值：\(province) - \(city) - \(area)"
+//
+//        print("message:\(message)")
+//
+//        //消息显示
+//        let alertController = UIAlertController(title: "您选择了", message: message, preferredStyle: .alert)
+//        let cancelAction = UIAlertAction(title: "确定", style: .cancel, handler: nil)
+//        alertController.addAction(cancelAction)
+//        self.invokingView.present(alertController, animated: true, completion: nil)
         
     }
 
