@@ -93,6 +93,10 @@
 		9E523E9D2119DF2100CF921F /* OrderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E523E9B2119DF2100CF921F /* OrderTableViewCell.swift */; };
 		9E523E9E2119DF2100CF921F /* OrderTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9E523E9C2119DF2100CF921F /* OrderTableViewCell.xib */; };
 		9E523EA1211B42A800CF921F /* bridge.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E523EA0211B42A800CF921F /* bridge.m */; };
+		9E549931213EBC4A001E4C36 /* WCategoryManagerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E549930213EBC4A001E4C36 /* WCategoryManagerViewController.swift */; };
+		9E549934213EC9EB001E4C36 /* WCategoryManagerTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E549932213EC9EB001E4C36 /* WCategoryManagerTableViewCell.swift */; };
+		9E549935213EC9EB001E4C36 /* WCategoryManagerTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9E549933213EC9EB001E4C36 /* WCategoryManagerTableViewCell.xib */; };
+		9E549937213ED506001E4C36 /* WCategoryOperateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E549936213ED506001E4C36 /* WCategoryOperateViewController.swift */; };
 		9E62C2AE213B81A200C8A578 /* WarehouseOperateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E62C2AD213B81A200C8A578 /* WarehouseOperateViewController.swift */; };
 		9E62C2B5213BD32900C8A578 /* address.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9E62C2B4213BD32900C8A578 /* address.plist */; };
 		9E62C2B8213BF1E400C8A578 /* AddressPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E62C2B7213BF1E400C8A578 /* AddressPickerViewController.swift */; };
@@ -251,6 +255,10 @@
 		9E523E9C2119DF2100CF921F /* OrderTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OrderTableViewCell.xib; sourceTree = "<group>"; };
 		9E523E9F211B42A700CF921F /* ZHERP-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ZHERP-Bridging-Header.h"; sourceTree = "<group>"; };
 		9E523EA0211B42A800CF921F /* bridge.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = bridge.m; sourceTree = "<group>"; };
+		9E549930213EBC4A001E4C36 /* WCategoryManagerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WCategoryManagerViewController.swift; sourceTree = "<group>"; };
+		9E549932213EC9EB001E4C36 /* WCategoryManagerTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WCategoryManagerTableViewCell.swift; sourceTree = "<group>"; };
+		9E549933213EC9EB001E4C36 /* WCategoryManagerTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WCategoryManagerTableViewCell.xib; sourceTree = "<group>"; };
+		9E549936213ED506001E4C36 /* WCategoryOperateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WCategoryOperateViewController.swift; sourceTree = "<group>"; };
 		9E62C2AD213B81A200C8A578 /* WarehouseOperateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WarehouseOperateViewController.swift; sourceTree = "<group>"; };
 		9E62C2B4213BD32900C8A578 /* address.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = address.plist; sourceTree = "<group>"; };
 		9E62C2B7213BF1E400C8A578 /* AddressPickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressPickerViewController.swift; sourceTree = "<group>"; };
@@ -335,6 +343,10 @@
 				2C6B1F3C213E5BF200CF82DE /* WLocationDeatilViewController.swift */,
 				2C6B1F3E213E769300CF82DE /* WSupplierManagerViewController.swift */,
 				2C6B1F40213E77F500CF82DE /* WSupplierOperateViewController.swift */,
+				9E549930213EBC4A001E4C36 /* WCategoryManagerViewController.swift */,
+				9E549932213EC9EB001E4C36 /* WCategoryManagerTableViewCell.swift */,
+				9E549933213EC9EB001E4C36 /* WCategoryManagerTableViewCell.xib */,
+				9E549936213ED506001E4C36 /* WCategoryOperateViewController.swift */,
 			);
 			path = Warehouse;
 			sourceTree = "<group>";
@@ -923,6 +935,7 @@
 				9EE26B82212C734100619D98 /* GoodTableViewCell.xib in Resources */,
 				9E29032320F7B99B00F11C63 /* LaunchScreen.storyboard in Resources */,
 				9E523E2D2104D7CE00CF921F /* guideImage4.jpg in Resources */,
+				9E549935213EC9EB001E4C36 /* WCategoryManagerTableViewCell.xib in Resources */,
 				9E523DFC2104615800CF921F /* guideImage7.gif in Resources */,
 				9E523DF3210460B600CF921F /* guide_btn_bg@2x.png in Resources */,
 				9E523E2C2104D7CE00CF921F /* shopping.gif in Resources */,
@@ -1073,6 +1086,7 @@
 				9E88ED1E20FB464B00DF091F /* GoodTableViewController.swift in Sources */,
 				2C2BD1CC21279ED300F6C6C3 /* GoodDetailViewController.swift in Sources */,
 				9E88ED0F20FB3B7700DF091F /* Response+ObjectMapper.swift in Sources */,
+				9E549931213EBC4A001E4C36 /* WCategoryManagerViewController.swift in Sources */,
 				9E88ED3720FCE9C400DF091F /* MemberViewController.swift in Sources */,
 				9E523E322104DA1000CF921F /* GifImageOperation.swift in Sources */,
 				9E523E9A21127EC800CF921F /* UIView-Extensions.swift in Sources */,
@@ -1107,6 +1121,7 @@
 				2C6B1F3F213E769300CF82DE /* WSupplierManagerViewController.swift in Sources */,
 				2CE8F4A4212C0AC600037367 /* SettingsViewController.swift in Sources */,
 				9E523DE020FEB4F100CF921F /* ProtocolPageViewController.swift in Sources */,
+				9E549937213ED506001E4C36 /* WCategoryOperateViewController.swift in Sources */,
 				9EE26B81212C734100619D98 /* GoodTableViewCell.swift in Sources */,
 				9E523E89210D449300CF921F /* OrderViewController.swift in Sources */,
 				9E523DFE2104661400CF921F /* GuideViewController.swift in Sources */,
@@ -1126,6 +1141,7 @@
 				9E88ED2A20FB723600DF091F /* UIColor.swift in Sources */,
 				9E88ED1420FB3B9300DF091F /* Post.swift in Sources */,
 				9E27D5A7213AF05C00087D20 /* WarehouseDetailViewController.swift in Sources */,
+				9E549934213EC9EB001E4C36 /* WCategoryManagerTableViewCell.swift in Sources */,
 				9E88ED1220FB3B7700DF091F /* Observable+ObjectMapper.swift in Sources */,
 				9E88ED1A20FB41F800DF091F /* HomeViewController.swift in Sources */,
 				9E523E90210D540900CF921F /* OrderAllViewController.swift in Sources */,

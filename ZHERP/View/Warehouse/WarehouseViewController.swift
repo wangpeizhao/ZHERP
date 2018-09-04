@@ -18,7 +18,7 @@ class WarehouseViewController: UIViewController {
         ["name":"货品管理", "key":"goods","pic":"swift.png"],
         ["name":"仓库管理", "key":"warehouse","pic":"xcode.png"],
         ["name":"库位管理", "key":"location","pic":"java.png"],
-        ["name":"分类管理", "key":"classify","pic":"php.png"],
+        ["name":"货品分类", "key":"classify","pic":"php.png"],
         ["name":"供货商管理", "key":"supplier","pic":"c#.png"]
     ]
     
@@ -175,7 +175,7 @@ extension WarehouseViewController: UITableViewDelegate, UITableViewDataSource {
         case "location":
             _target = WLocationViewController()
         case "classify":
-            _target = SettingsViewController()
+            _target = WCategoryManagerViewController()
         case "supplier":
             _target = WSupplierManagerViewController()
         default:
