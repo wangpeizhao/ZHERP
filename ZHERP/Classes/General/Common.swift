@@ -17,6 +17,9 @@ let ScreenWidth = UIScreen.main.bounds.size.width
 // tabBar高度
 let kTabBarH: CGFloat = 49.0
 
+// 选择列表的cell高度
+let SelectCellHeight: CGFloat = 40.0
+
 // 全局分隔符
 let globalSeparator: String = "*Z*H*E*R*P*"
 

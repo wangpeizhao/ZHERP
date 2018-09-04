@@ -92,6 +92,7 @@ class WCategoryDetailViewController: UIViewController {
     
     private func _setSelectList() {
         self.dataArr = [
+            ["name":"顶级", "id":"0", "depth": "1", "pId": "0"],
             ["name":"男装", "id":"1", "depth": "1", "pId": "0"],
             ["name":"T恤", "id":"2", "depth": "2", "pId": "1"],
             ["name":"短袖T恤", "id":"3", "depth": "3", "pId": "2"],
@@ -158,7 +159,7 @@ extension WCategoryDetailViewController: UITableViewDelegate, UITableViewDataSou
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 48
+        return SelectCellHeight
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
