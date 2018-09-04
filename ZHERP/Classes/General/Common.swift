@@ -17,6 +17,9 @@ let ScreenWidth = UIScreen.main.bounds.size.width
 // tabBar高度
 let kTabBarH: CGFloat = 49.0
 
+// 全局分隔符
+let globalSeparator: String = "*Z*H*E*R*P*"
+
 // MARK:- 颜色方法
 func normalRGBA (r:CGFloat, g:CGFloat, b:CGFloat, a:CGFloat) -> UIColor {
     return UIColor (red: r/255.0, green: g/255.0, blue: b/255.0, alpha: a)

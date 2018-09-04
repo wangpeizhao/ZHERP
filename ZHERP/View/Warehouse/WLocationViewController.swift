@@ -2,31 +2,30 @@
 //  WarehouseLocationViewController.swift
 //  ZHERP
 //
-//  Created by MrParker on 2018/9/1.
-//  Copyright © 2018 MrParker. All rights reserved.
+//  Created by MrParker on 2018/9/4.
+//  Copyright © 2018年 MrParker. All rights reserved.
 //
 
 import UIKit
 
-class WarehouseManagerViewController: UIViewController, UIGestureRecognizerDelegate {
+class WLocationViewController: UIViewController, UIGestureRecognizerDelegate {
     
     var tableView: UITableView!
     let CELL_IDENTIFY_ID = "CELL_IDENTIFY_ID"
     
     var dataArr = [
-        ["name":"默认仓库", "id":"1", "region":"", "province":"广东", "city":"广州", "area":"海珠区", "detail":"海珠大街15号"],
-        ["name":"深圳仓库", "id":"2", "region":"", "province":"广东", "city":"深圳", "area":"南山区", "detail":"南山大街11号"],
-        ["name":"日照仓库", "id":"3", "region":"", "province":"山东", "city":"日照", "area":"五莲县", "detail":"五莲大街101号"],
-        ["name":"厦门仓库", "id":"4", "region":"", "province":"福建", "city":"厦门", "area":"同安区", "detail":"同安大街21号"],
-        ["name":"湛江仓库", "id":"5", "region":"", "province":"广东", "city":"湛江", "area":"廉江市", "detail":"廉江大街10号"]
+        ["name":"默认仓库", "id":"1", "warehouse":"默认仓库", "wId": "1"],
+        ["name":"南山仓库", "id":"2", "warehouse":"深圳仓库", "wId": "2"],
+        ["name":"五莲仓库", "id":"3", "warehouse":"日照仓库", "wId": "3"],
+        ["name":"同安仓库", "id":"4", "warehouse":"厦门仓库", "wId": "4"],
+        ["name":"廉江仓库", "id":"5", "warehouse":"湛江仓库", "wId": "5"]
     ]
     
     override func viewDidLoad() {
         super.viewDidLoad()
-//        navigationItem.leftBarButtonItem = editButtonItem
         self.view.backgroundColor = Specs.color.white
-        setNavBarTitle(view: self, title: "仓库管理")
-        setNavBarBackBtn(view: self, title: "仓库管理", selector: #selector(actionBack))
+        setNavBarTitle(view: self, title: "库位管理")
+        setNavBarBackBtn(view: self, title: "库位管理", selector: #selector(actionBack))
         
         setNavBarRightBtn(view: self, title: "添加", selector: #selector(actionAdd))
         
@@ -46,9 +45,9 @@ class WarehouseManagerViewController: UIViewController, UIGestureRecognizerDeleg
     
     @objc func actionAdd() {
         let maxId = self._getMaxId()
-        let _target = WarehouseOperateViewController()
+        let _target = WLocationOperateViewController()
         _target.navTitle = "添加"
-        _target.valueArr = ["name":"", "id": "0", "region":"", "province":"", "city":"", "area":"", "detail":"", "maxId": String(maxId + 1)]
+        _target.valueArr = ["name":"", "id": "0", "warehouse":"", "wId": "", "maxId": String(maxId + 1)]
         _target.hidesBottomBarWhenPushed = true
         self._setCallbackAssign(view: _target)
         _push(view: self, target: _target, rootView: false)
@@ -78,7 +77,7 @@ class WarehouseManagerViewController: UIViewController, UIGestureRecognizerDeleg
         
     }
     
-    private func _setCallbackAssign(view: WarehouseOperateViewController) {
+    private func _setCallbackAssign(view: WLocationOperateViewController) {
         view.callBackAssign = {(assignValue: [String: String]) -> Void in
             if (assignValue.isEmpty) {
                 return
@@ -126,11 +125,11 @@ class WarehouseManagerViewController: UIViewController, UIGestureRecognizerDeleg
         }
         if recognizer.state == UIGestureRecognizerState.ended {
             print("UIGestureRecognizerStateEnded");
-//            tableView.isEditing = !tableView.isEditing
+            //            tableView.isEditing = !tableView.isEditing
             if tableView.isEditing == true {
                 tableView.isEditing = false
             } else {
-//                tableView.isEditing = true
+                //                tableView.isEditing = true
                 setNavBarRightBtn(view: self, title: "保存", selector: #selector(actionSave))
                 self.setEditing(true,animated: true)
             }
@@ -155,7 +154,7 @@ class WarehouseManagerViewController: UIViewController, UIGestureRecognizerDeleg
     
 }
 
-extension WarehouseManagerViewController: UITableViewDelegate, UITableViewDataSource {
+extension WLocationViewController: UITableViewDelegate, UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1;
@@ -199,15 +198,15 @@ extension WarehouseManagerViewController: UITableViewDelegate, UITableViewDataSo
     //创建各单元显示内容(创建参数indexPath指定的单元）
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let _data = self.dataArr[indexPath.item]
-//        let cell = tableView.dequeueReusableCell(withIdentifier: CELL_IDENTIFY_ID, for: indexPath)
-//        let cell = UITableViewCell(style: .subtitle, reuseIdentifier: CELL_IDENTIFY_ID)
+        //        let cell = tableView.dequeueReusableCell(withIdentifier: CELL_IDENTIFY_ID, for: indexPath)
+        //        let cell = UITableViewCell(style: .subtitle, reuseIdentifier: CELL_IDENTIFY_ID)
         var cell = UITableViewCell()
         cell = tableView.dequeueReusableCell(withIdentifier: SimpleBasicsCell.identifier, for: indexPath)
-
+        
         cell.textLabel?.text = _data["name"]
         cell.textLabel?.font = Specs.font.regular
         
-        cell.detailTextLabel?.text = "\(_data["province"]!) \(_data["city"]!) \(_data["area"]!) \(_data["detail"]!)"
+        cell.detailTextLabel?.text = _data["warehouse"]!
         cell.detailTextLabel?.font = Specs.font.regular
         
         cell.tag = Int(_data["id"]!)!
@@ -220,11 +219,10 @@ extension WarehouseManagerViewController: UITableViewDelegate, UITableViewDataSo
         tableView.deselectRow(at: indexPath, animated: true)
         
         var _data = self.dataArr[indexPath.item]
-        _data["region"] = "\(_data["province"]!) \(_data["city"]!) \(_data["area"]!)"
         if (_data["maxId"] != nil) {
             _data["maxId"] = nil
         }
-        let _target = WarehouseOperateViewController()
+        let _target = WLocationOperateViewController()
         self._setCallbackAssign(view: _target)
         _target.navTitle = _data["name"]
         _target.valueArr = _data
@@ -238,7 +236,7 @@ extension WarehouseManagerViewController: UITableViewDelegate, UITableViewDataSo
         super.setEditing(editing, animated: animated)
         tableView.setEditing(editing, animated: true)
         
-//        tableView.endEditing(true)
+        //        tableView.endEditing(true)
     }
     
     // Delete mode 点击删除按钮或者按住列表向左滑动 直接删除

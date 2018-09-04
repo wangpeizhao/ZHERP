@@ -173,11 +173,11 @@ extension WarehouseViewController: UITableViewDelegate, UITableViewDataSource {
         case "warehouse":
             _target = WarehouseManagerViewController()
         case "location":
-            _target = SettingsViewController()
+            _target = WLocationViewController()
         case "classify":
             _target = SettingsViewController()
         case "supplier":
-            _target = SettingsViewController()
+            _target = WSupplierManagerViewController()
         default:
             _target = GoodDetailViewController()
         }
