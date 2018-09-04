@@ -60,7 +60,7 @@ class WCategoryManagerViewController: UIViewController, UIGestureRecognizerDeleg
         let maxId = self._getMaxId()
         let _target = WCategoryOperateViewController()
         _target.navTitle = "添加"
-        _target.valueArr = ["name":"", "id": "0", "depth":"0", "pId": "0", "maxId": String(maxId + 1)]
+        _target.valueArr = ["name":"", "id": "0", "depth":"0", "pId": "0", "pName": "", "maxId": String(maxId + 1)]
         _target.hidesBottomBarWhenPushed = true
         self._setCallbackAssign(view: _target)
         _push(view: self, target: _target, rootView: false)

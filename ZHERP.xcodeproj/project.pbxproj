@@ -97,6 +97,7 @@
 		9E549934213EC9EB001E4C36 /* WCategoryManagerTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E549932213EC9EB001E4C36 /* WCategoryManagerTableViewCell.swift */; };
 		9E549935213EC9EB001E4C36 /* WCategoryManagerTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9E549933213EC9EB001E4C36 /* WCategoryManagerTableViewCell.xib */; };
 		9E549937213ED506001E4C36 /* WCategoryOperateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E549936213ED506001E4C36 /* WCategoryOperateViewController.swift */; };
+		9E549939213EE7C0001E4C36 /* WCategoryDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E549938213EE7C0001E4C36 /* WCategoryDetailViewController.swift */; };
 		9E62C2AE213B81A200C8A578 /* WarehouseOperateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E62C2AD213B81A200C8A578 /* WarehouseOperateViewController.swift */; };
 		9E62C2B5213BD32900C8A578 /* address.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9E62C2B4213BD32900C8A578 /* address.plist */; };
 		9E62C2B8213BF1E400C8A578 /* AddressPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E62C2B7213BF1E400C8A578 /* AddressPickerViewController.swift */; };
@@ -259,6 +260,7 @@
 		9E549932213EC9EB001E4C36 /* WCategoryManagerTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WCategoryManagerTableViewCell.swift; sourceTree = "<group>"; };
 		9E549933213EC9EB001E4C36 /* WCategoryManagerTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WCategoryManagerTableViewCell.xib; sourceTree = "<group>"; };
 		9E549936213ED506001E4C36 /* WCategoryOperateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WCategoryOperateViewController.swift; sourceTree = "<group>"; };
+		9E549938213EE7C0001E4C36 /* WCategoryDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WCategoryDetailViewController.swift; sourceTree = "<group>"; };
 		9E62C2AD213B81A200C8A578 /* WarehouseOperateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WarehouseOperateViewController.swift; sourceTree = "<group>"; };
 		9E62C2B4213BD32900C8A578 /* address.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = address.plist; sourceTree = "<group>"; };
 		9E62C2B7213BF1E400C8A578 /* AddressPickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressPickerViewController.swift; sourceTree = "<group>"; };
@@ -347,6 +349,7 @@
 				9E549932213EC9EB001E4C36 /* WCategoryManagerTableViewCell.swift */,
 				9E549933213EC9EB001E4C36 /* WCategoryManagerTableViewCell.xib */,
 				9E549936213ED506001E4C36 /* WCategoryOperateViewController.swift */,
+				9E549938213EE7C0001E4C36 /* WCategoryDetailViewController.swift */,
 			);
 			path = Warehouse;
 			sourceTree = "<group>";
@@ -1172,6 +1175,7 @@
 				9E62C2AE213B81A200C8A578 /* WarehouseOperateViewController.swift in Sources */,
 				9E523E71210A241500CF921F /* ImageRightTableViewCell.swift in Sources */,
 				9EE26B4F21247C8C00619D98 /* ZHQRcodeManager.swift in Sources */,
+				9E549939213EE7C0001E4C36 /* WCategoryDetailViewController.swift in Sources */,
 				2C5AC3ED2125695F002FFC80 /* ZHScannerView.swift in Sources */,
 				9E88ED1620FB3BA500DF091F /* PostProvider.swift in Sources */,
 				9E523E6A2108D54600CF921F /* NoDisturbingViewController.swift in Sources */,

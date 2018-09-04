@@ -151,7 +151,7 @@ extension WCategoryOperateViewController: UITableViewDelegate, UITableViewDataSo
         let _data = dataArr[indexPath.item]
         let key: String = dataArr[indexPath.item]["key"]!
         
-        let _target = WLocationDeatilViewController()
+        let _target = WCategoryDetailViewController()
         
         _target.navTitle = _data["title"]
         switch key {
@@ -166,13 +166,13 @@ extension WCategoryOperateViewController: UITableViewDelegate, UITableViewDataSo
             }
         case "category":
             _target.isSelectList = true
-            if self.valueArr["wId"] != "" {
-                _target.selectedIds.append(Int(self.valueArr["wId"]!)!)
+            if self.valueArr["pId"] != "" {
+                _target.selectedIds.append(Int(self.valueArr["pId"]!)!)
             }
             _target.callBackAssignArray = {(assignValue: [String: String]) -> Void in
                 if (!assignValue.isEmpty) {
-                    self.valueArr["wId"] = assignValue["id"]!
-                    self.valueArr[key] = assignValue["name"]!
+                    self.valueArr["pId"] = assignValue["id"]!
+                    self.valueArr["pName"] = assignValue["name"]!
                     tableView.reloadData()
                 }
             }
