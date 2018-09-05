@@ -241,7 +241,7 @@ extension WCategoryManagerViewController: UITableViewDelegate, UITableViewDataSo
         cell.categoryLabel.font = Specs.font.regular
         cell.categoryLabel.tag = Int(_data["depth"]!)!
         cell.categoryLabel.sizeToFit()
-        cell.categoryLabel.frame.origin.x = CGFloat(20 * (Int(_data["depth"]!)!))
+        cell.categoryLabel.frame.origin.x = CGFloat(20 + 10 * (Int(_data["depth"]!)! - 1))
         
         cell.categoryBtn.tag = indexPath.row
         

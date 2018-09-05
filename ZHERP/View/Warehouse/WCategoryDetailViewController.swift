@@ -186,8 +186,10 @@ extension WCategoryDetailViewController: UITableViewDelegate, UITableViewDataSou
         let cell = tableView.dequeueReusableCell(withIdentifier: CELL_IDENTIFY_ID, for: indexPath) as UITableViewCell
         
         cell.textLabel?.text = _data["name"]
+        cell.textLabel?.font = Specs.font.regular
+        cell.textLabel?.sizeToFit()
         cell.indentationLevel =  (Int(_data["depth"]!)! - 1)  //缩进层级
-        cell.indentationWidth = 20  //每次缩进寛
+        cell.indentationWidth = Int(_data["depth"]!) == 1 ? 20 : 10  //每次缩进寛
         
         //判断是否选中（选中单元格尾部打勾）
         if selectedIndexs.contains(indexPath.row) {

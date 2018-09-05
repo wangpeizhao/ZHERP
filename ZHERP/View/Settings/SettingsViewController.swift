@@ -17,8 +17,8 @@ class SettingsViewController: UIViewController {
         ["name":"支付设置", "key":"goods","pic":"swift.png"],
         ["name":"角色设置", "key":"warehouse","pic":"xcode.png"],
         ["name":"管理员设置", "key":"location","pic":"java.png"],
-        ["name":"分类管理", "key":"classify","pic":"php.png"],
-        ["name":"供货商管理", "key":"supplier","pic":"c#.png"]
+//        ["name":"分类管理", "key":"classify","pic":"php.png"],
+//        ["name":"供货商管理", "key":"supplier","pic":"c#.png"]
     ]
     
     override func viewDidLoad() {

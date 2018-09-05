@@ -169,7 +169,7 @@ extension WarehouseViewController: UITableViewDelegate, UITableViewDataSource {
         let key: String = dataArr[indexPath.item]["key"]!
         switch key {
         case "goods":
-            _target = ZHQRCodeViewController()
+            _target = GoodViewController()
         case "warehouse":
             _target = WarehouseManagerViewController()
         case "location":
