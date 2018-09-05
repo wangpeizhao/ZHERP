@@ -15,8 +15,8 @@ class SettingsViewController: UIViewController {
     
     let dataArr = [
         ["name":"支付设置", "key":"goods","pic":"swift.png"],
-        ["name":"角色设置", "key":"warehouse","pic":"xcode.png"],
-        ["name":"管理员设置", "key":"location","pic":"java.png"],
+        ["name":"角色设置", "key":"role","pic":"xcode.png"],
+        ["name":"员工设置", "key":"employee","pic":"java.png"],
 //        ["name":"分类管理", "key":"classify","pic":"php.png"],
 //        ["name":"供货商管理", "key":"supplier","pic":"c#.png"]
     ]
@@ -135,7 +135,7 @@ extension SettingsViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, titleForFooterInSection section: Int) -> String? {
-        return "选项前往更改设置"
+        return "选项前往添加、更新、删除"
     }
     
     //设置分组尾的高度
@@ -163,5 +163,20 @@ extension SettingsViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
+        
+        var _target = UIViewController()
+        let key: String = dataArr[indexPath.item]["key"]!
+        switch key {
+        case "goods":
+            _target = GoodViewController()
+        case "role":
+            _target = SMemberRoleManagerViewController()
+        case "employee":
+            _target = SMemberManagerViewController()
+        default:
+            _target = GoodDetailViewController()
+        }
+        _target.hidesBottomBarWhenPushed = true
+        _push(view: self, target: _target, rootView: false)
     }
 }

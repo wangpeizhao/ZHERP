@@ -16,6 +16,12 @@
 		2C6B1F3F213E769300CF82DE /* WSupplierManagerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C6B1F3E213E769300CF82DE /* WSupplierManagerViewController.swift */; };
 		2C6B1F41213E77F500CF82DE /* WSupplierOperateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C6B1F40213E77F500CF82DE /* WSupplierOperateViewController.swift */; };
 		2C7FAC6C2100547A004AEC10 /* Cookie.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C7FAC6B2100547A004AEC10 /* Cookie.swift */; };
+		2C986C75213F973D00F081BC /* SMemberRoleManagerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C986C74213F973D00F081BC /* SMemberRoleManagerViewController.swift */; };
+		2C986C77213FA66600F081BC /* SMemberManagerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C986C76213FA66600F081BC /* SMemberManagerViewController.swift */; };
+		2C986C79213FA97000F081BC /* SMemberOperateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C986C78213FA97000F081BC /* SMemberOperateViewController.swift */; };
+		2C986C7C213FC48900F081BC /* SMemberOperateTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C986C7A213FC48900F081BC /* SMemberOperateTableViewCell.swift */; };
+		2C986C7D213FC48900F081BC /* SMemberOperateTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2C986C7B213FC48900F081BC /* SMemberOperateTableViewCell.xib */; };
+		2C986C7F213FCF2200F081BC /* SMemberDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C986C7E213FCF2200F081BC /* SMemberDetailViewController.swift */; };
 		2CBF4902212294A300199C1D /* CameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CBF4901212294A200199C1D /* CameraViewController.swift */; };
 		2CBF49042122A3B800199C1D /* QRCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CBF49032122A3B800199C1D /* QRCode.swift */; };
 		2CC1319321114279004C8097 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CC1319221114279004C8097 /* SearchViewController.swift */; };
@@ -169,6 +175,12 @@
 		2C6B1F3E213E769300CF82DE /* WSupplierManagerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WSupplierManagerViewController.swift; sourceTree = "<group>"; };
 		2C6B1F40213E77F500CF82DE /* WSupplierOperateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WSupplierOperateViewController.swift; sourceTree = "<group>"; };
 		2C7FAC6B2100547A004AEC10 /* Cookie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cookie.swift; sourceTree = "<group>"; };
+		2C986C74213F973D00F081BC /* SMemberRoleManagerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SMemberRoleManagerViewController.swift; sourceTree = "<group>"; };
+		2C986C76213FA66600F081BC /* SMemberManagerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SMemberManagerViewController.swift; sourceTree = "<group>"; };
+		2C986C78213FA97000F081BC /* SMemberOperateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SMemberOperateViewController.swift; sourceTree = "<group>"; };
+		2C986C7A213FC48900F081BC /* SMemberOperateTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SMemberOperateTableViewCell.swift; sourceTree = "<group>"; };
+		2C986C7B213FC48900F081BC /* SMemberOperateTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SMemberOperateTableViewCell.xib; sourceTree = "<group>"; };
+		2C986C7E213FCF2200F081BC /* SMemberDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SMemberDetailViewController.swift; sourceTree = "<group>"; };
 		2CBF4901212294A200199C1D /* CameraViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraViewController.swift; sourceTree = "<group>"; };
 		2CBF49032122A3B800199C1D /* QRCode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRCode.swift; sourceTree = "<group>"; };
 		2CC1319221114279004C8097 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
@@ -358,6 +370,12 @@
 			isa = PBXGroup;
 			children = (
 				2CE8F4A3212C0AC600037367 /* SettingsViewController.swift */,
+				2C986C74213F973D00F081BC /* SMemberRoleManagerViewController.swift */,
+				2C986C76213FA66600F081BC /* SMemberManagerViewController.swift */,
+				2C986C78213FA97000F081BC /* SMemberOperateViewController.swift */,
+				2C986C7A213FC48900F081BC /* SMemberOperateTableViewCell.swift */,
+				2C986C7B213FC48900F081BC /* SMemberOperateTableViewCell.xib */,
+				2C986C7E213FCF2200F081BC /* SMemberDetailViewController.swift */,
 			);
 			path = Settings;
 			sourceTree = "<group>";
@@ -939,6 +957,7 @@
 				9E29032320F7B99B00F11C63 /* LaunchScreen.storyboard in Resources */,
 				9E523E2D2104D7CE00CF921F /* guideImage4.jpg in Resources */,
 				9E549935213EC9EB001E4C36 /* WCategoryManagerTableViewCell.xib in Resources */,
+				2C986C7D213FC48900F081BC /* SMemberOperateTableViewCell.xib in Resources */,
 				9E523DFC2104615800CF921F /* guideImage7.gif in Resources */,
 				9E523DF3210460B600CF921F /* guide_btn_bg@2x.png in Resources */,
 				9E523E2C2104D7CE00CF921F /* shopping.gif in Resources */,
@@ -1106,7 +1125,9 @@
 				2CC9036B210855B60083D70C /* SystemViewController.swift in Sources */,
 				9E523E3E2107819000CF921F /* EditPersonalViewController.swift in Sources */,
 				9E523E3721074E8200CF921F /* BaseNavigationController.swift in Sources */,
+				2C986C77213FA66600F081BC /* SMemberManagerViewController.swift in Sources */,
 				9E523DE82102E46900CF921F /* BaseViewController.swift in Sources */,
+				2C986C79213FA97000F081BC /* SMemberOperateViewController.swift in Sources */,
 				9EE26B86212DA33B00619D98 /* OrderPagingMenuViewController.swift in Sources */,
 				2C7FAC6C2100547A004AEC10 /* Cookie.swift in Sources */,
 				2C6B1F3B213E5A8E00CF82DE /* WLocationOperateViewController.swift in Sources */,
@@ -1124,6 +1145,7 @@
 				2C6B1F3F213E769300CF82DE /* WSupplierManagerViewController.swift in Sources */,
 				2CE8F4A4212C0AC600037367 /* SettingsViewController.swift in Sources */,
 				9E523DE020FEB4F100CF921F /* ProtocolPageViewController.swift in Sources */,
+				2C986C75213F973D00F081BC /* SMemberRoleManagerViewController.swift in Sources */,
 				9E549937213ED506001E4C36 /* WCategoryOperateViewController.swift in Sources */,
 				9EE26B81212C734100619D98 /* GoodTableViewCell.swift in Sources */,
 				9E523E89210D449300CF921F /* OrderViewController.swift in Sources */,
@@ -1165,6 +1187,7 @@
 				9E88ED2020FB469000DF091F /* StatisticViewController.swift in Sources */,
 				9E523E98210D548500CF921F /* OrderCompleteViewController.swift in Sources */,
 				2CC1319321114279004C8097 /* SearchViewController.swift in Sources */,
+				2C986C7F213FCF2200F081BC /* SMemberDetailViewController.swift in Sources */,
 				9E29031920F7B99800F11C63 /* AppDelegate.swift in Sources */,
 				9E523DE42100DDA900CF921F /* Service.swift in Sources */,
 				9E88ED2F20FBA90C00DF091F /* HelperCommon.swift in Sources */,
@@ -1177,6 +1200,7 @@
 				9EE26B4F21247C8C00619D98 /* ZHQRcodeManager.swift in Sources */,
 				9E549939213EE7C0001E4C36 /* WCategoryDetailViewController.swift in Sources */,
 				2C5AC3ED2125695F002FFC80 /* ZHScannerView.swift in Sources */,
+				2C986C7C213FC48900F081BC /* SMemberOperateTableViewCell.swift in Sources */,
 				9E88ED1620FB3BA500DF091F /* PostProvider.swift in Sources */,
 				9E523E6A2108D54600CF921F /* NoDisturbingViewController.swift in Sources */,
 				9E88ED1C20FB462600DF091F /* OrderTableViewController.swift in Sources */,
