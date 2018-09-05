@@ -28,14 +28,21 @@ class OrderTodayBillViewController: UIViewController, UIGestureRecognizerDelegat
         super.viewDidLoad()
         
         setNavBarTitle(view: self, title: "今日账单")
-//        setNavBarRightBtn(view: self, title: "保存", selector: #selector(actionSave))
+        setNavBarBackBtn(view: self, title: "今日账单", selector: #selector(actionBack))
+        setNavBarRightBtn(view: self, title: "历史账单", selector: #selector(actionHistory))
         
         self._setUp()
         // Do any additional setup after loading the view.
     }
     
-    @objc func actionSave() {
-        _back(view: self)
+    @objc func actionBack() {
+        
+    }
+    
+    @objc func actionHistory() {
+        let _target = OrderBillsViewController()
+        _target.hidesBottomBarWhenPushed = true
+        _push(view: self, target: _target, rootView: false)
     }
     
     private func _setUp() {
@@ -69,14 +76,7 @@ class OrderTodayBillViewController: UIViewController, UIGestureRecognizerDelegat
         }
         if recognizer.state == UIGestureRecognizerState.ended {
             print("UIGestureRecognizerStateEnded");
-            // tableView.isEditing = !tableView.isEditing
-            if tableView.isEditing == true {
-                tableView.isEditing = false
-            } else {
-                // tableView.isEditing = true
-                setNavBarRightBtn(view: self, title: "保存", selector: #selector(actionSave))
-                self.setEditing(true,animated: true)
-            }
+            _alert(view: self, message: "Copy Success")
         }
     }
     

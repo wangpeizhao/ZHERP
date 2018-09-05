@@ -138,6 +138,8 @@
 		9ED7E50B21402E4900F8F735 /* OrderTodayBillViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9ED7E50A21402E4900F8F735 /* OrderTodayBillViewController.swift */; };
 		9ED7E50E2140304D00F8F735 /* OrderTodayBillTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9ED7E50C2140304D00F8F735 /* OrderTodayBillTableViewCell.swift */; };
 		9ED7E50F2140304D00F8F735 /* OrderTodayBillTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9ED7E50D2140304D00F8F735 /* OrderTodayBillTableViewCell.xib */; };
+		9ED7E51121404CE500F8F735 /* OrderBillsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9ED7E51021404CE500F8F735 /* OrderBillsViewController.swift */; };
+		9ED7E51321404FE000F8F735 /* OrderBillsPagesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9ED7E51221404FE000F8F735 /* OrderBillsPagesViewController.swift */; };
 		9EE26B4D21247C7500619D98 /* ZHQRCodeConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EE26B4C21247C7500619D98 /* ZHQRCodeConfig.swift */; };
 		9EE26B4F21247C8C00619D98 /* ZHQRcodeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EE26B4E21247C8C00619D98 /* ZHQRcodeManager.swift */; };
 		9EE26B5121248C2000619D98 /* ZHQRCodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EE26B5021248C2000619D98 /* ZHQRCodeViewController.swift */; };
@@ -312,6 +314,8 @@
 		9ED7E50A21402E4900F8F735 /* OrderTodayBillViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderTodayBillViewController.swift; sourceTree = "<group>"; };
 		9ED7E50C2140304D00F8F735 /* OrderTodayBillTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderTodayBillTableViewCell.swift; sourceTree = "<group>"; };
 		9ED7E50D2140304D00F8F735 /* OrderTodayBillTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OrderTodayBillTableViewCell.xib; sourceTree = "<group>"; };
+		9ED7E51021404CE500F8F735 /* OrderBillsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderBillsViewController.swift; sourceTree = "<group>"; };
+		9ED7E51221404FE000F8F735 /* OrderBillsPagesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderBillsPagesViewController.swift; sourceTree = "<group>"; };
 		9EE26B4C21247C7500619D98 /* ZHQRCodeConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZHQRCodeConfig.swift; sourceTree = "<group>"; };
 		9EE26B4E21247C8C00619D98 /* ZHQRcodeManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZHQRcodeManager.swift; sourceTree = "<group>"; };
 		9EE26B5021248C2000619D98 /* ZHQRCodeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZHQRCodeViewController.swift; sourceTree = "<group>"; };
@@ -735,6 +739,8 @@
 				9ED7E50A21402E4900F8F735 /* OrderTodayBillViewController.swift */,
 				9ED7E50C2140304D00F8F735 /* OrderTodayBillTableViewCell.swift */,
 				9ED7E50D2140304D00F8F735 /* OrderTodayBillTableViewCell.xib */,
+				9ED7E51021404CE500F8F735 /* OrderBillsViewController.swift */,
+				9ED7E51221404FE000F8F735 /* OrderBillsPagesViewController.swift */,
 			);
 			path = Order;
 			sourceTree = "<group>";
@@ -1150,6 +1156,7 @@
 				9E523E3E2107819000CF921F /* EditPersonalViewController.swift in Sources */,
 				9E523E3721074E8200CF921F /* BaseNavigationController.swift in Sources */,
 				2C986C77213FA66600F081BC /* SMemberManagerViewController.swift in Sources */,
+				9ED7E51321404FE000F8F735 /* OrderBillsPagesViewController.swift in Sources */,
 				9E523DE82102E46900CF921F /* BaseViewController.swift in Sources */,
 				2C986C79213FA97000F081BC /* SMemberOperateViewController.swift in Sources */,
 				9EE26B86212DA33B00619D98 /* OrderPagingMenuViewController.swift in Sources */,
@@ -1187,6 +1194,7 @@
 				9E523E6D2109401F00CF921F /* SwitchTableViewCell.swift in Sources */,
 				9E523E96210D546400CF921F /* OrderCloseViewController.swift in Sources */,
 				9E88ED2720FB576200DF091F /* Candy.swift in Sources */,
+				9ED7E51121404CE500F8F735 /* OrderBillsViewController.swift in Sources */,
 				9EE26B84212DA13200619D98 /* Common-Extensions.swift in Sources */,
 				9E523DF2210460B600CF921F /* HHGuidePageHUD.swift in Sources */,
 				9E88ED2A20FB723600DF091F /* UIColor.swift in Sources */,
