@@ -38,6 +38,11 @@ class WarehouseViewController: UIViewController {
         
     }
     
+    @objc func memberViewClick(_ sender: UIView) {
+        print("memberViewClick")
+        _push(view: self, target: PersonalViewController(), rootView: false)
+    }
+    
     private func _setup() {
         //创建表视图
         self.tableView = UITableView(frame: self.view.frame, style:.grouped)
@@ -126,6 +131,9 @@ extension WarehouseViewController: UITableViewDelegate, UITableViewDataSource {
             make.left.equalTo(platformTitle.snp.left)
             make.top.equalTo(platformTitle.snp.bottom).offset(10)
         }
+        
+        let _tap = UITapGestureRecognizer.init(target:self, action:#selector(memberViewClick(_:)))
+        memberView.addGestureRecognizer(_tap)
         
         return memberView
     }

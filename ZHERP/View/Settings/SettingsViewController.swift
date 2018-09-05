@@ -14,7 +14,7 @@ class SettingsViewController: UIViewController {
     let CELL_IDENTIFY_ID = "CELL_IDENTIFY_ID"
     
     let dataArr = [
-        ["name":"支付设置", "key":"goods","pic":"swift.png"],
+        ["name":"支付设置", "key":"payment","pic":"swift.png"],
         ["name":"角色设置", "key":"role","pic":"xcode.png"],
         ["name":"员工设置", "key":"employee","pic":"java.png"],
 //        ["name":"分类管理", "key":"classify","pic":"php.png"],
@@ -35,6 +35,11 @@ class SettingsViewController: UIViewController {
     
     @objc func actionBack() {
         
+    }
+    
+    @objc func memberViewClick(_ sender: UIView) {
+        print("memberViewClick")
+        _push(view: self, target: PersonalViewController(), rootView: false)
     }
     
     private func _setup() {
@@ -119,13 +124,15 @@ extension SettingsViewController: UITableViewDelegate, UITableViewDataSource {
         platformVip.text = "VIP金牌店"
         platformVip.sizeToFit()
         platformVip.textColor = Specs.color.gray
-        platformVip.font = Specs.font.smallBold
+        platformVip.font = Specs.font.small
         memberView.addSubview(platformVip)
         platformVip.snp.makeConstraints{ (make) -> Void in
             make.left.equalTo(platformTitle.snp.left)
             make.top.equalTo(platformTitle.snp.bottom).offset(10)
         }
         
+        let _tap = UITapGestureRecognizer.init(target:self, action:#selector(memberViewClick(_:)))
+        memberView.addGestureRecognizer(_tap)
         return memberView
     }
     
@@ -167,8 +174,8 @@ extension SettingsViewController: UITableViewDelegate, UITableViewDataSource {
         var _target = UIViewController()
         let key: String = dataArr[indexPath.item]["key"]!
         switch key {
-        case "goods":
-            _target = GoodViewController()
+        case "payment":
+            _target = SPaymentManagerViewController()
         case "role":
             _target = SMemberRoleManagerViewController()
         case "employee":

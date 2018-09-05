@@ -99,9 +99,9 @@ class HomeChartsViewController: UIViewController {
     }
     
     @objc func showTodayBill() {
-        let _GoodDetail = GoodDetailViewController()
-        _GoodDetail.hidesBottomBarWhenPushed = true
-        _push(view: self, target: _GoodDetail, rootView: true)
+        let _target = OrderTodayBillViewController()
+        _target.hidesBottomBarWhenPushed = true
+        _push(view: self, target: _target, rootView: true)
     }
 
     override func didReceiveMemoryWarning() {
