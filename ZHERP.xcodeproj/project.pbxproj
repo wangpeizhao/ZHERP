@@ -22,6 +22,7 @@
 		2C986C7C213FC48900F081BC /* SMemberOperateTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C986C7A213FC48900F081BC /* SMemberOperateTableViewCell.swift */; };
 		2C986C7D213FC48900F081BC /* SMemberOperateTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2C986C7B213FC48900F081BC /* SMemberOperateTableViewCell.xib */; };
 		2C986C7F213FCF2200F081BC /* SMemberDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C986C7E213FCF2200F081BC /* SMemberDetailViewController.swift */; };
+		2C986C82213FDC2300F081BC /* SMemberData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C986C81213FDC2300F081BC /* SMemberData.swift */; };
 		2CBF4902212294A300199C1D /* CameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CBF4901212294A200199C1D /* CameraViewController.swift */; };
 		2CBF49042122A3B800199C1D /* QRCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CBF49032122A3B800199C1D /* QRCode.swift */; };
 		2CC1319321114279004C8097 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CC1319221114279004C8097 /* SearchViewController.swift */; };
@@ -181,6 +182,7 @@
 		2C986C7A213FC48900F081BC /* SMemberOperateTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SMemberOperateTableViewCell.swift; sourceTree = "<group>"; };
 		2C986C7B213FC48900F081BC /* SMemberOperateTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SMemberOperateTableViewCell.xib; sourceTree = "<group>"; };
 		2C986C7E213FCF2200F081BC /* SMemberDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SMemberDetailViewController.swift; sourceTree = "<group>"; };
+		2C986C81213FDC2300F081BC /* SMemberData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SMemberData.swift; sourceTree = "<group>"; };
 		2CBF4901212294A200199C1D /* CameraViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraViewController.swift; sourceTree = "<group>"; };
 		2CBF49032122A3B800199C1D /* QRCode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRCode.swift; sourceTree = "<group>"; };
 		2CC1319221114279004C8097 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
@@ -345,6 +347,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2C986C80213FDBE200F081BC /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				2C986C81213FDC2300F081BC /* SMemberData.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		2CE8F49F212BFEB100037367 /* Warehouse */ = {
 			isa = PBXGroup;
 			children = (
@@ -369,6 +379,7 @@
 		2CE8F4A2212C0A9200037367 /* Settings */ = {
 			isa = PBXGroup;
 			children = (
+				2C986C80213FDBE200F081BC /* Model */,
 				2CE8F4A3212C0AC600037367 /* SettingsViewController.swift */,
 				2C986C74213F973D00F081BC /* SMemberRoleManagerViewController.swift */,
 				2C986C76213FA66600F081BC /* SMemberManagerViewController.swift */,
@@ -1196,6 +1207,7 @@
 				9EE26B4D21247C7500619D98 /* ZHQRCodeConfig.swift in Sources */,
 				9E88ED3B20FCEC5100DF091F /* MemberMenus.swift in Sources */,
 				9E62C2AE213B81A200C8A578 /* WarehouseOperateViewController.swift in Sources */,
+				2C986C82213FDC2300F081BC /* SMemberData.swift in Sources */,
 				9E523E71210A241500CF921F /* ImageRightTableViewCell.swift in Sources */,
 				9EE26B4F21247C8C00619D98 /* ZHQRcodeManager.swift in Sources */,
 				9E549939213EE7C0001E4C36 /* WCategoryDetailViewController.swift in Sources */,

@@ -61,3 +61,15 @@ func LXFLog<T>(_ message : T, file : String = #file, funcName : String = #functi
     
     #endif
 }
+
+func dateFromString(_ date: String) -> Date? {
+    let dateForMatter = DateFormatter()
+    dateForMatter.dateFormat = "yyyy-MM-dd"
+    return dateForMatter.date(from: date)
+}
+
+func stringFromDate(_ date: Date) -> String? {
+    let dateForMatter = DateFormatter()
+    dateForMatter.dateFormat = "yyyy-MM-dd"
+    return dateForMatter.string(from: date)
+}

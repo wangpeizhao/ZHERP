@@ -22,12 +22,13 @@ class SMemberOperateViewController: UIViewController {
     
     var dataArr = [[String: Any]]()
     
+    var memberData: SMemberData?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         self.view.backgroundColor = UIColor(hex: 0xf7f7f7)
         setNavBarTitle(view: self, title: self.navTitle!)
-//        setNavBarBackBtn(view: self, title: "", selector: #selector(actionBack))
         setNavBarRightBtn(view: self, title: "保存", selector: #selector(actionSave))
         
         self._setup()
@@ -60,6 +61,9 @@ class SMemberOperateViewController: UIViewController {
     }
     
     private func initData() {
+        
+        self.memberData = SMemberData(id: 0, avatar: "", username: "", rId: 0, realname: "", rolename: "", remark: "", status: false, lastLoginIp: "", lastLoginTime: dateFromString("2018-09-05")!)
+        
         self.dataArr = [
             [
                 "rows": [
@@ -76,7 +80,7 @@ class SMemberOperateViewController: UIViewController {
             [
                 "rows": [
                     ["title":"真实姓名", "key":"realname", "value":"", "placeholder": "请填写员工真实姓名"],
-                    ["title":"员工备注", "key":"remark", "value":"请填写员工备注", "placeholder": "请填写员工备注"],
+                    ["title":"员工备注", "key":"remark", "value":"", "placeholder": "请填写员工备注"],
                 ]
             ],
             [
@@ -91,26 +95,21 @@ class SMemberOperateViewController: UIViewController {
                 ]
             ]
         ]
+        
+        if self.valueArr["id"] == nil {
+            self.dataArr.removeLast()
+        } else {
+            self.memberData?.id = Int(self.valueArr["id"]!)!
+            self.memberData?.realname = self.valueArr["nickname"]!
+            self.memberData?.rId = Int(self.valueArr["rid"]!)!
+            self.memberData?.rolename = self.valueArr["roleName"]!
+            self.memberData?.status = true
+        }
     }
-    
-//    private func _rowModel(section: Int) -> [String: Any]{
-//        return self.dataArr[section]
-//    }
-    
-//    private func _itemModel(section: Int, indexPath: Int) -> [String: String]{
-//        let _rows = self._rowModel(section: section)
-//        return _rows[indexPath]
-//    }
-    
-    
     
     fileprivate func _rowsModel(at section: Int) -> [Any] {
         return self.dataArr[section][MemberMenus.Rows] as! [Any]
     }
-    
-//    fileprivate func title(at section: Int) -> String? {
-//        return tableViewDataSource[section][MemberMenus.Section] as? String
-//    }
     
     fileprivate func _rowModel(at indexPath: IndexPath) -> [String: String] {
         return self._rowsModel(at: indexPath.section)[indexPath.row] as! [String : String]
@@ -195,7 +194,7 @@ extension SMemberOperateViewController: UITableViewDelegate, UITableViewDataSour
         let key: String = _row["key"]!
 
         if "avatar" == key {
-            let avatar = !(_row["value"]?.isEmpty)! ? _row["value"] : "bayMax"
+            let avatar = !(self.memberData?.avatar.isEmpty)! ? self.memberData?.avatar : "bayMax"
             let cell: ImageRightTableViewCell = tableView.dequeueReusableCell(withIdentifier: "ImageRightTableViewCell") as! ImageRightTableViewCell
             cell.ImageLabel?.text = _row["title"]
             cell.ImageLabel?.font = Specs.font.regular
@@ -209,7 +208,7 @@ extension SMemberOperateViewController: UITableViewDelegate, UITableViewDataSour
             cell.SwitchLabel.text = _row["title"]
             cell.SwitchLabel.sizeToFit()
             cell.SwitchLabel.font = Specs.font.regular
-            cell.SwitchWidget.isOn = true
+            cell.SwitchWidget.isOn = (self.memberData?.status)!
             cell.SwitchWidget.addTarget(self, action: #selector(actionSwitch(_:)), for: .valueChanged)
             cell.accessoryType = .none
             return cell
@@ -223,15 +222,24 @@ extension SMemberOperateViewController: UITableViewDelegate, UITableViewDataSour
             cell.TextFieldLabel.sizeToFit()
             cell.TextFieldLabel.font = Specs.font.regular
             
-            if "realname" == key && self.valueArr["nickname"] != ""{
-                cell.TextFieldValue.text = self.valueArr["nickname"]
-            } else {
+            cell.TextFieldValue.returnKeyType = UIReturnKeyType.next
+            switch key {
+            case "username":
+                cell.TextFieldValue.text = self.memberData?.username != "" ? self.memberData?.username : _row["value"]
+            case "realname":
+                cell.TextFieldValue.text = self.memberData?.realname != "" ? self.memberData?.realname : _row["value"]
+            case "remark":
+                cell.TextFieldValue.text = self.memberData?.remark != "" ? self.memberData?.remark : _row["value"]
+                cell.TextFieldValue.returnKeyType = UIReturnKeyType.done
+//                cell.TextFieldValue.addTarget(self, action: #selector(actionSave), for: .touchUpInside)
+            default:
                 cell.TextFieldValue.text = _row["value"]
             }
             cell.TextFieldValue.textColor = Specs.color.black
             cell.TextFieldValue.placeholder = _row["placeholder"]
             cell.TextFieldValue.clearButtonMode = UITextFieldViewMode.always
             cell.TextFieldValue.adjustsFontSizeToFitWidth = true
+            cell.TextFieldValue.delegate = self
             cell.accessoryType = .none
             return cell
         }
@@ -242,10 +250,15 @@ extension SMemberOperateViewController: UITableViewDelegate, UITableViewDataSour
         cell.textLabel?.text = _row["title"]
         cell.textLabel?.font = Specs.font.regular
         
-        if "role" == key && self.valueArr["roleName"] != ""{
-            cell.detailTextLabel?.text = self.valueArr["roleName"]
-        } else {
-            cell.detailTextLabel?.text = _row["value"]!
+        switch key {
+        case "role":
+            cell.detailTextLabel?.text = self.memberData?.rolename != "" ? self.memberData?.rolename : _row["value"]
+        case "lastLoginIp":
+            cell.detailTextLabel?.text = self.memberData?.lastLoginIp != "" ? self.memberData?.lastLoginIp : _row["value"]
+        case "lastLoginTime":
+            cell.detailTextLabel?.text = self.memberData?.lastLoginTime != nil ? stringFromDate((self.memberData?.lastLoginTime)!) : ""
+        default:
+            cell.detailTextLabel?.text = _row["value"]
         }
         cell.detailTextLabel?.font = Specs.font.regular
         
@@ -281,13 +294,13 @@ extension SMemberOperateViewController: UITableViewDelegate, UITableViewDataSour
             let _target = SMemberDetailViewController()
             _target.navTitle = "选择所属角色"
             _target.isSelectList = true
-            if self.valueArr["rid"] != "" {
-                _target.selectedIds.append(Int(self.valueArr["rid"]!)!)
+            if self.memberData?.rId != nil {
+                _target.selectedIds.append((self.memberData?.rId)!)
             }
             _target.callBackAssignArray = {(assignValue: [String: String]) -> Void in
                 if (!assignValue.isEmpty) {
-                    self.valueArr["rid"] = assignValue["id"]!
-                    self.valueArr["roleName"] = assignValue["name"]!
+                    self.memberData?.rId = Int(assignValue["id"]!)!
+                    self.memberData?.rolename = assignValue["name"]!
                     tableView.reloadData()
                 }
             }
@@ -298,4 +311,40 @@ extension SMemberOperateViewController: UITableViewDelegate, UITableViewDataSour
         
     }
 
+}
+
+extension SMemberOperateViewController: UITextFieldDelegate {
+    
+    // 输入框询问是否可以编辑 true 可以编辑  false 不能编辑
+    func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
+        print("我要开始编辑了...")
+        return true
+    }
+    // 该方法代表输入框已经可以开始编辑  进入编辑状态
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        print("我正在编辑状态中...")
+    }
+    // 输入框将要将要结束编辑
+    func textFieldShouldEndEditing(_ textField: UITextField) -> Bool {
+        print("我即将编辑结束...")
+        return true
+    }
+    // 输入框结束编辑状态
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        print("我已经结束编辑状态...")
+    } // 文本框是否可以清除内容
+    func textFieldShouldClear(_ textField: UITextField) -> Bool {
+        return true
+    }
+    // 输入框按下键盘 return 收回键盘
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
+    // 该方法当文本框内容出现变化时 及时获取文本最新内容
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        
+        return true
+    }
+    
 }
