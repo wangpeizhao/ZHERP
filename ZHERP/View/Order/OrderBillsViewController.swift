@@ -36,6 +36,7 @@ class OrderBillsViewController: UIViewController {
     
     private func _setUp() {
         self.navHeight = self.navigationController?.navigationBar.frame.maxY
+        GlobalNavHeight = self.navHeight
         
         self.pageMenuView = UIView(frame: CGRect(x: 0, y: self.navHeight, width: ScreenWidth, height: ScreenHeight))
         self.view.addSubview(self.pageMenuView)

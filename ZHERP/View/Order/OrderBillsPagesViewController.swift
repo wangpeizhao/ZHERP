@@ -53,7 +53,7 @@ class OrderBillsPagesViewController: UIViewController {
         var focusMode: MenuFocusMode = .none
         
         //Order All 子视图控制器
-        private let orderAllView = OrderAllViewController()
+        private let orderAllView = BillsTodayViewController()
         //Order Pay 子视图控制器
         private let orderPayView = OrderPayViewController()
         //Order Unpay 子视图控制器
@@ -100,11 +100,12 @@ class OrderBillsPagesViewController: UIViewController {
         fileprivate struct MenuItemOrderAll: MenuItemViewCustomizable {
             //自定义菜单项名称
             var displayMode: MenuItemDisplayMode {
-                return .text(title: MenuItemText(text: "今日",
-                                                 color: UIColor(hex: 0x727272),
-                                                 selectedColor: .orange,
-                                                 font: UIFont.systemFont(ofSize: Specs.fontSize.regular),
-                                                 selectedFont: UIFont.systemFont(ofSize: Specs.fontSize.regular)
+                return .text(title: MenuItemText(
+                    text: "今日",
+                    color: UIColor(hex: 0x727272),
+                    selectedColor: .orange,
+                    font: UIFont.systemFont(ofSize: Specs.fontSize.regular),
+                    selectedFont: UIFont.systemFont(ofSize: Specs.fontSize.regular)
                 ))
             }
         }
@@ -114,10 +115,10 @@ class OrderBillsPagesViewController: UIViewController {
             //自定义菜单项名称
             var displayMode: MenuItemDisplayMode {
                 return .text(title: MenuItemText(text: "昨日",
-                                                 color: UIColor(hex: 0x727272),
-                                                 selectedColor: .orange,
-                                                 font: UIFont.systemFont(ofSize: Specs.fontSize.regular),
-                                                 selectedFont: UIFont.systemFont(ofSize: Specs.fontSize.regular)
+                    color: UIColor(hex: 0x727272),
+                    selectedColor: .orange,
+                    font: UIFont.systemFont(ofSize: Specs.fontSize.regular),
+                    selectedFont: UIFont.systemFont(ofSize: Specs.fontSize.regular)
                 ))
             }
         }
@@ -127,10 +128,10 @@ class OrderBillsPagesViewController: UIViewController {
             //自定义菜单项名称
             var displayMode: MenuItemDisplayMode {
                 return .text(title: MenuItemText(text: "本周",
-                                                 color: UIColor(hex: 0x727272),
-                                                 selectedColor: .orange,
-                                                 font: UIFont.systemFont(ofSize: Specs.fontSize.regular),
-                                                 selectedFont: UIFont.systemFont(ofSize: Specs.fontSize.regular)
+                    color: UIColor(hex: 0x727272),
+                    selectedColor: .orange,
+                    font: UIFont.systemFont(ofSize: Specs.fontSize.regular),
+                    selectedFont: UIFont.systemFont(ofSize: Specs.fontSize.regular)
                 ))
             }
         }
@@ -140,10 +141,10 @@ class OrderBillsPagesViewController: UIViewController {
             //自定义菜单项名称
             var displayMode: MenuItemDisplayMode {
                 return .text(title: MenuItemText(text: "近7天",
-                                                 color: UIColor(hex: 0x727272),
-                                                 selectedColor: .orange,
-                                                 font: UIFont.systemFont(ofSize: Specs.fontSize.regular),
-                                                 selectedFont: UIFont.systemFont(ofSize: Specs.fontSize.regular)
+                    color: UIColor(hex: 0x727272),
+                    selectedColor: .orange,
+                    font: UIFont.systemFont(ofSize: Specs.fontSize.regular),
+                    selectedFont: UIFont.systemFont(ofSize: Specs.fontSize.regular)
                 ))
             }
         }
@@ -153,10 +154,10 @@ class OrderBillsPagesViewController: UIViewController {
             //自定义菜单项名称
             var displayMode: MenuItemDisplayMode {
                 return .text(title: MenuItemText(text: "本月",
-                                                 color: UIColor(hex: 0x727272),
-                                                 selectedColor: .orange,
-                                                 font: UIFont.systemFont(ofSize: Specs.fontSize.regular),
-                                                 selectedFont: UIFont.systemFont(ofSize: Specs.fontSize.regular)
+                    color: UIColor(hex: 0x727272),
+                    selectedColor: .orange,
+                    font: UIFont.systemFont(ofSize: Specs.fontSize.regular),
+                    selectedFont: UIFont.systemFont(ofSize: Specs.fontSize.regular)
                 ))
             }
         }

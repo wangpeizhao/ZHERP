@@ -1,15 +1,17 @@
 //
-//  OrderTodayBillViewController.swift
+//  BillsDaliyDetailViewController.swift
 //  ZHERP
 //
-//  Created by MrParker on 2018/9/5.
-//  Copyright © 2018 MrParker. All rights reserved.
+//  Created by MrParker on 2018/9/6.
+//  Copyright © 2018年 MrParker. All rights reserved.
 //
 
 import UIKit
 
-class OrderTodayBillViewController: UIViewController, UIGestureRecognizerDelegate {
-
+class BillsDaliyDetailViewController: UIViewController, UIGestureRecognizerDelegate {
+    
+    var navTitle: String!
+    var navHeight: CGFloat!
     var tableView: UITableView!
     let CELL_IDENTIFY_ID = "CELL_IDENTIFY_ID"
     var selectedCellIndexPaths: [IndexPath] = []
@@ -30,17 +32,15 @@ class OrderTodayBillViewController: UIViewController, UIGestureRecognizerDelegat
         ["name":"今日账单"],
         ["name":"今日账单"],
         ["name":"今日账单"],
-        ["name":"今日账单"],
-        ["name":"今日账单"],
     ]
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        setNavBarTitle(view: self, title: "今日账单")
-        setNavBarBackBtn(view: self, title: "今日账单", selector: #selector(actionBack))
-        setNavBarRightBtn(view: self, title: "历史账单", selector: #selector(actionHistory))
-        
+        setNavBarTitle(view: self, title: self.navTitle)
+        setNavBarBackBtn(view: self, title: "历史账单", selector: #selector(actionBack))
+        setNavBarRightBtn(view: self, title: "更多", selector: #selector(actionMore))
+
         self._setUp()
         // Do any additional setup after loading the view.
     }
@@ -49,25 +49,33 @@ class OrderTodayBillViewController: UIViewController, UIGestureRecognizerDelegat
         
     }
     
-    @objc func actionHistory() {
+    @objc func actionMore() {
         let _target = OrderBillsViewController()
         _target.hidesBottomBarWhenPushed = true
         _push(view: self, target: _target, rootView: false)
     }
     
     private func _setUp() {
+        self.navHeight = self.navigationController?.navigationBar.frame.maxY
+        
+        let _billReportView = UIView(frame: CGRect(x: 0, y: self.navHeight, width: ScreenWidth, height: 140.0))
+        self.view.addSubview(_billReportView)
+        
+        let _billReportViewController = BillsReportViewController()
+        self.addChildViewController(_billReportViewController)
+        _billReportView.addSubview(_billReportViewController.view)
+        
         //创建表视图
-        self.tableView = UITableView(frame: self.view.frame, style: .grouped)
+        let _tableViewY = _billReportView.frame.size.height + self.navHeight
+        let _tableViewH = ScreenHeight - _tableViewY
+        self.tableView = UITableView(frame: CGRect(x: 0, y: _tableViewY, width: ScreenWidth, height: _tableViewH), style: .grouped)
         self.tableView!.delegate = self
         self.tableView!.dataSource = self
         self.tableView!.register(UITableViewCell.self, forCellReuseIdentifier: CELL_IDENTIFY_ID)
         self.tableView!.register(SimpleBasicsCell.self, forCellReuseIdentifier: SimpleBasicsCell.identifier)
         // 可展开
         self.tableView?.register(UINib(nibName: "OrderTodayBillTableViewCell", bundle: nil), forCellReuseIdentifier: "OrderTodayBillTableViewCell")
-        self.tableView!.tableHeaderView = UIView.init(frame: CGRect(x: 0, y: 0, width: 0, height: 20))
-//        //表格在编辑状态下允许多选
-//        self.tableView!.allowsMultipleSelectionDuringEditing = true
-//        self.tableView!.setEditing(true, animated:true)
+        self.tableView!.tableHeaderView = UIView.init(frame: CGRect(x: 0, y: 0, width: 0, height: 0.1))
         self.view.addSubview(self.tableView!)
         
         // 长按启动删除、移动排序功能
@@ -89,15 +97,15 @@ class OrderTodayBillViewController: UIViewController, UIGestureRecognizerDelegat
             _alert(view: self, message: "Copy Success")
         }
     }
-    
+
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
+
 }
 
-extension OrderTodayBillViewController: UITableViewDelegate, UITableViewDataSource {
+extension BillsDaliyDetailViewController: UITableViewDelegate, UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
         return self.dataArr.count
@@ -129,7 +137,7 @@ extension OrderTodayBillViewController: UITableViewDelegate, UITableViewDataSour
     
     func tableView(_ tableView: UITableView, titleForFooterInSection section: Int) -> String? {
         if section == self.dataArr.count - 1 {
-            return "今日账单；点击可展开更多；长按复制交易单号。"
+            return "当日账单；点击可展开更多；长按复制交易单号。"
         }
         return ""
     }
@@ -141,17 +149,8 @@ extension OrderTodayBillViewController: UITableViewDelegate, UITableViewDataSour
     
     //创建各单元显示内容(创建参数indexPath指定的单元）
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-//        let _data = dataArr[indexPath.item]
         let cell: OrderTodayBillTableViewCell = tableView.dequeueReusableCell(withIdentifier: "OrderTodayBillTableViewCell") as! OrderTodayBillTableViewCell
         cell.layer.masksToBounds = true
-//        cell.textLabel?.text = _data["name"]
-//
-//        cell.detailTextLabel?.text = _data["detail"]
-//        cell.detailTextLabel?.textColor = Specs.color.gray
-//
-//        cell.detailTextLabel?.frame.origin.y = (cell.detailTextLabel?.frame.origin.y)! + 15
-//
-//        cell.detailTextLabel?.numberOfLines = 3
         
         return cell
     }
