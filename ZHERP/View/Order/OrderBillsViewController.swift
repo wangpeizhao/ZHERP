@@ -60,9 +60,8 @@ class OrderBillsViewController: UIViewController {
     
     //触摸按钮时，获得被选中的索引
     @objc func getPickerViewValue(_: UIAlertAction)->Void {
-        print(self.datePickerValue)
         let _target = BillsDaliyDetailViewController()
-        _target.navTitle = self.datePickerValue.isEmpty ? SYSTEM_DATE : self.datePickerValue
+        _target.navTitle = self.datePickerValue == nil ? SYSTEM_DATE : self.datePickerValue
         
         _target.hidesBottomBarWhenPushed = true
         _push(view: self, target: _target, rootView: false)
