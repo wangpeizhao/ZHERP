@@ -12,7 +12,6 @@ class BillsDelegateDataSourceViewController: UIViewController {
     
     var dataArr = [[String: String]]()
     var CELL_IDENTIFY_ID: String!
-    var pView: UIViewController!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -67,7 +66,7 @@ extension BillsDelegateDataSourceViewController: UITableViewDelegate, UITableVie
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let _data = dataArr[indexPath.item]
         let cell: BillsDailyReportTableViewCell = tableView.dequeueReusableCell(withIdentifier: CELL_IDENTIFY_ID, for: indexPath) as! BillsDailyReportTableViewCell
-        
+
         cell.dateLabel.text = _data["datetime"]
         cell.dateLabel.sizeToFit()
         
@@ -87,12 +86,11 @@ extension BillsDelegateDataSourceViewController: UITableViewDelegate, UITableVie
     // UITableViewDelegate 方法，处理列表项的选中事件
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let _data = dataArr[indexPath.item]
-        print(_data)
         
-//        let _target = BillsDaliyDetailViewController()
-//        _target.navTitle = _data["datetime"]
-//        
-//        _target.hidesBottomBarWhenPushed = true
-//        _push(view: pView, target: _target, rootView: false)
+        let _target = BillsDaliyDetailViewController()
+        _target.navTitle = _data["datetime"]
+        
+        _target.hidesBottomBarWhenPushed = true
+        _push(view: self, target: _target, rootView: false)
     }
 }

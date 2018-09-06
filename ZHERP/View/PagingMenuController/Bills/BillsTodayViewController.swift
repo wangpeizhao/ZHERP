@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SnapKit
 
 class BillsTodayViewController: UIViewController {
     
@@ -45,16 +46,17 @@ class BillsTodayViewController: UIViewController {
         self.addChildViewController(_billReportViewController)
         _billReportView.addSubview(_billReportViewController.view)
         
-        // delegate
-        let _delegate = BillsDelegateDataSourceViewController()
-        _delegate.dataArr = self.dataArr
-        _delegate.CELL_IDENTIFY_ID = self.CELL_IDENTIFY_ID
-        _delegate.pView = self
-        
         //创建表视图
         let _tableViewY = _billReportView.frame.size.height
         let _tableViewH = ScreenHeight - GlobalNavHeight - _tableViewY - 40
         self.tableView = UITableView(frame: CGRect(x: 0, y: _tableViewY, width: ScreenWidth, height: _tableViewH), style: .grouped)
+        
+        // delegate
+        let _delegate = BillsDelegateDataSourceViewController()
+        _delegate.dataArr = self.dataArr
+        _delegate.CELL_IDENTIFY_ID = self.CELL_IDENTIFY_ID
+        self.addChildViewController(_delegate)
+        
         self.tableView!.delegate = _delegate
         self.tableView!.dataSource = _delegate
         self.tableView!.register(UITableViewCell.self, forCellReuseIdentifier: CELL_IDENTIFY_ID)
