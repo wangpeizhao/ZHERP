@@ -30,7 +30,7 @@ class OrderBillsPagesViewController: UIViewController {
     //分页菜单配置
     private struct _pagingMenuOptions: PagingMenuControllerCustomizable {
         
-        //默认显示第2页
+        //默认显示第1页
         var defaultPage: Int = 0
         
         //页面切换动画播放时间为0.5秒
@@ -48,20 +48,21 @@ class OrderBillsPagesViewController: UIViewController {
         //不太清楚干嘛用的（默认值就是.multiple）
         var menuControllerSet: MenuControllerSet = .multiple
         
-        
         //选中项无样式
         var focusMode: MenuFocusMode = .none
         
-        //Order All 子视图控制器
-        private let orderAllView = BillsTodayViewController()
-        //Order Pay 子视图控制器
-        private let orderPayView = OrderPayViewController()
-        //Order Unpay 子视图控制器
-        private let orderUnpayView = OrderUnpayViewController()
-        //Order Close 子视图控制器
-        private let orderCloseView = OrderCloseViewController()
-        //Order All 子视图控制器
-        private let orderCompleteView = OrderCompleteViewController()
+        //今日 子视图控制器
+        private let BillsToday = BillsTodayViewController()
+        //昨天 子视图控制器
+        private let BillsYesterday = BillsYesterdayViewController()
+        //本周 子视图控制器
+        private let BillsWeek = BillsWeekViewController()
+        //近七天 子视图控制器
+        private let BillsSevenDays = BillsSevenDaysViewController()
+        //本月 子视图控制器
+        private let BillsMonth = BillsMonthViewController()
+        //上月 子视图控制器
+        private let BillsLastMonth = BillsLastMonthViewController()
         
         //组件类型
         fileprivate var componentType: ComponentType {
@@ -70,7 +71,7 @@ class OrderBillsPagesViewController: UIViewController {
         
         //所有子视图控制器
         fileprivate var pagingControllers: [UIViewController] {
-            return [orderAllView, orderPayView, orderUnpayView, orderCloseView, orderCompleteView]
+            return [BillsToday, BillsYesterday, BillsWeek, BillsSevenDays, BillsMonth, BillsLastMonth]
         }
         
         //菜单配置项
@@ -86,18 +87,18 @@ class OrderBillsPagesViewController: UIViewController {
             //菜单项
             var itemsOptions: [MenuItemViewCustomizable] {
                 return [
-                    MenuItemOrderAll(),
-                    MenuItemOrderPay(),
-                    MenuItemOrderUnPay(),
-                    MenuItemOrderClose(),
-                    MenuItemOrderComplete(),
-//                    MenuItemOrderLastMonth()
+                    MenuItemBillsToday(),
+                    MenuItemBillsYesterday(),
+                    MenuItemBillsWeek(),
+                    MenuItemBillsSevenDays(),
+                    MenuItemBillsMonth(),
+                    MenuItemBillsLastMonth(),
                 ]
             }
         }
         
         //第1个菜单项
-        fileprivate struct MenuItemOrderAll: MenuItemViewCustomizable {
+        fileprivate struct MenuItemBillsToday: MenuItemViewCustomizable {
             //自定义菜单项名称
             var displayMode: MenuItemDisplayMode {
                 return .text(title: MenuItemText(
@@ -111,7 +112,7 @@ class OrderBillsPagesViewController: UIViewController {
         }
         
         //第2个菜单项
-        fileprivate struct MenuItemOrderPay: MenuItemViewCustomizable {
+        fileprivate struct MenuItemBillsYesterday: MenuItemViewCustomizable {
             //自定义菜单项名称
             var displayMode: MenuItemDisplayMode {
                 return .text(title: MenuItemText(text: "昨日",
@@ -124,7 +125,7 @@ class OrderBillsPagesViewController: UIViewController {
         }
         
         //第3个菜单项
-        fileprivate struct MenuItemOrderUnPay: MenuItemViewCustomizable {
+        fileprivate struct MenuItemBillsWeek: MenuItemViewCustomizable {
             //自定义菜单项名称
             var displayMode: MenuItemDisplayMode {
                 return .text(title: MenuItemText(text: "本周",
@@ -137,7 +138,7 @@ class OrderBillsPagesViewController: UIViewController {
         }
         
         //第4个菜单项
-        fileprivate struct MenuItemOrderClose: MenuItemViewCustomizable {
+        fileprivate struct MenuItemBillsSevenDays: MenuItemViewCustomizable {
             //自定义菜单项名称
             var displayMode: MenuItemDisplayMode {
                 return .text(title: MenuItemText(text: "近7天",
@@ -150,7 +151,7 @@ class OrderBillsPagesViewController: UIViewController {
         }
         
         //第5个菜单项
-        fileprivate struct MenuItemOrderComplete: MenuItemViewCustomizable {
+        fileprivate struct MenuItemBillsMonth: MenuItemViewCustomizable {
             //自定义菜单项名称
             var displayMode: MenuItemDisplayMode {
                 return .text(title: MenuItemText(text: "本月",
@@ -161,19 +162,19 @@ class OrderBillsPagesViewController: UIViewController {
                 ))
             }
         }
-//        
-//        //第6个菜单项
-//        fileprivate struct MenuItemOrderLastMonth: MenuItemViewCustomizable {
-//            //自定义菜单项名称
-//            var displayMode: MenuItemDisplayMode {
-//                return .text(title: MenuItemText(text: "上月",
-//                                                 color: UIColor(hex: 0x727272),
-//                                                 selectedColor: .orange,
-//                                                 font: UIFont.systemFont(ofSize: Specs.fontSize.regular),
-//                                                 selectedFont: UIFont.systemFont(ofSize: Specs.fontSize.regular)
-//                ))
-//            }
-//        }
+        
+        //第6个菜单项
+        fileprivate struct MenuItemBillsLastMonth: MenuItemViewCustomizable {
+            //自定义菜单项名称
+            var displayMode: MenuItemDisplayMode {
+                return .text(title: MenuItemText(text: "上月",
+                    color: UIColor(hex: 0x727272),
+                    selectedColor: .orange,
+                    font: UIFont.systemFont(ofSize: Specs.fontSize.regular),
+                    selectedFont: UIFont.systemFont(ofSize: Specs.fontSize.regular)
+                ))
+            }
+        }
     }
     
     private func _pagingMenus() {

@@ -1,15 +1,14 @@
 //
-//  BillsTodayViewController.swift
+//  BillsMonthViewController.swift
 //  ZHERP
 //
-//  Created by MrParker on 2018/9/6.
-//  Copyright © 2018年 MrParker. All rights reserved.
+//  Created by MrParker on 2018/9/7.
+//  Copyright © 2018 MrParker. All rights reserved.
 //
 
 import UIKit
-import SnapKit
 
-class BillsTodayViewController: UIViewController {
+class BillsMonthViewController: UIViewController {
     
     var tableView: UITableView!
     let CELL_IDENTIFY_ID = "CELL_IDENTIFY_ID"
@@ -27,7 +26,7 @@ class BillsTodayViewController: UIViewController {
         ["datetime": "2018-09-05", "quantity": "23456", "amount": "933259.00"],
         ["datetime": "2018-09-04", "quantity": "5t56", "amount": "9966439.00"],
         ["datetime": "2018-09-03", "quantity": "509096", "amount": "9954469.00"],
-    ]
+        ]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -44,11 +43,11 @@ class BillsTodayViewController: UIViewController {
         
         let _billReportViewController = BillsReportViewController()
         _billReportViewController.reportData = [
-            "todayTotal": "5648.00",
-            "todayReceiptNumber": "895",
-            "historyShipments": "5643",
-            "todayShipments": "2342",
-            "residueShipments": "9723"
+            "todayTotal": "6548.00",
+            "todayReceiptNumber": "805",
+            "historyShipments": "1243",
+            "todayShipments": "3442",
+            "residueShipments": "5623"
         ]
         self.addChildViewController(_billReportViewController)
         _billReportView.addSubview(_billReportViewController.view)

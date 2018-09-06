@@ -16,6 +16,9 @@ class BillsReportViewController: UIViewController {
     var todayShipmentsValue: UILabel!
     var residueShipmentsValue: UILabel!
     
+    var tableHeader: Bool = true
+    var reportData = ["todayTotal": "", "todayReceiptNumber": "", "historyShipments": "", "todayShipments": "", "residueShipments": ""]
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -58,7 +61,7 @@ class BillsReportViewController: UIViewController {
         
         // 今日收款 Value
         self.todayTotalValue = UILabel()
-        self._setUILabel(label: self.todayTotalValue, text: "12345.00")
+        self._setUILabel(label: self.todayTotalValue, text: self.reportData["todayTotal"]!)
         self.todayTotalValue.textAlignment = .left
         self.todayTotalValue.textColor = UIColor(hex: 0x5faaff)
         self.todayTotalValue.font = UIFont.systemFont(ofSize: 25.0)
@@ -106,7 +109,7 @@ class BillsReportViewController: UIViewController {
         }
         // 收款笔数 Value
         self.todayReceiptNumberValue = UILabel()
-        self._setUILabel(label: self.todayReceiptNumberValue, text: "123")
+        self._setUILabel(label: self.todayReceiptNumberValue, text: self.reportData["todayReceiptNumber"]!)
         self.todayReceiptNumberValue.textAlignment = .left
         self.todayReceiptNumberValue.textColor = UIColor.orange
         self.todayReceiptNumberValue.font = UIFont.systemFont(ofSize: 25.0)
@@ -161,7 +164,7 @@ class BillsReportViewController: UIViewController {
         }
         // 历史发货 Value
         self.historyShipmentsValue = UILabel()
-        self._setUILabel(label: self.historyShipmentsValue, text: "1230")
+        self._setUILabel(label: self.historyShipmentsValue, text: self.reportData["historyShipments"]!)
         self.historyShipmentsValue.textColor = Specs.color.black
         historyShipmentsView.addSubview(self.historyShipmentsValue)
         self.historyShipmentsValue.snp.makeConstraints {(make) -> Void in
@@ -203,7 +206,7 @@ class BillsReportViewController: UIViewController {
         }
         // 今日发货 Value
         self.todayShipmentsValue = UILabel()
-        self._setUILabel(label: self.todayShipmentsValue, text: "4560")
+        self._setUILabel(label: self.todayShipmentsValue, text: self.reportData["todayShipments"]!)
         self.todayShipmentsValue.textColor = Specs.color.black
         todayShipmentsView.addSubview(self.todayShipmentsValue)
         self.todayShipmentsValue.snp.makeConstraints {(make) -> Void in
@@ -246,7 +249,7 @@ class BillsReportViewController: UIViewController {
         }
         // 剩余发货 Value
         self.residueShipmentsValue = UILabel()
-        self._setUILabel(label: self.residueShipmentsValue, text: "7890")
+        self._setUILabel(label: self.residueShipmentsValue, text: self.reportData["residueShipments"]!)
         self.residueShipmentsValue.textColor = Specs.color.black
         residueShipmentsView.addSubview(self.residueShipmentsValue)
         self.residueShipmentsValue.snp.makeConstraints {(make) -> Void in
@@ -255,49 +258,54 @@ class BillsReportViewController: UIViewController {
             make.height.equalTo(20)
         }
         
-        let _tableHeader = UIView()
-        _tableHeader.backgroundColor = UIColor(hex: 0xf7f7f7)
-        self.view.addSubview(_tableHeader)
-        _tableHeader.snp.makeConstraints {(make) -> Void in
-            make.left.right.equalTo(0)
-            make.top.equalTo(self.residueShipmentsValue.snp.bottom).offset(10)
-            make.height.equalTo(40.0)
-        }
-        
-        let _date = UILabel()
-        _date.text = "日期"
-        _date.font = Specs.font.regular
-        _date.textAlignment = .center
-        _tableHeader.addSubview(_date)
-        _date.snp.makeConstraints {(make) -> Void in
-            make.left.equalTo(0)
-            make.top.equalTo(10)
-            make.height.equalTo(20)
-        }
-        
-        let _quantity = UILabel()
-        _quantity.text = "交易笔数"
-        _quantity.font = Specs.font.regular
-        _quantity.textAlignment = .center
-        _tableHeader.addSubview(_quantity)
-        _quantity.snp.makeConstraints {(make) -> Void in
-            make.left.equalTo(_date.snp.right)
-            make.top.equalTo(_date.snp.top)
-            make.height.equalTo(_date.snp.height)
-            make.width.equalTo(_date.snp.width)
-        }
-        
-        let _amount = UILabel()
-        _amount.text = "交易金额(元)"
-        _amount.font = Specs.font.regular
-        _amount.textAlignment = .center
-        _tableHeader.addSubview(_amount)
-        _amount.snp.makeConstraints {(make) -> Void in
-            make.left.equalTo(_quantity.snp.right)
-            make.top.equalTo(_date.snp.top)
-            make.height.equalTo(_date.snp.height)
-            make.width.equalTo(_date.snp.width)
-            make.right.equalTo(0)
+        if self.tableHeader {
+            let _tableHeader = UIView()
+            _tableHeader.backgroundColor = UIColor(hex: 0xf7f7f7)
+            self.view.addSubview(_tableHeader)
+            _tableHeader.snp.makeConstraints {(make) -> Void in
+                make.left.right.equalTo(0)
+                make.top.equalTo(self.residueShipmentsValue.snp.bottom).offset(10)
+                make.height.equalTo(40.0)
+            }
+            
+            let _date = UILabel()
+            _date.text = "日期"
+            _date.font = Specs.font.regular
+            _date.textColor = Specs.color.gray
+            _date.textAlignment = .center
+            _tableHeader.addSubview(_date)
+            _date.snp.makeConstraints {(make) -> Void in
+                make.left.equalTo(0)
+                make.top.equalTo(10)
+                make.height.equalTo(20)
+            }
+            
+            let _quantity = UILabel()
+            _quantity.text = "交易笔数"
+            _quantity.font = Specs.font.regular
+            _quantity.textColor = Specs.color.gray
+            _quantity.textAlignment = .center
+            _tableHeader.addSubview(_quantity)
+            _quantity.snp.makeConstraints {(make) -> Void in
+                make.left.equalTo(_date.snp.right)
+                make.top.equalTo(_date.snp.top)
+                make.height.equalTo(_date.snp.height)
+                make.width.equalTo(_date.snp.width)
+            }
+            
+            let _amount = UILabel()
+            _amount.text = "交易金额(元)"
+            _amount.font = Specs.font.regular
+            _amount.textColor = Specs.color.gray
+            _amount.textAlignment = .center
+            _tableHeader.addSubview(_amount)
+            _amount.snp.makeConstraints {(make) -> Void in
+                make.left.equalTo(_quantity.snp.right)
+                make.top.equalTo(_date.snp.top)
+                make.height.equalTo(_date.snp.height)
+                make.width.equalTo(_date.snp.width)
+                make.right.equalTo(0)
+            }
         }
     }
 

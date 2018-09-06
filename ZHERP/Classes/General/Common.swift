@@ -75,3 +75,18 @@ func stringFromDate(_ date: Date) -> String? {
     dateForMatter.dateFormat = "yyyy-MM-dd"
     return dateForMatter.string(from: date)
 }
+
+func system_datetime(format: String) -> String{
+    let date = NSDate()
+    
+    let timeFormatter = DateFormatter()
+    
+    timeFormatter.dateFormat = format.isEmpty ? "yyyy-MM-dd HH:mm:ss" : format
+    
+    let strNowTime = timeFormatter.string(from: date as Date) as String
+    
+    return strNowTime
+}
+
+let SYSTEM_DATETIME = system_datetime(format: "yyyy-MM-dd HH:mm:ss")
+let SYSTEM_DATE = system_datetime(format: "yyyy-MM-dd")
