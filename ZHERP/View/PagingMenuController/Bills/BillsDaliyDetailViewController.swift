@@ -16,6 +16,9 @@ class BillsDaliyDetailViewController: UIViewController, UIGestureRecognizerDeleg
     let CELL_IDENTIFY_ID = "CELL_IDENTIFY_ID"
     var selectedCellIndexPaths: [IndexPath] = []
     
+    var todayTotal = "0.00"
+    var todayReceiptNumber = "0"
+    
     var datePickerValue: String!
     
     let dataArr = [
@@ -81,8 +84,8 @@ class BillsDaliyDetailViewController: UIViewController, UIGestureRecognizerDeleg
         let _billReportViewController = BillsReportViewController()
         _billReportViewController.tableHeader = false
         _billReportViewController.reportData = [
-            "todayTotal": "1148.00",
-            "todayReceiptNumber": "335",
+            "todayTotal": self.todayTotal,
+            "todayReceiptNumber": self.todayReceiptNumber,
             "historyShipments": "5543",
             "todayShipments": "2002",
             "residueShipments": "9093"

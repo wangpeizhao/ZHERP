@@ -382,7 +382,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="YDy-7v-sJj" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3618.4000000000001" y="534.97536945812806"/>
+            <point key="canvasLocation" x="3844" y="534"/>
         </scene>
         <!--订单-->
         <scene sceneID="8f3-5k-A2S">
@@ -582,6 +582,22 @@
             <point key="canvasLocation" x="4570" y="1225"/>
         </scene>
         <!--Statistic View Controller-->
+        <scene sceneID="K0N-tf-ARA">
+            <objects>
+                <viewController storyboardIdentifier="StatisticViewController" id="QMp-EP-at6" customClass="StatisticViewController" customModule="ZHERP" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="dxg-UC-6kz">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="QOG-Gj-7jE"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="1BK-ZL-kO1"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="RvJ-WS-RhX" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2473" y="532"/>
+        </scene>
+        <!--Statistic View Controller-->
         <scene sceneID="M1T-Nz-j3f">
             <objects>
                 <viewController id="gyT-1N-1rN" customClass="StatisticViewController" customModule="ZHERP" customModuleProvider="target" sceneMemberID="viewController">
@@ -683,9 +699,6 @@
                                 <rect key="frame" x="164" y="524" width="46" height="52"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button"/>
-                                <connections>
-                                    <action selector="openCamera:" destination="gyT-1N-1rN" eventType="touchUpInside" id="faa-d7-pTv"/>
-                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -695,7 +708,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jZe-wl-7p9" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2732" y="534.23645320197045"/>
+            <point key="canvasLocation" x="3146" y="534"/>
         </scene>
         <!--Login View Controller-->
         <scene sceneID="1AW-yw-ZzW">
@@ -1696,7 +1709,7 @@
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="gyT-1N-1rN" kind="relationship" relationship="rootViewController" id="KbO-BX-lFT"/>
+                        <segue destination="QMp-EP-at6" kind="relationship" relationship="rootViewController" id="Qew-aj-bGo"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZE2-wj-GZj" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1714,6 +1727,6 @@
         <image name="home_statistics_32_32" width="32" height="32"/>
         <image name="home_take_stock_32_32" width="32" height="32"/>
         <image name="home_warehouse_32_32" width="32" height="32"/>
-        <image name="order_icon" width="32" height="32"/>
+        <image name="order_icon" width="28" height="28"/>
     </resources>
 </document>

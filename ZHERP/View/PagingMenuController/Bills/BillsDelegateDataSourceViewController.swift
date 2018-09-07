@@ -89,6 +89,8 @@ extension BillsDelegateDataSourceViewController: UITableViewDelegate, UITableVie
         
         let _target = BillsDaliyDetailViewController()
         _target.navTitle = _data["datetime"]
+        _target.todayTotal = _data["amount"]!
+        _target.todayReceiptNumber = _data["quantity"]!
         
         _target.hidesBottomBarWhenPushed = true
         _push(view: self, target: _target, rootView: false)

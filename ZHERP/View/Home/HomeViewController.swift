@@ -224,7 +224,6 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
 //        return 35
 //    }
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        print(section)
         if (section == 0) {
             self.reportView = HomeReportViewController()
             self.addChildViewController(self.reportView!)

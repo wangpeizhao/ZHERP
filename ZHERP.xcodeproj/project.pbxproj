@@ -29,6 +29,9 @@
 		2C986C7D213FC48900F081BC /* SMemberOperateTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2C986C7B213FC48900F081BC /* SMemberOperateTableViewCell.xib */; };
 		2C986C7F213FCF2200F081BC /* SMemberDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C986C7E213FCF2200F081BC /* SMemberDetailViewController.swift */; };
 		2C986C82213FDC2300F081BC /* SMemberData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C986C81213FDC2300F081BC /* SMemberData.swift */; };
+		2C9AC88F214244EB004F252D /* StatisticChartsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C9AC88E214244EB004F252D /* StatisticChartsViewController.swift */; };
+		2C9AC891214271B4004F252D /* StatisticNavigationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C9AC890214271B4004F252D /* StatisticNavigationViewController.swift */; };
+		2C9AC89321427465004F252D /* StatisticReportViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C9AC89221427465004F252D /* StatisticReportViewController.swift */; };
 		2CBF4902212294A300199C1D /* CameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CBF4901212294A200199C1D /* CameraViewController.swift */; };
 		2CBF49042122A3B800199C1D /* QRCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CBF49032122A3B800199C1D /* QRCode.swift */; };
 		2CC1319321114279004C8097 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CC1319221114279004C8097 /* SearchViewController.swift */; };
@@ -207,6 +210,9 @@
 		2C986C7B213FC48900F081BC /* SMemberOperateTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SMemberOperateTableViewCell.xib; sourceTree = "<group>"; };
 		2C986C7E213FCF2200F081BC /* SMemberDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SMemberDetailViewController.swift; sourceTree = "<group>"; };
 		2C986C81213FDC2300F081BC /* SMemberData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SMemberData.swift; sourceTree = "<group>"; };
+		2C9AC88E214244EB004F252D /* StatisticChartsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticChartsViewController.swift; sourceTree = "<group>"; };
+		2C9AC890214271B4004F252D /* StatisticNavigationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticNavigationViewController.swift; sourceTree = "<group>"; };
+		2C9AC89221427465004F252D /* StatisticReportViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticReportViewController.swift; sourceTree = "<group>"; };
 		2CBF4901212294A200199C1D /* CameraViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraViewController.swift; sourceTree = "<group>"; };
 		2CBF49032122A3B800199C1D /* QRCode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRCode.swift; sourceTree = "<group>"; };
 		2CC1319221114279004C8097 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
@@ -407,6 +413,17 @@
 				2C986C81213FDC2300F081BC /* SMemberData.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		2C9AC88D2142425F004F252D /* Statistic */ = {
+			isa = PBXGroup;
+			children = (
+				9E88ED1F20FB469000DF091F /* StatisticViewController.swift */,
+				2C9AC88E214244EB004F252D /* StatisticChartsViewController.swift */,
+				2C9AC890214271B4004F252D /* StatisticNavigationViewController.swift */,
+				2C9AC89221427465004F252D /* StatisticReportViewController.swift */,
+			);
+			path = Statistic;
 			sourceTree = "<group>";
 		};
 		2CE8F49F212BFEB100037367 /* Warehouse */ = {
@@ -720,6 +737,7 @@
 		9E88ED0520FB3B0600DF091F /* View */ = {
 			isa = PBXGroup;
 			children = (
+				2C9AC88D2142425F004F252D /* Statistic */,
 				9EE26B7E212C6DDD00619D98 /* Good */,
 				2CE8F4A2212C0A9200037367 /* Settings */,
 				2CE8F49F212BFEB100037367 /* Warehouse */,
@@ -763,7 +781,6 @@
 				9E88ED1920FB41F800DF091F /* HomeViewController.swift */,
 				9E88ED1B20FB462600DF091F /* OrderTableViewController.swift */,
 				9E88ED1D20FB464B00DF091F /* GoodTableViewController.swift */,
-				9E88ED1F20FB469000DF091F /* StatisticViewController.swift */,
 				2CC1319221114279004C8097 /* SearchViewController.swift */,
 				2CBF4901212294A200199C1D /* CameraViewController.swift */,
 				9EE26B78212B0BE000619D98 /* HomeNavigationViewController.swift */,
@@ -1193,6 +1210,7 @@
 				9E88ED0F20FB3B7700DF091F /* Response+ObjectMapper.swift in Sources */,
 				9E549931213EBC4A001E4C36 /* WCategoryManagerViewController.swift in Sources */,
 				9E88ED3720FCE9C400DF091F /* MemberViewController.swift in Sources */,
+				2C9AC891214271B4004F252D /* StatisticNavigationViewController.swift in Sources */,
 				9E523E322104DA1000CF921F /* GifImageOperation.swift in Sources */,
 				9E523E9A21127EC800CF921F /* UIView-Extensions.swift in Sources */,
 				9ED7E51721418FF500F8F735 /* BillsWeekViewController.swift in Sources */,
@@ -1238,6 +1256,7 @@
 				2C35D2D5214124EE00AEC12F /* BillsDelegateDataSourceViewController.swift in Sources */,
 				9E549937213ED506001E4C36 /* WCategoryOperateViewController.swift in Sources */,
 				9EE26B81212C734100619D98 /* GoodTableViewCell.swift in Sources */,
+				2C9AC88F214244EB004F252D /* StatisticChartsViewController.swift in Sources */,
 				9E523E89210D449300CF921F /* OrderViewController.swift in Sources */,
 				9E523DFE2104661400CF921F /* GuideViewController.swift in Sources */,
 				9E88ED4520FE63AE00DF091F /* ForgotPwdViewController.swift in Sources */,
@@ -1275,6 +1294,7 @@
 				9E523DE22100DD0500CF921F /* Protocol.swift in Sources */,
 				2C6B1F3D213E5BF200CF82DE /* WLocationDeatilViewController.swift in Sources */,
 				9EE26B89212DE2F900619D98 /* UIButton-Extensions.swift in Sources */,
+				2C9AC89321427465004F252D /* StatisticReportViewController.swift in Sources */,
 				9E88ED3520FCE95600DF091F /* MemberBaseViewController.swift in Sources */,
 				2C35D2C92140D76400AEC12F /* BillsTodayViewController.swift in Sources */,
 				9E88ED2D20FB8C7900DF091F /* Specs.swift in Sources */,
