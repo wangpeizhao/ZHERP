@@ -53,7 +53,7 @@ class StatisticNavigationViewController: UIViewController, UICollectionViewDeleg
         let frame = CGRect(x: 0, y: 0, width: ScreenWidth, height: 200)
         collectionView = UICollectionView(frame: frame, collectionViewLayout: layout)
         
-        collectionView!.backgroundColor = UIColor(hex: 0xfcfcfc)
+        collectionView!.backgroundColor = UIColor(hex: 0xf0f0f0)
         
         collectionView!.delegate = self
         

@@ -62,7 +62,7 @@ class BillsDaliyDetailViewController: UIViewController, UIGestureRecognizerDeleg
     //触摸按钮时，获得被选中的索引
     @objc func getPickerViewValue(_: UIAlertAction)->Void {
         self.title = self.datePickerValue == nil ? SYSTEM_DATE : self.datePickerValue
-        print(self.title!)
+//        print(self.title!)
     }
     
     //日期选择器响应方法
