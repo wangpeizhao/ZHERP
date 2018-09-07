@@ -32,37 +32,16 @@ class OrderBillsViewController: UIViewController {
     }
     
     @objc func actionMore() {
-        self._setDatePickerView()
-    }
-    
-    public func _setDatePickerView(){
-        let alertController = UIAlertController(title: "请选择日期\n\n\n\n\n\n\n\n\n\n", message: "", preferredStyle: UIAlertControllerStyle.actionSheet)
-        
-        let DestructiveAction = UIAlertAction(title: "取消", style: UIAlertActionStyle.cancel) {
-            (result : UIAlertAction) -> Void in
-            // todo
-        }
-        let okAction = UIAlertAction(title: "确定", style: UIAlertActionStyle.default, handler: getPickerViewValue)
-        
-        //创建日期选择器
-        let datePicker = UIDatePicker(frame: CGRect(x: 0, y: 30, width: ScreenWidth, height: 216))
-        //将日期选择器区域设置为中文，则选择器日期显示为中文
-        datePicker.locale = Locale(identifier: "zh_CN")
-        //注意：action里面的方法名后面需要加个冒号“：”
-        datePicker.addTarget(self, action: #selector(dateChanged), for: .valueChanged)
-        datePicker.datePickerMode = .date
-        alertController.view.addSubview(datePicker)
-        
-        alertController.addAction(DestructiveAction)
-        alertController.addAction(okAction)
-        self.present(alertController, animated: true, completion: nil)
+        let date = dateFromString(self.datePickerValue == nil ? SYSTEM_DATE : self.datePickerValue)!
+        setDatePickerView(view: self, datePickerValue: date, selector: #selector(dateChanged), handler: getPickerViewValue)
     }
     
     //触摸按钮时，获得被选中的索引
     @objc func getPickerViewValue(_: UIAlertAction)->Void {
+        let _date = self.datePickerValue == nil ? SYSTEM_DATE : self.datePickerValue
         let _target = BillsDaliyDetailViewController()
-        _target.navTitle = self.datePickerValue == nil ? SYSTEM_DATE : self.datePickerValue
-        
+        _target.navTitle = _date
+        _target.datePickerValue = _date
         _target.hidesBottomBarWhenPushed = true
         _push(view: self, target: _target, rootView: false)
     }

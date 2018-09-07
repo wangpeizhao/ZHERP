@@ -141,6 +141,7 @@
 		9E88ED4120FE61CE00DF091F /* ResetPwdViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E88ED4020FE61CD00DF091F /* ResetPwdViewController.swift */; };
 		9E88ED4320FE624D00DF091F /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E88ED4220FE624D00DF091F /* RegisterViewController.swift */; };
 		9E88ED4520FE63AE00DF091F /* ForgotPwdViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E88ED4420FE63AE00DF091F /* ForgotPwdViewController.swift */; };
+		9ECA8D0D2141F6E3003FFC05 /* DatePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9ECA8D0C2141F6E3003FFC05 /* DatePicker.swift */; };
 		9ED7E50B21402E4900F8F735 /* OrderTodayBillViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9ED7E50A21402E4900F8F735 /* OrderTodayBillViewController.swift */; };
 		9ED7E50E2140304D00F8F735 /* OrderTodayBillTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9ED7E50C2140304D00F8F735 /* OrderTodayBillTableViewCell.swift */; };
 		9ED7E50F2140304D00F8F735 /* OrderTodayBillTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9ED7E50D2140304D00F8F735 /* OrderTodayBillTableViewCell.xib */; };
@@ -328,6 +329,7 @@
 		9E88ED4020FE61CD00DF091F /* ResetPwdViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResetPwdViewController.swift; sourceTree = "<group>"; };
 		9E88ED4220FE624D00DF091F /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		9E88ED4420FE63AE00DF091F /* ForgotPwdViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPwdViewController.swift; sourceTree = "<group>"; };
+		9ECA8D0C2141F6E3003FFC05 /* DatePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatePicker.swift; sourceTree = "<group>"; };
 		9ED7E50A21402E4900F8F735 /* OrderTodayBillViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderTodayBillViewController.swift; sourceTree = "<group>"; };
 		9ED7E50C2140304D00F8F735 /* OrderTodayBillTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderTodayBillTableViewCell.swift; sourceTree = "<group>"; };
 		9ED7E50D2140304D00F8F735 /* OrderTodayBillTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OrderTodayBillTableViewCell.xib; sourceTree = "<group>"; };
@@ -572,6 +574,7 @@
 		9E523DEB21045F3300CF921F /* ThirdParty */ = {
 			isa = PBXGroup;
 			children = (
+				9ECA8D0B2141F6BE003FFC05 /* DatePicker */,
 				9E62C2B6213BF17600C8A578 /* AddressPicker */,
 				9EE26B4921247C3600619D98 /* ZHQRCode */,
 				9E523E312104DA1000CF921F /* GifImageOperation.swift */,
@@ -845,6 +848,14 @@
 				9E523E7C210C23CF00CF921F /* ResetViewController.swift */,
 			);
 			path = Member;
+			sourceTree = "<group>";
+		};
+		9ECA8D0B2141F6BE003FFC05 /* DatePicker */ = {
+			isa = PBXGroup;
+			children = (
+				9ECA8D0C2141F6E3003FFC05 /* DatePicker.swift */,
+			);
+			path = DatePicker;
 			sourceTree = "<group>";
 		};
 		9EE26B4921247C3600619D98 /* ZHQRCode */ = {
@@ -1244,6 +1255,7 @@
 				9ED7E51121404CE500F8F735 /* OrderBillsViewController.swift in Sources */,
 				9EE26B84212DA13200619D98 /* Common-Extensions.swift in Sources */,
 				9E523DF2210460B600CF921F /* HHGuidePageHUD.swift in Sources */,
+				9ECA8D0D2141F6E3003FFC05 /* DatePicker.swift in Sources */,
 				9E88ED2A20FB723600DF091F /* UIColor.swift in Sources */,
 				9ED7E51B2141903D00F8F735 /* BillsMonthViewController.swift in Sources */,
 				9E88ED1420FB3B9300DF091F /* Post.swift in Sources */,
