@@ -123,12 +123,12 @@ class HPickingViewController: UIViewController {
     }
     
     @objc func actionCart() {
-        if (self._totalValue.text?.isEmpty)! || (self._quantityValue.text?.isEmpty)! {
+        if self._totalValue.text == "0" || self._quantityValue.text == "0" {
             _alert(view: self, message: "购物车还是空呢，请先拣货")
             return
         }
         let _target = HPickingCompleteViewController()
-        _push(view: self, target: _target)
+        _push(view: self, target: _target, rootView: false)
     }
     
     @objc func actionSearch() {
@@ -255,7 +255,7 @@ class HPickingViewController: UIViewController {
         self._totalValue.text = "0.00"
         self._totalValue.sizeToFit()
         self._totalValue.textAlignment = .left
-        self._totalValue.font = UIFont.systemFont(ofSize: 20.0)
+        self._totalValue.font = UIFont.systemFont(ofSize: 25.0)
         self._totalValue.textColor = Specs.color.black
         _cartDetailView.addSubview(self._totalValue)
         self._totalValue.snp.makeConstraints { (make) -> Void in
