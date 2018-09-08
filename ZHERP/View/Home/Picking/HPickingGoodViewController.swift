@@ -49,6 +49,7 @@ class HPickingGoodViewController: UIViewController {
         self.navHeight = self.navigationController?.navigationBar.frame.maxY
         self.tabBarHeight = self.tabBarController?.tabBar.bounds.size.height
         
+        self._setGoodDeail()
         self._setTabBarCart()
     }
     
@@ -89,6 +90,36 @@ class HPickingGoodViewController: UIViewController {
             make.width.equalTo(ScreenWidth - 40)
             make.height.equalTo(40)
             make.center.equalTo(_tabBarView)
+        }
+        
+    }
+    
+    fileprivate func _setGoodDeail() {
+        // good View
+        let _goodView = UIView()
+        _goodView.backgroundColor = Specs.color.white
+        _goodView.layer.masksToBounds = true
+        _goodView.layer.borderWidth = 1
+        _goodView.layer.cornerRadius = Specs.border.radius
+        _goodView.layer.borderColor = UIColor(hex: 0xdddddd).cgColor
+        self.view.addSubview(_goodView)
+        _goodView.snp.makeConstraints { (make) -> Void in
+            make.left.right.equalTo(0)
+            make.top.equalTo(self.navHeight)
+            make.height.equalTo(ScreenHeight - self.navHeight - self.tabBarHeight)
+            make.width.equalTo(ScreenWidth)
+        }
+        
+        // good image
+        let _goodImageView = UIImageView()
+        let _goodPic = UIImage(named: "goodPic")
+        _goodImageView.image = _goodPic
+        _goodView.addSubview(_goodImageView)
+        _goodImageView.snp.makeConstraints { (make) -> Void in
+            make.left.equalTo(20)
+            make.centerX.equalTo(_goodView)
+            make.top.equalTo(50)
+            make.height.equalTo(180)
         }
         
     }
