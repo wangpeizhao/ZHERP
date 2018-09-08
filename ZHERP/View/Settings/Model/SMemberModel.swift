@@ -1,5 +1,5 @@
 //
-//  SMemberData.swift
+//  SMemberModel.swift
 //  ZHERP
 //
 //  Created by MrParker on 2018/9/5.
@@ -8,7 +8,7 @@
 
 import Foundation
 
-class SMemberData: NSObject {
+class SMemberModel: NSObject {
     var id: Int
     var avatar: String
     var username: String

@@ -28,7 +28,7 @@
 		2C986C7C213FC48900F081BC /* SMemberOperateTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C986C7A213FC48900F081BC /* SMemberOperateTableViewCell.swift */; };
 		2C986C7D213FC48900F081BC /* SMemberOperateTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2C986C7B213FC48900F081BC /* SMemberOperateTableViewCell.xib */; };
 		2C986C7F213FCF2200F081BC /* SMemberDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C986C7E213FCF2200F081BC /* SMemberDetailViewController.swift */; };
-		2C986C82213FDC2300F081BC /* SMemberData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C986C81213FDC2300F081BC /* SMemberData.swift */; };
+		2C986C82213FDC2300F081BC /* SMemberModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C986C81213FDC2300F081BC /* SMemberModel.swift */; };
 		2C9AC88F214244EB004F252D /* StatisticChartsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C9AC88E214244EB004F252D /* StatisticChartsViewController.swift */; };
 		2C9AC891214271B4004F252D /* StatisticNavigationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C9AC890214271B4004F252D /* StatisticNavigationViewController.swift */; };
 		2C9AC89321427465004F252D /* StatisticReportViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C9AC89221427465004F252D /* StatisticReportViewController.swift */; };
@@ -53,12 +53,15 @@
 		9E29032320F7B99B00F11C63 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9E29032120F7B99B00F11C63 /* LaunchScreen.storyboard */; };
 		9E29032E20F7B99B00F11C63 /* ZHERPTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E29032D20F7B99B00F11C63 /* ZHERPTests.swift */; };
 		9E29033920F7B99C00F11C63 /* ZHERPUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E29033820F7B99C00F11C63 /* ZHERPUITests.swift */; };
+		9E4C316121435FCC004A95A2 /* HAllocateRecordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E4C316021435FCC004A95A2 /* HAllocateRecordViewController.swift */; };
+		9E4C3163214366F4004A95A2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9E4C3162214366F3004A95A2 /* Assets.xcassets */; };
+		9E4C3165214368D1004A95A2 /* HAllocatingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E4C3164214368D1004A95A2 /* HAllocatingViewController.swift */; };
+		9E4C316821436C7F004A95A2 /* HAllocatingModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E4C316721436C7F004A95A2 /* HAllocatingModel.swift */; };
 		9E523DE020FEB4F100CF921F /* ProtocolPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E523DDF20FEB4F100CF921F /* ProtocolPageViewController.swift */; };
 		9E523DE22100DD0500CF921F /* Protocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E523DE12100DD0500CF921F /* Protocol.swift */; };
 		9E523DE42100DDA900CF921F /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E523DE32100DDA900CF921F /* Service.swift */; };
 		9E523DE62100E21000CF921F /* RegisterVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E523DE52100E21000CF921F /* RegisterVM.swift */; };
 		9E523DE82102E46900CF921F /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E523DE72102E46900CF921F /* BaseViewController.swift */; };
-		9E523DEA21034B2000CF921F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9E523DE921034B2000CF921F /* Assets.xcassets */; };
 		9E523DF2210460B600CF921F /* HHGuidePageHUD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E523DEF210460B600CF921F /* HHGuidePageHUD.swift */; };
 		9E523DF3210460B600CF921F /* guide_btn_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9E523DF0210460B600CF921F /* guide_btn_bg@2x.png */; };
 		9E523DF4210460B600CF921F /* UIImage+GIF.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E523DF1210460B600CF921F /* UIImage+GIF.swift */; };
@@ -209,7 +212,7 @@
 		2C986C7A213FC48900F081BC /* SMemberOperateTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SMemberOperateTableViewCell.swift; sourceTree = "<group>"; };
 		2C986C7B213FC48900F081BC /* SMemberOperateTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SMemberOperateTableViewCell.xib; sourceTree = "<group>"; };
 		2C986C7E213FCF2200F081BC /* SMemberDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SMemberDetailViewController.swift; sourceTree = "<group>"; };
-		2C986C81213FDC2300F081BC /* SMemberData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SMemberData.swift; sourceTree = "<group>"; };
+		2C986C81213FDC2300F081BC /* SMemberModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SMemberModel.swift; sourceTree = "<group>"; };
 		2C9AC88E214244EB004F252D /* StatisticChartsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticChartsViewController.swift; sourceTree = "<group>"; };
 		2C9AC890214271B4004F252D /* StatisticNavigationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticNavigationViewController.swift; sourceTree = "<group>"; };
 		2C9AC89221427465004F252D /* StatisticReportViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticReportViewController.swift; sourceTree = "<group>"; };
@@ -243,12 +246,15 @@
 		9E29033820F7B99C00F11C63 /* ZHERPUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZHERPUITests.swift; sourceTree = "<group>"; };
 		9E29033A20F7B99C00F11C63 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9E29036020F81C7500F11C63 /* Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Header.h; sourceTree = "<group>"; };
+		9E4C316021435FCC004A95A2 /* HAllocateRecordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HAllocateRecordViewController.swift; sourceTree = "<group>"; };
+		9E4C3162214366F3004A95A2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		9E4C3164214368D1004A95A2 /* HAllocatingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HAllocatingViewController.swift; sourceTree = "<group>"; };
+		9E4C316721436C7F004A95A2 /* HAllocatingModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HAllocatingModel.swift; sourceTree = "<group>"; };
 		9E523DDF20FEB4F100CF921F /* ProtocolPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProtocolPageViewController.swift; sourceTree = "<group>"; };
 		9E523DE12100DD0500CF921F /* Protocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Protocol.swift; sourceTree = "<group>"; };
 		9E523DE32100DDA900CF921F /* Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Service.swift; sourceTree = "<group>"; };
 		9E523DE52100E21000CF921F /* RegisterVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterVM.swift; sourceTree = "<group>"; };
 		9E523DE72102E46900CF921F /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
-		9E523DE921034B2000CF921F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		9E523DEF210460B600CF921F /* HHGuidePageHUD.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HHGuidePageHUD.swift; sourceTree = "<group>"; };
 		9E523DF0210460B600CF921F /* guide_btn_bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "guide_btn_bg@2x.png"; sourceTree = "<group>"; };
 		9E523DF1210460B600CF921F /* UIImage+GIF.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+GIF.swift"; sourceTree = "<group>"; };
@@ -410,7 +416,7 @@
 		2C986C80213FDBE200F081BC /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				2C986C81213FDC2300F081BC /* SMemberData.swift */,
+				2C986C81213FDC2300F081BC /* SMemberModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -517,10 +523,10 @@
 				9E29034720F7B9C400F11C63 /* ViewModel */,
 				9E29034620F7B9B400F11C63 /* Object-C */,
 				9E29031820F7B99800F11C63 /* AppDelegate.swift */,
+				9E4C3162214366F3004A95A2 /* Assets.xcassets */,
 				9E29031C20F7B99800F11C63 /* Main.storyboard */,
 				9E29032120F7B99B00F11C63 /* LaunchScreen.storyboard */,
 				9E29032420F7B99B00F11C63 /* Info.plist */,
-				9E523DE921034B2000CF921F /* Assets.xcassets */,
 				9E523DF72104615700CF921F /* 1.mp4 */,
 				9E523DF52104615700CF921F /* guideImage6.gif */,
 				9E523DF82104615700CF921F /* guideImage7.gif */,
@@ -586,6 +592,24 @@
 				9E88ED0620FB3B3800DF091F /* PostAPI.swift */,
 			);
 			path = API;
+			sourceTree = "<group>";
+		};
+		9E4C315F21435FA4004A95A2 /* Allocating */ = {
+			isa = PBXGroup;
+			children = (
+				9E4C316621436BFA004A95A2 /* Model */,
+				9E4C316021435FCC004A95A2 /* HAllocateRecordViewController.swift */,
+				9E4C3164214368D1004A95A2 /* HAllocatingViewController.swift */,
+			);
+			path = Allocating;
+			sourceTree = "<group>";
+		};
+		9E4C316621436BFA004A95A2 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				9E4C316721436C7F004A95A2 /* HAllocatingModel.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 		9E523DEB21045F3300CF921F /* ThirdParty */ = {
@@ -778,6 +802,7 @@
 		9E88ED1720FB40DE00DF091F /* Home */ = {
 			isa = PBXGroup;
 			children = (
+				9E4C315F21435FA4004A95A2 /* Allocating */,
 				9E88ED1920FB41F800DF091F /* HomeViewController.swift */,
 				9E88ED1B20FB462600DF091F /* OrderTableViewController.swift */,
 				9E88ED1D20FB464B00DF091F /* GoodTableViewController.swift */,
@@ -1061,7 +1086,6 @@
 				9E523DFC2104615800CF921F /* guideImage7.gif in Resources */,
 				9E523DF3210460B600CF921F /* guide_btn_bg@2x.png in Resources */,
 				9E523E2C2104D7CE00CF921F /* shopping.gif in Resources */,
-				9E523DEA21034B2000CF921F /* Assets.xcassets in Resources */,
 				9E523E72210A241500CF921F /* ImageRightTableViewCell.xib in Resources */,
 				9E62C2B5213BD32900C8A578 /* address.plist in Resources */,
 				9E523E9E2119DF2100CF921F /* OrderTableViewCell.xib in Resources */,
@@ -1070,6 +1094,7 @@
 				9E523E6E2109401F00CF921F /* SwitchTableViewCell.xib in Resources */,
 				9E523DF92104615700CF921F /* guideImage6.gif in Resources */,
 				9E29031E20F7B99800F11C63 /* Main.storyboard in Resources */,
+				9E4C3163214366F4004A95A2 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1265,6 +1290,7 @@
 				9E523E92210D543F00CF921F /* OrderPayViewController.swift in Sources */,
 				9E523E85210CCEB000CF921F /* Common.swift in Sources */,
 				9E88ED3220FCE21000DF091F /* TableViewCell.swift in Sources */,
+				9E4C3165214368D1004A95A2 /* HAllocatingViewController.swift in Sources */,
 				9E523DE62100E21000CF921F /* RegisterVM.swift in Sources */,
 				9E523E402107E99E00CF921F /* NotifyViewController.swift in Sources */,
 				9E523E6D2109401F00CF921F /* SwitchTableViewCell.swift in Sources */,
@@ -1306,15 +1332,17 @@
 				2CC1319321114279004C8097 /* SearchViewController.swift in Sources */,
 				2C986C7F213FCF2200F081BC /* SMemberDetailViewController.swift in Sources */,
 				9E29031920F7B99800F11C63 /* AppDelegate.swift in Sources */,
+				9E4C316121435FCC004A95A2 /* HAllocateRecordViewController.swift in Sources */,
 				9ED7E50E2140304D00F8F735 /* OrderTodayBillTableViewCell.swift in Sources */,
 				9E523DE42100DDA900CF921F /* Service.swift in Sources */,
 				9E88ED2F20FBA90C00DF091F /* HelperCommon.swift in Sources */,
 				2CEA8C4A212A503E00004AE6 /* UIImage-Extensions.swift in Sources */,
 				9E523E0021047E7900CF921F /* UserDefaults.swift in Sources */,
+				9E4C316821436C7F004A95A2 /* HAllocatingModel.swift in Sources */,
 				9EE26B4D21247C7500619D98 /* ZHQRCodeConfig.swift in Sources */,
 				9E88ED3B20FCEC5100DF091F /* MemberMenus.swift in Sources */,
 				9E62C2AE213B81A200C8A578 /* WarehouseOperateViewController.swift in Sources */,
-				2C986C82213FDC2300F081BC /* SMemberData.swift in Sources */,
+				2C986C82213FDC2300F081BC /* SMemberModel.swift in Sources */,
 				9ED7E5192141902300F8F735 /* BillsSevenDaysViewController.swift in Sources */,
 				9E523E71210A241500CF921F /* ImageRightTableViewCell.swift in Sources */,
 				9EE26B4F21247C8C00619D98 /* ZHQRcodeManager.swift in Sources */,

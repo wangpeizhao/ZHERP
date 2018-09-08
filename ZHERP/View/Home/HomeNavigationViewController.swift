@@ -16,7 +16,7 @@ class HomeNavigationViewController: UIViewController, UICollectionViewDelegateFl
     let courses = [
         ["name":"拣货", "key":"picking","pic":"swift.png"],
         ["name":"扫码发货", "key":"scanSendGood","pic":"xcode.png"],
-        ["name":"调货", "key":"allocating","pic":"java.png"],
+        ["name":"调货", "key":"allocate","pic":"java.png"],
         ["name":"仓库", "key":"warehouse","pic":"php.png"],
         ["name":"盘点", "key":"takeStock","pic":"js.png"],
         ["name":"设置", "key":"setting","pic":"react.png"],
@@ -86,24 +86,21 @@ class HomeNavigationViewController: UIViewController, UICollectionViewDelegateFl
     //item 对应的点击事件
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let key: String = courses[indexPath.item]["key"]!
+        var _target: UIViewController!
         switch key {
         case "scanSendGood":
-            let _target = ZHQRCodeViewController()
-            _target.hidesBottomBarWhenPushed = true
-            _push(view: self, target: _target, rootView: true)
+            _target = ZHQRCodeViewController()
         case "warehouse":
-            let _target = WarehouseViewController()
-            _target.hidesBottomBarWhenPushed = true
-            _push(view: self, target: _target, rootView: true)
+            _target = WarehouseViewController()
+        case "allocate":
+            _target = HAllocateRecordViewController()
         case "setting":
-            let _target = SettingsViewController()
-            _target.hidesBottomBarWhenPushed = true
-            _push(view: self, target: _target, rootView: true)
+            _target = SettingsViewController()
         default:
-            let _target = GoodDetailViewController()
-            _target.hidesBottomBarWhenPushed = true
-            _push(view: self, target: _target, rootView: true)
+            _target = GoodDetailViewController()
         }
+        _target.hidesBottomBarWhenPushed = true
+        _push(view: self, target: _target, rootView: true)
         
     }
 
@@ -111,16 +108,4 @@ class HomeNavigationViewController: UIViewController, UICollectionViewDelegateFl
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }

@@ -39,7 +39,7 @@ class ZHQRCodeViewController: UIViewController {
         super.viewWillDisappear(animated)
         
         // 关闭并隐藏手电筒
-        self.scannerView.zh_setFlashlight(on: false)
+        self.scannerView.zh_setFlashlight(on: true)
         self.scannerView.zh_hideFlashlight(animated: true)
     }
     
@@ -152,18 +152,6 @@ class ZHQRCodeViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }
 
 // MARK: - 识别选择图片
@@ -229,21 +217,23 @@ extension ZHQRCodeViewController: AVCaptureMetadataOutputObjectsDelegate {
 
 // MARK: - 监听光线亮度
 extension ZHQRCodeViewController: AVCaptureVideoDataOutputSampleBufferDelegate {
-    func captureOutput(_ output: AVCaptureOutput, didDrop sampleBuffer: CMSampleBuffer, from connection: AVCaptureConnection) {
+    
+    func captureOutput(_ output: AVCaptureOutput, didOutput sampleBuffer: CMSampleBuffer, from connection: AVCaptureConnection) {
         
-        let metadataDict = CMCopyDictionaryOfAttachments(nil, sampleBuffer, kCMAttachmentMode_ShouldNotPropagate)
+        let metadataDict = CMCopyDictionaryOfAttachments(nil, sampleBuffer, kCMAttachmentMode_ShouldPropagate)
+        
         if let metadata = metadataDict as? [AnyHashable: Any]{
-            
             if let exifMetadata = metadata[kCGImagePropertyExifDictionary as String] as? [AnyHashable: Any] {
                 if let brightness = exifMetadata[kCGImagePropertyExifBrightnessValue as String] as? NSNumber {
                     
                     // 亮度值
                     let brightnessValue = brightness.floatValue
                     if !self.scannerView.zh_setFlashlightOn() {
-                        if brightnessValue < -4.0 {
+                        if brightnessValue < -2.0 { // -4.0
                             self.scannerView.zh_showFlashlight(animated: true)
                         }
-                        else{
+                        else
+                        {
                             self.scannerView.zh_hideFlashlight(animated: true)
                         }
                     }
@@ -268,6 +258,8 @@ extension ZHQRCodeViewController {
         switch self.actionType {
         case "good":
             self._action_good(value: value)
+        case "allocating":
+            self._action_allocating(value: value)
         default:
             self._action_common(value: value)
         }
@@ -297,6 +289,19 @@ extension ZHQRCodeViewController {
         orderView.actionValue = value
         self.hidesBottomBarWhenPushed = true
         self.navigationController?.pushViewController(orderView, animated: true)
+    }
+    
+    //
+    fileprivate func _action_allocating(value: String) {
+        let _target = HAllocatingViewController()
+        _target.valueArr = [
+            "sn": value,
+            "name": "汤臣倍健多种维生素",
+            "warehouse": "广州仓库",
+            "outWarehouse": "10000"
+        ]
+        
+        _push(view: self, target: _target, rootView: false)
     }
 }
 

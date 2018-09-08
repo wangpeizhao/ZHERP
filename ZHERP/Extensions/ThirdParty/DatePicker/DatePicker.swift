@@ -4,7 +4,7 @@
 //
 //  Created by MrParker on 2018/9/7.
 //  Copyright © 2018 MrParker. All rights reserved.
-//
+//  https://www.jianshu.com/p/2bf724d67421
 
 import UIKit
 
@@ -29,7 +29,7 @@ public func setDatePickerView(view: UIViewController,datePickerValue: Date, sele
     datePicker.datePickerMode = .date
     // 设置值
     datePicker.date = datePickerValue
-    
+    // 设置默认值
     datePicker.maximumDate = dateFromString(SYSTEM_DATE)
     
     alertController.view.addSubview(datePicker)

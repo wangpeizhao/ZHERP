@@ -28,7 +28,7 @@ class StatisticNavigationViewController: UIViewController, UICollectionViewDeleg
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.view.backgroundColor = Specs.color.gray
+        self.view.backgroundColor = UIColor.white
         self._setup()
         // Do any additional setup after loading the view.
     }
@@ -53,7 +53,7 @@ class StatisticNavigationViewController: UIViewController, UICollectionViewDeleg
         let frame = CGRect(x: 0, y: 0, width: ScreenWidth, height: 200)
         collectionView = UICollectionView(frame: frame, collectionViewLayout: layout)
         
-        collectionView!.backgroundColor = UIColor(hex: 0xf0f0f0)
+        collectionView!.backgroundColor = UIColor(hex: 0xfcfcfc)
         
         collectionView!.delegate = self
         
@@ -111,16 +111,4 @@ class StatisticNavigationViewController: UIViewController, UICollectionViewDeleg
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
-    
-    /*
-     // MARK: - Navigation
-     
-     // In a storyboard-based application, you will often want to do a little preparation before navigation
-     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-     // Get the new view controller using segue.destinationViewController.
-     // Pass the selected object to the new view controller.
-     }
-     */
-    
 }

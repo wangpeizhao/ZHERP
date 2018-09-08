@@ -159,7 +159,7 @@ extension WLocationDeatilViewController: UITableViewDelegate, UITableViewDataSou
     }
     
     func tableView(_ tableView: UITableView, titleForFooterInSection section: Int) -> String? {
-        return "请选择所属仓库"
+        return "请选择仓库"
     }
     
     //设置分组尾的高度

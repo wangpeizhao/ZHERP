@@ -22,7 +22,7 @@ class SMemberOperateViewController: UIViewController {
     
     var dataArr = [[String: Any]]()
     
-    var memberData: SMemberData?
+    var memberData: SMemberModel?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -62,7 +62,7 @@ class SMemberOperateViewController: UIViewController {
     
     private func initData() {
         
-        self.memberData = SMemberData(id: 0, avatar: "", username: "", rId: 0, realname: "", rolename: "", remark: "", status: false, lastLoginIp: "", lastLoginTime: dateFromString("2018-09-05")!)
+        self.memberData = SMemberModel(id: 0, avatar: "", username: "", rId: 0, realname: "", rolename: "", remark: "", status: false, lastLoginIp: "", lastLoginTime: dateFromString("2018-09-05")!)
         
         self.dataArr = [
             [
@@ -108,7 +108,7 @@ class SMemberOperateViewController: UIViewController {
     }
     
     fileprivate func _rowsModel(at section: Int) -> [Any] {
-        return self.dataArr[section][MemberMenus.Rows] as! [Any]
+        return self.dataArr[section]["rows"] as! [Any]
     }
     
     fileprivate func _rowModel(at indexPath: IndexPath) -> [String: String] {

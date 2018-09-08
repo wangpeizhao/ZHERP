@@ -189,7 +189,7 @@ extension ZHScannerView {
             UIView.animate(withDuration: 0.6, animations: {
                 self.flashlightLab.alpha = 1.0
                 self.flashlightBtn.alpha = 1.0
-                self.tipLab.alpha = 0
+                self.tipLab.alpha = 1.0
             }, completion: { (finished) in
                 self.flashlightBtn.isEnabled = true
             })
@@ -197,7 +197,7 @@ extension ZHScannerView {
         else {
             self.flashlightLab.alpha = 1.0
             self.flashlightBtn.alpha = 1.0
-            self.tipLab.alpha = 0
+            self.tipLab.alpha = 1.0
             self.flashlightBtn.isEnabled = true
         }
     }

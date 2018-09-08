@@ -85,6 +85,7 @@ extension BillsDelegateDataSourceViewController: UITableViewDelegate, UITableVie
     
     // UITableViewDelegate 方法，处理列表项的选中事件
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
         let _data = dataArr[indexPath.item]
         
         let _target = BillsDaliyDetailViewController()
