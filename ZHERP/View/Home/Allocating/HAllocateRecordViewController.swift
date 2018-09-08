@@ -32,6 +32,20 @@ class HAllocateRecordViewController: UIViewController {
         ["datetime": "2018-09-05 13:23:56", "id": "23456", "orderId": "2018090612344593325"],
         ["datetime": "2018-09-04 13:23:56", "id": "5t56", "orderId": "2018090612344599664"],
         ["datetime": "2018-09-03 13:23:56", "id": "509096", "orderId": "2018090612344599544"],
+        ["datetime": "2018-04-06 13:23:56", "id": "7656", "orderId": "2018090612344534567"],
+        ["datetime": "2018-03-06 13:23:56", "id": "256", "orderId": "2018090612344556453"],
+        ["datetime": "2018-02-06 13:23:56", "id": "596", "orderId": "2018090612344556900"],
+        ["datetime": "2018-01-06 13:23:56", "id": "1256", "orderId": "2018090612344596667"],
+        ["datetime": "2018-09-05 13:23:56", "id": "23456", "orderId": "2018090612344593325"],
+        ["datetime": "2018-09-04 13:23:56", "id": "5t56", "orderId": "2018090612344599664"],
+        ["datetime": "2018-09-03 13:23:56", "id": "509096", "orderId": "2018090612344599544"],
+        ["datetime": "2018-04-06 13:23:56", "id": "7656", "orderId": "2018090612344534567"],
+        ["datetime": "2018-03-06 13:23:56", "id": "256", "orderId": "2018090612344556453"],
+        ["datetime": "2018-02-06 13:23:56", "id": "596", "orderId": "2018090612344556900"],
+        ["datetime": "2018-01-06 13:23:56", "id": "1256", "orderId": "2018090612344596667"],
+        ["datetime": "2018-09-05 13:23:56", "id": "23456", "orderId": "2018090612344593325"],
+        ["datetime": "2018-09-04 13:23:56", "id": "5t56", "orderId": "2018090612344599664"],
+        ["datetime": "2018-09-03 13:23:56", "id": "509096", "orderId": "2018090612344599544"],
     ]
 
     override func viewDidLoad() {
@@ -56,20 +70,31 @@ class HAllocateRecordViewController: UIViewController {
     }
     
     @objc func footerRefresh(){
-        print("上拉刷新")
+        print("上拉刷新:\(self.dataArr.count).")
+        sleep(1)
+//        self.tableView?.mj_footer.endRefreshing()
+        //重现生成数据
+        refreshItemData(append: true)
+        if (self.dataArr.count > 6) {
+            DispatchQueue.main.async {
+                // 主线程中
+                // elf.tableView!.mj_header.state = MJrefreshno
+            }
+        }
+        self.tableView!.reloadData()
         self.tableView?.mj_footer.endRefreshing()
         // 2次后模拟没有更多数据
-        if (self.dataArr.count > 10) {
+        if (self.dataArr.count > 50) {
             footer.endRefreshingWithNoMoreData()
         }
     }
     
     //顶部下拉刷新
     @objc func headerRefresh(){
-        print("下拉刷新.")
+        print("下拉刷新:\(self.dataArr.count).")
         sleep(1)
         //重现生成数据
-        refreshItemData()
+        refreshItemData(append: false)
         
         // self.tableView?.mj_header.endRefreshing(.)
         if (self.dataArr.count > 6) {
@@ -85,10 +110,14 @@ class HAllocateRecordViewController: UIViewController {
     }
     
     //初始化数据
-    func refreshItemData() {
+    func refreshItemData(append: Bool) {
         for i in 0...2 {
             let _data = ["datetime": "2018-09-03 13:23:56", "id": "509096", "orderId": "201809061234459954\(i)"]
-            self.dataArr.insert(_data, at: 0)
+            if (append) {
+                self.dataArr.append(_data)
+            } else {
+                self.dataArr.insert(_data, at: 0)
+            }
         }
     }
     
