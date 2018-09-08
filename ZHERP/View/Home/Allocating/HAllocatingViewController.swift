@@ -97,7 +97,7 @@ class HAllocatingViewController: UIViewController {
     private func initData() {
         self._isAdd = self.valueArr["datetime"] == nil
         
-        self._initData = HAllocatingModel(id: 0, orderId: "", sn: "", name: "", warehouse: "", wId: 0, transferred: "", quantity: "", outWarehouse: "", inWarehouse: "", datetime: dateFromString(SYSTEM_DATETIME, format: "yyyy-MM-dd HH:mm:ss")!)
+        self._initData = HAllocatingModel(id: 0, orderId: "", sn: "", name: "", warehouse: "", wId: 0, transferred: "", quantity: "", outWarehouse: "", inWarehouse: "", employee: "", datetime: dateFromString(SYSTEM_DATETIME, format: "yyyy-MM-dd HH:mm:ss")!)
         
         if self.valueArr["datetime"] == nil {
             self.valueArr["datetime"] = SYSTEM_DATETIME
@@ -112,6 +112,7 @@ class HAllocatingViewController: UIViewController {
         self._initData?.quantity = self.valueArr["quantity"] != nil ? self.valueArr["quantity"]! : ""
         self._initData?.outWarehouse = self.valueArr["outWarehouse"] != nil ? self.valueArr["outWarehouse"]! : "0"
         self._initData?.inWarehouse = self.valueArr["inWarehouse"] != nil ? self.valueArr["inWarehouse"]! : "0"
+        self._initData?.employee = self.valueArr["employee"] != nil ? self.valueArr["employee"]! : "0"
         self._initData?.datetime = dateFromString(self.valueArr["datetime"]!, format: "yyyy-MM-dd HH:mm:ss")!
         
         self.dataArr = [
@@ -141,6 +142,7 @@ class HAllocatingViewController: UIViewController {
             ],
             [
                 "rows": [
+                    ["title":"调货员工", "key":"employee", "value": self._initData?.employee],
                     ["title":"调货时间", "key":"datetime", "value": stringFromDate((self._initData?.datetime)!, format: "yyyy-MM-dd HH:mm:ss")]
                 ]
             ]

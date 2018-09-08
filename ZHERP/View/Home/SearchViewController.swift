@@ -45,18 +45,21 @@ class SearchViewController: UIViewController {
         setNavBarTitle(view: self, title: !self.navBarTitle.isEmpty ? self.navBarTitle : "搜索")
         setNavBarBackBtn(view: self, title: !self.navBarTitle.isEmpty ? self.navBarTitle : "搜索", selector: #selector(goback))
         
+        // 设置右侧按钮
+        let _scans = ["allocating"]
+        if _scans.contains(self.searchType) {
+            let rightBarBtn = UIBarButtonItem(title: "", style: .plain, target: self, action: #selector(actionScan))
+            rightBarBtn.image = UIImage(named: "scan")
+            rightBarBtn.tintColor = Specs.color.white
+            self.navigationItem.rightBarButtonItems = [rightBarBtn]
+        }
+        
         self._setup()
     }
     
     private func _setup() {
         self.navHeight = self.navigationController?.navigationBar.frame.maxY
         self.searchBarHeight = 56.0
-        
-        // 设置右侧按钮
-        let rightBarBtn = UIBarButtonItem(title: "", style: .plain, target: self, action: #selector(actionScan))
-        rightBarBtn.image = UIImage(named: "scan")
-        rightBarBtn.tintColor = Specs.color.white
-        self.navigationItem.rightBarButtonItems = [rightBarBtn]
         
         self.view.addSubview(self.searchBar);
         self.view.addSubview(tableView);
@@ -71,9 +74,8 @@ class SearchViewController: UIViewController {
     }
     
     @objc func actionScan() {
-        self.hidesBottomBarWhenPushed = true
         let _ZHQRCode = ZHQRCodeViewController()
-        _ZHQRCode.actionType = "picking"
+        _ZHQRCode.actionType = self.searchType
         _push(view: self, target: _ZHQRCode, rootView: true)
         
     }
@@ -97,8 +99,8 @@ class SearchViewController: UIViewController {
     
     //使用懒加载方式来创建UISearchBar
     lazy var searchBar: UISearchBar = {
-        print("self.navHeight:\(self.navHeight!)")
-        print(self.searchType)
+//        print("self.navHeight:\(self.navHeight!)")
+//        print(self.searchType)
         let tempSearchBar = UISearchBar(frame: CGRect(x: 0, y: self.navHeight, width: ScreenWidth, height: self.searchBarHeight))
         tempSearchBar.placeholder = !self.searchBarPlaceholder.isEmpty ? self.searchBarPlaceholder : "请输入搜索关键字";
         tempSearchBar.showsCancelButton = true;
@@ -246,20 +248,44 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
     // UITableViewDelegate 方法，处理列表项的选中事件
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if isSearch {
-            let sb = UIStoryboard(name:"Main", bundle: nil)
-            let orderView = sb.instantiateViewController(withIdentifier: "OrderDetailViewController") as! OrderDetailViewController
-            
-            orderView.hidesBottomBarWhenPushed = true
             
             let count = self.dataArray.count
             let sectionNo = count - indexPath.row - 1
             var _data = self.dataArray[sectionNo]!
-            orderView.navTitle = _data["suk"]
-            orderView.order_image = _data["imagePath"]
-            orderView.order_price = _data["price"]
-            orderView.order_title = _data["title"]
-            orderView.actionValue = ""
-            _push(view: self, target: orderView, rootView: false)
+            
+            if self.searchType == "allocating" {
+                let _target = HAllocatingViewController()
+                _target.valueArr = [
+                    "sn": "ZHG20180908142345098",
+                    "name": _data["title"],
+                    "warehouse": "深圳仓库",
+                    "outWarehouse": "80000"
+                ] as! [String : String]
+                
+                _push(view: self, target: _target, rootView: false)
+            } else if self.searchType == "picking" {
+                let _target = HPickingGoodViewController()
+                _target.valueArr = [
+                    "sn": "ZHG20180908142345098",
+                    "name": _data["title"],
+                    "warehouse": "深圳仓库",
+                    "outWarehouse": "80000"
+                ] as! [String : String]
+                
+                _push(view: self, target: _target, rootView: false)
+            } else {
+                let sb = UIStoryboard(name:"Main", bundle: nil)
+                let orderView = sb.instantiateViewController(withIdentifier: "OrderDetailViewController") as! OrderDetailViewController
+                
+                orderView.hidesBottomBarWhenPushed = true
+                
+                orderView.navTitle = _data["suk"]
+                orderView.order_image = _data["imagePath"]
+                orderView.order_price = _data["price"]
+                orderView.order_title = _data["title"]
+                orderView.actionValue = ""
+                _push(view: self, target: orderView, rootView: false)
+            }
         } else {
             let keyword: String? = tableArray[indexPath.row] as? String
             searchBar.text = keyword

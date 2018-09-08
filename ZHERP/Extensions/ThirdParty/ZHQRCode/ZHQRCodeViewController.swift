@@ -39,7 +39,7 @@ class ZHQRCodeViewController: UIViewController {
         super.viewWillDisappear(animated)
         
         // 关闭并隐藏手电筒
-        self.scannerView.zh_setFlashlight(on: true)
+        self.scannerView.zh_setFlashlight(on: false)
         self.scannerView.zh_hideFlashlight(animated: true)
     }
     
@@ -231,9 +231,7 @@ extension ZHQRCodeViewController: AVCaptureVideoDataOutputSampleBufferDelegate {
                     if !self.scannerView.zh_setFlashlightOn() {
                         if brightnessValue < -2.0 { // -4.0
                             self.scannerView.zh_showFlashlight(animated: true)
-                        }
-                        else
-                        {
+                        } else {
                             self.scannerView.zh_hideFlashlight(animated: true)
                         }
                     }
@@ -260,6 +258,8 @@ extension ZHQRCodeViewController {
             self._action_good(value: value)
         case "allocating":
             self._action_allocating(value: value)
+        case "picking":
+            self._action_picking(value: value)
         default:
             self._action_common(value: value)
         }
@@ -291,8 +291,13 @@ extension ZHQRCodeViewController {
         self.navigationController?.pushViewController(orderView, animated: true)
     }
     
-    //
+    // 扫码货品调配
     fileprivate func _action_allocating(value: String) {
+        let pattern = "^[0-9]+$"
+        guard NSPredicate(format: "SELF MATCHES %@", pattern).evaluate(with: value) else {
+            _alert(view: self, message: "货品编号格式不正确", handler: _continueScan)
+            return
+        }
         let _target = HAllocatingViewController()
         _target.valueArr = [
             "sn": value,
@@ -302,6 +307,30 @@ extension ZHQRCodeViewController {
         ]
         
         _push(view: self, target: _target, rootView: false)
+    }
+    
+    // 扫码货品调配
+    fileprivate func _action_picking(value: String) {
+        let pattern = "^[0-9]+$"
+        guard NSPredicate(format: "SELF MATCHES %@", pattern).evaluate(with: value) else {
+            _alert(view: self, message: "货品编号格式不正确", handler: _continueScan)
+            return
+        }
+        let _target = HPickingGoodViewController()
+        _target.valueArr = [
+            "sn": value,
+            "name": "汤臣倍健多种维生素",
+            "warehouse": "广州仓库",
+            "outWarehouse": "10000"
+        ]
+        
+        _push(view: self, target: _target, rootView: false)
+    }
+    
+    // 继续扫描
+    @objc func _continueScan(_: UIAlertAction)->Void {
+        self.session.startRunning()
+        self._resumeScanning()
     }
 }
 

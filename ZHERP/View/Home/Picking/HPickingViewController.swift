@@ -1,5 +1,5 @@
 //
-//  HAllocatingViewController.swift
+//  HPickingViewController.swift
 //  ZHERP
 //
 //  Created by MrParker on 2018/9/8.
@@ -8,16 +8,22 @@
 
 import UIKit
 import MJRefresh
+import SnapKit
 
-class HAllocateRecordViewController: UIViewController {
+class HPickingViewController: UIViewController {
     
     var tableView: UITableView!
     let CELL_IDENTIFY_ID = "CELL_IDENTIFY_ID"
+    var navHeight: CGFloat!
+    var tabBarHeight: CGFloat!
+    
+    // 合计总价
+    var _totalValue: UILabel!
+    // 合计数量
+    var _quantityValue: UILabel!
     
     // 顶部刷新
     let header = MJRefreshNormalHeader()
-    // 底部刷新
-    let footer = MJRefreshAutoNormalFooter()
     
     var dataArr = [
         ["datetime": "2018-09-06 13:23:56", "id": "516", "orderId": "2018090612344519995"],
@@ -47,12 +53,12 @@ class HAllocateRecordViewController: UIViewController {
         ["datetime": "2018-09-04 13:23:56", "id": "5t56", "orderId": "2018090612344599664"],
         ["datetime": "2018-09-03 13:23:56", "id": "509096", "orderId": "2018090612344599544"],
     ]
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         self.view.backgroundColor = Specs.color.white
-        setNavBarTitle(view: self, title: "调货记录")
+        setNavBarTitle(view: self, title: "正在拣货")
         setNavBarBackBtn(view: self, title: "", selector: #selector(actionBack))
         
         // 设置右侧按钮1(扫码)
@@ -61,32 +67,12 @@ class HAllocateRecordViewController: UIViewController {
         rightBarBtnScan.tintColor = Specs.color.white
         
         // 设置右侧按钮2(筛选)
-        let rightBarBtnScreening = UIBarButtonItem(title: "", style: .plain, target: self, action: #selector(actionScreening))
-        rightBarBtnScreening.image = UIImage(named: "screening")
-        rightBarBtnScreening.tintColor = Specs.color.white
-        self.navigationItem.rightBarButtonItems = [rightBarBtnScan,rightBarBtnScreening]
+        let rightBarBtnRefresh = UIBarButtonItem(title: "", style: .plain, target: self, action: #selector(actionRefresh))
+        rightBarBtnRefresh.image = UIImage(named: "refresh")
+        rightBarBtnRefresh.tintColor = Specs.color.white
+        self.navigationItem.rightBarButtonItems = [rightBarBtnScan,rightBarBtnRefresh]
         
         self._setup()
-    }
-    
-    @objc func footerRefresh(){
-        print("上拉刷新:\(self.dataArr.count).")
-        sleep(1)
-//        self.tableView?.mj_footer.endRefreshing()
-        //重现生成数据
-        refreshItemData(append: true)
-        if (self.dataArr.count > 6) {
-            DispatchQueue.main.async {
-                // 主线程中
-                // elf.tableView!.mj_header.state = MJrefreshno
-            }
-        }
-        self.tableView!.reloadData()
-        self.tableView?.mj_footer.endRefreshing()
-        // 2次后模拟没有更多数据
-        if (self.dataArr.count > 50) {
-            footer.endRefreshingWithNoMoreData()
-        }
     }
     
     //顶部下拉刷新
@@ -127,20 +113,40 @@ class HAllocateRecordViewController: UIViewController {
     
     @objc func actionScan() {
         let _ZHQRCode = ZHQRCodeViewController()
-        _ZHQRCode.actionType = "allocating"
+        _ZHQRCode.actionType = "picking"
         _push(view: self, target: _ZHQRCode, rootView: false)
     }
     
-    @objc func actionScreening() {
+    @objc func actionRefresh() {
+        self.tableView!.mj_header.beginRefreshing()
+//        self.tableView.reloadData()
+    }
+    
+    @objc func actionCart() {
+        if (self._totalValue.text?.isEmpty)! || (self._quantityValue.text?.isEmpty)! {
+            _alert(view: self, message: "购物车还是空呢，请先拣货")
+            return
+        }
+        let _target = HPickingCompleteViewController()
+        _push(view: self, target: _target)
+    }
+    
+    @objc func actionSearch() {
         let _target = SearchViewController()
         _target.navBarTitle = "搜索货品"
         _target.searchBarPlaceholder = "按货品名称或编号搜索"
-        _target.searchType = "allocating"
+        _target.searchType = "picking"
         _push(view: self, target: _target, rootView: false)
     }
     
-    func _setup() {
-        self.tableView = UITableView(frame: self.view.frame, style: .grouped)
+    fileprivate func _setup() {
+        self.navHeight = self.navigationController?.navigationBar.frame.maxY
+        self.tabBarHeight = self.tabBarController?.tabBar.bounds.size.height
+        
+        searchBarBtn(view: self, navHeight: self.navHeight, placeholder: "按货品名称或编号搜索", action: #selector(actionSearch))
+        
+        let _frame = CGRect(x: 0, y: self.navHeight + SearchBtnHeight, width: ScreenWidth, height: ScreenHeight - self.navHeight - self.tabBarHeight)
+        self.tableView = UITableView(frame: _frame, style: .grouped)
         
         self.tableView!.delegate = self
         self.tableView!.dataSource = self
@@ -158,10 +164,129 @@ class HAllocateRecordViewController: UIViewController {
         self.header.setRefreshingTarget(self, refreshingAction: #selector(OrderAllViewController.headerRefresh))
         self.tableView!.mj_header = self.header
         
-        // 上拉刷新
-        self.footer.setRefreshingTarget(self, refreshingAction: #selector(footerRefresh))
-        self.tableView?.mj_footer = self.footer
+        
+        self._setTabBarCart()
         // Do any additional setup after loading the view.
+    }
+    
+    fileprivate func _setTabBarCart() {
+        // 购物车View
+        let _cartView = UIView()
+        _cartView.backgroundColor = Specs.color.white
+        self.view.addSubview(_cartView)
+        _cartView.snp.makeConstraints { (make) -> Void in
+            make.left.right.equalTo(0)
+            make.bottom.equalTo(0)
+            make.height.equalTo(self.tabBarHeight)
+            make.width.equalTo(ScreenWidth)
+        }
+        
+        // 总价view
+        let _cartDetailView = UIView()
+        self.view.addSubview(_cartDetailView)
+        _cartDetailView.snp.makeConstraints { (make) -> Void in
+            make.left.bottom.equalTo(0)
+            make.height.equalTo(self.tabBarHeight)
+            make.width.equalTo(ScreenWidth / 3 * 2)
+        }
+        
+        // Separator
+        let _separator = UILabel()
+        _separator.backgroundColor = Specs.color.gray
+        _cartDetailView.addSubview(_separator)
+        _separator.snp.makeConstraints { (make) -> Void in
+            make.top.equalTo(_cartDetailView.snp.top)
+            make.left.right.equalTo(0)
+            make.width.equalTo(_cartDetailView.snp.width)
+            make.height.equalTo(1)
+        }
+        
+        // cart
+        let _cartShopping = UIView()
+        _cartShopping.backgroundColor = UIColor(patternImage: UIImage(named:"cart")!)
+        _cartDetailView.addSubview(_cartShopping)
+        _cartShopping.snp.makeConstraints { (make) -> Void in
+            make.left.equalTo(10)
+            make.top.equalTo(_cartDetailView.snp.top).offset(2)
+            make.width.height.equalTo(48)
+        }
+        
+        // Quantity View
+        let _width = 25.0
+        let _cartQuantityView = UIView()
+        _cartQuantityView.backgroundColor = UIColor.red
+        _cartQuantityView.layer.cornerRadius = CGFloat(_width / 2)
+        _cartQuantityView.layer.masksToBounds = true
+        _cartShopping.addSubview(_cartQuantityView)
+        _cartQuantityView.snp.makeConstraints { (make) -> Void in
+            make.right.equalTo(10)
+            make.top.equalTo(_cartDetailView.snp.top).offset(-5)
+            make.width.height.equalTo(_width)
+        }
+        
+        // Quantity Value
+        self._quantityValue = UILabel()
+        self._quantityValue.text = "10"
+        self._quantityValue.sizeToFit()
+        self._quantityValue.textAlignment = .center
+        self._quantityValue.font = Specs.font.regular
+        self._quantityValue.textColor = Specs.color.white
+        _cartQuantityView.addSubview(self._quantityValue)
+        self._quantityValue.snp.makeConstraints { (make) -> Void in
+            make.center.equalTo(_cartQuantityView)
+        }
+        
+        // 总价 Label
+        let _totalLabel = UILabel()
+        _totalLabel.text = "合计：￥"
+        _totalLabel.sizeToFit()
+        _totalLabel.textAlignment = .left
+        _totalLabel.font = Specs.font.regular
+        _totalLabel.textColor = Specs.color.black
+        _cartDetailView.addSubview(_totalLabel)
+        _totalLabel.snp.makeConstraints { (make) -> Void in
+            make.left.equalTo(_cartShopping.snp.right).offset(30)
+            make.centerY.equalTo(_cartDetailView)
+            make.height.equalTo(20)
+        }
+        
+        // 总价 Value
+        self._totalValue = UILabel()
+        self._totalValue.text = "0.00"
+        self._totalValue.sizeToFit()
+        self._totalValue.textAlignment = .left
+        self._totalValue.font = UIFont.systemFont(ofSize: 20.0)
+        self._totalValue.textColor = Specs.color.black
+        _cartDetailView.addSubview(self._totalValue)
+        self._totalValue.snp.makeConstraints { (make) -> Void in
+            make.left.equalTo(_totalLabel.snp.right).offset(0)
+            make.centerY.equalTo(_cartDetailView)
+            make.height.equalTo(20)
+        }
+        
+        // 提交按钮View
+        let _cartBtnView = UIView()
+        self.view.addSubview(_cartBtnView)
+        _cartBtnView.snp.makeConstraints { (make) -> Void in
+            make.left.equalTo(_cartDetailView.snp.right)
+            make.right.bottom.equalTo(0)
+            make.height.equalTo(self.tabBarHeight)
+            make.width.equalTo(ScreenWidth / 3 - 1)
+        }
+        
+        // Btn
+        let _btn = UIButton()
+        _btn.setTitle("提 交", for: .normal)
+        _btn.setTitleColor(Specs.color.white, for: UIControlState())
+        _btn.backgroundColor = Specs.color.main
+        _btn.addTarget(self, action: #selector(actionCart), for: .touchUpInside)
+        _cartBtnView.addSubview(_btn)
+        _btn.snp.makeConstraints { (make) -> Void in
+            make.left.right.bottom.equalTo(0)
+            make.width.equalTo(_cartBtnView.snp.width)
+            make.height.equalTo(_cartBtnView.snp.height)
+        }
+        
     }
 
     override func didReceiveMemoryWarning() {
@@ -171,7 +296,7 @@ class HAllocateRecordViewController: UIViewController {
 
 }
 
-extension HAllocateRecordViewController: UITableViewDelegate, UITableViewDataSource {
+extension HPickingViewController: UITableViewDelegate, UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1;
@@ -247,7 +372,7 @@ extension HAllocateRecordViewController: UITableViewDelegate, UITableViewDataSou
             "inWarehouse": "200",
             "employees": "王培照",
             "datetime": _data["datetime"]
-        ] as! [String : String]
+            ] as! [String : String]
         
         _push(view: self, target: _target, rootView: false)
     }

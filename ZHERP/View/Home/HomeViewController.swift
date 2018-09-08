@@ -29,7 +29,7 @@ class HomeViewController: BaseViewController{
         
         self.view.backgroundColor = UIColor.clear
         setNavBarTitle(view: self, title: "纵横ERP", transparent: false)
-        setNavBarBackBtn(view: self, title: "首页", selector: #selector(actionBack))
+        setNavBarBackBtn(view: self, title: "", selector: #selector(actionBack))
         
         
         // 设置左侧按钮

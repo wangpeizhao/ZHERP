@@ -8,6 +8,26 @@
 
 import UIKit
 
+let SearchBtnHeight: CGFloat = 50.0
+
+public func searchBarBtn(view: UIViewController, navHeight: CGFloat, placeholder: String, action: Selector) {
+    let buttonView = UIView(frame: CGRect(x: 0, y: navHeight, width: ScreenWidth, height: SearchBtnHeight))
+    buttonView.backgroundColor = UIColor(hex: 0xefeef4)
+    view.view.addSubview(buttonView)
+    
+    let button = UIButton(frame: CGRect(x: 10, y: 10, width: ScreenWidth - 20, height: 30))
+    button.setTitle(placeholder, for: UIControlState())
+    button.titleLabel?.font = UIFont.systemFont(ofSize: 14)
+    button.setTitleColor(UIColor(hex: 0x8e8e93), for: UIControlState())
+    button.backgroundColor = Specs.color.white
+    button.layer.borderWidth = 0;
+    button.layer.borderColor = UIColor(hex: 0xf5f5f5).cgColor
+    button.layer.cornerRadius = Specs.border.radius
+    button.layer.masksToBounds = true
+    button.addTarget(view, action: action, for: .touchUpInside)
+    buttonView.addSubview(button)
+}
+
 //构建搜索框
 public func buildSearchBar(searchBar: UISearchBar, placeholder: String) {
     searchBar.layer.masksToBounds = false;

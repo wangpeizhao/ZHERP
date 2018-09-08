@@ -19,9 +19,10 @@ class HAllocatingModel: NSObject {
     var quantity: String
     var outWarehouse: String
     var inWarehouse: String
+    var employee: String
     var datetime: Date
     
-    init(id: Int, orderId: String, sn: String, name: String, warehouse: String, wId: Int, transferred: String, quantity: String, outWarehouse: String, inWarehouse: String, datetime: Date) {
+    init(id: Int, orderId: String, sn: String, name: String, warehouse: String, wId: Int, transferred: String, quantity: String, outWarehouse: String, inWarehouse: String, employee: String, datetime: Date) {
         self.id = id
         self.orderId = orderId
         self.sn = sn
@@ -32,6 +33,7 @@ class HAllocatingModel: NSObject {
         self.quantity = quantity
         self.outWarehouse = outWarehouse
         self.inWarehouse = inWarehouse
+        self.employee = employee
         self.datetime = datetime
     }
 }

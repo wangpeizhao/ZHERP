@@ -95,6 +95,14 @@ class GoodViewController: UIViewController {
         self.moreView.isHidden = true
     }
     
+    @objc func actionSearch() {
+        let _view = SearchViewController()
+        _view.navBarTitle = self._title
+        _view.searchBarPlaceholder = self._placeholder
+        _view.searchType = "good"
+        _push(view: self, target: _view)
+    }
+    
     private func _setup() {
         self.navHeight = self.navigationController?.navigationBar.frame.maxY
         self.tabBarHeight = self.navigationController?.toolbar.frame.maxY
@@ -116,7 +124,8 @@ class GoodViewController: UIViewController {
         tapMore.cancelsTouchesInView = false
         self.view.addGestureRecognizer(tapMore)
         
-        self._searchBarBtn()
+//        self._searchBarBtn()
+        searchBarBtn(view: self, navHeight: self.navHeight, placeholder: "按货品名称或编号搜索", action: #selector(actionSearch))
         self._setupTitlesView()
         self._moreView()
         
@@ -412,33 +421,25 @@ class GoodViewController: UIViewController {
         titleBottomView.frame.size.width = (firstTitleButton.titleLabel?.frame.width)! + self.smallMargin
         titleBottomView.center.x = firstTitleButton.center.x + self.titleButtonOffset
     }
-    
-    func _searchBarBtn() {
-        let frame = self.view.frame.size
-        let buttonView = UIView(frame: CGRect(x: 0, y: self.navHeight!, width: frame.width, height: 50))
-        buttonView.backgroundColor = UIColor(hex: 0xefeef4)
-        self.view.addSubview(buttonView)
-        
-        let button = UIButton(frame: CGRect(x: 10, y: 10, width: frame.width - 20, height: 30))
-        button.setTitle(self._placeholder, for: UIControlState())
-        button.titleLabel?.font = UIFont.systemFont(ofSize: 14)
-        button.setTitleColor(UIColor(hex: 0x8e8e93), for: UIControlState())
-        button.backgroundColor = Specs.color.white
-        button.layer.borderWidth = 0;
-        button.layer.borderColor = UIColor(hex: 0xf5f5f5).cgColor
-        button.layer.cornerRadius = Specs.border.radius
-        button.layer.masksToBounds = true
-        button.addTarget(self, action: #selector(goSearch), for: .touchUpInside)
-        buttonView.addSubview(button)
-    }
-    
-    @objc func goSearch() {
-        let _view = SearchViewController()
-        _view.navBarTitle = self._title
-        _view.searchBarPlaceholder = self._placeholder
-        _view.searchType = "good"
-        _push(view: self, target: _view)
-    }
+//
+//    func _searchBarBtn() {
+//        let frame = self.view.frame.size
+//        let buttonView = UIView(frame: CGRect(x: 0, y: self.navHeight!, width: frame.width, height: 50))
+//        buttonView.backgroundColor = UIColor(hex: 0xefeef4)
+//        self.view.addSubview(buttonView)
+//
+//        let button = UIButton(frame: CGRect(x: 10, y: 10, width: frame.width - 20, height: 30))
+//        button.setTitle(self._placeholder, for: UIControlState())
+//        button.titleLabel?.font = UIFont.systemFont(ofSize: 14)
+//        button.setTitleColor(UIColor(hex: 0x8e8e93), for: UIControlState())
+//        button.backgroundColor = Specs.color.white
+//        button.layer.borderWidth = 0;
+//        button.layer.borderColor = UIColor(hex: 0xf5f5f5).cgColor
+//        button.layer.cornerRadius = Specs.border.radius
+//        button.layer.masksToBounds = true
+//        button.addTarget(self, action: #selector(goSearch), for: .touchUpInside)
+//        buttonView.addSubview(button)
+//    }
     
     private func hiddenGoodListPopupView() {
         if (self.goodListPopupView != nil){
@@ -566,7 +567,7 @@ extension GoodViewController: UITableViewDataSource ,UITableViewDelegate {
             let orderView = sb.instantiateViewController(withIdentifier: "GoodDetailViewController") as! GoodDetailViewController
 
             let count = self.itemArray.count
-            let sectionNo = count - indexPath.row - 1
+//            let sectionNo = count - indexPath.row - 1
 //            var _data = self.itemArray[sectionNo]!
     //        orderView.hidesBottomBarWhenPushed = true
             

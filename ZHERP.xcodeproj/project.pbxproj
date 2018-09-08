@@ -158,6 +158,8 @@
 		9ED7E5192141902300F8F735 /* BillsSevenDaysViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9ED7E5182141902300F8F735 /* BillsSevenDaysViewController.swift */; };
 		9ED7E51B2141903D00F8F735 /* BillsMonthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9ED7E51A2141903D00F8F735 /* BillsMonthViewController.swift */; };
 		9ED7E51D2141915200F8F735 /* BillsLastMonthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9ED7E51C2141915200F8F735 /* BillsLastMonthViewController.swift */; };
+		9EE227D021441AB100E1CDD1 /* HPickingGoodViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EE227CF21441AB100E1CDD1 /* HPickingGoodViewController.swift */; };
+		9EE227D22144217700E1CDD1 /* HPickingCompleteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EE227D12144217700E1CDD1 /* HPickingCompleteViewController.swift */; };
 		9EE26B4D21247C7500619D98 /* ZHQRCodeConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EE26B4C21247C7500619D98 /* ZHQRCodeConfig.swift */; };
 		9EE26B4F21247C8C00619D98 /* ZHQRcodeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EE26B4E21247C8C00619D98 /* ZHQRcodeManager.swift */; };
 		9EE26B5121248C2000619D98 /* ZHQRCodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EE26B5021248C2000619D98 /* ZHQRCodeViewController.swift */; };
@@ -169,6 +171,7 @@
 		9EE26B84212DA13200619D98 /* Common-Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EE26B83212DA13200619D98 /* Common-Extensions.swift */; };
 		9EE26B86212DA33B00619D98 /* OrderPagingMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EE26B85212DA33B00619D98 /* OrderPagingMenuViewController.swift */; };
 		9EE26B89212DE2F900619D98 /* UIButton-Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EE26B88212DE2F900619D98 /* UIButton-Extensions.swift */; };
+		9EFF259F2143FD9F0055EB61 /* HPickingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EFF259E2143FD9F0055EB61 /* HPickingViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -352,6 +355,8 @@
 		9ED7E5182141902300F8F735 /* BillsSevenDaysViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BillsSevenDaysViewController.swift; sourceTree = "<group>"; };
 		9ED7E51A2141903D00F8F735 /* BillsMonthViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BillsMonthViewController.swift; sourceTree = "<group>"; };
 		9ED7E51C2141915200F8F735 /* BillsLastMonthViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BillsLastMonthViewController.swift; sourceTree = "<group>"; };
+		9EE227CF21441AB100E1CDD1 /* HPickingGoodViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HPickingGoodViewController.swift; sourceTree = "<group>"; };
+		9EE227D12144217700E1CDD1 /* HPickingCompleteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HPickingCompleteViewController.swift; sourceTree = "<group>"; };
 		9EE26B4C21247C7500619D98 /* ZHQRCodeConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZHQRCodeConfig.swift; sourceTree = "<group>"; };
 		9EE26B4E21247C8C00619D98 /* ZHQRcodeManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZHQRcodeManager.swift; sourceTree = "<group>"; };
 		9EE26B5021248C2000619D98 /* ZHQRCodeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZHQRCodeViewController.swift; sourceTree = "<group>"; };
@@ -363,6 +368,7 @@
 		9EE26B83212DA13200619D98 /* Common-Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Common-Extensions.swift"; sourceTree = "<group>"; };
 		9EE26B85212DA33B00619D98 /* OrderPagingMenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderPagingMenuViewController.swift; sourceTree = "<group>"; };
 		9EE26B88212DE2F900619D98 /* UIButton-Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton-Extensions.swift"; sourceTree = "<group>"; };
+		9EFF259E2143FD9F0055EB61 /* HPickingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HPickingViewController.swift; sourceTree = "<group>"; };
 		9F01564B284FE65EC6264542 /* Pods-ZHERPUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZHERPUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-ZHERPUITests/Pods-ZHERPUITests.release.xcconfig"; sourceTree = "<group>"; };
 		A20BF83E3F3D312627719EFA /* Pods-ZHERPTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZHERPTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-ZHERPTests/Pods-ZHERPTests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -802,6 +808,7 @@
 		9E88ED1720FB40DE00DF091F /* Home */ = {
 			isa = PBXGroup;
 			children = (
+				9EFF259D2143FD6C0055EB61 /* Picking */,
 				9E4C315F21435FA4004A95A2 /* Allocating */,
 				9E88ED1920FB41F800DF091F /* HomeViewController.swift */,
 				9E88ED1B20FB462600DF091F /* OrderTableViewController.swift */,
@@ -946,6 +953,16 @@
 				9EE26B88212DE2F900619D98 /* UIButton-Extensions.swift */,
 			);
 			path = UIButton;
+			sourceTree = "<group>";
+		};
+		9EFF259D2143FD6C0055EB61 /* Picking */ = {
+			isa = PBXGroup;
+			children = (
+				9EFF259E2143FD9F0055EB61 /* HPickingViewController.swift */,
+				9EE227CF21441AB100E1CDD1 /* HPickingGoodViewController.swift */,
+				9EE227D12144217700E1CDD1 /* HPickingCompleteViewController.swift */,
+			);
+			path = Picking;
 			sourceTree = "<group>";
 		};
 		DF0678E1C24A1C6B44D879C4 /* Pods */ = {
@@ -1243,6 +1260,7 @@
 				9E523E672108C5D400CF921F /* NotifyTableViewCell.swift in Sources */,
 				9E523E8E210D537B00CF921F /* GoodViewController.swift in Sources */,
 				9E523EA1211B42A800CF921F /* bridge.m in Sources */,
+				9EFF259F2143FD9F0055EB61 /* HPickingViewController.swift in Sources */,
 				9E88ED4120FE61CE00DF091F /* ResetPwdViewController.swift in Sources */,
 				9E88ED1120FB3B7700DF091F /* Single+ObjectMapper.swift in Sources */,
 				9E523E7D210C23CF00CF921F /* ResetViewController.swift in Sources */,
@@ -1285,6 +1303,8 @@
 				9E523E89210D449300CF921F /* OrderViewController.swift in Sources */,
 				9E523DFE2104661400CF921F /* GuideViewController.swift in Sources */,
 				9E88ED4520FE63AE00DF091F /* ForgotPwdViewController.swift in Sources */,
+				9EE227D22144217700E1CDD1 /* HPickingCompleteViewController.swift in Sources */,
+				9EE227D021441AB100E1CDD1 /* HPickingGoodViewController.swift in Sources */,
 				9E523E7F210C5B3000CF921F /* EditQRCodeViewController.swift in Sources */,
 				2C6B1F39213E4C6900CF82DE /* WLocationViewController.swift in Sources */,
 				9E523E92210D543F00CF921F /* OrderPayViewController.swift in Sources */,

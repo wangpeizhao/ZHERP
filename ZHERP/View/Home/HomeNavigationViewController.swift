@@ -88,6 +88,8 @@ class HomeNavigationViewController: UIViewController, UICollectionViewDelegateFl
         let key: String = courses[indexPath.item]["key"]!
         var _target: UIViewController!
         switch key {
+        case "picking":
+            _target = HPickingViewController()
         case "scanSendGood":
             _target = ZHQRCodeViewController()
         case "warehouse":
