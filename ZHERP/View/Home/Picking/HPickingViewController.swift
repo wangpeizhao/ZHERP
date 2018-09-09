@@ -146,7 +146,7 @@ class HPickingViewController: UIViewController {
     }
     
     @objc func actionCart() {
-        if self.valueArr["total"] == "0.00" || Int(self.valueArr["quantity"]) == 0 {
+        if self.valueArr["total"]! == "0.00" || Int(self.valueArr["quantity"]!)! == 0 {
             _alert(view: self, message: "购物车还是空呢，请先拣货")
             return
         }
