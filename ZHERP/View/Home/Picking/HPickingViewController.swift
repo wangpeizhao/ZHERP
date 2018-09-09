@@ -71,6 +71,8 @@ class HPickingViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        print("HPickingViewController:->viewDidLoad()")
+        
         self.view.backgroundColor = Specs.color.white
         setNavBarTitle(view: self, title: "正在拣货")
         setNavBarBackBtn(view: self, title: "", selector: #selector(actionBack))
@@ -87,6 +89,13 @@ class HPickingViewController: UIViewController {
         self.navigationItem.rightBarButtonItems = [rightBarBtnScan,rightBarBtnRefresh]
         
         self._setup()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        print("HPickingViewController:->viewWillAppear()")
+        super.viewWillAppear(animated)
+        
+        self.tableView.reloadData()
     }
     
     //顶部下拉刷新
@@ -227,6 +236,10 @@ class HPickingViewController: UIViewController {
         _tabBarView.addSubview(_HPickingView)
         self._HPickingView._submitAdd.addTarget(self, action: #selector(actionCart), for: .touchUpInside)
     }
+//
+//    public func _reloadData() {
+//        self.tableView!.reloadData()
+//    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

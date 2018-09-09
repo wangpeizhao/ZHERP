@@ -64,11 +64,11 @@ class HPickingGoodViewController: UIViewController, SliderGalleryControllerDeleg
     }
     
     @objc func actionAdd() {
-        if Int(self._quantityValue) == 0 || self._quantityValue == "" {
+        if self._quantityValue == nil || Int(self._quantityValue) == 0 {
             _alert(view: self, message: "请先填写拣货数量.")
             return
         }
-        let _target = HPickingCompleteViewController()
+        let _target = HPickingViewController()
         _push(view: self, target: _target, rootView: false)
     }
     

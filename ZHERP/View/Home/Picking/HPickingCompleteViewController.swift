@@ -10,17 +10,21 @@ import UIKit
 
 class HPickingCompleteViewController: UIViewController {
 
+    var tableView: UITableView!
+    let CELL_IDENTIFY_ID = "CELL_IDENTIFY_ID"
     var navHeight: CGFloat!
     var tabBarHeight: CGFloat!
     
     // 初始数据
     var valueArr = [String: String]()
     
+    var _HPickingCompleteView: HPickingCompleteView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         self.view.backgroundColor = Specs.color.white
-        setNavBarTitle(view: self, title: "拣货商品")
+        setNavBarTitle(view: self, title: "完成拣货")
         setNavBarBackBtn(view: self, title: "", selector: #selector(actionBack))
         
         // 设置右侧按钮
@@ -49,64 +53,81 @@ class HPickingCompleteViewController: UIViewController {
         self.navHeight = self.navigationController?.navigationBar.frame.maxY
         self.tabBarHeight = self.tabBarController?.tabBar.bounds.size.height
         
-        self._setTabBarCart()
+        let _frame = CGRect(x: 0, y: self.navHeight, width: ScreenWidth, height: ScreenHeight)
+        self.tableView = UITableView(frame: _frame, style: .grouped)
+        
+        self.tableView!.delegate = self
+        self.tableView!.dataSource = self
+        self.tableView!.register(UITableViewCell.self, forCellReuseIdentifier: CELL_IDENTIFY_ID)
+        self.tableView!.tableHeaderView = UIView.init(frame: CGRect(x: 0, y: 0, width: 0, height: 0.1))
+        self.view.addSubview(self.tableView!)
+        
+        self._setUp()
     }
     
-    fileprivate func _setTabBarCart() {
-        // tabBarView
-        let _tabBarView = UIView()
-        _tabBarView.backgroundColor = Specs.color.white
-        self.view.addSubview(_tabBarView)
-        _tabBarView.snp.makeConstraints { (make) -> Void in
-            make.left.right.equalTo(0)
-            make.bottom.equalTo(0)
-            make.height.equalTo(self.tabBarHeight)
-            make.width.equalTo(ScreenWidth)
-        }
+    fileprivate func _setUp() {
+        self.initData()
         
-        // Separator
-        let _separator = UILabel()
-        _separator.backgroundColor = Specs.color.gray
-        _tabBarView.addSubview(_separator)
-        _separator.snp.makeConstraints { (make) -> Void in
-            make.top.equalTo(_tabBarView.snp.top)
-            make.left.right.equalTo(0)
-            make.width.equalTo(_tabBarView.snp.width)
-            make.height.equalTo(1)
-        }
+        self._HPickingCompleteView = HPickingCompleteView()
         
-        // Btn
-        let _btn = UIButton()
-        _btn.layer.masksToBounds = true
-        _btn.layer.cornerRadius = Specs.border.radius
-        _btn.setTitle("添加", for: .normal)
-        _btn.setTitleColor(Specs.color.white, for: UIControlState())
-        _btn.backgroundColor = Specs.color.main
-        _btn.addTarget(self, action: #selector(actionSubmitAdd), for: .touchUpInside)
-        _tabBarView.addSubview(_btn)
-        _btn.snp.makeConstraints { (make) -> Void in
-            make.left.equalTo(20)
-            make.width.equalTo(ScreenWidth - 40)
-            make.height.equalTo(40)
-            make.center.equalTo(_tabBarView)
+    }
+    
+    fileprivate func initData() {
+        if self.valueArr.count == 0 {
+            self.valueArr = [
+                "orderId": "201809101454560090",
+                "orderTime": "2018-09-10 14:54:56",
+                "total": "56740.00"
+            ]
         }
-        
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }
+
+extension HPickingCompleteViewController: UITableViewDelegate, UITableViewDataSource {
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 1
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 1
+    }
+    
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let _mainView = UIView(frame: CGRect(x: 0, y: 0, width: ScreenWidth, height: ScreenHeight))
+        
+        _mainView.addSubview(self._HPickingCompleteView.mainView(initData: self.valueArr))
+        return _mainView
+    }
+    
+    //设置分组头的高度
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return ScreenHeight
+    }
+    
+    func tableView(_ tableView: UITableView, titleForFooterInSection section: Int) -> String? {
+        return "付款成功后直接进入店主微信/支付宝账户"
+    }
+    
+    //设置分组尾的高度
+    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        return 30
+    }
+    
+    //创建各单元显示内容(创建参数indexPath指定的单元）
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = UITableViewCell(style: .value1, reuseIdentifier: CELL_IDENTIFY_ID)
+        
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+    }
+}
+
