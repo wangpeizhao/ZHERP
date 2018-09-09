@@ -160,6 +160,10 @@
 		9ED7E51D2141915200F8F735 /* BillsLastMonthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9ED7E51C2141915200F8F735 /* BillsLastMonthViewController.swift */; };
 		9EE227D021441AB100E1CDD1 /* HPickingGoodViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EE227CF21441AB100E1CDD1 /* HPickingGoodViewController.swift */; };
 		9EE227D22144217700E1CDD1 /* HPickingCompleteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EE227D12144217700E1CDD1 /* HPickingCompleteViewController.swift */; };
+		9EE227D52144A43700E1CDD1 /* SliderGalleryController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EE227D42144A43700E1CDD1 /* SliderGalleryController.swift */; };
+		9EE227DB2144A57600E1CDD1 /* ImageHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EE227D92144A57600E1CDD1 /* ImageHelper.swift */; };
+		9EE227DC2144A57600E1CDD1 /* ImageVIewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EE227DA2144A57600E1CDD1 /* ImageVIewExtension.swift */; };
+		9EE227E02144EB5900E1CDD1 /* HPickingGoodView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EE227DF2144EB5900E1CDD1 /* HPickingGoodView.swift */; };
 		9EE26B4D21247C7500619D98 /* ZHQRCodeConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EE26B4C21247C7500619D98 /* ZHQRCodeConfig.swift */; };
 		9EE26B4F21247C8C00619D98 /* ZHQRcodeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EE26B4E21247C8C00619D98 /* ZHQRcodeManager.swift */; };
 		9EE26B5121248C2000619D98 /* ZHQRCodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EE26B5021248C2000619D98 /* ZHQRCodeViewController.swift */; };
@@ -357,6 +361,10 @@
 		9ED7E51C2141915200F8F735 /* BillsLastMonthViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BillsLastMonthViewController.swift; sourceTree = "<group>"; };
 		9EE227CF21441AB100E1CDD1 /* HPickingGoodViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HPickingGoodViewController.swift; sourceTree = "<group>"; };
 		9EE227D12144217700E1CDD1 /* HPickingCompleteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HPickingCompleteViewController.swift; sourceTree = "<group>"; };
+		9EE227D42144A43700E1CDD1 /* SliderGalleryController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SliderGalleryController.swift; sourceTree = "<group>"; };
+		9EE227D92144A57600E1CDD1 /* ImageHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageHelper.swift; sourceTree = "<group>"; };
+		9EE227DA2144A57600E1CDD1 /* ImageVIewExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageVIewExtension.swift; sourceTree = "<group>"; };
+		9EE227DF2144EB5900E1CDD1 /* HPickingGoodView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HPickingGoodView.swift; sourceTree = "<group>"; };
 		9EE26B4C21247C7500619D98 /* ZHQRCodeConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZHQRCodeConfig.swift; sourceTree = "<group>"; };
 		9EE26B4E21247C8C00619D98 /* ZHQRcodeManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZHQRcodeManager.swift; sourceTree = "<group>"; };
 		9EE26B5021248C2000619D98 /* ZHQRCodeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZHQRCodeViewController.swift; sourceTree = "<group>"; };
@@ -621,6 +629,8 @@
 		9E523DEB21045F3300CF921F /* ThirdParty */ = {
 			isa = PBXGroup;
 			children = (
+				9EE227D82144A56600E1CDD1 /* ImageHelper */,
+				9EE227D32144A40600E1CDD1 /* SliderGallery */,
 				9ECA8D0B2141F6BE003FFC05 /* DatePicker */,
 				9E62C2B6213BF17600C8A578 /* AddressPicker */,
 				9EE26B4921247C3600619D98 /* ZHQRCode */,
@@ -907,6 +917,38 @@
 			path = DatePicker;
 			sourceTree = "<group>";
 		};
+		9EE227D32144A40600E1CDD1 /* SliderGallery */ = {
+			isa = PBXGroup;
+			children = (
+				9EE227D42144A43700E1CDD1 /* SliderGalleryController.swift */,
+			);
+			path = SliderGallery;
+			sourceTree = "<group>";
+		};
+		9EE227D82144A56600E1CDD1 /* ImageHelper */ = {
+			isa = PBXGroup;
+			children = (
+				9EE227D92144A57600E1CDD1 /* ImageHelper.swift */,
+				9EE227DA2144A57600E1CDD1 /* ImageVIewExtension.swift */,
+			);
+			path = ImageHelper;
+			sourceTree = "<group>";
+		};
+		9EE227DD2144E9B200E1CDD1 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				9EE227DF2144EB5900E1CDD1 /* HPickingGoodView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		9EE227DE2144EAB100E1CDD1 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		9EE26B4921247C3600619D98 /* ZHQRCode */ = {
 			isa = PBXGroup;
 			children = (
@@ -958,6 +1000,8 @@
 		9EFF259D2143FD6C0055EB61 /* Picking */ = {
 			isa = PBXGroup;
 			children = (
+				9EE227DE2144EAB100E1CDD1 /* Model */,
+				9EE227DD2144E9B200E1CDD1 /* View */,
 				9EFF259E2143FD9F0055EB61 /* HPickingViewController.swift */,
 				9EE227CF21441AB100E1CDD1 /* HPickingGoodViewController.swift */,
 				9EE227D12144217700E1CDD1 /* HPickingCompleteViewController.swift */,
@@ -1250,6 +1294,7 @@
 				9E88ED1E20FB464B00DF091F /* GoodTableViewController.swift in Sources */,
 				2C2BD1CC21279ED300F6C6C3 /* GoodDetailViewController.swift in Sources */,
 				9E88ED0F20FB3B7700DF091F /* Response+ObjectMapper.swift in Sources */,
+				9EE227D52144A43700E1CDD1 /* SliderGalleryController.swift in Sources */,
 				9E549931213EBC4A001E4C36 /* WCategoryManagerViewController.swift in Sources */,
 				9E88ED3720FCE9C400DF091F /* MemberViewController.swift in Sources */,
 				2C9AC891214271B4004F252D /* StatisticNavigationViewController.swift in Sources */,
@@ -1272,6 +1317,7 @@
 				9E523E3E2107819000CF921F /* EditPersonalViewController.swift in Sources */,
 				9E523E3721074E8200CF921F /* BaseNavigationController.swift in Sources */,
 				2C986C77213FA66600F081BC /* SMemberManagerViewController.swift in Sources */,
+				9EE227DB2144A57600E1CDD1 /* ImageHelper.swift in Sources */,
 				9ED7E51321404FE000F8F735 /* OrderBillsPagesViewController.swift in Sources */,
 				9E523DE82102E46900CF921F /* BaseViewController.swift in Sources */,
 				2C986C79213FA97000F081BC /* SMemberOperateViewController.swift in Sources */,
@@ -1313,6 +1359,7 @@
 				9E4C3165214368D1004A95A2 /* HAllocatingViewController.swift in Sources */,
 				9E523DE62100E21000CF921F /* RegisterVM.swift in Sources */,
 				9E523E402107E99E00CF921F /* NotifyViewController.swift in Sources */,
+				9EE227DC2144A57600E1CDD1 /* ImageVIewExtension.swift in Sources */,
 				9E523E6D2109401F00CF921F /* SwitchTableViewCell.swift in Sources */,
 				9E523E96210D546400CF921F /* OrderCloseViewController.swift in Sources */,
 				9E88ED2720FB576200DF091F /* Candy.swift in Sources */,
@@ -1377,6 +1424,7 @@
 				9E523E3A21076B3C00CF921F /* PersonalViewController.swift in Sources */,
 				9E88ED3F20FE5D2C00DF091F /* LoginViewController.swift in Sources */,
 				9E88ED0720FB3B3800DF091F /* PostAPI.swift in Sources */,
+				9EE227E02144EB5900E1CDD1 /* HPickingGoodView.swift in Sources */,
 				9E27D5A5213A727200087D20 /* WarehouseManagerViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

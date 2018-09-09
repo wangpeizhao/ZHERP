@@ -185,7 +185,8 @@ class HPickingViewController: UIViewController {
         let _cartDetailView = UIView()
         self.view.addSubview(_cartDetailView)
         _cartDetailView.snp.makeConstraints { (make) -> Void in
-            make.left.bottom.equalTo(0)
+            make.top.equalTo(_cartView.snp.top)
+            make.left.equalTo(0)
             make.height.equalTo(self.tabBarHeight)
             make.width.equalTo(ScreenWidth / 3 * 2)
         }
@@ -203,12 +204,12 @@ class HPickingViewController: UIViewController {
         
         // cart
         let _cartShopping = UIView()
-        _cartShopping.backgroundColor = UIColor(patternImage: UIImage(named:"cart")!)
+        _cartShopping.backgroundColor = UIColor(patternImage: UIImage(named:"cart_32_32")!)
         _cartDetailView.addSubview(_cartShopping)
         _cartShopping.snp.makeConstraints { (make) -> Void in
             make.left.equalTo(10)
-            make.top.equalTo(_cartDetailView.snp.top).offset(2)
-            make.width.height.equalTo(48)
+            make.top.equalTo(_cartDetailView.snp.top).offset(10)
+            make.width.height.equalTo(32)
         }
         
         // Quantity View
@@ -268,8 +269,9 @@ class HPickingViewController: UIViewController {
         let _cartBtnView = UIView()
         self.view.addSubview(_cartBtnView)
         _cartBtnView.snp.makeConstraints { (make) -> Void in
+            make.top.equalTo(_separator.snp.top)
             make.left.equalTo(_cartDetailView.snp.right)
-            make.right.bottom.equalTo(0)
+            make.right.equalTo(0)
             make.height.equalTo(self.tabBarHeight)
             make.width.equalTo(ScreenWidth / 3 - 1)
         }
@@ -282,7 +284,8 @@ class HPickingViewController: UIViewController {
         _btn.addTarget(self, action: #selector(actionCart), for: .touchUpInside)
         _cartBtnView.addSubview(_btn)
         _btn.snp.makeConstraints { (make) -> Void in
-            make.left.right.bottom.equalTo(0)
+            make.top.equalTo(_cartBtnView.snp.top)
+            make.left.right.equalTo(0)
             make.width.equalTo(_cartBtnView.snp.width)
             make.height.equalTo(_cartBtnView.snp.height)
         }
@@ -338,7 +341,7 @@ extension HPickingViewController: UITableViewDelegate, UITableViewDataSource {
     
     //创建各单元显示内容(创建参数indexPath指定的单元）
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let _data = dataArr[indexPath.item]
+        let _data = self.dataArr[indexPath.item]
         let cell = tableView.dequeueReusableCell(withIdentifier: SimpleBasicsCell.identifier, for: indexPath)
         
         cell.textLabel?.text = "单据号：\(_data["orderId"]!)"
@@ -355,7 +358,7 @@ extension HPickingViewController: UITableViewDelegate, UITableViewDataSource {
     // UITableViewDelegate 方法，处理列表项的选中事件
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        let _data = dataArr[indexPath.item]
+        let _data = self.dataArr[indexPath.item]
         
         let _target = HAllocatingViewController()
         _target.navTitle = "调货记录"

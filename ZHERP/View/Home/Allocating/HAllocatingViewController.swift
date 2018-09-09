@@ -57,7 +57,7 @@ class HAllocatingViewController: UIViewController {
     }
     
     @objc func actionTextField(_ sender: UITextField) {
-        print(sender.text!)
+//        print(sender.text!)
         sender.resignFirstResponder()
         self._initData?.quantity = sender.text!
     }
@@ -69,6 +69,10 @@ class HAllocatingViewController: UIViewController {
         }
         if (self._initData?.quantity == "") {
             _alert(view: self, message: "请先填写调入库存数量")
+            return
+        }
+        if Int((self._initData?.outWarehouse)!)! < Int((self._initData?.quantity)!)! {
+            _alert(view: self, message: "调入库存数量不能大于调出库库存")
             return
         }
         if (self.callBackAssign != nil) {
