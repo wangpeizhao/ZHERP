@@ -23,6 +23,8 @@ class HPickingCompleteView: UIViewController {
     // 继续拣货
     var continuePickBtn: UIButton!
     
+    var frameHeight: CGFloat!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -30,7 +32,7 @@ class HPickingCompleteView: UIViewController {
     }
     
     public func mainView(initData: [String: String]) -> UIView {
-        let _mainView = UIView(frame: CGRect(x: 0, y: 0, width: ScreenWidth, height: ScreenHeight))
+        let _mainView = UIView(frame: CGRect(x: 0, y: 0, width: ScreenWidth, height: self.frameHeight))
         _mainView.backgroundColor = Specs.color.white
         self.view.addSubview(_mainView)
         
@@ -171,12 +173,13 @@ class HPickingCompleteView: UIViewController {
         self.actionOrderBtn.backgroundColor = Specs.color.main
         self.actionOrderBtn.layer.masksToBounds = true
         self.actionOrderBtn.layer.cornerRadius = Specs.border.radius
+        self.actionOrderBtn.titleLabel?.font = UIFont.systemFont(ofSize: Specs.fontSize.regular)
         _mainView.addSubview(self.actionOrderBtn)
         self.actionOrderBtn.snp.makeConstraints { (make) -> Void in
             make.top.equalTo(_separator.snp.bottom).offset(10)
             make.left.equalTo(20)
             make.width.equalTo(_width)
-            make.height.equalTo(40)
+            make.height.equalTo(30)
         }
 
         self.continuePickBtn = UIButton()
@@ -187,12 +190,13 @@ class HPickingCompleteView: UIViewController {
         self.continuePickBtn.layer.borderColor = UIColor(hex: 0xdddddd).cgColor
         self.continuePickBtn.layer.masksToBounds = true
         self.continuePickBtn.layer.cornerRadius = Specs.border.radius
+        self.continuePickBtn.titleLabel?.font = UIFont.systemFont(ofSize: Specs.fontSize.regular)
         _mainView.addSubview(self.continuePickBtn)
         self.continuePickBtn.snp.makeConstraints { (make) -> Void in
             make.top.equalTo(_separator.snp.bottom).offset(10)
             make.left.equalTo(self.actionOrderBtn.snp.right).offset(40)
             make.width.equalTo(_width)
-            make.height.equalTo(40)
+            make.height.equalTo(30)
         }
         
         // Separator
@@ -200,7 +204,7 @@ class HPickingCompleteView: UIViewController {
         _separatorBottom.backgroundColor = UIColor(hex: 0xdddddd)
         _mainView.addSubview(_separatorBottom)
         _separatorBottom.snp.makeConstraints { (make) -> Void in
-            make.top.equalTo(_separator.snp.bottom).offset(60)
+            make.top.equalTo(_separator.snp.bottom).offset(50)
             make.left.right.equalTo(0)
             make.width.equalTo(ScreenWidth)
             make.height.equalTo(0.3)

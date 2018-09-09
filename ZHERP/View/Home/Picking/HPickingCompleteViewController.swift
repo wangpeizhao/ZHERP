@@ -53,7 +53,7 @@ class HPickingCompleteViewController: UIViewController {
         self.navHeight = self.navigationController?.navigationBar.frame.maxY
         self.tabBarHeight = self.tabBarController?.tabBar.bounds.size.height
         
-        let _frame = CGRect(x: 0, y: self.navHeight, width: ScreenWidth, height: ScreenHeight)
+        let _frame = CGRect(x: 0, y: self.navHeight, width: ScreenWidth, height: ScreenHeight - self.navHeight - self.tabBarHeight)
         self.tableView = UITableView(frame: _frame, style: .grouped)
         
         self.tableView!.delegate = self
@@ -69,7 +69,7 @@ class HPickingCompleteViewController: UIViewController {
         self.initData()
         
         self._HPickingCompleteView = HPickingCompleteView()
-        
+        self._HPickingCompleteView.frameHeight = ScreenHeight - self.navHeight - self.tabBarHeight
     }
     
     fileprivate func initData() {
@@ -95,7 +95,7 @@ extension HPickingCompleteViewController: UITableViewDelegate, UITableViewDataSo
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
+        return 0
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
@@ -107,7 +107,7 @@ extension HPickingCompleteViewController: UITableViewDelegate, UITableViewDataSo
     
     //设置分组头的高度
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return ScreenHeight
+        return (ScreenWidth - 80) / 2 + 220
     }
     
     func tableView(_ tableView: UITableView, titleForFooterInSection section: Int) -> String? {
