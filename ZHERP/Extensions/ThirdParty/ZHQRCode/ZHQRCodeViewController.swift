@@ -309,7 +309,7 @@ extension ZHQRCodeViewController {
         _push(view: self, target: _target, rootView: false)
     }
     
-    // 扫码货品调配
+    // 扫码拣货
     fileprivate func _action_picking(value: String) {
         let pattern = "^[0-9]+$"
         guard NSPredicate(format: "SELF MATCHES %@", pattern).evaluate(with: value) else {
@@ -319,9 +319,12 @@ extension ZHQRCodeViewController {
         let _target = HPickingGoodViewController()
         _target.valueArr = [
             "sn": value,
-            "name": "汤臣倍健多种维生素",
-            "warehouse": "广州仓库",
-            "outWarehouse": "10000"
+            "warehouse": "深圳仓库",
+            "price": "80000.88",
+            "total": "987452.00",
+            "quantity": "12",
+            "stock": "5600",
+            "title": "美的（Midea）电饭煲 气动涡轮防溢 金属机身 圆灶釜内胆4L电饭锅MB-WFS4037",
         ]
         
         _push(view: self, target: _target, rootView: false)

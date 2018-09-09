@@ -22,36 +22,50 @@ class HPickingViewController: UIViewController {
     // 合计数量
     var _quantityValue: UILabel!
     
+    var _HPickingView: HPickingView!
+    
+    // 初始数据
+    var valueArr = [String: String]()
+    
     // 顶部刷新
     let header = MJRefreshNormalHeader()
     
-    var dataArr = [
-        ["datetime": "2018-09-06 13:23:56", "id": "516", "orderId": "2018090612344519995"],
-        ["datetime": "2018-08-06 13:23:56", "id": "4456", "orderId": "2018090612344529997"],
-        ["datetime": "2018-07-06 13:23:56", "id": "536", "orderId": "2018090612344539997"],
-        ["datetime": "2018-06-06 13:23:56", "id": "560", "orderId": "2018090612344599900"],
-        ["datetime": "2018-05-06 13:23:56", "id": "569", "orderId": "2018090612344598800"],
-        ["datetime": "2018-04-06 13:23:56", "id": "7656", "orderId": "2018090612344534567"],
-        ["datetime": "2018-03-06 13:23:56", "id": "256", "orderId": "2018090612344556453"],
-        ["datetime": "2018-02-06 13:23:56", "id": "596", "orderId": "2018090612344556900"],
-        ["datetime": "2018-01-06 13:23:56", "id": "1256", "orderId": "2018090612344596667"],
-        ["datetime": "2018-09-05 13:23:56", "id": "23456", "orderId": "2018090612344593325"],
-        ["datetime": "2018-09-04 13:23:56", "id": "5t56", "orderId": "2018090612344599664"],
-        ["datetime": "2018-09-03 13:23:56", "id": "509096", "orderId": "2018090612344599544"],
-        ["datetime": "2018-04-06 13:23:56", "id": "7656", "orderId": "2018090612344534567"],
-        ["datetime": "2018-03-06 13:23:56", "id": "256", "orderId": "2018090612344556453"],
-        ["datetime": "2018-02-06 13:23:56", "id": "596", "orderId": "2018090612344556900"],
-        ["datetime": "2018-01-06 13:23:56", "id": "1256", "orderId": "2018090612344596667"],
-        ["datetime": "2018-09-05 13:23:56", "id": "23456", "orderId": "2018090612344593325"],
-        ["datetime": "2018-09-04 13:23:56", "id": "5t56", "orderId": "2018090612344599664"],
-        ["datetime": "2018-09-03 13:23:56", "id": "509096", "orderId": "2018090612344599544"],
-        ["datetime": "2018-04-06 13:23:56", "id": "7656", "orderId": "2018090612344534567"],
-        ["datetime": "2018-03-06 13:23:56", "id": "256", "orderId": "2018090612344556453"],
-        ["datetime": "2018-02-06 13:23:56", "id": "596", "orderId": "2018090612344556900"],
-        ["datetime": "2018-01-06 13:23:56", "id": "1256", "orderId": "2018090612344596667"],
-        ["datetime": "2018-09-05 13:23:56", "id": "23456", "orderId": "2018090612344593325"],
-        ["datetime": "2018-09-04 13:23:56", "id": "5t56", "orderId": "2018090612344599664"],
-        ["datetime": "2018-09-03 13:23:56", "id": "509096", "orderId": "2018090612344599544"],
+    
+    
+    var dataArr : [Int: [String:String]] = [
+        0: ["sn": "2018090612344519995",
+         "suk": "CD_PPC01",
+         "avatar": "bayMax",
+         "warehouse": "深圳仓库",
+         "price": "80000.88",
+         "total": "987452.00",
+         "quantity": "12",
+         "stock": "5600",
+         "name": "六神花露水001",
+         "title": "美的（Midea）电饭煲 气动涡轮防溢 金属机身 圆灶釜内胆4L电饭锅MB-WFS4037",
+        "cost": "2350.00", "location": "广州白马3434", "status": "-1"],
+        1: ["sn": "2018090612344519995",
+         "suk": "CD_PPC02",
+         "avatar": "swift",
+         "warehouse": "深圳仓库",
+         "price": "80000.88",
+         "total": "987452.00",
+         "quantity": "12",
+         "stock": "5600",
+         "name": "六神花露水002",
+         "title": "美的（Midea）电饭煲 气动涡轮防溢 金属机身 圆灶釜内胆4L电饭锅MB-WFS4037",
+        "cost": "2350.00", "location": "广州白马3434", "status": "-1"],
+        2: ["sn": "2018090612344519995",
+         "suk": "CD_PPC03",
+         "avatar": "php",
+         "warehouse": "深圳仓库",
+         "price": "80000.88",
+         "total": "987452.00",
+         "quantity": "12",
+         "stock": "5600",
+         "name": "六神花露水003",
+         "title": "美的（Midea）电饭煲 气动涡轮防溢 金属机身 圆灶釜内胆4L电饭锅MB-WFS4037",
+        "cost": "2350.00", "location": "广州白马3434", "status": "-1"],
     ]
     
     override func viewDidLoad() {
@@ -97,13 +111,22 @@ class HPickingViewController: UIViewController {
     
     //初始化数据
     func refreshItemData(append: Bool) {
+        let count = self.dataArr.count
+        let imagePaths = ["java","php","html","react","ruby","swift","xcode","bayMax","c#"]
         for i in 0...2 {
-            let _data = ["datetime": "2018-09-03 13:23:56", "id": "509096", "orderId": "201809061234459954\(i)"]
-            if (append) {
-                self.dataArr.append(_data)
-            } else {
-                self.dataArr.insert(_data, at: 0)
-            }
+            let index = arc4random_uniform(UInt32(imagePaths.count))
+            let _imagePath = imagePaths[Int(index)]
+            self.dataArr[count + i] = ["avatar": _imagePath,
+                                         "sn": "2018090612344519995",
+                                         "suk": "AB_PPC\(count + i)",
+                                         "warehouse": "深圳仓库",
+                                         "price": "80000.88",
+                                         "total": "987452.00",
+                                         "quantity": "12",
+                                         "stock": "5600",
+                                         "name": "六神花露水003",
+                                         "title": "美的（Midea）电饭煲 气动涡轮防溢 金属机身 圆灶釜内胆4L电饭锅MB-WFS4037",
+                                         "cost": "2350.00", "location": "广州白马3434", "status": "-1"]
         }
     }
     
@@ -123,7 +146,7 @@ class HPickingViewController: UIViewController {
     }
     
     @objc func actionCart() {
-        if self._totalValue.text == "0" || self._quantityValue.text == "0" {
+        if self.valueArr["total"] == "0" || self.valueArr["quantity"] == "0" {
             _alert(view: self, message: "购物车还是空呢，请先拣货")
             return
         }
@@ -139,11 +162,30 @@ class HPickingViewController: UIViewController {
         _push(view: self, target: _target, rootView: false)
     }
     
+    @objc func clickedMoreBtn(_ sender: UIButton) {
+        
+    }
+    
+    fileprivate func initData() {
+        if self.valueArr.count == 0 {
+            self.valueArr = [
+                "quantity": "12",
+                "total": "56740.00"
+            ]
+        }
+    }
+    
     fileprivate func _setup() {
         self.navHeight = self.navigationController?.navigationBar.frame.maxY
         self.tabBarHeight = self.tabBarController?.tabBar.bounds.size.height
         
+        self.initData()
+        
         searchBarBtn(view: self, navHeight: self.navHeight, placeholder: "按货品名称或编号搜索", action: #selector(actionSearch))
+        
+        self._HPickingView = HPickingView()
+        _HPickingView.tabBarHeight = self.tabBarHeight
+        self.addChildViewController(_HPickingView)
         
         let _frame = CGRect(x: 0, y: self.navHeight + SearchBtnHeight, width: ScreenWidth, height: ScreenHeight - self.navHeight - self.tabBarHeight)
         self.tableView = UITableView(frame: _frame, style: .grouped)
@@ -152,6 +194,7 @@ class HPickingViewController: UIViewController {
         self.tableView!.dataSource = self
         self.tableView!.register(UITableViewCell.self, forCellReuseIdentifier: CELL_IDENTIFY_ID)
         self.tableView!.register(SimpleBasicsCell.self, forCellReuseIdentifier: SimpleBasicsCell.identifier)
+        self.tableView?.register(UINib(nibName: "GoodTableViewCell", bundle: nil), forCellReuseIdentifier: CELL_IDENTIFY_ID)
         self.tableView!.tableHeaderView = UIView.init(frame: CGRect(x: 0, y: 0, width: 0, height: 0.1))
         self.view.addSubview(self.tableView!)
         
@@ -164,132 +207,25 @@ class HPickingViewController: UIViewController {
         self.header.setRefreshingTarget(self, refreshingAction: #selector(OrderAllViewController.headerRefresh))
         self.tableView!.mj_header = self.header
         
-        
         self._setTabBarCart()
         // Do any additional setup after loading the view.
     }
     
     fileprivate func _setTabBarCart() {
-        // 购物车View
-        let _cartView = UIView()
-        _cartView.backgroundColor = Specs.color.white
-        self.view.addSubview(_cartView)
-        _cartView.snp.makeConstraints { (make) -> Void in
+        // tabBarView
+        let _tabBarView = UIView()
+        _tabBarView.backgroundColor = UIColor.orange
+        self.view.addSubview(_tabBarView)
+        _tabBarView.snp.makeConstraints { (make) -> Void in
             make.left.right.equalTo(0)
             make.bottom.equalTo(0)
             make.height.equalTo(self.tabBarHeight)
             make.width.equalTo(ScreenWidth)
         }
         
-        // 总价view
-        let _cartDetailView = UIView()
-        self.view.addSubview(_cartDetailView)
-        _cartDetailView.snp.makeConstraints { (make) -> Void in
-            make.top.equalTo(_cartView.snp.top)
-            make.left.equalTo(0)
-            make.height.equalTo(self.tabBarHeight)
-            make.width.equalTo(ScreenWidth / 3 * 2)
-        }
-        
-        // Separator
-        let _separator = UILabel()
-        _separator.backgroundColor = Specs.color.gray
-        _cartDetailView.addSubview(_separator)
-        _separator.snp.makeConstraints { (make) -> Void in
-            make.top.equalTo(_cartDetailView.snp.top)
-            make.left.right.equalTo(0)
-            make.width.equalTo(_cartDetailView.snp.width)
-            make.height.equalTo(1)
-        }
-        
-        // cart
-        let _cartShopping = UIView()
-        _cartShopping.backgroundColor = UIColor(patternImage: UIImage(named:"cart_32_32")!)
-        _cartDetailView.addSubview(_cartShopping)
-        _cartShopping.snp.makeConstraints { (make) -> Void in
-            make.left.equalTo(10)
-            make.top.equalTo(_cartDetailView.snp.top).offset(10)
-            make.width.height.equalTo(32)
-        }
-        
-        // Quantity View
-        let _width = 25.0
-        let _cartQuantityView = UIView()
-        _cartQuantityView.backgroundColor = UIColor.red
-        _cartQuantityView.layer.cornerRadius = CGFloat(_width / 2)
-        _cartQuantityView.layer.masksToBounds = true
-        _cartShopping.addSubview(_cartQuantityView)
-        _cartQuantityView.snp.makeConstraints { (make) -> Void in
-            make.right.equalTo(10)
-            make.top.equalTo(_cartDetailView.snp.top).offset(-5)
-            make.width.height.equalTo(_width)
-        }
-        
-        // Quantity Value
-        self._quantityValue = UILabel()
-        self._quantityValue.text = "10"
-        self._quantityValue.sizeToFit()
-        self._quantityValue.textAlignment = .center
-        self._quantityValue.font = Specs.font.regular
-        self._quantityValue.textColor = Specs.color.white
-        _cartQuantityView.addSubview(self._quantityValue)
-        self._quantityValue.snp.makeConstraints { (make) -> Void in
-            make.center.equalTo(_cartQuantityView)
-        }
-        
-        // 总价 Label
-        let _totalLabel = UILabel()
-        _totalLabel.text = "合计：￥"
-        _totalLabel.sizeToFit()
-        _totalLabel.textAlignment = .left
-        _totalLabel.font = Specs.font.regular
-        _totalLabel.textColor = Specs.color.black
-        _cartDetailView.addSubview(_totalLabel)
-        _totalLabel.snp.makeConstraints { (make) -> Void in
-            make.left.equalTo(_cartShopping.snp.right).offset(30)
-            make.centerY.equalTo(_cartDetailView)
-            make.height.equalTo(20)
-        }
-        
-        // 总价 Value
-        self._totalValue = UILabel()
-        self._totalValue.text = "0.00"
-        self._totalValue.sizeToFit()
-        self._totalValue.textAlignment = .left
-        self._totalValue.font = UIFont.systemFont(ofSize: 25.0)
-        self._totalValue.textColor = Specs.color.black
-        _cartDetailView.addSubview(self._totalValue)
-        self._totalValue.snp.makeConstraints { (make) -> Void in
-            make.left.equalTo(_totalLabel.snp.right).offset(0)
-            make.centerY.equalTo(_cartDetailView)
-            make.height.equalTo(20)
-        }
-        
-        // 提交按钮View
-        let _cartBtnView = UIView()
-        self.view.addSubview(_cartBtnView)
-        _cartBtnView.snp.makeConstraints { (make) -> Void in
-            make.top.equalTo(_separator.snp.top)
-            make.left.equalTo(_cartDetailView.snp.right)
-            make.right.equalTo(0)
-            make.height.equalTo(self.tabBarHeight)
-            make.width.equalTo(ScreenWidth / 3 - 1)
-        }
-        
-        // Btn
-        let _btn = UIButton()
-        _btn.setTitle("提 交", for: .normal)
-        _btn.setTitleColor(Specs.color.white, for: UIControlState())
-        _btn.backgroundColor = Specs.color.main
-        _btn.addTarget(self, action: #selector(actionCart), for: .touchUpInside)
-        _cartBtnView.addSubview(_btn)
-        _btn.snp.makeConstraints { (make) -> Void in
-            make.top.equalTo(_cartBtnView.snp.top)
-            make.left.right.equalTo(0)
-            make.width.equalTo(_cartBtnView.snp.width)
-            make.height.equalTo(_cartBtnView.snp.height)
-        }
-        
+        let _HPickingView = self._HPickingView.cartDetailView(cartData: self.valueArr)
+        _tabBarView.addSubview(_HPickingView)
+        self._HPickingView._submitAdd.addTarget(self, action: #selector(actionCart), for: .touchUpInside)
     }
 
     override func didReceiveMemoryWarning() {
@@ -311,10 +247,6 @@ extension HPickingViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         return ""
-    }
-    
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return SelectCellHeight
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
@@ -341,16 +273,26 @@ extension HPickingViewController: UITableViewDelegate, UITableViewDataSource {
     
     //创建各单元显示内容(创建参数indexPath指定的单元）
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let _data = self.dataArr[indexPath.item]
-        let cell = tableView.dequeueReusableCell(withIdentifier: SimpleBasicsCell.identifier, for: indexPath)
         
-        cell.textLabel?.text = "单据号：\(_data["orderId"]!)"
-        cell.textLabel?.font = Specs.font.regular
+        let count = self.dataArr.count
+        let sectionNo = count - indexPath.row - 1
         
-        cell.detailTextLabel?.text = _data["datetime"]
-        cell.detailTextLabel?.font = Specs.font.regular
-        
-        cell.accessoryType = .disclosureIndicator
+        let cell: GoodTableViewCell = tableView.dequeueReusableCell(withIdentifier: CELL_IDENTIFY_ID, for: indexPath) as! GoodTableViewCell
+        if !(self.dataArr[sectionNo]?.isEmpty)! {
+            var _data = self.dataArr[sectionNo]!
+            
+            cell.avatar.image = UIImage(named: _data["avatar"]!)
+            cell.suk.text = _data["suk"]
+            cell.name.text = _data["name"]
+            cell.stock.text = _data["stock"]
+            cell.cost.text = _data["cost"]
+            cell.location.text = _data["location"]
+            cell.price.text = _data["price"]
+            cell.accessoryType = .disclosureIndicator
+        }
+        cell.tag = indexPath.row
+        cell.moreBtn.tag = indexPath.row
+        cell.moreBtn.addTarget(self, action: #selector(clickedMoreBtn(_:)), for: .touchUpInside)
         
         return cell
     }
@@ -358,25 +300,25 @@ extension HPickingViewController: UITableViewDelegate, UITableViewDataSource {
     // UITableViewDelegate 方法，处理列表项的选中事件
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        let _data = self.dataArr[indexPath.item]
+//        let _data = self.dataArr[indexPath.item]
         
-        let _target = HAllocatingViewController()
-        _target.navTitle = "调货记录"
-        _target.valueArr = [
-            "id": _data["id"],
-            "orderId": _data["orderId"],
-            "sn": "ZHG20180908123456987",
-            "name": "汤臣倍健多种维生素",
-            "warehouse": "广州仓库",
-            "wId": "2",
-            "transferred": "深圳仓库",
-            "quantity": "100",
-            "outWarehouse": "10000",
-            "inWarehouse": "200",
-            "employees": "王培照",
-            "datetime": _data["datetime"]
-            ] as! [String : String]
-        
-        _push(view: self, target: _target, rootView: false)
+//        let _target = HAllocatingViewController()
+//        _target.navTitle = "调货记录"
+//        _target.valueArr = [
+////            "id": _data["id"],
+//            "orderId": _data["orderId"],
+//            "sn": "ZHG20180908123456987",
+//            "name": "汤臣倍健多种维生素",
+//            "warehouse": "广州仓库",
+//            "wId": "2",
+//            "transferred": "深圳仓库",
+//            "quantity": "100",
+//            "outWarehouse": "10000",
+//            "inWarehouse": "200",
+//            "employees": "王培照",
+//            "datetime": _data["datetime"]
+//            ] as! [String : String]
+//        
+//        _push(view: self, target: _target, rootView: false)
     }
 }

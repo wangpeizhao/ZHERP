@@ -64,8 +64,8 @@ class HPickingGoodViewController: UIViewController, SliderGalleryControllerDeleg
     }
     
     @objc func actionAdd() {
-        if self._quantityValue == "0" {
-            _alert(view: self, message: "购物车还是空呢，请先拣货")
+        if self._quantityValue == "0" || self._quantityValue == "" {
+            _alert(view: self, message: "请先填写拣货数量.")
             return
         }
         let _target = HPickingCompleteViewController()
@@ -117,7 +117,7 @@ class HPickingGoodViewController: UIViewController, SliderGalleryControllerDeleg
         self.dataArr = [
             [
                 "rows": [
-                    ["title":"调入数量", "key":"quantity", "value": "", "placeholder": "请输入大于0的整数"],
+                    ["title":"拣货数量", "key":"quantity", "value": "", "placeholder": "请输入大于0的整数"],
                     ["title":"货品编号", "key":"sn", "value": self.valueArr["sn"]],
                     ["title":"所属仓库", "key":"warehouse", "value": self.valueArr["warehouse"]]
                 ]

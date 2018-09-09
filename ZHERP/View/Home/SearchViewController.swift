@@ -267,13 +267,12 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
                 let _target = HPickingGoodViewController()
                 _target.valueArr = [
                     "sn": "ZHG20180908142345098",
-                    "name": _data["title"],
+                    "title": _data["title"],
                     "warehouse": "深圳仓库",
                     "price": "80000.88",
                     "total": "987452.00",
                     "quantity": "12",
                     "stock": "5600",
-                    "title": "美的（Midea）电饭煲 气动涡轮防溢 金属机身 圆灶釜内胆4L电饭锅MB-WFS4037",
                 ] as! [String : String]
                 
                 _push(view: self, target: _target, rootView: false)
