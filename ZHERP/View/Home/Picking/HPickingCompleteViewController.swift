@@ -53,7 +53,7 @@ class HPickingCompleteViewController: UIViewController {
         self.navHeight = self.navigationController?.navigationBar.frame.maxY
         self.tabBarHeight = self.tabBarController?.tabBar.bounds.size.height
         
-        let _frame = CGRect(x: 0, y: self.navHeight, width: ScreenWidth, height: ScreenHeight - self.navHeight - self.tabBarHeight)
+        let _frame = CGRect(x: 0, y: self.navHeight, width: ScreenWidth, height: ScreenHeight - self.navHeight)
         self.tableView = UITableView(frame: _frame, style: .grouped)
         
         self.tableView!.delegate = self
@@ -69,7 +69,7 @@ class HPickingCompleteViewController: UIViewController {
         self.initData()
         
         self._HPickingCompleteView = HPickingCompleteView()
-        self._HPickingCompleteView.frameHeight = ScreenHeight - self.navHeight - self.tabBarHeight
+        self._HPickingCompleteView.frameHeight = ScreenHeight - self.navHeight
     }
     
     fileprivate func initData() {
