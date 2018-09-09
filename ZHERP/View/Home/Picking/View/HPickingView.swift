@@ -82,7 +82,7 @@ class HPickingView: UIViewController {
         
         // Quantity Value
         self._quantityValue = UILabel()
-        self._quantityValue.text = "10"
+        self._quantityValue.text = cartData["quantity"]
         self._quantityValue.sizeToFit()
         self._quantityValue.textAlignment = .center
         self._quantityValue.font = Specs.font.regular
@@ -108,7 +108,7 @@ class HPickingView: UIViewController {
         
         // 总价 Value
         self._totalValue = UILabel()
-        self._totalValue.text = "0.00"
+        self._totalValue.text = cartData["total"]
         self._totalValue.sizeToFit()
         self._totalValue.textAlignment = .left
         self._totalValue.font = UIFont.systemFont(ofSize: 25.0)

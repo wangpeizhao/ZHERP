@@ -146,7 +146,7 @@ class HPickingViewController: UIViewController {
     }
     
     @objc func actionCart() {
-        if self.valueArr["total"] == "0" || self.valueArr["quantity"] == "0" {
+        if self.valueArr["total"] == "0.00" || Int(self.valueArr["quantity"]) == 0 {
             _alert(view: self, message: "购物车还是空呢，请先拣货")
             return
         }
@@ -187,7 +187,7 @@ class HPickingViewController: UIViewController {
         _HPickingView.tabBarHeight = self.tabBarHeight
         self.addChildViewController(_HPickingView)
         
-        let _frame = CGRect(x: 0, y: self.navHeight + SearchBtnHeight, width: ScreenWidth, height: ScreenHeight - self.navHeight - self.tabBarHeight)
+        let _frame = CGRect(x: 0, y: self.navHeight + SearchBtnHeight, width: ScreenWidth, height: ScreenHeight - self.navHeight - self.tabBarHeight - SearchBtnHeight)
         self.tableView = UITableView(frame: _frame, style: .grouped)
         
         self.tableView!.delegate = self

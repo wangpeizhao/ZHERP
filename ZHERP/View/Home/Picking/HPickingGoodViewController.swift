@@ -64,7 +64,7 @@ class HPickingGoodViewController: UIViewController, SliderGalleryControllerDeleg
     }
     
     @objc func actionAdd() {
-        if self._quantityValue == "0" || self._quantityValue == "" {
+        if Int(self._quantityValue) == 0 || self._quantityValue == "" {
             _alert(view: self, message: "请先填写拣货数量.")
             return
         }
