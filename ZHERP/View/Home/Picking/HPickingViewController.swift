@@ -10,7 +10,7 @@ import UIKit
 import MJRefresh
 import SnapKit
 
-class HPickingViewController: UIViewController {
+class HPickingViewController: UIViewController , UIGestureRecognizerDelegate{
     
     var tableView: UITableView!
     let CELL_IDENTIFY_ID = "CELL_IDENTIFY_ID"
@@ -83,8 +83,8 @@ class HPickingViewController: UIViewController {
         rightBarBtnScan.tintColor = Specs.color.white
         
         // 设置右侧按钮2(筛选)
-        let rightBarBtnRefresh = UIBarButtonItem(title: "", style: .plain, target: self, action: #selector(actionRefresh))
-        rightBarBtnRefresh.image = UIImage(named: "refresh")
+        let rightBarBtnRefresh = UIBarButtonItem(title: "", style: .plain, target: self, action: #selector(actionEdit))
+        rightBarBtnRefresh.image = UIImage(named: "edit")
         rightBarBtnRefresh.tintColor = Specs.color.white
         self.navigationItem.rightBarButtonItems = [rightBarBtnScan,rightBarBtnRefresh]
         
@@ -96,6 +96,14 @@ class HPickingViewController: UIViewController {
         super.viewWillAppear(animated)
         
         self.tableView.reloadData()
+    }
+    
+    @objc func actionEdit() {
+        
+    }
+    
+    @objc func actionSave() {
+        
     }
     
     //顶部下拉刷新
@@ -175,6 +183,26 @@ class HPickingViewController: UIViewController {
         
     }
     
+    @objc func longPressAction(recognizer: UILongPressGestureRecognizer)  {
+        if recognizer.state == UIGestureRecognizerState.began {
+            print("UIGestureRecognizerStateBegan");
+        }
+        if recognizer.state == UIGestureRecognizerState.changed {
+            print("UIGestureRecognizerStateChanged");
+        }
+        if recognizer.state == UIGestureRecognizerState.ended {
+            print("UIGestureRecognizerStateEnded");
+            // tableView.isEditing = !tableView.isEditing
+            if tableView.isEditing == true {
+                tableView.isEditing = false
+            } else {
+                // tableView.isEditing = true
+                setNavBarRightBtn(view: self, title: "保存", selector: #selector(actionSave))
+                self.setEditing(true,animated: true)
+            }
+        }
+    }
+    
     fileprivate func initData() {
         if self.valueArr.count == 0 {
             self.valueArr = [
@@ -206,6 +234,12 @@ class HPickingViewController: UIViewController {
         self.tableView?.register(UINib(nibName: "GoodTableViewCell", bundle: nil), forCellReuseIdentifier: CELL_IDENTIFY_ID)
         self.tableView!.tableHeaderView = UIView.init(frame: CGRect(x: 0, y: 0, width: 0, height: 0.1))
         self.view.addSubview(self.tableView!)
+        
+        // 长按启动删除、移动排序功能
+        let longPress = UILongPressGestureRecognizer.init(target: self, action: #selector(longPressAction))
+        longPress.delegate = self
+        longPress.minimumPressDuration = 1
+        self.tableView!.addGestureRecognizer(longPress)
         
         //下拉刷新相关设置
         self.header.setTitle("下拉可以刷新", for: .idle)
@@ -272,12 +306,12 @@ extension HPickingViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, titleForFooterInSection section: Int) -> String? {
-        return ""
+        return "点击编辑按钮可修改总价；长按或向左滑可删除。"
     }
     
     //设置分组尾的高度
     func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-        return 0
+        return self.dataArr.count == 0 ? 0 : 30
     }
     
     func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {

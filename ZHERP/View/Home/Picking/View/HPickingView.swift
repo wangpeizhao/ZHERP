@@ -16,6 +16,7 @@ class HPickingView: UIViewController {
     var _quantityValue: UILabel!
     
     var _submitAdd: UIButton!
+    var _cartCancelBtn: UIButton!
     
     var tabBarHeight: CGFloat!
 
@@ -146,5 +147,154 @@ class HPickingView: UIViewController {
         }
         
         return _tabBarView
+    }
+    
+    public func cartEditView(cartData: [String: String]) {
+        self.view.frame = CGRect(x: 0, y: 0, width: ScreenWidth, height: self.tabBarHeight)
+        // tabBarView
+        let _editView = UIView(frame: CGRect(x: 0, y: 0, width: ScreenWidth, height: self.tabBarHeight))
+        _editView.backgroundColor = Specs.color.white
+        self.view.addSubview(_editView)
+        
+        let _orderTypeView = UIView()
+        _orderTypeView.backgroundColor = Specs.color.white
+        _editView.addSubview(_orderTypeView)
+        _orderTypeView.snp.makeConstraints { (make) -> Void in
+            make.left.right.equalTo(0)
+            make.height.equalTo(SelectCellHeight)
+            make.top.equalTo(_editView.snp.top)
+        }
+        
+        // 订单类型
+        let _orderTypeLabel = UILabel()
+        _orderTypeLabel.text = "订单类型："
+        _orderTypeLabel.sizeToFit()
+        _orderTypeLabel.textAlignment = .left
+        _orderTypeLabel.font = Specs.font.regular
+        _orderTypeView.addSubview(_orderTypeLabel)
+        _orderTypeLabel.snp.makeConstraints { (make) -> Void in
+            make.left.equalTo(_orderTypeView.snp.left).offset(10)
+            make.centerY.equalTo(_orderTypeView)
+        }
+        
+        // 订单类型 下拉 View
+        let _orderTypeSelectView = UIView()
+        _orderTypeSelectView.backgroundColor = Specs.color.white
+        _orderTypeSelectView.layer.borderWidth = 0.5
+        _orderTypeSelectView.layer.masksToBounds = true
+        _orderTypeSelectView.layer.cornerRadius = Specs.border.radius
+        _orderTypeView.addSubview(_orderTypeSelectView)
+        _orderTypeSelectView.snp.makeConstraints { (make) -> Void in
+            make.left.equalTo(_orderTypeLabel.snp.right).offset(5)
+            make.top.equalTo(_orderTypeView.snp.top)
+            make.height.equalTo(_orderTypeView.snp.height)
+        }
+        
+        // 订单类型 下拉 Label
+        let _orderTypeSelectLabel = UILabel()
+        _orderTypeSelectLabel.text = "线上订单"
+        _orderTypeSelectLabel.sizeToFit()
+        _orderTypeSelectLabel.textAlignment = .left
+        _orderTypeSelectLabel.font = Specs.font.regular
+        _orderTypeSelectView.addSubview(_orderTypeSelectLabel)
+        _orderTypeSelectLabel.snp.makeConstraints { (make) -> Void in
+            make.left.equalTo(_orderTypeSelectView.snp.left).offset(10)
+            make.right.equalTo(_orderTypeSelectView.snp.right).offset(-10)
+            make.centerY.equalTo(_orderTypeSelectView)
+        }
+        
+        // 订单类型 下拉 icon
+        let _orderTypeSelectIcon = UIImageView()
+        let _icon = UIImage(named: "arrange1")
+        _orderTypeSelectIcon.image = _icon
+        _orderTypeSelectView.addSubview(_orderTypeSelectIcon)
+        _orderTypeSelectIcon.snp.makeConstraints { (make) -> Void in
+            make.left.equalTo(_orderTypeSelectLabel.snp.right).offset(-2)
+            make.centerY.equalTo(_orderTypeSelectView)
+            make.width.equalTo(5)
+        }
+        
+        // cancel Btn
+        self._cartCancelBtn = UIButton()
+        self._cartCancelBtn.setTitle("取消", for: .normal)
+        self._cartCancelBtn.setTitleColor(Specs.color.white, for: UIControlState())
+        self._cartCancelBtn.backgroundColor = Specs.color.main
+        _orderTypeView.addSubview(self._cartCancelBtn)
+        self._cartCancelBtn.snp.makeConstraints { (make) -> Void in
+            make.top.equalTo(_orderTypeView.snp.top)
+            make.right.equalTo(-10)
+            make.width.equalTo(50)
+            make.height.equalTo(30)
+            make.centerY.equalTo(_orderTypeView)
+        }
+        
+        // Separator
+        let _separator = UILabel()
+        _separator.backgroundColor = Specs.color.gray
+        _orderTypeView.addSubview(_separator)
+        _separator.snp.makeConstraints { (make) -> Void in
+            make.top.equalTo(_orderTypeView.snp.top)
+            make.left.right.equalTo(0)
+            make.width.equalTo(ScreenWidth)
+            make.height.equalTo(0.3)
+        }
+        
+        let _editTotalView = UIView()
+        _editTotalView.backgroundColor = Specs.color.white
+        _editView.addSubview(_editTotalView)
+        _editTotalView.snp.makeConstraints { (make) -> Void in
+            make.left.right.equalTo(0)
+            make.height.equalTo(SelectCellHeight)
+            make.top.equalTo(_orderTypeView.snp.bottom)
+        }
+        
+        // 总价
+        let _orderTotalLabel = UILabel()
+        _orderTotalLabel.text = "总价："
+        _orderTotalLabel.sizeToFit()
+        _orderTotalLabel.textAlignment = .left
+        _orderTotalLabel.font = Specs.font.regular
+        _editTotalView.addSubview(_orderTotalLabel)
+        _orderTotalLabel.snp.makeConstraints { (make) -> Void in
+            make.left.equalTo(_editTotalView.snp.left).offset(10)
+            make.centerY.equalTo(_editTotalView)
+        }
+        
+        // 操作类型 下拉 View
+        let _operateTypeSelectView = UIView()
+        _operateTypeSelectView.backgroundColor = Specs.color.white
+        _operateTypeSelectView.layer.borderWidth = 0.5
+        _operateTypeSelectView.layer.masksToBounds = true
+        _operateTypeSelectView.layer.cornerRadius = Specs.border.radius
+        _editTotalView.addSubview(_operateTypeSelectView)
+        _operateTypeSelectView.snp.makeConstraints { (make) -> Void in
+            make.left.equalTo(_orderTotalLabel.snp.right).offset(5)
+            make.top.equalTo(_editTotalView.snp.top)
+            make.height.equalTo(_editTotalView.snp.height)
+        }
+        
+        // 减少 or 增加 下拉 Label
+        let _operateTypeSelectLabel = UILabel()
+        _operateTypeSelectLabel.text = "减少"
+        _operateTypeSelectLabel.sizeToFit()
+        _operateTypeSelectLabel.textAlignment = .left
+        _operateTypeSelectLabel.font = Specs.font.regular
+        _editTotalView.addSubview(_operateTypeSelectLabel)
+        _operateTypeSelectLabel.snp.makeConstraints { (make) -> Void in
+            make.left.equalTo(_operateTypeSelectView.snp.left).offset(10)
+            make.right.equalTo(_operateTypeSelectView.snp.right).offset(-10)
+            make.centerY.equalTo(_operateTypeSelectView)
+        }
+        
+        // 减少 or 增加 下拉 icon
+        let _operateTypeSelectIcon = UIImageView()
+        _operateTypeSelectIcon.image = _icon
+        _editTotalView.addSubview(_operateTypeSelectIcon)
+        _operateTypeSelectIcon.snp.makeConstraints { (make) -> Void in
+            make.left.equalTo(_operateTypeSelectLabel.snp.right).offset(-2)
+            make.centerY.equalTo(_editTotalView)
+            make.width.equalTo(5)
+        }
+        
     }
 }
