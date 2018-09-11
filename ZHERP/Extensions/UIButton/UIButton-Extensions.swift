@@ -15,15 +15,14 @@ extension UIButton {
         self.imageView?.contentMode = .center
         self.setImage(anImage, for: state)
         
-        positionLabelRespectToImage(title: title, position: titlePosition, spacing: additionalSpacing)
+        positionLabelRespectToImage(title: title, position: titlePosition, spacing: additionalSpacing, image: anImage!)
         
         self.titleLabel?.contentMode = .center
         self.setTitle(title, for: state)
     }
     
-    private func positionLabelRespectToImage(title: String, position: UIViewContentMode,
-                                             spacing: CGFloat) {
-        let imageSize = self.imageRect(forContentRect: self.frame)
+    private func positionLabelRespectToImage(title: String, position: UIViewContentMode, spacing: CGFloat, image: UIImage) {
+        let imageSize = image.size // self.imageRect(forContentRect: self.frame)
         let titleFont = self.titleLabel?.font!
         let titleSize = title.size(withAttributes: [NSAttributedStringKey.font: titleFont!])
         

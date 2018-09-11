@@ -24,6 +24,8 @@ class HPickingViewController: UIViewController , UIGestureRecognizerDelegate{
     
     var _HPickingView: HPickingView!
     
+    var _tabBarCartView: UIView!
+    
     // 初始数据
     var valueArr = [String: String]()
     
@@ -99,7 +101,11 @@ class HPickingViewController: UIViewController , UIGestureRecognizerDelegate{
     }
     
     @objc func actionEdit() {
-        
+        self._tabBarCartView.isHidden = false
+    }
+    
+    @objc func actionClose() {
+        self._tabBarCartView.isHidden = true
     }
     
     @objc func actionSave() {
@@ -197,7 +203,7 @@ class HPickingViewController: UIViewController , UIGestureRecognizerDelegate{
                 tableView.isEditing = false
             } else {
                 // tableView.isEditing = true
-                setNavBarRightBtn(view: self, title: "保存", selector: #selector(actionSave))
+//                setNavBarRightBtn(view: self, title: "保存", selector: #selector(actionSave))
                 self.setEditing(true,animated: true)
             }
         }
@@ -269,6 +275,19 @@ class HPickingViewController: UIViewController , UIGestureRecognizerDelegate{
         let _HPickingView = self._HPickingView.cartDetailView(cartData: self.valueArr)
         _tabBarView.addSubview(_HPickingView)
         self._HPickingView._submitAdd.addTarget(self, action: #selector(actionCart), for: .touchUpInside)
+        
+        self._tabBarCartView = UIView()
+        self.view.addSubview(self._tabBarCartView)
+        self._tabBarCartView.snp.makeConstraints { (make) -> Void in
+            make.left.right.equalTo(0)
+            make.bottom.equalTo(_tabBarView.snp.top).offset(-250)
+            make.height.equalTo(self.tabBarHeight * 2)
+            make.width.equalTo(ScreenWidth)
+        }
+        let _HPickingCartEditView = self._HPickingView.cartEditView(cartData: self.valueArr)
+        self._HPickingView._cartCancelBtn.addTarget(self, action: #selector(actionClose), for: .touchUpInside)
+        self._tabBarCartView.addSubview(_HPickingCartEditView)
+        self._tabBarCartView.isHidden = false
     }
 //
 //    public func _reloadData() {

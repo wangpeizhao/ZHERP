@@ -375,7 +375,7 @@ class GoodViewController: UIViewController {
             let title: String = titlesArr[index]
             titleButton.titleLabel?.font = UIFont.systemFont(ofSize: Specs.fontSize.regular)
             titleButton.titleLabel?.textAlignment = .center
-            titleButton.set(image: UIImage(named: "arrange1"), title: title + "", titlePosition: .left, additionalSpacing: 20.0, state: .normal)
+            titleButton.set(image: UIImage(named: "arrange1"), title: title + "", titlePosition: .left, additionalSpacing: 10.0, state: .normal)
             
             // frame
             if (index == 0) {
