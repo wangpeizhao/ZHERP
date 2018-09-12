@@ -116,8 +116,13 @@ class HPickingViewController: UIViewController , UIGestureRecognizerDelegate, HP
             //键盘的偏移量
             //self.tableView.transform = CGAffineTransformMakeTranslation(0 , -deltaY)
             self._tabBarCartView.frame.origin.y = ScreenHeight - deltaY - self.tabBarHeight * 2
-            self._tabBarCartView.isHidden = false
-            self.cover.isHidden = false
+            //延时1秒执行
+            let time: TimeInterval = 0.3
+            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + time) {
+                //code
+                self._tabBarCartView.isHidden = false
+                self.cover.isHidden = false
+            }
         }
         
         if duration > 0 {
