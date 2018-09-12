@@ -154,6 +154,23 @@ class HPickingView: UIViewController {
     }
     
     public func cartEditView(cartData: [String: String]) -> UIView {
+        
+//        let _editView_ = UIView(frame: CGRect(x: 0, y: 0, width: ScreenWidth, height: self.tabBarHeight))
+//        _editView_.backgroundColor = Specs.color.white
+//        self.view.addSubview(_editView_)
+//
+//        let usernameTxt = UITextField()
+//        setTextFieldCommonFeatures(textFiled: usernameTxt, width: 200, height: 0)
+//        setTextFieldPlaceholser(textFiled: usernameTxt, placeholder: "请输入手机号码")
+//        _editView_.addSubview(usernameTxt)
+//        usernameTxt.snp.makeConstraints { (make) -> Void in
+//            make.left.equalTo(5)
+//            make.right.equalTo(-5)
+//            make.height.equalTo(40)
+//            make.top.equalTo(_editView_.snp.top).offset(5)
+//        }
+//        return _editView_
+        
         let _btnWidth: CGFloat = 60.0
         let _btnHeight: CGFloat = 30.0
         let _btnHeightOffset = (self.tabBarHeight - _btnHeight) / 2
@@ -164,105 +181,105 @@ class HPickingView: UIViewController {
         self.view.addSubview(_editView)
         
         let _orderTypeView = UIView()
-        _orderTypeView.backgroundColor = Specs.color.white
+        _orderTypeView.backgroundColor = Specs.color.blue 
         _editView.addSubview(_orderTypeView)
         _orderTypeView.snp.makeConstraints { (make) -> Void in
             make.left.right.equalTo(0)
             make.height.equalTo(SelectCellHeight)
             make.top.equalTo(_editView.snp.top)
         }
+//
+//        // 订单类型
+//        let _orderTypeLabel = UILabel()
+//        _orderTypeLabel.text = "订单类型："
+//        _orderTypeLabel.sizeToFit()
+//        _orderTypeLabel.textAlignment = .left
+//        _orderTypeLabel.font = Specs.font.regular
+//        _orderTypeView.addSubview(_orderTypeLabel)
+//        _orderTypeLabel.snp.makeConstraints { (make) -> Void in
+//            make.left.equalTo(_orderTypeView.snp.left).offset(10)
+//            make.centerY.equalTo(_orderTypeView)
+//        }
+//
+//        let _orderTypeButton = UIButton()
+//        _orderTypeButton.setTitleColor(normalRGBA(r: 114, g: 114, b: 114, a: 1.0), for: .normal)
+//        _orderTypeButton.backgroundColor = Specs.color.white
+//        _orderTypeButton.titleLabel?.font = UIFont.systemFont(ofSize: Specs.fontSize.regular)
+//        _orderTypeButton.titleLabel?.textAlignment = .center
+//        _orderTypeButton.layer.borderWidth = 1
+//        _orderTypeButton.layer.cornerRadius = Specs.border.radius
+//        _orderTypeButton.set(image: UIImage(named: "arrange1"), title: "线上订单", titlePosition: .left, additionalSpacing: 5.0, state: .normal)
+//        _orderTypeView.addSubview(_orderTypeButton)
+//        _orderTypeButton.snp.makeConstraints { (make) -> Void in
+//            make.top.equalTo(_orderTypeView.snp.top).offset(_btnHeightOffset)
+//            make.left.equalTo(_orderTypeLabel.snp.right)
+//            make.height.equalTo(_btnHeight)
+//            make.width.equalTo(_btnWidth * 2)
+//        }
+//
+//        // cancel Btn
+//        self._cartCancelBtn = UIButton()
+//        self._cartCancelBtn.setTitle("取消", for: .normal)
+//        self._cartCancelBtn.setTitleColor(Specs.color.white, for: UIControlState())
+//        self._cartCancelBtn.layer.cornerRadius = Specs.border.radius
+//        self._cartCancelBtn.titleLabel?.font = UIFont.systemFont(ofSize: Specs.fontSize.regular)
+//        self._cartCancelBtn.backgroundColor = Specs.color.main
+//        _orderTypeView.addSubview(self._cartCancelBtn)
+//        self._cartCancelBtn.snp.makeConstraints { (make) -> Void in
+//            make.top.equalTo(_orderTypeView.snp.top).offset(_btnHeightOffset)
+//            make.right.equalTo(-10)
+//            make.width.equalTo(_btnWidth)
+//            make.height.equalTo(_btnHeight)
+//        }
+//
+//        // Separator
+//        let _separator = UILabel()
+//        _separator.backgroundColor = Specs.color.gray
+//        _orderTypeView.addSubview(_separator)
+//        _separator.snp.makeConstraints { (make) -> Void in
+//            make.top.equalTo(_orderTypeView.snp.bottom).offset(5)
+//            make.left.right.equalTo(0)
+//            make.width.equalTo(ScreenWidth)
+//            make.height.equalTo(0.3)
+//        }
         
-        // 订单类型
-        let _orderTypeLabel = UILabel()
-        _orderTypeLabel.text = "订单类型："
-        _orderTypeLabel.sizeToFit()
-        _orderTypeLabel.textAlignment = .left
-        _orderTypeLabel.font = Specs.font.regular
-        _orderTypeView.addSubview(_orderTypeLabel)
-        _orderTypeLabel.snp.makeConstraints { (make) -> Void in
-            make.left.equalTo(_orderTypeView.snp.left).offset(10)
-            make.centerY.equalTo(_orderTypeView)
-        }
-        
-        let _orderTypeButton = UIButton()
-        _orderTypeButton.setTitleColor(normalRGBA(r: 114, g: 114, b: 114, a: 1.0), for: .normal)
-        _orderTypeButton.backgroundColor = Specs.color.white
-        _orderTypeButton.titleLabel?.font = UIFont.systemFont(ofSize: Specs.fontSize.regular)
-        _orderTypeButton.titleLabel?.textAlignment = .center
-        _orderTypeButton.layer.borderWidth = 1
-        _orderTypeButton.layer.cornerRadius = Specs.border.radius
-        _orderTypeButton.set(image: UIImage(named: "arrange1"), title: "线上订单", titlePosition: .left, additionalSpacing: 5.0, state: .normal)
-        _orderTypeView.addSubview(_orderTypeButton)
-        _orderTypeButton.snp.makeConstraints { (make) -> Void in
-            make.top.equalTo(_orderTypeView.snp.top).offset(_btnHeightOffset)
-            make.left.equalTo(_orderTypeLabel.snp.right)
-            make.height.equalTo(_btnHeight)
-            make.width.equalTo(_btnWidth * 2)
-        }
-        
-        // cancel Btn
-        self._cartCancelBtn = UIButton()
-        self._cartCancelBtn.setTitle("取消", for: .normal)
-        self._cartCancelBtn.setTitleColor(Specs.color.white, for: UIControlState())
-        self._cartCancelBtn.layer.cornerRadius = Specs.border.radius
-        self._cartCancelBtn.titleLabel?.font = UIFont.systemFont(ofSize: Specs.fontSize.regular)
-        self._cartCancelBtn.backgroundColor = Specs.color.main
-        _orderTypeView.addSubview(self._cartCancelBtn)
-        self._cartCancelBtn.snp.makeConstraints { (make) -> Void in
-            make.top.equalTo(_orderTypeView.snp.top).offset(_btnHeightOffset)
-            make.right.equalTo(-10)
-            make.width.equalTo(_btnWidth)
-            make.height.equalTo(_btnHeight)
-        }
-        
-        // Separator
-        let _separator = UILabel()
-        _separator.backgroundColor = Specs.color.gray
-        _orderTypeView.addSubview(_separator)
-        _separator.snp.makeConstraints { (make) -> Void in
-            make.top.equalTo(_orderTypeView.snp.bottom).offset(5)
-            make.left.right.equalTo(0)
-            make.width.equalTo(ScreenWidth)
-            make.height.equalTo(0.3)
-        }
-        
-        let _editTotalView = UIView()
-        _editTotalView.backgroundColor = Specs.color.white
-        _editView.addSubview(_editTotalView)
-        _editTotalView.snp.makeConstraints { (make) -> Void in
-            make.left.right.equalTo(0)
-            make.height.equalTo(SelectCellHeight)
-            make.top.equalTo(_separator.snp.bottom)
-        }
+//        let _editTotalView = UIView()
+//        _editTotalView.backgroundColor = Specs.color.white
+//        _editView.addSubview(_editTotalView)
+//        _editTotalView.snp.makeConstraints { (make) -> Void in
+//            make.left.right.equalTo(0)
+//            make.height.equalTo(SelectCellHeight)
+//            make.top.equalTo(_separator.snp.bottom)
+//        }
         
         // 总价
-        let _orderTotalLabel = UILabel()
-        _orderTotalLabel.text = "订单总价："
-        _orderTotalLabel.sizeToFit()
-        _orderTotalLabel.textAlignment = .left
-        _orderTotalLabel.font = Specs.font.regular
-        _editTotalView.addSubview(_orderTotalLabel)
-        _orderTotalLabel.snp.makeConstraints { (make) -> Void in
-            make.left.equalTo(_editTotalView.snp.left).offset(10)
-            make.centerY.equalTo(_editTotalView)
-        }
-        
-        //
-        let _operateTypeButton = UIButton()
-        _operateTypeButton.setTitleColor(normalRGBA(r: 114, g: 114, b: 114, a: 1.0), for: .normal)
-        _operateTypeButton.backgroundColor = Specs.color.white
-        _operateTypeButton.titleLabel?.font = UIFont.systemFont(ofSize: Specs.fontSize.regular)
-        _operateTypeButton.titleLabel?.textAlignment = .center
-        _operateTypeButton.layer.borderWidth = 1
-        _operateTypeButton.layer.cornerRadius = Specs.border.radius
-        _operateTypeButton.set(image: UIImage(named: "arrange1"), title: "减少", titlePosition: .left, additionalSpacing: 5.0, state: .normal)
-        _editTotalView.addSubview(_operateTypeButton)
-        _operateTypeButton.snp.makeConstraints { (make) -> Void in
-            make.top.equalTo(_editTotalView.snp.top).offset(_btnHeightOffset)
-            make.left.equalTo(_orderTotalLabel.snp.right)
-            make.height.equalTo(_btnHeight)
-            make.width.equalTo(_btnWidth)
-        }
+//        let _orderTotalLabel = UILabel()
+//        _orderTotalLabel.text = "订单总价："
+//        _orderTotalLabel.sizeToFit()
+//        _orderTotalLabel.textAlignment = .left
+//        _orderTotalLabel.font = Specs.font.regular
+//        _editTotalView.addSubview(_orderTotalLabel)
+//        _orderTotalLabel.snp.makeConstraints { (make) -> Void in
+//            make.left.equalTo(_editTotalView.snp.left).offset(10)
+//            make.centerY.equalTo(_editTotalView)
+//        }
+//
+//        //
+//        let _operateTypeButton = UIButton()
+//        _operateTypeButton.setTitleColor(normalRGBA(r: 114, g: 114, b: 114, a: 1.0), for: .normal)
+//        _operateTypeButton.backgroundColor = Specs.color.white
+//        _operateTypeButton.titleLabel?.font = UIFont.systemFont(ofSize: Specs.fontSize.regular)
+//        _operateTypeButton.titleLabel?.textAlignment = .center
+//        _operateTypeButton.layer.borderWidth = 1
+//        _operateTypeButton.layer.cornerRadius = Specs.border.radius
+//        _operateTypeButton.set(image: UIImage(named: "arrange1"), title: "减少", titlePosition: .left, additionalSpacing: 5.0, state: .normal)
+//        _editTotalView.addSubview(_operateTypeButton)
+//        _operateTypeButton.snp.makeConstraints { (make) -> Void in
+//            make.top.equalTo(_editTotalView.snp.top).offset(_btnHeightOffset)
+//            make.left.equalTo(_orderTotalLabel.snp.right)
+//            make.height.equalTo(_btnHeight)
+//            make.width.equalTo(_btnWidth)
+//        }
         
         // 输入金额/折扣
         let _amountTextfield = UITextField()
@@ -278,45 +295,45 @@ class HPickingView: UIViewController {
         _amountTextfield.textAlignment = .left
         _amountTextfield.becomeFirstResponder()
 //        _amountTextfield.addTarget(self, action: #selector(cartCancelBtn), for: .touchDown)
-        _editTotalView.addSubview(_amountTextfield)
+        _editView.addSubview(_amountTextfield)
         _amountTextfield.snp.makeConstraints { (make) -> Void in
-            make.top.equalTo(_editTotalView.snp.top).offset(_btnHeightOffset)
-            make.left.equalTo(_operateTypeButton.snp.right).offset(5)
+            make.top.equalTo(_orderTypeView.snp.bottom).offset(_btnHeightOffset)
+//            make.left.equalTo(_operateTypeButton.snp.right).offset(5)
             make.height.equalTo(_btnHeight)
-            make.width.equalTo(_btnWidth * 2)
+            make.width.equalTo(_btnWidth * 2 * 2)
         }
         
         // 元/折扣
-        let _discountTypeButton = UIButton()
-        _discountTypeButton.setTitleColor(normalRGBA(r: 114, g: 114, b: 114, a: 1.0), for: .normal)
-        _discountTypeButton.backgroundColor = Specs.color.white
-        _discountTypeButton.titleLabel?.font = UIFont.systemFont(ofSize: Specs.fontSize.regular)
-        _discountTypeButton.titleLabel?.textAlignment = .center
-        _discountTypeButton.layer.borderWidth = 1
-        _discountTypeButton.layer.cornerRadius = Specs.border.radius
-        _discountTypeButton.set(image: UIImage(named: "arrange1"), title: "折扣", titlePosition: .left, additionalSpacing: 5.0, state: .normal)
-        _editTotalView.addSubview(_discountTypeButton)
-        _discountTypeButton.snp.makeConstraints { (make) -> Void in
-            make.top.equalTo(_editTotalView.snp.top).offset(_btnHeightOffset)
-            make.left.equalTo(_amountTextfield.snp.right).offset(5)
-            make.height.equalTo(_btnHeight)
-            make.width.equalTo(_btnWidth)
-        }
-        
-        // Submit Btn
-        let _submitBtn = UIButton()
-        _submitBtn.setTitle("确定", for: .normal)
-        _submitBtn.setTitleColor(Specs.color.white, for: UIControlState())
-        _submitBtn.layer.cornerRadius = Specs.border.radius
-        _submitBtn.titleLabel?.font = UIFont.systemFont(ofSize: Specs.fontSize.regular)
-        _submitBtn.backgroundColor = Specs.color.main
-        _editTotalView.addSubview(_submitBtn)
-        _submitBtn.snp.makeConstraints { (make) -> Void in
-            make.top.equalTo(_editTotalView.snp.top).offset(_btnHeightOffset)
-            make.right.equalTo(-10)
-            make.width.equalTo(_btnWidth)
-            make.height.equalTo(_btnHeight)
-        }
+//        let _discountTypeButton = UIButton()
+//        _discountTypeButton.setTitleColor(normalRGBA(r: 114, g: 114, b: 114, a: 1.0), for: .normal)
+//        _discountTypeButton.backgroundColor = Specs.color.white
+//        _discountTypeButton.titleLabel?.font = UIFont.systemFont(ofSize: Specs.fontSize.regular)
+//        _discountTypeButton.titleLabel?.textAlignment = .center
+//        _discountTypeButton.layer.borderWidth = 1
+//        _discountTypeButton.layer.cornerRadius = Specs.border.radius
+//        _discountTypeButton.set(image: UIImage(named: "arrange1"), title: "折扣", titlePosition: .left, additionalSpacing: 5.0, state: .normal)
+//        _editTotalView.addSubview(_discountTypeButton)
+//        _discountTypeButton.snp.makeConstraints { (make) -> Void in
+//            make.top.equalTo(_editTotalView.snp.top).offset(_btnHeightOffset)
+//            make.left.equalTo(_amountTextfield.snp.right).offset(5)
+//            make.height.equalTo(_btnHeight)
+//            make.width.equalTo(_btnWidth)
+//        }
+//
+//        // Submit Btn
+//        let _submitBtn = UIButton()
+//        _submitBtn.setTitle("确定", for: .normal)
+//        _submitBtn.setTitleColor(Specs.color.white, for: UIControlState())
+//        _submitBtn.layer.cornerRadius = Specs.border.radius
+//        _submitBtn.titleLabel?.font = UIFont.systemFont(ofSize: Specs.fontSize.regular)
+//        _submitBtn.backgroundColor = Specs.color.main
+//        _editTotalView.addSubview(_submitBtn)
+//        _submitBtn.snp.makeConstraints { (make) -> Void in
+//            make.top.equalTo(_editTotalView.snp.top).offset(_btnHeightOffset)
+//            make.right.equalTo(-10)
+//            make.width.equalTo(_btnWidth)
+//            make.height.equalTo(_btnHeight)
+//        }
         
         return _editView
         

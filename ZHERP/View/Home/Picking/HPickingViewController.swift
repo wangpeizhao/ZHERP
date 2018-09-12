@@ -285,9 +285,10 @@ class HPickingViewController: UIViewController , UIGestureRecognizerDelegate{
             make.width.equalTo(ScreenWidth)
         }
         let _HPickingCartEditView = self._HPickingView.cartEditView(cartData: self.valueArr)
-        self._HPickingView._cartCancelBtn.addTarget(self, action: #selector(actionClose), for: .touchUpInside)
+//        self._HPickingView._cartCancelBtn.addTarget(self, action: #selector(actionClose), for: .touchUpInside)
         self._tabBarCartView.addSubview(_HPickingCartEditView)
         self._tabBarCartView.isHidden = false
+        self._tabBarCartView.backgroundColor = UIColor.orange
     }
 //
 //    public func _reloadData() {
