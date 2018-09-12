@@ -8,7 +8,13 @@
 
 import UIKit
 
+protocol HPickingViewDelegate : NSObjectProtocol {
+    func getCartModification(view: HPickingView, cartData: [String: String])
+}
+
 class HPickingView: UIViewController {
+    
+    var _delegate: HPickingViewDelegate?
     
     // 合计总价
     var _totalValue: UILabel!
@@ -17,17 +23,103 @@ class HPickingView: UIViewController {
     
     var _submitAdd: UIButton!
     var _cartCancelBtn: UIButton!
+    var _orderTypeButton: UIButton!
+    var _operateTypeButton: UIButton!
+    var _discountTypeButton: UIButton!
     
     var tabBarHeight: CGFloat!
+    
+    var _amountTextfield: UITextField!
+    
+    var _cartData = [String: String]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        self._cartData = [
+            "orderType": "online",
+            "operateType": "minus",
+            "amount": "0",
+            "discountType": "discount"
+        ]
         // Do any additional setup after loading the view.
     }
     
     @objc func cartCancelBtn() {
         print("cartCancelBtn")
+    }
+    
+    @objc func changeOrderType(_ sender: UIButton) {
+        let alertController = UIAlertController(title: "选择订单类型", message: "", preferredStyle: .actionSheet)
+        let cancelAction = UIAlertAction(title: "取消", style: .cancel, handler: nil)
+        let deleteAction = UIAlertAction(title: "线上订单", style: .default, handler: orderTypeOnline)
+        let archiveAction = UIAlertAction(title: "线下订单", style: .default, handler: orderTypeOffline)
+        alertController.addAction(cancelAction)
+        alertController.addAction(deleteAction)
+        alertController.addAction(archiveAction)
+        self.present(alertController, animated: true, completion: nil)
+    }
+    
+    @objc func orderTypeOnline(alert: UIAlertAction) {
+        self._orderTypeButton.setTitle("线上订单", for: UIControlState.normal)
+        self._cartData["orderType"] = "online"
+    }
+    
+    @objc func orderTypeOffline(alert: UIAlertAction) {
+        self._orderTypeButton.setTitle("线下订单", for: UIControlState.normal)
+        self._cartData["orderType"] = "offline"
+    }
+    
+    @objc func changeOrderOperation(_ sender: UIButton) {
+        let alertController = UIAlertController(title: "选择操作类型", message: "", preferredStyle: .actionSheet)
+        let cancelAction = UIAlertAction(title: "取消", style: .cancel, handler: nil)
+        let deleteAction = UIAlertAction(title: "减少", style: .default, handler: orderOperationMinus)
+        let archiveAction = UIAlertAction(title: "增加", style: .default, handler: orderOperationPlus)
+        alertController.addAction(cancelAction)
+        alertController.addAction(deleteAction)
+        alertController.addAction(archiveAction)
+        self.present(alertController, animated: true, completion: nil)
+    }
+    
+    @objc func orderOperationMinus(alert: UIAlertAction) {
+        self._operateTypeButton.setTitle("减少", for: UIControlState.normal)
+        self._cartData["operateType"] = "minus"
+    }
+    
+    @objc func orderOperationPlus(alert: UIAlertAction) {
+        self._operateTypeButton.setTitle("增加", for: UIControlState.normal)
+        self._cartData["operateType"] = "plus"
+    }
+    
+    @objc func changeDiscountType(_ sender: UIButton) {
+        let alertController = UIAlertController(title: "选择优惠方式", message: "", preferredStyle: .actionSheet)
+        let cancelAction = UIAlertAction(title: "取消", style: .cancel, handler: nil)
+        let deleteAction = UIAlertAction(title: "折扣", style: .default, handler: discountTypeDiscount)
+        let archiveAction = UIAlertAction(title: "金额", style: .default, handler: discountTypeAmount)
+        alertController.addAction(cancelAction)
+        alertController.addAction(deleteAction)
+        alertController.addAction(archiveAction)
+        self.present(alertController, animated: true, completion: nil)
+    }
+    
+    @objc func discountTypeDiscount(alert: UIAlertAction) {
+        self._discountTypeButton.setTitle("折扣", for: UIControlState.normal)
+        self._cartData["discountType"] = "discount"
+    }
+    
+    @objc func discountTypeAmount(alert: UIAlertAction) {
+        self._discountTypeButton.setTitle("金额", for: UIControlState.normal)
+        self._cartData["discountType"] = "amount"
+    }
+    
+    @objc func actionSubmit() {
+        if (self._delegate != nil) {
+            self._delegate?.getCartModification(view: self, cartData: self._cartData)
+        }
+    }
+    
+    @objc func actionAmount(_ sender: UITextField) {
+        self._cartData["amount"] = sender.text
     }
 
     override func didReceiveMemoryWarning() {
@@ -185,16 +277,10 @@ class HPickingView: UIViewController {
             make.centerY.equalTo(_orderTypeView)
         }
 
-        let _orderTypeButton = UIButton()
-        _orderTypeButton.setTitleColor(normalRGBA(r: 114, g: 114, b: 114, a: 1.0), for: .normal)
-        _orderTypeButton.backgroundColor = Specs.color.white
-        _orderTypeButton.titleLabel?.font = UIFont.systemFont(ofSize: Specs.fontSize.regular)
-        _orderTypeButton.titleLabel?.textAlignment = .center
-        _orderTypeButton.layer.borderWidth = 0.5
-        _orderTypeButton.layer.cornerRadius = Specs.border.radius
-        _orderTypeButton.set(image: UIImage(named: "arrange1"), title: "线上订单", titlePosition: .left, additionalSpacing: 5.0, state: .normal)
-        _orderTypeView.addSubview(_orderTypeButton)
-        _orderTypeButton.snp.makeConstraints { (make) -> Void in
+        self._orderTypeButton = UIButton()
+        self._setButtonCommonProperty(_button: self._orderTypeButton, title: "线上订单",action: #selector(changeOrderType(_:)))
+        _orderTypeView.addSubview(self._orderTypeButton)
+        self._orderTypeButton.snp.makeConstraints { (make) -> Void in
             make.top.equalTo(_orderTypeView.snp.top).offset(_btnHeightOffset)
             make.left.equalTo(_orderTypeLabel.snp.right)
             make.height.equalTo(_btnHeight)
@@ -249,16 +335,10 @@ class HPickingView: UIViewController {
         }
 
         //
-        let _operateTypeButton = UIButton()
-        _operateTypeButton.setTitleColor(normalRGBA(r: 114, g: 114, b: 114, a: 1.0), for: .normal)
-        _operateTypeButton.backgroundColor = Specs.color.white
-        _operateTypeButton.titleLabel?.font = UIFont.systemFont(ofSize: Specs.fontSize.regular)
-        _operateTypeButton.titleLabel?.textAlignment = .center
-        _operateTypeButton.layer.borderWidth = 0.5
-        _operateTypeButton.layer.cornerRadius = Specs.border.radius
-        _operateTypeButton.set(image: UIImage(named: "arrange1"), title: "减少", titlePosition: .left, additionalSpacing: 5.0, state: .normal)
-        _editTotalView.addSubview(_operateTypeButton)
-        _operateTypeButton.snp.makeConstraints { (make) -> Void in
+        self._operateTypeButton = UIButton()
+        self._setButtonCommonProperty(_button: self._operateTypeButton, title: "减少",action: #selector(changeOrderOperation(_:)))
+        _editTotalView.addSubview(self._operateTypeButton)
+        self._operateTypeButton.snp.makeConstraints { (make) -> Void in
             make.top.equalTo(_editTotalView.snp.top).offset(_btnHeightOffset)
             make.left.equalTo(_orderTotalLabel.snp.right)
             make.height.equalTo(_btnHeight)
@@ -266,22 +346,23 @@ class HPickingView: UIViewController {
         }
         
         // 输入金额/折扣
-        let _amountTextfield = UITextField()
-        _amountTextfield.placeholder = "输入金额/折扣"
-        _amountTextfield.textColor = UIColor(hex: 0x666666)
-        _amountTextfield.font = Specs.font.regular
-        _amountTextfield.clearButtonMode = UITextFieldViewMode.always
-        _amountTextfield.adjustsFontSizeToFitWidth = true
-        _amountTextfield.returnKeyType = UIReturnKeyType.done
-        _amountTextfield.keyboardType = UIKeyboardType.decimalPad
-        _amountTextfield.layer.borderWidth = 0.5
-        _amountTextfield.layer.cornerRadius = Specs.border.radius
-        _amountTextfield.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 3, height: 3))
-        _amountTextfield.leftViewMode = .always
-        _amountTextfield.becomeFirstResponder()
-        _amountTextfield.addTarget(self, action: #selector(cartCancelBtn), for: .touchDown)
-        _editView.addSubview(_amountTextfield)
-        _amountTextfield.snp.makeConstraints { (make) -> Void in
+        self._amountTextfield = UITextField()
+        self._amountTextfield.placeholder = "输入金额/折扣"
+        self._amountTextfield.textColor = UIColor(hex: 0x666666)
+        self._amountTextfield.font = Specs.font.regular
+        self._amountTextfield.clearButtonMode = UITextFieldViewMode.always
+        self._amountTextfield.adjustsFontSizeToFitWidth = true
+        self._amountTextfield.returnKeyType = UIReturnKeyType.done
+        self._amountTextfield.keyboardType = UIKeyboardType.decimalPad
+        self._amountTextfield.layer.borderWidth = 0.5
+        self._amountTextfield.layer.cornerRadius = Specs.border.radius
+        self._amountTextfield.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 5, height: 5))
+        self._amountTextfield.leftViewMode = .always
+        self._amountTextfield.delegate = self
+//        _amountTextfield.becomeFirstResponder()
+        self._amountTextfield.addTarget(self, action: #selector(actionAmount(_:)), for: .editingChanged)
+        _editView.addSubview(self._amountTextfield)
+        self._amountTextfield.snp.makeConstraints { (make) -> Void in
             make.top.equalTo(_editView.snp.top).offset(_btnHeightOffset + self.tabBarHeight)
             make.left.equalTo(_operateTypeButton.snp.right).offset(5)
             make.height.equalTo(_btnHeight)
@@ -289,16 +370,10 @@ class HPickingView: UIViewController {
         }
         
         // 元/折扣
-        let _discountTypeButton = UIButton()
-        _discountTypeButton.setTitleColor(normalRGBA(r: 114, g: 114, b: 114, a: 1.0), for: .normal)
-        _discountTypeButton.backgroundColor = Specs.color.white
-        _discountTypeButton.titleLabel?.font = UIFont.systemFont(ofSize: Specs.fontSize.regular)
-        _discountTypeButton.titleLabel?.textAlignment = .center
-        _discountTypeButton.layer.borderWidth = 0.5
-        _discountTypeButton.layer.cornerRadius = Specs.border.radius
-        _discountTypeButton.set(image: UIImage(named: "arrange1"), title: "折扣", titlePosition: .left, additionalSpacing: 5.0, state: .normal)
-        _editTotalView.addSubview(_discountTypeButton)
-        _discountTypeButton.snp.makeConstraints { (make) -> Void in
+        self._discountTypeButton = UIButton()
+        self._setButtonCommonProperty(_button: self._discountTypeButton, title: "折扣",action: #selector(changeDiscountType(_:)))
+        _editTotalView.addSubview(self._discountTypeButton)
+        self._discountTypeButton.snp.makeConstraints { (make) -> Void in
             make.top.equalTo(_editTotalView.snp.top).offset(_btnHeightOffset)
             make.left.equalTo(_amountTextfield.snp.right).offset(5)
             make.height.equalTo(_btnHeight)
@@ -313,6 +388,7 @@ class HPickingView: UIViewController {
         _submitBtn.titleLabel?.font = UIFont.systemFont(ofSize: Specs.fontSize.regular)
         _submitBtn.backgroundColor = Specs.color.main
         _editTotalView.addSubview(_submitBtn)
+        _submitBtn.addTarget(self, action: #selector(actionSubmit), for: .touchUpInside)
         _submitBtn.snp.makeConstraints { (make) -> Void in
             make.top.equalTo(_editTotalView.snp.top).offset(_btnHeightOffset)
             make.right.equalTo(-10)
@@ -322,5 +398,28 @@ class HPickingView: UIViewController {
         
         return _editView
         
+    }
+    
+    fileprivate func _setButtonCommonProperty(_button: UIButton, title: String, action: Selector) {
+        _button.setTitleColor(normalRGBA(r: 114, g: 114, b: 114, a: 1.0), for: .normal)
+        _button.backgroundColor = Specs.color.white
+        _button.titleLabel?.font = UIFont.systemFont(ofSize: Specs.fontSize.regular)
+        _button.titleLabel?.textAlignment = .center
+        _button.layer.borderWidth = 0.5
+        _button.layer.cornerRadius = Specs.border.radius
+        _button.set(image: UIImage(named: "arrange1"), title: title, titlePosition: .left, additionalSpacing: 5.0, state: .normal)
+        _button.addTarget(self, action: action, for: .touchUpInside)
+    }
+}
+
+
+extension HPickingView: UITextFieldDelegate {
+    // 输入框按下键盘 return 收回键盘
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        if (self._delegate != nil) {
+            self._delegate?.getCartModification(view: self, cartData: self._cartData)
+        }
+        return true
     }
 }

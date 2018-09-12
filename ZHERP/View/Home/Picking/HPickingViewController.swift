@@ -10,7 +10,7 @@ import UIKit
 import MJRefresh
 import SnapKit
 
-class HPickingViewController: UIViewController , UIGestureRecognizerDelegate{
+class HPickingViewController: UIViewController , UIGestureRecognizerDelegate, HPickingViewDelegate{
     
     var tableView: UITableView!
     let CELL_IDENTIFY_ID = "CELL_IDENTIFY_ID"
@@ -93,6 +93,10 @@ class HPickingViewController: UIViewController , UIGestureRecognizerDelegate{
         self.navigationItem.rightBarButtonItems = [rightBarBtnScan,rightBarBtnRefresh]
         
         self._setup()
+        
+        // 监听键盘 打开 关闭
+        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillShow(note:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillHidden(note:)), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -101,14 +105,67 @@ class HPickingViewController: UIViewController , UIGestureRecognizerDelegate{
         
         self.tableView.reloadData()
     }
+    //监听键盘弹出事件：
+    @objc func keyboardWillShow(note: NSNotification) {
+        let userInfo = note.userInfo!
+        let  keyBoardBounds = (userInfo[UIKeyboardFrameEndUserInfoKey] as! NSValue).cgRectValue
+        let duration = (userInfo[UIKeyboardAnimationDurationUserInfoKey] as! NSNumber).doubleValue
+        
+        let deltaY = keyBoardBounds.size.height
+        let animations:(() -> Void) = {
+            //键盘的偏移量
+            //self.tableView.transform = CGAffineTransformMakeTranslation(0 , -deltaY)
+            self._tabBarCartView.frame.origin.y = ScreenHeight - deltaY - self.tabBarHeight * 2
+            self._tabBarCartView.isHidden = false
+            self.cover.isHidden = false
+        }
+        
+        if duration > 0 {
+            let options = UIViewAnimationOptions(rawValue: UInt((userInfo[UIKeyboardAnimationCurveUserInfoKey] as! NSNumber).intValue << 16))
+            UIView.animate(withDuration: duration, delay: 0, options:options, animations: animations, completion: nil)
+        }else{
+            animations()
+        }
+    }
+    
+    //监听键盘隐藏事件：
+    @objc func keyboardWillHidden(note: NSNotification) {
+        let userInfo  = note.userInfo!
+        let duration = (userInfo[UIKeyboardAnimationDurationUserInfoKey] as! NSNumber).doubleValue
+        
+        let animations:(() -> Void) = {
+            //键盘的偏移量
+            //self.tableView.transform = CGAffineTransformIdentity
+            self.keyboardHidden()
+        }
+        if duration > 0 {
+            let options = UIViewAnimationOptions(rawValue: UInt((userInfo[UIKeyboardAnimationCurveUserInfoKey] as! NSNumber).intValue << 16))
+            UIView.animate(withDuration: duration, delay: 0, options:options, animations: animations, completion: nil)
+        }else{
+            animations()
+        }
+    }
     
     @objc func actionEdit() {
-        self.cover.isHidden = false
-        self._tabBarCartView.isHidden = false
+        if (self._tabBarCartView.isHidden == false) {
+            self._tabBarCartView.isHidden = true
+            self.cover.isHidden = true
+            self._HPickingView._amountTextfield.resignFirstResponder()
+        } else {
+            self.cover.isHidden = false
+            self._HPickingView._amountTextfield.becomeFirstResponder()
+        }
+    }
+    
+    @objc func actionEditActive(alert: UIAlertAction) {
+        self.actionEdit()
     }
     
     @objc func actionClose() {
-        self._tabBarCartView.isHidden = true
+        self.keyboardHidden()
+    }
+    @objc func tapCover(_ tapCover : UITapGestureRecognizer){
+        self.keyboardHidden()
     }
     
     @objc func actionSave() {
@@ -149,11 +206,6 @@ class HPickingViewController: UIViewController , UIGestureRecognizerDelegate{
     
     @objc func clickedMoreBtn(_ sender: UIButton) {
         
-    }
-    // 方法
-    @objc func tapCover(_ tapCover : UITapGestureRecognizer){
-        self.cover.isHidden = true
-        self._tabBarCartView.isHidden = true
     }
     
     @objc func longPressAction(recognizer: UILongPressGestureRecognizer)  {
@@ -196,6 +248,13 @@ class HPickingViewController: UIViewController , UIGestureRecognizerDelegate{
         self.tableView!.mj_header.endRefreshing()
     }
     
+    fileprivate func keyboardHidden() {
+        self._tabBarCartView.frame.origin.y = ScreenHeight - self.tabBarHeight * 2
+        self.cover.isHidden = true
+        self._tabBarCartView.isHidden = true
+        self._HPickingView._amountTextfield.resignFirstResponder()
+    }
+    
     //初始化数据
     func refreshItemData(append: Bool) {
         let count = self.dataArr.count
@@ -235,6 +294,7 @@ class HPickingViewController: UIViewController , UIGestureRecognizerDelegate{
         searchBarBtn(view: self, navHeight: self.navHeight, placeholder: "按货品名称或编号搜索", action: #selector(actionSearch))
         
         self._HPickingView = HPickingView()
+        self._HPickingView._delegate = self
         _HPickingView.tabBarHeight = self.tabBarHeight
         self.addChildViewController(_HPickingView)
         
@@ -293,28 +353,61 @@ class HPickingViewController: UIViewController , UIGestureRecognizerDelegate{
         _tabBarView.addSubview(_HPickingView)
         self._HPickingView._submitAdd.addTarget(self, action: #selector(actionCart), for: .touchUpInside)
         
-        self._tabBarCartView = UIView()
+        self._tabBarCartView = UIView(frame: CGRect(x: 0, y: ScreenHeight - self.tabBarHeight - 125, width: ScreenWidth, height: self.tabBarHeight * 2))
         self.view.addSubview(self._tabBarCartView)
-        self._tabBarCartView.snp.makeConstraints { (make) -> Void in
-            make.left.right.equalTo(0)
-            make.bottom.equalTo(_tabBarView.snp.top).offset(-250)
-            make.height.equalTo(self.tabBarHeight * 2)
-            make.width.equalTo(ScreenWidth)
-        }
+//        self._tabBarCartView.snp.makeConstraints { (make) -> Void in
+//            make.left.right.equalTo(0)
+//            make.bottom.equalTo(_tabBarView.snp.top).offset(-250)
+//            make.height.equalTo(self.tabBarHeight * 2)
+//            make.width.equalTo(ScreenWidth)
+//        }
         let _HPickingCartEditView = self._HPickingView.cartEditView(cartData: self.valueArr)
         self._HPickingView._cartCancelBtn.addTarget(self, action: #selector(actionClose), for: .touchUpInside)
         self._tabBarCartView.isHidden = true
         self._tabBarCartView.backgroundColor = UIColor.orange
         self._tabBarCartView.addSubview(_HPickingCartEditView)
     }
-//
-//    public func _reloadData() {
-//        self.tableView!.reloadData()
-//    }
+    
+    public func getCartModification(view: HPickingView, cartData: [String : String]) {
+        self.keyboardHidden()
+        if (cartData["amount"] == "") {
+            return
+        }
+        var _totalText = ""
+        let _totalValue = NSString(string: self.valueArr["total"]!)
+        let _amountValue = NSString(string: cartData["amount"]!)
+        if (cartData["discountType"] == "discount") {
+            if (_amountValue.floatValue < 0.01 || _amountValue.floatValue > 0.99) {
+                _alert(view: self, message: "折扣优惠时，优惠值只能为0.01~0.99之间", handler: actionEditActive)
+                return
+            }
+            if (_amountValue.floatValue > _totalValue.floatValue) {
+                _alert(view: self, message: "优惠金额不能大于总金额", handler: actionEditActive)
+                return
+            }
+            if (cartData["operateType"] == "minus") {
+                _totalText = (String)(_totalValue.floatValue * (1.0 - _amountValue.floatValue))
+            } else {
+                _totalText = (String)(_totalValue.floatValue * (1.0 + _amountValue.floatValue))
+            }
+        } else {
+            if (cartData["operateType"] == "minus") {
+                _totalText = (String)(_totalValue.floatValue - _amountValue.floatValue)
+            } else {
+                _totalText = (String)(_totalValue.floatValue + _amountValue.floatValue)
+            }
+        }
+        self._HPickingView._totalValue.text = _totalText
+    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    deinit {
+        //移除监听
+        NotificationCenter.default.removeObserver(self)
     }
 
 }
