@@ -25,6 +25,8 @@ class HPickingViewController: UIViewController , UIGestureRecognizerDelegate{
     var _HPickingView: HPickingView!
     
     var _tabBarCartView: UIView!
+    // 阴影
+    var cover: UIView!
     
     // 初始数据
     var valueArr = [String: String]()
@@ -101,6 +103,7 @@ class HPickingViewController: UIViewController , UIGestureRecognizerDelegate{
     }
     
     @objc func actionEdit() {
+        self.cover.isHidden = false
         self._tabBarCartView.isHidden = false
     }
     
@@ -110,47 +113,6 @@ class HPickingViewController: UIViewController , UIGestureRecognizerDelegate{
     
     @objc func actionSave() {
         
-    }
-    
-    //顶部下拉刷新
-    @objc func headerRefresh(){
-        print("下拉刷新:\(self.dataArr.count).")
-        sleep(1)
-        //重现生成数据
-        refreshItemData(append: false)
-        
-        // self.tableView?.mj_header.endRefreshing(.)
-        if (self.dataArr.count > 6) {
-            DispatchQueue.main.async {
-                // 主线程中
-                // elf.tableView!.mj_header.state = MJrefreshno
-            }
-        }
-        //重现加载表格数据
-        self.tableView!.reloadData()
-        //结束刷新
-        self.tableView!.mj_header.endRefreshing()
-    }
-    
-    //初始化数据
-    func refreshItemData(append: Bool) {
-        let count = self.dataArr.count
-        let imagePaths = ["java","php","html","react","ruby","swift","xcode","bayMax","c#"]
-        for i in 0...2 {
-            let index = arc4random_uniform(UInt32(imagePaths.count))
-            let _imagePath = imagePaths[Int(index)]
-            self.dataArr[count + i] = ["avatar": _imagePath,
-                                         "sn": "2018090612344519995",
-                                         "suk": "AB_PPC\(count + i)",
-                                         "warehouse": "深圳仓库",
-                                         "price": "80000.88",
-                                         "total": "987452.00",
-                                         "quantity": "12",
-                                         "stock": "5600",
-                                         "name": "六神花露水003",
-                                         "title": "美的（Midea）电饭煲 气动涡轮防溢 金属机身 圆灶釜内胆4L电饭锅MB-WFS4037",
-                                         "cost": "2350.00", "location": "广州白马3434", "status": "-1"]
-        }
     }
     
     @objc func actionBack() {
@@ -188,6 +150,11 @@ class HPickingViewController: UIViewController , UIGestureRecognizerDelegate{
     @objc func clickedMoreBtn(_ sender: UIButton) {
         
     }
+    // 方法
+    @objc func tapCover(_ tapCover : UITapGestureRecognizer){
+        self.cover.isHidden = true
+        self._tabBarCartView.isHidden = true
+    }
     
     @objc func longPressAction(recognizer: UILongPressGestureRecognizer)  {
         if recognizer.state == UIGestureRecognizerState.began {
@@ -206,6 +173,47 @@ class HPickingViewController: UIViewController , UIGestureRecognizerDelegate{
 //                setNavBarRightBtn(view: self, title: "保存", selector: #selector(actionSave))
                 self.setEditing(true,animated: true)
             }
+        }
+    }
+    
+    //顶部下拉刷新
+    @objc func headerRefresh(){
+        print("下拉刷新:\(self.dataArr.count).")
+        sleep(1)
+        //重现生成数据
+        refreshItemData(append: false)
+        
+        // self.tableView?.mj_header.endRefreshing(.)
+        if (self.dataArr.count > 6) {
+            DispatchQueue.main.async {
+                // 主线程中
+                // elf.tableView!.mj_header.state = MJrefreshno
+            }
+        }
+        //重现加载表格数据
+        self.tableView!.reloadData()
+        //结束刷新
+        self.tableView!.mj_header.endRefreshing()
+    }
+    
+    //初始化数据
+    func refreshItemData(append: Bool) {
+        let count = self.dataArr.count
+        let imagePaths = ["java","php","html","react","ruby","swift","xcode","bayMax","c#"]
+        for i in 0...2 {
+            let index = arc4random_uniform(UInt32(imagePaths.count))
+            let _imagePath = imagePaths[Int(index)]
+            self.dataArr[count + i] = ["avatar": _imagePath,
+                                       "sn": "2018090612344519995",
+                                       "suk": "AB_PPC\(count + i)",
+                "warehouse": "深圳仓库",
+                "price": "80000.88",
+                "total": "987452.00",
+                "quantity": "12",
+                "stock": "5600",
+                "name": "六神花露水003",
+                "title": "美的（Midea）电饭煲 气动涡轮防溢 金属机身 圆灶釜内胆4L电饭锅MB-WFS4037",
+                "cost": "2350.00", "location": "广州白马3434", "status": "-1"]
         }
     }
     
@@ -256,6 +264,15 @@ class HPickingViewController: UIViewController , UIGestureRecognizerDelegate{
         self.header.setRefreshingTarget(self, refreshingAction: #selector(OrderAllViewController.headerRefresh))
         self.tableView!.mj_header = self.header
         
+        self.cover = UIView(frame: CGRect(x: 0, y: 0, width: ScreenWidth, height: ScreenHeight))
+        self.cover.backgroundColor = normalRGBA(r: 0, g: 0, b: 0, a: 0.3)
+        self.cover.isHidden = true
+        self.view.addSubview(self.cover)
+        
+        // 弹出阴影层 手势
+        let tapCover = UITapGestureRecognizer(target: self, action: #selector(tapCover(_:)))
+        self.cover.addGestureRecognizer(tapCover)
+        
         self._setTabBarCart()
         // Do any additional setup after loading the view.
     }
@@ -285,10 +302,10 @@ class HPickingViewController: UIViewController , UIGestureRecognizerDelegate{
             make.width.equalTo(ScreenWidth)
         }
         let _HPickingCartEditView = self._HPickingView.cartEditView(cartData: self.valueArr)
-//        self._HPickingView._cartCancelBtn.addTarget(self, action: #selector(actionClose), for: .touchUpInside)
-        self._tabBarCartView.addSubview(_HPickingCartEditView)
-        self._tabBarCartView.isHidden = false
+        self._HPickingView._cartCancelBtn.addTarget(self, action: #selector(actionClose), for: .touchUpInside)
+        self._tabBarCartView.isHidden = true
         self._tabBarCartView.backgroundColor = UIColor.orange
+        self._tabBarCartView.addSubview(_HPickingCartEditView)
     }
 //
 //    public func _reloadData() {
