@@ -381,10 +381,6 @@ class HPickingViewController: UIViewController , UIGestureRecognizerDelegate, HP
                 _alert(view: self, message: "折扣优惠时，优惠值只能为0.01~0.99之间", handler: actionEditActive)
                 return
             }
-            if (_amountValue.floatValue > _totalValue.floatValue) {
-                _alert(view: self, message: "优惠金额不能大于总金额", handler: actionEditActive)
-                return
-            }
             if (cartData["operateType"] == "minus") {
                 _totalText = (String)(_totalValue.floatValue * (1.0 - _amountValue.floatValue))
             } else {
@@ -392,6 +388,10 @@ class HPickingViewController: UIViewController , UIGestureRecognizerDelegate, HP
             }
         } else {
             if (cartData["operateType"] == "minus") {
+                if (_amountValue.floatValue > _totalValue.floatValue) {
+                    _alert(view: self, message: "优惠金额不能大于总金额", handler: actionEditActive)
+                    return
+                }
                 _totalText = (String)(_totalValue.floatValue - _amountValue.floatValue)
             } else {
                 _totalText = (String)(_totalValue.floatValue + _amountValue.floatValue)
