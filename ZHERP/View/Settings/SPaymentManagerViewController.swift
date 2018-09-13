@@ -42,29 +42,16 @@ class SPaymentManagerViewController: UIViewController {
         self.tableView!.tableHeaderView = UIView.init(frame: CGRect(x: 0, y: 0, width: 0, height: 0.1))
         //表格在编辑状态下允许多选
         self.tableView!.allowsMultipleSelectionDuringEditing = true
+        self.tableView!.setEditing(true, animated:true)
         self.view.addSubview(self.tableView!)
         
-        self.tableView!.setEditing(true, animated:true)
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }
-
 
 extension SPaymentManagerViewController: UITableViewDelegate, UITableViewDataSource {
     
@@ -116,12 +103,15 @@ extension SPaymentManagerViewController: UITableViewDelegate, UITableViewDataSou
         
         cell.detailTextLabel?.numberOfLines = 3
         
+        cell.isSelected = true
+        
         return cell
     }
     
     // UITableViewDelegate 方法，处理列表项的选中事件
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let _data = dataArr[indexPath.item]
+        tableView.deselectRow(at: indexPath, animated: true)
+//        let _data = dataArr[indexPath.item]
 //        print(_data)
 //        _back(view: self)
     }

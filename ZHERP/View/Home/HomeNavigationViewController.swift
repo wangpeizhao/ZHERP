@@ -95,7 +95,7 @@ class HomeNavigationViewController: UIViewController, UICollectionViewDelegateFl
         case "warehouse":
             _target = WarehouseViewController()
         case "allocate":
-            _target = HAllocateRecordViewController()
+            _target = HAllocateViewController()
         case "setting":
             _target = SettingsViewController()
         default:

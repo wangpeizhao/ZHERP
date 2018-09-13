@@ -9,7 +9,7 @@
 import UIKit
 import MJRefresh
 
-class HAllocateRecordViewController: UIViewController {
+class HAllocateViewController: UIViewController {
     
     var tableView: UITableView!
     let CELL_IDENTIFY_ID = "CELL_IDENTIFY_ID"
@@ -109,7 +109,7 @@ class HAllocateRecordViewController: UIViewController {
         self.tableView!.mj_header.endRefreshing()
     }
     
-    //初始化数据
+    //刷新数据
     func refreshItemData(append: Bool) {
         for i in 0...2 {
             let _data = ["datetime": "2018-09-03 13:23:56", "id": "509096", "orderId": "201809061234459954\(i)"]
@@ -171,7 +171,7 @@ class HAllocateRecordViewController: UIViewController {
 
 }
 
-extension HAllocateRecordViewController: UITableViewDelegate, UITableViewDataSource {
+extension HAllocateViewController: UITableViewDelegate, UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1;

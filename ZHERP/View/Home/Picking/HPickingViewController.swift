@@ -75,7 +75,7 @@ class HPickingViewController: UIViewController , UIGestureRecognizerDelegate, HP
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        print("HPickingViewController:->viewDidLoad()")
+//        print("HPickingViewController:->viewDidLoad()")
         
         self.view.backgroundColor = Specs.color.white
         setNavBarTitle(view: self, title: "正在拣货")
@@ -117,7 +117,7 @@ class HPickingViewController: UIViewController , UIGestureRecognizerDelegate, HP
             //self.tableView.transform = CGAffineTransformMakeTranslation(0 , -deltaY)
             self._tabBarCartView.frame.origin.y = ScreenHeight - deltaY - self.tabBarHeight * 2
             //延时1秒执行
-            let time: TimeInterval = 0.3
+            let time: TimeInterval = 0.5
             DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + time) {
                 //code
                 self._tabBarCartView.isHidden = false

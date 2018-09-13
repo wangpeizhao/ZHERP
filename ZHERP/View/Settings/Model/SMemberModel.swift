@@ -19,8 +19,9 @@ class SMemberModel: NSObject {
     var status: Bool
     var lastLoginIp: String
     var lastLoginTime: Date
+    var loginTimes: Int
     
-    init(id: Int, avatar:String, username: String, rId: Int,realname: String, rolename: String, remark:String, status: Bool, lastLoginIp: String, lastLoginTime: Date) {
+    init(id: Int, avatar:String, username: String, rId: Int,realname: String, rolename: String, remark:String, status: Bool, lastLoginIp: String, lastLoginTime: Date, loginTimes: Int) {
         self.id = id
         self.avatar = avatar
         self.username = username
@@ -31,5 +32,6 @@ class SMemberModel: NSObject {
         self.status = status
         self.lastLoginIp = lastLoginIp
         self.lastLoginTime = lastLoginTime
+        self.loginTimes = loginTimes
     }
 }

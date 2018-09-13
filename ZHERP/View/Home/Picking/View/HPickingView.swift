@@ -233,7 +233,6 @@ class HPickingView: UIViewController {
         self._submitAdd.setTitle("提 交", for: .normal)
         self._submitAdd.setTitleColor(Specs.color.white, for: UIControlState())
         self._submitAdd.backgroundColor = Specs.color.main
-//        _btn.addTarget(self, action: #selector(actionCart), for: .touchUpInside)
         _cartBtnView.addSubview(self._submitAdd)
         self._submitAdd.snp.makeConstraints { (make) -> Void in
             make.top.equalTo(_cartBtnView.snp.top)
@@ -359,7 +358,6 @@ class HPickingView: UIViewController {
         self._amountTextfield.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 5, height: 5))
         self._amountTextfield.leftViewMode = .always
         self._amountTextfield.delegate = self
-//        _amountTextfield.becomeFirstResponder()
         self._amountTextfield.addTarget(self, action: #selector(actionAmount(_:)), for: .editingChanged)
         _editView.addSubview(self._amountTextfield)
         self._amountTextfield.snp.makeConstraints { (make) -> Void in

@@ -62,7 +62,7 @@ class SMemberOperateViewController: UIViewController {
     
     private func initData() {
         
-        self.memberData = SMemberModel(id: 0, avatar: "", username: "", rId: 0, realname: "", rolename: "", remark: "", status: false, lastLoginIp: "", lastLoginTime: dateFromString("2018-09-05")!)
+        self.memberData = SMemberModel(id: 0, avatar: "", username: "", rId: 0, realname: "", rolename: "", remark: "", status: false, lastLoginIp: "", lastLoginTime: dateFromString("2018-09-05")!, loginTimes: 0)
         
         self.dataArr = [
             [
@@ -92,6 +92,7 @@ class SMemberOperateViewController: UIViewController {
                 "rows": [
                     ["title":"最后登录IP", "key":"lastLoginIp", "value":"12.23.34.11"],
                     ["title":"最后登录时间", "key":"lastLoginTime", "value":"2018-09-05 14:28:59"],
+                    ["title":"登录次数", "key":"loginTimes", "value":"489次"],
                 ]
             ]
         ]
@@ -104,6 +105,8 @@ class SMemberOperateViewController: UIViewController {
             self.memberData?.rId = Int(self.valueArr["rid"]!)!
             self.memberData?.rolename = self.valueArr["roleName"]!
             self.memberData?.status = true
+            self.memberData?.loginTimes = 251
+            // todo
         }
     }
     
@@ -231,7 +234,6 @@ extension SMemberOperateViewController: UITableViewDelegate, UITableViewDataSour
             case "remark":
                 cell.TextFieldValue.text = self.memberData?.remark != "" ? self.memberData?.remark : _row["value"]
                 cell.TextFieldValue.returnKeyType = UIReturnKeyType.done
-//                cell.TextFieldValue.addTarget(self, action: #selector(actionSave), for: .touchUpInside)
             default:
                 cell.TextFieldValue.text = _row["value"]
             }
@@ -256,7 +258,9 @@ extension SMemberOperateViewController: UITableViewDelegate, UITableViewDataSour
         case "lastLoginIp":
             cell.detailTextLabel?.text = self.memberData?.lastLoginIp != "" ? self.memberData?.lastLoginIp : _row["value"]
         case "lastLoginTime":
-            cell.detailTextLabel?.text = self.memberData?.lastLoginTime != nil ? stringFromDate((self.memberData?.lastLoginTime)!) : ""
+            cell.detailTextLabel?.text = self.memberData?.lastLoginTime != nil ? stringFromDate((self.memberData?.lastLoginTime)!, format: "yyyy-MM-dd HH:mm:ss") : ""
+        case "loginTimes":
+            cell.detailTextLabel?.text = (self.memberData?.loginTimes)! != 0 ? "\(self.memberData?.loginTimes ?? 0)" : _row["value"]
         default:
             cell.detailTextLabel?.text = _row["value"]
         }
@@ -304,6 +308,15 @@ extension SMemberOperateViewController: UITableViewDelegate, UITableViewDataSour
                     tableView.reloadData()
                 }
             }
+            _target.hidesBottomBarWhenPushed = true
+            _push(view: self, target: _target, rootView: false)
+            return
+        }
+        
+        if "loginTimes" == key {
+            setNavBarBackBtn(view: self, title: (self.memberData?.realname)!, selector: #selector(actionBack))
+            let _target = SMemberLoginLogsViewController()
+            _target.uId = self.memberData?.id
             _target.hidesBottomBarWhenPushed = true
             _push(view: self, target: _target, rootView: false)
             return
