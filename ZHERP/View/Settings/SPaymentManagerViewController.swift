@@ -34,16 +34,15 @@ class SPaymentManagerViewController: UIViewController {
     
     private func _setUp() {
         //创建表视图
-        self.tableView = UITableView(frame: self.view.frame, style: .grouped)
+        self.tableView = UITableView(frame: self.view.frame, style: .plain)
         self.tableView!.delegate = self
         self.tableView!.dataSource = self
         self.tableView!.register(UITableViewCell.self, forCellReuseIdentifier: CELL_IDENTIFY_ID)
-        self.tableView!.register(SimpleBasicsCell.self, forCellReuseIdentifier: SimpleBasicsCell.identifier)
         self.tableView!.tableHeaderView = UIView.init(frame: CGRect(x: 0, y: 0, width: 0, height: 0.1))
+        self.view.addSubview(self.tableView!)
         //表格在编辑状态下允许多选
         self.tableView!.allowsMultipleSelectionDuringEditing = true
         self.tableView!.setEditing(true, animated:true)
-        self.view.addSubview(self.tableView!)
         
     }
 
@@ -66,24 +65,24 @@ extension SPaymentManagerViewController: UITableViewDelegate, UITableViewDataSou
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         return ""
     }
-    
+
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return SelectCellHeight * 2
     }
-    
+
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         return UIView()
     }
-    
+
     //设置分组头的高度
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 0
     }
-    
+
     func tableView(_ tableView: UITableView, titleForFooterInSection section: Int) -> String? {
         return "请设置支付方式"
     }
-    
+
     //设置分组尾的高度
     func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
         return 30
@@ -93,6 +92,7 @@ extension SPaymentManagerViewController: UITableViewDelegate, UITableViewDataSou
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let _data = dataArr[indexPath.item]
         let cell = UITableViewCell(style: .subtitle, reuseIdentifier: CELL_IDENTIFY_ID)
+//        let cell = tableView.dequeueReusableCell(withIdentifier: CELL_IDENTIFY_ID, for: indexPath as IndexPath) as UITableViewCell
         
         cell.textLabel?.text = _data["name"]
         
@@ -103,18 +103,31 @@ extension SPaymentManagerViewController: UITableViewDelegate, UITableViewDataSou
         
         cell.detailTextLabel?.numberOfLines = 3
         
-        cell.isSelected = true
-        
+//        cell.isSelected = true
+//        cell.accessoryType = .checkmark
+//        tableView.selectRow(at: indexPath, animated: true)
+        tableView.selectRow(at: indexPath, animated: true, scrollPosition: .none)
         return cell
+    }
+    //处理列表项的选中事件
+    private func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath){
+        let cell = self.tableView?.cellForRow(at: indexPath as IndexPath)
+        cell?.accessoryType = .checkmark
+    }
+    
+    //处理列表项的取消选中事件
+    private func tableView(tableView: UITableView, didDeselectRowAtIndexPath indexPath: IndexPath) {
+        let cell = self.tableView?.cellForRow(at: indexPath as IndexPath)
+        cell?.accessoryType = .none
     }
     
     // UITableViewDelegate 方法，处理列表项的选中事件
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        tableView.deselectRow(at: indexPath, animated: true)
-//        let _data = dataArr[indexPath.item]
-//        print(_data)
-//        _back(view: self)
-    }
+//    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+////        tableView.deselectRow(at: indexPath, animated: true)
+////        let _data = dataArr[indexPath.item]
+////        print(_data)
+////        _back(view: self)
+//    }
     
 }
 
