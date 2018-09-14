@@ -18,7 +18,7 @@ class HomeNavigationViewController: UIViewController, UICollectionViewDelegateFl
         ["name":"扫码发货", "key":"scanSendGood","pic":"xcode.png"],
         ["name":"调货", "key":"allocate","pic":"java.png"],
         ["name":"仓库", "key":"warehouse","pic":"php.png"],
-        ["name":"盘点", "key":"takeStock","pic":"js.png"],
+        ["name":"盘点", "key":"inventory","pic":"js.png"],
         ["name":"设置", "key":"setting","pic":"react.png"],
         ["name":"Ruby", "key":"","pic":"ruby.png"],
         ["name":"HTML", "key":"","pic":"html.png"],
@@ -92,10 +92,12 @@ class HomeNavigationViewController: UIViewController, UICollectionViewDelegateFl
             _target = HPickingViewController()
         case "scanSendGood":
             _target = ZHQRCodeViewController()
-        case "warehouse":
-            _target = WarehouseViewController()
         case "allocate":
             _target = HAllocateViewController()
+        case "warehouse":
+            _target = WarehouseViewController()
+        case "inventory":
+            _target = HInventoryViewController()
         case "setting":
             _target = SettingsViewController()
         default:

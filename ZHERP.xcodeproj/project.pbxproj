@@ -119,6 +119,12 @@
 		9E549937213ED506001E4C36 /* WCategoryOperateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E549936213ED506001E4C36 /* WCategoryOperateViewController.swift */; };
 		9E549939213EE7C0001E4C36 /* WCategoryDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E549938213EE7C0001E4C36 /* WCategoryDetailViewController.swift */; };
 		9E54993B21400D33001E4C36 /* SPaymentManagerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E54993A21400D33001E4C36 /* SPaymentManagerViewController.swift */; };
+		9E5D7E4A214BFEAA00DE7036 /* HInventoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E5D7E49214BFEAA00DE7036 /* HInventoryViewController.swift */; };
+		9E5D7E4C214C0E0A00DE7036 /* HInventoryTakingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E5D7E4B214C0E0A00DE7036 /* HInventoryTakingViewController.swift */; };
+		9E5D7E4E214C10CE00DE7036 /* HInventoryResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E5D7E4D214C10CE00DE7036 /* HInventoryResultViewController.swift */; };
+		9E5D7E54214C149C00DE7036 /* UICollectionGridViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E5D7E51214C149B00DE7036 /* UICollectionGridViewController.swift */; };
+		9E5D7E55214C149C00DE7036 /* UICollectionGridViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E5D7E52214C149B00DE7036 /* UICollectionGridViewCell.swift */; };
+		9E5D7E56214C149C00DE7036 /* UICollectionGridViewLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E5D7E53214C149C00DE7036 /* UICollectionGridViewLayout.swift */; };
 		9E62C2AE213B81A200C8A578 /* WarehouseOperateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E62C2AD213B81A200C8A578 /* WarehouseOperateViewController.swift */; };
 		9E62C2B5213BD32900C8A578 /* address.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9E62C2B4213BD32900C8A578 /* address.plist */; };
 		9E62C2B8213BF1E400C8A578 /* AddressPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E62C2B7213BF1E400C8A578 /* AddressPickerViewController.swift */; };
@@ -324,6 +330,12 @@
 		9E549936213ED506001E4C36 /* WCategoryOperateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WCategoryOperateViewController.swift; sourceTree = "<group>"; };
 		9E549938213EE7C0001E4C36 /* WCategoryDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WCategoryDetailViewController.swift; sourceTree = "<group>"; };
 		9E54993A21400D33001E4C36 /* SPaymentManagerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SPaymentManagerViewController.swift; sourceTree = "<group>"; };
+		9E5D7E49214BFEAA00DE7036 /* HInventoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HInventoryViewController.swift; sourceTree = "<group>"; };
+		9E5D7E4B214C0E0A00DE7036 /* HInventoryTakingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HInventoryTakingViewController.swift; sourceTree = "<group>"; };
+		9E5D7E4D214C10CE00DE7036 /* HInventoryResultViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HInventoryResultViewController.swift; sourceTree = "<group>"; };
+		9E5D7E51214C149B00DE7036 /* UICollectionGridViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UICollectionGridViewController.swift; sourceTree = "<group>"; };
+		9E5D7E52214C149B00DE7036 /* UICollectionGridViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UICollectionGridViewCell.swift; sourceTree = "<group>"; };
+		9E5D7E53214C149C00DE7036 /* UICollectionGridViewLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UICollectionGridViewLayout.swift; sourceTree = "<group>"; };
 		9E62C2AD213B81A200C8A578 /* WarehouseOperateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WarehouseOperateViewController.swift; sourceTree = "<group>"; };
 		9E62C2B4213BD32900C8A578 /* address.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = address.plist; sourceTree = "<group>"; };
 		9E62C2B7213BF1E400C8A578 /* AddressPickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressPickerViewController.swift; sourceTree = "<group>"; };
@@ -617,7 +629,7 @@
 			path = API;
 			sourceTree = "<group>";
 		};
-		9E4C315F21435FA4004A95A2 /* Allocating */ = {
+		9E4C315F21435FA4004A95A2 /* Allocate */ = {
 			isa = PBXGroup;
 			children = (
 				9EE227E12145118000E1CDD1 /* View */,
@@ -625,7 +637,7 @@
 				9E4C316021435FCC004A95A2 /* HAllocateViewController.swift */,
 				9E4C3164214368D1004A95A2 /* HAllocatingViewController.swift */,
 			);
-			path = Allocating;
+			path = Allocate;
 			sourceTree = "<group>";
 		};
 		9E4C316621436BFA004A95A2 /* Model */ = {
@@ -768,6 +780,35 @@
 			path = Goods;
 			sourceTree = "<group>";
 		};
+		9E5D7E48214BFE6800DE7036 /* Inventory */ = {
+			isa = PBXGroup;
+			children = (
+				9E5D7E4F214C145700DE7036 /* View */,
+				9E5D7E49214BFEAA00DE7036 /* HInventoryViewController.swift */,
+				9E5D7E4B214C0E0A00DE7036 /* HInventoryTakingViewController.swift */,
+				9E5D7E4D214C10CE00DE7036 /* HInventoryResultViewController.swift */,
+			);
+			path = Inventory;
+			sourceTree = "<group>";
+		};
+		9E5D7E4F214C145700DE7036 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				9E5D7E50214C148800DE7036 /* UICollectionGrid */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		9E5D7E50214C148800DE7036 /* UICollectionGrid */ = {
+			isa = PBXGroup;
+			children = (
+				9E5D7E52214C149B00DE7036 /* UICollectionGridViewCell.swift */,
+				9E5D7E51214C149B00DE7036 /* UICollectionGridViewController.swift */,
+				9E5D7E53214C149C00DE7036 /* UICollectionGridViewLayout.swift */,
+			);
+			path = UICollectionGrid;
+			sourceTree = "<group>";
+		};
 		9E62C2B3213BD30600C8A578 /* PlistData */ = {
 			isa = PBXGroup;
 			children = (
@@ -828,8 +869,9 @@
 		9E88ED1720FB40DE00DF091F /* Home */ = {
 			isa = PBXGroup;
 			children = (
+				9E5D7E48214BFE6800DE7036 /* Inventory */,
 				9EFF259D2143FD6C0055EB61 /* Picking */,
-				9E4C315F21435FA4004A95A2 /* Allocating */,
+				9E4C315F21435FA4004A95A2 /* Allocate */,
 				9E88ED1920FB41F800DF091F /* HomeViewController.swift */,
 				9E88ED1B20FB462600DF091F /* OrderTableViewController.swift */,
 				9E88ED1D20FB464B00DF091F /* GoodTableViewController.swift */,
@@ -1333,10 +1375,12 @@
 				9E88ED2520FB53AE00DF091F /* OrderDetailViewController.swift in Sources */,
 				9E523E7B210C238400CF921F /* ForgetViewController.swift in Sources */,
 				2C35D2D02141085A00AEC12F /* BillsDailyReportTableViewCell.swift in Sources */,
+				9E5D7E4C214C0E0A00DE7036 /* HInventoryTakingViewController.swift in Sources */,
 				2CE8F4A1212BFEE800037367 /* WarehouseViewController.swift in Sources */,
 				2CC9036B210855B60083D70C /* SystemViewController.swift in Sources */,
 				9E523E3E2107819000CF921F /* EditPersonalViewController.swift in Sources */,
 				9E523E3721074E8200CF921F /* BaseNavigationController.swift in Sources */,
+				9E5D7E4A214BFEAA00DE7036 /* HInventoryViewController.swift in Sources */,
 				2C986C77213FA66600F081BC /* SMemberManagerViewController.swift in Sources */,
 				9EE227DB2144A57600E1CDD1 /* ImageHelper.swift in Sources */,
 				9ED7E51321404FE000F8F735 /* OrderBillsPagesViewController.swift in Sources */,
@@ -1357,6 +1401,7 @@
 				2CE96F1B211C0D0700B4CE5A /* OrderSearchResultViewController.swift in Sources */,
 				9EE26B79212B0BE000619D98 /* HomeNavigationViewController.swift in Sources */,
 				9E54993B21400D33001E4C36 /* SPaymentManagerViewController.swift in Sources */,
+				9E5D7E55214C149C00DE7036 /* UICollectionGridViewCell.swift in Sources */,
 				9E523DF4210460B600CF921F /* UIImage+GIF.swift in Sources */,
 				2C6B1F3F213E769300CF82DE /* WSupplierManagerViewController.swift in Sources */,
 				2CE8F4A4212C0AC600037367 /* SettingsViewController.swift in Sources */,
@@ -1404,11 +1449,13 @@
 				9E523E77210BF53F00CF921F /* RegisteringViewController.swift in Sources */,
 				9EE26B7B212B0CA400619D98 /* HomeReportViewController.swift in Sources */,
 				9E523E3C2107708600CF921F /* Personal.swift in Sources */,
+				9E5D7E54214C149C00DE7036 /* UICollectionGridViewController.swift in Sources */,
 				9E88ED1020FB3B7700DF091F /* ObservableType+ObjectMapper.swift in Sources */,
 				9E88ED3920FCEA4500DF091F /* Member.swift in Sources */,
 				9E523DE22100DD0500CF921F /* Protocol.swift in Sources */,
 				2C6B1F3D213E5BF200CF82DE /* WLocationDeatilViewController.swift in Sources */,
 				9EE26B89212DE2F900619D98 /* UIButton-Extensions.swift in Sources */,
+				9E5D7E56214C149C00DE7036 /* UICollectionGridViewLayout.swift in Sources */,
 				2C9AC89321427465004F252D /* StatisticReportViewController.swift in Sources */,
 				9E88ED3520FCE95600DF091F /* MemberBaseViewController.swift in Sources */,
 				2C35D2C92140D76400AEC12F /* BillsTodayViewController.swift in Sources */,
@@ -1424,6 +1471,7 @@
 				9E4C316121435FCC004A95A2 /* HAllocateViewController.swift in Sources */,
 				9ED7E50E2140304D00F8F735 /* OrderTodayBillTableViewCell.swift in Sources */,
 				9E523DE42100DDA900CF921F /* Service.swift in Sources */,
+				9E5D7E4E214C10CE00DE7036 /* HInventoryResultViewController.swift in Sources */,
 				9E88ED2F20FBA90C00DF091F /* HelperCommon.swift in Sources */,
 				2CEA8C4A212A503E00004AE6 /* UIImage-Extensions.swift in Sources */,
 				9E523E0021047E7900CF921F /* UserDefaults.swift in Sources */,
