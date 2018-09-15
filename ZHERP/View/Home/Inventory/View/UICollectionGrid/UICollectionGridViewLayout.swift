@@ -57,6 +57,16 @@ class UICollectionGridViewLayout: UICollectionViewLayout {
                                               height:itemSize.height).integral
                 }
                 
+                //如果是第一行（表头）
+                if section == 0 {
+                    //列头位置固定
+                    var frame = attributes.frame
+                    frame.origin.y = self.collectionView!.contentOffset.y
+                    attributes.frame = frame
+                    //列头单元格处于最顶层
+                    attributes.zIndex = 1024
+                }
+                
                 sectionAttributes.append(attributes)
                 
                 xOffset = xOffset+itemSize.width
@@ -117,12 +127,13 @@ class UICollectionGridViewLayout: UICollectionViewLayout {
     //当边界发生改变时，是否应该刷新布局。
     //本例在宽度变化时，将重新计算需要的布局信息。
     override func shouldInvalidateLayout(forBoundsChange newBounds: CGRect) -> Bool {
-        let oldBounds = self.collectionView?.bounds
-        if oldBounds!.width != newBounds.width {
-            return true
-        }else {
-            return false
-        }
+        return true
+//        let oldBounds = self.collectionView?.bounds
+//        if oldBounds!.width != newBounds.width {
+//            return true
+//        }else {
+//            return false
+//        }
     }
     
     //计算所有单元格的尺寸（每一列各一个单元格）
@@ -152,13 +163,19 @@ class UICollectionGridViewLayout: UICollectionViewLayout {
 //            ])
         let size = NSString(string: columnString).size(withAttributes: [
             NSAttributedStringKey.font : UIFont.boldSystemFont(ofSize: 15)])
+//
+//        //如果有剩余的空间则都给第一列
+//        if columnIndex == 0 {
+//            return CGSize(width:max(remainingWidth, size.width + 17),
+//                          height:size.height + 10)
+//        }
+//        //行高增加10像素，列宽增加17像素
+//        return CGSize(width:size.width + 17, height:size.height + 10)
         
-        //如果有剩余的空间则都给第一列
-        if columnIndex == 0 {
-            return CGSize(width:max(remainingWidth, size.width + 17),
-                          height:size.height + 10)
-        }
-        //行高增加10像素，列宽增加17像素
-        return CGSize(width:size.width + 17, height:size.height + 10)
+        
+        //修改成所有列都平均分配（但宽度不能小于80）
+        let width = max(remainingWidth/CGFloat(columnIndex+1), 75)
+        //计算好的宽度还要取整，避免偏移
+        return CGSize(width: ceil(width), height:size.height + 10)
     }
 }

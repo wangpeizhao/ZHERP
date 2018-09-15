@@ -40,7 +40,7 @@ class HInventoryTakingViewController: UIViewController {
         super.viewDidLoad()
         
         self.view.backgroundColor = UIColor(hex: 0xf7f7f7)
-        setNavBarTitle(view: self, title: self.navTitle != nil ? self.navTitle: "货品调配")
+        setNavBarTitle(view: self, title: self.navTitle != nil ? self.navTitle: "盘点货品")
         setNavBarBackBtn(view: self, title: "", selector: #selector(actionBack))
         
         self._setup()

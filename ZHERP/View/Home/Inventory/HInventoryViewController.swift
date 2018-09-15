@@ -53,7 +53,7 @@ class HInventoryViewController: UIViewController {
         
         self.view.backgroundColor = Specs.color.white
         setNavBarTitle(view: self, title: "盘点记录")
-        setNavBarBackBtn(view: self, title: "", selector: #selector(actionBack))
+        setNavBarBackBtn(view: self, title: "盘点记录", selector: #selector(actionBack))
         
         // 设置右侧按钮(筛选)
         let rightBarBtnInventory = UIBarButtonItem(title: "", style: .plain, target: self, action: #selector(actionInventory))
@@ -235,7 +235,7 @@ extension HInventoryViewController: UITableViewDelegate, UITableViewDataSource {
 //            "employees": "王培照",
 //            "datetime": _data["datetime"]
 //            ] as! [String : String]
-//        
+//
         _push(view: self, target: _target, rootView: false)
     }
 }

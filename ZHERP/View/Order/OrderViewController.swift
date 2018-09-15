@@ -26,6 +26,7 @@ class OrderViewController: UIViewController, UIGestureRecognizerDelegate {
         self.view.backgroundColor = Specs.color.white
         
         setNavBarBackBtn(view: self, title: self._title, selector: #selector(actionBack))
+        setNavBarRightBtn(view: self, title: "发货", selector: #selector(actionDelivery))
         
         self._setUp()
     }
@@ -73,6 +74,10 @@ class OrderViewController: UIViewController, UIGestureRecognizerDelegate {
     
     @objc func actionBack() {
 //        _push(view: self, target: OrderDetailViewController())
+    }
+    
+    @objc func actionDelivery() {
+        
     }
     
     private func _navigationDropdownMenus() {

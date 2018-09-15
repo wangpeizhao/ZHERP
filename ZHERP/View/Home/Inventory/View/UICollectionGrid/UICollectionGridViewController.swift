@@ -15,6 +15,10 @@ class UICollectionGridViewController: UICollectionViewController {
     var cols: [String]! = []
     //行数据
     var rows: [[Any]]! = []
+    
+    //选中的表格列（-1表示没有选中的）
+    private var selectedColIdx = -1
+    
     //单元格内容居左时的左侧内边距
     private var cellPaddingLeft:CGFloat = 5
     
@@ -80,20 +84,50 @@ class UICollectionGridViewController: UICollectionViewController {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell",
                                     for: indexPath) as! UICollectionGridViewCell
         //第一列的内容左对齐，其它列内容居中
-        if indexPath.row == 0 {
-            cell.label.textAlignment = .left
-            cell.paddingLeft = cellPaddingLeft
-        }
+//        if indexPath.row == 0 {
+//            cell.label.textAlignment = .left
+//            cell.paddingLeft = cellPaddingLeft
+//        }
         
         //设置列头单元格，内容单元格的数据
         if indexPath.section == 0 {
-            let text = NSAttributedString(string: cols[indexPath.row], attributes: [NSAttributedStringKey.baselineOffset: 15])
+            let text = NSAttributedString(string: cols[indexPath.row], attributes: [
+                NSAttributedStringKey.font: UIFont.boldSystemFont(ofSize: 15)
+                ])
             cell.label.attributedText = text
+            cell.label.textColor = UIColor.white
         } else {
             cell.label.font = UIFont.systemFont(ofSize: 15)
             cell.label.text = "\(rows[indexPath.section-1][indexPath.row])"
+            cell.label.textColor = UIColor.black
         }
-        
+        //表头单元格背景色
+        if indexPath.section == 0 {
+            cell.backgroundColor = UIColor(red: 0x91/255, green: 0xDA/255,
+                                           blue: 0x51/255, alpha: 1)
+            //排序列列头显示升序降序图标
+//            if indexPath.row == selectedColIdx {
+//                let iconType = asc ? FAType.FALongArrowUp : FAType.FALongArrowDown
+//                cell.imageView.setFAIconWithName(icon: iconType, textColor: UIColor.white)
+//            }else{
+//                cell.imageView.image = nil
+//            }
+        }
+            //内容单元格背景色
+        else {
+            //排序列的单元格背景会变色
+            if indexPath.row == selectedColIdx {
+                //排序列的单元格背景会变色
+                cell.backgroundColor = UIColor(red: 0xCC/255, green: 0xF8/255,
+                                               blue: 0xFF/255, alpha: 1)
+            }
+                //数据区域每行单元格背景色交替显示
+            else if indexPath.section % 2 == 0 {
+                cell.backgroundColor = UIColor(white: 242/255.0, alpha: 1)
+            } else {
+                cell.backgroundColor = UIColor.white
+            }
+        }
         return cell
     }
     
