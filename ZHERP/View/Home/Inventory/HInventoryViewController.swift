@@ -57,7 +57,7 @@ class HInventoryViewController: UIViewController {
         
         // 设置右侧按钮(筛选)
         let rightBarBtnInventory = UIBarButtonItem(title: "", style: .plain, target: self, action: #selector(actionInventory))
-        rightBarBtnInventory.image = UIImage(named: "screening")
+        rightBarBtnInventory.image = UIImage(named: "inventory")
         rightBarBtnInventory.tintColor = Specs.color.white
         self.navigationItem.rightBarButtonItems = [rightBarBtnInventory]
         

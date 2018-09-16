@@ -31,7 +31,6 @@ class HomeViewController: BaseViewController{
         setNavBarTitle(view: self, title: "纵横ERP", transparent: false)
         setNavBarBackBtn(view: self, title: "", selector: #selector(actionBack))
         
-        
         // 设置左侧按钮
         let leftBarBtn = UIBarButtonItem(title: "", style: .plain, target: self, action: #selector(actionMemeber))
         leftBarBtn.image = UIImage(named: "userinfo-icon")
@@ -100,7 +99,6 @@ class HomeViewController: BaseViewController{
     
     @objc func actionBack() {
         print("self.hidesBottomBarWhenPushed = false")
-        self.hidesBottomBarWhenPushed = false
     }
     
     override func viewWillAppear(_ animated: Bool) {

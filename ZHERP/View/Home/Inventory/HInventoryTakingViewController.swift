@@ -45,7 +45,7 @@ class HInventoryTakingViewController: UIViewController {
         
         self.view.backgroundColor = UIColor(hex: 0xf7f7f7)
         setNavBarTitle(view: self, title: self.navTitle != nil ? self.navTitle: "盘点货品")
-        setNavBarBackBtn(view: self, title: "", selector: #selector(actionBack))
+        setNavBarBackBtn(view: self, title: "盘点货品", selector: #selector(actionBack))
         
         self._setup()
         
@@ -102,13 +102,13 @@ class HInventoryTakingViewController: UIViewController {
             self.valueArr["datetime"] = SYSTEM_DATETIME
         }
         self._initData?.id = self.valueArr["id"] != nil ? Int(self.valueArr["id"]!)! : 0
-        self._initData?.category = self.valueArr["category"] != nil ? self.valueArr["category"]! : "未选择"
+        self._initData?.category = self.valueArr["category"] != nil ? self.valueArr["category"]! : "未选择(必选项)"
         self._initData?.cId = self.valueArr["cId"] != nil ? Int(self.valueArr["cId"]!)! : 0
-        self._initData?.warehouse = self.valueArr["warehouse"] != nil ? self.valueArr["warehouse"]! : "未选择"
+        self._initData?.warehouse = self.valueArr["warehouse"] != nil ? self.valueArr["warehouse"]! : "未选择(选填项)"
         self._initData?.wId = self.valueArr["wId"] != nil ? Int(self.valueArr["wId"]!)! : 0
-        self._initData?.location = self.valueArr["location"] != nil ? self.valueArr["location"]! : "未选择"
+        self._initData?.location = self.valueArr["location"] != nil ? self.valueArr["location"]! : "未选择(选填项)"
         self._initData?.lId = self.valueArr["lId"] != nil ? Int(self.valueArr["lId"]!)! : 0
-        self._initData?.employee = self.valueArr["employee"] != nil ? self.valueArr["employee"]! : "王培照"
+        self._initData?.employee = self.valueArr["employee"] != nil ? self.valueArr["employee"]! : "没上次盘点记录"
         self._initData?.datetime = dateFromString(self.valueArr["datetime"]!, format: "yyyy-MM-dd HH:mm:ss")!
         
         self.dataArr = [
@@ -130,6 +130,10 @@ class HInventoryTakingViewController: UIViewController {
                 ]
             ]
         ]
+        
+        if self.valueArr["employee"] == nil || (self.valueArr["employee"]?.isEmpty)! {
+//            self.dataArr.removeLast()
+        }
     }
     
     fileprivate func _rowsModel(at section: Int) -> [Any] {
@@ -189,7 +193,7 @@ extension HInventoryTakingViewController: UITableViewDelegate, UITableViewDataSo
         memberView.backgroundColor = UIColor.clear
         
         let tipLabel = UILabel()
-        tipLabel.text = self._isAdd == true ? "别忘了点击开始盘点按钮喔。" : ""
+        tipLabel.text = self._isAdd == true ? "货品分类为必填；所属仓库、所属库位为选填。" : ""
         tipLabel.textColor = UIColor(hex: 0x666666)
         tipLabel.font = Specs.font.small
         tipLabel.sizeToFit()
@@ -276,26 +280,27 @@ extension HInventoryTakingViewController: UITableViewDelegate, UITableViewDataSo
         let key: String = _row["key"]!
         
         let _target = HInventoryDetailViewController()
-        if "category" == key {
+        switch key {
+        case "category":
             _target.dataType = .category
             _target.navTitle = "选择货品分类"
             if self._initData?.cId != 0 {
                 _target.selectedIds.append((self._initData?.cId)!)
             }
-        }
-        if "warehouse" == key {
+        case "warehouse":
             _target.dataType = .warehouse
             _target.navTitle = "选择所属仓库"
             if self._initData?.wId != 0 {
                 _target.selectedIds.append((self._initData?.wId)!)
             }
-        }
-        if "location" == key {
+        case "location":
             _target.dataType = .location
             _target.navTitle = "选择所属库位"
             if self._initData?.lId != 0 {
                 _target.selectedIds.append((self._initData?.lId)!)
             }
+        default:
+            break
         }
         _target.callBackAssignArray = {(assignValue: [String: String]) -> Void in
             if (!assignValue.isEmpty) {

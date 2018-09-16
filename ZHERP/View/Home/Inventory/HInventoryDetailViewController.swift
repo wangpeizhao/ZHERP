@@ -163,7 +163,7 @@ extension HInventoryDetailViewController: UITableViewDelegate, UITableViewDataSo
     }
     
     func tableView(_ tableView: UITableView, titleForFooterInSection section: Int) -> String? {
-        return "请选择"
+        return "请\(self.navTitle ?? "")"
     }
     
     //设置分组尾的高度

@@ -68,8 +68,16 @@ class HPickingGoodViewController: UIViewController, SliderGalleryControllerDeleg
             _alert(view: self, message: "请先填写拣货数量.")
             return
         }
-        let _target = HPickingViewController()
-        _push(view: self, target: _target, rootView: false)
+        _alert(view: self, message: "提交成功", handler: actionSuccess)
+    }
+    
+    @objc func actionSuccess(_: UIAlertAction)->Void {
+        for i in 0..<(self.navigationController?.viewControllers.count)! {
+            if self.navigationController?.viewControllers[i].isKind(of: HPickingViewController.self) == true {
+                _ = self.navigationController?.popToViewController(self.navigationController?.viewControllers[i] as! HPickingViewController, animated: true)
+                break
+            }
+        }
     }
     
     @objc func actionTextField(_ sender: UITextField) {
@@ -281,37 +289,13 @@ extension HPickingGoodViewController: UITableViewDelegate, UITableViewDataSource
 }
 
 extension HPickingGoodViewController: UITextFieldDelegate {
-    
-    // 输入框询问是否可以编辑 true 可以编辑  false 不能编辑
-    func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
-        print("我要开始编辑了...")
-        return true
-    }
-    // 该方法代表输入框已经可以开始编辑  进入编辑状态
-    func textFieldDidBeginEditing(_ textField: UITextField) {
-        print("我正在编辑状态中...")
-    }
-    // 输入框将要将要结束编辑
-    func textFieldShouldEndEditing(_ textField: UITextField) -> Bool {
-        print("我即将编辑结束...")
-        return true
-    }
     // 输入框结束编辑状态
     func textFieldDidEndEditing(_ textField: UITextField) {
-        print("我已经结束编辑状态...")
-    } // 文本框是否可以清除内容
-    func textFieldShouldClear(_ textField: UITextField) -> Bool {
-        return true
+        self.actionTextField(textField)
     }
     // 输入框按下键盘 return 收回键盘
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        //        textField.resignFirstResponder()
         self.actionTextField(textField)
-        return true
-    }
-    // 该方法当文本框内容出现变化时 及时获取文本最新内容
-    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        
         return true
     }
 }
