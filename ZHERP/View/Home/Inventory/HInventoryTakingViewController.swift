@@ -25,13 +25,17 @@ class HInventoryTakingViewController: UIViewController {
     var dataArr = [[String: Any]]()
     
     // 数据model
-    var _initData: HAllocatingModel?
+    var _initData: HInventoryTakingModel?
     
     // 是否是添加货品调配
     var _isAdd: Bool!
     
-    // 添加时选择入仓的仓库名称
+    // 添加时选择货品分类
+    var categoryName: String = ""
+    // 添加时选择所属仓库
     var warehouseName: String = ""
+    // 添加时选择所属库位
+    var locationName: String = ""
     
     // 添加时选择入仓仓库的库存
     var warehouseStock: String = ""
@@ -59,20 +63,11 @@ class HInventoryTakingViewController: UIViewController {
     @objc func actionTextField(_ sender: UITextField) {
         //        print(sender.text!)
         sender.resignFirstResponder()
-        self._initData?.quantity = sender.text!
     }
     
     @objc func actionSave() {
-        if (self._initData?.wId == 0) {
-            _alert(view: self, message: "请先选择入仓仓库")
-            return
-        }
-        if (self._initData?.quantity == "") {
-            _alert(view: self, message: "请先填写调入库存数量")
-            return
-        }
-        if Int((self._initData?.outWarehouse)!)! < Int((self._initData?.quantity)!)! {
-            _alert(view: self, message: "调入库存数量不能大于调出库库存")
+        if (self._initData?.cId == 0) {
+            _alert(view: self, message: "请先选择货品分类")
             return
         }
         if (self.callBackAssign != nil) {
@@ -101,62 +96,40 @@ class HInventoryTakingViewController: UIViewController {
     private func initData() {
         self._isAdd = self.valueArr["datetime"] == nil
         
-        self._initData = HAllocatingModel(id: 0, orderId: "", sn: "", name: "", warehouse: "", wId: 0, transferred: "", quantity: "", outWarehouse: "", inWarehouse: "", employee: "", datetime: dateFromString(SYSTEM_DATETIME, format: "yyyy-MM-dd HH:mm:ss")!)
+        self._initData = HInventoryTakingModel(id: 0, category: "", cId: 0, warehouse: "", wId: 0, location: "", lId: 0, employee: "", datetime: dateFromString(SYSTEM_DATETIME, format: "yyyy-MM-dd HH:mm:ss")!)
         
         if self.valueArr["datetime"] == nil {
             self.valueArr["datetime"] = SYSTEM_DATETIME
         }
         self._initData?.id = self.valueArr["id"] != nil ? Int(self.valueArr["id"]!)! : 0
-        self._initData?.orderId = self.valueArr["orderId"] != nil ? self.valueArr["orderId"]! : ""
-        self._initData?.sn = self.valueArr["sn"] != nil ? self.valueArr["sn"]! : ""
-        self._initData?.name = self.valueArr["name"] != nil ? self.valueArr["name"]! : ""
-        self._initData?.warehouse = self.valueArr["warehouse"] != nil ? self.valueArr["warehouse"]! : ""
+        self._initData?.category = self.valueArr["category"] != nil ? self.valueArr["category"]! : "未选择"
+        self._initData?.cId = self.valueArr["cId"] != nil ? Int(self.valueArr["cId"]!)! : 0
+        self._initData?.warehouse = self.valueArr["warehouse"] != nil ? self.valueArr["warehouse"]! : "未选择"
         self._initData?.wId = self.valueArr["wId"] != nil ? Int(self.valueArr["wId"]!)! : 0
-        self._initData?.transferred = self.valueArr["transferred"] != nil ? self.valueArr["transferred"]! : "未选择"
-        self._initData?.quantity = self.valueArr["quantity"] != nil ? self.valueArr["quantity"]! : ""
-        self._initData?.outWarehouse = self.valueArr["outWarehouse"] != nil ? self.valueArr["outWarehouse"]! : "0"
-        self._initData?.inWarehouse = self.valueArr["inWarehouse"] != nil ? self.valueArr["inWarehouse"]! : "0"
-        self._initData?.employee = self.valueArr["employee"] != nil ? self.valueArr["employee"]! : "0"
+        self._initData?.location = self.valueArr["location"] != nil ? self.valueArr["location"]! : "未选择"
+        self._initData?.lId = self.valueArr["lId"] != nil ? Int(self.valueArr["lId"]!)! : 0
+        self._initData?.employee = self.valueArr["employee"] != nil ? self.valueArr["employee"]! : "王培照"
         self._initData?.datetime = dateFromString(self.valueArr["datetime"]!, format: "yyyy-MM-dd HH:mm:ss")!
         
         self.dataArr = [
             [
                 "rows": [
-                    ["title":"调配编号", "key":"orderId", "value": self._initData?.orderId]
+                    ["title":"货品分类", "key":"category", "value": self._initData?.category],
                 ]
             ],
             [
                 "rows": [
-                    ["title":"货品编号", "key":"sn", "value": self._initData?.sn],
-                    ["title":"货品名称", "key":"name", "value": self._initData?.name],
-                    ["title":"所属仓库", "key":"warehouse", "value": self._initData?.warehouse]
+                    ["title":"所属仓库", "key":"warehouse", "value": self._initData?.warehouse],
+                    ["title":"所属库位", "key":"location", "value": self._initData?.location],
                 ]
             ],
             [
                 "rows": [
-                    ["title":"调入仓库", "key":"transferred", "value": self._initData?.transferred],
-                    ["title":"调入数量", "key":"quantity", "value": self._initData?.quantity, "placeholder": "请输入大于0的整数"]
-                ]
-            ],
-            [
-                "rows": [
-                    ["title":"出仓剩余库存", "key":"outWarehouse", "value": self._initData?.outWarehouse],
-                    ["title":"入仓剩余库存", "key":"inWarehouse", "value": self._initData?.inWarehouse],
-                ]
-            ],
-            [
-                "rows": [
-                    ["title":"调货员工", "key":"employee", "value": self._initData?.employee],
-                    ["title":"调货时间", "key":"datetime", "value": stringFromDate((self._initData?.datetime)!, format: "yyyy-MM-dd HH:mm:ss")]
+                    ["title":"上次盘点时间", "key":"datetime", "value": stringFromDate((self._initData?.datetime)!, format: "yyyy-MM-dd HH:mm:ss")],
+                    ["title":"上次盘点员工", "key":"employee", "value": self._initData?.employee]
                 ]
             ]
         ]
-        
-        if self._isAdd {
-            self.dataArr.removeAt(indexes: [0, 4])
-        } else {
-            self.dataArr.removeAt(indexes: [3])
-        }
     }
     
     fileprivate func _rowsModel(at section: Int) -> [Any] {
@@ -216,7 +189,7 @@ extension HInventoryTakingViewController: UITableViewDelegate, UITableViewDataSo
         memberView.backgroundColor = UIColor.clear
         
         let tipLabel = UILabel()
-        tipLabel.text = self._isAdd == true ? "别忘了点击提交按钮喔。" : ""
+        tipLabel.text = self._isAdd == true ? "别忘了点击开始盘点按钮喔。" : ""
         tipLabel.textColor = UIColor(hex: 0x666666)
         tipLabel.font = Specs.font.small
         tipLabel.sizeToFit()
@@ -232,7 +205,7 @@ extension HInventoryTakingViewController: UITableViewDelegate, UITableViewDataSo
         _btn.titleLabel?.font = UIFont.systemFont(ofSize: Specs.fontSize.regular)
         
         if self._isAdd == true {
-            _btn.setTitle("提交", for: .normal)
+            _btn.setTitle("开始盘点", for: .normal)
             _btn.setTitleColor(Specs.color.white, for: UIControlState())
             _btn.backgroundColor = Specs.color.main
             _btn.addTarget(self, action: #selector(actionSave), for: .touchUpInside)
@@ -263,27 +236,6 @@ extension HInventoryTakingViewController: UITableViewDelegate, UITableViewDataSo
         let _row = self._rowModel(at: indexPath)
         let key: String = _row["key"]!
         
-        let textFields = ["quantity"]
-        if (self._isAdd == true && textFields.contains(key)) {
-            let cell: SMemberOperateTableViewCell = tableView.dequeueReusableCell(withIdentifier: "SMemberOperateTableViewCell") as! SMemberOperateTableViewCell
-            cell.TextFieldLabel.text = _row["title"]
-            cell.TextFieldLabel.sizeToFit()
-            cell.TextFieldLabel.font = Specs.font.regular
-            
-            cell.TextFieldValue.text = _row["value"]
-            cell.TextFieldValue.textColor = Specs.color.black
-            cell.TextFieldValue.placeholder = _row["placeholder"]
-            cell.TextFieldValue.clearButtonMode = UITextFieldViewMode.always
-            cell.TextFieldValue.adjustsFontSizeToFitWidth = true
-            cell.TextFieldValue.returnKeyType = UIReturnKeyType.done
-            cell.TextFieldValue.keyboardType = UIKeyboardType.numberPad
-            cell.TextFieldValue.delegate = self
-            
-            //            cell.TextFieldValue.addTarget(self, action: #selector(actionTextField(_:)), for: UIControlEvents.editingDidEnd)
-            cell.accessoryType = .none
-            return cell
-        }
-        
         var cell = UITableViewCell()
         cell = tableView.dequeueReusableCell(withIdentifier: SimpleBasicsCell.identifier, for: indexPath)
         
@@ -292,21 +244,22 @@ extension HInventoryTakingViewController: UITableViewDelegate, UITableViewDataSo
         
         cell.detailTextLabel?.text = _row["value"]
         
-        if self._isAdd == true && key == "transferred" && self.warehouseName != "" {
+        if key == "category" && self.categoryName != "" {
+            cell.detailTextLabel?.text = self.categoryName
+        }
+        if key == "warehouse" && self.warehouseName != "" {
             cell.detailTextLabel?.text = self.warehouseName
         }
-        
-        if self._isAdd == true && key == "inWarehouse" && self.warehouseStock != "" {
-            cell.detailTextLabel?.text = self.warehouseStock
+        if key == "location" && self.locationName != "" {
+            cell.detailTextLabel?.text = self.locationName
         }
-        
         cell.detailTextLabel?.font = Specs.font.regular
         
-        let _edit = ["transferred"]
-        if (self._isAdd == true && _edit.contains(key)) {
-            cell.accessoryType = .disclosureIndicator
-        } else {
+        let _textField = ["datetime", "employee"]
+        if (_textField.contains(key)) {
             cell.accessoryType = .none
+        } else {
+            cell.accessoryType = .disclosureIndicator
         }
         
         return cell
@@ -321,61 +274,52 @@ extension HInventoryTakingViewController: UITableViewDelegate, UITableViewDataSo
         
         let _row = self._rowModel(at: indexPath)
         let key: String = _row["key"]!
-        if "transferred" == key {
-            let _target = WLocationDeatilViewController()
-            _target.isSelectList = true
-            _target.navTitle = "选择入仓仓库"
+        
+        let _target = HInventoryDetailViewController()
+        if "category" == key {
+            _target.dataType = .category
+            _target.navTitle = "选择货品分类"
+            if self._initData?.cId != 0 {
+                _target.selectedIds.append((self._initData?.cId)!)
+            }
+        }
+        if "warehouse" == key {
+            _target.dataType = .warehouse
+            _target.navTitle = "选择所属仓库"
             if self._initData?.wId != 0 {
                 _target.selectedIds.append((self._initData?.wId)!)
             }
-            _target.callBackAssignArray = {(assignValue: [String: String]) -> Void in
-                if (!assignValue.isEmpty) {
+        }
+        if "location" == key {
+            _target.dataType = .location
+            _target.navTitle = "选择所属库位"
+            if self._initData?.lId != 0 {
+                _target.selectedIds.append((self._initData?.lId)!)
+            }
+        }
+        _target.callBackAssignArray = {(assignValue: [String: String]) -> Void in
+            if (!assignValue.isEmpty) {
+                switch _target.dataType {
+                case .category:
+                    self._initData?.cId = Int(assignValue["id"]!)!
+                    self._initData?.category = assignValue["name"]!
+                    self.categoryName = assignValue["name"]!
+                case .warehouse:
                     self._initData?.wId = Int(assignValue["id"]!)!
                     self._initData?.warehouse = assignValue["name"]!
                     self.warehouseName = assignValue["name"]!
-                    self.warehouseStock = "500"
-                    tableView.reloadData()
-                    //                    tableView.reloadRows(at: [indexPath], with: .automatic)
+                case .location:
+                    self._initData?.lId = Int(assignValue["id"]!)!
+                    self._initData?.location = assignValue["name"]!
+                    self.locationName = assignValue["name"]!
+                default:
+                    break
                 }
+                
+                tableView.reloadData()
             }
-            _push(view: self, target: _target, rootView: false)
-            return
         }
-    }
-}
-
-extension HInventoryTakingViewController: UITextFieldDelegate {
-    
-    // 输入框询问是否可以编辑 true 可以编辑  false 不能编辑
-    func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
-        print("我要开始编辑了...")
-        return true
-    }
-    // 该方法代表输入框已经可以开始编辑  进入编辑状态
-    func textFieldDidBeginEditing(_ textField: UITextField) {
-        print("我正在编辑状态中...")
-    }
-    // 输入框将要将要结束编辑
-    func textFieldShouldEndEditing(_ textField: UITextField) -> Bool {
-        print("我即将编辑结束...")
-        return true
-    }
-    // 输入框结束编辑状态
-    func textFieldDidEndEditing(_ textField: UITextField) {
-        print("我已经结束编辑状态...")
-    } // 文本框是否可以清除内容
-    func textFieldShouldClear(_ textField: UITextField) -> Bool {
-        return true
-    }
-    // 输入框按下键盘 return 收回键盘
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        //        textField.resignFirstResponder()
-        self.actionTextField(textField)
-        return true
-    }
-    // 该方法当文本框内容出现变化时 及时获取文本最新内容
-    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        
-        return true
+        _push(view: self, target: _target, rootView: false)
+        return
     }
 }

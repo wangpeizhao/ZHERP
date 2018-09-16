@@ -161,6 +161,7 @@ class UICollectionGridViewLayout: UICollectionViewLayout {
 //            NSFontAttributeName:UIFont.systemFont(ofSize: 15),
 //            NSUnderlineStyleAttributeName:NSUnderlineStyle.styleSingle.rawValue
 //            ])
+//        https://stackoverflow.com/questions/28053334/how-to-underline-a-uilabel-in-swift
         let size = NSString(string: columnString).size(withAttributes: [
             NSAttributedStringKey.font : UIFont.boldSystemFont(ofSize: 15)])
 //
