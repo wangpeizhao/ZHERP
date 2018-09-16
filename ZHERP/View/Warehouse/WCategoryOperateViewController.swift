@@ -21,8 +21,8 @@ class WCategoryOperateViewController: UIViewController {
     var callBackAssign: assignArrayClosure?
     
     let dataArr = [
-        ["title":"分类名称", "key":"name", "value":"未填写"],
-        ["title":"所属分类", "key":"category", "value":"未选择"]
+        ["title":"所属分类", "key":"category", "value":"未选择"],
+        ["title":"分类名称", "key":"name", "value":"未填写"]
     ]
     
     override func viewDidLoad() {
