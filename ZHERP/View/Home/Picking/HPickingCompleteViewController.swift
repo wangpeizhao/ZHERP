@@ -49,6 +49,16 @@ class HPickingCompleteViewController: UIViewController {
         
     }
     
+    @objc func actionOrder() {
+        let _target = OrderViewController()
+        _push(view: self, target: _target)
+    }
+    
+    @objc func actionPicking() {
+        let _target = HPickingGoodView()
+        _push(view: self, target: _target)
+    }
+    
     fileprivate func _setup() {
         self.navHeight = self.navigationController?.navigationBar.frame.maxY
         self.tabBarHeight = self.tabBarController?.tabBar.bounds.size.height
@@ -70,6 +80,8 @@ class HPickingCompleteViewController: UIViewController {
         
         self._HPickingCompleteView = HPickingCompleteView()
         self._HPickingCompleteView.frameHeight = ScreenHeight - self.navHeight
+        self._HPickingCompleteView.actionOrderBtn.addTarget(self, action: #selector(actionOrder), for: .touchUpInside)
+        self._HPickingCompleteView.continuePickBtn.addTarget(self, action: #selector(actionPicking), for: .touchUpInside)
     }
     
     fileprivate func initData() {

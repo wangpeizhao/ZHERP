@@ -77,7 +77,8 @@ class OrderViewController: UIViewController, UIGestureRecognizerDelegate {
     }
     
     @objc func actionDelivery() {
-        
+        let _target = HDeliverViewController()
+        _push(view: self, target: _target)
     }
     
     private func _navigationDropdownMenus() {

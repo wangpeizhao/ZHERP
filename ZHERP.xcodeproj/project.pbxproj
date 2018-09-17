@@ -33,6 +33,12 @@
 		2C9AC891214271B4004F252D /* StatisticNavigationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C9AC890214271B4004F252D /* StatisticNavigationViewController.swift */; };
 		2C9AC89321427465004F252D /* StatisticReportViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C9AC89221427465004F252D /* StatisticReportViewController.swift */; };
 		2CB2ECA72149F42D00AD8B2B /* SMemberLoginLogsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CB2ECA62149F42D00AD8B2B /* SMemberLoginLogsViewController.swift */; };
+		2CB62BAA214F4FA80048AF61 /* HDeliverViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CB62BA9214F4FA70048AF61 /* HDeliverViewController.swift */; };
+		2CB62BAC214F4FD00048AF61 /* HDeliveringViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CB62BAB214F4FD00048AF61 /* HDeliveringViewController.swift */; };
+		2CB62BAE214F83080048AF61 /* HDeliverModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CB62BAD214F83080048AF61 /* HDeliverModel.swift */; };
+		2CB62BB1214F9DE30048AF61 /* UIResponder-Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CB62BB0214F9DE30048AF61 /* UIResponder-Extensions.swift */; };
+		2CB62BB4214FB73A0048AF61 /* HDeliveringTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CB62BB2214FB73A0048AF61 /* HDeliveringTableViewCell.swift */; };
+		2CB62BB5214FB73A0048AF61 /* HDeliveringTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2CB62BB3214FB73A0048AF61 /* HDeliveringTableViewCell.xib */; };
 		2CBF4902212294A300199C1D /* CameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CBF4901212294A200199C1D /* CameraViewController.swift */; };
 		2CBF49042122A3B800199C1D /* QRCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CBF49032122A3B800199C1D /* QRCode.swift */; };
 		2CC1319321114279004C8097 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CC1319221114279004C8097 /* SearchViewController.swift */; };
@@ -236,6 +242,12 @@
 		2C9AC890214271B4004F252D /* StatisticNavigationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticNavigationViewController.swift; sourceTree = "<group>"; };
 		2C9AC89221427465004F252D /* StatisticReportViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticReportViewController.swift; sourceTree = "<group>"; };
 		2CB2ECA62149F42D00AD8B2B /* SMemberLoginLogsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SMemberLoginLogsViewController.swift; sourceTree = "<group>"; };
+		2CB62BA9214F4FA70048AF61 /* HDeliverViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDeliverViewController.swift; sourceTree = "<group>"; };
+		2CB62BAB214F4FD00048AF61 /* HDeliveringViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDeliveringViewController.swift; sourceTree = "<group>"; };
+		2CB62BAD214F83080048AF61 /* HDeliverModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDeliverModel.swift; sourceTree = "<group>"; };
+		2CB62BB0214F9DE30048AF61 /* UIResponder-Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIResponder-Extensions.swift"; sourceTree = "<group>"; };
+		2CB62BB2214FB73A0048AF61 /* HDeliveringTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDeliveringTableViewCell.swift; sourceTree = "<group>"; };
+		2CB62BB3214FB73A0048AF61 /* HDeliveringTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HDeliveringTableViewCell.xib; sourceTree = "<group>"; };
 		2CBF4901212294A200199C1D /* CameraViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraViewController.swift; sourceTree = "<group>"; };
 		2CBF49032122A3B800199C1D /* QRCode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRCode.swift; sourceTree = "<group>"; };
 		2CC1319221114279004C8097 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
@@ -468,6 +480,34 @@
 				2C9AC89221427465004F252D /* StatisticReportViewController.swift */,
 			);
 			path = Statistic;
+			sourceTree = "<group>";
+		};
+		2CB62BA7214F4F530048AF61 /* Deliver */ = {
+			isa = PBXGroup;
+			children = (
+				2CB62BA8214F4F840048AF61 /* Model */,
+				2CB62BA9214F4FA70048AF61 /* HDeliverViewController.swift */,
+				2CB62BAB214F4FD00048AF61 /* HDeliveringViewController.swift */,
+				2CB62BB2214FB73A0048AF61 /* HDeliveringTableViewCell.swift */,
+				2CB62BB3214FB73A0048AF61 /* HDeliveringTableViewCell.xib */,
+			);
+			path = Deliver;
+			sourceTree = "<group>";
+		};
+		2CB62BA8214F4F840048AF61 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				2CB62BAD214F83080048AF61 /* HDeliverModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		2CB62BAF214F9DC20048AF61 /* UIResponder */ = {
+			isa = PBXGroup;
+			children = (
+				2CB62BB0214F9DE30048AF61 /* UIResponder-Extensions.swift */,
+			);
+			path = UIResponder;
 			sourceTree = "<group>";
 		};
 		2CE8F49F212BFEB100037367 /* Warehouse */ = {
@@ -861,6 +901,7 @@
 		9E88ED0A20FB3B6300DF091F /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				2CB62BAF214F9DC20048AF61 /* UIResponder */,
 				9EE26B87212DE2DB00619D98 /* UIButton */,
 				2CEA8C48212A500600004AE6 /* UIImage */,
 				9E523DEB21045F3300CF921F /* ThirdParty */,
@@ -880,6 +921,7 @@
 		9E88ED1720FB40DE00DF091F /* Home */ = {
 			isa = PBXGroup;
 			children = (
+				2CB62BA7214F4F530048AF61 /* Deliver */,
 				2CE8F4A2212C0A9200037367 /* Settings */,
 				2CE8F49F212BFEB100037367 /* Warehouse */,
 				9E5D7E48214BFE6800DE7036 /* Inventory */,
@@ -1216,6 +1258,7 @@
 				9E523DFA2104615700CF921F /* guideImage8.gif in Resources */,
 				9E523E682108C5D400CF921F /* NotifyTableViewCell.xib in Resources */,
 				9EE26B82212C734100619D98 /* GoodTableViewCell.xib in Resources */,
+				2CB62BB5214FB73A0048AF61 /* HDeliveringTableViewCell.xib in Resources */,
 				9E29032320F7B99B00F11C63 /* LaunchScreen.storyboard in Resources */,
 				9E523E2D2104D7CE00CF921F /* guideImage4.jpg in Resources */,
 				9E549935213EC9EB001E4C36 /* WCategoryManagerTableViewCell.xib in Resources */,
@@ -1383,11 +1426,13 @@
 				9E523E8E210D537B00CF921F /* GoodViewController.swift in Sources */,
 				9EE227E3214511A400E1CDD1 /* HAllocatingView.swift in Sources */,
 				9E523EA1211B42A800CF921F /* bridge.m in Sources */,
+				2CB62BAC214F4FD00048AF61 /* HDeliveringViewController.swift in Sources */,
 				9EFF259F2143FD9F0055EB61 /* HPickingViewController.swift in Sources */,
 				9E88ED4120FE61CE00DF091F /* ResetPwdViewController.swift in Sources */,
 				9E88ED1120FB3B7700DF091F /* Single+ObjectMapper.swift in Sources */,
 				9E523E7D210C23CF00CF921F /* ResetViewController.swift in Sources */,
 				9E88ED2520FB53AE00DF091F /* OrderDetailViewController.swift in Sources */,
+				2CB62BB1214F9DE30048AF61 /* UIResponder-Extensions.swift in Sources */,
 				9E523E7B210C238400CF921F /* ForgetViewController.swift in Sources */,
 				2C35D2D02141085A00AEC12F /* BillsDailyReportTableViewCell.swift in Sources */,
 				9E5D7E4C214C0E0A00DE7036 /* HInventoryTakingViewController.swift in Sources */,
@@ -1396,6 +1441,7 @@
 				9E523E3E2107819000CF921F /* EditPersonalViewController.swift in Sources */,
 				9E523E3721074E8200CF921F /* BaseNavigationController.swift in Sources */,
 				9E5D7E4A214BFEAA00DE7036 /* HInventoryViewController.swift in Sources */,
+				2CB62BAA214F4FA80048AF61 /* HDeliverViewController.swift in Sources */,
 				2C986C77213FA66600F081BC /* SMemberManagerViewController.swift in Sources */,
 				9EE227DB2144A57600E1CDD1 /* ImageHelper.swift in Sources */,
 				9ED7E51321404FE000F8F735 /* OrderBillsPagesViewController.swift in Sources */,
@@ -1445,6 +1491,7 @@
 				9E523E6D2109401F00CF921F /* SwitchTableViewCell.swift in Sources */,
 				9E523E96210D546400CF921F /* OrderCloseViewController.swift in Sources */,
 				9E88ED2720FB576200DF091F /* Candy.swift in Sources */,
+				2CB62BB4214FB73A0048AF61 /* HDeliveringTableViewCell.swift in Sources */,
 				2C35D2CB2140FF4400AEC12F /* BillsReportViewController.swift in Sources */,
 				9ED7E51121404CE500F8F735 /* OrderBillsViewController.swift in Sources */,
 				9EE26B84212DA13200619D98 /* Common-Extensions.swift in Sources */,
@@ -1459,6 +1506,7 @@
 				9E549934213EC9EB001E4C36 /* WCategoryManagerTableViewCell.swift in Sources */,
 				9E88ED1220FB3B7700DF091F /* Observable+ObjectMapper.swift in Sources */,
 				9E88ED1A20FB41F800DF091F /* HomeViewController.swift in Sources */,
+				2CB62BAE214F83080048AF61 /* HDeliverModel.swift in Sources */,
 				9E523E90210D540900CF921F /* OrderAllViewController.swift in Sources */,
 				9E88ED2320FB530200DF091F /* SearchBar.swift in Sources */,
 				2C35D2D321411E5D00AEC12F /* BillsDaliyDetailViewController.swift in Sources */,

@@ -99,6 +99,10 @@ class SettingViewController: UIViewController,UITableViewDataSource ,UITableView
             cell?.textLabel?.centerXAnchor.constraint(equalTo: (cell?.centerXAnchor)!).isActive = true
             cell?.textLabel?.textAlignment = .center
             cell?.textLabel?.textColor = Specs.color.red
+            
+//            cell?.textLabel?.backgroundColor = Specs.color.blue
+//            cell?.textLabel?.frame = CGRect(x: 0, y: 0, width: 300, height: 30)
+            
             cell?.accessoryType = .none
         } else {
             cell = tableView.dequeueReusableCell(withIdentifier: identify, for: indexPath)
