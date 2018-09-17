@@ -36,7 +36,7 @@ class HDeliveringViewController: UIViewController {
     // 添加时选择入仓仓库的库存
     var warehouseStock: String = ""
     
-    var currTextField: UITextField!
+    let writableTextFields = ["expressCompany", "expressNumber", "expressNote", "receiver", "receiverPhone", "receiverDetail"]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -46,27 +46,7 @@ class HDeliveringViewController: UIViewController {
         setNavBarBackBtn(view: self, title: "", selector: #selector(actionBack))
         
         self._setup()
-        
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(notification:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHidden), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
         // Do any additional setup after loading the view.
-    }
-    
-    @objc private func keyboardWillShow(notification: NSNotification) {
-        let info = notification.userInfo!
-        let keyboardFrame = (info[UIKeyboardFrameEndUserInfoKey]! as AnyObject).cgRectValue
-//        let responderTextField = textFields.filter({ $0.isFirstResponder() }).first!
-        let responderTextField = self.currTextField //UIResponder.getTextfieldFirstResponder()
-        print(keyboardFrame?.origin.y)
-//        let distanceToKeyboard = (keyboardFrame?.origin.y)! - CGRect.maxY((responderTextField?.convert((responderTextField?.frame)!, to: view))!)
-//
-//        if distanceToKeyboard < 0 {
-//            self.tableView.frame.origin.y -= -distanceToKeyboard
-//        }
-    }
-    
-    @objc private func keyboardWillHidden() {
-        self.tableView.frame.origin.y = 0
     }
     
     @objc func actionBack()->Void {
@@ -75,8 +55,8 @@ class HDeliveringViewController: UIViewController {
     
     @objc func actionSuccess(_: UIAlertAction)->Void {
         for i in 0..<(self.navigationController?.viewControllers.count)! {
-            if self.navigationController?.viewControllers[i].isKind(of: HAllocateViewController.self) == true {
-                _ = self.navigationController?.popToViewController(self.navigationController?.viewControllers[i] as! HAllocateViewController, animated: true)
+            if self.navigationController?.viewControllers[i].isKind(of: HDeliverViewController.self) == true {
+                _ = self.navigationController?.popToViewController(self.navigationController?.viewControllers[i] as! HDeliverViewController, animated: true)
                 break
             }
         }
@@ -88,10 +68,10 @@ class HDeliveringViewController: UIViewController {
     }
     
     @objc func actionSave() {
-//        if (self._initData?.wId == 0) {
-//            _alert(view: self, message: "请先选择入仓仓库")
-//            return
-//        }
+        if (self._initData?.receiver == "") {
+            _alert(view: self, message: "请先填写收件人")
+            return
+        }
 //        if (self._initData?.quantity == "") {
 //            _alert(view: self, message: "请先填写调入库存数量")
 //            return
@@ -116,7 +96,7 @@ class HDeliveringViewController: UIViewController {
         
         //处理键盘遮挡问题
         if (self._isAdd) {
-            let tvc: UITableViewController = UITableViewController(style: .plain)
+            let tvc: UITableViewController = UITableViewController(style: .grouped)
             self.addChildViewController(tvc)
             self.tableView = tvc.tableView
         }
@@ -125,8 +105,14 @@ class HDeliveringViewController: UIViewController {
         self.tableView!.dataSource = self
         self.tableView!.register(UITableViewCell.self, forCellReuseIdentifier: CELL_IDENTIFY_ID)
         self.tableView!.register(SimpleBasicsCell.self, forCellReuseIdentifier: SimpleBasicsCell.identifier)
-        // 可填写
-        self.tableView?.register(UINib(nibName: "SMemberOperateTableViewCell", bundle: nil), forCellReuseIdentifier: "SMemberOperateTableViewCell")
+        
+        if (self._isAdd) {
+            // 可填写
+            self.tableView?.register(UINib(nibName: "SMemberOperateTableViewCell", bundle: nil), forCellReuseIdentifier: "SMemberOperateTableViewCell")
+            // 按钮
+            self.tableView?.register(UINib(nibName: "HDeliveringTableViewCell", bundle: nil), forCellReuseIdentifier: "HDeliveringTableViewCell")
+        }
+        
         self.tableView?.tableHeaderView = UIView.init(frame: CGRect(x: 0, y: 0, width: 0, height: 0.01))
         self.view.addSubview(self.tableView!)
     }
@@ -171,14 +157,6 @@ class HDeliveringViewController: UIViewController {
                 ]
             ],
             [
-                "title": "快递信息",
-                "rows": [
-                    ["title":"快递公司", "key":"expressCompany", "value": self._initData?.expressCompany, "placeholder": "请输入快递公司"],
-                    ["title":"快递单号", "key":"expressNumber", "value": self._initData?.expressNumber, "placeholder": "收件人的备注"],
-                    ["title":"备注", "key":"expressNote", "value": self._initData?.expressNote, "placeholder": "快递备注"]
-                ]
-            ],
-            [
                 "title": "收件人",
                 "rows": [
                     ["title":"收件人", "key":"receiver", "value": self._initData?.receiver, "placeholder": "请输入收件人姓名"],
@@ -188,10 +166,24 @@ class HDeliveringViewController: UIViewController {
                 ]
             ],
             [
+                "title": "快递信息",
+                "rows": [
+                    ["title":"快递公司", "key":"expressCompany", "value": self._initData?.expressCompany, "placeholder": "请输入快递公司"],
+                    ["title":"快递单号", "key":"expressNumber", "value": self._initData?.expressNumber, "placeholder": "收件人的备注"],
+                    ["title":"备注", "key":"expressNote", "value": self._initData?.expressNote, "placeholder": "快递备注"]
+                ]
+            ],
+            [
                 "title": "发件信息",
                 "rows": [
                     ["title":"发件员工", "key":"employee", "value": self._initData?.employee],
                     ["title":"发件时间", "key":"datetime", "value": stringFromDate((self._initData?.datetime)!, format: "yyyy-MM-dd HH:mm:ss")]
+                ]
+            ],
+            [
+                "title": "别忘了点击提交按钮喔",
+                "rows": [
+                    ["title":"提交", "key":"submit", "value": ""]
                 ]
             ]
         ]
@@ -238,6 +230,9 @@ extension HDeliveringViewController: UITableViewDelegate, UITableViewDataSource 
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        if self._isAdd == true && indexPath.section == self.dataArr.count - 1 {
+            return SelectCellHeight + 10
+        }
         return SelectCellHeight
     }
     
@@ -254,41 +249,23 @@ extension HDeliveringViewController: UITableViewDelegate, UITableViewDataSource 
     }
     
     func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
-        if section != self.dataArr.count - 1 {
+        if self._isAdd == true || section != self.dataArr.count - 1 {
             return UIView.init(frame: CGRect(x: 0, y: 0, width: 0, height: 0.01))
         }
         let memberView = UIView()
         memberView.backgroundColor = UIColor.white
-        
-//        let tipLabel = UILabel()
-//        tipLabel.text = self._isAdd == true ? "别忘了点击提交按钮喔。" : ""
-//        tipLabel.textColor = UIColor(hex: 0x666666)
-//        tipLabel.font = Specs.font.small
-//        tipLabel.sizeToFit()
-//        memberView.addSubview(tipLabel)
-//        tipLabel.snp.makeConstraints { (make) -> Void in
-//            make.top.equalTo(10)
-//            make.left.equalTo(20)
-//        }
         
         let _btn = UIButton(frame: CGRect(x: 20, y: 20, width: ScreenWidth - 40, height: 40))
         _btn.layer.cornerRadius = Specs.border.radius
         _btn.layer.masksToBounds = true
         _btn.titleLabel?.font = UIFont.systemFont(ofSize: Specs.fontSize.regular)
         
-        if self._isAdd == true {
-            _btn.setTitle("提交", for: .normal)
-            _btn.setTitleColor(Specs.color.white, for: UIControlState())
-            _btn.backgroundColor = Specs.color.main
-            _btn.addTarget(self, action: #selector(actionSave), for: .touchUpInside)
-        } else {
-            _btn.setTitle("返回", for: .normal)
-            _btn.setTitleColor(Specs.color.black, for: UIControlState())
-            _btn.backgroundColor = Specs.color.white
-            _btn.layer.borderWidth = 1
-            _btn.layer.borderColor = UIColor(hex: 0xdddddd).cgColor //UIColor.lightGray.cgColor
-            _btn.addTarget(self, action: #selector(actionBack), for: .touchUpInside)
-        }
+        _btn.setTitle("返回", for: .normal)
+        _btn.setTitleColor(Specs.color.black, for: UIControlState())
+        _btn.backgroundColor = Specs.color.white
+        _btn.layer.borderWidth = 1
+        _btn.layer.borderColor = UIColor(hex: 0xdddddd).cgColor //UIColor.lightGray.cgColor
+        _btn.addTarget(self, action: #selector(actionBack), for: .touchUpInside)
         
         memberView.addSubview(_btn)
         
@@ -297,7 +274,7 @@ extension HDeliveringViewController: UITableViewDelegate, UITableViewDataSource 
     
     //设置分组尾的高度
     func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-        if section == self.dataArr.count - 1 {
+        if self._isAdd == false && section == self.dataArr.count - 1 {
             return 80
         }
         return 10
@@ -308,13 +285,23 @@ extension HDeliveringViewController: UITableViewDelegate, UITableViewDataSource 
         let _row = self._rowModel(at: indexPath)
         let key: String = _row["key"]!
         
-        let textFields = ["expressCompany", "expressNumber", "expressNote", "receiver", "receiverPhone", "receiverDetail"]
-        if (self._isAdd == true && textFields.contains(key)) {
+        if key == "submit" {
+            let cell: HDeliveringTableViewCell = tableView.dequeueReusableCell(withIdentifier: "HDeliveringTableViewCell") as! HDeliveringTableViewCell
+            cell.cellBtn.setTitle("提交", for: .normal)
+            cell.cellBtn.setTitleColor(Specs.color.white, for: UIControlState())
+            cell.cellBtn.backgroundColor = Specs.color.main
+            cell.cellBtn.layer.cornerRadius = Specs.border.radius
+            cell.cellBtn.addTarget(self, action: #selector(actionSave), for: .touchUpInside)
+            return cell
+        }
+        
+        if (self._isAdd == true && self.writableTextFields.contains(key)) {
             let cell: SMemberOperateTableViewCell = tableView.dequeueReusableCell(withIdentifier: "SMemberOperateTableViewCell") as! SMemberOperateTableViewCell
             cell.TextFieldLabel.text = _row["title"]
             cell.TextFieldLabel.sizeToFit()
             cell.TextFieldLabel.font = Specs.font.regular
             
+            cell.TextFieldValue.tag = indexPath.row
             cell.TextFieldValue.text = _row["value"]
             cell.TextFieldValue.textColor = Specs.color.black
             cell.TextFieldValue.placeholder = _row["placeholder"]
@@ -326,7 +313,7 @@ extension HDeliveringViewController: UITableViewDelegate, UITableViewDataSource 
             }
             cell.TextFieldValue.delegate = self
             
-//            cell.TextFieldValue.addTarget(self, action: #selector(actionTextField(_:)), for: UIControlEvents.editingDidEnd)
+//          cell.TextFieldValue.addTarget(self, action: #selector(actionTextField(_:)), for: UIControlEvents.editingDidEnd)
             cell.accessoryType = .none
             return cell
         }
@@ -345,6 +332,10 @@ extension HDeliveringViewController: UITableViewDelegate, UITableViewDataSource 
         
         if self._isAdd == true && key == "inWarehouse" && self.warehouseStock != "" {
             cell.detailTextLabel?.text = self.warehouseStock
+        }
+        
+        if self._isAdd == true && key == "receiverRegion" {
+            cell.detailTextLabel?.text = self._initData?.receiverRegion
         }
         
         cell.detailTextLabel?.font = Specs.font.regular
@@ -388,7 +379,7 @@ extension HDeliveringViewController: UITableViewDelegate, UITableViewDataSource 
             return
         }
         
-        if "receiptRegion" == key {
+        if "receiverRegion" == key {
             let _target = AddressPickerViewController(province: self.valueArr["province"]!, city: self.valueArr["city"]!, area: self.valueArr["area"]!)
             _target.callBackAssign = {(assignValue: String) -> Void in
                 if (!assignValue.isEmpty) {
@@ -397,7 +388,9 @@ extension HDeliveringViewController: UITableViewDelegate, UITableViewDataSource 
                     self.valueArr["province"] = _region[0]
                     self.valueArr["city"] = _region[1]
                     self.valueArr["area"] = _region[2]
-                    tableView.reloadData()
+//                    tableView.reloadData()
+                    self._initData?.receiverRegion = assignValue
+                    tableView.reloadRows(at: [indexPath], with: .automatic)
                 }
             }
             _target.setAddressPickerView(view: self)
@@ -409,9 +402,6 @@ extension HDeliveringViewController: UITableViewDelegate, UITableViewDataSource 
 extension HDeliveringViewController: UITextFieldDelegate {
     // 输入框询问是否可以编辑 true 可以编辑  false 不能编辑
     func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
-        print("我要开始编辑了...")
-        self.currTextField = textField
-        print(textField.frame.origin.y)
         return true
     }
     // 输入框结束编辑状态
