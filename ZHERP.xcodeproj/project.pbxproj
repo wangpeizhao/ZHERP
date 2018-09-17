@@ -844,10 +844,7 @@
 			children = (
 				2C9AC88D2142425F004F252D /* Statistic */,
 				9EE26B7E212C6DDD00619D98 /* Good */,
-				2CE8F4A2212C0A9200037367 /* Settings */,
-				2CE8F49F212BFEB100037367 /* Warehouse */,
 				9E523E8A210D52BC00CF921F /* PagingMenuController */,
-				9E523E33210616E600CF921F /* Manage */,
 				9E88ED3320FCE8DB00DF091F /* Member */,
 				9E88ED3020FCE1EE00DF091F /* Component */,
 				9E88ED1820FB40F400DF091F /* Order */,
@@ -883,6 +880,8 @@
 		9E88ED1720FB40DE00DF091F /* Home */ = {
 			isa = PBXGroup;
 			children = (
+				2CE8F4A2212C0A9200037367 /* Settings */,
+				2CE8F49F212BFEB100037367 /* Warehouse */,
 				9E5D7E48214BFE6800DE7036 /* Inventory */,
 				9EFF259D2143FD6C0055EB61 /* Picking */,
 				9E4C315F21435FA4004A95A2 /* Allocate */,
@@ -959,6 +958,7 @@
 		9E88ED3320FCE8DB00DF091F /* Member */ = {
 			isa = PBXGroup;
 			children = (
+				9E523E33210616E600CF921F /* Manage */,
 				9E523E3821076B0400CF921F /* Personal */,
 				9E88ED3420FCE95600DF091F /* MemberBaseViewController.swift */,
 				9E88ED4020FE61CD00DF091F /* ResetPwdViewController.swift */,
