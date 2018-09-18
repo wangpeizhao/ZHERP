@@ -32,6 +32,7 @@
 		2C9AC88F214244EB004F252D /* StatisticChartsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C9AC88E214244EB004F252D /* StatisticChartsViewController.swift */; };
 		2C9AC891214271B4004F252D /* StatisticNavigationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C9AC890214271B4004F252D /* StatisticNavigationViewController.swift */; };
 		2C9AC89321427465004F252D /* StatisticReportViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C9AC89221427465004F252D /* StatisticReportViewController.swift */; };
+		2CA559232150AB0E00BCB254 /* Print-Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CA559222150AB0E00BCB254 /* Print-Extensions.swift */; };
 		2CB2ECA72149F42D00AD8B2B /* SMemberLoginLogsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CB2ECA62149F42D00AD8B2B /* SMemberLoginLogsViewController.swift */; };
 		2CB62BAA214F4FA80048AF61 /* HDeliverViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CB62BA9214F4FA70048AF61 /* HDeliverViewController.swift */; };
 		2CB62BAC214F4FD00048AF61 /* HDeliveringViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CB62BAB214F4FD00048AF61 /* HDeliveringViewController.swift */; };
@@ -241,6 +242,7 @@
 		2C9AC88E214244EB004F252D /* StatisticChartsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticChartsViewController.swift; sourceTree = "<group>"; };
 		2C9AC890214271B4004F252D /* StatisticNavigationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticNavigationViewController.swift; sourceTree = "<group>"; };
 		2C9AC89221427465004F252D /* StatisticReportViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticReportViewController.swift; sourceTree = "<group>"; };
+		2CA559222150AB0E00BCB254 /* Print-Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Print-Extensions.swift"; sourceTree = "<group>"; };
 		2CB2ECA62149F42D00AD8B2B /* SMemberLoginLogsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SMemberLoginLogsViewController.swift; sourceTree = "<group>"; };
 		2CB62BA9214F4FA70048AF61 /* HDeliverViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDeliverViewController.swift; sourceTree = "<group>"; };
 		2CB62BAB214F4FD00048AF61 /* HDeliveringViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDeliveringViewController.swift; sourceTree = "<group>"; };
@@ -914,6 +916,7 @@
 				9E523DFF21047E7900CF921F /* UserDefaults.swift */,
 				9E523E9921127EC800CF921F /* UIView-Extensions.swift */,
 				9EE26B83212DA13200619D98 /* Common-Extensions.swift */,
+				2CA559222150AB0E00BCB254 /* Print-Extensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -1510,6 +1513,7 @@
 				9E523E90210D540900CF921F /* OrderAllViewController.swift in Sources */,
 				9E88ED2320FB530200DF091F /* SearchBar.swift in Sources */,
 				2C35D2D321411E5D00AEC12F /* BillsDaliyDetailViewController.swift in Sources */,
+				2CA559232150AB0E00BCB254 /* Print-Extensions.swift in Sources */,
 				9E523E77210BF53F00CF921F /* RegisteringViewController.swift in Sources */,
 				9EE26B7B212B0CA400619D98 /* HomeReportViewController.swift in Sources */,
 				9E523E3C2107708600CF921F /* Personal.swift in Sources */,

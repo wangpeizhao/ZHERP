@@ -64,10 +64,33 @@ class HDeliveringViewController: UIViewController {
     
     @objc func actionTextField(_ sender: UITextField) {
         sender.resignFirstResponder()
+        switch sender.tag {
+        case 1001:
+            self._initData?.expressCompany = sender.text!
+            break
+        case 1002:
+            self._initData?.expressNumber = sender.text!
+            break
+        case 1003:
+            self._initData?.expressNote = sender.text!
+            break
+        case 1004:
+            self._initData?.receiver = sender.text!
+            break
+        case 1005:
+            self._initData?.receiverPhone = sender.text!
+            break
+        case 1006:
+            self._initData?.receiverDetail = sender.text!
+            break
+        default:
+            break
+        }
 //        self._initData?.quantity = sender.text!
     }
     
     @objc func actionSave() {
+//        print(self._initData as Any)
         if (self._initData?.receiver == "") {
             _alert(view: self, message: "请先填写收件人")
             return
@@ -146,7 +169,7 @@ class HDeliveringViewController: UIViewController {
         self._initData?.receiverDetail = self.valueArr["receiverDetail"] != nil ? self.valueArr["receiverDetail"]! : ""
         self._initData?.employee = self.valueArr["employee"] != nil ? self.valueArr["employee"]! : "王培照"
         self._initData?.datetime = dateFromString(self.valueArr["datetime"]!, format: "yyyy-MM-dd HH:mm:ss")!
-        
+
         self.dataArr = [
             [
                 "title": "订单信息",
@@ -169,7 +192,7 @@ class HDeliveringViewController: UIViewController {
                 "title": "快递信息",
                 "rows": [
                     ["title":"快递公司", "key":"expressCompany", "value": self._initData?.expressCompany, "placeholder": "请输入快递公司"],
-                    ["title":"快递单号", "key":"expressNumber", "value": self._initData?.expressNumber, "placeholder": "收件人的备注"],
+                    ["title":"快递单号", "key":"expressNumber", "value": self._initData?.expressNumber, "placeholder": "请输入快递单号"],
                     ["title":"备注", "key":"expressNote", "value": self._initData?.expressNote, "placeholder": "快递备注"]
                 ]
             ],
@@ -191,7 +214,7 @@ class HDeliveringViewController: UIViewController {
         if self._isAdd {
             self.dataArr.removeAt(indexes: [3])
         } else {
-            
+            self.dataArr.removeAt(indexes: [4])
         }
     }
     
@@ -253,7 +276,7 @@ extension HDeliveringViewController: UITableViewDelegate, UITableViewDataSource 
             return UIView.init(frame: CGRect(x: 0, y: 0, width: 0, height: 0.01))
         }
         let memberView = UIView()
-        memberView.backgroundColor = UIColor.white
+        memberView.backgroundColor = UIColor.clear
         
         let _btn = UIButton(frame: CGRect(x: 20, y: 20, width: ScreenWidth - 40, height: 40))
         _btn.layer.cornerRadius = Specs.border.radius
@@ -301,7 +324,31 @@ extension HDeliveringViewController: UITableViewDelegate, UITableViewDataSource 
             cell.TextFieldLabel.sizeToFit()
             cell.TextFieldLabel.font = Specs.font.regular
             
-            cell.TextFieldValue.tag = indexPath.row
+            // "expressCompany", "expressNumber", "expressNote", "receiver", "receiverPhone", "receiverDetail"
+            switch key {
+            case "expressCompany":
+                cell.TextFieldValue.tag = 1001
+                break
+            case "expressNumber":
+                cell.TextFieldValue.tag = 1002
+                break
+            case "expressNote":
+                cell.TextFieldValue.tag = 1003
+                break
+            case "receiver":
+                cell.TextFieldValue.tag = 1004
+                break
+            case "receiverPhone":
+                cell.TextFieldValue.tag = 1005
+                break
+            case "receiverDetail":
+                cell.TextFieldValue.tag = 1006
+                break
+            default:
+                cell.TextFieldValue.tag = indexPath.row
+                break
+            }
+            
             cell.TextFieldValue.text = _row["value"]
             cell.TextFieldValue.textColor = Specs.color.black
             cell.TextFieldValue.placeholder = _row["placeholder"]
