@@ -9,48 +9,81 @@
 import UIKit
 import WebKit
 
-class SResponsibilityViewController: UIViewController {
-
+class SResponsibilityViewController: UIViewController, WKUIDelegate, WKNavigationDelegate {
+    
+    lazy private var webview: WKWebView = {
+        self.webview = WKWebView.init(frame: self.view.bounds)
+        self.webview.uiDelegate = self
+        self.webview.navigationDelegate = self
+        //禁用页面在最顶端时下拉拖动效果
+//        self.webview.scrollView.bounces = false
+        return self.webview
+    }()
+    
+    lazy private var progressView: UIProgressView = {
+        self.progressView = UIProgressView.init(frame: CGRect(x: CGFloat(0), y: CGFloat(65), width: UIScreen.main.bounds.width, height: 2))
+        self.progressView.tintColor = UIColor.green      // 进度条颜色
+        self.progressView.trackTintColor = UIColor.white // 进度条背景色
+        return self.progressView
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.view.backgroundColor = Specs.color.white
-        setNavBarTitle(view: self, title: "责任协议")
+        view.addSubview(webview)
+        view.addSubview(progressView)
         
-        self._setUp()
-        // Do any additional setup after loading the view.
-    }
-    
-    fileprivate func _setUp() {
-//        let homeDirectory = NSHomeDirectory()
+        webview.addObserver(self, forKeyPath: "estimatedProgress", options: .new, context: nil)
+        // webview.load(URLRequest.init(url: URL.init(string: "https://www.baidu.com/")!))
+        
         let path = Bundle.main.path(forResource: "responsibility", ofType: ".html", inDirectory: "HTML")
         let url = URL(fileURLWithPath:path!)
         let request = URLRequest(url:url)
-        
-        //将浏览器视图全屏(在内容区域全屏,不占用顶端时间条)
-        let frame = CGRect(x:0, y:20, width: ScreenWidth, height: ScreenHeight)
-        let theWebView:WKWebView = WKWebView(frame:frame)
-        //禁用页面在最顶端时下拉拖动效果
-        theWebView.scrollView.bounces = false
-        //加载页面
-        theWebView.load(request)
-        self.view.addSubview(theWebView)
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+        webview.load(request)
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
+        
+        if keyPath == "estimatedProgress"{
+            progressView.alpha = 1.0
+            progressView.setProgress(Float(webview.estimatedProgress), animated: true)
+            if webview.estimatedProgress >= 1.0 {
+                UIView.animate(withDuration: 0.3, delay: 0.1, options: .curveEaseOut, animations: {
+                    self.progressView.alpha = 0
+                }, completion: { (finish) in
+                    self.progressView.setProgress(0.0, animated: false)
+                })
+            }
+        }
     }
-    */
-
+    
+    func webView(_ webView: WKWebView, didStartProvisionalNavigation navigation: WKNavigation!) {
+        print("开始加载")
+    }
+    
+    func webView(_ webView: WKWebView, didCommit navigation: WKNavigation!) {
+        print("开始获取网页内容")
+    }
+    
+    func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
+        print("加载完成")
+    }
+    
+    func webView(_ webView: WKWebView, didFail navigation: WKNavigation!, withError error: Error) {
+        print("加载失败")
+    }
+    
+    func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
+        decisionHandler(.allow);
+    }
+    
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+    }
+    
+    deinit {
+        webview.removeObserver(self, forKeyPath: "estimatedProgress")
+        webview.uiDelegate = nil
+        webview.navigationDelegate = nil
+    }
 }
