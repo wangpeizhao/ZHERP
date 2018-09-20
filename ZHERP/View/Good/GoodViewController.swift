@@ -70,10 +70,28 @@ class GoodViewController: UIViewController {
         self.view.backgroundColor = Specs.color.white
         setNavBarTitle(view: self, title: self._title)
         setNavBarBackBtn(view: self, title: self._title, selector: #selector(actionBack))
-        setNavBarRightBtn(view: self, title: "更多", selector: #selector(actionMore))
+//        setNavBarRightBtn(view: self, title: "更多", selector: #selector(actionMore))
+        
+        // 设置右侧按钮
+        let rightBarBtn = UIBarButtonItem(title: "", style: .plain, target: self, action: #selector(actionScan))
+        rightBarBtn.image = UIImage(named: "scan")
+        rightBarBtn.tintColor = Specs.color.white
+        self.navigationItem.rightBarButtonItems = [rightBarBtn]
         
         self._setup()
         // Do any additional setup after loading the view.
+    }
+    
+    @objc func actionScan() {
+        self.hidesBottomBarWhenPushed = true
+        let _ZHQRCode = ZHQRCodeViewController()
+        _ZHQRCode.actionType = "picking"
+        _push(view: self, target: _ZHQRCode, rootView: true)
+        
+    }
+    
+    @objc func actionAdd() {
+        
     }
     
     @objc func actionMore() {
@@ -105,7 +123,8 @@ class GoodViewController: UIViewController {
     
     private func _setup() {
         self.navHeight = self.navigationController?.navigationBar.frame.maxY
-        self.tabBarHeight = self.navigationController?.toolbar.frame.maxY
+//        self.tabBarHeight = self.navigationController?.toolbar.frame.maxY
+        self.tabBarHeight = self.tabBarController?.tabBar.bounds.size.height
         
         let dataView = UIView(frame: CGRect(x: 0, y: self.navHeight + 95, width: ScreenWidth, height: ScreenHeight))
         self.view.addSubview(dataView)
@@ -160,6 +179,25 @@ class GoodViewController: UIViewController {
         self.categoryTable.register(UITableViewCell.self, forCellReuseIdentifier: "CategoryTableCell")
         self.categoryTable.tableHeaderView = UIView.init(frame: CGRect(x: 0, y: 0, width: 0, height: 0.1))
         self.view.addSubview(self.categoryTable)
+        
+        // add button
+        self._setAddBtn()
+    }
+    
+    fileprivate func _setAddBtn() {
+        print(self.tabBarHeight)
+        let _addBtnView = UIView(frame: CGRect(x: 0, y: ScreenHeight - self.tabBarHeight - 50, width: ScreenWidth, height: 50))
+        _addBtnView.backgroundColor = normalRGBA(r: 0, g: 0, b: 0, a: 0.4)
+        self.view.addSubview(_addBtnView)
+        let _btn = UIButton(frame: CGRect(x: 20, y: 10, width: ScreenWidth - 40, height: 30))
+        _btn.layer.cornerRadius = Specs.border.radius
+        _btn.layer.masksToBounds = true
+        _btn.setTitle("货品入仓", for: .normal)
+        _btn.titleLabel?.font = UIFont.systemFont(ofSize: Specs.fontSize.regular)
+        _btn.setTitleColor(Specs.color.white, for: UIControlState())
+        _btn.backgroundColor = Specs.color.main
+        _btn.addTarget(self, action: #selector(actionAdd), for: .touchUpInside)
+        _addBtnView.addSubview(_btn)
     }
     
 //    lazy var categoryTable: UITableView = {
