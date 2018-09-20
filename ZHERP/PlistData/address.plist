@@ -989,11 +989,39 @@
                 <dict>
                     <key>areas</key>
                     <array>
-                        <string>厚街</string>
-                        <string>樟木头</string>
-                        <string>石龙</string>
-                        <string>长安</string>
-                        <string>虎门</string>
+                        <string>中堂镇</string>
+                        <string>南城区</string>
+                        <string>沙田镇</string>
+                        <string>长安镇</string>
+                        <string>东坑镇</string>
+                        <string>樟木头镇</string>
+                        <string>莞城区</string>
+                        <string>石龙镇</string>
+                        <string>桥头镇</string>
+                        <string>万江镇</string>
+                        <string>麻涌镇</string>
+                        <string>虎门镇</string>
+                        <string>谢岗镇</string>
+                        <string>石碣镇</string>
+                        <string>茶山镇</string>
+                        <string>东城区</string>
+                        <string>洪梅镇</string>
+                        <string>道滘镇</string>
+                        <string>高埗镇</string>
+                        <string>企石镇</string>
+                        <string>凤岗镇</string>
+                        <string>大岭山镇</string>
+                        <string>松山湖</string>
+                        <string>清溪镇</string>
+                        <string>望牛墩镇</string>
+                        <string>厚街镇</string>
+                        <string>常平镇</string>
+                        <string>寮步镇</string>
+                        <string>石排镇</string>
+                        <string>横沥镇</string>
+                        <string>塘厦镇</string>
+                        <string>黄江镇</string>
+                        <string>大朗镇</string>
                     </array>
                     <key>city</key>
                     <string>东莞</string>
@@ -1037,7 +1065,33 @@
                 </dict>
                 <dict>
                     <key>areas</key>
-                    <array/>
+                    <array>
+                        <string>南头镇</string>
+                        <string>神湾区</string>
+                        <string>东凤镇</string>
+                        <string>五桂山镇</string>
+                        <string>黄圃镇</string>
+                        <string>小榄镇</string>
+                        <string>石岐区街道</string>
+                        <string>横栏镇</string>
+                        <string>三角镇</string>
+                        <string>三乡镇</string>
+                        <string>港口镇</string>
+                        <string>沙溪镇</string>
+                        <string>板芙镇</string>
+                        <string>沙朗镇</string>
+                        <string>东升镇</string>
+                        <string>阜沙镇</string>
+                        <string>民众镇</string>
+                        <string>东区街道</string>
+                        <string>火炬开发区</string>
+                        <string>西区街道</string>
+                        <string>南区街道</string>
+                        <string>古镇</string>
+                        <string>坦洲镇</string>
+                        <string>大涌镇</string>
+                        <string>南朗镇</string>
+                    </array>
                     <key>city</key>
                     <string>中山</string>
                 </dict>

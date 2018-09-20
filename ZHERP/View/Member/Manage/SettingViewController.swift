@@ -34,6 +34,8 @@ class SettingViewController: UIViewController,UITableViewDataSource ,UITableView
                 ["privacy","隐私"],
                 ["common","通用"]]),
             2:[[String]]([
+                ["protocol","使用协议"],
+                ["responsibility","责任协议"],
                 ["feedback","帮助与反馈"],
                 ["about","关于纵横"],
                 ["version","当前版本"]]),
@@ -130,6 +132,22 @@ class SettingViewController: UIViewController,UITableViewDataSource ,UITableView
                 break;
             case "logout":
                 _confirm(view: self, title: "提示", message: "确定要退出吗？", handler: logout)
+                break
+            case "feedback":
+                let _target = SFeedbackViewController()
+                _push(view: self, target: _target)
+                break
+            case "about":
+                let _target = SAboutViewController()
+                _push(view: self, target: _target)
+                break
+            case "protocol":
+                let _target = SProtocolViewController()
+                _push(view: self, target: _target)
+                break
+            case "responsibility":
+                let _target = SResponsibilityViewController()
+                _push(view: self, target: _target)
                 break
             default: break
                 

@@ -103,7 +103,7 @@ class HDeliverViewController: UIViewController {
     //刷新数据
     func refreshItemData(append: Bool) {
         for i in 0...2 {
-            let _data = ["expressNumber": "20180903132356\(i)", "expressInfo": "13533615794/王培照"]
+            let _data = ["id": "123\(i)", "expressNumber": "20180903132356\(i)", "expressInfo": "13533615794/王培照"]
             if (append) {
                 self.dataArr.append(_data)
             } else {
