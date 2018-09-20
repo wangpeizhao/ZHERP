@@ -28,6 +28,9 @@ class SAboutViewController: UIViewController, WKUIDelegate, WKNavigationDelegate
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.view.backgroundColor = Specs.color.white
+        setNavBarTitle(view: self, title: "关于纵横")
+        
         view.addSubview(webview)
         view.addSubview(progressView)
         

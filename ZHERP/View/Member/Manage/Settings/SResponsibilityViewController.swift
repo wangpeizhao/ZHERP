@@ -30,6 +30,9 @@ class SResponsibilityViewController: UIViewController, WKUIDelegate, WKNavigatio
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.view.backgroundColor = Specs.color.white
+        setNavBarTitle(view: self, title: "责任协议")
+        
         view.addSubview(webview)
         view.addSubview(progressView)
         
