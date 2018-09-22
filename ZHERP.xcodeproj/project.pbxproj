@@ -56,6 +56,9 @@
 		43D0F869FCB1EFFD2A515717 /* Pods_ZHERPUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9ADCE7C4B0A7D41C0DA234D6 /* Pods_ZHERPUITests.framework */; };
 		4D5DC0AAB0D07F80968B0079 /* Pods_ZHERP.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 532FEF4AFB84E941C848EBDE /* Pods_ZHERP.framework */; };
 		8F0E2D4FE6DC9F693DE6136E /* Pods_ZHERPTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0018AC5B628E580B5DB4DE45 /* Pods_ZHERPTests.framework */; };
+		9E1A0A072155274900F0B2B6 /* GoodOperateSViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E1A0A062155274900F0B2B6 /* GoodOperateSViewController.swift */; };
+		9E1A0A0921553ACD00F0B2B6 /* GoodOperateFViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E1A0A0821553ACD00F0B2B6 /* GoodOperateFViewController.swift */; };
+		9E1A0A0C21554FA000F0B2B6 /* GoodModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E1A0A0B21554FA000F0B2B6 /* GoodModel.swift */; };
 		9E27D5A321344FF700087D20 /* GoodListPopupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E27D5A221344FF700087D20 /* GoodListPopupViewController.swift */; };
 		9E27D5A5213A727200087D20 /* WarehouseManagerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E27D5A4213A727200087D20 /* WarehouseManagerViewController.swift */; };
 		9E27D5A7213AF05C00087D20 /* WarehouseDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E27D5A6213AF05C00087D20 /* WarehouseDetailViewController.swift */; };
@@ -272,6 +275,9 @@
 		829D37B56E7E23231666AB1E /* Pods-ZHERP.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZHERP.release.xcconfig"; path = "Pods/Target Support Files/Pods-ZHERP/Pods-ZHERP.release.xcconfig"; sourceTree = "<group>"; };
 		8BD4B1E4B718B1C487039245 /* Pods-ZHERP.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZHERP.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ZHERP/Pods-ZHERP.debug.xcconfig"; sourceTree = "<group>"; };
 		9ADCE7C4B0A7D41C0DA234D6 /* Pods_ZHERPUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ZHERPUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		9E1A0A062155274900F0B2B6 /* GoodOperateSViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoodOperateSViewController.swift; sourceTree = "<group>"; };
+		9E1A0A0821553ACD00F0B2B6 /* GoodOperateFViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoodOperateFViewController.swift; sourceTree = "<group>"; };
+		9E1A0A0B21554FA000F0B2B6 /* GoodModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoodModel.swift; sourceTree = "<group>"; };
 		9E27D5A221344FF700087D20 /* GoodListPopupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoodListPopupViewController.swift; sourceTree = "<group>"; };
 		9E27D5A4213A727200087D20 /* WarehouseManagerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WarehouseManagerViewController.swift; sourceTree = "<group>"; };
 		9E27D5A6213AF05C00087D20 /* WarehouseDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WarehouseDetailViewController.swift; sourceTree = "<group>"; };
@@ -585,6 +591,14 @@
 				9ADCE7C4B0A7D41C0DA234D6 /* Pods_ZHERPUITests.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		9E1A0A0A21554F7600F0B2B6 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				9E1A0A0B21554FA000F0B2B6 /* GoodModel.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 		9E29030C20F7B99800F11C63 = {
@@ -1121,11 +1135,14 @@
 		9EE26B7E212C6DDD00619D98 /* Good */ = {
 			isa = PBXGroup;
 			children = (
+				9E1A0A0A21554F7600F0B2B6 /* Model */,
 				2C2BD1CB21279ED300F6C6C3 /* GoodDetailViewController.swift */,
 				9E523E8D210D537B00CF921F /* GoodViewController.swift */,
 				9EE26B7F212C734100619D98 /* GoodTableViewCell.swift */,
 				9EE26B80212C734100619D98 /* GoodTableViewCell.xib */,
 				9E27D5A221344FF700087D20 /* GoodListPopupViewController.swift */,
+				9E1A0A0821553ACD00F0B2B6 /* GoodOperateFViewController.swift */,
+				9E1A0A062155274900F0B2B6 /* GoodOperateSViewController.swift */,
 			);
 			path = Good;
 			sourceTree = "<group>";
@@ -1446,6 +1463,7 @@
 				9ED7E51721418FF500F8F735 /* BillsWeekViewController.swift in Sources */,
 				9E5D7E5B214E748A00DE7036 /* HInventoryDetailViewController.swift in Sources */,
 				2CBF49042122A3B800199C1D /* QRCode.swift in Sources */,
+				9E1A0A0921553ACD00F0B2B6 /* GoodOperateFViewController.swift in Sources */,
 				9E523E672108C5D400CF921F /* NotifyTableViewCell.swift in Sources */,
 				9E523E8E210D537B00CF921F /* GoodViewController.swift in Sources */,
 				9EE227E3214511A400E1CDD1 /* HAllocatingView.swift in Sources */,
@@ -1538,6 +1556,7 @@
 				9E88ED2320FB530200DF091F /* SearchBar.swift in Sources */,
 				2C35D2D321411E5D00AEC12F /* BillsDaliyDetailViewController.swift in Sources */,
 				2CA559232150AB0E00BCB254 /* Print-Extensions.swift in Sources */,
+				9E1A0A0C21554FA000F0B2B6 /* GoodModel.swift in Sources */,
 				9E523E77210BF53F00CF921F /* RegisteringViewController.swift in Sources */,
 				9EE26B7B212B0CA400619D98 /* HomeReportViewController.swift in Sources */,
 				9E523E3C2107708600CF921F /* Personal.swift in Sources */,
@@ -1558,6 +1577,7 @@
 				9E88ED2020FB469000DF091F /* StatisticViewController.swift in Sources */,
 				9E523E98210D548500CF921F /* OrderCompleteViewController.swift in Sources */,
 				2CC1319321114279004C8097 /* SearchViewController.swift in Sources */,
+				9E1A0A072155274900F0B2B6 /* GoodOperateSViewController.swift in Sources */,
 				2C986C7F213FCF2200F081BC /* SMemberDetailViewController.swift in Sources */,
 				9E29031920F7B99800F11C63 /* AppDelegate.swift in Sources */,
 				9E4C316121435FCC004A95A2 /* HAllocateViewController.swift in Sources */,

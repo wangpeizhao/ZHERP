@@ -69,7 +69,7 @@ class GoodViewController: UIViewController {
         
         self.view.backgroundColor = Specs.color.white
         setNavBarTitle(view: self, title: self._title)
-        setNavBarBackBtn(view: self, title: self._title, selector: #selector(actionBack))
+        setNavBarBackBtn(view: self, title: "", selector: #selector(actionBack))
 //        setNavBarRightBtn(view: self, title: "更多", selector: #selector(actionMore))
         
         // 设置右侧按钮
@@ -85,13 +85,16 @@ class GoodViewController: UIViewController {
     @objc func actionScan() {
         self.hidesBottomBarWhenPushed = true
         let _ZHQRCode = ZHQRCodeViewController()
-        _ZHQRCode.actionType = "picking"
+        _ZHQRCode.actionType = "warehousing"
         _push(view: self, target: _ZHQRCode, rootView: true)
         
     }
     
     @objc func actionAdd() {
-        
+        let _target = GoodOperateFViewController()
+        _target.dataType = .category
+        _target.navTitle = "选择货品分类"
+        _push(view: self, target: _target)
     }
     
     @objc func actionMore() {
@@ -488,6 +491,7 @@ class GoodViewController: UIViewController {
     }
     
     @objc func clickedMoreBtn(_ sender: UIButton) {
+        print("sender.tag:\(sender.tag)")
         self.hiddenGoodListPopupView()
         self.goodListPopupView = UIView(frame: CGRect(x: 0, y: 40, width: 0, height: 50))
         self.goodListPopupView.tag = sender.tag

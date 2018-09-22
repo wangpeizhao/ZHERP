@@ -260,6 +260,8 @@ extension ZHQRCodeViewController {
             self._action_allocating(value: value)
         case "picking":
             self._action_picking(value: value)
+        case "warehousing":
+            self._action_warehousing(value: value)
         default:
             self._action_common(value: value)
         }
@@ -327,6 +329,19 @@ extension ZHQRCodeViewController {
             "title": "美的（Midea）电饭煲 气动涡轮防溢 金属机身 圆灶釜内胆4L电饭锅MB-WFS4037",
         ]
         
+        _push(view: self, target: _target, rootView: false)
+    }
+    
+    fileprivate func _action_warehousing(value: String) {
+        let pattern = "^[0-9]+$"
+        guard NSPredicate(format: "SELF MATCHES %@", pattern).evaluate(with: value) else {
+            _alert(view: self, message: "货品编号格式不正确", handler: _continueScan)
+            return
+        }
+        let _target = GoodOperateFViewController()
+        _target.dataType = .category
+        _target.navTitle = "选择货品分类"
+        _target.sn = value
         _push(view: self, target: _target, rootView: false)
     }
     

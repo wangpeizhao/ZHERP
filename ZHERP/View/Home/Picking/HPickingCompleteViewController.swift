@@ -55,7 +55,7 @@ class HPickingCompleteViewController: UIViewController {
     }
     
     @objc func actionPicking() {
-        let _target = HPickingGoodView()
+        let _target = HPickingViewController()
         _push(view: self, target: _target)
     }
     
@@ -72,16 +72,12 @@ class HPickingCompleteViewController: UIViewController {
         self.tableView!.tableHeaderView = UIView.init(frame: CGRect(x: 0, y: 0, width: 0, height: 0.1))
         self.view.addSubview(self.tableView!)
         
-        self._setUp()
-    }
-    
-    fileprivate func _setUp() {
-        self.initData()
-        
         self._HPickingCompleteView = HPickingCompleteView()
         self._HPickingCompleteView.frameHeight = ScreenHeight - self.navHeight
-        self._HPickingCompleteView.actionOrderBtn.addTarget(self, action: #selector(actionOrder), for: .touchUpInside)
-        self._HPickingCompleteView.continuePickBtn.addTarget(self, action: #selector(actionPicking), for: .touchUpInside)
+//        self._HPickingCompleteView.actionOrderBtn.addTarget(self, action: #selector(actionOrder), for: .touchUpInside)
+//        self._HPickingCompleteView.continuePickBtn.addTarget(self, action: #selector(actionPicking), for: .touchUpInside)
+        
+        self.initData()
     }
     
     fileprivate func initData() {
@@ -114,6 +110,9 @@ extension HPickingCompleteViewController: UITableViewDelegate, UITableViewDataSo
         let _mainView = UIView(frame: CGRect(x: 0, y: 0, width: ScreenWidth, height: ScreenHeight))
         
         _mainView.addSubview(self._HPickingCompleteView.mainView(initData: self.valueArr))
+        
+        self._HPickingCompleteView.actionOrderBtn.addTarget(self, action: #selector(actionOrder), for: .touchUpInside)
+        self._HPickingCompleteView.continuePickBtn.addTarget(self, action: #selector(actionPicking), for: .touchUpInside)
         return _mainView
     }
     

@@ -64,11 +64,17 @@ class HPickingGoodViewController: UIViewController, SliderGalleryControllerDeleg
     }
     
     @objc func actionAdd() {
-        if self._quantityValue == nil || Int(self._quantityValue) == 0 {
-            _alert(view: self, message: "请先填写拣货数量.")
+        if self._quantityValue == nil || Int(self._quantityValue) == 0  || self._quantityValue == "" {
+            _alert(view: self, message: "请先填写拣货数量.", handler: actionQuantity)
             return
         }
         _alert(view: self, message: "提交成功", handler: actionSuccess)
+    }
+    
+    @objc func actionQuantity(_: UIAlertAction)->Void {
+//        let _indexPath: IndexPath = IndexPath(row: 3001, section: 0)
+//        let _cell: SMemberOperateTableViewCell = self.tableView.cellForRow(at: _indexPath as IndexPath) as! SMemberOperateTableViewCell
+//        _cell.TextFieldValue.resignFirstResponder()
     }
     
     @objc func actionSuccess(_: UIAlertAction)->Void {
@@ -261,8 +267,11 @@ extension HPickingGoodViewController: UITableViewDelegate, UITableViewDataSource
             cell.TextFieldValue.clearButtonMode = UITextFieldViewMode.always
             cell.TextFieldValue.adjustsFontSizeToFitWidth = true
             cell.TextFieldValue.returnKeyType = UIReturnKeyType.done
-            cell.TextFieldValue.keyboardType = UIKeyboardType.numberPad
+            cell.TextFieldValue.keyboardType = UIKeyboardType.numbersAndPunctuation
             cell.TextFieldValue.delegate = self
+            cell.tag = 3001
+            
+            print("indexPath.row:\(indexPath.row)")
             
             cell.accessoryType = .none
             return cell
@@ -279,6 +288,7 @@ extension HPickingGoodViewController: UITableViewDelegate, UITableViewDataSource
         cell.detailTextLabel?.font = Specs.font.regular
         
         cell.accessoryType = .none
+        cell.tag = indexPath.row
         
         return cell
     }
