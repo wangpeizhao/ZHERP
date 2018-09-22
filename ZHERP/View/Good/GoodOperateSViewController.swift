@@ -8,6 +8,7 @@
 
 import UIKit
 import SnapKit
+import Photos
 
 class GoodOperateSViewController: UIViewController {
     
@@ -40,6 +41,9 @@ class GoodOperateSViewController: UIViewController {
     var supplierName: String = ""
     // 添加时选择货品单位
     var unitName: String = ""
+    
+    
+    var _picImageViewDemo: UIImageView!
     
     let writableTextFields = ["sn", "title", "salePrice", "costPrice", "quantity"]
     
@@ -104,6 +108,32 @@ class GoodOperateSViewController: UIViewController {
             self.callBackAssign!(self.valueArr)
         }
         _alert(view: self, message: "提交成功", handler: actionSuccess)
+    }
+    
+    @objc func actionImageViewClick() {
+        //开始选择照片，最多允许选择4张
+        _ = self.presentHGImagePicker(maxSelected:4) { (assets) in
+            //结果处理
+            print("共选择了\(assets.count)张图片，分别如下：")
+            for asset in assets {
+                print(asset)
+                //获取缩略图
+                //根据单元格的尺寸计算我们需要的缩略图大小
+//                let scale = UIScreen.main.scale
+//                let cellSize = (self.collectionView.collectionViewLayout as!
+//                    UICollectionViewFlowLayout).itemSize
+                
+                let imageManager = PHCachingImageManager()
+                let assetGridThumbnailSize = CGSize(width: 50 ,
+                                                height: 50)
+                imageManager.requestImage(for: asset, targetSize: assetGridThumbnailSize,
+                                               contentMode: .aspectFill, options: nil) {
+                                                (image, nfo) in
+                                                self._picImageViewDemo.image = image
+                }
+                
+            }
+        }
     }
     
     private func _setup() {
@@ -293,11 +323,29 @@ extension GoodOperateSViewController: UITableViewDelegate, UITableViewDataSource
             let _picImageView = UIImageView()
             let _img = UIImage(named: "Add-details-of-the-plan")
             _picImageView.image = _img
+            
+            // 为UIImageView添加Tap手势
+            let singleTapGesture = UITapGestureRecognizer(target: self, action: #selector(actionImageViewClick))
+            _picImageView.addGestureRecognizer(singleTapGesture)
+            _picImageView.isUserInteractionEnabled = true
+            
             _picView.addSubview(_picImageView)
             _picImageView.snp.makeConstraints {(make) -> Void in
                 make.top.equalTo(_tipView.snp.bottom).offset(12)
                 make.left.equalTo(20)
             }
+            
+            
+            self._picImageViewDemo = UIImageView()
+            let _img1 = UIImage(named: "Add-details-of-the-plan")
+            self._picImageViewDemo.image = _img1
+            _picView.addSubview(self._picImageViewDemo)
+            self._picImageViewDemo.snp.makeConstraints {(make) -> Void in
+                make.left.equalTo(_picImageView.snp.right).offset(10)
+                make.top.equalTo(_picImageView.snp.top)
+            }
+            
+            
             return _picView
         }
         return UIView()
@@ -381,7 +429,7 @@ extension GoodOperateSViewController: UITableViewDelegate, UITableViewDataSource
                 break
             case "quantity":
                 cell.TextFieldValue.tag = 1005
-                cell.TextFieldValue.keyboardType = UIKeyboardType.numberPad
+                cell.TextFieldValue.keyboardType = UIKeyboardType.decimalPad
                 break
             default:
                 cell.TextFieldValue.tag = indexPath.row

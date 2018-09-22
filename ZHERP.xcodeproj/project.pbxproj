@@ -201,6 +201,13 @@
 		9EE26B84212DA13200619D98 /* Common-Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EE26B83212DA13200619D98 /* Common-Extensions.swift */; };
 		9EE26B86212DA33B00619D98 /* OrderPagingMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EE26B85212DA33B00619D98 /* OrderPagingMenuViewController.swift */; };
 		9EE26B89212DE2F900619D98 /* UIButton-Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EE26B88212DE2F900619D98 /* UIButton-Extensions.swift */; };
+		9EFB8268215694BD007A2893 /* HGImagePickerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EFB8261215694BB007A2893 /* HGImagePickerCell.swift */; };
+		9EFB8269215694BD007A2893 /* HGImage.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9EFB8262215694BC007A2893 /* HGImage.storyboard */; };
+		9EFB826A215694BD007A2893 /* HGImageCompleteButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EFB8263215694BC007A2893 /* HGImageCompleteButton.swift */; };
+		9EFB826B215694BD007A2893 /* HGImageCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EFB8264215694BC007A2893 /* HGImageCollectionViewController.swift */; };
+		9EFB826C215694BD007A2893 /* HGImage.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9EFB8265215694BC007A2893 /* HGImage.xcassets */; };
+		9EFB826D215694BD007A2893 /* HGImageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EFB8266215694BD007A2893 /* HGImageCollectionViewCell.swift */; };
+		9EFB826E215694BD007A2893 /* HGImagePickerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EFB8267215694BD007A2893 /* HGImagePickerController.swift */; };
 		9EFF259F2143FD9F0055EB61 /* HPickingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EFF259E2143FD9F0055EB61 /* HPickingViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -428,6 +435,13 @@
 		9EE26B83212DA13200619D98 /* Common-Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Common-Extensions.swift"; sourceTree = "<group>"; };
 		9EE26B85212DA33B00619D98 /* OrderPagingMenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderPagingMenuViewController.swift; sourceTree = "<group>"; };
 		9EE26B88212DE2F900619D98 /* UIButton-Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton-Extensions.swift"; sourceTree = "<group>"; };
+		9EFB8261215694BB007A2893 /* HGImagePickerCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HGImagePickerCell.swift; sourceTree = "<group>"; };
+		9EFB8262215694BC007A2893 /* HGImage.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = HGImage.storyboard; sourceTree = "<group>"; };
+		9EFB8263215694BC007A2893 /* HGImageCompleteButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HGImageCompleteButton.swift; sourceTree = "<group>"; };
+		9EFB8264215694BC007A2893 /* HGImageCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HGImageCollectionViewController.swift; sourceTree = "<group>"; };
+		9EFB8265215694BC007A2893 /* HGImage.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = HGImage.xcassets; sourceTree = "<group>"; };
+		9EFB8266215694BD007A2893 /* HGImageCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HGImageCollectionViewCell.swift; sourceTree = "<group>"; };
+		9EFB8267215694BD007A2893 /* HGImagePickerController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HGImagePickerController.swift; sourceTree = "<group>"; };
 		9EFF259E2143FD9F0055EB61 /* HPickingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HPickingViewController.swift; sourceTree = "<group>"; };
 		9F01564B284FE65EC6264542 /* Pods-ZHERPUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZHERPUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-ZHERPUITests/Pods-ZHERPUITests.release.xcconfig"; sourceTree = "<group>"; };
 		A20BF83E3F3D312627719EFA /* Pods-ZHERPTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZHERPTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-ZHERPTests/Pods-ZHERPTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -731,6 +745,7 @@
 		9E523DEB21045F3300CF921F /* ThirdParty */ = {
 			isa = PBXGroup;
 			children = (
+				9EFB8260215694A7007A2893 /* HGImagePicker */,
 				9EE227D82144A56600E1CDD1 /* ImageHelper */,
 				9EE227D32144A40600E1CDD1 /* SliderGallery */,
 				9ECA8D0B2141F6BE003FFC05 /* DatePicker */,
@@ -1155,6 +1170,20 @@
 			path = UIButton;
 			sourceTree = "<group>";
 		};
+		9EFB8260215694A7007A2893 /* HGImagePicker */ = {
+			isa = PBXGroup;
+			children = (
+				9EFB8262215694BC007A2893 /* HGImage.storyboard */,
+				9EFB8265215694BC007A2893 /* HGImage.xcassets */,
+				9EFB8266215694BD007A2893 /* HGImageCollectionViewCell.swift */,
+				9EFB8264215694BC007A2893 /* HGImageCollectionViewController.swift */,
+				9EFB8263215694BC007A2893 /* HGImageCompleteButton.swift */,
+				9EFB8261215694BB007A2893 /* HGImagePickerCell.swift */,
+				9EFB8267215694BD007A2893 /* HGImagePickerController.swift */,
+			);
+			path = HGImagePicker;
+			sourceTree = "<group>";
+		};
 		9EFF259D2143FD6C0055EB61 /* Picking */ = {
 			isa = PBXGroup;
 			children = (
@@ -1296,6 +1325,7 @@
 				9ED7E50F2140304D00F8F735 /* OrderTodayBillTableViewCell.xib in Resources */,
 				9E523DFB2104615700CF921F /* 1.mp4 in Resources */,
 				9E523DFA2104615700CF921F /* guideImage8.gif in Resources */,
+				9EFB8269215694BD007A2893 /* HGImage.storyboard in Resources */,
 				9E523E682108C5D400CF921F /* NotifyTableViewCell.xib in Resources */,
 				9EE26B82212C734100619D98 /* GoodTableViewCell.xib in Resources */,
 				2CB62BB5214FB73A0048AF61 /* HDeliveringTableViewCell.xib in Resources */,
@@ -1314,6 +1344,7 @@
 				9E523E2B2104D7CE00CF921F /* guideImage7.gif in Resources */,
 				9E523E6E2109401F00CF921F /* SwitchTableViewCell.xib in Resources */,
 				9E523DF92104615700CF921F /* guideImage6.gif in Resources */,
+				9EFB826C215694BD007A2893 /* HGImage.xcassets in Resources */,
 				9E29031E20F7B99800F11C63 /* Main.storyboard in Resources */,
 				9E4C3163214366F4004A95A2 /* Assets.xcassets in Resources */,
 			);
@@ -1475,6 +1506,7 @@
 				9E88ED1120FB3B7700DF091F /* Single+ObjectMapper.swift in Sources */,
 				9E523E7D210C23CF00CF921F /* ResetViewController.swift in Sources */,
 				9E88ED2520FB53AE00DF091F /* OrderDetailViewController.swift in Sources */,
+				9EFB826E215694BD007A2893 /* HGImagePickerController.swift in Sources */,
 				2CB62BB1214F9DE30048AF61 /* UIResponder-Extensions.swift in Sources */,
 				9E523E7B210C238400CF921F /* ForgetViewController.swift in Sources */,
 				2C35D2D02141085A00AEC12F /* BillsDailyReportTableViewCell.swift in Sources */,
@@ -1541,6 +1573,7 @@
 				9ED7E51121404CE500F8F735 /* OrderBillsViewController.swift in Sources */,
 				9EE26B84212DA13200619D98 /* Common-Extensions.swift in Sources */,
 				9E523DF2210460B600CF921F /* HHGuidePageHUD.swift in Sources */,
+				9EFB826D215694BD007A2893 /* HGImageCollectionViewCell.swift in Sources */,
 				9ECA8D0D2141F6E3003FFC05 /* DatePicker.swift in Sources */,
 				9E88ED2A20FB723600DF091F /* UIColor.swift in Sources */,
 				9ED7E51B2141903D00F8F735 /* BillsMonthViewController.swift in Sources */,
@@ -1573,6 +1606,7 @@
 				9E88ED2D20FB8C7900DF091F /* Specs.swift in Sources */,
 				9E523E0221047F7700CF921F /* IntroductionViewController.swift in Sources */,
 				9E523E94210D544E00CF921F /* OrderUnpayViewController.swift in Sources */,
+				9EFB8268215694BD007A2893 /* HGImagePickerCell.swift in Sources */,
 				2CEA8C4C212AB17500004AE6 /* HomeCollectionViewCell.swift in Sources */,
 				9E88ED2020FB469000DF091F /* StatisticViewController.swift in Sources */,
 				9E523E98210D548500CF921F /* OrderCompleteViewController.swift in Sources */,
@@ -1589,6 +1623,7 @@
 				9E523E0021047E7900CF921F /* UserDefaults.swift in Sources */,
 				9E4C316821436C7F004A95A2 /* HAllocatingModel.swift in Sources */,
 				9EE26B4D21247C7500619D98 /* ZHQRCodeConfig.swift in Sources */,
+				9EFB826B215694BD007A2893 /* HGImageCollectionViewController.swift in Sources */,
 				9E88ED3B20FCEC5100DF091F /* MemberMenus.swift in Sources */,
 				9E62C2AE213B81A200C8A578 /* WarehouseOperateViewController.swift in Sources */,
 				2C986C82213FDC2300F081BC /* SMemberModel.swift in Sources */,
@@ -1601,6 +1636,7 @@
 				9E88ED1620FB3BA500DF091F /* PostProvider.swift in Sources */,
 				9E523E6A2108D54600CF921F /* NoDisturbingViewController.swift in Sources */,
 				9E88ED1C20FB462600DF091F /* OrderTableViewController.swift in Sources */,
+				9EFB826A215694BD007A2893 /* HGImageCompleteButton.swift in Sources */,
 				9EE227E521451AC600E1CDD1 /* HPickingView.swift in Sources */,
 				9E523E352106170000CF921F /* SettingViewController.swift in Sources */,
 				9E523E9D2119DF2100CF921F /* OrderTableViewCell.swift in Sources */,

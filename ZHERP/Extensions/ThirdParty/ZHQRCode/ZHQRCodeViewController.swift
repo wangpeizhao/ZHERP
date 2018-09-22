@@ -357,23 +357,23 @@ extension ZHQRCodeViewController {
             return
         }
         let _target = HDeliveringViewController()
-//        _target.valueArr = [
-//            "id": 1,
-//            "orderId": value,
-//            "orderAmount": "2500.00",
-//            "orderRealPaid": "2500.00",
-//            "expressCompany": "顺丰快递",
-//            "expressNumber": "EX122343545k",
-//            "expressNote": "麻烦掌柜的快点发货",
-//            "receiver": "王先生",
-//            "receiverPhone": "13533615794",
-//            "province": "广东",
-//            "city": "广州",
-//            "area": "越秀",
-//            "receiverDetail": "站南路16号白马大厦九楼",
-//            "employees": "王培照",
-//            "datetime": "2018-09-08 12:34:56"
-//            ] as! [String : String]
+        _target.valueArr = [
+            "id": "1",
+            "orderId": value,
+            "orderAmount": "2500.00",
+            "orderRealPaid": "2500.00",
+            "expressCompany": "顺丰快递",
+            "expressNumber": "EX122343545k",
+            "expressNote": "麻烦掌柜的快点发货",
+            "receiver": "王先生",
+            "receiverPhone": "13533615794",
+            "province": "广东",
+            "city": "广州",
+            "area": "越秀",
+            "receiverDetail": "站南路16号白马大厦九楼",
+            "employees": "王培照",
+            "datetime": "2018-09-08 12:34:56"
+            ]
         
         _push(view: self, target: _target, rootView: false)
     }
