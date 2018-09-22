@@ -605,21 +605,33 @@ extension GoodViewController: UITableViewDataSource ,UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         if tableView.isEqual(self.tableView) {
-            let sb = UIStoryboard(name:"Main", bundle: nil)
-            let orderView = sb.instantiateViewController(withIdentifier: "GoodDetailViewController") as! GoodDetailViewController
-
-            let count = self.itemArray.count
-//            let sectionNo = count - indexPath.row - 1
-//            var _data = self.itemArray[sectionNo]!
-    //        orderView.hidesBottomBarWhenPushed = true
+            let _target = HPickingGoodViewController()
+            _target.valueArr = [
+                "sn": "ZHG20180908142345098",
+                "title": "京造 芝麻核桃黑豆粉代餐粉 黑芝麻蔓越莓枸杞粉 早餐禅食代餐22g*20 440g",
+                "warehouse": "深圳仓库",
+                "price": "80000.88",
+                "total": "987452.00",
+                "quantity": "12",
+                "stock": "5600",
+            ]
             
-    //        orderView.navTitle = _data["suk"]
-    //        orderView.order_image = _data["avatar"]
-    //        orderView.order_price = _data["price"]
-    //        orderView.order_title = _data["name"]
-    //        orderView.actionValue = ""
-            
-            _push(view: self, target: orderView, rootView: true)
+            _push(view: self, target: _target, rootView: false)
+//            let sb = UIStoryboard(name:"Main", bundle: nil)
+//            let orderView = sb.instantiateViewController(withIdentifier: "GoodDetailViewController") as! GoodDetailViewController
+//
+//            let count = self.itemArray.count
+////            let sectionNo = count - indexPath.row - 1
+////            var _data = self.itemArray[sectionNo]!
+//    //        orderView.hidesBottomBarWhenPushed = true
+//
+//    //        orderView.navTitle = _data["suk"]
+//    //        orderView.order_image = _data["avatar"]
+//    //        orderView.order_price = _data["price"]
+//    //        orderView.order_title = _data["name"]
+//    //        orderView.actionValue = ""
+//
+//            _push(view: self, target: orderView, rootView: true)
         } else if tableView.isEqual(self.categoryTable) {
             self.hideCategoryTable()
         }

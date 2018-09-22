@@ -262,6 +262,8 @@ extension ZHQRCodeViewController {
             self._action_picking(value: value)
         case "warehousing":
             self._action_warehousing(value: value)
+        case "delivering":
+            self._action_delivering(value: value)
         default:
             self._action_common(value: value)
         }
@@ -332,6 +334,7 @@ extension ZHQRCodeViewController {
         _push(view: self, target: _target, rootView: false)
     }
     
+    // 入仓
     fileprivate func _action_warehousing(value: String) {
         let pattern = "^[0-9]+$"
         guard NSPredicate(format: "SELF MATCHES %@", pattern).evaluate(with: value) else {
@@ -342,6 +345,36 @@ extension ZHQRCodeViewController {
         _target.dataType = .category
         _target.navTitle = "选择货品分类"
         _target.sn = value
+        
+        _push(view: self, target: _target, rootView: false)
+    }
+    
+    // 发货
+    fileprivate func _action_delivering(value: String) {
+        let pattern = "^[0-9]+$"
+        guard NSPredicate(format: "SELF MATCHES %@", pattern).evaluate(with: value) else {
+            _alert(view: self, message: "订单编号格式不正确", handler: _continueScan)
+            return
+        }
+        let _target = HDeliveringViewController()
+//        _target.valueArr = [
+//            "id": 1,
+//            "orderId": value,
+//            "orderAmount": "2500.00",
+//            "orderRealPaid": "2500.00",
+//            "expressCompany": "顺丰快递",
+//            "expressNumber": "EX122343545k",
+//            "expressNote": "麻烦掌柜的快点发货",
+//            "receiver": "王先生",
+//            "receiverPhone": "13533615794",
+//            "province": "广东",
+//            "city": "广州",
+//            "area": "越秀",
+//            "receiverDetail": "站南路16号白马大厦九楼",
+//            "employees": "王培照",
+//            "datetime": "2018-09-08 12:34:56"
+//            ] as! [String : String]
+        
         _push(view: self, target: _target, rootView: false)
     }
     

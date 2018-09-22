@@ -77,7 +77,9 @@ class GoodListPopupViewController: UIViewController {
     @objc func clickedGoodList(_ sender: UIButton) {
 //        print(sender.tag)
         if sender.tag == 0 { // 编辑
-            
+            let _target = GoodOperateSViewController()
+            _target.navTitle = "编辑货品"
+            _push(view: self, target: _target)
         } else if sender.tag == -1 { // 上架
             
         } else if sender.tag == 1 { // 下架

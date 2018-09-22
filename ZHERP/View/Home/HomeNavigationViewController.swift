@@ -15,7 +15,7 @@ class HomeNavigationViewController: UIViewController, UICollectionViewDelegateFl
     
     let courses = [
         ["name":"拣货", "key":"picking","pic":"swift.png"],
-        ["name":"扫码发货", "key":"scanSendGood","pic":"xcode.png"],
+        ["name":"扫码发货", "key":"deliver","pic":"xcode.png"],
         ["name":"调货", "key":"allocate","pic":"java.png"],
         ["name":"仓库", "key":"warehouse","pic":"php.png"],
         ["name":"盘点", "key":"inventory","pic":"js.png"],
@@ -90,8 +90,12 @@ class HomeNavigationViewController: UIViewController, UICollectionViewDelegateFl
         switch key {
         case "picking":
             _target = HPickingViewController()
-        case "scanSendGood":
-            _target = ZHQRCodeViewController()
+        case "deliver":
+            let _target = ZHQRCodeViewController()
+            _target.actionType = "delivering"
+            _target.hidesBottomBarWhenPushed = true
+            _push(view: self, target: _target, rootView: true)
+            return
         case "allocate":
             _target = HAllocateViewController()
         case "warehouse":
