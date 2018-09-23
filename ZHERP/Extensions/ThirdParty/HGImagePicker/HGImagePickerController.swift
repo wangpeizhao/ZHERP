@@ -199,8 +199,7 @@ extension HGImagePickerController:UITableViewDelegate,UITableViewDataSource{
 
 extension UIViewController {
     //HGImagePicker提供给外部调用的接口，同于显示图片选择页面
-    func presentHGImagePicker(maxSelected:Int = Int.max,
-                              completeHandler:((_ assets:[PHAsset])->())?)
+    func presentHGImagePicker(maxSelected:Int = Int.max, completeHandler:((_ assets:[PHAsset])->())?)
         -> HGImagePickerController?{
         //获取图片选择视图控制器
         if let vc = UIStoryboard(name: "HGImage", bundle: Bundle.main)

@@ -46,6 +46,8 @@ class GoodOperateSViewController: UIViewController, UIImagePickerControllerDeleg
     
     var _picImageViewDemo: UIImageView!
     
+    var allowsEditing: Bool = false
+    
     let writableTextFields = ["sn", "title", "salePrice", "costPrice", "quantity"]
     
     override func viewDidLoad() {
@@ -125,36 +127,23 @@ class GoodOperateSViewController: UIViewController, UIImagePickerControllerDeleg
     @objc func actionCamera(alert: UIAlertAction) {
         let pickerPhoto = UIImagePickerController()
         pickerPhoto.sourceType = .camera
+        pickerPhoto.allowsEditing = self.allowsEditing
         pickerPhoto.delegate = self
         self.present(pickerPhoto, animated: true, completion: nil)
     }
     
-//    @available(iOS 11.0, *)
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
-        print("imagePickerController...")
-        let image: UIImage = info[UIImagePickerControllerOriginalImage] as! UIImage
-        self._picImageViewDemo.image = image
+        var image: UIImage! // = info[UIImagePickerControllerOriginalImage] as! UIImage
+        if self.allowsEditing {
+            //获取编辑后的图片
+            image = info[UIImagePickerControllerEditedImage] as! UIImage
+        }else{
+            //获取选择的原图
+            image = info[UIImagePickerControllerOriginalImage] as! UIImage
+        }
+        self._picImageViewDemo.image = image?.crop(ratio: 1)
         self._picImageViewDemo.tag = 0
-        self.selectImgs.append(image)
-//        if #available(iOS 11.0, *) {
-//            let imageUrl: NSURL = info[UIImagePickerControllerImageURL] as! NSURL
-//            print(imageUrl)
-//        } else {
-//            // Fallback on earlier versions
-//        }
-        
-        
-        //二维码读取
-//        let ciImage:CIImage=CIImage(image:image)!
-//        let context = CIContext(options: nil)
-//        let detector = CIDetector(ofType: CIDetectorTypeQRCode, context: context, options: [CIDetectorAccuracy:CIDetectorAccuracyHigh])
-//        if let features = detector?.features(in: ciImage) {
-//            print("扫描到二维码个数：\(features.count)")
-//            //遍历所有的二维码，并框出
-//            for feature in features as! [CIQRCodeFeature] {
-//                print(feature.messageString ?? "")
-//            }
-//        }
+        self.selectImgs.append((image?.crop(ratio: 1))!)
         picker.dismiss(animated: true, completion: nil)
     }
     
@@ -165,7 +154,7 @@ class GoodOperateSViewController: UIViewController, UIImagePickerControllerDeleg
     
     @objc func actionPhotoAlbum(alert: UIAlertAction) {
         //开始选择照片，最多允许选择4张
-        _ = self.presentHGImagePicker(maxSelected:4) { (assets) in
+        _ = self.presentHGImagePicker(maxSelected:9) { (assets) in
             //结果处理
             print("共选择了\(assets.count)张图片，分别如下：")
             for asset in assets {
@@ -179,14 +168,14 @@ class GoodOperateSViewController: UIViewController, UIImagePickerControllerDeleg
                 let imageManager = PHCachingImageManager()
                 let assetGridThumbnailSize = CGSize(width: 50 , height: 50)
                 imageManager.requestImage(for: asset, targetSize: assetGridThumbnailSize, contentMode: .aspectFill, options: nil) { (image, nfo) in
-                    self._picImageViewDemo.image = image
+                    self._picImageViewDemo.image = image?.crop(ratio: 1)
                     self._picImageViewDemo.tag = 0
                     
                 }
                 
                 // 获取原图
                 PHImageManager.default().requestImage(for: asset, targetSize: PHImageManagerMaximumSize, contentMode: .default, options: nil, resultHandler: { image, info in
-                    self.selectImgs.append(image!)
+                    self.selectImgs.append((image?.crop(ratio: 1))!)
                 })
                 
                 //获取文件名
@@ -421,7 +410,7 @@ extension GoodOperateSViewController: UITableViewDelegate, UITableViewDataSource
             self._picImageViewDemo.snp.makeConstraints {(make) -> Void in
                 make.left.equalTo(_picImageView.snp.right).offset(10)
                 make.top.equalTo(_picImageView.snp.top)
-                make.width.height.equalTo(80)
+                make.width.height.equalTo(78)
             }
             
             return _picView

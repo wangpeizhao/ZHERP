@@ -16,6 +16,7 @@ class EditAvatarViewController: UIViewController, UIImagePickerControllerDelegat
     var personalKey: String? = nil
     
     let imageView = UIImageView()
+    let allowsEditing: Bool = true
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,6 +37,7 @@ class EditAvatarViewController: UIViewController, UIImagePickerControllerDelegat
         
         imageView.snp.makeConstraints { (make) -> Void in
             make.left.right.equalTo(0)
+            make.width.height.equalTo(ScreenWidth)
             make.center.equalTo(self.view)
         }
         // Do any additional setup after loading the view.
@@ -86,7 +88,7 @@ class EditAvatarViewController: UIViewController, UIImagePickerControllerDelegat
             //指定图片控制器类型
             picker.sourceType = UIImagePickerControllerSourceType.photoLibrary
             //设置是否允许编辑
-            picker.allowsEditing = true
+            picker.allowsEditing = self.allowsEditing
             //弹出控制器，显示界面
             self.present(picker, animated: true, completion: {
                 () -> Void in
@@ -99,6 +101,7 @@ class EditAvatarViewController: UIViewController, UIImagePickerControllerDelegat
     func photoEvent(alert: UIAlertAction){
         print("photoEvent")
         let pickerPhoto = UIImagePickerController()
+        pickerPhoto.allowsEditing = self.allowsEditing
         pickerPhoto.sourceType = .camera
         pickerPhoto.delegate = self
         self.present(pickerPhoto, animated: true, completion: nil)
@@ -106,7 +109,14 @@ class EditAvatarViewController: UIViewController, UIImagePickerControllerDelegat
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
         print("imagePickerController...")
-        let image: UIImage = info[UIImagePickerControllerOriginalImage] as! UIImage
+        var image: UIImage! // = info[UIImagePickerControllerOriginalImage] as! UIImage
+        if self.allowsEditing {
+            //获取编辑后的图片
+            image = info[UIImagePickerControllerEditedImage] as! UIImage
+        }else{
+            //获取选择的原图
+            image = info[UIImagePickerControllerOriginalImage] as! UIImage
+        }
         self.imageView.image = image
 //        let imageUrl: NSURL = info[UIImagePickerControllerImageURL] as! NSURL
 //        print(imageUrl)
