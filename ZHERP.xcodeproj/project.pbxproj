@@ -208,6 +208,8 @@
 		9EFB826C215694BD007A2893 /* HGImage.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9EFB8265215694BC007A2893 /* HGImage.xcassets */; };
 		9EFB826D215694BD007A2893 /* HGImageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EFB8266215694BD007A2893 /* HGImageCollectionViewCell.swift */; };
 		9EFB826E215694BD007A2893 /* HGImagePickerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EFB8267215694BD007A2893 /* HGImagePickerController.swift */; };
+		9EFB827121572B55007A2893 /* HGImagePreviewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EFB826F21572B54007A2893 /* HGImagePreviewCell.swift */; };
+		9EFB827221572B55007A2893 /* HGImagePreviewVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EFB827021572B54007A2893 /* HGImagePreviewVC.swift */; };
 		9EFF259F2143FD9F0055EB61 /* HPickingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EFF259E2143FD9F0055EB61 /* HPickingViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -442,6 +444,8 @@
 		9EFB8265215694BC007A2893 /* HGImage.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = HGImage.xcassets; sourceTree = "<group>"; };
 		9EFB8266215694BD007A2893 /* HGImageCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HGImageCollectionViewCell.swift; sourceTree = "<group>"; };
 		9EFB8267215694BD007A2893 /* HGImagePickerController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HGImagePickerController.swift; sourceTree = "<group>"; };
+		9EFB826F21572B54007A2893 /* HGImagePreviewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HGImagePreviewCell.swift; sourceTree = "<group>"; };
+		9EFB827021572B54007A2893 /* HGImagePreviewVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HGImagePreviewVC.swift; sourceTree = "<group>"; };
 		9EFF259E2143FD9F0055EB61 /* HPickingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HPickingViewController.swift; sourceTree = "<group>"; };
 		9F01564B284FE65EC6264542 /* Pods-ZHERPUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZHERPUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-ZHERPUITests/Pods-ZHERPUITests.release.xcconfig"; sourceTree = "<group>"; };
 		A20BF83E3F3D312627719EFA /* Pods-ZHERPTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZHERPTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-ZHERPTests/Pods-ZHERPTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -1180,6 +1184,8 @@
 				9EFB8263215694BC007A2893 /* HGImageCompleteButton.swift */,
 				9EFB8261215694BB007A2893 /* HGImagePickerCell.swift */,
 				9EFB8267215694BD007A2893 /* HGImagePickerController.swift */,
+				9EFB826F21572B54007A2893 /* HGImagePreviewCell.swift */,
+				9EFB827021572B54007A2893 /* HGImagePreviewVC.swift */,
 			);
 			path = HGImagePicker;
 			sourceTree = "<group>";
@@ -1490,6 +1496,7 @@
 				9E88ED3720FCE9C400DF091F /* MemberViewController.swift in Sources */,
 				2C9AC891214271B4004F252D /* StatisticNavigationViewController.swift in Sources */,
 				9E523E322104DA1000CF921F /* GifImageOperation.swift in Sources */,
+				9EFB827221572B55007A2893 /* HGImagePreviewVC.swift in Sources */,
 				9E523E9A21127EC800CF921F /* UIView-Extensions.swift in Sources */,
 				9ED7E51721418FF500F8F735 /* BillsWeekViewController.swift in Sources */,
 				9E5D7E5B214E748A00DE7036 /* HInventoryDetailViewController.swift in Sources */,
@@ -1615,6 +1622,7 @@
 				2C986C7F213FCF2200F081BC /* SMemberDetailViewController.swift in Sources */,
 				9E29031920F7B99800F11C63 /* AppDelegate.swift in Sources */,
 				9E4C316121435FCC004A95A2 /* HAllocateViewController.swift in Sources */,
+				9EFB827121572B55007A2893 /* HGImagePreviewCell.swift in Sources */,
 				9ED7E50E2140304D00F8F735 /* OrderTodayBillTableViewCell.swift in Sources */,
 				9E523DE42100DDA900CF921F /* Service.swift in Sources */,
 				9E5D7E4E214C10CE00DE7036 /* HInventoryResultViewController.swift in Sources */,

@@ -259,6 +259,13 @@ public func setNavBarTitle(view: UIViewController, title: String, transparent: B
 //    view.navigationController?.navigationBar.barTintColor = UIColor(red: 55/255, green: 186/255, blue: 89/255, alpha: 1)
     view.navigationController?.navigationBar.barTintColor = Specs.color.main
     view.navigationItem.leftItemsSupplementBackButton = true
+    
+    
+//    self.navigationController?.navigationBar.titleTextAttributes =
+//        [NSAttributedStringKey.foregroundColor:UIColor.orange//设置颜色
+//            ,NSAttributedStringKey.font:UIFont.systemFont(ofSize: 25)//设置字体
+//            ,NSAttributedStringKey.backgroundColor:UIColor.red//背景色
+//    ]
 }
 
 // 修改“返回按钮”图标 (需要图片也需要文字)

@@ -10,7 +10,7 @@ import UIKit
 import SnapKit
 import Photos
 
-class GoodOperateSViewController: UIViewController {
+class GoodOperateSViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     var tableView: UITableView!
     let CELL_IDENTIFY_ID = "CELL_IDENTIFY_ID"
@@ -42,6 +42,7 @@ class GoodOperateSViewController: UIViewController {
     // 添加时选择货品单位
     var unitName: String = ""
     
+    var selectImgs:[UIImage] = []
     
     var _picImageViewDemo: UIImageView!
     
@@ -110,7 +111,59 @@ class GoodOperateSViewController: UIViewController {
         _alert(view: self, message: "提交成功", handler: actionSuccess)
     }
     
-    @objc func actionImageViewClick() {
+    @objc func actionAddImg() {
+        let alertController = UIAlertController(title: "请选择图片来源", message: "", preferredStyle: .actionSheet)
+        let cancelAction = UIAlertAction(title: "取消", style: .cancel, handler: nil)
+        let deleteAction = UIAlertAction(title: "拍照", style: .destructive, handler: actionCamera)
+        let archiveAction = UIAlertAction(title: "从手机相册选择", style: .default, handler: actionPhotoAlbum)
+        alertController.addAction(cancelAction)
+        alertController.addAction(deleteAction)
+        alertController.addAction(archiveAction)
+        self.present(alertController, animated: true, completion: nil)
+    }
+    
+    @objc func actionCamera(alert: UIAlertAction) {
+        let pickerPhoto = UIImagePickerController()
+        pickerPhoto.sourceType = .camera
+        pickerPhoto.delegate = self
+        self.present(pickerPhoto, animated: true, completion: nil)
+    }
+    
+//    @available(iOS 11.0, *)
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+        print("imagePickerController...")
+        let image: UIImage = info[UIImagePickerControllerOriginalImage] as! UIImage
+        self._picImageViewDemo.image = image
+        self._picImageViewDemo.tag = 0
+        self.selectImgs.append(image)
+//        if #available(iOS 11.0, *) {
+//            let imageUrl: NSURL = info[UIImagePickerControllerImageURL] as! NSURL
+//            print(imageUrl)
+//        } else {
+//            // Fallback on earlier versions
+//        }
+        
+        
+        //二维码读取
+//        let ciImage:CIImage=CIImage(image:image)!
+//        let context = CIContext(options: nil)
+//        let detector = CIDetector(ofType: CIDetectorTypeQRCode, context: context, options: [CIDetectorAccuracy:CIDetectorAccuracyHigh])
+//        if let features = detector?.features(in: ciImage) {
+//            print("扫描到二维码个数：\(features.count)")
+//            //遍历所有的二维码，并框出
+//            for feature in features as! [CIQRCodeFeature] {
+//                print(feature.messageString ?? "")
+//            }
+//        }
+        picker.dismiss(animated: true, completion: nil)
+    }
+    
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        print("imagePickerControllerDidCancel...")
+        picker.dismiss(animated: true, completion: nil)
+    }
+    
+    @objc func actionPhotoAlbum(alert: UIAlertAction) {
         //开始选择照片，最多允许选择4张
         _ = self.presentHGImagePicker(maxSelected:4) { (assets) in
             //结果处理
@@ -119,19 +172,34 @@ class GoodOperateSViewController: UIViewController {
                 print(asset)
                 //获取缩略图
                 //根据单元格的尺寸计算我们需要的缩略图大小
-//                let scale = UIScreen.main.scale
-//                let cellSize = (self.collectionView.collectionViewLayout as!
-//                    UICollectionViewFlowLayout).itemSize
+                //                let scale = UIScreen.main.scale
+                //                let cellSize = (self.collectionView.collectionViewLayout as!
+                //                    UICollectionViewFlowLayout).itemSize
                 
                 let imageManager = PHCachingImageManager()
-                let assetGridThumbnailSize = CGSize(width: 50 ,
-                                                height: 50)
-                imageManager.requestImage(for: asset, targetSize: assetGridThumbnailSize,
-                                               contentMode: .aspectFill, options: nil) {
-                                                (image, nfo) in
-                                                self._picImageViewDemo.image = image
+                let assetGridThumbnailSize = CGSize(width: 50 , height: 50)
+                imageManager.requestImage(for: asset, targetSize: assetGridThumbnailSize, contentMode: .aspectFill, options: nil) { (image, nfo) in
+                    self._picImageViewDemo.image = image
+                    self._picImageViewDemo.tag = 0
+                    
                 }
                 
+                // 获取原图
+                PHImageManager.default().requestImage(for: asset, targetSize: PHImageManagerMaximumSize, contentMode: .default, options: nil, resultHandler: { image, info in
+                    self.selectImgs.append(image!)
+                })
+                
+                //获取文件名
+                PHImageManager.default().requestImageData(for: asset, options: nil, resultHandler: { _, _, _, info in
+                    self.title = (info!["PHImageFileURLKey"] as! NSURL).lastPathComponent
+                })
+                
+                //获取图片信息
+                let info = "日期：\(asset.creationDate!)\n"
+                    + "类型：\(asset.mediaType.rawValue)\n"
+                    + "位置：\(String(describing: asset.location))\n"
+                    + "时长：\(asset.duration)\n"
+                print(info)
             }
         }
     }
@@ -325,7 +393,7 @@ extension GoodOperateSViewController: UITableViewDelegate, UITableViewDataSource
             _picImageView.image = _img
             
             // 为UIImageView添加Tap手势
-            let singleTapGesture = UITapGestureRecognizer(target: self, action: #selector(actionImageViewClick))
+            let singleTapGesture = UITapGestureRecognizer(target: self, action: #selector(actionAddImg))
             _picImageView.addGestureRecognizer(singleTapGesture)
             _picImageView.isUserInteractionEnabled = true
             
@@ -335,20 +403,41 @@ extension GoodOperateSViewController: UITableViewDelegate, UITableViewDataSource
                 make.left.equalTo(20)
             }
             
-            
             self._picImageViewDemo = UIImageView()
             let _img1 = UIImage(named: "Add-details-of-the-plan")
             self._picImageViewDemo.image = _img1
+            
+            self._picImageViewDemo.tag = 0
+            
+            //添加单击监听
+            let tapSingle=UITapGestureRecognizer(target:self, action:#selector(imageViewTap(_:)))
+            tapSingle.numberOfTapsRequired = 1
+            tapSingle.numberOfTouchesRequired = 1
+            self._picImageViewDemo.addGestureRecognizer(tapSingle)
+            self._picImageViewDemo.isUserInteractionEnabled = true
+            
+            
             _picView.addSubview(self._picImageViewDemo)
             self._picImageViewDemo.snp.makeConstraints {(make) -> Void in
                 make.left.equalTo(_picImageView.snp.right).offset(10)
                 make.top.equalTo(_picImageView.snp.top)
+                make.width.height.equalTo(80)
             }
-            
             
             return _picView
         }
         return UIView()
+    }
+    
+    //缩略图imageView点击
+    @objc func imageViewTap(_ recognizer:UITapGestureRecognizer){
+        print("imageViewTap")
+        //图片索引
+        let index = recognizer.view!.tag
+        //进入图片全屏展示
+        let previewVC = HGImagePreviewVC(images: self.selectImgs, index: index)
+//        self.navigationController?.pushViewController(previewVC, animated: true)
+        _push(view: self, target: previewVC, rootView: false)
     }
     
     func tableView(_ tableView: UITableView, titleForFooterInSection section: Int) -> String? {
