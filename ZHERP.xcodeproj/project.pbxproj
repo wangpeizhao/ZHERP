@@ -210,6 +210,8 @@
 		9EFB826E215694BD007A2893 /* HGImagePickerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EFB8267215694BD007A2893 /* HGImagePickerController.swift */; };
 		9EFB827121572B55007A2893 /* HGImagePreviewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EFB826F21572B54007A2893 /* HGImagePreviewCell.swift */; };
 		9EFB827221572B55007A2893 /* HGImagePreviewVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EFB827021572B54007A2893 /* HGImagePreviewVC.swift */; };
+		9EFB82752157EF61007A2893 /* GoodOperateImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EFB82742157EF61007A2893 /* GoodOperateImageView.swift */; };
+		9EFB82772157F12A007A2893 /* GoodOperateImageViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EFB82762157F12A007A2893 /* GoodOperateImageViewCell.swift */; };
 		9EFF259F2143FD9F0055EB61 /* HPickingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EFF259E2143FD9F0055EB61 /* HPickingViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -446,6 +448,8 @@
 		9EFB8267215694BD007A2893 /* HGImagePickerController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HGImagePickerController.swift; sourceTree = "<group>"; };
 		9EFB826F21572B54007A2893 /* HGImagePreviewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HGImagePreviewCell.swift; sourceTree = "<group>"; };
 		9EFB827021572B54007A2893 /* HGImagePreviewVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HGImagePreviewVC.swift; sourceTree = "<group>"; };
+		9EFB82742157EF61007A2893 /* GoodOperateImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoodOperateImageView.swift; sourceTree = "<group>"; };
+		9EFB82762157F12A007A2893 /* GoodOperateImageViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoodOperateImageViewCell.swift; sourceTree = "<group>"; };
 		9EFF259E2143FD9F0055EB61 /* HPickingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HPickingViewController.swift; sourceTree = "<group>"; };
 		9F01564B284FE65EC6264542 /* Pods-ZHERPUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZHERPUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-ZHERPUITests/Pods-ZHERPUITests.release.xcconfig"; sourceTree = "<group>"; };
 		A20BF83E3F3D312627719EFA /* Pods-ZHERPTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZHERPTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-ZHERPTests/Pods-ZHERPTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -1154,6 +1158,7 @@
 		9EE26B7E212C6DDD00619D98 /* Good */ = {
 			isa = PBXGroup;
 			children = (
+				9EFB82732157EE87007A2893 /* View */,
 				9E1A0A0A21554F7600F0B2B6 /* Model */,
 				2C2BD1CB21279ED300F6C6C3 /* GoodDetailViewController.swift */,
 				9E523E8D210D537B00CF921F /* GoodViewController.swift */,
@@ -1188,6 +1193,15 @@
 				9EFB827021572B54007A2893 /* HGImagePreviewVC.swift */,
 			);
 			path = HGImagePicker;
+			sourceTree = "<group>";
+		};
+		9EFB82732157EE87007A2893 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				9EFB82742157EF61007A2893 /* GoodOperateImageView.swift */,
+				9EFB82762157F12A007A2893 /* GoodOperateImageViewCell.swift */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 		9EFF259D2143FD6C0055EB61 /* Picking */ = {
@@ -1585,6 +1599,7 @@
 				9E88ED2A20FB723600DF091F /* UIColor.swift in Sources */,
 				9ED7E51B2141903D00F8F735 /* BillsMonthViewController.swift in Sources */,
 				9E88ED1420FB3B9300DF091F /* Post.swift in Sources */,
+				9EFB82752157EF61007A2893 /* GoodOperateImageView.swift in Sources */,
 				9ED7E51D2141915200F8F735 /* BillsLastMonthViewController.swift in Sources */,
 				9E27D5A7213AF05C00087D20 /* WarehouseDetailViewController.swift in Sources */,
 				2CB2ECA72149F42D00AD8B2B /* SMemberLoginLogsViewController.swift in Sources */,
@@ -1641,6 +1656,7 @@
 				9E549939213EE7C0001E4C36 /* WCategoryDetailViewController.swift in Sources */,
 				2C5AC3ED2125695F002FFC80 /* ZHScannerView.swift in Sources */,
 				2C986C7C213FC48900F081BC /* SMemberOperateTableViewCell.swift in Sources */,
+				9EFB82772157F12A007A2893 /* GoodOperateImageViewCell.swift in Sources */,
 				9E88ED1620FB3BA500DF091F /* PostProvider.swift in Sources */,
 				9E523E6A2108D54600CF921F /* NoDisturbingViewController.swift in Sources */,
 				9E88ED1C20FB462600DF091F /* OrderTableViewController.swift in Sources */,

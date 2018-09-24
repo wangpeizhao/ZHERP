@@ -113,7 +113,7 @@ class GoodOperateSViewController: UIViewController, UIImagePickerControllerDeleg
         _alert(view: self, message: "提交成功", handler: actionSuccess)
     }
     
-    @objc func actionAddImg() {
+    fileprivate func actionAddImg() {
         let alertController = UIAlertController(title: "请选择图片来源", message: "", preferredStyle: .actionSheet)
         let cancelAction = UIAlertAction(title: "取消", style: .cancel, handler: nil)
         let deleteAction = UIAlertAction(title: "拍照", style: .destructive, handler: actionCamera)
@@ -122,6 +122,17 @@ class GoodOperateSViewController: UIViewController, UIImagePickerControllerDeleg
         alertController.addAction(deleteAction)
         alertController.addAction(archiveAction)
         self.present(alertController, animated: true, completion: nil)
+    }
+    
+    //缩略图imageView点击
+    fileprivate func imageViewPreview(row: Int) {
+        print("imageViewTap")
+        //图片索引
+//        let index = recognizer.view!.tag
+        //进入图片全屏展示
+        let previewVC = HGImagePreviewVC(images: self.selectImgs, index: row)
+        //        self.navigationController?.pushViewController(previewVC, animated: true)
+        _push(view: self, target: previewVC, rootView: false)
     }
     
     @objc func actionCamera(alert: UIAlertAction) {
@@ -198,13 +209,6 @@ class GoodOperateSViewController: UIViewController, UIImagePickerControllerDeleg
         //创建表视图
         self.tableView = UITableView(frame: self.view.frame, style: .grouped)
         
-        //处理键盘遮挡问题
-        if (self._isAdd) {
-            let tvc: UITableViewController = UITableViewController(style: .grouped)
-            self.addChildViewController(tvc)
-            self.tableView = tvc.tableView
-        }
-        
         self.tableView!.delegate = self
         self.tableView!.dataSource = self
         self.tableView!.register(UITableViewCell.self, forCellReuseIdentifier: CELL_IDENTIFY_ID)
@@ -219,6 +223,13 @@ class GoodOperateSViewController: UIViewController, UIImagePickerControllerDeleg
         
         self.tableView?.tableHeaderView = UIView.init(frame: CGRect(x: 0, y: 0, width: 0, height: 0.01))
         self.view.addSubview(self.tableView!)
+        
+        //处理键盘遮挡问题
+        if (self._isAdd) {
+            let tvc: UITableViewController = UITableViewController(style: .grouped)
+            self.addChildViewController(tvc)
+            self.tableView = tvc.tableView
+        }
     }
     
     private func initData() {
@@ -300,6 +311,15 @@ class GoodOperateSViewController: UIViewController, UIImagePickerControllerDeleg
         return self._rowsModel(at: indexPath.section)[indexPath.row] as! [String : String]
     }
     
+    public func didSelectItemAtImage(view: GoodOperateImageView, row: Int) {
+        if (row == 0 && self.selectImgs.count == 0) || (row == self.selectImgs.count - 1) {
+            self.actionAddImg()
+        } else {
+            self.imageViewPreview(row: row)
+        }
+        
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -336,7 +356,7 @@ extension GoodOperateSViewController: UITableViewDelegate, UITableViewDataSource
     //设置分组头的高度
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         if section == 0 {
-            return 160
+            return self.selectImgs.count > 3 ? 226 : 158
         }
         return 0
     }
@@ -377,56 +397,60 @@ extension GoodOperateSViewController: UITableViewDelegate, UITableViewDataSource
                 make.top.equalTo(30)
             }
             
-            let _picImageView = UIImageView()
+            let _imageView = UIView()
+            _picView.addSubview(_imageView)
+            _imageView.snp.makeConstraints {(make) -> Void in
+                make.top.equalTo(_tipView.snp.bottom)
+                make.width.equalTo(ScreenWidth)
+//                make.height.equalTo(156)
+            }
+            
+            let _goodImgView = GoodOperateImageView()
             let _img = UIImage(named: "Add-details-of-the-plan")
-            _picImageView.image = _img
+            _goodImgView.dataArr = self.selectImgs
+            _goodImgView.dataArr.append(_img!)
+            self.addChildViewController(_goodImgView)
+            _imageView.addSubview(_goodImgView.view)
             
-            // 为UIImageView添加Tap手势
-            let singleTapGesture = UITapGestureRecognizer(target: self, action: #selector(actionAddImg))
-            _picImageView.addGestureRecognizer(singleTapGesture)
-            _picImageView.isUserInteractionEnabled = true
-            
-            _picView.addSubview(_picImageView)
-            _picImageView.snp.makeConstraints {(make) -> Void in
-                make.top.equalTo(_tipView.snp.bottom).offset(12)
-                make.left.equalTo(20)
-            }
-            
-            self._picImageViewDemo = UIImageView()
-            let _img1 = UIImage(named: "Add-details-of-the-plan")
-            self._picImageViewDemo.image = _img1
-            
-            self._picImageViewDemo.tag = 0
-            
-            //添加单击监听
-            let tapSingle=UITapGestureRecognizer(target:self, action:#selector(imageViewTap(_:)))
-            tapSingle.numberOfTapsRequired = 1
-            tapSingle.numberOfTouchesRequired = 1
-            self._picImageViewDemo.addGestureRecognizer(tapSingle)
-            self._picImageViewDemo.isUserInteractionEnabled = true
-            
-            
-            _picView.addSubview(self._picImageViewDemo)
-            self._picImageViewDemo.snp.makeConstraints {(make) -> Void in
-                make.left.equalTo(_picImageView.snp.right).offset(10)
-                make.top.equalTo(_picImageView.snp.top)
-                make.width.height.equalTo(78)
-            }
+//            let _picImageView = UIImageView()
+//            let _img = UIImage(named: "Add-details-of-the-plan")
+//            _picImageView.image = _img
+//
+//            // 为UIImageView添加Tap手势
+//            let singleTapGesture = UITapGestureRecognizer(target: self, action: #selector(actionAddImg))
+//            _picImageView.addGestureRecognizer(singleTapGesture)
+//            _picImageView.isUserInteractionEnabled = true
+//
+//            _picView.addSubview(_picImageView)
+//            _picImageView.snp.makeConstraints {(make) -> Void in
+//                make.top.equalTo(_tipView.snp.bottom).offset(12)
+//                make.left.equalTo(20)
+//            }
+//
+//            self._picImageViewDemo = UIImageView()
+//            let _img1 = UIImage(named: "Add-details-of-the-plan")
+//            self._picImageViewDemo.image = _img1
+//
+//            self._picImageViewDemo.tag = 0
+//
+//            //添加单击监听
+//            let tapSingle=UITapGestureRecognizer(target:self, action:#selector(imageViewTap(_:)))
+//            tapSingle.numberOfTapsRequired = 1
+//            tapSingle.numberOfTouchesRequired = 1
+//            self._picImageViewDemo.addGestureRecognizer(tapSingle)
+//            self._picImageViewDemo.isUserInteractionEnabled = true
+//
+//
+//            _picView.addSubview(self._picImageViewDemo)
+//            self._picImageViewDemo.snp.makeConstraints {(make) -> Void in
+//                make.left.equalTo(_picImageView.snp.right).offset(10)
+//                make.top.equalTo(_picImageView.snp.top)
+//                make.width.height.equalTo(78)
+//            }
             
             return _picView
         }
         return UIView()
-    }
-    
-    //缩略图imageView点击
-    @objc func imageViewTap(_ recognizer:UITapGestureRecognizer){
-        print("imageViewTap")
-        //图片索引
-        let index = recognizer.view!.tag
-        //进入图片全屏展示
-        let previewVC = HGImagePreviewVC(images: self.selectImgs, index: index)
-//        self.navigationController?.pushViewController(previewVC, animated: true)
-        _push(view: self, target: previewVC, rootView: false)
     }
     
     func tableView(_ tableView: UITableView, titleForFooterInSection section: Int) -> String? {
