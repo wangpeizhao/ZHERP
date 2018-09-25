@@ -24,7 +24,7 @@ class HomeViewController: BaseViewController{
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.navHeight = self.navigationController?.navigationBar.frame.maxY
+        self.navHeight = self.navigationController?.navigationBar.frame.size.height
         self.tabBarHeight = self.tabBarController?.tabBar.bounds.size.height
         
         self.view.backgroundColor = UIColor.clear

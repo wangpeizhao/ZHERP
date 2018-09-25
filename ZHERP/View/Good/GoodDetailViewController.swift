@@ -42,7 +42,7 @@ class GoodDetailViewController: UIViewController, SliderGalleryControllerDelegat
         super.viewDidLoad()
         
         self.view.backgroundColor = Specs.color.white
-        setNavBarTitle(view: self, title: "拣货商品")
+        setNavBarTitle(view: self, title: "货品详情")
         setNavBarBackBtn(view: self, title: "", selector: #selector(actionBack))
         
         // 设置右侧按钮
@@ -130,12 +130,23 @@ class GoodDetailViewController: UIViewController, SliderGalleryControllerDelegat
         }
         self.dataArr = [
             [
+                "title": "",
                 "rows": [
-                    ["title":"拣货数量", "key":"quantity", "value": "", "placeholder": "请输入大于0的整数"],
+//                    ["title":"拣货数量", "key":"quantity", "value": "", "placeholder": "请输入大于0的整数"],
+                    ["title":"成本价格", "key":"costPrice", "value": ""],
                     ["title":"货品编号", "key":"sn", "value": self.valueArr["sn"]],
-                    ["title":"所属仓库", "key":"warehouse", "value": self.valueArr["warehouse"]]
+                    ["title":"所属仓库", "key":"warehouse", "value": self.valueArr["warehouse"]],
+                    ["title":"所属位库", "key":"location", "value": self.valueArr["warehouse"]],
+                    ["title":"供应商", "key":"supplier", "value": "Who?"]
                 ]
-            ]
+            ],
+            [
+                "title": "员工信息",
+                "rows": [
+                    ["title":"添加时间", "key":"datetime", "value": ""],
+                    ["title":"添加员工", "key":"employee", "value": ""]
+                ]
+            ],
         ]
     }
     
@@ -151,6 +162,7 @@ class GoodDetailViewController: UIViewController, SliderGalleryControllerDelegat
         }
         
         let _HPickingGoodView = self._HPickingGoodView.cartDetailView(cartData: self.valueArr)
+        self._HPickingGoodView._submitAdd.setTitle("立即拣货", for: .normal)
         _tabBarView.addSubview(_HPickingGoodView)
         self._HPickingGoodView._submitAdd.addTarget(self, action: #selector(actionAdd), for: .touchUpInside)
     }
@@ -203,7 +215,7 @@ extension GoodDetailViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return ""
+        return (self.dataArr[section]["title"] as! String)
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -211,6 +223,9 @@ extension GoodDetailViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        if section != 0 {
+            return UIView()
+        }
         let _hearderView = UIView(frame: CGRect(x: 0, y: 0, width: ScreenWidth, height: ScreenWidth/2 + 90))
         
         let _sliderGalleryView = UIView(frame: CGRect(x: 0, y: 0, width: ScreenWidth, height: ScreenWidth/2))
@@ -237,7 +252,7 @@ extension GoodDetailViewController: UITableViewDelegate, UITableViewDataSource {
     
     //设置分组头的高度
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return ScreenWidth / 2 + 90
+        return section == 0 ? (ScreenWidth / 2 + 90) : 10
     }
     
     func tableView(_ tableView: UITableView, titleForFooterInSection section: Int) -> String? {

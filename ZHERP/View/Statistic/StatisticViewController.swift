@@ -38,11 +38,12 @@ class StatisticViewController: UIViewController {
     }
     
     fileprivate func _setUp() {
-        self.navHeight = self.navigationController?.navigationBar.frame.maxY
+        self.navHeight = self.navigationController?.navigationBar.frame.size.height
         self.tabBarHeight = self.tabBarController?.tabBar.bounds.size.height
         
-        let frame = CGRect(x: 0, y: 0, width: ScreenWidth, height: ScreenHeight - self.tabBarHeight)
-        self.tableView = UITableView(frame: frame, style:.grouped)
+//        let frame = CGRect(x: 0, y: 0, width: ScreenWidth, height: ScreenHeight - self.tabBarHeight)
+//        self.tableView = UITableView(frame: frame, style:.grouped)
+        self.tableView = UITableView(frame: self.view.frame, style:.grouped)
         self.tableView!.delegate = self
         self.tableView!.dataSource = self
         self.tableView!.register(UITableViewCell.self, forCellReuseIdentifier: CELL_IDENTIFY_ID)
@@ -96,7 +97,7 @@ extension StatisticViewController: UITableViewDelegate, UITableViewDataSource {
             return 205
         }
         if (section == 2) {
-            return ScreenHeight - self.navHeight - 210 - 205
+            return ScreenHeight - self.navHeight - 210 - 205 - self.tabBarHeight
         }
         return 0
     }

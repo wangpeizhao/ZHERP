@@ -605,7 +605,7 @@ extension GoodViewController: UITableViewDataSource ,UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         if tableView.isEqual(self.tableView) {
-            let _target = HPickingGoodViewController()
+            let _target = GoodDetailViewController()
             _target.valueArr = [
                 "sn": "ZHG20180908142345098",
                 "title": "京造 芝麻核桃黑豆粉代餐粉 黑芝麻蔓越莓枸杞粉 早餐禅食代餐22g*20 440g",
@@ -616,7 +616,7 @@ extension GoodViewController: UITableViewDataSource ,UITableViewDelegate {
                 "stock": "5600",
             ]
             
-            _push(view: self, target: _target, rootView: false)
+            _push(view: self, target: _target, rootView: true)
 //            let sb = UIStoryboard(name:"Main", bundle: nil)
 //            let orderView = sb.instantiateViewController(withIdentifier: "GoodDetailViewController") as! GoodDetailViewController
 //
