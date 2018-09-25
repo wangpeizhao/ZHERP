@@ -10,7 +10,7 @@ import UIKit
 import SnapKit
 import Photos
 
-class GoodOperateSViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+class GoodOperateSViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, GoodOperateImageViewDelegate {
     
     var tableView: UITableView!
     let CELL_IDENTIFY_ID = "CELL_IDENTIFY_ID"
@@ -42,7 +42,11 @@ class GoodOperateSViewController: UIViewController, UIImagePickerControllerDeleg
     // 添加时选择货品单位
     var unitName: String = ""
     
+    // 已选择的照片
     var selectImgs:[UIImage] = []
+    // 最多允许上传照片数量
+    let maxGoodImages: Int = 8
+    
     
     var _picImageViewDemo: UIImageView!
     
@@ -95,15 +99,25 @@ class GoodOperateSViewController: UIViewController, UIImagePickerControllerDeleg
         default:
             break
         }
-        //        self._initData?.quantity = sender.text!
     }
     
     @objc func actionSave() {
-        //        print(self._initData as Any)
-//        if (self._initData?.receiver == "") {
-//            _alert(view: self, message: "请先填写收件人")
-//            return
-//        }
+        if (self._initData?.sn == "") {
+            _alert(view: self, message: "请填写货品编号", handler: actionResignFirstResponder)
+            return
+        }
+        if (self._initData?.title == "") {
+            _alert(view: self, message: "请填写货品名称")
+            return
+        }
+        if (self._initData?.salePrice == "") {
+            _alert(view: self, message: "请填写销售价格")
+            return
+        }
+        if (self._initData?.costPrice == "") {
+            _alert(view: self, message: "请填写成本价格")
+            return
+        }
         if (self.callBackAssign != nil) {
             if (self.valueArr["maxId"] != nil) {
                 self.valueArr["id"] = self.valueArr["maxId"]
@@ -111,6 +125,12 @@ class GoodOperateSViewController: UIViewController, UIImagePickerControllerDeleg
             self.callBackAssign!(self.valueArr)
         }
         _alert(view: self, message: "提交成功", handler: actionSuccess)
+    }
+    
+    @objc func actionResignFirstResponder(_: UIAlertAction)->Void {
+        let _indexPath: IndexPath = IndexPath(row: 0, section: 0)
+        let _cell: SMemberOperateTableViewCell = self.tableView.cellForRow(at: _indexPath as IndexPath) as! SMemberOperateTableViewCell
+        _cell.TextFieldValue.resignFirstResponder()
     }
     
     fileprivate func actionAddImg() {
@@ -126,12 +146,8 @@ class GoodOperateSViewController: UIViewController, UIImagePickerControllerDeleg
     
     //缩略图imageView点击
     fileprivate func imageViewPreview(row: Int) {
-        print("imageViewTap")
-        //图片索引
-//        let index = recognizer.view!.tag
         //进入图片全屏展示
         let previewVC = HGImagePreviewVC(images: self.selectImgs, index: row)
-        //        self.navigationController?.pushViewController(previewVC, animated: true)
         _push(view: self, target: previewVC, rootView: false)
     }
     
@@ -152,54 +168,58 @@ class GoodOperateSViewController: UIViewController, UIImagePickerControllerDeleg
             //获取选择的原图
             image = info[UIImagePickerControllerOriginalImage] as! UIImage
         }
-        self._picImageViewDemo.image = image?.crop(ratio: 1)
-        self._picImageViewDemo.tag = 0
+
         self.selectImgs.append((image?.crop(ratio: 1))!)
+        self.tableView?.reloadData()
         picker.dismiss(animated: true, completion: nil)
     }
     
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
-        print("imagePickerControllerDidCancel...")
         picker.dismiss(animated: true, completion: nil)
     }
     
     @objc func actionPhotoAlbum(alert: UIAlertAction) {
         //开始选择照片，最多允许选择4张
-        _ = self.presentHGImagePicker(maxSelected:9) { (assets) in
+        _ = self.presentHGImagePicker(maxSelected: self.maxGoodImages - self.selectImgs.count) { (assets) in
             //结果处理
-            print("共选择了\(assets.count)张图片，分别如下：")
             for asset in assets {
-                print(asset)
                 //获取缩略图
                 //根据单元格的尺寸计算我们需要的缩略图大小
-                //                let scale = UIScreen.main.scale
-                //                let cellSize = (self.collectionView.collectionViewLayout as!
-                //                    UICollectionViewFlowLayout).itemSize
+//                let scale = UIScreen.main.scale
+//                let cellSize = (self.collectionView.collectionViewLayout as!
+//                    UICollectionViewFlowLayout).itemSize
                 
                 let imageManager = PHCachingImageManager()
-                let assetGridThumbnailSize = CGSize(width: 50 , height: 50)
+                let assetGridThumbnailSize = CGSize(width: 360 , height: 360)
                 imageManager.requestImage(for: asset, targetSize: assetGridThumbnailSize, contentMode: .aspectFill, options: nil) { (image, nfo) in
-                    self._picImageViewDemo.image = image?.crop(ratio: 1)
-                    self._picImageViewDemo.tag = 0
-                    
+//                    self.selectImgs.append((image?.crop(ratio: 1))!)
                 }
                 
                 // 获取原图
-                PHImageManager.default().requestImage(for: asset, targetSize: PHImageManagerMaximumSize, contentMode: .default, options: nil, resultHandler: { image, info in
-                    self.selectImgs.append((image?.crop(ratio: 1))!)
-                })
+//                let opt = PHImageRequestOptions()
+//                opt.isSynchronous = true
+//                opt.resizeMode = .fast
+                DispatchQueue.main.async {
+                    PHImageManager.default().requestImage(for: asset, targetSize: PHImageManagerMaximumSize, contentMode: .default, options: nil, resultHandler: { image, info in
+                        self.selectImgs.append((image?.crop(ratio: 1))!)
+                        self.tableView?.reloadData()
+                    })
+                }
                 
                 //获取文件名
-                PHImageManager.default().requestImageData(for: asset, options: nil, resultHandler: { _, _, _, info in
-                    self.title = (info!["PHImageFileURLKey"] as! NSURL).lastPathComponent
-                })
+//                PHImageManager.default().requestImageData(for: asset, options: nil, resultHandler: { _, _, _, info in
+//                    self.title = (info!["PHImageFileURLKey"] as! NSURL).lastPathComponent
+//                })
                 
                 //获取图片信息
-                let info = "日期：\(asset.creationDate!)\n"
-                    + "类型：\(asset.mediaType.rawValue)\n"
-                    + "位置：\(String(describing: asset.location))\n"
-                    + "时长：\(asset.duration)\n"
-                print(info)
+//                let info = "日期：\(asset.creationDate!)\n"
+//                    + "类型：\(asset.mediaType.rawValue)\n"
+//                    + "位置：\(String(describing: asset.location))\n"
+//                    + "时长：\(asset.duration)\n"
+//                print(info)
+//                DispatchQueue.main.async {
+//                    self.tableView?.reloadData()
+//                }
             }
         }
     }
@@ -226,9 +246,9 @@ class GoodOperateSViewController: UIViewController, UIImagePickerControllerDeleg
         
         //处理键盘遮挡问题
         if (self._isAdd) {
-            let tvc: UITableViewController = UITableViewController(style: .grouped)
-            self.addChildViewController(tvc)
-            self.tableView = tvc.tableView
+//            let tvc: UITableViewController = UITableViewController(style: .grouped)
+//            self.addChildViewController(tvc)
+//            self.tableView = tvc.tableView
         }
     }
     
@@ -311,13 +331,28 @@ class GoodOperateSViewController: UIViewController, UIImagePickerControllerDeleg
         return self._rowsModel(at: indexPath.section)[indexPath.row] as! [String : String]
     }
     
+    // 选中照片后预览或者添加更多
     public func didSelectItemAtImage(view: GoodOperateImageView, row: Int) {
-        if (row == 0 && self.selectImgs.count == 0) || (row == self.selectImgs.count - 1) {
-            self.actionAddImg()
+        let _count = self.selectImgs.count
+        if (row == 0 && _count == 0) || (row == _count) {
+            if _count == 8 {
+                _alert(view: self, message: "只允许上传\(self.maxGoodImages)张照片，请删除其他照片后再添加")
+            } else {
+                self.actionAddImg()
+            }
         } else {
             self.imageViewPreview(row: row)
         }
         
+    }
+    
+    // 删除照片
+    public func deleteGoodImage(view: GoodOperateImageView, row: Int) {
+        guard self.selectImgs.count == 0 else {
+            self.selectImgs.remove(at: row)
+            self.tableView.reloadData()
+            return
+        }
     }
     
     override func didReceiveMemoryWarning() {
@@ -363,92 +398,14 @@ extension GoodOperateSViewController: UITableViewDelegate, UITableViewDataSource
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         if section == 0 {
-            let _picView = UIView()
-            _picView.backgroundColor = UIColor.clear
-            
-            let _tipView = UIView(frame: CGRect(x: 0, y: 0, width: ScreenWidth, height: 60))
-            _tipView.backgroundColor = UIColor.hexInt(0xfff0ba)
-            _picView.addSubview(_tipView)
-            
-            let _tipLabel = UILabel()
-            _tipView.addSubview(_tipLabel)
-            _tipLabel.sizeToFit()
-            _tipLabel.textAlignment = .left
-            _tipLabel.font = Specs.font.regular
-            _tipLabel.textColor = UIColor.hexInt(0xab7548)
-            _tipLabel.text = "温馨提示：上传货品图片上传货品图片，最多九张，最多九张"
-            _tipLabel.snp.makeConstraints { (make) -> Void in
-                make.left.right.equalTo(20)
-                make.height.equalTo(20)
-                make.top.equalTo(10)
-            }
-            
-            let _tip2Label = UILabel()
-            _tipView.addSubview(_tip2Label)
-            _tip2Label.sizeToFit()
-            _tip2Label.textAlignment = .left
-            _tip2Label.font = Specs.font.regular
-            _tip2Label.textColor = UIColor.hexInt(0xab7548)
-            _tip2Label.text = "长按图片可更换位置"
-            _tip2Label.snp.makeConstraints { (make) -> Void in
-                make.left.equalTo(90)
-                make.right.equalTo(20)
-                make.height.equalTo(20)
-                make.top.equalTo(30)
-            }
-            
-            let _imageView = UIView()
-            _picView.addSubview(_imageView)
-            _imageView.snp.makeConstraints {(make) -> Void in
-                make.top.equalTo(_tipView.snp.bottom)
-                make.width.equalTo(ScreenWidth)
-//                make.height.equalTo(156)
-            }
-            
             let _goodImgView = GoodOperateImageView()
+            _goodImgView.maxGoodImages = self.maxGoodImages
+            _goodImgView._delegate = self
             let _img = UIImage(named: "Add-details-of-the-plan")
             _goodImgView.dataArr = self.selectImgs
             _goodImgView.dataArr.append(_img!)
             self.addChildViewController(_goodImgView)
-            _imageView.addSubview(_goodImgView.view)
-            
-//            let _picImageView = UIImageView()
-//            let _img = UIImage(named: "Add-details-of-the-plan")
-//            _picImageView.image = _img
-//
-//            // 为UIImageView添加Tap手势
-//            let singleTapGesture = UITapGestureRecognizer(target: self, action: #selector(actionAddImg))
-//            _picImageView.addGestureRecognizer(singleTapGesture)
-//            _picImageView.isUserInteractionEnabled = true
-//
-//            _picView.addSubview(_picImageView)
-//            _picImageView.snp.makeConstraints {(make) -> Void in
-//                make.top.equalTo(_tipView.snp.bottom).offset(12)
-//                make.left.equalTo(20)
-//            }
-//
-//            self._picImageViewDemo = UIImageView()
-//            let _img1 = UIImage(named: "Add-details-of-the-plan")
-//            self._picImageViewDemo.image = _img1
-//
-//            self._picImageViewDemo.tag = 0
-//
-//            //添加单击监听
-//            let tapSingle=UITapGestureRecognizer(target:self, action:#selector(imageViewTap(_:)))
-//            tapSingle.numberOfTapsRequired = 1
-//            tapSingle.numberOfTouchesRequired = 1
-//            self._picImageViewDemo.addGestureRecognizer(tapSingle)
-//            self._picImageViewDemo.isUserInteractionEnabled = true
-//
-//
-//            _picView.addSubview(self._picImageViewDemo)
-//            self._picImageViewDemo.snp.makeConstraints {(make) -> Void in
-//                make.left.equalTo(_picImageView.snp.right).offset(10)
-//                make.top.equalTo(_picImageView.snp.top)
-//                make.width.height.equalTo(78)
-//            }
-            
-            return _picView
+            return _goodImgView.view
         }
         return UIView()
     }
@@ -498,7 +455,7 @@ extension GoodOperateSViewController: UITableViewDelegate, UITableViewDataSource
         let key: String = _row["key"]!
         
         if key == "submit" {
-            let cell: HDeliveringTableViewCell = tableView.dequeueReusableCell(withIdentifier: "HDeliveringTableViewCell") as! HDeliveringTableViewCell
+            let cell: HDeliveringTableViewCell = tableView.dequeueReusableCell(withIdentifier: "HDeliveringTableViewCell", for: indexPath) as! HDeliveringTableViewCell
             cell.cellBtn.setTitle("提交", for: .normal)
             cell.cellBtn.setTitleColor(Specs.color.white, for: UIControlState())
             cell.cellBtn.backgroundColor = Specs.color.main
@@ -508,7 +465,7 @@ extension GoodOperateSViewController: UITableViewDelegate, UITableViewDataSource
         }
         
         if (self._isAdd == true && self.writableTextFields.contains(key)) {
-            let cell: SMemberOperateTableViewCell = tableView.dequeueReusableCell(withIdentifier: "SMemberOperateTableViewCell") as! SMemberOperateTableViewCell
+            let cell: SMemberOperateTableViewCell = tableView.dequeueReusableCell(withIdentifier: "SMemberOperateTableViewCell", for: indexPath) as! SMemberOperateTableViewCell
             cell.TextFieldLabel.text = _row["title"]
             cell.TextFieldLabel.sizeToFit()
             cell.TextFieldLabel.font = Specs.font.regular
@@ -656,7 +613,8 @@ extension GoodOperateSViewController: UITableViewDelegate, UITableViewDataSource
                 default:
                     break
                 }
-                tableView.reloadData()
+//                tableView.reloadData()
+                tableView.reloadRows(at: [indexPath], with: .automatic)
             }
         }
         _push(view: self, target: _target, rootView: false)
@@ -666,6 +624,7 @@ extension GoodOperateSViewController: UITableViewDelegate, UITableViewDataSource
 extension GoodOperateSViewController: UITextFieldDelegate {
     // 输入框询问是否可以编辑 true 可以编辑  false 不能编辑
     func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
+        self.actionTextField(textField)
         return true
     }
     // 输入框结束编辑状态

@@ -321,7 +321,8 @@ extension HInventoryTakingViewController: UITableViewDelegate, UITableViewDataSo
                     break
                 }
                 
-                tableView.reloadData()
+//                tableView.reloadData()
+                tableView.reloadRows(at: [indexPath], with: .automatic)
             }
         }
         _push(view: self, target: _target, rootView: false)

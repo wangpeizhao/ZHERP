@@ -148,7 +148,7 @@ extension HGImageCollectionViewController:UICollectionViewDataSource
                 //设置为不选中状态
                 collectionView.deselectItem(at: indexPath, animated: false)
                 //弹出提示
-                let title = "你最多只能选择\(self.maxSelected)张照片"
+                let title = "你最多只能再选择\(self.maxSelected)张照片"
                 let alertController = UIAlertController(title: title, message: nil,
                                                         preferredStyle: .alert)
                 

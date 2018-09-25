@@ -23,7 +23,7 @@ enum GoodOperateType {
 class GoodOperateFViewController: UIViewController {
     
     var Id: Int = 0
-    var navTitle: String? = nil
+    var navTitle: String? = ""
     var dataType: GoodOperateType!
     var sn: String!
     

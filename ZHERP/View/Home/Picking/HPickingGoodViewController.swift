@@ -72,9 +72,9 @@ class HPickingGoodViewController: UIViewController, SliderGalleryControllerDeleg
     }
     
     @objc func actionQuantity(_: UIAlertAction)->Void {
-//        let _indexPath: IndexPath = IndexPath(row: 3001, section: 0)
-//        let _cell: SMemberOperateTableViewCell = self.tableView.cellForRow(at: _indexPath as IndexPath) as! SMemberOperateTableViewCell
-//        _cell.TextFieldValue.resignFirstResponder()
+        let _indexPath: IndexPath = IndexPath(row: 0, section: 0)
+        let _cell: SMemberOperateTableViewCell = self.tableView.cellForRow(at: _indexPath as IndexPath) as! SMemberOperateTableViewCell
+        _cell.TextFieldValue.resignFirstResponder()
     }
     
     @objc func actionSuccess(_: UIAlertAction)->Void {
@@ -256,7 +256,8 @@ extension HPickingGoodViewController: UITableViewDelegate, UITableViewDataSource
         
         let textFields = ["quantity"]
         if (textFields.contains(key)) {
-            let cell: SMemberOperateTableViewCell = tableView.dequeueReusableCell(withIdentifier: "SMemberOperateTableViewCell") as! SMemberOperateTableViewCell
+//            let cell: SMemberOperateTableViewCell = tableView.dequeueReusableCell(withIdentifier: "SMemberOperateTableViewCell") as! SMemberOperateTableViewCell
+            let cell: SMemberOperateTableViewCell = tableView.dequeueReusableCell(withIdentifier: "SMemberOperateTableViewCell", for: indexPath) as! SMemberOperateTableViewCell
             cell.TextFieldLabel.text = _row["title"]
             cell.TextFieldLabel.sizeToFit()
             cell.TextFieldLabel.font = Specs.font.regular
@@ -269,9 +270,6 @@ extension HPickingGoodViewController: UITableViewDelegate, UITableViewDataSource
             cell.TextFieldValue.returnKeyType = UIReturnKeyType.done
             cell.TextFieldValue.keyboardType = UIKeyboardType.numbersAndPunctuation
             cell.TextFieldValue.delegate = self
-            cell.tag = 3001
-            
-            print("indexPath.row:\(indexPath.row)")
             
             cell.accessoryType = .none
             return cell
