@@ -484,23 +484,17 @@ extension HPickingViewController: UITableViewDelegate, UITableViewDataSource {
         tableView.deselectRow(at: indexPath, animated: true)
 //        let _data = self.dataArr[indexPath.item]
         
-//        let _target = HAllocatingViewController()
-//        _target.navTitle = "调货记录"
-//        _target.valueArr = [
-////            "id": _data["id"],
-//            "orderId": _data["orderId"],
-//            "sn": "ZHG20180908123456987",
-//            "name": "汤臣倍健多种维生素",
-//            "warehouse": "广州仓库",
-//            "wId": "2",
-//            "transferred": "深圳仓库",
-//            "quantity": "100",
-//            "outWarehouse": "10000",
-//            "inWarehouse": "200",
-//            "employees": "王培照",
-//            "datetime": _data["datetime"]
-//            ] as! [String : String]
-//        
-//        _push(view: self, target: _target, rootView: false)
+        let _target = HPickingGoodViewController()
+        _target.valueArr = [
+            "sn": "ZHG20180908142345098",
+            "title": "京造 芝麻核桃黑豆粉代餐粉 黑芝麻蔓越莓枸杞粉 早餐禅食代餐22g*20 440g",
+            "warehouse": "深圳仓库",
+            "price": "80000.88",
+            "total": "987452.00",
+            "quantity": "12",
+            "stock": "5600",
+        ]
+        
+        _push(view: self, target: _target, rootView: true)
     }
 }

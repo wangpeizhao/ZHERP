@@ -261,7 +261,7 @@ extension GoodDetailViewController: UITableViewDelegate, UITableViewDataSource {
     
     //设置分组尾的高度
     func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-        return 30
+        return 20
     }
     
     //创建各单元显示内容(创建参数indexPath指定的单元）

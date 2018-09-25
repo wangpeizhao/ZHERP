@@ -124,14 +124,14 @@ class HPickingGoodViewController: UIViewController, SliderGalleryControllerDeleg
                 "title": "美的（Midea）电饭煲 气动涡轮防溢 金属机身 圆灶釜内胆4L电饭锅MB-WFS4037",
                 "sn": "201809101454560090",
                 "warehouse": "广州仓库",
-                "quantity": "12",
+                "quantity": "",
                 "total": "56740.00"
             ]
         }
         self.dataArr = [
             [
                 "rows": [
-                    ["title":"拣货数量", "key":"quantity", "value": "", "placeholder": "请输入大于0的整数"],
+                    ["title":"拣货数量", "key":"quantity", "value": self.valueArr["quantity"], "placeholder": "请输入大于0的整数"],
                     ["title":"货品编号", "key":"sn", "value": self.valueArr["sn"]],
                     ["title":"所属仓库", "key":"warehouse", "value": self.valueArr["warehouse"]]
                 ]
