@@ -70,8 +70,7 @@ class HGImagePickerController: UIViewController {
                     imageCollectionVC.assetsFetchResults = self.items.first?.fetchResult
                     imageCollectionVC.completeHandler = self.completeHandler
                     imageCollectionVC.maxSelected = self.maxSelected
-                    self.navigationController?.pushViewController(imageCollectionVC,
-                                                                  animated: false)
+                    self.navigationController?.pushViewController(imageCollectionVC, animated: false)
                 }
             }
         })

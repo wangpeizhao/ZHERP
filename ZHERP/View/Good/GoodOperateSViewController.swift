@@ -99,6 +99,7 @@ class GoodOperateSViewController: UIViewController, UIImagePickerControllerDeleg
         default:
             break
         }
+        self._initDataArr()
     }
     
     @objc func actionSave() {
@@ -281,6 +282,17 @@ class GoodOperateSViewController: UIViewController, UIImagePickerControllerDeleg
         self._initData?.employee = self.valueArr["employee"] != nil ? self.valueArr["employee"]! : ""
         self._initData?.datetime = dateFromString(self.valueArr["datetime"]!, format: "yyyy-MM-dd HH:mm:ss")!
         
+        self._initDataArr()
+        
+        if self._isAdd {
+            print(self.dataArr)
+            self.dataArr.removeAt(indexes: [2])
+        } else {
+//            self.dataArr.removeAt(indexes: [4])
+        }
+    }
+    
+    fileprivate func _initDataArr() {
         self.dataArr = [
             [
                 "title": "货品信息",
@@ -315,12 +327,6 @@ class GoodOperateSViewController: UIViewController, UIImagePickerControllerDeleg
                 ]
             ]
         ]
-        
-        if self._isAdd {
-            self.dataArr.removeAt(indexes: [2])
-        } else {
-//            self.dataArr.removeAt(indexes: [4])
-        }
     }
     
     fileprivate func _rowsModel(at section: Int) -> [Any] {
@@ -576,7 +582,7 @@ extension GoodOperateSViewController: UITableViewDelegate, UITableViewDataSource
             _target.dataType = .supplier
             _target.navTitle = "选择供应商"
             if self._initData?.sId != 0 {
-                _target.selectedIds.append((self._initData?.lId)!)
+                _target.selectedIds.append((self._initData?.sId)!)
             }
         case "unit":
             _target.dataType = .unit
@@ -589,27 +595,29 @@ extension GoodOperateSViewController: UITableViewDelegate, UITableViewDataSource
         }
         _target.callBackAssignArray = {(assignValue: [String: String]) -> Void in
             if (!assignValue.isEmpty) {
+                let _id = Int(assignValue["id"]!)!
+                let _name = assignValue["name"]!
                 switch _target.dataType {
                 case .category:
-                    self._initData?.cId = Int(assignValue["id"]!)!
-                    self._initData?.category = assignValue["name"]!
-                    self.categoryName = assignValue["name"]!
+                    self._initData?.cId = _id
+                    self._initData?.category = _name
+                    self.categoryName = _name
                 case .warehouse:
-                    self._initData?.wId = Int(assignValue["id"]!)!
-                    self._initData?.warehouse = assignValue["name"]!
-                    self.warehouseName = assignValue["name"]!
+                    self._initData?.wId = _id
+                    self._initData?.warehouse = _name
+                    self.warehouseName = _name
                 case .location:
-                    self._initData?.lId = Int(assignValue["id"]!)!
-                    self._initData?.location = assignValue["name"]!
-                    self.locationName = assignValue["name"]!
+                    self._initData?.lId = _id
+                    self._initData?.location = _name
+                    self.locationName = _name
                 case .supplier:
-                    self._initData?.sId = Int(assignValue["id"]!)!
-                    self._initData?.supplier = assignValue["name"]!
-                    self.supplierName = assignValue["name"]!
+                    self._initData?.sId = _id
+                    self._initData?.supplier = _name
+                    self.supplierName = _name
                 case .unit:
-                    self._initData?.sId = Int(assignValue["id"]!)!
-                    self._initData?.unit = assignValue["name"]!
-                    self.unitName = assignValue["name"]!
+                    self._initData?.uId = _id
+                    self._initData?.unit = _name
+                    self.unitName = _name
                 default:
                     break
                 }
