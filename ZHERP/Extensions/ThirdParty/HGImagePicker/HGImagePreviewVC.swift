@@ -13,6 +13,8 @@ class HGImagePreviewVC: UIViewController {
     
     //存储图片数组
     var images:[UIImage]
+    //存储图片数组URL
+    var imagesURL:[String]
     
     //默认显示的图片索引
     var index:Int
@@ -30,8 +32,9 @@ class HGImagePreviewVC: UIViewController {
     var statusbarHeight: CGFloat!
     
     //初始化
-    init(images:[UIImage], index:Int = 0){
+    init(images:[UIImage], imagesURL:[String], index:Int = 0){
         self.images = images
+        self.imagesURL = imagesURL
         self.index = index
         
         super.init(nibName: nil, bundle: nil)
@@ -53,7 +56,7 @@ class HGImagePreviewVC: UIViewController {
 //        self.navigationController?.navigationBar.frame = CGRect(x: 0, y: 0, width: ScreenWidth, height: 104)
 //        self.navigationController?.navigationBar.frame.origin.y = 104
         self.navigationController?.navigationBar.isTranslucent = true
-        self.navigationController?.navigationBar.barTintColor = UIColor.black
+//        self.navigationController?.navigationBar.barTintColor = UIColor.black
 //        self.navigationController?.navigationBar.backgroundColor = UIColor.black
 //        self.navigationController?.navigationBar.alpha = 0.3
         
@@ -88,7 +91,7 @@ class HGImagePreviewVC: UIViewController {
         pageControl = UIPageControl()
         pageControl.center = CGPoint(x: UIScreen.main.bounds.width/2,
                                      y: UIScreen.main.bounds.height - 20)
-        pageControl.numberOfPages = images.count
+        pageControl.numberOfPages = self.imagesURL.count > 0 ? self.imagesURL.count : self.images.count
         pageControl.isUserInteractionEnabled = false
         pageControl.currentPage = index
         view.addSubview(self.pageControl)
@@ -146,18 +149,25 @@ extension HGImagePreviewVC:UICollectionViewDelegate, UICollectionViewDataSource,
     func collectionView(_ collectionView: UICollectionView,
                         cellForItemAt indexPath: IndexPath)
         -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell",
-                                            for: indexPath) as! HGImagePreviewCell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell",  for: indexPath) as! HGImagePreviewCell
 //        let image = UIImage(named: self.images[indexPath.row])
 //        cell.imageView.image = image
-        cell.imageView.image = self.images[indexPath.row]
+        if self.imagesURL.count > 0 {
+            cell.imageView.imageFromURL(self.imagesURL[indexPath.row], placeholder: UIImage(), fadeIn: true, shouldCacheImage: true) { (image: UIImage?) in
+                if image != nil {
+//                    print("图片加载成功!")
+                }
+            }
+        } else {
+            cell.imageView.image = self.images[indexPath.row]
+        }
         return cell
     }
     
     //collectionView单元格数量
     func collectionView(_ collectionView: UICollectionView,
                         numberOfItemsInSection section: Int) -> Int {
-        return self.images.count
+        return self.imagesURL.count > 0 ? self.imagesURL.count : self.images.count
     }
     
     //collectionView单元格尺寸

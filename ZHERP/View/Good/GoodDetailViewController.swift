@@ -170,6 +170,7 @@ class GoodDetailViewController: UIViewController, SliderGalleryControllerDelegat
     @objc func handleTapAction(_ tap:UITapGestureRecognizer)->Void{
         //获取图片索引值
         let index = sliderGallery.currentIndex
+//        print(index)
         //弹出索引信息
 //        let alertController = UIAlertController(title: "您点击的图片索引是：", message: "\(index)", preferredStyle: .alert)
 //        let cancelAction = UIAlertAction(title: "确定", style: .cancel, handler: nil)
@@ -185,18 +186,30 @@ class GoodDetailViewController: UIViewController, SliderGalleryControllerDelegat
 //            let image = UIImage(data: data!)
             
             // 方法一: 同步加载网络图片
-            let url = URL(string: self.images[i])
             // 从url上获取内容
             // 获取内容结束才进行下一步
-            let data = try? Data(contentsOf: url!)
-            if data != nil {
-                let image = UIImage(data: data!)
-                selectImgs.append(image!)
-            }
+//            let url = URL(string: self.images[i])
+//            let data = try? Data(contentsOf: url!)
+//            if data != nil {
+//                let image = UIImage(data: data!)
+//                selectImgs.append(image!)
+//            }
+            
+//            let _ = UIImage.image(fromURL: self.images[i], placeholder: UIImage(), shouldCacheImage: true) {
+//                (image: UIImage?) in
+//                if image != nil {
+//                    selectImgs.append(image!)
+//                    if i == self.images.count - 1 {
+//                        let previewVC = HGImagePreviewVC(images: selectImgs, index: index)
+//                        _push(view: self, target: previewVC, rootView: false)
+//                    }
+//                }
+//            }
             
         }
         //进入图片全屏展示
-        let previewVC = HGImagePreviewVC(images: selectImgs, index: index)
+//        print(selectImgs)
+        let previewVC = HGImagePreviewVC(images: selectImgs, imagesURL: self.images, index: index)
         _push(view: self, target: previewVC, rootView: false)
     }
     

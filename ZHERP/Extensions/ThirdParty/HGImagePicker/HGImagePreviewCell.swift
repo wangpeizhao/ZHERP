@@ -58,7 +58,11 @@ class HGImagePreviewCell: UICollectionViewCell {
         //imageView重置
         if let image = self.imageView.image {
             //设置imageView的尺寸确保一屏能显示的下
-            imageView.frame.size = scaleSize(size: image.size)
+            do {
+                try imageView.frame.size = scaleSize(size: image.size)
+            } catch {
+            
+            }
             //imageView居中
             imageView.center = scrollView.center
         }
