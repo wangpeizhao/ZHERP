@@ -186,7 +186,7 @@ class GoodTableViewController: UITableViewController {
                 //                }
                 candy = candies[(indexPath as NSIndexPath).row]
                 let controller = segue.destination as! OrderDetailViewController
-                controller.detailCandy = candy
+//                controller.detailCandy = candy
                 print(candy.category + "===" + candy.name)
                 //                controller.navigationItem.leftBarButtonItem = splitViewController?.displayModeButtonItem
                 //                controller.navigationItem.leftItemsSupplementBackButton = true

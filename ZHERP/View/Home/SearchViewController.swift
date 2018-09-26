@@ -277,17 +277,19 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
                 
                 _push(view: self, target: _target, rootView: false)
             } else {
-                let sb = UIStoryboard(name:"Main", bundle: nil)
-                let orderView = sb.instantiateViewController(withIdentifier: "OrderDetailViewController") as! OrderDetailViewController
+//                let sb = UIStoryboard(name:"Main", bundle: nil)
+//                let orderView = sb.instantiateViewController(withIdentifier: "OrderDetailViewController") as! OrderDetailViewController
+//
+//                orderView.hidesBottomBarWhenPushed = true
+//
+//                orderView.navTitle = _data["suk"]
+//                orderView.order_image = _data["imagePath"]
+//                orderView.order_price = _data["price"]
+//                orderView.order_title = _data["title"]
+//                orderView.actionValue = ""
                 
-                orderView.hidesBottomBarWhenPushed = true
-                
-                orderView.navTitle = _data["suk"]
-                orderView.order_image = _data["imagePath"]
-                orderView.order_price = _data["price"]
-                orderView.order_title = _data["title"]
-                orderView.actionValue = ""
-                _push(view: self, target: orderView, rootView: false)
+                let _target = OrderDetailViewController()
+                _push(view: self, target: _target, rootView: false)
             }
         } else {
             let keyword: String? = tableArray[indexPath.row] as? String

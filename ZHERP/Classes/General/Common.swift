@@ -21,6 +21,7 @@ let kTabBarH: CGFloat = 49.0
 let SelectCellHeight: CGFloat = 44.0
 
 var GlobalNavHeight: CGFloat = 44.0
+var GlobalTabBarHeight: CGFloat = 44.0
 
 // 全局分隔符
 let globalSeparator: String = "*Z*H*E*R*P*"

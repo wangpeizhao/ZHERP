@@ -64,17 +64,7 @@ class GoodDetailViewController: UIViewController, SliderGalleryControllerDelegat
     }
     
     @objc func actionAdd() {
-        if self._quantityValue == nil || Int(self._quantityValue) == 0  || self._quantityValue == "" {
-            _alert(view: self, message: "请先填写拣货数量.", handler: actionQuantity)
-            return
-        }
-        _alert(view: self, message: "提交成功", handler: actionSuccess)
-    }
-    
-    @objc func actionQuantity(_: UIAlertAction)->Void {
-        //        let _indexPath: IndexPath = IndexPath(row: 3001, section: 0)
-        //        let _cell: SMemberOperateTableViewCell = self.tableView.cellForRow(at: _indexPath as IndexPath) as! SMemberOperateTableViewCell
-        //        _cell.TextFieldValue.resignFirstResponder()
+        
     }
     
     @objc func actionSuccess(_: UIAlertAction)->Void {
@@ -108,8 +98,7 @@ class GoodDetailViewController: UIViewController, SliderGalleryControllerDelegat
         self.tableView!.dataSource = self
         self.tableView!.register(UITableViewCell.self, forCellReuseIdentifier: CELL_IDENTIFY_ID)
         self.tableView!.register(SimpleBasicsCell.self, forCellReuseIdentifier: SimpleBasicsCell.identifier)
-        // 可填写
-        self.tableView?.register(UINib(nibName: "SMemberOperateTableViewCell", bundle: nil), forCellReuseIdentifier: "SMemberOperateTableViewCell")
+        
         self.tableView!.tableHeaderView = UIView.init(frame: CGRect(x: 0, y: 0, width: 0, height: 0.1))
         self.view.addSubview(self.tableView!)
         
@@ -120,6 +109,7 @@ class GoodDetailViewController: UIViewController, SliderGalleryControllerDelegat
         if self.valueArr.count == 0 {
             self.valueArr = [
                 "price": "270.50",
+                "costPrice": "1270.50",
                 "stock": "5600",
                 "title": "美的（Midea）电饭煲 气动涡轮防溢 金属机身 圆灶釜内胆4L电饭锅MB-WFS4037",
                 "sn": "201809101454560090",
@@ -132,8 +122,7 @@ class GoodDetailViewController: UIViewController, SliderGalleryControllerDelegat
             [
                 "title": "",
                 "rows": [
-//                    ["title":"拣货数量", "key":"quantity", "value": "", "placeholder": "请输入大于0的整数"],
-                    ["title":"成本价格", "key":"costPrice", "value": ""],
+                    ["title":"成本价格", "key":"costPrice", "value": self.valueArr["price"]],
                     ["title":"货品编号", "key":"sn", "value": self.valueArr["sn"]],
                     ["title":"所属仓库", "key":"warehouse", "value": self.valueArr["warehouse"]],
                     ["title":"所属位库", "key":"location", "value": self.valueArr["warehouse"]],
@@ -143,8 +132,8 @@ class GoodDetailViewController: UIViewController, SliderGalleryControllerDelegat
             [
                 "title": "员工信息",
                 "rows": [
-                    ["title":"添加时间", "key":"datetime", "value": ""],
-                    ["title":"添加员工", "key":"employee", "value": ""]
+                    ["title":"添加时间", "key":"datetime", "value": "2018-09-26 09:10:10"],
+                    ["title":"添加员工", "key":"employee", "value": "MrParker"]
                 ]
             ],
         ]
@@ -182,11 +171,33 @@ class GoodDetailViewController: UIViewController, SliderGalleryControllerDelegat
         //获取图片索引值
         let index = sliderGallery.currentIndex
         //弹出索引信息
-        let alertController = UIAlertController(title: "您点击的图片索引是：",
-                                                message: "\(index)", preferredStyle: .alert)
-        let cancelAction = UIAlertAction(title: "确定", style: .cancel, handler: nil)
-        alertController.addAction(cancelAction)
-        self.present(alertController, animated: true, completion: nil)
+//        let alertController = UIAlertController(title: "您点击的图片索引是：", message: "\(index)", preferredStyle: .alert)
+//        let cancelAction = UIAlertAction(title: "确定", style: .cancel, handler: nil)
+//        alertController.addAction(cancelAction)
+//        self.present(alertController, animated: true, completion: nil)
+        var selectImgs:[UIImage] = []
+        for i in 0..<self.images.count {
+//            var nsd = NSData(contentsOfURL:NSURL.URLWithString(self.images[i]) as! URL)
+//            var image = UIImage(data: nsd)
+            
+//            let urlStr = NSURL(string: self.images[i])
+//            let data = NSData(contentsOfURL: urlStr! as URL)
+//            let image = UIImage(data: data!)
+            
+            // 方法一: 同步加载网络图片
+            let url = URL(string: self.images[i])
+            // 从url上获取内容
+            // 获取内容结束才进行下一步
+            let data = try? Data(contentsOf: url!)
+            if data != nil {
+                let image = UIImage(data: data!)
+                selectImgs.append(image!)
+            }
+            
+        }
+        //进入图片全屏展示
+        let previewVC = HGImagePreviewVC(images: selectImgs, index: index)
+        _push(view: self, target: previewVC, rootView: false)
     }
     
     fileprivate func _rowsModel(at section: Int) -> [Any] {
@@ -241,9 +252,9 @@ extension GoodDetailViewController: UITableViewDelegate, UITableViewDataSource {
         //将图片轮播组件添加到当前视图
         self.addChildViewController(self.sliderGallery)
         _sliderGalleryView.addSubview(self.sliderGallery.view)
-        //        //添加组件的点击事件
-        //        let tap = UITapGestureRecognizer(target: self, action: #selector(handleTapAction(_:)))
-        //        sliderGallery.view.addGestureRecognizer(tap)
+        //添加组件的点击事件
+        let tap = UITapGestureRecognizer(target: self, action: #selector(handleTapAction(_:)))
+        sliderGallery.view.addGestureRecognizer(tap)
         
         _sukView.addSubview(self._HPickingGoodView.goodDeatilView(sukData: self.valueArr))
         
@@ -267,30 +278,7 @@ extension GoodDetailViewController: UITableViewDelegate, UITableViewDataSource {
     //创建各单元显示内容(创建参数indexPath指定的单元）
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let _row = self._rowModel(at: indexPath)
-        let key: String = _row["key"]!
-        
-        let textFields = ["quantity"]
-        if (textFields.contains(key)) {
-            let cell: SMemberOperateTableViewCell = tableView.dequeueReusableCell(withIdentifier: "SMemberOperateTableViewCell") as! SMemberOperateTableViewCell
-            cell.TextFieldLabel.text = _row["title"]
-            cell.TextFieldLabel.sizeToFit()
-            cell.TextFieldLabel.font = Specs.font.regular
-            
-            cell.TextFieldValue.text = _row["value"]
-            cell.TextFieldValue.textColor = UIColor(hex: 0x666666)
-            cell.TextFieldValue.placeholder = _row["placeholder"]
-            cell.TextFieldValue.clearButtonMode = UITextFieldViewMode.always
-            cell.TextFieldValue.adjustsFontSizeToFitWidth = true
-            cell.TextFieldValue.returnKeyType = UIReturnKeyType.done
-            cell.TextFieldValue.keyboardType = UIKeyboardType.numbersAndPunctuation
-            cell.TextFieldValue.delegate = self
-            cell.tag = 3001
-            
-            print("indexPath.row:\(indexPath.row)")
-            
-            cell.accessoryType = .none
-            return cell
-        }
+//        let key: String = _row["key"]!
         
         var cell = UITableViewCell()
         cell = tableView.dequeueReusableCell(withIdentifier: SimpleBasicsCell.identifier, for: indexPath)
@@ -310,17 +298,5 @@ extension GoodDetailViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-    }
-}
-
-extension GoodDetailViewController: UITextFieldDelegate {
-    // 输入框结束编辑状态
-    func textFieldDidEndEditing(_ textField: UITextField) {
-        self.actionTextField(textField)
-    }
-    // 输入框按下键盘 return 收回键盘
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        self.actionTextField(textField)
-        return true
     }
 }

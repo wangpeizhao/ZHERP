@@ -122,10 +122,10 @@ extension OrderSearchResultViewController: UITableViewDataSource ,UITableViewDel
         let sectionNo = count - indexPath.row - 1
         var _data = self.dataArray[sectionNo]!
         orderView.navTitle = _data["suk"]
-        orderView.order_image = _data["imagePath"]
-        orderView.order_price = _data["price"]
-        orderView.order_title = _data["title"]
-        orderView.actionValue = ""
+//        orderView.order_image = _data["imagePath"]
+//        orderView.order_price = _data["price"]
+//        orderView.order_title = _data["title"]
+//        orderView.actionValue = ""
         
         //        _push(view: self, target: orderView, rootView: true)
         self.presentingViewController?.navigationController?.pushViewController(orderView, animated: true)

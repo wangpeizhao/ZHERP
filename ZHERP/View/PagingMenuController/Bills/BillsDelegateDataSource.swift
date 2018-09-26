@@ -1,5 +1,5 @@
 //
-//  BillsDelegateDataSourceViewController.swift
+//  BillsDelegateDataSource.swift
 //  ZHERP
 //
 //  Created by MrParker on 2018/9/6.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class BillsDelegateDataSourceViewController: UIViewController {
+class BillsDelegateDataSource: UIViewController {
     
     var dataArr = [[String: String]]()
     var CELL_IDENTIFY_ID: String!
@@ -26,7 +26,7 @@ class BillsDelegateDataSourceViewController: UIViewController {
 
 }
 
-extension BillsDelegateDataSourceViewController: UITableViewDelegate, UITableViewDataSource {
+extension BillsDelegateDataSource: UITableViewDelegate, UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1;

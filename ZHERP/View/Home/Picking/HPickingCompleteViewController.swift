@@ -55,8 +55,13 @@ class HPickingCompleteViewController: UIViewController {
     }
     
     @objc func actionPicking() {
-        let _target = HPickingViewController()
-        _push(view: self, target: _target)
+        for i in 0..<(self.navigationController?.viewControllers.count)! {
+            if self.navigationController?.viewControllers[i].isKind(of: HPickingViewController.self) == true {
+                self.hidesBottomBarWhenPushed = true
+                _ = self.navigationController?.popToViewController(self.navigationController?.viewControllers[i] as! HPickingViewController, animated: true)
+                break
+            }
+        }
     }
     
     fileprivate func _setup() {

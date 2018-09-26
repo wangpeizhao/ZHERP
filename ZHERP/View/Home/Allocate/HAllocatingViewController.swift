@@ -104,7 +104,7 @@ class HAllocatingViewController: UIViewController {
         self.tableView!.register(SimpleBasicsCell.self, forCellReuseIdentifier: SimpleBasicsCell.identifier)
         // 可填写
         self.tableView?.register(UINib(nibName: "SMemberOperateTableViewCell", bundle: nil), forCellReuseIdentifier: "SMemberOperateTableViewCell")
-        self.tableView?.tableHeaderView = UIView.init(frame: CGRect(x: 0, y: 0, width: 0, height: 10.0))
+        self.tableView?.tableHeaderView = UIView.init(frame: CGRect(x: 0, y: 0, width: 0, height: 0.01))
         self.view.addSubview(self.tableView!)
     }
     
@@ -208,12 +208,12 @@ extension HAllocatingViewController: UITableViewDelegate, UITableViewDataSource 
     
     //设置分组头的高度
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 10
+        return 20
     }
     
     func tableView(_ tableView: UITableView, titleForFooterInSection section: Int) -> String? {
         if self._isAdd == true && section == self.dataArr.count - 1 {
-            return "别忘了点击提交按钮喔"
+            return "" //别忘了点击提交按钮喔
         }
         return ""
     }
@@ -225,18 +225,7 @@ extension HAllocatingViewController: UITableViewDelegate, UITableViewDataSource 
         let memberView = UIView()
         memberView.backgroundColor = UIColor.clear
         
-        let tipLabel = UILabel()
-        tipLabel.text = self._isAdd == true ? "别忘了点击提交按钮喔。" : ""
-        tipLabel.textColor = UIColor(hex: 0x666666)
-        tipLabel.font = Specs.font.small
-        tipLabel.sizeToFit()
-        memberView.addSubview(tipLabel)
-        tipLabel.snp.makeConstraints { (make) -> Void in
-            make.top.equalTo(10)
-            make.left.equalTo(20)
-        }
-        
-        let _btn = UIButton(frame: CGRect(x: 20, y: 40, width: ScreenWidth - 40, height: 40))
+        let _btn = UIButton(frame: CGRect(x: 20, y: 20, width: ScreenWidth - 40, height: 40))
         _btn.layer.cornerRadius = Specs.border.radius
         _btn.layer.masksToBounds = true
         _btn.titleLabel?.font = UIFont.systemFont(ofSize: Specs.fontSize.regular)
@@ -263,7 +252,7 @@ extension HAllocatingViewController: UITableViewDelegate, UITableViewDataSource 
     //设置分组尾的高度
     func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
         if section == self.dataArr.count - 1 {
-            return 120
+            return 60
         }
         return 0
     }

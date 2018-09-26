@@ -617,21 +617,6 @@ extension GoodViewController: UITableViewDataSource ,UITableViewDelegate {
             ]
             
             _push(view: self, target: _target, rootView: true)
-//            let sb = UIStoryboard(name:"Main", bundle: nil)
-//            let orderView = sb.instantiateViewController(withIdentifier: "GoodDetailViewController") as! GoodDetailViewController
-//
-//            let count = self.itemArray.count
-////            let sectionNo = count - indexPath.row - 1
-////            var _data = self.itemArray[sectionNo]!
-//    //        orderView.hidesBottomBarWhenPushed = true
-//
-//    //        orderView.navTitle = _data["suk"]
-//    //        orderView.order_image = _data["avatar"]
-//    //        orderView.order_price = _data["price"]
-//    //        orderView.order_title = _data["name"]
-//    //        orderView.actionValue = ""
-//
-//            _push(view: self, target: orderView, rootView: true)
         } else if tableView.isEqual(self.categoryTable) {
             self.hideCategoryTable()
         }

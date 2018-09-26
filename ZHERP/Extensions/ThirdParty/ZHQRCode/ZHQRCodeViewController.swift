@@ -286,11 +286,11 @@ extension ZHQRCodeViewController {
     func _action_good(value: String) {
         let sb = UIStoryboard(name:"Main", bundle: nil)
         let orderView = sb.instantiateViewController(withIdentifier: "OrderDetailViewController") as! OrderDetailViewController
-        orderView.navTitle = "广发银行CGB"
-        orderView.order_image = "codeBg"
-        orderView.order_price = "20000"
-        orderView.order_title = "信用卡"
-        orderView.actionValue = value
+//        orderView.navTitle = "广发银行CGB"
+//        orderView.order_image = "codeBg"
+//        orderView.order_price = "20000"
+//        orderView.order_title = "信用卡"
+//        orderView.actionValue = value
         self.hidesBottomBarWhenPushed = true
         self.navigationController?.pushViewController(orderView, animated: true)
     }

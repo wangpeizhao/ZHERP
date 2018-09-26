@@ -7,13 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2C0C6E2F215B7DF7006166E9 /* OrderDelegateDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C0C6E2E215B7DF7006166E9 /* OrderDelegateDataSource.swift */; };
 		2C2BD1CC21279ED300F6C6C3 /* GoodDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C2BD1CB21279ED300F6C6C3 /* GoodDetailViewController.swift */; };
 		2C35D2C92140D76400AEC12F /* BillsTodayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C35D2C82140D76400AEC12F /* BillsTodayViewController.swift */; };
 		2C35D2CB2140FF4400AEC12F /* BillsReportViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C35D2CA2140FF4400AEC12F /* BillsReportViewController.swift */; };
 		2C35D2D02141085A00AEC12F /* BillsDailyReportTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C35D2CE2141085A00AEC12F /* BillsDailyReportTableViewCell.swift */; };
 		2C35D2D12141085B00AEC12F /* BillsDailyReportTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2C35D2CF2141085A00AEC12F /* BillsDailyReportTableViewCell.xib */; };
 		2C35D2D321411E5D00AEC12F /* BillsDaliyDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C35D2D221411E5D00AEC12F /* BillsDaliyDetailViewController.swift */; };
-		2C35D2D5214124EE00AEC12F /* BillsDelegateDataSourceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C35D2D4214124EE00AEC12F /* BillsDelegateDataSourceViewController.swift */; };
+		2C35D2D5214124EE00AEC12F /* BillsDelegateDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C35D2D4214124EE00AEC12F /* BillsDelegateDataSource.swift */; };
 		2C5AC3ED2125695F002FFC80 /* ZHScannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C5AC3EC2125695F002FFC80 /* ZHScannerView.swift */; };
 		2C5AC3EF21256AE3002FFC80 /* ZHQRCode.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 2C5AC3EE21256AE3002FFC80 /* ZHQRCode.bundle */; };
 		2C6104CC21536F26004BE3F4 /* SFeedbackViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C6104CB21536F26004BE3F4 /* SFeedbackViewController.swift */; };
@@ -235,13 +236,14 @@
 /* Begin PBXFileReference section */
 		0018AC5B628E580B5DB4DE45 /* Pods_ZHERPTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ZHERPTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		0953297FAA824E19B8F904F9 /* Pods-ZHERPTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZHERPTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ZHERPTests/Pods-ZHERPTests.debug.xcconfig"; sourceTree = "<group>"; };
+		2C0C6E2E215B7DF7006166E9 /* OrderDelegateDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderDelegateDataSource.swift; sourceTree = "<group>"; };
 		2C2BD1CB21279ED300F6C6C3 /* GoodDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoodDetailViewController.swift; sourceTree = "<group>"; };
 		2C35D2C82140D76400AEC12F /* BillsTodayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BillsTodayViewController.swift; sourceTree = "<group>"; };
 		2C35D2CA2140FF4400AEC12F /* BillsReportViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BillsReportViewController.swift; sourceTree = "<group>"; };
 		2C35D2CE2141085A00AEC12F /* BillsDailyReportTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BillsDailyReportTableViewCell.swift; sourceTree = "<group>"; };
 		2C35D2CF2141085A00AEC12F /* BillsDailyReportTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BillsDailyReportTableViewCell.xib; sourceTree = "<group>"; };
 		2C35D2D221411E5D00AEC12F /* BillsDaliyDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BillsDaliyDetailViewController.swift; sourceTree = "<group>"; };
-		2C35D2D4214124EE00AEC12F /* BillsDelegateDataSourceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BillsDelegateDataSourceViewController.swift; sourceTree = "<group>"; };
+		2C35D2D4214124EE00AEC12F /* BillsDelegateDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BillsDelegateDataSource.swift; sourceTree = "<group>"; };
 		2C5AC3EC2125695F002FFC80 /* ZHScannerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ZHScannerView.swift; path = ZHERP/Helper/ZHScannerView.swift; sourceTree = SOURCE_ROOT; };
 		2C5AC3EE21256AE3002FFC80 /* ZHQRCode.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = ZHQRCode.bundle; sourceTree = "<group>"; };
 		2C6104CB21536F26004BE3F4 /* SFeedbackViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SFeedbackViewController.swift; sourceTree = "<group>"; };
@@ -483,6 +485,34 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2C0C6E30215B8502006166E9 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		2C0C6E31215B851B006166E9 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				2CE96F1A211C0D0700B4CE5A /* OrderSearchResultViewController.swift */,
+				9EE26B85212DA33B00619D98 /* OrderPagingMenuViewController.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		2C0C6E32215B8575006166E9 /* Bill */ = {
+			isa = PBXGroup;
+			children = (
+				9ED7E50A21402E4900F8F735 /* OrderTodayBillViewController.swift */,
+				9ED7E50C2140304D00F8F735 /* OrderTodayBillTableViewCell.swift */,
+				9ED7E50D2140304D00F8F735 /* OrderTodayBillTableViewCell.xib */,
+				9ED7E51021404CE500F8F735 /* OrderBillsViewController.swift */,
+				9ED7E51221404FE000F8F735 /* OrderBillsPagesViewController.swift */,
+			);
+			path = Bill;
+			sourceTree = "<group>";
+		};
 		2C35D2C72140D70600AEC12F /* Bills */ = {
 			isa = PBXGroup;
 			children = (
@@ -496,7 +526,7 @@
 				2C35D2CE2141085A00AEC12F /* BillsDailyReportTableViewCell.swift */,
 				2C35D2CF2141085A00AEC12F /* BillsDailyReportTableViewCell.xib */,
 				2C35D2D221411E5D00AEC12F /* BillsDaliyDetailViewController.swift */,
-				2C35D2D4214124EE00AEC12F /* BillsDelegateDataSourceViewController.swift */,
+				2C35D2D4214124EE00AEC12F /* BillsDelegateDataSource.swift */,
 			);
 			path = Bills;
 			sourceTree = "<group>";
@@ -873,6 +903,7 @@
 				9E523E97210D548500CF921F /* OrderCompleteViewController.swift */,
 				9E523E9B2119DF2100CF921F /* OrderTableViewCell.swift */,
 				9E523E9C2119DF2100CF921F /* OrderTableViewCell.xib */,
+				2C0C6E2E215B7DF7006166E9 /* OrderDelegateDataSource.swift */,
 			);
 			path = Orders;
 			sourceTree = "<group>";
@@ -1003,15 +1034,11 @@
 		9E88ED1820FB40F400DF091F /* Order */ = {
 			isa = PBXGroup;
 			children = (
+				2C0C6E32215B8575006166E9 /* Bill */,
+				2C0C6E31215B851B006166E9 /* View */,
+				2C0C6E30215B8502006166E9 /* Model */,
 				9E523E88210D449300CF921F /* OrderViewController.swift */,
 				9E88ED2420FB53AE00DF091F /* OrderDetailViewController.swift */,
-				2CE96F1A211C0D0700B4CE5A /* OrderSearchResultViewController.swift */,
-				9EE26B85212DA33B00619D98 /* OrderPagingMenuViewController.swift */,
-				9ED7E50A21402E4900F8F735 /* OrderTodayBillViewController.swift */,
-				9ED7E50C2140304D00F8F735 /* OrderTodayBillTableViewCell.swift */,
-				9ED7E50D2140304D00F8F735 /* OrderTodayBillTableViewCell.xib */,
-				9ED7E51021404CE500F8F735 /* OrderBillsViewController.swift */,
-				9ED7E51221404FE000F8F735 /* OrderBillsPagesViewController.swift */,
 			);
 			path = Order;
 			sourceTree = "<group>";
@@ -1567,7 +1594,7 @@
 				9ED7E50B21402E4900F8F735 /* OrderTodayBillViewController.swift in Sources */,
 				9E523DE020FEB4F100CF921F /* SProtocolViewController.swift in Sources */,
 				2C986C75213F973D00F081BC /* SMemberRoleManagerViewController.swift in Sources */,
-				2C35D2D5214124EE00AEC12F /* BillsDelegateDataSourceViewController.swift in Sources */,
+				2C35D2D5214124EE00AEC12F /* BillsDelegateDataSource.swift in Sources */,
 				9E549937213ED506001E4C36 /* WCategoryOperateViewController.swift in Sources */,
 				9EE26B81212C734100619D98 /* GoodTableViewCell.swift in Sources */,
 				2C9AC88F214244EB004F252D /* StatisticChartsViewController.swift in Sources */,
@@ -1585,6 +1612,7 @@
 				9E523DE62100E21000CF921F /* RegisterVM.swift in Sources */,
 				9E523E402107E99E00CF921F /* NotifyViewController.swift in Sources */,
 				9EE227DC2144A57600E1CDD1 /* ImageVIewExtension.swift in Sources */,
+				2C0C6E2F215B7DF7006166E9 /* OrderDelegateDataSource.swift in Sources */,
 				9E523E6D2109401F00CF921F /* SwitchTableViewCell.swift in Sources */,
 				2C6104CC21536F26004BE3F4 /* SFeedbackViewController.swift in Sources */,
 				9E523E96210D546400CF921F /* OrderCloseViewController.swift in Sources */,

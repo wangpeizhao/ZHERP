@@ -250,7 +250,7 @@ class OrderTableViewController: UITableViewController {
                 
                 candy = candies[(indexPath as NSIndexPath).row]
                 let controller = segue.destination as! OrderDetailViewController
-                controller.detailCandy = candy
+//                controller.detailCandy = candy
                 print(candy.category + "===" + candy.name)
 //                self.hidesBottomBarWhenPushed = false
 //                controller.navigationItem.leftBarButtonItem = splitViewController?.displayModeButtonItem

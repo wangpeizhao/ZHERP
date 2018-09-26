@@ -139,10 +139,13 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
             return self.navigationView?.view
         }
         if (section == 3) {
-            let chartsView = StatisticChartsViewController()
-            chartsView.ChartViewHeight = ScreenHeight - self.navHeight - 415 - self.tabBarHeight
-            self.addChildViewController(chartsView)
-            return chartsView.view
+//            let chartsView = StatisticChartsViewController()
+//            chartsView.ChartViewHeight = ScreenHeight - self.navHeight - 415 - self.tabBarHeight
+//            self.addChildViewController(chartsView)
+//            return chartsView.view
+            self.navigationView = HomeNavigationViewController()
+            self.addChildViewController(self.navigationView!)
+            return self.navigationView?.view
         }
         return UIView(frame: CGRect(x: 0, y: 0, width: 0, height: 0))
     }

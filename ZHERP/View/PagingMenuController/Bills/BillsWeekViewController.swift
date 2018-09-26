@@ -58,7 +58,7 @@ class BillsWeekViewController: UIViewController {
         self.tableView = UITableView(frame: CGRect(x: 0, y: _tableViewY, width: ScreenWidth, height: _tableViewH), style: .grouped)
         
         // delegate
-        let _delegate = BillsDelegateDataSourceViewController()
+        let _delegate = BillsDelegateDataSource()
         _delegate.dataArr = self.dataArr
         _delegate.CELL_IDENTIFY_ID = self.CELL_IDENTIFY_ID
         self.addChildViewController(_delegate)

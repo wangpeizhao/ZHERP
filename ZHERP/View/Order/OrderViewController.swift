@@ -7,12 +7,11 @@
 //
 
 import UIKit
-import SnapKit
 import BTNavigationDropdownMenu
 
 class OrderViewController: UIViewController, UIGestureRecognizerDelegate {
     
-    var _title: String = "订单管理"
+    var _title: String = "订单"
     var _placeholder: String = "搜索订单号"
     var pageMenuView: UIView!
     var orderPageMenuView: OrderPagingMenuViewController?
@@ -20,6 +19,7 @@ class OrderViewController: UIViewController, UIGestureRecognizerDelegate {
     var menuView: BTNavigationDropdownMenu!
     
     var navHeight: CGFloat!
+    var tabBarHeight: CGFloat!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,6 +33,9 @@ class OrderViewController: UIViewController, UIGestureRecognizerDelegate {
     
     private func _setUp() {
         self.navHeight = self.navigationController?.navigationBar.frame.maxY
+        self.tabBarHeight = self.tabBarController?.tabBar.bounds.size.height
+        GlobalNavHeight = self.navHeight
+        GlobalTabBarHeight = self.tabBarHeight
         
         self._navigationDropdownMenus()
         self._searchBarBtn()
