@@ -34,7 +34,22 @@ class ForgetViewController: UIViewController, UITextFieldDelegate {
         super.viewDidLoad()
         
         //视图背景色
-        self.view.backgroundColor = Specs.color.main
+//        self.view.backgroundColor = Specs.color.main
+        //计算视图比例
+        let ratio = UIScreen.main.bounds.width / UIScreen.main.bounds.height
+        //根据比例裁剪出背景图
+        let image = UIImage(named: "LoginRegisterBg")?.crop(ratio: ratio)
+        //设置当前视图背景
+        self.view.layer.contents = image?.cgImage
+        
+        // 多人icon
+        let multiplayer = UIImageView()
+        multiplayer.image = UIImage(named: "iconfont-multiplayer")
+        self.view.addSubview(multiplayer)
+        multiplayer.snp.makeConstraints { (make) -> Void in
+            make.top.equalTo(40)
+            make.centerX.equalTo(self.view)
+        }
         
         //标题label
         self.titleLabel = UILabel()
@@ -43,27 +58,25 @@ class ForgetViewController: UIViewController, UITextFieldDelegate {
         self.titleLabel.font = UIFont.systemFont(ofSize: 25)
         self.view.addSubview(self.titleLabel)
         self.titleLabel.snp.makeConstraints { (make) -> Void in
-            make.top.equalTo(44)
-            make.left.equalTo(self.CV/2)
-            make.height.equalTo(self.CV)
+            make.top.equalTo(multiplayer.snp.bottom).offset(10)
+            make.centerX.equalTo(self.view)
         }
         
         // Form
         let formViewHeight = 200
         self.formView = UIView()
         self.formView.layer.borderWidth = 0
-//        self.formView.layer.backgroundColor = UIColor.gray.cgColor
         self.view.addSubview(self.formView)
         self.formView.snp.makeConstraints { (make) -> Void in
             make.left.equalTo(self.CV/2)
             make.right.equalTo(self.CV/2 * -1)
             make.height.equalTo(formViewHeight)
-            self.topConstraint = make.centerY.equalTo(self.view).offset(-20).constraint
+            self.topConstraint = make.centerY.equalTo(self.view).offset(-50).constraint
         }
 
         // Username Field
         self.usernameTxt = UITextField()
-        self.usernameTxt.delegate = self
+//        self.usernameTxt.delegate = self
         setTextFieldCommonFeatures(textFiled: self.usernameTxt, width: 0, height: 0)
         setTextFieldPlaceholser(textFiled: self.usernameTxt, placeholder: "请输入手机号码")
         self.formView.addSubview(self.usernameTxt)
@@ -72,6 +85,41 @@ class ForgetViewController: UIViewController, UITextFieldDelegate {
             make.right.equalTo(-5)
             make.height.equalTo(self.CV)
             make.top.equalTo(self.formView.snp.top).offset(5)
+        }
+        
+        // Separator
+        let SeparatorU = UILabel()
+        SeparatorU.backgroundColor = Specs.color.white
+        self.formView.addSubview(SeparatorU)
+        SeparatorU.snp.makeConstraints {(make) -> Void in
+            make.width.equalTo(self.usernameTxt)
+            make.left.equalTo(self.usernameTxt.snp.left)
+            make.height.equalTo(0.5)
+            make.top.equalTo(self.usernameTxt.snp.bottom)
+        }
+        
+        // securityCode Field
+        self.securityCodeTxt = UITextField()
+//        self.securityCodeTxt.delegate = self
+        setTextFieldCommonFeatures(textFiled: self.securityCodeTxt, width: 0, height: 0)
+        setTextFieldPlaceholser(textFiled: self.securityCodeTxt, placeholder: "请输入手机验证码")
+        self.formView.addSubview(self.securityCodeTxt)
+        self.securityCodeTxt.snp.makeConstraints { (make) -> Void in
+            make.left.equalTo(5)
+//            make.right.equalTo(self.sendBtn.snp.left).offset(-10)
+            make.height.equalTo(self.CV)
+            make.top.equalTo(self.usernameTxt.snp.bottom).offset(20)
+            make.width.equalTo(ScreenWidth - self.CV - 100 - 10)
+        }
+        // Separator
+        let SeparatorC = UILabel()
+        SeparatorC.backgroundColor = Specs.color.white
+        self.formView.addSubview(SeparatorC)
+        SeparatorC.snp.makeConstraints {(make) -> Void in
+            make.width.equalTo(self.securityCodeTxt)
+            make.left.equalTo(self.securityCodeTxt.snp.left)
+            make.height.equalTo(0.5)
+            make.top.equalTo(self.securityCodeTxt.snp.bottom)
         }
         
         // Send Button
@@ -89,20 +137,7 @@ class ForgetViewController: UIViewController, UITextFieldDelegate {
             make.right.equalTo(-5)
             make.height.equalTo(self.CV)
             make.width.equalTo(100)
-            make.top.equalTo(self.usernameTxt.snp.bottom).offset(20)
-        }
-        
-        // securityCode Field
-        self.securityCodeTxt = UITextField()
-        self.securityCodeTxt.delegate = self
-        setTextFieldCommonFeatures(textFiled: self.securityCodeTxt, width: 0, height: 0)
-        setTextFieldPlaceholser(textFiled: self.securityCodeTxt, placeholder: "请输入手机验证码")
-        self.formView.addSubview(self.securityCodeTxt)
-        self.securityCodeTxt.snp.makeConstraints { (make) -> Void in
-            make.left.equalTo(5)
-            make.right.equalTo(self.sendBtn.snp.left).offset(-10)
-            make.height.equalTo(self.CV)
-            make.top.equalTo(self.usernameTxt.snp.bottom).offset(20)
+            make.bottom.equalTo(SeparatorC.snp.bottom)
         }
         
         // Next Button
@@ -131,8 +166,8 @@ class ForgetViewController: UIViewController, UITextFieldDelegate {
             make.centerX.equalTo(self.view)
         }
         
-        setTextFieldBottomLine(textFiled: self.usernameTxt)
-        setTextFieldBottomLine(textFiled: self.securityCodeTxt)
+//        setTextFieldBottomLine(textFiled: self.usernameTxt)
+//        setTextFieldBottomLine(textFiled: self.securityCodeTxt)
         
         
         //        let registerVM = RegisterVM()
@@ -190,8 +225,8 @@ class ForgetViewController: UIViewController, UITextFieldDelegate {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        setTextFieldBottomLine(textFiled: self.usernameTxt)
-        setTextFieldBottomLine(textFiled: self.securityCodeTxt)
+//        setTextFieldBottomLine(textFiled: self.usernameTxt)
+//        setTextFieldBottomLine(textFiled: self.securityCodeTxt)
     }
     
     func loginSuccess(message: String) {

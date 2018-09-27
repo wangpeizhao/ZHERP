@@ -14,6 +14,7 @@ class HPickingCompleteViewController: UIViewController {
     let CELL_IDENTIFY_ID = "CELL_IDENTIFY_ID"
     var navHeight: CGFloat!
     var tabBarHeight: CGFloat!
+    var navTitle: String = "完成拣货"
     
     // 初始数据
     var valueArr = [String: String]()
@@ -24,7 +25,7 @@ class HPickingCompleteViewController: UIViewController {
         super.viewDidLoad()
         
         self.view.backgroundColor = Specs.color.white
-        setNavBarTitle(view: self, title: "完成拣货")
+        setNavBarTitle(view: self, title: self.navTitle)
         setNavBarBackBtn(view: self, title: "", selector: #selector(actionBack))
         
         // 设置右侧按钮

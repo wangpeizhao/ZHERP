@@ -121,7 +121,7 @@ extension OrderSearchResultViewController: UITableViewDataSource ,UITableViewDel
         let count = self.dataArray.count
         let sectionNo = count - indexPath.row - 1
         var _data = self.dataArray[sectionNo]!
-        orderView.navTitle = _data["suk"]
+//        orderView.navTitle = _data["suk"]
 //        orderView.order_image = _data["imagePath"]
 //        orderView.order_price = _data["price"]
 //        orderView.order_title = _data["title"]

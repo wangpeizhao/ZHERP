@@ -120,5 +120,13 @@ class OrderViewController: UIViewController, UIGestureRecognizerDelegate {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        globalViewControllerForHiddenTabBar = self
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        globalViewControllerForHiddenTabBar = UIViewController()
+    }
 
 }

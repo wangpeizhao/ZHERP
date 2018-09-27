@@ -34,31 +34,44 @@ class LoginingViewController: UIViewController, UITextFieldDelegate {
         super.viewDidLoad()
         
         //视图背景色
-        self.view.backgroundColor = Specs.color.main
+//        self.view.backgroundColor = UIColor(patternImage: UIImage(named:"LoginRegisterBg")!) // Specs.color.main
+        //计算视图比例
+        let ratio = UIScreen.main.bounds.width / UIScreen.main.bounds.height
+        //根据比例裁剪出背景图
+        let image = UIImage(named: "LoginRegisterBg")?.crop(ratio: ratio)
+        //设置当前视图背景
+        self.view.layer.contents = image?.cgImage
+        
+        // 多人icon
+        let multiplayer = UIImageView()
+        multiplayer.image = UIImage(named: "iconfont-multiplayer")
+        self.view.addSubview(multiplayer)
+        multiplayer.snp.makeConstraints { (make) -> Void in
+            make.top.equalTo(40)
+            make.centerX.equalTo(self.view)
+        }
         
         //标题label
         self.titleLabel = UILabel()
-        self.titleLabel.text = "欢迎登录纵横ERP"
+        self.titleLabel.text = "纵横ERP - 登录"
         self.titleLabel.textColor = Specs.color.white
         self.titleLabel.font = UIFont.systemFont(ofSize: 25)
         self.view.addSubview(self.titleLabel)
         self.titleLabel.snp.makeConstraints { (make) -> Void in
-            make.top.equalTo(44)
-            make.left.equalTo(self.CV/2)
-            make.height.equalTo(self.CV)
+            make.top.equalTo(multiplayer.snp.bottom).offset(10)
+            make.centerX.equalTo(self.view)
         }
         
         // Form
         let formViewHeight = 230
         self.formView = UIView()
         self.formView.layer.borderWidth = 0
-//        self.formView.layer.backgroundColor = UIColor.gray.cgColor
         self.view.addSubview(self.formView)
         self.formView.snp.makeConstraints { (make) -> Void in
             make.left.equalTo(self.CV/2)
             make.right.equalTo(self.CV/2 * -1)
             make.height.equalTo(formViewHeight)
-            self.topConstraint = make.centerY.equalTo(self.view).offset(-30).constraint
+            self.topConstraint = make.centerY.equalTo(self.view).offset(-50).constraint
         }
         
         // User Icon
@@ -71,7 +84,7 @@ class LoginingViewController: UIViewController, UITextFieldDelegate {
         
         // Username Field
         self.usernameTxt = UITextField()
-        self.usernameTxt.delegate = self
+//        self.usernameTxt.delegate = self
         setTextFieldCommonFeatures(textFiled: self.usernameTxt)
         setTextFieldPlaceholser(textFiled: self.usernameTxt, placeholder: "请输入手机号码")
         self.usernameTxt.tag = 100
@@ -84,10 +97,20 @@ class LoginingViewController: UIViewController, UITextFieldDelegate {
             make.height.equalTo(self.CV)
             make.top.equalTo(self.formView.snp.top).offset(5)
         }
+        // Separator
+        let SeparatorU = UILabel()
+        SeparatorU.backgroundColor = Specs.color.white
+        self.formView.addSubview(SeparatorU)
+        SeparatorU.snp.makeConstraints {(make) -> Void in
+            make.width.equalTo(self.usernameTxt)
+            make.left.equalTo(self.usernameTxt.snp.left)
+            make.height.equalTo(0.5)
+            make.top.equalTo(self.usernameTxt.snp.bottom)
+        }
         
         // Password Field
         self.passwordTxt = UITextField()
-        self.passwordTxt.delegate = self
+//        self.passwordTxt.delegate = self
         setTextFieldCommonFeatures(textFiled: self.passwordTxt)
         setTextFieldPlaceholser(textFiled: self.passwordTxt, placeholder: "请输入密码(6~16位数字+字母)")
         self.passwordTxt.tag = 101
@@ -99,6 +122,17 @@ class LoginingViewController: UIViewController, UITextFieldDelegate {
             make.right.equalTo(-5)
             make.height.equalTo(self.CV)
             make.top.equalTo(self.usernameTxt.snp.bottom).offset(20)
+        }
+        
+        // Separator
+        let SeparatorP = UILabel()
+        SeparatorP.backgroundColor = Specs.color.white
+        self.formView.addSubview(SeparatorP)
+        SeparatorP.snp.makeConstraints {(make) -> Void in
+            make.width.equalTo(self.passwordTxt)
+            make.left.equalTo(self.passwordTxt.snp.left)
+            make.height.equalTo(0.5)
+            make.top.equalTo(self.passwordTxt.snp.bottom)
         }
         
         // Login Button
@@ -117,7 +151,7 @@ class LoginingViewController: UIViewController, UITextFieldDelegate {
         // Register Button
         self.registerBtn = UIButton()
         self.registerBtn.setTitle("注册", for: UIControlState())
-        self.registerBtn.setTitleColor(Specs.color.green, for: UIControlState())
+        self.registerBtn.setTitleColor(Specs.color.main, for: UIControlState())
         self.registerBtn.titleLabel?.font = UIFont.systemFont(ofSize: Specs.fontSize.regular)
         self.registerBtn.addTarget(self, action: #selector(registerBtnClicked(_:)), for: .touchUpInside)
         self.formView.addSubview(self.registerBtn)
@@ -142,7 +176,7 @@ class LoginingViewController: UIViewController, UITextFieldDelegate {
         // Forget password
         self.forgetBtn = UIButton()
         self.forgetBtn.setTitle("忘记密码？", for: UIControlState())
-        self.forgetBtn.setTitleColor(Specs.color.green, for: UIControlState())
+        self.forgetBtn.setTitleColor(Specs.color.main, for: UIControlState())
         self.forgetBtn.titleLabel?.font = UIFont.systemFont(ofSize: Specs.fontSize.regular)
         self.forgetBtn.addTarget(self, action: #selector(forgetBtnClicked(_:)), for: .touchUpInside)
         self.formView.addSubview(self.forgetBtn)
@@ -152,8 +186,8 @@ class LoginingViewController: UIViewController, UITextFieldDelegate {
             make.height.equalTo(self.registerBtn)
         }
         
-        setTextFieldBottomLine(textFiled: self.usernameTxt)
-        setTextFieldBottomLine(textFiled: self.passwordTxt)
+//        setTextFieldBottomLine(textFiled: self.usernameTxt)
+//        setTextFieldBottomLine(textFiled: self.passwordTxt)
         
         
 //        let registerVM = RegisterVM()
@@ -222,8 +256,8 @@ class LoginingViewController: UIViewController, UITextFieldDelegate {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        setTextFieldBottomLine(textFiled: self.usernameTxt)
-        setTextFieldBottomLine(textFiled: self.passwordTxt)
+//        setTextFieldBottomLine(textFiled: self.usernameTxt)
+//        setTextFieldBottomLine(textFiled: self.passwordTxt)
     }
     
     func loginSuccess(message: String) {

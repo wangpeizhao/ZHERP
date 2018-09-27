@@ -71,8 +71,32 @@ extension OrderDelegateDataSource: UITableViewDataSource ,UITableViewDelegate {
 
         let _data = dataArr[indexPath.item]
         
-//        let selector: Selector = #selector(actionBack)
-//        setNavBarBackBtn(view: self, title: "订单", selector: selector)
-        _push(view: self, target: _target, rootView: false)
+        let orderStatus = ["active","paid","cancel","delivered","refund"]
+        let index = arc4random_uniform(UInt32(orderStatus.count))
+        let status = orderStatus[Int(index)]
+
+        _target.valueArr = [
+            "orderId": _data["orderId"],
+            "orderTime": "2018-09-27 10:34:32",
+            "orderStatus": status,
+            "orderTotal": "12345.09",
+            "orderCoupon": "100.00",
+            "orderAmount": _data["price"],
+            "orderQuantity": "10",
+            "orderEmployee": "Parker",
+            "receiver": "王培照",
+            "receiverPhone": "15622299006",
+            "receiverRegion": "广东省,广州市,天河区",
+            "receiverDetail": "天河公园北门100号",
+            "expressCompany": "顺丰",
+            "expressNumber": "SFDHDHDJFJ32423",
+            "expressNote": "当天到达",
+            "expressEmployee": "照哥",
+            "expressDatetime": "2018-09-26 10:34:32"
+            ] as! [String : String]
+
+        globalViewControllerForHiddenTabBar.hidesBottomBarWhenPushed = true
+        self.navigationController?.pushViewController(_target, animated: true)
+        globalViewControllerForHiddenTabBar.hidesBottomBarWhenPushed = false
     }
 }

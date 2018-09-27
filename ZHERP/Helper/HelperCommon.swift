@@ -317,7 +317,7 @@ public func setButtonCommon(button: UIButton, title: String, isEnabled: Bool = t
     button.setTitleColor(Specs.color.white, for: UIControlState())
     button.layer.cornerRadius = Specs.border.radius
     button.layer.masksToBounds = true
-    button.backgroundColor = Specs.color.btnBg
+    button.backgroundColor = UIColor.hexInt(0x007aff) //Specs.color.btnBg
     button.isEnabled = isEnabled
 }
 

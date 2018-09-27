@@ -31,7 +31,22 @@ class ResetViewController: UIViewController, UITextFieldDelegate {
         super.viewDidLoad()
         
         //视图背景色
-        self.view.backgroundColor = Specs.color.main
+//        self.view.backgroundColor = Specs.color.main
+        //计算视图比例
+        let ratio = UIScreen.main.bounds.width / UIScreen.main.bounds.height
+        //根据比例裁剪出背景图
+        let image = UIImage(named: "LoginRegisterBg")?.crop(ratio: ratio)
+        //设置当前视图背景
+        self.view.layer.contents = image?.cgImage
+        
+        // 多人icon
+        let multiplayer = UIImageView()
+        multiplayer.image = UIImage(named: "iconfont-multiplayer")
+        self.view.addSubview(multiplayer)
+        multiplayer.snp.makeConstraints { (make) -> Void in
+            make.top.equalTo(40)
+            make.centerX.equalTo(self.view)
+        }
         
         //标题label
         self.titleLabel = UILabel()
@@ -40,27 +55,25 @@ class ResetViewController: UIViewController, UITextFieldDelegate {
         self.titleLabel.font = UIFont.systemFont(ofSize: 25)
         self.view.addSubview(self.titleLabel)
         self.titleLabel.snp.makeConstraints { (make) -> Void in
-            make.top.equalTo(44)
-            make.left.equalTo(self.CV/2)
-            make.height.equalTo(self.CV)
+            make.top.equalTo(multiplayer.snp.bottom).offset(10)
+            make.centerX.equalTo(self.view)
         }
         
         // Form
         let formViewHeight = 200
         self.formView = UIView()
         self.formView.layer.borderWidth = 0
-//        self.formView.layer.backgroundColor = UIColor.gray.cgColor
         self.view.addSubview(self.formView)
         self.formView.snp.makeConstraints { (make) -> Void in
             make.left.equalTo(self.CV/2)
             make.right.equalTo(self.CV/2 * -1)
             make.height.equalTo(formViewHeight)
-            self.topConstraint = make.centerY.equalTo(self.view).offset(-30).constraint
+            self.topConstraint = make.centerY.equalTo(self.view).offset(-50).constraint
         }
         
         // Password Field
         self.passwordTxt = UITextField()
-        self.passwordTxt.delegate = self
+//        self.passwordTxt.delegate = self
         setTextFieldCommonFeatures(textFiled: self.passwordTxt, width: 0, height: 0)
         setTextFieldPlaceholser(textFiled: self.passwordTxt, placeholder: "请输入密码(6~16位数字+字母)")
         self.formView.addSubview(self.passwordTxt)
@@ -71,9 +84,20 @@ class ResetViewController: UIViewController, UITextFieldDelegate {
             make.top.equalTo(self.formView.snp.top).offset(5)
         }
         
+        // Separator
+        let SeparatorP = UILabel()
+        SeparatorP.backgroundColor = Specs.color.white
+        self.formView.addSubview(SeparatorP)
+        SeparatorP.snp.makeConstraints {(make) -> Void in
+            make.width.equalTo(self.passwordTxt)
+            make.left.equalTo(self.passwordTxt.snp.left)
+            make.height.equalTo(0.5)
+            make.top.equalTo(self.passwordTxt.snp.bottom)
+        }
+        
         // RePassword Field
         self.repasswordTxt = UITextField()
-        self.repasswordTxt.delegate = self
+//        self.repasswordTxt.delegate = self
         setTextFieldCommonFeatures(textFiled: self.repasswordTxt, width: 0, height: 0)
         setTextFieldPlaceholser(textFiled: self.repasswordTxt, placeholder: "请重复输入密码")
         self.formView.addSubview(self.repasswordTxt)
@@ -82,6 +106,17 @@ class ResetViewController: UIViewController, UITextFieldDelegate {
             make.right.equalTo(-5)
             make.height.equalTo(self.CV)
             make.top.equalTo(self.passwordTxt.snp.bottom).offset(10)
+        }
+        
+        // Separator
+        let SeparatorRP = UILabel()
+        SeparatorRP.backgroundColor = Specs.color.white
+        self.formView.addSubview(SeparatorRP)
+        SeparatorRP.snp.makeConstraints {(make) -> Void in
+            make.width.equalTo(self.repasswordTxt)
+            make.left.equalTo(self.repasswordTxt.snp.left)
+            make.height.equalTo(0.5)
+            make.top.equalTo(self.repasswordTxt.snp.bottom)
         }
         
         // Reset Button
@@ -188,8 +223,8 @@ class ResetViewController: UIViewController, UITextFieldDelegate {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        setTextFieldBottomLine(textFiled: self.passwordTxt)
-        setTextFieldBottomLine(textFiled: self.repasswordTxt)
+//        setTextFieldBottomLine(textFiled: self.passwordTxt)
+//        setTextFieldBottomLine(textFiled: self.repasswordTxt)
     }
     
     func loginSuccess(message: String) {

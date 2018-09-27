@@ -2,11 +2,11 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "iconfont-password.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
+      "filename" : "iconfont-user@2x.png",
       "scale" : "2x"
     },
     {

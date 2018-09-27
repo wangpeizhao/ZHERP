@@ -37,31 +37,44 @@ class RegisteringViewController: UIViewController, UITextFieldDelegate {
         super.viewDidLoad()
         
         //视图背景色
-        self.view.backgroundColor = Specs.color.main
+//        self.view.backgroundColor = Specs.color.main
+        //计算视图比例
+        let ratio = UIScreen.main.bounds.width / UIScreen.main.bounds.height
+        //根据比例裁剪出背景图
+        let image = UIImage(named: "LoginRegisterBg")?.crop(ratio: ratio)
+        //设置当前视图背景
+        self.view.layer.contents = image?.cgImage
+        
+        // 多人icon
+        let multiplayer = UIImageView()
+        multiplayer.image = UIImage(named: "iconfont-multiplayer")
+        self.view.addSubview(multiplayer)
+        multiplayer.snp.makeConstraints { (make) -> Void in
+            make.top.equalTo(40)
+            make.centerX.equalTo(self.view)
+        }
         
         //标题label
         self.titleLabel = UILabel()
-        self.titleLabel.text = "欢迎注册纵横ERP"
+        self.titleLabel.text = "纵横ERP - 注册"
         self.titleLabel.textColor = Specs.color.white
         self.titleLabel.font = UIFont.systemFont(ofSize: 25)
         self.view.addSubview(self.titleLabel)
         self.titleLabel.snp.makeConstraints { (make) -> Void in
-            make.top.equalTo(44)
-            make.left.equalTo(self.CV/2)
-            make.height.equalTo(self.CV)
+            make.top.equalTo(multiplayer.snp.bottom).offset(10)
+            make.centerX.equalTo(self.view)
         }
         
         // Form
         let formViewHeight = 300
         self.formView = UIView()
         self.formView.layer.borderWidth = 0
-//        self.formView.layer.backgroundColor = UIColor.gray.cgColor
         self.view.addSubview(self.formView)
         self.formView.snp.makeConstraints { (make) -> Void in
             make.left.equalTo(self.CV/2)
             make.right.equalTo(self.CV/2 * -1)
             make.height.equalTo(formViewHeight)
-            self.topConstraint = make.centerY.equalTo(self.view).constraint
+            self.topConstraint = make.centerY.equalTo(self.view).offset(-40).constraint
         }
         
         // User Icon
@@ -78,7 +91,7 @@ class RegisteringViewController: UIViewController, UITextFieldDelegate {
         
         // Username Field
         self.usernameTxt = UITextField()
-        self.usernameTxt.delegate = self
+//        self.usernameTxt.delegate = self
         setTextFieldCommonFeatures(textFiled: self.usernameTxt)
         setTextFieldPlaceholser(textFiled: self.usernameTxt, placeholder: "请输入手机号码")
         //输入框左侧图标
@@ -89,6 +102,17 @@ class RegisteringViewController: UIViewController, UITextFieldDelegate {
             make.right.equalTo(-5)
             make.height.equalTo(self.CV)
             make.top.equalTo(self.formView.snp.top).offset(5)
+        }
+        
+        // Separator
+        let SeparatorU = UILabel()
+        SeparatorU.backgroundColor = Specs.color.white
+        self.formView.addSubview(SeparatorU)
+        SeparatorU.snp.makeConstraints {(make) -> Void in
+            make.width.equalTo(self.usernameTxt)
+            make.left.equalTo(self.usernameTxt.snp.left)
+            make.height.equalTo(0.5)
+            make.top.equalTo(self.usernameTxt.snp.bottom)
         }
         
         // Username Tip
@@ -105,7 +129,7 @@ class RegisteringViewController: UIViewController, UITextFieldDelegate {
         
         // Password Field
         self.passwordTxt = UITextField()
-        self.passwordTxt.delegate = self
+//        self.passwordTxt.delegate = self
         setTextFieldCommonFeatures(textFiled: self.passwordTxt)
         setTextFieldPlaceholser(textFiled: self.passwordTxt, placeholder: "请输入密码(6~16位数字+字母)")
         //输入框左侧图标
@@ -116,6 +140,17 @@ class RegisteringViewController: UIViewController, UITextFieldDelegate {
             make.right.equalTo(-5)
             make.height.equalTo(self.CV)
             make.top.equalTo(self.usernameTip.snp.bottom).offset(0)
+        }
+        
+        // Separator
+        let SeparatorP = UILabel()
+        SeparatorP.backgroundColor = Specs.color.white
+        self.formView.addSubview(SeparatorP)
+        SeparatorP.snp.makeConstraints {(make) -> Void in
+            make.width.equalTo(self.passwordTxt)
+            make.left.equalTo(self.passwordTxt.snp.left)
+            make.height.equalTo(0.5)
+            make.top.equalTo(self.passwordTxt.snp.bottom)
         }
         
         // Password Tip
@@ -132,7 +167,7 @@ class RegisteringViewController: UIViewController, UITextFieldDelegate {
         
         // RePassword Field
         self.repasswordTxt = UITextField()
-        self.repasswordTxt.delegate = self
+//        self.repasswordTxt.delegate = self
         setTextFieldCommonFeatures(textFiled: self.repasswordTxt)
         setTextFieldPlaceholser(textFiled: self.repasswordTxt, placeholder: "请输入密码(6~16位数字+字母)")
         //输入框左侧图标
@@ -143,6 +178,17 @@ class RegisteringViewController: UIViewController, UITextFieldDelegate {
             make.right.equalTo(-5)
             make.height.equalTo(self.CV)
             make.top.equalTo(self.passwordTip.snp.bottom).offset(0)
+        }
+        
+        // Separator
+        let SeparatorRP = UILabel()
+        SeparatorRP.backgroundColor = Specs.color.white
+        self.formView.addSubview(SeparatorRP)
+        SeparatorRP.snp.makeConstraints {(make) -> Void in
+            make.width.equalTo(self.repasswordTxt)
+            make.left.equalTo(self.repasswordTxt.snp.left)
+            make.height.equalTo(0.5)
+            make.top.equalTo(self.repasswordTxt.snp.bottom)
         }
         
         // RePassword Tip
@@ -165,14 +211,14 @@ class RegisteringViewController: UIViewController, UITextFieldDelegate {
         self.registerBtn.snp.makeConstraints { (make) -> Void in
             make.left.equalTo(5)
             make.right.equalTo(-5)
-            make.top.equalTo(self.repasswordTip.snp.bottom).offset(20)
+            make.top.equalTo(self.repasswordTip.snp.bottom).offset(10)
             make.height.equalTo(self.CV)
         }
         
         // Login Button
         self.loginBtn = UIButton()
         self.loginBtn.setTitle("登录", for: UIControlState())
-        self.loginBtn.setTitleColor(Specs.color.green, for: UIControlState())
+        self.loginBtn.setTitleColor(Specs.color.main, for: UIControlState())
         self.loginBtn.titleLabel?.font = UIFont.systemFont(ofSize: Specs.fontSize.regular)
         self.loginBtn.addTarget(self, action: #selector(LoginBtn(_:)), for: .touchUpInside)
         self.formView.addSubview(self.loginBtn)
@@ -194,9 +240,9 @@ class RegisteringViewController: UIViewController, UITextFieldDelegate {
             make.height.equalTo(self.loginBtn)
         }
         
-        setTextFieldBottomLine(textFiled: self.usernameTxt)
-        setTextFieldBottomLine(textFiled: self.passwordTxt)
-        setTextFieldBottomLine(textFiled: self.repasswordTxt)
+//        setTextFieldBottomLine(textFiled: self.usernameTxt)
+//        setTextFieldBottomLine(textFiled: self.passwordTxt)
+//        setTextFieldBottomLine(textFiled: self.repasswordTxt)
         
         
         let registerVM = RegisterVM()
@@ -274,9 +320,9 @@ class RegisteringViewController: UIViewController, UITextFieldDelegate {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        setTextFieldBottomLine(textFiled: self.usernameTxt)
-        setTextFieldBottomLine(textFiled: self.passwordTxt)
-        setTextFieldBottomLine(textFiled: self.repasswordTxt)
+//        setTextFieldBottomLine(textFiled: self.usernameTxt)
+//        setTextFieldBottomLine(textFiled: self.passwordTxt)
+//        setTextFieldBottomLine(textFiled: self.repasswordTxt)
     }
     
     func loginSuccess(message: String) {

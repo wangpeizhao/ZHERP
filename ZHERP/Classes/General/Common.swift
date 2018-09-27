@@ -26,6 +26,9 @@ var GlobalTabBarHeight: CGFloat = 44.0
 // 全局分隔符
 let globalSeparator: String = "*Z*H*E*R*P*"
 
+// [Todo 暂没更好的处理方案]订单页面切换tabBar显示隐藏问题
+var globalViewControllerForHiddenTabBar: UIViewController!
+
 // MARK:- 颜色方法
 func normalRGBA (r:CGFloat, g:CGFloat, b:CGFloat, a:CGFloat) -> UIColor {
     return UIColor (red: r/255.0, green: g/255.0, blue: b/255.0, alpha: a)

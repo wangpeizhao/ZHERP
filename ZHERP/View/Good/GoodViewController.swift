@@ -70,9 +70,12 @@ class GoodViewController: UIViewController {
         self.view.backgroundColor = Specs.color.white
         setNavBarTitle(view: self, title: self._title)
         setNavBarBackBtn(view: self, title: "", selector: #selector(actionBack))
-//        setNavBarRightBtn(view: self, title: "更多", selector: #selector(actionMore))
         
         // 设置右侧按钮
+        let leftBarBtn = UIBarButtonItem(title: "入仓", style: .plain, target: self, action: #selector(actionAdd))
+        leftBarBtn.tintColor = Specs.color.white
+        self.navigationItem.leftBarButtonItems = [leftBarBtn]
+        
         let rightBarBtn = UIBarButtonItem(title: "", style: .plain, target: self, action: #selector(actionScan))
         rightBarBtn.image = UIImage(named: "scan")
         rightBarBtn.tintColor = Specs.color.white
@@ -184,7 +187,7 @@ class GoodViewController: UIViewController {
         self.view.addSubview(self.categoryTable)
         
         // add button
-        self._setAddBtn()
+//        self._setAddBtn()
     }
     
     fileprivate func _setAddBtn() {
