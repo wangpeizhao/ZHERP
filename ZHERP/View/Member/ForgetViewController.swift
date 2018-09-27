@@ -79,6 +79,7 @@ class ForgetViewController: UIViewController, UITextFieldDelegate {
 //        self.usernameTxt.delegate = self
         setTextFieldCommonFeatures(textFiled: self.usernameTxt, width: 0, height: 0)
         setTextFieldPlaceholser(textFiled: self.usernameTxt, placeholder: "请输入手机号码")
+        self.usernameTxt.keyboardType = UIKeyboardType.phonePad
         self.formView.addSubview(self.usernameTxt)
         self.usernameTxt.snp.makeConstraints { (make) -> Void in
             make.left.equalTo(5)
@@ -103,13 +104,14 @@ class ForgetViewController: UIViewController, UITextFieldDelegate {
 //        self.securityCodeTxt.delegate = self
         setTextFieldCommonFeatures(textFiled: self.securityCodeTxt, width: 0, height: 0)
         setTextFieldPlaceholser(textFiled: self.securityCodeTxt, placeholder: "请输入手机验证码")
+        self.securityCodeTxt.keyboardType = UIKeyboardType.numberPad
         self.formView.addSubview(self.securityCodeTxt)
         self.securityCodeTxt.snp.makeConstraints { (make) -> Void in
             make.left.equalTo(5)
 //            make.right.equalTo(self.sendBtn.snp.left).offset(-10)
             make.height.equalTo(self.CV)
             make.top.equalTo(self.usernameTxt.snp.bottom).offset(20)
-            make.width.equalTo(ScreenWidth - self.CV - 100 - 10)
+            make.width.equalTo(ScreenWidth - self.CV - 100 - 20)
         }
         // Separator
         let SeparatorC = UILabel()

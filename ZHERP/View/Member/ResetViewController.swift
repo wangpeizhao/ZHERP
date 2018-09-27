@@ -76,6 +76,8 @@ class ResetViewController: UIViewController, UITextFieldDelegate {
 //        self.passwordTxt.delegate = self
         setTextFieldCommonFeatures(textFiled: self.passwordTxt, width: 0, height: 0)
         setTextFieldPlaceholser(textFiled: self.passwordTxt, placeholder: "请输入密码(6~16位数字+字母)")
+        self.passwordTxt.keyboardType = UIKeyboardType.asciiCapable
+        self.passwordTxt.isSecureTextEntry = true
         self.formView.addSubview(self.passwordTxt)
         self.passwordTxt.snp.makeConstraints { (make) -> Void in
             make.left.equalTo(5)
@@ -100,6 +102,8 @@ class ResetViewController: UIViewController, UITextFieldDelegate {
 //        self.repasswordTxt.delegate = self
         setTextFieldCommonFeatures(textFiled: self.repasswordTxt, width: 0, height: 0)
         setTextFieldPlaceholser(textFiled: self.repasswordTxt, placeholder: "请重复输入密码")
+        self.repasswordTxt.keyboardType = UIKeyboardType.asciiCapable
+        self.repasswordTxt.isSecureTextEntry = true
         self.formView.addSubview(self.repasswordTxt)
         self.repasswordTxt.snp.makeConstraints { (make) -> Void in
             make.left.equalTo(5)

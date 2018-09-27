@@ -59,7 +59,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //        let firstVC = HomeViewController(nibName:nil,bundle: nil)
 //        let navigation = UINavigationController(rootViewController: firstVC)
 //        self.window?.rootViewController = navigation;
-
+        
+        
+//        let LoginingView = LoginingViewController()
+//        self.window!.rootViewController = LoginingView
+        
         self.window?.backgroundColor = Specs.color.white
         return true
     }

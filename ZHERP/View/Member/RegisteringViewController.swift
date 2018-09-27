@@ -96,6 +96,7 @@ class RegisteringViewController: UIViewController, UITextFieldDelegate {
         setTextFieldPlaceholser(textFiled: self.usernameTxt, placeholder: "请输入手机号码")
         //输入框左侧图标
         self.usernameTxt.leftView?.addSubview(usernameIcon)
+        self.usernameTxt.keyboardType = UIKeyboardType.phonePad
         self.formView.addSubview(self.usernameTxt)
         self.usernameTxt.snp.makeConstraints { (make) -> Void in
             make.left.equalTo(5)
@@ -134,6 +135,8 @@ class RegisteringViewController: UIViewController, UITextFieldDelegate {
         setTextFieldPlaceholser(textFiled: self.passwordTxt, placeholder: "请输入密码(6~16位数字+字母)")
         //输入框左侧图标
         self.passwordTxt.leftView?.addSubview(passwordIcon)
+        self.passwordTxt.keyboardType = UIKeyboardType.asciiCapable
+        self.passwordTxt.isSecureTextEntry = true
         self.formView.addSubview(self.passwordTxt)
         self.passwordTxt.snp.makeConstraints { (make) -> Void in
             make.left.equalTo(5)
@@ -172,6 +175,8 @@ class RegisteringViewController: UIViewController, UITextFieldDelegate {
         setTextFieldPlaceholser(textFiled: self.repasswordTxt, placeholder: "请输入密码(6~16位数字+字母)")
         //输入框左侧图标
         self.repasswordTxt.leftView?.addSubview(repasswordIcon)
+        self.passwordTxt.keyboardType = UIKeyboardType.asciiCapable
+        self.repasswordTxt.isSecureTextEntry = true
         self.formView.addSubview(self.repasswordTxt)
         self.repasswordTxt.snp.makeConstraints { (make) -> Void in
             make.left.equalTo(5)
@@ -329,7 +334,8 @@ class RegisteringViewController: UIViewController, UITextFieldDelegate {
         _alert(view: self, message: message)
         _login()
 //        self.navigationController?.popToViewController(MemberViewController(), animated: true)
-        self.navigationController?.popToRootViewController(animated: true)
+//        self.navigationController?.popToRootViewController(animated: true)
+        _open(view: self, vc: HomeViewController())
     }
     
     override func didReceiveMemoryWarning() {

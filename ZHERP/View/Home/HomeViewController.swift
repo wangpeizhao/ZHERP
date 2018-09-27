@@ -102,6 +102,9 @@ class HomeViewController: BaseViewController{
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        if(!checkLoginStatus()) {
+            _open(view: self, vcName: "login", withNav: false)
+        }
         super.viewWillAppear(animated)
     }
 

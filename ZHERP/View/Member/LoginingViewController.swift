@@ -90,6 +90,7 @@ class LoginingViewController: UIViewController, UITextFieldDelegate {
         self.usernameTxt.tag = 100
         //输入框左侧图标
         self.usernameTxt.leftView?.addSubview(usernameIcon)
+        self.usernameTxt.keyboardType = UIKeyboardType.phonePad
         self.formView.addSubview(self.usernameTxt)
         self.usernameTxt.snp.makeConstraints { (make) -> Void in
             make.left.equalTo(5)
@@ -116,6 +117,9 @@ class LoginingViewController: UIViewController, UITextFieldDelegate {
         self.passwordTxt.tag = 101
         //输入框左侧图标
         self.passwordTxt.leftView?.addSubview(passwordIcon)
+        self.passwordTxt.keyboardType = UIKeyboardType.asciiCapable
+        self.passwordTxt.isSecureTextEntry = true
+        self.passwordTxt.returnKeyType = UIReturnKeyType.done
         self.formView.addSubview(self.passwordTxt)
         self.passwordTxt.snp.makeConstraints { (make) -> Void in
             make.left.equalTo(5)
@@ -137,8 +141,7 @@ class LoginingViewController: UIViewController, UITextFieldDelegate {
         
         // Login Button
         self.loginBtn = UIButton()
-        self.loginBtn.addTarget(self, action: #selector(loginBtnClicked), for: .touchUpInside)
-        setButtonCommon(button: self.loginBtn, title: "登录", isEnabled: false)
+        setButtonCommon(button: self.loginBtn, title: "登录", isEnabled: true)
         self.loginBtn.addTarget(self, action: #selector(loginBtnClicked(_:)), for: .touchUpInside)
         self.formView.addSubview(self.loginBtn)
         self.loginBtn.snp.makeConstraints { (make) -> Void in
@@ -247,11 +250,15 @@ class LoginingViewController: UIViewController, UITextFieldDelegate {
         _open(view: self, vcName: "register", withNav: false)
     }
     @objc func loginBtnClicked(_ sender: Any) {
-        guard usernameTxt.text != nil && passwordTxt.text != nil else {
-            _alert(view: self, message: "请先填写完信息")
-            return
-        }
-//        sender.resignFirstResponder()
+        print("loginBtnClicked")
+//        guard self.usernameTxt.text != "" && self.passwordTxt.text != "" else {
+//            _alert(view: self, message: "请先填写完信息")
+//            return
+//        }
+//        _dismiss(view: self)
+        self.usernameTxt.resignFirstResponder()
+        self.passwordTxt.resignFirstResponder()
+        self.loginSuccess(message: "Login Success")
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -261,10 +268,19 @@ class LoginingViewController: UIViewController, UITextFieldDelegate {
     }
     
     func loginSuccess(message: String) {
-        _alert(view: self, message: message)
-        _login()
-        //        self.navigationController?.popToViewController(MemberViewController(), animated: true)
-        self.navigationController?.popToRootViewController(animated: true)
+//        _alert(view: self, message: message)
+//        _login()
+//        self.navigationController?.popToViewController(MemberViewController(), animated: true)
+//        self.navigationController?.popToRootViewController(animated: true)
+//        _open(view: self, vc: HomeViewController())
+//        _dismiss(view: self)
+//        _open(view: self, vcName: "home", withNav: true)
+//        self.view.window?.rootViewController = HomeViewController()
+        
+        let vc = HomeViewController()
+//        let nav = UINavigationController(rootViewController: vc)
+//        self.present(nav, animated: true, completion: nil)
+        _push(view: self, target: vc)
     }
     
     override func didReceiveMemoryWarning() {
