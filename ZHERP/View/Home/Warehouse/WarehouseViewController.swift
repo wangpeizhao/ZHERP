@@ -15,7 +15,7 @@ class WarehouseViewController: UIViewController {
     let CELL_IDENTIFY_ID = "CELL_IDENTIFY_ID"
     
     let dataArr = [
-        ["name":"货品管理", "key":"goods","pic":"swift.png"],
+//        ["name":"货品管理", "key":"goods","pic":"swift.png"],
         ["name":"仓库管理", "key":"warehouse","pic":"xcode.png"],
         ["name":"库位管理", "key":"location","pic":"java.png"],
         ["name":"货品分类", "key":"classify","pic":"php.png"],

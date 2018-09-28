@@ -23,7 +23,7 @@ class ZHQRCodeViewController: UIViewController {
         
         if self.navTitle != "" {
             setNavBarTitle(view: self, title: self.navTitle)
-            setNavBarBackBtn(view: self, title: self.navTitle, selector: #selector(actionBack))
+            setNavBarBackBtn(view: self, title: "", selector: #selector(actionBack))
         } else {
             self.navigationItem.title = ZHQRCodeManager.zh_navigationItemTitle(type: self.config.scannerType)
         }

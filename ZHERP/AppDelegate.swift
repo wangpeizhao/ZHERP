@@ -65,6 +65,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //        let LoginingView = LoginingViewController()
 //        self.window!.rootViewController = LoginingView
         
+        self.window?.rootViewController = LoginingViewController()
+        
         self.window?.backgroundColor = Specs.color.white
         return true
     }

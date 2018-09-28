@@ -30,17 +30,17 @@ class SettingViewController: UIViewController,UITableViewDataSource ,UITableView
             0:[[String]]([
                 ["security","账号与安全"]]),
             1:[[String]]([
-                ["notify","新消息通知"],
+                ["notify","新消息通知 (可点击)"],
                 ["privacy","隐私"],
                 ["common","通用"]]),
             2:[[String]]([
-                ["protocol","使用协议"],
-                ["responsibility","责任协议"],
+                ["protocol","使用协议 (可点击)"],
+                ["responsibility","责任协议 (可点击)"],
                 ["feedback","帮助与反馈"],
-                ["about","关于纵横"],
+                ["about","关于纵横 (可点击)"],
                 ["version","当前版本"]]),
             3:[[String]]([
-                ["logout","退出登录"]]),
+                ["logout","退出登录 (可点击)"]]),
         ];
         //创建表视图
         self.tableView = UITableView(frame:self.view.frame, style:.grouped)

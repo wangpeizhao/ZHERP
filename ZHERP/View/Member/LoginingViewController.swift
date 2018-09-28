@@ -268,6 +268,11 @@ class LoginingViewController: UIViewController, UITextFieldDelegate {
     }
     
     func loginSuccess(message: String) {
+        let mainStoryboard = UIStoryboard(name:"Main", bundle:nil)
+        let viewController = mainStoryboard.instantiateInitialViewController()
+        self.present(viewController!, animated: true, completion:nil)
+        
+        
 //        _alert(view: self, message: message)
 //        _login()
 //        self.navigationController?.popToViewController(MemberViewController(), animated: true)
@@ -275,12 +280,15 @@ class LoginingViewController: UIViewController, UITextFieldDelegate {
 //        _open(view: self, vc: HomeViewController())
 //        _dismiss(view: self)
 //        _open(view: self, vcName: "home", withNav: true)
-//        self.view.window?.rootViewController = HomeViewController()
         
-        let vc = HomeViewController()
+//        self.view.window?.rootViewController = HomeViewController()
+//        self.navigationController!.popViewController(animated: true)
+//        self.performSegue(withIdentifier: "HomeViewController", sender: self)
+//        let vc = HomeViewController()
 //        let nav = UINavigationController(rootViewController: vc)
 //        self.present(nav, animated: true, completion: nil)
-        _push(view: self, target: vc)
+//        _push(view: self, target: vc)
+//        _open(view: self, vcName: "home", withNav: false)
     }
     
     override func didReceiveMemoryWarning() {

@@ -25,8 +25,8 @@ class HomeViewController: BaseViewController{
         super.viewDidLoad()
         
 //        self.navHeight = self.navigationController?.navigationBar.frame.size.height
-        self.navHeight = self.navigationController?.navigationBar.frame.maxY
-        self.tabBarHeight = self.tabBarController?.tabBar.bounds.size.height
+        self.navHeight = self.navigationController?.navigationBar.frame.maxY ?? 0.0
+        self.tabBarHeight = self.tabBarController?.tabBar.bounds.size.height ?? 0.0
         
         self.view.backgroundColor = UIColor.clear
         setNavBarTitle(view: self, title: "纵横ERP", transparent: false)

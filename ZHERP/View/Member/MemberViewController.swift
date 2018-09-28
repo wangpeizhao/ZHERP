@@ -14,7 +14,7 @@ class MemberViewController: MemberBaseViewController {
     
     fileprivate var user: Member {
         get {
-            return Member(name: "BayMax", education: "CMU")
+            return Member(name: "BayMax (可点击)", education: "CMU")
         }
     }
     
