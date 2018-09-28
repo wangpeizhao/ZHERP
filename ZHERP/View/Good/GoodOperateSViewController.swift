@@ -104,19 +104,19 @@ class GoodOperateSViewController: UIViewController, UIImagePickerControllerDeleg
     
     @objc func actionSave() {
         if (self._initData?.sn == "") {
-            _alert(view: self, message: "请填写货品编号", handler: actionResignFirstResponder)
+            _alert(view: self, message: "请填写货品编号", handler: actionBecomeFirstResponder)
             return
         }
         if (self._initData?.title == "") {
-            _alert(view: self, message: "请填写货品名称")
+            _alert(view: self, message: "请填写货品名称", handler: actionBecomeFirstResponder)
             return
         }
         if (self._initData?.salePrice == "") {
-            _alert(view: self, message: "请填写销售价格")
+            _alert(view: self, message: "请填写销售价格", handler: actionBecomeFirstResponder)
             return
         }
         if (self._initData?.costPrice == "") {
-            _alert(view: self, message: "请填写成本价格")
+            _alert(view: self, message: "请填写成本价格", handler: actionBecomeFirstResponder)
             return
         }
         if (self.callBackAssign != nil) {
@@ -128,10 +128,10 @@ class GoodOperateSViewController: UIViewController, UIImagePickerControllerDeleg
         _alert(view: self, message: "提交成功", handler: actionSuccess)
     }
     
-    @objc func actionResignFirstResponder(_: UIAlertAction)->Void {
+    @objc func actionBecomeFirstResponder(_: UIAlertAction)->Void {
         let _indexPath: IndexPath = IndexPath(row: 0, section: 0)
         let _cell: SMemberOperateTableViewCell = self.tableView.cellForRow(at: _indexPath as IndexPath) as! SMemberOperateTableViewCell
-        _cell.TextFieldValue.resignFirstResponder()
+        _cell.TextFieldValue.becomeFirstResponder()
     }
     
     fileprivate func actionAddImg() {
@@ -148,7 +148,7 @@ class GoodOperateSViewController: UIViewController, UIImagePickerControllerDeleg
     //缩略图imageView点击
     fileprivate func imageViewPreview(row: Int) {
         //进入图片全屏展示
-        let previewVC = HGImagePreviewVC(images: self.selectImgs, index: row)
+        let previewVC = HGImagePreviewVC(images: self.selectImgs, imagesURL: [], index: row)
         _push(view: self, target: previewVC, rootView: false)
     }
     

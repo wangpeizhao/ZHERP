@@ -74,7 +74,7 @@ class HPickingGoodViewController: UIViewController, SliderGalleryControllerDeleg
     @objc func actionQuantity(_: UIAlertAction)->Void {
         let _indexPath: IndexPath = IndexPath(row: 0, section: 0)
         let _cell: SMemberOperateTableViewCell = self.tableView.cellForRow(at: _indexPath as IndexPath) as! SMemberOperateTableViewCell
-        _cell.TextFieldValue.resignFirstResponder()
+        _cell.TextFieldValue.becomeFirstResponder()
     }
     
     @objc func actionSuccess(_: UIAlertAction)->Void {

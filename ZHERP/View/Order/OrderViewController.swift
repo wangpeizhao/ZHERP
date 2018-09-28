@@ -88,7 +88,10 @@ class OrderViewController: UIViewController, UIGestureRecognizerDelegate {
         //导航栏背景色（下拉菜单栏也用同样的颜色）
         self.navigationController?.navigationBar.barTintColor = Specs.color.main
         //导航栏文字使用白色
-        self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor.white,NSAttributedStringKey.font: UIFont.boldSystemFont(ofSize: 24)]
+        self.navigationController?.navigationBar.titleTextAttributes = [
+            NSAttributedStringKey.foregroundColor: UIColor.white,
+            NSAttributedStringKey.font: UIFont.boldSystemFont(ofSize: 24)
+        ]
         //下拉菜单项
         let items = ["线上订单", "线下订单"]
         

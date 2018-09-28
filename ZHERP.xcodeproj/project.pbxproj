@@ -216,6 +216,7 @@
 		9EFB827221572B55007A2893 /* HGImagePreviewVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EFB827021572B54007A2893 /* HGImagePreviewVC.swift */; };
 		9EFB82752157EF61007A2893 /* GoodOperateImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EFB82742157EF61007A2893 /* GoodOperateImageView.swift */; };
 		9EFB82772157F12A007A2893 /* GoodOperateImageViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EFB82762157F12A007A2893 /* GoodOperateImageViewCell.swift */; };
+		9EFB827A215BC84C007A2893 /* ZHERP.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 9EFB8278215BC84C007A2893 /* ZHERP.xcdatamodeld */; };
 		9EFF259F2143FD9F0055EB61 /* HPickingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EFF259E2143FD9F0055EB61 /* HPickingViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -458,6 +459,7 @@
 		9EFB827021572B54007A2893 /* HGImagePreviewVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HGImagePreviewVC.swift; sourceTree = "<group>"; };
 		9EFB82742157EF61007A2893 /* GoodOperateImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoodOperateImageView.swift; sourceTree = "<group>"; };
 		9EFB82762157F12A007A2893 /* GoodOperateImageViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoodOperateImageViewCell.swift; sourceTree = "<group>"; };
+		9EFB8279215BC84C007A2893 /* ZHERP.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ZHERP.xcdatamodel; sourceTree = "<group>"; };
 		9EFF259E2143FD9F0055EB61 /* HPickingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HPickingViewController.swift; sourceTree = "<group>"; };
 		9F01564B284FE65EC6264542 /* Pods-ZHERPUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZHERPUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-ZHERPUITests/Pods-ZHERPUITests.release.xcconfig"; sourceTree = "<group>"; };
 		A20BF83E3F3D312627719EFA /* Pods-ZHERPTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZHERPTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-ZHERPTests/Pods-ZHERPTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -705,6 +707,7 @@
 				9E523DF52104615700CF921F /* guideImage6.gif */,
 				9E523DF82104615700CF921F /* guideImage7.gif */,
 				9E523DF62104615700CF921F /* guideImage8.gif */,
+				9EFB8278215BC84C007A2893 /* ZHERP.xcdatamodeld */,
 			);
 			path = ZHERP;
 			sourceTree = "<group>";
@@ -1546,6 +1549,7 @@
 				9E549931213EBC4A001E4C36 /* WCategoryManagerViewController.swift in Sources */,
 				9E88ED3720FCE9C400DF091F /* MemberViewController.swift in Sources */,
 				2C9AC891214271B4004F252D /* StatisticNavigationViewController.swift in Sources */,
+				9EFB827A215BC84C007A2893 /* ZHERP.xcdatamodeld in Sources */,
 				9E523E322104DA1000CF921F /* GifImageOperation.swift in Sources */,
 				9EFB827221572B55007A2893 /* HGImagePreviewVC.swift in Sources */,
 				9E523E9A21127EC800CF921F /* UIView-Extensions.swift in Sources */,
@@ -2047,6 +2051,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		9EFB8278215BC84C007A2893 /* ZHERP.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				9EFB8279215BC84C007A2893 /* ZHERP.xcdatamodel */,
+			);
+			currentVersion = 9EFB8279215BC84C007A2893 /* ZHERP.xcdatamodel */;
+			path = ZHERP.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 9E29030D20F7B99800F11C63 /* Project object */;
 }
