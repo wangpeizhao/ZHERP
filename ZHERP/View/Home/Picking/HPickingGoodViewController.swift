@@ -169,12 +169,15 @@ class HPickingGoodViewController: UIViewController, SliderGalleryControllerDeleg
     @objc func handleTapAction(_ tap:UITapGestureRecognizer)->Void{
         //获取图片索引值
         let index = sliderGallery.currentIndex
-        //弹出索引信息
-        let alertController = UIAlertController(title: "您点击的图片索引是：",
-                                                message: "\(index)", preferredStyle: .alert)
-        let cancelAction = UIAlertAction(title: "确定", style: .cancel, handler: nil)
-        alertController.addAction(cancelAction)
-        self.present(alertController, animated: true, completion: nil)
+//        //弹出索引信息
+//        let alertController = UIAlertController(title: "您点击的图片索引是：",
+//                                                message: "\(index)", preferredStyle: .alert)
+//        let cancelAction = UIAlertAction(title: "确定", style: .cancel, handler: nil)
+//        alertController.addAction(cancelAction)
+//        self.present(alertController, animated: true, completion: nil)
+        let selectImgs:[UIImage] = []
+        let previewVC = HGImagePreviewVC(images: selectImgs, imagesURL: self.images, index: index)
+        _push(view: self, target: previewVC, rootView: false)
     }
     
     fileprivate func _rowsModel(at section: Int) -> [Any] {
@@ -227,8 +230,8 @@ extension HPickingGoodViewController: UITableViewDelegate, UITableViewDataSource
         self.addChildViewController(self.sliderGallery)
         _sliderGalleryView.addSubview(self.sliderGallery.view)
 //        //添加组件的点击事件
-//        let tap = UITapGestureRecognizer(target: self, action: #selector(handleTapAction(_:)))
-//        sliderGallery.view.addGestureRecognizer(tap)
+        let tap = UITapGestureRecognizer(target: self, action: #selector(handleTapAction(_:)))
+        sliderGallery.view.addGestureRecognizer(tap)
         
         _sukView.addSubview(self._HPickingGoodView.goodDeatilView(sukData: self.valueArr))
         

@@ -1,23 +1,21 @@
 //
-//  OrderAllViewController.swift
+//  OrderRefundViewController.swift
 //  ZHERP
 //
-//  Created by MrParker on 2018/7/29.
-//  Copyright © 2018 MrParker. All rights reserved.
+//  Created by MrParker on 2018/9/28.
+//  Copyright © 2018年 MrParker. All rights reserved.
 //
 
 import UIKit
 import MJRefresh
 
-class OrderUnpayViewController: UIViewController {
+class OrderRefundViewController: UIViewController {
     
     var tableView: UITableView!
     let CELL_IDENTIFY_ID = "CELL_IDENTIFY_ID"
     // delegate
     let _delegate = OrderDelegateDataSource()
     
-    var navHeight: CGFloat!
-    var tabBarHeight: CGFloat!
     // 顶部刷新
     let header = MJRefreshNormalHeader()
     // 底部刷新
@@ -31,6 +29,10 @@ class OrderUnpayViewController: UIViewController {
         ["imagePath": "bayMax", "suk": "EF_PPC05", "title": "六神花露水005", "price": "17.50","orderId": "ZH201808242256"],
         ["imagePath": "react", "suk": "FG_PPC06", "title": "六神花露水006", "price": "17.50","orderId": "ZH201808242256"],
         ["imagePath": "ruby", "suk": "GH_PPC07", "title": "六神花露水007", "price": "17.50","orderId": "ZH201808242256"],
+        ["imagePath": "react", "suk": "FG_PPC06", "title": "六神花露水006", "price": "17.50","orderId": "ZH201808242256"],
+        ["imagePath": "ruby", "suk": "GH_PPC07", "title": "六神花露水007", "price": "17.50","orderId": "ZH201808242256"],
+        ["imagePath": "react", "suk": "FG_PPC06", "title": "六神花露水006", "price": "17.50","orderId": "ZH201808242256"],
+        ["imagePath": "ruby", "suk": "GH_PPC07", "title": "六神花露水007", "price": "17.50","orderId": "ZH201808242256"],
         ]
     
     override func viewDidLoad() {
@@ -38,19 +40,22 @@ class OrderUnpayViewController: UIViewController {
         
         self.view.backgroundColor = Specs.color.white
         
+        setNavBarTitle(view: self, title: "选择要退款的订单")
+        
+        setNavBarBackBtn(view: self, title: "", selector: #selector(actionBack))
+        
         self._setup()
         
         // Do any additional setup after loading the view.
     }
     
     private func _setup() {
-        self.navHeight = GlobalNavHeight
-        self.tabBarHeight = GlobalTabBarHeight
         
         // 创建表视图
-        self.tableView = UITableView(frame: CGRect(x: 0, y: 0, width: ScreenWidth, height: ScreenHeight - self.navHeight - self.tabBarHeight - 90), style:.grouped)
+        self.tableView = UITableView(frame: CGRect(x: 0, y: 0, width: ScreenWidth, height: ScreenHeight), style:.grouped)
         
         self._delegate.dataArr = self.dataArr
+        self._delegate.orderType = "refund"
         self._delegate.CELL_IDENTIFY_ID = self.CELL_IDENTIFY_ID
         self.addChildViewController(self._delegate)
         

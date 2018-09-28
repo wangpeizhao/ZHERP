@@ -18,6 +18,7 @@ class HomeChartsViewController: UIViewController {
         super.viewDidLoad()
         
         self.view.backgroundColor = UIColor.white
+        self.view.frame = CGRect(x: 0, y: 0, width: ScreenWidth, height: 70)
         self._setup()
 
         // Do any additional setup after loading the view.

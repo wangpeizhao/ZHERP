@@ -100,7 +100,6 @@ class HPickingViewController: UIViewController , UIGestureRecognizerDelegate, HP
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        print("HPickingViewController:->viewWillAppear()")
         super.viewWillAppear(animated)
         
         self.tableView.reloadData()
@@ -182,9 +181,10 @@ class HPickingViewController: UIViewController , UIGestureRecognizerDelegate, HP
     }
     
     @objc func actionScan() {
-        let _ZHQRCode = ZHQRCodeViewController()
-        _ZHQRCode.actionType = "picking"
-        _push(view: self, target: _ZHQRCode, rootView: false)
+        let _target = ZHQRCodeViewController()
+        _target.actionType = "picking"
+        _target.navTitle = "扫码拣货"
+        _push(view: self, target: _target, rootView: false)
     }
     
     @objc func actionRefresh() {

@@ -12,6 +12,7 @@ class OrderDelegateDataSource: UIViewController {
     
     var dataArr = [[String: String]]()
     var CELL_IDENTIFY_ID: String!
+    var orderType: String = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,7 +28,6 @@ class OrderDelegateDataSource: UIViewController {
 }
 
 extension OrderDelegateDataSource: UITableViewDataSource ,UITableViewDelegate {
-    
     
     //在本例中，只有一个分区
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -46,6 +46,14 @@ extension OrderDelegateDataSource: UITableViewDataSource ,UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 84
+    }
+    
+    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        return 0
+    }
+    
+    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+        return UIView()
     }
     
     //创建各单元显示内容(创建参数indexPath指定的单元）
@@ -71,9 +79,15 @@ extension OrderDelegateDataSource: UITableViewDataSource ,UITableViewDelegate {
 
         let _data = dataArr[indexPath.item]
         
-        let orderStatus = ["active","paid","cancel","delivered","refund"]
-        let index = arc4random_uniform(UInt32(orderStatus.count))
-        let status = orderStatus[Int(index)]
+        var status: String = ""
+        if self.orderType != "" {
+            status = "paid"
+            _target.orderType = self.orderType
+        } else {
+            let orderStatus = ["active","paid","cancel","delivered","refund"]
+            let index = arc4random_uniform(UInt32(orderStatus.count))
+            status = orderStatus[Int(index)]
+        }
 
         _target.valueArr = [
             "orderId": _data["orderId"],
@@ -84,6 +98,7 @@ extension OrderDelegateDataSource: UITableViewDataSource ,UITableViewDelegate {
             "orderAmount": _data["price"],
             "orderQuantity": "10",
             "orderEmployee": "Parker",
+            "orderType": self.orderType,
             "receiver": "王培照",
             "receiverPhone": "15622299006",
             "receiverRegion": "广东省,广州市,天河区",
@@ -94,9 +109,12 @@ extension OrderDelegateDataSource: UITableViewDataSource ,UITableViewDelegate {
             "expressEmployee": "照哥",
             "expressDatetime": "2018-09-26 10:34:32"
             ] as! [String : String]
-
-        globalViewControllerForHiddenTabBar.hidesBottomBarWhenPushed = true
-        self.navigationController?.pushViewController(_target, animated: true)
-        globalViewControllerForHiddenTabBar.hidesBottomBarWhenPushed = false
+        if self.orderType != "" {
+            _push(view: self, target: _target, rootView: false)
+        } else {
+            globalViewControllerForHiddenTabBar.hidesBottomBarWhenPushed = true
+            self.navigationController?.pushViewController(_target, animated: true)
+            globalViewControllerForHiddenTabBar.hidesBottomBarWhenPushed = false
+        }
     }
 }

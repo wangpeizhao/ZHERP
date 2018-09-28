@@ -46,18 +46,18 @@ class GoodViewController: UIViewController {
     // 底部刷新
     let footer = MJRefreshAutoNormalFooter()
     
-    var itemArray : [Int: [String:String]] = [
-        0: ["avatar": "bayMax", "suk": "AB_PPC01", "name": "六神花露水001", "price": "117.50", "stock": "121", "cost": "2150.00", "location": "广州白马1001", "status": "0"],
-        1: ["avatar": "c#", "suk": "BC_PPC02", "name": "六神花露水002", "price": "217.50", "stock": "122", "cost": "2250.00", "location": "广州白马1234", "status": "1"],
-        2: ["avatar": "html", "suk": "CD_PPC03", "name": "六神花露水003", "price": "317.50", "stock": "123", "cost": "2350.00", "location": "广州白马3434", "status": "-1"],
-        3: ["avatar": "java", "suk": "DE_PPC04", "name": "六神花露水004", "price": "417.50", "stock": "124", "cost": "2450.00", "location": "广州白马4556", "status": "0"],
-        4: ["avatar": "js", "suk": "EF_PPC05", "name": "六神花露水005", "price": "517.50", "stock": "125", "cost": "2550.00", "location": "广州白马6787", "status": "1"],
-        5: ["avatar": "php", "suk": "FG_PPC06", "name": "六神花露水006", "price": "617.50", "stock": "126", "cost": "2650.00", "location": "广州白马7856", "status": "-1"],
-        6: ["avatar": "react", "suk": "GH_PPC07", "name": "六神花露水007", "price": "717.50", "stock": "127", "cost": "2570.00", "location": "广州白马4533", "status": "0"],
-        7: ["avatar": "ruby", "suk": "HI_PPC08", "name": "六神花露水008", "price": "817.50", "stock": "128", "cost": "2850.00", "location": "广州白马2131", "status": "1"],
-        8: ["avatar": "swift", "suk": "IJ_PPC09", "name": "六神花露水009", "price": "917.50", "stock": "129", "cost": "2590.00", "location": "广州白马2233", "status": "1"],
-        9: ["avatar": "xcode", "suk": "JK_PPC10", "name": "六神花露水010", "price": "107.50", "stock": "120", "cost": "2500.00", "location": "广州白马3223", "status": "1"],
-        10: ["avatar": "bayMax", "suk": "KL_PPC11", "name": "六神花露水011", "price": "1700.50", "stock": "1200", "cost": "2590.00", "location": "广州白马2345", "status": "0"]
+    var dataArr = [
+        ["avatar": "bayMax", "suk": "AB_PPC01", "name": "六神花露水001", "price": "117.50", "stock": "121", "cost": "2150.00", "location": "广州白马1001", "status": "0"],
+        ["avatar": "c#", "suk": "BC_PPC02", "name": "六神花露水002", "price": "217.50", "stock": "122", "cost": "2250.00", "location": "广州白马1234", "status": "1"],
+        ["avatar": "html", "suk": "CD_PPC03", "name": "六神花露水003", "price": "317.50", "stock": "123", "cost": "2350.00", "location": "广州白马3434", "status": "-1"],
+        ["avatar": "java", "suk": "DE_PPC04", "name": "六神花露水004", "price": "417.50", "stock": "124", "cost": "2450.00", "location": "广州白马4556", "status": "0"],
+        ["avatar": "js", "suk": "EF_PPC05", "name": "六神花露水005", "price": "517.50", "stock": "125", "cost": "2550.00", "location": "广州白马6787", "status": "1"],
+        ["avatar": "php", "suk": "FG_PPC06", "name": "六神花露水006", "price": "617.50", "stock": "126", "cost": "2650.00", "location": "广州白马7856", "status": "-1"],
+        ["avatar": "react", "suk": "GH_PPC07", "name": "六神花露水007", "price": "717.50", "stock": "127", "cost": "2570.00", "location": "广州白马4533", "status": "0"],
+        ["avatar": "ruby", "suk": "HI_PPC08", "name": "六神花露水008", "price": "817.50", "stock": "128", "cost": "2850.00", "location": "广州白马2131", "status": "1"],
+        ["avatar": "swift", "suk": "IJ_PPC09", "name": "六神花露水009", "price": "917.50", "stock": "129", "cost": "2590.00", "location": "广州白马2233", "status": "1"],
+        ["avatar": "xcode", "suk": "JK_PPC10", "name": "六神花露水010", "price": "107.50", "stock": "120", "cost": "2500.00", "location": "广州白马3223", "status": "1"],
+        ["avatar": "bayMax", "suk": "KL_PPC11", "name": "六神花露水011", "price": "1700.50", "stock": "1200", "cost": "2590.00", "location": "广州白马2345", "status": "0"]
     ]
     
     let titlesArr = ["上架时间", "价格", "库存", "销量"]
@@ -155,7 +155,7 @@ class GoodViewController: UIViewController {
         self._moreView()
         
         // 创建表视图
-        self.tableView = UITableView(frame: CGRect(x: 0, y: 0, width: ScreenWidth, height: ScreenHeight - self.navHeight - 82), style:.grouped)
+        self.tableView = UITableView(frame: CGRect(x: 0, y: 0, width: ScreenWidth, height: ScreenHeight - self.navHeight - 90 - self.tabBarHeight), style:.grouped)
         self.tableView!.delegate = self
         self.tableView!.dataSource = self
         self.tableView?.register(UINib(nibName: "GoodTableViewCell", bundle: nil), forCellReuseIdentifier: CELL_IDENTIFY_ID)
@@ -254,10 +254,13 @@ class GoodViewController: UIViewController {
     
     @objc func footerRefresh(){
         print("上拉刷新")
+        sleep(1)
+        //重现生成数据
+        refreshItemData(append: true)
 //        self.hiddenGoodListPopupView()
         self.tableView?.mj_footer.endRefreshing()
         // 2次后模拟没有更多数据
-        if (self.itemArray.count > 15) {
+        if (self.dataArr.count > 15) {
             footer.endRefreshingWithNoMoreData()
         }
     }
@@ -268,10 +271,10 @@ class GoodViewController: UIViewController {
         sleep(1)
         self.hiddenGoodListPopupView()
         //重现生成数据
-        refreshItemData()
+        refreshItemData(append: false)
         
         // self.tableView?.mj_header.endRefreshing(.)
-//        if (self.itemArray.count > 6) {
+//        if (self.dataArr.count > 6) {
 //            DispatchQueue.main.async {
 //                // 主线程中
 //                // self.tableView!.mj_header.state = MJrefreshno
@@ -285,13 +288,19 @@ class GoodViewController: UIViewController {
     }
     
     //初始化数据
-    func refreshItemData() {
-        let count = self.itemArray.count
+    func refreshItemData(append: Bool) {
+        let count = self.dataArr.count
         let imagePaths = ["java","php","html","react","ruby","swift","xcode","bayMax","c#"]
+        
         for i in 0...2 {
             let index = arc4random_uniform(UInt32(imagePaths.count))
             let _imagePath = imagePaths[Int(index)]
-            self.itemArray[count + i] = ["avatar": _imagePath, "suk": "AB_PPC\(count + i)", "name": "六神花露水001", "price": "117.50", "stock": "121", "cost": "2150.00", "location": "广州白马1001", "status": "1"]
+            let _data = ["avatar": _imagePath, "suk": "AB_PPC\(count + i)", "name": "六神花露水001", "price": "117.50", "stock": "121", "cost": "2150.00", "location": "广州白马1001", "status": "1"]
+            if (append) {
+                self.dataArr.append(_data)
+            } else {
+                self.dataArr.insert(_data, at: 0)
+            }
         }
     }
     
@@ -499,16 +508,14 @@ class GoodViewController: UIViewController {
         self.goodListPopupView = UIView(frame: CGRect(x: 0, y: 40, width: 0, height: 50))
         self.goodListPopupView.tag = sender.tag
         
-        let count = self.itemArray.count
+        let count = self.dataArr.count
         let sectionNo = count - sender.tag - 1
         
         self.goodListPopupViewController = GoodListPopupViewController()
         self.goodListPopupViewController.frame_width = self.frame_width
         
-        if !(self.itemArray[sectionNo]?.isEmpty)! {
-            var _data = self.itemArray[sectionNo]!
-            self.goodListPopupViewController.good_status = _data["status"]
-        }
+        let _data = dataArr[sectionNo]
+        self.goodListPopupViewController.good_status = _data["status"]
         
 //        let cell = sender.superView(of: GoodTableViewCell.self)!
 //        cell.addSubview(goodListPopupView)
@@ -549,7 +556,7 @@ extension GoodViewController: UITableViewDataSource ,UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         var rows = 0;
         if tableView.isEqual(self.tableView) {
-            rows = self.itemArray.count
+            rows = self.dataArr.count
         } else if tableView.isEqual(self.categoryTable) {
             rows = self.categoryArr.count
         }
@@ -565,24 +572,28 @@ extension GoodViewController: UITableViewDataSource ,UITableViewDelegate {
         return 0
     }
     
+    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+        return UIView()
+    }
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if tableView.isEqual(self.tableView) {
-            let count = self.itemArray.count
-            let sectionNo = count - indexPath.row - 1
+            let count = self.dataArr.count
+//            let sectionNo = count - indexPath.row - 1
 
             let cell: GoodTableViewCell = tableView.dequeueReusableCell(withIdentifier: CELL_IDENTIFY_ID, for: indexPath) as! GoodTableViewCell
-            if !(self.itemArray[sectionNo]?.isEmpty)! {
-                var _data = self.itemArray[sectionNo]!
+            
+            let _data = dataArr[indexPath.item]
                 
-                cell.avatar.image = UIImage(named: _data["avatar"]!)
-                cell.suk.text = _data["suk"]
-                cell.name.text = _data["name"]
-                cell.stock.text = _data["stock"]
-                cell.cost.text = _data["cost"]
-                cell.location.text = _data["location"]
-                cell.price.text = _data["price"]
-                cell.accessoryType = .disclosureIndicator
-            }
+            cell.avatar.image = UIImage(named: _data["avatar"]!)
+            cell.suk.text = _data["suk"]
+            cell.name.text = _data["name"]
+            cell.stock.text = _data["stock"]
+            cell.cost.text = _data["cost"]
+            cell.location.text = _data["location"]
+            cell.price.text = _data["price"]
+            cell.accessoryType = .disclosureIndicator
+
             cell.tag = indexPath.row
             cell.moreBtn.tag = indexPath.row
             cell.moreBtn.addTarget(self, action: #selector(clickedMoreBtn(_:)), for: .touchUpInside)
@@ -592,7 +603,8 @@ extension GoodViewController: UITableViewDataSource ,UITableViewDelegate {
             let sectionNo = count - indexPath.row - 1
             
             let cell = tableView.dequeueReusableCell(withIdentifier: "CategoryTableCell", for: indexPath) as UITableViewCell
-            if !(self.itemArray[sectionNo]?.isEmpty)! {
+            
+            if !(self.categoryArr[sectionNo].isEmpty) {
                 let _data = self.categoryArr[sectionNo]
                 cell.textLabel?.text = _data
                 cell.textLabel?.font = Specs.font.regular

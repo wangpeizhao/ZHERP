@@ -38,7 +38,7 @@ class StatisticViewController: UIViewController {
     }
     
     fileprivate func _setUp() {
-        self.navHeight = self.navigationController?.navigationBar.frame.size.height
+        self.navHeight = self.navigationController?.navigationBar.frame.maxY
         self.tabBarHeight = self.tabBarController?.tabBar.bounds.size.height
         
 //        let frame = CGRect(x: 0, y: 0, width: ScreenWidth, height: ScreenHeight - self.tabBarHeight)

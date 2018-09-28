@@ -47,7 +47,7 @@ class HGImagePreviewVC: UIViewController {
     //初始化
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.navHeight = self.navigationController?.navigationBar.frame.size.height
+        self.navHeight = self.navigationController?.navigationBar.frame.maxY
         self.statusbarHeight = UIApplication.shared.statusBarFrame.height
         //背景设为黑色
         self.view.backgroundColor = UIColor.black

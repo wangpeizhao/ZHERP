@@ -285,7 +285,6 @@ class GoodOperateSViewController: UIViewController, UIImagePickerControllerDeleg
         self._initDataArr()
         
         if self._isAdd {
-            print(self.dataArr)
             self.dataArr.removeAt(indexes: [2])
         } else {
 //            self.dataArr.removeAt(indexes: [4])

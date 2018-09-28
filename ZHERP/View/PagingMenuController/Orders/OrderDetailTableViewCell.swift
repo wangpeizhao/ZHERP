@@ -11,9 +11,7 @@ import UIKit
 class OrderDetailTableViewCell: UITableViewCell {
 
     @IBOutlet weak var titleLabel: UILabel!
-    @IBOutlet weak var snLabel: UILabel!
     @IBOutlet weak var priceLabel: UILabel!
-    @IBOutlet weak var quantityLabel: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()

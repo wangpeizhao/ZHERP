@@ -12,6 +12,7 @@ import  AVFoundation
 class ZHQRCodeViewController: UIViewController {
     
     var actionType: String = "good"
+    var navTitle: String = ""
     var config = ZHQRCodeConfig()
     let session = AVCaptureSession()
     
@@ -20,13 +21,23 @@ class ZHQRCodeViewController: UIViewController {
         
         self.view.backgroundColor = UIColor.white
         
-        self.navigationItem.title = ZHQRCodeManager.zh_navigationItemTitle(type: self.config.scannerType)
+        if self.navTitle != "" {
+            setNavBarTitle(view: self, title: self.navTitle)
+            setNavBarBackBtn(view: self, title: self.navTitle, selector: #selector(actionBack))
+        } else {
+            self.navigationItem.title = ZHQRCodeManager.zh_navigationItemTitle(type: self.config.scannerType)
+        }
+        
         _setupUI()
         
         NotificationCenter.default.addObserver(self, selector: #selector(appDidBecomeActive), name: .UIApplicationDidBecomeActive, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(appWillResignActive), name: .UIApplicationWillResignActive, object: nil)
 
         // Do any additional setup after loading the view.
+    }
+    
+    @objc func actionBack() {
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -254,15 +265,15 @@ extension ZHQRCodeViewController {
     // - Parameter value: 扫描结果
     func zh_handle(value: String) {
         switch self.actionType {
-        case "good":
+        case "good": // 货品详情
             self._action_good(value: value)
-        case "allocating":
+        case "allocating": // 调货
             self._action_allocating(value: value)
-        case "picking":
+        case "picking": // 拣货
             self._action_picking(value: value)
-        case "warehousing":
+        case "warehousing": // 入仓
             self._action_warehousing(value: value)
-        case "delivering":
+        case "delivering": // 发货
             self._action_delivering(value: value)
         default:
             self._action_common(value: value)
@@ -284,15 +295,18 @@ extension ZHQRCodeViewController {
     
     // 商品
     func _action_good(value: String) {
-        let sb = UIStoryboard(name:"Main", bundle: nil)
-        let orderView = sb.instantiateViewController(withIdentifier: "OrderDetailViewController") as! OrderDetailViewController
-//        orderView.navTitle = "广发银行CGB"
-//        orderView.order_image = "codeBg"
-//        orderView.order_price = "20000"
-//        orderView.order_title = "信用卡"
-//        orderView.actionValue = value
-        self.hidesBottomBarWhenPushed = true
-        self.navigationController?.pushViewController(orderView, animated: true)
+        let _target = GoodDetailViewController()
+        _target.valueArr = [
+            "sn": value,
+            "title": "京造 芝麻核桃黑豆粉代餐粉 黑芝麻蔓越莓枸杞粉 早餐禅食代餐22g*20 440g",
+            "warehouse": "深圳仓库",
+            "price": "80000.88",
+            "total": "987452.00",
+            "quantity": "12",
+            "stock": "5600",
+        ]
+        
+        _push(view: self, target: _target, rootView: false)
     }
     
     // 扫码货品调配

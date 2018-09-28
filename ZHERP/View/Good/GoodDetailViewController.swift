@@ -176,8 +176,8 @@ class GoodDetailViewController: UIViewController, SliderGalleryControllerDelegat
 //        let cancelAction = UIAlertAction(title: "确定", style: .cancel, handler: nil)
 //        alertController.addAction(cancelAction)
 //        self.present(alertController, animated: true, completion: nil)
-        var selectImgs:[UIImage] = []
-        for i in 0..<self.images.count {
+//        var selectImgs:[UIImage] = []
+//        for i in 0..<self.images.count {
 //            var nsd = NSData(contentsOfURL:NSURL.URLWithString(self.images[i]) as! URL)
 //            var image = UIImage(data: nsd)
             
@@ -206,9 +206,10 @@ class GoodDetailViewController: UIViewController, SliderGalleryControllerDelegat
 //                }
 //            }
             
-        }
+//        }
         //进入图片全屏展示
 //        print(selectImgs)
+        let selectImgs:[UIImage] = []
         let previewVC = HGImagePreviewVC(images: selectImgs, imagesURL: self.images, index: index)
         _push(view: self, target: previewVC, rootView: false)
     }

@@ -28,6 +28,7 @@ public func _tip(view: UIViewController, title: String = "保存成功!") {
     //两秒钟后自动消失
     DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 2) {
         view.presentedViewController?.dismiss(animated: false, completion: nil)
+        _back(view: view)
     }
 }
 

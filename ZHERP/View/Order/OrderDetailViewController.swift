@@ -50,6 +50,8 @@ class OrderDetailViewController: UIViewController {
     
     var _orderStatus: orderStatus?
     
+    var orderType: String!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -77,6 +79,14 @@ class OrderDetailViewController: UIViewController {
         _push(view: self, target: _target, rootView: false)
     }
     
+    @objc func actionRefund() {
+        _confirm(view: self, title: "提示", message: "此操作只是更改该订单状态为‘已退款’，并不会产生资金流动；请直接与顾客协商处理资金问题。", handler: actionChangeStatus)
+    }
+    
+    func actionChangeStatus(alert: UIAlertAction) {
+        _tip(view: self, title: "订单状态更改成功")
+    }
+    
     private func _setup() {
         self.initData()
         //创建表视图
@@ -96,6 +106,10 @@ class OrderDetailViewController: UIViewController {
 //        let dateTime = dateFromString(SYSTEM_DATETIME, format: "yyyy-MM-dd HH:mm:ss")!
         
         self._initData = OrderModel(orderId: "", orderTime: "", orderStatus: "", orderTotal: "", orderCoupon: "", orderAmount: "", orderQuantity: "", orderEmployee: "", receiver: "", receiverPhone: "", receiverRegion: "", receiverDetail: "", expressCompany: "", expressNumber: "", expressNote: "", expressEmployee: "", expressDatetime: "")
+        
+        if self.valueArr["orderType"] != nil {
+            self.orderType = self.valueArr["orderType"]
+        }
         
         if self.valueArr["orderTime"] == nil {
             self.valueArr["orderTime"] = SYSTEM_DATETIME
@@ -208,7 +222,11 @@ class OrderDetailViewController: UIViewController {
         case .cancel:
             break
         case .paid:
-            setNavBarRightBtn(view: self, title: "发货", selector: #selector(actionDeliver))
+            if self.orderType == "refund" {
+                setNavBarRightBtn(view: self, title: "确定退款", selector: #selector(actionRefund))
+            } else {
+                setNavBarRightBtn(view: self, title: "发货", selector: #selector(actionDeliver))
+            }
         case .delivered:
             break
         case .refund:
@@ -308,12 +326,8 @@ extension OrderDetailViewController: UITableViewDelegate, UITableViewDataSource 
             let cell: OrderDetailTableViewCell = tableView.dequeueReusableCell(withIdentifier: CELL_IDENTIFY_ID, for: indexPath) as! OrderDetailTableViewCell
             cell.titleLabel.text = _row["title"]
             cell.titleLabel.sizeToFit()
-            cell.snLabel.text = _row["sn"]
-            cell.snLabel.sizeToFit()
-            cell.priceLabel.text = _row["price"]
+            cell.priceLabel.text = "单价/数量：" + _row["price"]! + "/" + _row["quantity"]!
             cell.priceLabel.sizeToFit()
-            cell.quantityLabel.text = _row["quantity"]
-            cell.quantityLabel.sizeToFit()
             cell.accessoryType = .none
             return cell
         }

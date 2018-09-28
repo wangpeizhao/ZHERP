@@ -11,6 +11,7 @@ import WebKit
 
 class SProtocolViewController: UIViewController, WKUIDelegate, WKNavigationDelegate {
     
+    var navHeight: CGFloat!
     lazy private var webview: WKWebView = {
         self.webview = WKWebView.init(frame: self.view.bounds)
         self.webview.uiDelegate = self
@@ -19,7 +20,7 @@ class SProtocolViewController: UIViewController, WKUIDelegate, WKNavigationDeleg
     }()
     
     lazy private var progressView: UIProgressView = {
-        self.progressView = UIProgressView.init(frame: CGRect(x: CGFloat(0), y: CGFloat(65), width: UIScreen.main.bounds.width, height: 2))
+        self.progressView = UIProgressView.init(frame: CGRect(x: 0, y: self.navHeight, width: ScreenWidth, height: 2))
         self.progressView.tintColor = UIColor.green      // 进度条颜色
         self.progressView.trackTintColor = UIColor.white // 进度条背景色
         return self.progressView
@@ -27,6 +28,8 @@ class SProtocolViewController: UIViewController, WKUIDelegate, WKNavigationDeleg
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.navHeight = self.navigationController?.navigationBar.frame.maxY
+        
         self.view.backgroundColor = Specs.color.white
         setNavBarTitle(view: self, title: "使用协议")
         

@@ -52,7 +52,7 @@ class HAllocateViewController: UIViewController {
         super.viewDidLoad()
         
         self.view.backgroundColor = Specs.color.white
-        setNavBarTitle(view: self, title: "调货记录")
+        setNavBarTitle(view: self, title: "调货")
         setNavBarBackBtn(view: self, title: "", selector: #selector(actionBack))
         
         // 设置右侧按钮1(扫码)
@@ -126,9 +126,10 @@ class HAllocateViewController: UIViewController {
     }
     
     @objc func actionScan() {
-        let _ZHQRCode = ZHQRCodeViewController()
-        _ZHQRCode.actionType = "allocating"
-        _push(view: self, target: _ZHQRCode, rootView: false)
+        let _target = ZHQRCodeViewController()
+        _target.actionType = "allocating"
+        _target.navTitle = "扫码调货"
+        _push(view: self, target: _target, rootView: false)
     }
     
     @objc func actionScreening() {

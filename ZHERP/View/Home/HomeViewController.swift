@@ -24,7 +24,8 @@ class HomeViewController: BaseViewController{
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.navHeight = self.navigationController?.navigationBar.frame.size.height
+//        self.navHeight = self.navigationController?.navigationBar.frame.size.height
+        self.navHeight = self.navigationController?.navigationBar.frame.maxY
         self.tabBarHeight = self.tabBarController?.tabBar.bounds.size.height
         
         self.view.backgroundColor = UIColor.clear
@@ -65,9 +66,10 @@ class HomeViewController: BaseViewController{
     
     @objc func actionScan() {
         self.hidesBottomBarWhenPushed = true
-        let _ZHQRCode = ZHQRCodeViewController()
-        _ZHQRCode.actionType = "picking"
-        _push(view: self, target: _ZHQRCode, rootView: true)
+        let _target = ZHQRCodeViewController()
+        _target.actionType = "good"
+        _target.navTitle = "扫码货品详情"
+        _push(view: self, target: _target, rootView: true)
 
     }
     
@@ -118,7 +120,7 @@ class HomeViewController: BaseViewController{
 extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 4;
+        return 2
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -131,25 +133,26 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
             self.addChildViewController(self.reportView!)
             return self.reportView?.view
         }
+//        if (section == 1) {
+//            self.chartsView = HomeChartsViewController()
+//            self.addChildViewController(self.chartsView!)
+//            return self.chartsView?.view
+//        }
         if (section == 1) {
-            self.chartsView = HomeChartsViewController()
-            self.addChildViewController(self.chartsView!)
-            return self.chartsView?.view
-        }
-        if (section == 2) {
             self.navigationView = HomeNavigationViewController()
+            self.navigationView?._height = ScreenHeight - self.navHeight - 160 - self.tabBarHeight
             self.addChildViewController(self.navigationView!)
             return self.navigationView?.view
         }
-        if (section == 3) {
-//            let chartsView = StatisticChartsViewController()
-//            chartsView.ChartViewHeight = ScreenHeight - self.navHeight - 415 - self.tabBarHeight
-//            self.addChildViewController(chartsView)
-//            return chartsView.view
-            self.navigationView = HomeNavigationViewController()
-            self.addChildViewController(self.navigationView!)
-            return self.navigationView?.view
-        }
+//        if (section == 3) {
+////            let chartsView = StatisticChartsViewController()
+////            chartsView.ChartViewHeight = ScreenHeight - self.navHeight - 415 - self.tabBarHeight
+////            self.addChildViewController(chartsView)
+////            return chartsView.view
+//            self.navigationView = HomeNavigationViewController()
+//            self.addChildViewController(self.navigationView!)
+//            return self.navigationView?.view
+//        }
         return UIView(frame: CGRect(x: 0, y: 0, width: 0, height: 0))
     }
     
@@ -159,14 +162,16 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
             return 140
         }
         if (section == 1) {
-            return 70
+//            return 70
+            return ScreenHeight - self.navHeight - 140 - self.tabBarHeight
         }
-        if (section == 2) {
-            return 205
-        }
-        if (section == 3) {
-            return ScreenHeight - self.navHeight - 415 - self.tabBarHeight
-        }
+//        if (section == 2) {
+////            return 205
+//            return ScreenHeight - self.navHeight - 210 - self.tabBarHeight
+//        }
+//        if (section == 3) {
+//            return ScreenHeight - self.navHeight - 415 - self.tabBarHeight
+//        }
         return 0
     }
     

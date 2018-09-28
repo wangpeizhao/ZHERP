@@ -40,6 +40,7 @@
 		2C9AC88F214244EB004F252D /* StatisticChartsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C9AC88E214244EB004F252D /* StatisticChartsViewController.swift */; };
 		2C9AC891214271B4004F252D /* StatisticNavigationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C9AC890214271B4004F252D /* StatisticNavigationViewController.swift */; };
 		2C9AC89321427465004F252D /* StatisticReportViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C9AC89221427465004F252D /* StatisticReportViewController.swift */; };
+		2CA40EE3215DF3940041FAD6 /* OrderRefundViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CA40EE2215DF3940041FAD6 /* OrderRefundViewController.swift */; };
 		2CA559232150AB0E00BCB254 /* Print-Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CA559222150AB0E00BCB254 /* Print-Extensions.swift */; };
 		2CB2ECA72149F42D00AD8B2B /* SMemberLoginLogsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CB2ECA62149F42D00AD8B2B /* SMemberLoginLogsViewController.swift */; };
 		2CB62BAA214F4FA80048AF61 /* HDeliverViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CB62BA9214F4FA70048AF61 /* HDeliverViewController.swift */; };
@@ -273,6 +274,7 @@
 		2C9AC88E214244EB004F252D /* StatisticChartsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticChartsViewController.swift; sourceTree = "<group>"; };
 		2C9AC890214271B4004F252D /* StatisticNavigationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticNavigationViewController.swift; sourceTree = "<group>"; };
 		2C9AC89221427465004F252D /* StatisticReportViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticReportViewController.swift; sourceTree = "<group>"; };
+		2CA40EE2215DF3940041FAD6 /* OrderRefundViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderRefundViewController.swift; sourceTree = "<group>"; };
 		2CA559222150AB0E00BCB254 /* Print-Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Print-Extensions.swift"; sourceTree = "<group>"; };
 		2CB2ECA62149F42D00AD8B2B /* SMemberLoginLogsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SMemberLoginLogsViewController.swift; sourceTree = "<group>"; };
 		2CB62BA9214F4FA70048AF61 /* HDeliverViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDeliverViewController.swift; sourceTree = "<group>"; };
@@ -568,6 +570,16 @@
 				2C9AC89221427465004F252D /* StatisticReportViewController.swift */,
 			);
 			path = Statistic;
+			sourceTree = "<group>";
+		};
+		2CA40EE1215DD5B10041FAD6 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				9EE26B78212B0BE000619D98 /* HomeNavigationViewController.swift */,
+				9EE26B7A212B0CA400619D98 /* HomeReportViewController.swift */,
+				9EE26B7C212B14F200619D98 /* HomeChartsViewController.swift */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 		2CB62BA7214F4F530048AF61 /* Deliver */ = {
@@ -916,6 +928,7 @@
 				9E523E9C2119DF2100CF921F /* OrderTableViewCell.xib */,
 				2C5C7A05215C855300533AE1 /* OrderDetailTableViewCell.swift */,
 				2C5C7A06215C855300533AE1 /* OrderDetailTableViewCell.xib */,
+				2CA40EE2215DF3940041FAD6 /* OrderRefundViewController.swift */,
 			);
 			path = Orders;
 			sourceTree = "<group>";
@@ -1031,14 +1044,12 @@
 				9E5D7E48214BFE6800DE7036 /* Inventory */,
 				9EFF259D2143FD6C0055EB61 /* Picking */,
 				9E4C315F21435FA4004A95A2 /* Allocate */,
+				2CA40EE1215DD5B10041FAD6 /* View */,
 				9E88ED1920FB41F800DF091F /* HomeViewController.swift */,
 				9E88ED1B20FB462600DF091F /* OrderTableViewController.swift */,
 				9E88ED1D20FB464B00DF091F /* GoodTableViewController.swift */,
 				2CC1319221114279004C8097 /* SearchViewController.swift */,
 				2CBF4901212294A200199C1D /* CameraViewController.swift */,
-				9EE26B78212B0BE000619D98 /* HomeNavigationViewController.swift */,
-				9EE26B7A212B0CA400619D98 /* HomeReportViewController.swift */,
-				9EE26B7C212B14F200619D98 /* HomeChartsViewController.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -1199,11 +1210,8 @@
 			children = (
 				9EFB82732157EE87007A2893 /* View */,
 				9E1A0A0A21554F7600F0B2B6 /* Model */,
-				2C2BD1CB21279ED300F6C6C3 /* GoodDetailViewController.swift */,
 				9E523E8D210D537B00CF921F /* GoodViewController.swift */,
-				9EE26B7F212C734100619D98 /* GoodTableViewCell.swift */,
-				9EE26B80212C734100619D98 /* GoodTableViewCell.xib */,
-				9E27D5A221344FF700087D20 /* GoodListPopupViewController.swift */,
+				2C2BD1CB21279ED300F6C6C3 /* GoodDetailViewController.swift */,
 				9E1A0A0821553ACD00F0B2B6 /* GoodOperateFViewController.swift */,
 				9E1A0A062155274900F0B2B6 /* GoodOperateSViewController.swift */,
 			);
@@ -1239,6 +1247,9 @@
 			children = (
 				9EFB82742157EF61007A2893 /* GoodOperateImageView.swift */,
 				9EFB82762157F12A007A2893 /* GoodOperateImageViewCell.swift */,
+				9EE26B7F212C734100619D98 /* GoodTableViewCell.swift */,
+				9EE26B80212C734100619D98 /* GoodTableViewCell.xib */,
+				9E27D5A221344FF700087D20 /* GoodListPopupViewController.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1632,6 +1643,7 @@
 				9E523E6D2109401F00CF921F /* SwitchTableViewCell.swift in Sources */,
 				2C6104CC21536F26004BE3F4 /* SFeedbackViewController.swift in Sources */,
 				9E523E96210D546400CF921F /* OrderCloseViewController.swift in Sources */,
+				2CA40EE3215DF3940041FAD6 /* OrderRefundViewController.swift in Sources */,
 				9E88ED2720FB576200DF091F /* Candy.swift in Sources */,
 				2CB62BB4214FB73A0048AF61 /* HDeliveringTableViewCell.swift in Sources */,
 				2C35D2CB2140FF4400AEC12F /* BillsReportViewController.swift in Sources */,
