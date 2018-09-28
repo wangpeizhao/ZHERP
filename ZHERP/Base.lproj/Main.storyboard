@@ -1699,11 +1699,11 @@
             </objects>
             <point key="canvasLocation" x="7586.3999999999996" y="530.54187192118229"/>
         </scene>
-        <!--分析统计-->
+        <!--经营分析-->
         <scene sceneID="aoh-uN-SBq">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="T9R-cL-Vmr" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="分析统计" image="analyze_icon" id="Edl-pH-PdQ"/>
+                    <tabBarItem key="tabBarItem" title="经营分析" image="analyze_icon" id="Edl-pH-PdQ"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="6CB-4v-359">
                         <rect key="frame" x="0.0" y="44" width="375" height="44"/>
