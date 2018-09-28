@@ -103,7 +103,7 @@ extension OrderDelegateDataSource: UITableViewDataSource ,UITableViewDelegate {
             "orderStatus": status,
             "orderTotal": "12345.09",
             "orderCoupon": "100.00",
-            "orderAmount": _data["price"],
+            "orderAmount": _data["orderAmount"],
             "orderQuantity": "10",
             "orderEmployee": "Parker",
             "orderType": self.orderType,
