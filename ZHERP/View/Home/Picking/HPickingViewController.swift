@@ -45,8 +45,8 @@ class HPickingViewController: UIViewController , UIGestureRecognizerDelegate, HP
          "total": "987452.00",
          "quantity": "12",
          "stock": "5600",
-         "name": "六神花露水001",
-         "title": "美的（Midea）电饭煲 气动涡轮防溢 金属机身 圆灶釜内胆4L电饭锅MB-WFS4037",
+//         "name": "六神花露水001",
+         "name": "美的（Midea）电饭煲 气动涡轮防溢 金属机身 圆灶釜内胆4L电饭锅MB-WFS4037",
         "cost": "2350.00", "location": "广州白马3434", "status": "-1"],
         1: ["sn": "2018090612344519995",
          "suk": "CD_PPC02",
@@ -56,8 +56,8 @@ class HPickingViewController: UIViewController , UIGestureRecognizerDelegate, HP
          "total": "987452.00",
          "quantity": "12",
          "stock": "5600",
-         "name": "六神花露水002",
-         "title": "美的（Midea）电饭煲 气动涡轮防溢 金属机身 圆灶釜内胆4L电饭锅MB-WFS4037",
+//         "name": "六神花露水002",
+         "name": "美的（Midea）电饭煲 气动涡轮防溢 金属机身 圆灶釜内胆4L电饭锅MB-WFS4037",
         "cost": "2350.00", "location": "广州白马3434", "status": "-1"],
         2: ["sn": "2018090612344519995",
          "suk": "CD_PPC03",
@@ -67,8 +67,8 @@ class HPickingViewController: UIViewController , UIGestureRecognizerDelegate, HP
          "total": "987452.00",
          "quantity": "12",
          "stock": "5600",
-         "name": "六神花露水003",
-         "title": "美的（Midea）电饭煲 气动涡轮防溢 金属机身 圆灶釜内胆4L电饭锅MB-WFS4037",
+//         "name": "六神花露水003",
+         "name": "美的（Midea）电饭煲 气动涡轮防溢 金属机身 圆灶釜内胆4L电饭锅MB-WFS4037",
         "cost": "2350.00", "location": "广州白马3434", "status": "-1"],
     ]
     
@@ -465,11 +465,17 @@ extension HPickingViewController: UITableViewDelegate, UITableViewDataSource {
             
             cell.avatar.image = UIImage(named: _data["avatar"]!)
             cell.suk.text = _data["suk"]
+            cell.suk.sizeToFit()
             cell.name.text = _data["name"]
-            cell.stock.text = _data["stock"]
-            cell.cost.text = _data["cost"]
-            cell.location.text = _data["location"]
-            cell.price.text = _data["price"]
+            cell.name.sizeToFit()
+            cell.stock.text = "库存:" + _data["stock"]!
+            cell.stock.sizeToFit()
+            cell.location.text = "库位:" + _data["location"]!
+            cell.location.sizeToFit()
+            cell.price.text = "售价:" + _data["price"]! + "元/包"
+            cell.price.sizeToFit()
+            cell.cost.text = "成本:" + _data["price"]! + "元/包"
+            cell.cost.sizeToFit()
             cell.accessoryType = .disclosureIndicator
         }
         cell.tag = indexPath.row

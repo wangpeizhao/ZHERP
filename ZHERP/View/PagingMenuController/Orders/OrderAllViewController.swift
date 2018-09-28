@@ -24,13 +24,76 @@ class OrderAllViewController: UIViewController {
     let footer = MJRefreshAutoNormalFooter()
     
     var dataArr = [
-        ["imagePath": "html", "suk": "AB_PPC01", "title": "六神花露水001", "price": "17.50","orderId": "ZH201808242256"],
-        ["imagePath": "java", "suk": "BC_PPC02", "title": "六神花露水002", "price": "17.50","orderId": "ZH201808242256"],
-        ["imagePath": "bayMax", "suk": "CD_PPC03", "title": "六神花露水003", "price": "17.50","orderId": "ZH201808242256"],
-        ["imagePath": "php", "suk": "DE_PPC04", "title": "六神花露水004", "price": "17.50","orderId": "ZH201808242256"],
-        ["imagePath": "bayMax", "suk": "EF_PPC05", "title": "六神花露水005", "price": "17.50","orderId": "ZH201808242256"],
-        ["imagePath": "react", "suk": "FG_PPC06", "title": "六神花露水006", "price": "17.50","orderId": "ZH201808242256"],
-        ["imagePath": "ruby", "suk": "GH_PPC07", "title": "六神花露水007", "price": "17.50","orderId": "ZH201808242256"],
+        ["orderId": "ZH201809280005151234",
+         "orderTime": "2018-09-27 10:34:32",
+         "orderStatus": "paid",
+         "orderTotal": "12345.09",
+         "orderCoupon": "100.00",
+         "orderAmount": "12245.09",
+         "orderQuantity": "10"],
+        ["orderId": "ZH201809280005151234",
+         "orderTime": "2018-09-27 10:34:32",
+         "orderStatus": "paid",
+         "orderTotal": "12345.09",
+         "orderCoupon": "100.00",
+         "orderAmount": "12245.09",
+         "orderQuantity": "10"],
+        ["orderId": "ZH201809280005151234",
+         "orderTime": "2018-09-27 10:34:32",
+         "orderStatus": "paid",
+         "orderTotal": "12345.09",
+         "orderCoupon": "100.00",
+         "orderAmount": "12245.09",
+         "orderQuantity": "10"],
+        ["orderId": "ZH201809280005151234",
+         "orderTime": "2018-09-27 10:34:32",
+         "orderStatus": "paid",
+         "orderTotal": "12345.09",
+         "orderCoupon": "100.00",
+         "orderAmount": "12245.09",
+         "orderQuantity": "10"],
+        ["orderId": "ZH201809280005151234",
+         "orderTime": "2018-09-27 10:34:32",
+         "orderStatus": "paid",
+         "orderTotal": "12345.09",
+         "orderCoupon": "100.00",
+         "orderAmount": "12245.09",
+         "orderQuantity": "10"],
+        ["orderId": "ZH201809280005151234",
+         "orderTime": "2018-09-27 10:34:32",
+         "orderStatus": "paid",
+         "orderTotal": "12345.09",
+         "orderCoupon": "100.00",
+         "orderAmount": "12245.09",
+         "orderQuantity": "10"],
+        ["orderId": "ZH201809280005151234",
+         "orderTime": "2018-09-27 10:34:32",
+         "orderStatus": "paid",
+         "orderTotal": "12345.09",
+         "orderCoupon": "100.00",
+         "orderAmount": "12245.09",
+         "orderQuantity": "10"],
+        ["orderId": "ZH201809280005151234",
+         "orderTime": "2018-09-27 10:34:32",
+         "orderStatus": "paid",
+         "orderTotal": "12345.09",
+         "orderCoupon": "100.00",
+         "orderAmount": "12245.09",
+         "orderQuantity": "10"],
+        ["orderId": "ZH201809280005151234",
+         "orderTime": "2018-09-27 10:34:32",
+         "orderStatus": "paid",
+         "orderTotal": "12345.09",
+         "orderCoupon": "100.00",
+         "orderAmount": "12245.09",
+         "orderQuantity": "10"],
+        ["orderId": "ZH201809280005151234",
+         "orderTime": "2018-09-27 10:34:32",
+         "orderStatus": "paid",
+         "orderTotal": "12345.09",
+         "orderCoupon": "100.00",
+         "orderAmount": "12245.09",
+         "orderQuantity": "10"],
     ]
     
     override func viewDidLoad() {
@@ -106,12 +169,19 @@ class OrderAllViewController: UIViewController {
     //初始化数据
     func refreshItemData(append: Bool) {
         let count = self.dataArr.count
-        let imagePaths = ["java","php","html","react","ruby","swift","xcode","bayMax","c#"]
+//        let imagePaths = ["java","php","html","react","ruby","swift","xcode","bayMax","c#"]
         
         for i in 0...2 {
-            let index = arc4random_uniform(UInt32(imagePaths.count))
-            let _imagePath = imagePaths[Int(index)]
-            let _data = ["imagePath": _imagePath, "suk": "QQ_PPC_\(count + i)", "title": "六神花露水\(count + i)", "price": "17.50","orderId": "ZH201808242256"]
+//            let index = arc4random_uniform(UInt32(imagePaths.count))
+//            let _imagePath = imagePaths[Int(index)]
+            let _data =
+                ["orderId": "ZH20180928000515123\(count + i)",
+                 "orderTime": "2018-09-27 10:34:32",
+                 "orderStatus": "paid",
+                 "orderTotal": "12345.09",
+                 "orderCoupon": "100.00",
+                 "orderAmount": "12245.09",
+                 "orderQuantity": "10"]
             if (append) {
                 self.dataArr.append(_data)
             } else {

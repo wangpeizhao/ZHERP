@@ -318,6 +318,9 @@ class RegisteringViewController: UIViewController, UITextFieldDelegate {
             _alert(view: self, message: "请先填写完信息")
             return
         }
+        let mainStoryboard = UIStoryboard(name:"Main", bundle:nil)
+        let viewController = mainStoryboard.instantiateInitialViewController()
+        self.present(viewController!, animated: true, completion:nil)
     }
     @objc func LoginBtn(_ sender: Any) {
         _open(view: self, vcName: "login", withNav: false)

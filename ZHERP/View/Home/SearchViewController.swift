@@ -218,10 +218,21 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
             if !((self.dataArray[sectionNo]?.isEmpty)!) {
                 var _data = self.dataArray[sectionNo]!
                 
-                cell.orderImage.image = UIImage(named: _data["imagePath"]!)
-                cell.sukLabel.text = _data["suk"]
-                cell.titleLabel.text = _data["title"]
-                cell.priceLabel.text = _data["price"]
+                cell.orderId.text = _data["orderId"]
+                cell.orderId.sizeToFit()
+                cell.orderTime.text = _data["orderTime"]
+                cell.orderTime.sizeToFit()
+                cell.orderTotal.text = _data["orderTotal"]
+                cell.orderTotal.sizeToFit()
+                cell.orderAmount.text = _data["orderAmount"]
+                cell.orderAmount.sizeToFit()
+                cell.orderStatus.text = _data["orderStatus"]
+                cell.orderStatus.sizeToFit()
+                cell.orderQuantity.text = _data["orderQuantity"]
+                cell.orderQuantity.sizeToFit()
+                cell.orderDiscounts.text = _data["orderCoupon"]
+                cell.orderId.sizeToFit()
+                
                 cell.accessoryType = .disclosureIndicator
             }
             return cell

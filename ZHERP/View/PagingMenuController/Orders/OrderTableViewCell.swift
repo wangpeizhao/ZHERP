@@ -12,10 +12,13 @@ class OrderTableViewCell: UITableViewCell {
 
     @IBOutlet weak var orderId: UILabel!
     @IBOutlet weak var orderView: UIView!
-    @IBOutlet weak var orderImage: UIImageView!
-    @IBOutlet weak var sukLabel: UILabel!
-    @IBOutlet weak var titleLabel: UILabel!
-    @IBOutlet weak var priceLabel: UILabel!
+    
+    @IBOutlet weak var orderTime: UILabel!
+    @IBOutlet weak var orderQuantity: UILabel!
+    @IBOutlet weak var orderStatus: UILabel!
+    @IBOutlet weak var orderTotal: UILabel!
+    @IBOutlet weak var orderDiscounts: UILabel!
+    @IBOutlet weak var orderAmount: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()

@@ -47,17 +47,17 @@ class GoodViewController: UIViewController {
     let footer = MJRefreshAutoNormalFooter()
     
     var dataArr = [
-        ["avatar": "bayMax", "suk": "AB_PPC01", "name": "六神花露水001", "price": "117.50", "stock": "121", "cost": "2150.00", "location": "广州白马1001", "status": "0"],
-        ["avatar": "c#", "suk": "BC_PPC02", "name": "六神花露水002", "price": "217.50", "stock": "122", "cost": "2250.00", "location": "广州白马1234", "status": "1"],
-        ["avatar": "html", "suk": "CD_PPC03", "name": "六神花露水003", "price": "317.50", "stock": "123", "cost": "2350.00", "location": "广州白马3434", "status": "-1"],
-        ["avatar": "java", "suk": "DE_PPC04", "name": "六神花露水004", "price": "417.50", "stock": "124", "cost": "2450.00", "location": "广州白马4556", "status": "0"],
-        ["avatar": "js", "suk": "EF_PPC05", "name": "六神花露水005", "price": "517.50", "stock": "125", "cost": "2550.00", "location": "广州白马6787", "status": "1"],
-        ["avatar": "php", "suk": "FG_PPC06", "name": "六神花露水006", "price": "617.50", "stock": "126", "cost": "2650.00", "location": "广州白马7856", "status": "-1"],
-        ["avatar": "react", "suk": "GH_PPC07", "name": "六神花露水007", "price": "717.50", "stock": "127", "cost": "2570.00", "location": "广州白马4533", "status": "0"],
-        ["avatar": "ruby", "suk": "HI_PPC08", "name": "六神花露水008", "price": "817.50", "stock": "128", "cost": "2850.00", "location": "广州白马2131", "status": "1"],
-        ["avatar": "swift", "suk": "IJ_PPC09", "name": "六神花露水009", "price": "917.50", "stock": "129", "cost": "2590.00", "location": "广州白马2233", "status": "1"],
-        ["avatar": "xcode", "suk": "JK_PPC10", "name": "六神花露水010", "price": "107.50", "stock": "120", "cost": "2500.00", "location": "广州白马3223", "status": "1"],
-        ["avatar": "bayMax", "suk": "KL_PPC11", "name": "六神花露水011", "price": "1700.50", "stock": "1200", "cost": "2590.00", "location": "广州白马2345", "status": "0"]
+        ["avatar": "bayMax", "suk": "AB_PPC0201804451", "name": "六神花露水清新花香冰莲香型喷雾清凉防蚊001", "price": "117.50", "stock": "121", "cost": "2150.00", "location": "广州白马1001", "status": "0"],
+        ["avatar": "c#", "suk": "BC_PPC02434224", "name": "六神花露水清新花香冰莲香型喷雾清凉防蚊002", "price": "217.50", "stock": "122", "cost": "2250.00", "location": "广州白马1234", "status": "1"],
+        ["avatar": "html", "suk": "CD_PPC122324567", "name": "六神花露清新花香冰莲香型喷雾清凉防蚊水003", "price": "317.50", "stock": "123", "cost": "2350.00", "location": "广州白马3434", "status": "-1"],
+        ["avatar": "java", "suk": "DE_PPC042335467", "name": "六神花露水清新花香冰莲香型喷雾清凉防蚊004", "price": "417.50", "stock": "124", "cost": "2450.00", "location": "广州白马4556", "status": "0"],
+        ["avatar": "js", "suk": "EF_PPC05234567", "name": "六神花露水清新花香冰莲香型喷雾清凉防蚊005", "price": "517.50", "stock": "125", "cost": "2550.00", "location": "广州白马6787", "status": "1"],
+        ["avatar": "php", "suk": "FG_PPC062345678", "name": "六神花露水清新花香冰莲香型喷雾清凉防蚊006", "price": "617.50", "stock": "126", "cost": "2650.00", "location": "广州白马7856", "status": "-1"],
+        ["avatar": "react", "suk": "GH_PPC0723456", "name": "六神花露水清新花香冰莲香型喷雾清凉防蚊007", "price": "717.50", "stock": "127", "cost": "2570.00", "location": "广州白马4533", "status": "0"],
+        ["avatar": "ruby", "suk": "HI_PPC0834567", "name": "六神花露水清新花香冰莲香型喷雾清凉防蚊008", "price": "817.50", "stock": "128", "cost": "2850.00", "location": "广州白马2131", "status": "1"],
+        ["avatar": "swift", "suk": "IJ_PPC0924356", "name": "六神花露水清新花香冰莲香型喷雾清凉防蚊009", "price": "917.50", "stock": "129", "cost": "2590.00", "location": "广州白马2233", "status": "1"],
+        ["avatar": "xcode", "suk": "JK_PPC10", "name": "六神花露水清新花香冰莲香型喷雾清凉防蚊010", "price": "107.50", "stock": "120", "cost": "2500.00", "location": "广州白马3223", "status": "1"],
+        ["avatar": "bayMax", "suk": "KL_PPC11", "name": "六神花露水清新花香冰莲香型喷雾清凉防蚊011", "price": "1700.50", "stock": "1200", "cost": "2590.00", "location": "广州白马2345", "status": "0"]
     ]
     
     let titlesArr = ["上架时间", "价格", "库存", "销量"]
@@ -295,7 +295,7 @@ class GoodViewController: UIViewController {
         for i in 0...2 {
             let index = arc4random_uniform(UInt32(imagePaths.count))
             let _imagePath = imagePaths[Int(index)]
-            let _data = ["avatar": _imagePath, "suk": "AB_PPC\(count + i)", "name": "六神花露水001", "price": "117.50", "stock": "121", "cost": "2150.00", "location": "广州白马1001", "status": "1"]
+            let _data = ["avatar": _imagePath, "suk": "AB_PPC\(count + i)", "name": "六神花露水清新花香冰莲香型喷雾清凉防蚊001", "price": "117.50", "stock": "121", "cost": "2150.00", "location": "广州白马1001", "status": "1"]
             if (append) {
                 self.dataArr.append(_data)
             } else {
@@ -567,6 +567,10 @@ extension GoodViewController: UITableViewDataSource ,UITableViewDelegate {
         return 0
     }
     
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 105
+    }
+    
     //设置分组尾的高度
     func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
         return 0
@@ -578,7 +582,7 @@ extension GoodViewController: UITableViewDataSource ,UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if tableView.isEqual(self.tableView) {
-            let count = self.dataArr.count
+//            let count = self.dataArr.count
 //            let sectionNo = count - indexPath.row - 1
 
             let cell: GoodTableViewCell = tableView.dequeueReusableCell(withIdentifier: CELL_IDENTIFY_ID, for: indexPath) as! GoodTableViewCell
@@ -587,11 +591,17 @@ extension GoodViewController: UITableViewDataSource ,UITableViewDelegate {
                 
             cell.avatar.image = UIImage(named: _data["avatar"]!)
             cell.suk.text = _data["suk"]
+            cell.suk.sizeToFit()
             cell.name.text = _data["name"]
-            cell.stock.text = _data["stock"]
-            cell.cost.text = _data["cost"]
-            cell.location.text = _data["location"]
-            cell.price.text = _data["price"]
+            cell.name.sizeToFit()
+            cell.stock.text = "库存:" + _data["stock"]!
+            cell.stock.sizeToFit()
+            cell.location.text = "库位:" + _data["location"]!
+            cell.location.sizeToFit()
+            cell.price.text = "售价:" + _data["price"]! + "元/包"
+            cell.price.sizeToFit()
+            cell.cost.text = "成本:" + _data["price"]! + "元/包"
+            cell.cost.sizeToFit()
             cell.accessoryType = .disclosureIndicator
 
             cell.tag = indexPath.row

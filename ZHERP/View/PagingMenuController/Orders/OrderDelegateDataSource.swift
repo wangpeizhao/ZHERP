@@ -61,12 +61,20 @@ extension OrderDelegateDataSource: UITableViewDataSource ,UITableViewDelegate {
         let cell: OrderTableViewCell = tableView.dequeueReusableCell(withIdentifier: CELL_IDENTIFY_ID, for: indexPath) as! OrderTableViewCell
         
         let _data = dataArr[indexPath.item]
-            
-        cell.orderImage.image = UIImage(named: _data["imagePath"]!)
-        cell.sukLabel.text = _data["suk"]
-        cell.titleLabel.text = _data["title"]
-        cell.priceLabel.text = _data["price"]
         cell.orderId.text = _data["orderId"]
+        cell.orderId.sizeToFit()
+        cell.orderTime.text = _data["orderTime"]
+        cell.orderTime.sizeToFit()
+        cell.orderTotal.text = "总价:" + _data["orderTotal"]!
+        cell.orderTotal.sizeToFit()
+        cell.orderAmount.text = "实收:" + _data["orderAmount"]!
+        cell.orderAmount.sizeToFit()
+        cell.orderStatus.text = "状态:" + _data["orderStatus"]!
+        cell.orderStatus.sizeToFit()
+        cell.orderQuantity.text = "数量:" + _data["orderQuantity"]!
+        cell.orderQuantity.sizeToFit()
+        cell.orderDiscounts.text = "优惠:" + _data["orderCoupon"]!
+        cell.orderId.sizeToFit()
         cell.accessoryType = .disclosureIndicator
         return cell
     }
