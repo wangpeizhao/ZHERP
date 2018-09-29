@@ -17,7 +17,7 @@ class SettingsViewController: UIViewController {
         ["name":"支付设置", "key":"payment","pic":"swift.png"],
         ["name":"角色设置", "key":"role","pic":"xcode.png"],
         ["name":"员工设置", "key":"employee","pic":"java.png"],
-//        ["name":"分类管理", "key":"classify","pic":"php.png"],
+        ["name":"经营分析", "key":"analysis","pic":"php.png"],
 //        ["name":"供货商管理", "key":"supplier","pic":"c#.png"]
     ]
     
@@ -176,10 +176,16 @@ extension SettingsViewController: UITableViewDelegate, UITableViewDataSource {
         switch key {
         case "payment":
             _target = SPaymentManagerViewController()
+            break
         case "role":
             _target = SMemberRoleManagerViewController()
+            break
         case "employee":
             _target = SMemberManagerViewController()
+            break
+        case "analysis":
+            _target = StatisticViewController()
+            break
         default:
             _target = GoodDetailViewController()
         }

@@ -1699,11 +1699,11 @@
             </objects>
             <point key="canvasLocation" x="7586.3999999999996" y="530.54187192118229"/>
         </scene>
-        <!--经营分析-->
+        <!--设置-->
         <scene sceneID="aoh-uN-SBq">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="T9R-cL-Vmr" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="经营分析" image="analyze_icon" id="Edl-pH-PdQ"/>
+                    <tabBarItem key="tabBarItem" title="设置" image="setting_icon" id="Edl-pH-PdQ"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="6CB-4v-359">
                         <rect key="frame" x="0.0" y="44" width="375" height="44"/>
@@ -1756,7 +1756,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="analyze_icon" width="32" height="32"/>
         <image name="good_icon" width="32" height="32"/>
         <image name="home_allot_32_32" width="32" height="32"/>
         <image name="home_icon" width="32" height="32"/>
@@ -1766,5 +1765,6 @@
         <image name="home_take_stock_32_32" width="32" height="32"/>
         <image name="home_warehouse_32_32" width="32" height="32"/>
         <image name="order_icon" width="28" height="28"/>
+        <image name="setting_icon" width="24" height="24"/>
     </resources>
 </document>
