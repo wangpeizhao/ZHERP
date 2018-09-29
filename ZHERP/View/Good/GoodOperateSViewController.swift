@@ -620,8 +620,8 @@ extension GoodOperateSViewController: UITableViewDelegate, UITableViewDataSource
                 default:
                     break
                 }
-//                tableView.reloadData()
-                tableView.reloadRows(at: [indexPath], with: .automatic)
+                tableView.reloadData()
+//                tableView.reloadRows(at: [indexPath], with: .automatic)
             }
         }
         _push(view: self, target: _target, rootView: false)

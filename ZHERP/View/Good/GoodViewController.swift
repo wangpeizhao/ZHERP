@@ -227,7 +227,7 @@ class GoodViewController: UIViewController {
             } else {
                 self.categoryTable.frame.size.height = CGFloat(270)
             }
-            self.tabBarController?.tabBar.isHidden = true
+//            self.tabBarController?.tabBar.isHidden = true
         }
     }
     
@@ -568,7 +568,7 @@ extension GoodViewController: UITableViewDataSource ,UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 105
+        return tableView.isEqual(self.categoryTable) ? SelectCellHeight : 105
     }
     
     //设置分组尾的高度

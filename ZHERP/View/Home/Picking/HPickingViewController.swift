@@ -38,7 +38,7 @@ class HPickingViewController: UIViewController , UIGestureRecognizerDelegate, HP
     
     var dataArr : [Int: [String:String]] = [
         0: ["sn": "2018090612344519995",
-         "suk": "CD_PPC01",
+         "suk": "CD_PPC01CD_PPC01",
          "avatar": "bayMax",
          "warehouse": "深圳仓库",
          "price": "80000.88",
@@ -49,7 +49,7 @@ class HPickingViewController: UIViewController , UIGestureRecognizerDelegate, HP
          "name": "美的（Midea）电饭煲 气动涡轮防溢 金属机身 圆灶釜内胆4L电饭锅MB-WFS4037",
         "cost": "2350.00", "location": "广州白马3434", "status": "-1"],
         1: ["sn": "2018090612344519995",
-         "suk": "CD_PPC02",
+         "suk": "CD_PPC01CD_PPC01",
          "avatar": "swift",
          "warehouse": "深圳仓库",
          "price": "80000.88",
@@ -60,7 +60,7 @@ class HPickingViewController: UIViewController , UIGestureRecognizerDelegate, HP
          "name": "美的（Midea）电饭煲 气动涡轮防溢 金属机身 圆灶釜内胆4L电饭锅MB-WFS4037",
         "cost": "2350.00", "location": "广州白马3434", "status": "-1"],
         2: ["sn": "2018090612344519995",
-         "suk": "CD_PPC03",
+         "suk": "CD_PPC01CD_PPC01",
          "avatar": "php",
          "warehouse": "深圳仓库",
          "price": "80000.88",
@@ -275,7 +275,7 @@ class HPickingViewController: UIViewController , UIGestureRecognizerDelegate, HP
                 "total": "987452.00",
                 "quantity": "12",
                 "stock": "5600",
-                "name": "六神花露水003",
+                "name": "美的（Midea）电饭煲 气动涡轮防溢 金属机身 圆灶釜内胆4L电饭锅MB-WFS4037六神花露水003",
                 "title": "美的（Midea）电饭煲 气动涡轮防溢 金属机身 圆灶釜内胆4L电饭锅MB-WFS4037",
                 "cost": "2350.00", "location": "广州白马3434", "status": "-1"]
         }
@@ -467,6 +467,7 @@ extension HPickingViewController: UITableViewDelegate, UITableViewDataSource {
             cell.suk.text = _data["suk"]
             cell.suk.sizeToFit()
             cell.name.text = _data["name"]
+            cell.name.numberOfLines = 2
             cell.name.sizeToFit()
             cell.stock.text = "库存:" + _data["stock"]!
             cell.stock.sizeToFit()
@@ -501,6 +502,6 @@ extension HPickingViewController: UITableViewDelegate, UITableViewDataSource {
             "stock": "5600",
         ]
         
-        _push(view: self, target: _target, rootView: true)
+        _push(view: self, target: _target, rootView: false)
     }
 }

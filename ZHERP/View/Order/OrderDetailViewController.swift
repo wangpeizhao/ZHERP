@@ -273,7 +273,7 @@ extension OrderDetailViewController: UITableViewDelegate, UITableViewDataSource 
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return indexPath.section == 1 ? SelectCellHeight + 0 : SelectCellHeight
+        return indexPath.section == 1 ? SelectCellHeight - 5 : SelectCellHeight
     }
     
     //设置分组头的高度

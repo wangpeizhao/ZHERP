@@ -1,0 +1,147 @@
+//
+//  HReceiptViewController.swift
+//  ZHERP
+//
+//  Created by MrParker on 2018/9/29.
+//  Copyright © 2018年 MrParker. All rights reserved.
+//
+
+import UIKit
+
+class HReceiptViewController: UIViewController {
+
+    var tableView: UITableView!
+    let CELL_IDENTIFY_ID = "CELL_IDENTIFY_ID"
+    var navHeight: CGFloat!
+    var tabBarHeight: CGFloat!
+    var navTitle: String = "收钱啦"
+    
+    // 初始数据
+    var valueArr = [String: String]()
+    
+    var _HReceiptView: HReceiptView!
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        self.view.backgroundColor = Specs.color.white
+        setNavBarTitle(view: self, title: self.navTitle)
+        setNavBarBackBtn(view: self, title: "", selector: #selector(actionBack))
+        
+        // 设置右侧按钮
+        let rightBarBtnRefresh = UIBarButtonItem(title: "", style: .plain, target: self, action: #selector(actionRefresh))
+        rightBarBtnRefresh.image = UIImage(named: "refresh")
+        rightBarBtnRefresh.tintColor = Specs.color.white
+        self.navigationItem.rightBarButtonItems = [rightBarBtnRefresh]
+        
+        self._setup()
+        // Do any additional setup after loading the view.
+    }
+    
+    @objc func actionBack() {
+        
+    }
+    
+    @objc func actionRefresh() {
+        
+    }
+    
+    @objc func actionSubmitAdd() {
+        
+    }
+    
+    @objc func actionOrder() {
+        let _target = OrderViewController()
+        _push(view: self, target: _target)
+    }
+    
+    @objc func actionPicking() {
+        for i in 0..<(self.navigationController?.viewControllers.count)! {
+            if self.navigationController?.viewControllers[i].isKind(of: HPickingViewController.self) == true {
+                self.hidesBottomBarWhenPushed = true
+                _ = self.navigationController?.popToViewController(self.navigationController?.viewControllers[i] as! HPickingViewController, animated: true)
+                break
+            }
+        }
+    }
+    
+    fileprivate func _setup() {
+        self.navHeight = self.navigationController?.navigationBar.frame.maxY
+        self.tabBarHeight = self.tabBarController?.tabBar.bounds.size.height
+        
+        let _frame = CGRect(x: 0, y: self.navHeight, width: ScreenWidth, height: ScreenHeight - self.navHeight)
+        self.tableView = UITableView(frame: _frame, style: .grouped)
+        
+        self.tableView!.delegate = self
+        self.tableView!.dataSource = self
+        self.tableView!.register(UITableViewCell.self, forCellReuseIdentifier: CELL_IDENTIFY_ID)
+        self.tableView!.tableHeaderView = UIView.init(frame: CGRect(x: 0, y: 0, width: 0, height: 0.1))
+        self.view.addSubview(self.tableView!)
+        
+        self._HReceiptView = HReceiptView()
+        self._HReceiptView.frameHeight = ScreenHeight - self.navHeight
+        
+        self.initData()
+    }
+    
+    fileprivate func initData() {
+        if self.valueArr.count == 0 {
+            self.valueArr = [
+                "orderId": "201809101454560090",
+                "orderTime": "2018-09-10 14:54:56",
+                "total": "56740.00"
+            ]
+        }
+    }
+    
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
+    }
+}
+
+extension HReceiptViewController: UITableViewDelegate, UITableViewDataSource {
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 1
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 0
+    }
+    
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let _mainView = UIView(frame: CGRect(x: 0, y: 0, width: ScreenWidth, height: ScreenHeight))
+        
+        _mainView.addSubview(self._HReceiptView.mainView(initData: self.valueArr))
+        
+        self._HReceiptView.actionOrderBtn.addTarget(self, action: #selector(actionOrder), for: .touchUpInside)
+        self._HReceiptView.continuePickBtn.addTarget(self, action: #selector(actionPicking), for: .touchUpInside)
+        return _mainView
+    }
+    
+    //设置分组头的高度
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return (ScreenWidth - 80) / 2 + 120
+    }
+    
+    func tableView(_ tableView: UITableView, titleForFooterInSection section: Int) -> String? {
+        return "付款成功后直接进入店主微信/支付宝账户"
+    }
+    
+    //设置分组尾的高度
+    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        return 30
+    }
+    
+    //创建各单元显示内容(创建参数indexPath指定的单元）
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = UITableViewCell(style: .value1, reuseIdentifier: CELL_IDENTIFY_ID)
+        
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+    }
+}

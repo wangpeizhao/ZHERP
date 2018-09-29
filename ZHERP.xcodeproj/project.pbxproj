@@ -15,6 +15,11 @@
 		2C35D2D12141085B00AEC12F /* BillsDailyReportTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2C35D2CF2141085A00AEC12F /* BillsDailyReportTableViewCell.xib */; };
 		2C35D2D321411E5D00AEC12F /* BillsDaliyDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C35D2D221411E5D00AEC12F /* BillsDaliyDetailViewController.swift */; };
 		2C35D2D5214124EE00AEC12F /* BillsDelegateDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C35D2D4214124EE00AEC12F /* BillsDelegateDataSource.swift */; };
+		2C58976E215F17D9000FC663 /* QRBarCodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C58976D215F17D9000FC663 /* QRBarCodeViewController.swift */; };
+		2C589770215F2E7E000FC663 /* CodeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C58976F215F2E7E000FC663 /* CodeManager.swift */; };
+		2C589772215F6B04000FC663 /* QRBarCodeCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C589771215F6B04000FC663 /* QRBarCodeCollectionViewCell.swift */; };
+		2C589775215F6FB5000FC663 /* HReceiptViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C589774215F6FB5000FC663 /* HReceiptViewController.swift */; };
+		2C589778215F7026000FC663 /* HReceiptView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C589777215F7026000FC663 /* HReceiptView.swift */; };
 		2C5AC3ED2125695F002FFC80 /* ZHScannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C5AC3EC2125695F002FFC80 /* ZHScannerView.swift */; };
 		2C5AC3EF21256AE3002FFC80 /* ZHQRCode.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 2C5AC3EE21256AE3002FFC80 /* ZHQRCode.bundle */; };
 		2C5C7A04215C71F800533AE1 /* OrderModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C5C7A03215C71F800533AE1 /* OrderModel.swift */; };
@@ -249,6 +254,11 @@
 		2C35D2CF2141085A00AEC12F /* BillsDailyReportTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BillsDailyReportTableViewCell.xib; sourceTree = "<group>"; };
 		2C35D2D221411E5D00AEC12F /* BillsDaliyDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BillsDaliyDetailViewController.swift; sourceTree = "<group>"; };
 		2C35D2D4214124EE00AEC12F /* BillsDelegateDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BillsDelegateDataSource.swift; sourceTree = "<group>"; };
+		2C58976D215F17D9000FC663 /* QRBarCodeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRBarCodeViewController.swift; sourceTree = "<group>"; };
+		2C58976F215F2E7E000FC663 /* CodeManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CodeManager.swift; sourceTree = "<group>"; };
+		2C589771215F6B04000FC663 /* QRBarCodeCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRBarCodeCollectionViewCell.swift; sourceTree = "<group>"; };
+		2C589774215F6FB5000FC663 /* HReceiptViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HReceiptViewController.swift; sourceTree = "<group>"; };
+		2C589777215F7026000FC663 /* HReceiptView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HReceiptView.swift; sourceTree = "<group>"; };
 		2C5AC3EC2125695F002FFC80 /* ZHScannerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ZHScannerView.swift; path = ZHERP/Helper/ZHScannerView.swift; sourceTree = SOURCE_ROOT; };
 		2C5AC3EE21256AE3002FFC80 /* ZHQRCode.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = ZHQRCode.bundle; sourceTree = "<group>"; };
 		2C5C7A03215C71F800533AE1 /* OrderModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderModel.swift; sourceTree = "<group>"; };
@@ -542,6 +552,33 @@
 			path = Bills;
 			sourceTree = "<group>";
 		};
+		2C58976C215F1794000FC663 /* QRBarCode */ = {
+			isa = PBXGroup;
+			children = (
+				2C58976F215F2E7E000FC663 /* CodeManager.swift */,
+				2C58976D215F17D9000FC663 /* QRBarCodeViewController.swift */,
+				2C589771215F6B04000FC663 /* QRBarCodeCollectionViewCell.swift */,
+			);
+			path = QRBarCode;
+			sourceTree = "<group>";
+		};
+		2C589773215F6F8D000FC663 /* Receipt */ = {
+			isa = PBXGroup;
+			children = (
+				2C589776215F7010000FC663 /* View */,
+				2C589774215F6FB5000FC663 /* HReceiptViewController.swift */,
+			);
+			path = Receipt;
+			sourceTree = "<group>";
+		};
+		2C589776215F7010000FC663 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				2C589777215F7026000FC663 /* HReceiptView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		2C6104CA21536EE7004BE3F4 /* Settings */ = {
 			isa = PBXGroup;
 			children = (
@@ -576,6 +613,7 @@
 			isa = PBXGroup;
 			children = (
 				9EE26B78212B0BE000619D98 /* HomeNavigationViewController.swift */,
+				2CEA8C4B212AB17400004AE6 /* HomeCollectionViewCell.swift */,
 				9EE26B7A212B0CA400619D98 /* HomeReportViewController.swift */,
 				9EE26B7C212B14F200619D98 /* HomeChartsViewController.swift */,
 			);
@@ -1038,6 +1076,8 @@
 		9E88ED1720FB40DE00DF091F /* Home */ = {
 			isa = PBXGroup;
 			children = (
+				2C589773215F6F8D000FC663 /* Receipt */,
+				2C58976C215F1794000FC663 /* QRBarCode */,
 				2CB62BA7214F4F530048AF61 /* Deliver */,
 				2CE8F4A2212C0A9200037367 /* Settings */,
 				2CE8F49F212BFEB100037367 /* Warehouse */,
@@ -1103,7 +1143,6 @@
 				9E523E6C2109401F00CF921F /* SwitchTableViewCell.xib */,
 				9E523E6F210A241500CF921F /* ImageRightTableViewCell.swift */,
 				9E523E70210A241500CF921F /* ImageRightTableViewCell.xib */,
-				2CEA8C4B212AB17400004AE6 /* HomeCollectionViewCell.swift */,
 			);
 			path = Component;
 			sourceTree = "<group>";
@@ -1627,12 +1666,14 @@
 				2C9AC88F214244EB004F252D /* StatisticChartsViewController.swift in Sources */,
 				9E523E89210D449300CF921F /* OrderViewController.swift in Sources */,
 				9E523DFE2104661400CF921F /* GuideViewController.swift in Sources */,
+				2C58976E215F17D9000FC663 /* QRBarCodeViewController.swift in Sources */,
 				9E88ED4520FE63AE00DF091F /* ForgotPwdViewController.swift in Sources */,
 				9EE227D22144217700E1CDD1 /* HPickingCompleteViewController.swift in Sources */,
 				9EE227D021441AB100E1CDD1 /* HPickingGoodViewController.swift in Sources */,
 				9E523E7F210C5B3000CF921F /* EditQRCodeViewController.swift in Sources */,
 				2C6B1F39213E4C6900CF82DE /* WLocationViewController.swift in Sources */,
 				9E523E92210D543F00CF921F /* OrderPayViewController.swift in Sources */,
+				2C589775215F6FB5000FC663 /* HReceiptViewController.swift in Sources */,
 				9E523E85210CCEB000CF921F /* Common.swift in Sources */,
 				9E88ED3220FCE21000DF091F /* TableViewCell.swift in Sources */,
 				9E4C3165214368D1004A95A2 /* HAllocatingViewController.swift in Sources */,
@@ -1655,7 +1696,9 @@
 				9E88ED2A20FB723600DF091F /* UIColor.swift in Sources */,
 				9ED7E51B2141903D00F8F735 /* BillsMonthViewController.swift in Sources */,
 				9E88ED1420FB3B9300DF091F /* Post.swift in Sources */,
+				2C589770215F2E7E000FC663 /* CodeManager.swift in Sources */,
 				9EFB82752157EF61007A2893 /* GoodOperateImageView.swift in Sources */,
+				2C589778215F7026000FC663 /* HReceiptView.swift in Sources */,
 				9ED7E51D2141915200F8F735 /* BillsLastMonthViewController.swift in Sources */,
 				9E27D5A7213AF05C00087D20 /* WarehouseDetailViewController.swift in Sources */,
 				2CB2ECA72149F42D00AD8B2B /* SMemberLoginLogsViewController.swift in Sources */,
@@ -1673,6 +1716,7 @@
 				9E523E3C2107708600CF921F /* Personal.swift in Sources */,
 				9E5D7E54214C149C00DE7036 /* UICollectionGridViewController.swift in Sources */,
 				9E88ED1020FB3B7700DF091F /* ObservableType+ObjectMapper.swift in Sources */,
+				2C589772215F6B04000FC663 /* QRBarCodeCollectionViewCell.swift in Sources */,
 				9E88ED3920FCEA4500DF091F /* Member.swift in Sources */,
 				9E523DE22100DD0500CF921F /* Protocol.swift in Sources */,
 				2C6B1F3D213E5BF200CF82DE /* WLocationDeatilViewController.swift in Sources */,

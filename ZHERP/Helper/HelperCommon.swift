@@ -477,3 +477,31 @@ func minMax(arr:[Int])->(Int,Int) {
     
     return (min,max)
 }
+
+public func getAppPaths() {
+    let libraryPath:String = NSSearchPathForDirectoriesInDomains(FileManager.SearchPathDirectory.libraryDirectory, FileManager.SearchPathDomainMask.userDomainMask, true)[0]
+    print("library路径----\(libraryPath)")
+    
+    let cachePath:String = NSSearchPathForDirectoriesInDomains(FileManager.SearchPathDirectory.cachesDirectory, FileManager.SearchPathDomainMask.userDomainMask, true)[0]
+    print("Cache路径----\(cachePath)")
+    
+    let preferPath:String = NSSearchPathForDirectoriesInDomains(FileManager.SearchPathDirectory.preferencePanesDirectory, FileManager.SearchPathDomainMask.userDomainMask, true)[0]
+    print("Prefer路径----\(preferPath)")
+    
+    let homeDir:String = NSHomeDirectory()
+    print("沙盒地址---\(homeDir)")
+    
+    let imagePath = Bundle.main.path(forResource: "sale", ofType: "png")!
+    print("FlyElephnt-图片路径----\(imagePath)")
+    
+    let bundlePath = Bundle.main.bundleURL.path
+    print("FlyElephnt-App资源文件路径--\(bundlePath)")
+    
+    let testDataPath = Bundle.main.bundleURL.appendingPathComponent("FlyElephant").path
+    print("压缩文件的路径---\(testDataPath)")
+//
+//    作者：FlyElephant
+//    链接：https://www.jianshu.com/p/39565cb5a053
+//    來源：简书
+//    简书著作权归作者所有，任何形式的转载都请联系作者获得授权并注明出处。
+}

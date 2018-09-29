@@ -182,9 +182,7 @@ class CameraViewController: UIViewController, AVCaptureMetadataOutputObjectsDele
             }
         }catch _ {
             //打印错误消息
-            let alertController = UIAlertController(title: "提醒",
-                                                    message: "请在iPhone的\"设置-隐私-相机\"选项中,允许本程序访问您的相机",
-                                                    preferredStyle: .alert)
+            let alertController = UIAlertController(title: "提醒", message: "请在iPhone的\"设置-隐私-相机\"选项中,允许本程序访问您的相机", preferredStyle: .alert)
             let cancelAction = UIAlertAction(title: "确定", style: .cancel, handler: nil)
             alertController.addAction(cancelAction)
             self.present(alertController, animated: true, completion: nil)
@@ -206,10 +204,8 @@ class CameraViewController: UIViewController, AVCaptureMetadataOutputObjectsDele
         }
         self.session.stopRunning()
         //输出结果
-        let alertController = UIAlertController(title: "二维码",
-                                                message: stringValue,preferredStyle: .alert)
-        let okAction = UIAlertAction(title: "确定", style: .default, handler: {
-            action in
+        let alertController = UIAlertController(title: "二维码", message: stringValue,preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "确定", style: .default, handler: { action in
             //继续扫描
             self.session.startRunning()
         })

@@ -24,9 +24,12 @@ class HomeNavigationViewController: UIViewController, UICollectionViewDelegateFl
         ["name":"历史账单", "key":"bill","pic":"ruby.png"],
         ["name":"订单发货", "key":"delivering","pic":"html.png"],
         ["name":"货品入仓", "key":"warehousing","pic":"c#.png"],
-        ["name":"收钱啦", "key":"collection","pic":"java.png"],
+        ["name":"收钱啦", "key":"receipt","pic":"java.png"],
         ["name":"退货", "key":"refund","pic":"php.png"],
-        ["name":"使用帮助", "key":"help","pic":"html.png"]
+        ["name":"使用帮助", "key":"help","pic":"html.png"],
+        ["name":"打印条码", "key":"bar","pic":"java.png"],
+        ["name":"条码模块", "key":"barModule","pic":"java.png"],
+        ["name":"打印记录", "key":"barLog","pic":"java.png"],
     ]
 
     override func viewDidLoad() {
@@ -137,14 +140,21 @@ class HomeNavigationViewController: UIViewController, UICollectionViewDelegateFl
             let _target = GoodOperateFViewController()
             _target.dataType = .category
             _target.navTitle = "选择货品分类"
+            _target.hidesBottomBarWhenPushed = true
             _push(view: self, target: _target, rootView: true)
             return
-        case "collection":
-            _target = HPickingCompleteViewController()
+        case "receipt":
+            _target = HReceiptViewController()
         case "refund":
             _target = OrderRefundViewController()
         case "help":
-            _target = SProtocolViewController()
+            _target = SResponsibilityViewController()
+        case "bar":
+            _target = QRBarCodeViewController()
+        case "barModule":
+            _target = QRBarCodeViewController()
+        case "barLog":
+            _target = QRBarCodeViewController()
         default:
             _target = GoodDetailViewController()
         }

@@ -57,7 +57,7 @@ class HDeliverViewController: UIViewController {
     
     @objc func actionDelivery() {
         let _target = HDeliveringViewController()
-        _push(view: self, target: _target)
+        _push(view: self, target: _target, rootView: false)
     }
     
     @objc func footerRefresh(){
