@@ -16,6 +16,7 @@ class HomeReportViewController: UIViewController {
     var historyShipmentsValue: UILabel!
     var todayShipmentsValue: UILabel!
     var residueShipmentsValue: UILabel!
+    var companyName: String = "纵横科技"
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,11 +32,27 @@ class HomeReportViewController: UIViewController {
         label.textColor = Specs.color.white
         label.textAlignment = .center
         label.sizeToFit()
-        label.font = Specs.font.regularBold
+        label.font = Specs.font.regular
     }
     
     func _setup() {
 //        self.view = UIView(frame: CGRect(x: 0, y: 0, width: ScreenWidth, height: 200))
+        
+        // 客户、公司名称
+        let _companyName = UILabel()
+        self._setUILabel(label: _companyName, text: "广州白马商业经营管理有限公司白马服装市场经营管理服务中心")
+        _companyName.textAlignment = .left
+        _companyName.textColor = Specs.color.white
+        _companyName.font = Specs.font.regularBold
+        _companyName.numberOfLines = 2
+        self.view.addSubview(_companyName)
+        _companyName.snp.makeConstraints {(make) -> Void in
+            make.left.equalTo(30)
+//            make.height.equalTo(20)
+            make.top.equalTo(30)
+            make.width.equalTo(ScreenWidth - 60)
+        }
+        
         // 今日收款 Label
         let todayTotalLabel = UILabel()
         self._setUILabel(label: todayTotalLabel, text: "今日收款")
@@ -45,7 +62,7 @@ class HomeReportViewController: UIViewController {
         todayTotalLabel.snp.makeConstraints {(make) -> Void in
             make.left.equalTo(30)
             make.height.equalTo(20)
-            make.top.equalTo(15)
+            make.top.equalTo(_companyName.snp.bottom).offset(20)
         }
         
         // 今日收款 Value
@@ -57,7 +74,7 @@ class HomeReportViewController: UIViewController {
         self.view.addSubview(self.todayTotalValue)
         self.todayTotalValue.snp.makeConstraints {(make) -> Void in
             make.left.equalTo(todayTotalLabel.snp.left)
-            make.top.equalTo(todayTotalLabel.snp.bottom).offset(5)
+            make.top.equalTo(todayTotalLabel.snp.bottom)
         }
         
         // 今日收款 元
@@ -124,7 +141,7 @@ class HomeReportViewController: UIViewController {
         self.view.addSubview(historyShipmentsView)
         historyShipmentsView.snp.makeConstraints {(make) -> Void in
             make.left.equalTo(0)
-            make.top.equalTo(self.todayTotalValue.snp.bottom).offset(15)
+            make.top.equalTo(self.todayTotalValue.snp.bottom).offset(25)
             make.height.equalTo(50)
         }
         // 历史发货 label

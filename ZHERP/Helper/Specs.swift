@@ -16,7 +16,7 @@ public struct Specs {
         public let black = UIColor.black
         public let gray = UIColor.lightGray
         public let blue = UIColor.blue
-        public let main = normalRGBA(r: 32, g: 148, b: 226, a: 1) //UIColor(hex: 0x20aaf2)
+        public let main = UIColor(hex: 0x1368e5) //normalRGBA(r: 32, g: 148, b: 226, a: 1)
         public let circle = UIColor(hex: 0x1368e5)
         public let green = UIColor(hex: 0x42b83d)
         public let grayBg = UIColor(hex: 0xefeef4)

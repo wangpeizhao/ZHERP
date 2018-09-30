@@ -21,15 +21,15 @@ class HomeNavigationViewController: UIViewController, UICollectionViewDelegateFl
         ["name":"仓库管理", "key":"warehouse","pic":"php.png"],
         ["name":"盘点", "key":"inventory","pic":"js.png"],
         ["name":"入仓", "key":"warehousing","pic":"c#.png"],
-        ["name":"历史账单", "key":"bill","pic":"ruby.png"],
-        ["name":"订单发货", "key":"delivering","pic":"html.png"],
-        ["name":"设置", "key":"setting","pic":"react.png"],
-        ["name":"收钱啦", "key":"receipt","pic":"java.png"],
-        ["name":"退货", "key":"refund","pic":"php.png"],
-        ["name":"使用帮助", "key":"help","pic":"html.png"],
-        ["name":"打印条码", "key":"bar","pic":"java.png"],
-        ["name":"条码模块", "key":"barModule","pic":"java.png"],
-        ["name":"打印记录", "key":"barLog","pic":"java.png"],
+//        ["name":"历史账单", "key":"bill","pic":"ruby.png"],
+//        ["name":"订单发货", "key":"delivering","pic":"html.png"],
+//        ["name":"设置", "key":"setting","pic":"react.png"],
+//        ["name":"收钱啦", "key":"receipt","pic":"java.png"],
+//        ["name":"退货", "key":"refund","pic":"php.png"],
+//        ["name":"使用帮助", "key":"help","pic":"html.png"],
+//        ["name":"打印条码", "key":"bar","pic":"java.png"],
+//        ["name":"条码模块", "key":"barModule","pic":"java.png"],
+//        ["name":"打印记录", "key":"barLog","pic":"java.png"],
     ]
 
     override func viewDidLoad() {
@@ -52,7 +52,7 @@ class HomeNavigationViewController: UIViewController, UICollectionViewDelegateFl
         _chartsView.addSubview(_charts.view)
         
         
-        let cgView = UIView(frame: CGRect(x: 0, y: 70, width: ScreenWidth, height: 80))
+        let cgView = UIView(frame: CGRect(x: 0, y: 100, width: ScreenWidth, height: 80))
         cgView.backgroundColor = UIColor.white
         self.view.insertSubview(cgView, belowSubview: _chartsView)
         
@@ -67,7 +67,7 @@ class HomeNavigationViewController: UIViewController, UICollectionViewDelegateFl
         //水平间隔
         layout.minimumInteritemSpacing = spacing
         //垂直行间距
-        layout.minimumLineSpacing = spacing
+        layout.minimumLineSpacing = 30
         
         //列数
         let columnsNum = 3
@@ -76,8 +76,8 @@ class HomeNavigationViewController: UIViewController, UICollectionViewDelegateFl
         //计算单元格的宽度
         let itemWidth = (collectionViewWidth - spacing * CGFloat(columnsNum-1)) / CGFloat(columnsNum)
         //设置单元格宽度和高度
-        layout.itemSize = CGSize(width:itemWidth, height:100)
-        let frame = CGRect(x: 0, y: 70, width: ScreenWidth, height: self._height)
+        layout.itemSize = CGSize(width: itemWidth, height: 110)
+        let frame = CGRect(x: 0, y: 75, width: ScreenWidth, height: self._height)
         collectionView = UICollectionView(frame: frame, collectionViewLayout: layout)
         
         collectionView!.backgroundColor = UIColor.clear
@@ -99,6 +99,7 @@ class HomeNavigationViewController: UIViewController, UICollectionViewDelegateFl
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return self.navs.count
     }
+    
     //返回 cell
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell: HomeCollectionViewCell = collectionView.dequeueReusableCell(withReuseIdentifier: CELL_CVIEW_ID, for: indexPath) as! HomeCollectionViewCell
@@ -108,7 +109,6 @@ class HomeNavigationViewController: UIViewController, UICollectionViewDelegateFl
         cell.imageView?.image = UIImage(named: self.navs[indexPath.item]["pic"]!)
         cell.isHighlighted = true
         return cell;
-        
     }
     //item 对应的点击事件
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {

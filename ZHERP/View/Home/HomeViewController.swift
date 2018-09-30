@@ -140,7 +140,7 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
 //        }
         if (section == 1) {
             self.navigationView = HomeNavigationViewController()
-            self.navigationView?._height = ScreenHeight - self.navHeight - 160 - self.tabBarHeight
+            self.navigationView?._height = ScreenHeight - self.navHeight - 250 - self.tabBarHeight
             self.addChildViewController(self.navigationView!)
             return self.navigationView?.view
         }
@@ -159,11 +159,11 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
     //设置分组头的高度
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         if (section == 0) {
-            return 140
+            return 230
         }
         if (section == 1) {
 //            return 70
-            return ScreenHeight - self.navHeight - 140 - self.tabBarHeight
+            return ScreenHeight - self.navHeight - 230 - self.tabBarHeight
         }
 //        if (section == 2) {
 ////            return 205

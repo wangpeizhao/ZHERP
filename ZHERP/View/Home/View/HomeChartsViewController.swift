@@ -18,7 +18,7 @@ class HomeChartsViewController: UIViewController {
         super.viewDidLoad()
         
         self.view.backgroundColor = UIColor.white
-        self.view.frame = CGRect(x: 0, y: 0, width: ScreenWidth, height: 70)
+        self.view.frame = CGRect(x: 0, y: 0, width: ScreenWidth, height: 100)
         self._setup()
 
         // Do any additional setup after loading the view.
@@ -29,7 +29,7 @@ class HomeChartsViewController: UIViewController {
         chartView = LineChartView()
         //折线图背景色
         chartView.backgroundColor = UIColor(hex: 0x1a263a)
-        chartView.frame = CGRect(x: 0, y: 0, width: ScreenWidth, height: 70)
+        chartView.frame = CGRect(x: 0, y: 0, width: ScreenWidth, height: 100)
         chartView.chartDescription?.text = ""
         chartView.legend.enabled = false
         chartView.leftAxis.enabled = false
@@ -45,12 +45,12 @@ class HomeChartsViewController: UIViewController {
         chartView.xAxis.gridLineWidth = 2 //x轴对应网格线的大小
         self.view.addSubview(chartView)
         
-        let showTodayBillBtn = UIButton(frame: CGRect(x: 35, y: 25, width: 90, height: 28))
+        let showTodayBillBtn = UIButton(frame: CGRect(x: 35, y: 25, width: 120, height: 40))
         showTodayBillBtn.setTitle("查看今日流水", for: .normal)
         showTodayBillBtn.titleLabel?.font = UIFont.systemFont(ofSize: 12.0)
         showTodayBillBtn.setTitleColor(Specs.color.white, for: .normal)
         showTodayBillBtn.layer.cornerRadius = 10.0
-        showTodayBillBtn.backgroundColor = UIColor(hex: 0x5faaff)
+        showTodayBillBtn.backgroundColor = Specs.color.main //UIColor(hex: 0x5faaff)
         showTodayBillBtn.addTarget(self, action: #selector(showTodayBill), for: .touchUpInside)
         self.view.addSubview(showTodayBillBtn)
         
