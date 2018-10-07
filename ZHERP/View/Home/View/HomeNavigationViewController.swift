@@ -52,11 +52,11 @@ class HomeNavigationViewController: UIViewController, UICollectionViewDelegateFl
         _chartsView.addSubview(_charts.view)
         
         
-        let cgView = UIView(frame: CGRect(x: 0, y: 100, width: ScreenWidth, height: 80))
-        cgView.backgroundColor = UIColor.white
+        let cgView = UIView(frame: CGRect(x: 0, y: 100, width: ScreenWidth, height: 40))
+        cgView.backgroundColor = UIColor(hex: 0x1a2639) // UIColor.white
         self.view.insertSubview(cgView, belowSubview: _chartsView)
         
-        let ellipse = CGView(frame: CGRect(x: -20, y: -70, width: ScreenWidth + 40, height: 100))
+        let ellipse = CGView(frame: CGRect(x: -20, y: 0, width: ScreenWidth + 40, height: 100))
         cgView.addSubview(ellipse)
     }
     
@@ -200,8 +200,12 @@ class CGView:UIView {
         //添加路径到图形上下文
         context.addPath(path)
 
+        //设置笔触颜色
+        context.setStrokeColor(UIColor.white.cgColor)
+        //设置笔触宽度
+        context.setLineWidth(0)
         //设置填充颜色
-        context.setFillColor(UIColor(hex: 0x1a2639).cgColor)
+        context.setFillColor(UIColor.white.cgColor)
 
         //绘制路径并填充
         context.drawPath(using: .fillStroke)

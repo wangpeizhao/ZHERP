@@ -19,8 +19,8 @@ class StatisticViewController: UIViewController {
         super.viewDidLoad()
         self.view.backgroundColor = UIColor.clear
         
-        setNavBarTitle(view: self, title: "分析统计")
-        setNavBarBackBtn(view: self, title: "分析统计", selector: #selector(actionBack))
+        setNavBarTitle(view: self, title: "经营分析")
+        setNavBarBackBtn(view: self, title: "经营分析", selector: #selector(actionBack))
         
 //        setNavBarRightBtn(view: self, title: "经营分析", selector: #selector(actionBusiness))
         

@@ -314,6 +314,10 @@ class HPickingViewController: UIViewController , UIGestureRecognizerDelegate, HP
         self.tableView!.tableHeaderView = UIView.init(frame: CGRect(x: 0, y: 0, width: 0, height: 0.1))
         self.view.addSubview(self.tableView!)
         
+        //表格在编辑状态下允许多选
+        self.tableView!.allowsMultipleSelectionDuringEditing = true
+        self.tableView!.setEditing(true, animated:true)
+        
         // 长按启动删除、移动排序功能
         let longPress = UILongPressGestureRecognizer.init(target: self, action: #selector(longPressAction))
         longPress.delegate = self

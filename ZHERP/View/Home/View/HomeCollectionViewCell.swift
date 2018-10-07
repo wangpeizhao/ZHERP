@@ -23,7 +23,7 @@ class HomeCollectionViewCell: UICollectionViewCell {
         // 列数
         let columnsNum = 3
         //
-        let imageFrameWidth: CGFloat = 70.0
+        let imageFrameWidth: CGFloat = 64.0
         let imageFrameHeight: CGFloat = imageFrameWidth
         
         let itemWidth = (ScreenWidth - spacing * CGFloat(columnsNum - 1)) / CGFloat(columnsNum)
