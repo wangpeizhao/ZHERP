@@ -414,7 +414,7 @@ class HPickingViewController: UIViewController , UIGestureRecognizerDelegate, HP
         _HPickingView.tabBarHeight = self.tabBarHeight
         self.addChildViewController(_HPickingView)
         
-        let _frame = CGRect(x: 0, y: self.navHeight + SearchBtnHeight, width: ScreenWidth, height: ScreenHeight - self.navHeight - self.tabBarHeight - SearchBtnHeight + 40)
+        let _frame = CGRect(x: 0, y: self.navHeight + SearchBtnHeight, width: ScreenWidth, height: ScreenHeight - self.tabBarHeight * 2 - SearchBtnHeight)
         self.tableView = UITableView(frame: _frame, style: .grouped)
         
         self.tableView!.delegate = self
