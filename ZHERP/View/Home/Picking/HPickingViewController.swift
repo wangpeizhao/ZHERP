@@ -17,6 +17,7 @@ class HPickingViewController: UIViewController , UIGestureRecognizerDelegate, HP
     var navHeight: CGFloat!
     var tabBarHeight: CGFloat!
     
+    var selectedGoods = [Int: Int]()
     var selectedIds: [Int] = [123]
     
     // 合计总价
@@ -36,6 +37,7 @@ class HPickingViewController: UIViewController , UIGestureRecognizerDelegate, HP
     // 顶部刷新
     let header = MJRefreshNormalHeader()
     
+    var _isEditcart: Bool = false
     
     
     var dataArr : [Int: [String:String]] = [
@@ -111,7 +113,7 @@ class HPickingViewController: UIViewController , UIGestureRecognizerDelegate, HP
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        self._HPickingView._submitAdd.setTitle("去结算(\(self.selectedIds.count))", for: .normal)
+        self._setCartQuantity()
     }
     
     //监听键盘弹出事件：
@@ -124,13 +126,19 @@ class HPickingViewController: UIViewController , UIGestureRecognizerDelegate, HP
         let animations:(() -> Void) = {
             //键盘的偏移量
             //self.tableView.transform = CGAffineTransformMakeTranslation(0 , -deltaY)
-            self._tabBarCartView.frame.origin.y = ScreenHeight - deltaY - self.tabBarHeight * 2
-            //延时1秒执行
-            let time: TimeInterval = 0.5
-            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + time) {
-                //code
-                self._tabBarCartView.isHidden = false
-                self.cover.isHidden = false
+            if self._isEditcart {
+                self._tabBarCartView.frame.origin.y = ScreenHeight - deltaY - self.tabBarHeight * 2
+                //延时1秒执行
+                let time: TimeInterval = 0.5
+                DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + time) {
+                    //code
+                    self._tabBarCartView.isHidden = false
+                    self.cover.isHidden = false
+                }
+            } else {
+                UIView.animate(withDuration: 0.4, animations: {
+                    self.view.frame.origin.y = deltaY
+                })
             }
         }
         
@@ -140,6 +148,7 @@ class HPickingViewController: UIViewController , UIGestureRecognizerDelegate, HP
         }else{
             animations()
         }
+        
     }
     
     //监听键盘隐藏事件：
@@ -167,6 +176,7 @@ class HPickingViewController: UIViewController , UIGestureRecognizerDelegate, HP
             self._HPickingView._amountTextfield.resignFirstResponder()
         } else {
             self.cover.isHidden = false
+            self._isEditcart = true
             self._HPickingView._amountTextfield.becomeFirstResponder()
         }
     }
@@ -192,7 +202,7 @@ class HPickingViewController: UIViewController , UIGestureRecognizerDelegate, HP
     
     @objc func actionSelectAll(_ sender: UIButton) {
         if (sender.isSelected) {
-            self.selectedIds = []
+            self.selectedIds.removeAll()
             sender.setImage(UIImage(named: "unselected"), for: .normal)
         } else {
             sender.setImage(UIImage(named: "selected"), for: .normal)
@@ -201,7 +211,7 @@ class HPickingViewController: UIViewController , UIGestureRecognizerDelegate, HP
                 self.selectedIds.append(Int(_data["id"]!)!)
             }
         }
-        self._HPickingView._submitAdd.setTitle("去结算(\(self.selectedIds.count))", for: .normal)
+        self._setCartQuantity()
         self.tableView.reloadData()
         sender.isSelected = !sender.isSelected
     }
@@ -216,7 +226,7 @@ class HPickingViewController: UIViewController , UIGestureRecognizerDelegate, HP
             sender.setImage(UIImage(named: "unselected"), for: .normal)
             sender.isSelected = false
         }
-        self._HPickingView._submitAdd.setTitle("去结算(\(self.selectedIds.count))", for: .normal)
+        self._setCartQuantity()
     }
     
     @objc func actionPlus(_ sender: UIButton) {
@@ -228,6 +238,8 @@ class HPickingViewController: UIViewController , UIGestureRecognizerDelegate, HP
             _alert(view: self, message: "最多只能买\(_max)件哦！")
             _cell.quantity.text = "\(_max)"
             _cell.plus.setTitleColor(UIColor.hexInt(0xdddddd), for: UIControlState())
+            self.selectedGoods[_cell.name.tag] = _max
+            self._setCartQuantity()
             return
         }
         if (_val + 1 == _max) {
@@ -237,6 +249,9 @@ class HPickingViewController: UIViewController , UIGestureRecognizerDelegate, HP
         if (_val == 1) {
             _cell.minus.setTitleColor(UIColor.hexInt(0x000000), for: UIControlState())
         }
+        
+        self.selectedGoods[_cell.name.tag] = _val + 1
+        self._setCartQuantity()
     }
     
     @objc func actionMinus(_ sender: UIButton) {
@@ -255,6 +270,8 @@ class HPickingViewController: UIViewController , UIGestureRecognizerDelegate, HP
         if (_val == _max) {
             _cell.plus.setTitleColor(UIColor.hexInt(0x000000), for: UIControlState())
         }
+        self.selectedGoods[_cell.name.tag] = _val - 1
+        self._setCartQuantity()
     }
     
     @objc func actionScan() {
@@ -330,11 +347,21 @@ class HPickingViewController: UIViewController , UIGestureRecognizerDelegate, HP
         self.tableView!.mj_header.endRefreshing()
     }
     
+    fileprivate func _setCartQuantity() {
+        self._HPickingView._submitAdd.setTitle("去结算(\(self.cartSum(object: self.selectedGoods, selected: self.selectedIds)))", for: .normal)
+    }
+    
     fileprivate func keyboardHidden() {
         self._tabBarCartView.frame.origin.y = ScreenHeight - self.tabBarHeight * 2
         self.cover.isHidden = true
         self._tabBarCartView.isHidden = true
         self._HPickingView._amountTextfield.resignFirstResponder()
+        if (self._isEditcart) {
+            UIView.animate(withDuration: 0.4, animations: {
+                self.view.frame.origin.y = 0
+            })
+        }
+        self._isEditcart = false
     }
     
     //初始化数据
@@ -360,12 +387,17 @@ class HPickingViewController: UIViewController , UIGestureRecognizerDelegate, HP
         }
     }
     
-    fileprivate func initData() {
+    fileprivate func _initData() {
         if self.valueArr.count == 0 {
             self.valueArr = [
                 "quantity": "12",
                 "total": "56740.00"
             ]
+        }
+        if self.dataArr.count > 0 {
+            for (_, _val) in self.dataArr {
+                self.selectedGoods[Int(_val["id"]!)!] = Int(_val["quantity"]!)!
+            }
         }
     }
     
@@ -373,7 +405,7 @@ class HPickingViewController: UIViewController , UIGestureRecognizerDelegate, HP
         self.navHeight = self.navigationController?.navigationBar.frame.maxY
         self.tabBarHeight = self.tabBarController?.tabBar.bounds.size.height
         
-        self.initData()
+        self._initData()
         
         searchBarBtn(view: self, navHeight: self.navHeight, placeholder: "按货品名称或编号搜索", action: #selector(actionSearch))
         
@@ -561,6 +593,7 @@ extension HPickingViewController: UITableViewDelegate, UITableViewDataSource {
             cell.name.text = _data["name"]
             cell.name.numberOfLines = 2
             cell.name.sizeToFit()
+            cell.name.tag = Int(_data["id"]!)!
             cell.stock.text = "库存:" + _data["stock"]!
             cell.stock.sizeToFit()
             cell.location.text = "库位:" + _data["location"]!
@@ -581,10 +614,16 @@ extension HPickingViewController: UITableViewDelegate, UITableViewDataSource {
             cell.quantity.layer.borderWidth = 1.0
             cell.quantity.layer.borderColor = UIColor.hexInt(0xdddddd).cgColor
 //            cell.quantity.layer.masksToBounds = true
-            cell.quantity.text = _data["quantity"]
-            if (Int(_data["quantity"]!)! == 1) {
+            let _quantity = self.selectedGoods[Int(_data["id"]!)!] != nil ? self.selectedGoods[Int(_data["id"]!)!] : 1
+            cell.quantity.text = "\(_quantity ?? 1)"
+            if (_quantity == 1) {
                 cell.minus.setTitleColor(UIColor.hexInt(0xdddddd), for: UIControlState())
             }
+            let _inputView = UIView(frame: CGRect(x: 0, y: 0, width: ScreenWidth, height: 40))
+            _inputView.backgroundColor = Specs.color.gray
+            cell.quantity.inputAccessoryView = _inputView
+            cell.quantity.keyboardType = .numbersAndPunctuation
+            cell.quantity.returnKeyType = .done
             
             cell.plus.layer.borderWidth = 1.0
             cell.plus.layer.cornerRadius = 2.0
@@ -657,5 +696,19 @@ extension HPickingViewController: UITableViewDelegate, UITableViewDataSource {
         ]
 
         _push(view: self, target: _target, rootView: false)
+    }
+    
+    public func cartSum(object: [Int: Int], selected: [Int]) -> Int {
+        var sum = 0
+        if object.count == 0 {
+            return sum
+        }
+//        let objectValues = object.values
+        for (index, val) in object {
+            if (selected.contains(index)) {
+                sum += val
+            }
+        }
+        return sum
     }
 }
