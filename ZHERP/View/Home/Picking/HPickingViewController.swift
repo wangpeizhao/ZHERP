@@ -106,9 +106,14 @@ class HPickingViewController: UIViewController , UIGestureRecognizerDelegate, HP
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
         self.tableView.reloadData()
     }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        self._HPickingView._submitAdd.setTitle("去结算(\(self.selectedIds.count))", for: .normal)
+    }
+    
     //监听键盘弹出事件：
     @objc func keyboardWillShow(note: NSNotification) {
         let userInfo = note.userInfo!
