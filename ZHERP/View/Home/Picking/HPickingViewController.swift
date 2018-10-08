@@ -137,7 +137,7 @@ class HPickingViewController: UIViewController , UIGestureRecognizerDelegate, HP
                 }
             } else {
                 UIView.animate(withDuration: 0.4, animations: {
-                    self.view.frame.origin.y = deltaY
+                    self.view.frame.origin.y = -deltaY
                 })
             }
         }
@@ -356,7 +356,7 @@ class HPickingViewController: UIViewController , UIGestureRecognizerDelegate, HP
         self.cover.isHidden = true
         self._tabBarCartView.isHidden = true
         self._HPickingView._amountTextfield.resignFirstResponder()
-        if (self._isEditcart) {
+        if (!self._isEditcart) {
             UIView.animate(withDuration: 0.4, animations: {
                 self.view.frame.origin.y = 0
             })
@@ -414,7 +414,7 @@ class HPickingViewController: UIViewController , UIGestureRecognizerDelegate, HP
         _HPickingView.tabBarHeight = self.tabBarHeight
         self.addChildViewController(_HPickingView)
         
-        let _frame = CGRect(x: 0, y: self.navHeight + SearchBtnHeight, width: ScreenWidth, height: ScreenHeight - self.navHeight - self.tabBarHeight - SearchBtnHeight)
+        let _frame = CGRect(x: 0, y: self.navHeight + SearchBtnHeight, width: ScreenWidth, height: ScreenHeight - self.navHeight - self.tabBarHeight - SearchBtnHeight + 40)
         self.tableView = UITableView(frame: _frame, style: .grouped)
         
         self.tableView!.delegate = self
