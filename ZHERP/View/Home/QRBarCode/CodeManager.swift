@@ -4,7 +4,7 @@
 //
 //  Created by 王盛魁 on 2017/7/6.
 //  Copyright © 2017年 WangShengKui. All rights reserved.
-//
+//  https://github.com/FlyingKuiKui/BarCodeAndORCode_Swift.git
 
 import UIKit
 
@@ -28,6 +28,7 @@ class CodeManager: NSObject {
         }
         return returnImage!
     }
+    
     class func generateQRCodeWithCenterImage(messgae:NSString,width:CGFloat,height:CGFloat,centerImage:UIImage) -> UIImage {
         let backImage = generateQRCode(messgae: messgae, width: width, height: height)
         UIGraphicsBeginImageContext(backImage.size);
@@ -38,6 +39,7 @@ class CodeManager: NSObject {
         UIGraphicsEndImageContext();
         return returnImage!
     }
+    
     class func decodeQRCode(QRCodeImage:UIImage) -> NSString {
         var outputString:NSString?
         let detector:CIDetector = CIDetector.init(ofType: CIDetectorTypeQRCode, context: nil, options: [CIDetectorAccuracy:CIDetectorAccuracyHigh])!

@@ -35,6 +35,8 @@
 		2C6B1F3F213E769300CF82DE /* WSupplierManagerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C6B1F3E213E769300CF82DE /* WSupplierManagerViewController.swift */; };
 		2C6B1F41213E77F500CF82DE /* WSupplierOperateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C6B1F40213E77F500CF82DE /* WSupplierOperateViewController.swift */; };
 		2C7FAC6C2100547A004AEC10 /* Cookie.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C7FAC6B2100547A004AEC10 /* Cookie.swift */; };
+		2C91B499216AF313007BBFEB /* HPickingGoodTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C91B497216AF312007BBFEB /* HPickingGoodTableViewCell.swift */; };
+		2C91B49A216AF313007BBFEB /* HPickingGoodTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2C91B498216AF313007BBFEB /* HPickingGoodTableViewCell.xib */; };
 		2C986C75213F973D00F081BC /* SMemberRoleManagerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C986C74213F973D00F081BC /* SMemberRoleManagerViewController.swift */; };
 		2C986C77213FA66600F081BC /* SMemberManagerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C986C76213FA66600F081BC /* SMemberManagerViewController.swift */; };
 		2C986C79213FA97000F081BC /* SMemberOperateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C986C78213FA97000F081BC /* SMemberOperateViewController.swift */; };
@@ -274,6 +276,8 @@
 		2C6B1F3E213E769300CF82DE /* WSupplierManagerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WSupplierManagerViewController.swift; sourceTree = "<group>"; };
 		2C6B1F40213E77F500CF82DE /* WSupplierOperateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WSupplierOperateViewController.swift; sourceTree = "<group>"; };
 		2C7FAC6B2100547A004AEC10 /* Cookie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cookie.swift; sourceTree = "<group>"; };
+		2C91B497216AF312007BBFEB /* HPickingGoodTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HPickingGoodTableViewCell.swift; sourceTree = "<group>"; };
+		2C91B498216AF313007BBFEB /* HPickingGoodTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HPickingGoodTableViewCell.xib; sourceTree = "<group>"; };
 		2C986C74213F973D00F081BC /* SMemberRoleManagerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SMemberRoleManagerViewController.swift; sourceTree = "<group>"; };
 		2C986C76213FA66600F081BC /* SMemberManagerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SMemberManagerViewController.swift; sourceTree = "<group>"; };
 		2C986C78213FA97000F081BC /* SMemberOperateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SMemberOperateViewController.swift; sourceTree = "<group>"; };
@@ -1197,6 +1201,8 @@
 				9EE227E421451AC600E1CDD1 /* HPickingView.swift */,
 				9EE227DF2144EB5900E1CDD1 /* HPickingGoodView.swift */,
 				9EE227E62145680900E1CDD1 /* HPickingCompleteView.swift */,
+				2C91B497216AF312007BBFEB /* HPickingGoodTableViewCell.swift */,
+				2C91B498216AF313007BBFEB /* HPickingGoodTableViewCell.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1435,6 +1441,7 @@
 				2C5C7A08215C855300533AE1 /* OrderDetailTableViewCell.xib in Resources */,
 				9E523DFB2104615700CF921F /* 1.mp4 in Resources */,
 				9E523DFA2104615700CF921F /* guideImage8.gif in Resources */,
+				2C91B49A216AF313007BBFEB /* HPickingGoodTableViewCell.xib in Resources */,
 				9EFB8269215694BD007A2893 /* HGImage.storyboard in Resources */,
 				9E523E682108C5D400CF921F /* NotifyTableViewCell.xib in Resources */,
 				9EE26B82212C734100619D98 /* GoodTableViewCell.xib in Resources */,
@@ -1608,6 +1615,7 @@
 				2CBF49042122A3B800199C1D /* QRCode.swift in Sources */,
 				9E1A0A0921553ACD00F0B2B6 /* GoodOperateFViewController.swift in Sources */,
 				9E523E672108C5D400CF921F /* NotifyTableViewCell.swift in Sources */,
+				2C91B499216AF313007BBFEB /* HPickingGoodTableViewCell.swift in Sources */,
 				9E523E8E210D537B00CF921F /* GoodViewController.swift in Sources */,
 				9EE227E3214511A400E1CDD1 /* HAllocatingView.swift in Sources */,
 				9E523EA1211B42A800CF921F /* bridge.m in Sources */,

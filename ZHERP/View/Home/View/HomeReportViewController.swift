@@ -49,7 +49,7 @@ class HomeReportViewController: UIViewController {
         _companyName.snp.makeConstraints {(make) -> Void in
             make.left.equalTo(30)
 //            make.height.equalTo(20)
-            make.top.equalTo(30)
+            make.top.equalTo(20)
             make.width.equalTo(ScreenWidth - 60)
         }
         
@@ -141,7 +141,7 @@ class HomeReportViewController: UIViewController {
         self.view.addSubview(historyShipmentsView)
         historyShipmentsView.snp.makeConstraints {(make) -> Void in
             make.left.equalTo(0)
-            make.top.equalTo(self.todayTotalValue.snp.bottom).offset(25)
+            make.top.equalTo(self.todayTotalValue.snp.bottom).offset(15)
             make.height.equalTo(50)
         }
         // 历史发货 label

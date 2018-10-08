@@ -20,6 +20,8 @@ class HPickingView: UIViewController {
     var _totalValue: UILabel!
     // 合计数量
     var _quantityValue: UILabel!
+    // 全选
+    var _selectAllBtn: UIButton!
     
     var _submitAdd: UIButton!
     var _cartCancelBtn: UIButton!
@@ -154,51 +156,83 @@ class HPickingView: UIViewController {
             make.height.equalTo(0.3)
         }
         
-        // cart
-        let _cartShopping = UIView()
-        _cartShopping.backgroundColor = UIColor(patternImage: UIImage(named:"cart_32_32")!)
-        _cartDetailView.addSubview(_cartShopping)
-        _cartShopping.snp.makeConstraints { (make) -> Void in
+//        // cart
+//        let _cartShopping = UIView()
+//        _cartShopping.backgroundColor = UIColor(patternImage: UIImage(named:"cart_32_32")!)
+//        _cartDetailView.addSubview(_cartShopping)
+//        _cartShopping.snp.makeConstraints { (make) -> Void in
+//            make.left.equalTo(10)
+//            make.top.equalTo(_cartDetailView.snp.top).offset(10)
+//            make.width.height.equalTo(32)
+//        }
+//
+//        // Quantity View
+//        let _width = 25.0
+//        let _cartQuantityView = UIView()
+//        _cartQuantityView.backgroundColor = UIColor.red
+//        _cartQuantityView.layer.cornerRadius = CGFloat(_width / 2)
+//        _cartQuantityView.layer.masksToBounds = true
+//        _cartShopping.addSubview(_cartQuantityView)
+//        _cartQuantityView.snp.makeConstraints { (make) -> Void in
+//            make.right.equalTo(10)
+//            make.top.equalTo(_cartDetailView.snp.top).offset(-5)
+//            make.width.height.equalTo(_width)
+//        }
+//
+//        // Quantity Value
+//        self._quantityValue = UILabel()
+//        self._quantityValue.text = cartData["quantity"]
+//        self._quantityValue.sizeToFit()
+//        self._quantityValue.textAlignment = .center
+//        self._quantityValue.font = Specs.font.regular
+//        self._quantityValue.textColor = Specs.color.white
+//        _cartQuantityView.addSubview(self._quantityValue)
+//        self._quantityValue.snp.makeConstraints { (make) -> Void in
+//            make.center.equalTo(_cartQuantityView)
+//        }
+        
+        // Select All View
+        let _cartSelectAll = UIView()
+        _cartDetailView.addSubview(_cartSelectAll)
+        _cartSelectAll.snp.makeConstraints { (make) -> Void in
             make.left.equalTo(10)
-            make.top.equalTo(_cartDetailView.snp.top).offset(10)
-            make.width.height.equalTo(32)
+            make.centerY.equalTo(_cartDetailView)
+            make.width.height.equalTo(_cartDetailView)
         }
         
-        // Quantity View
-        let _width = 25.0
-        let _cartQuantityView = UIView()
-        _cartQuantityView.backgroundColor = UIColor.red
-        _cartQuantityView.layer.cornerRadius = CGFloat(_width / 2)
-        _cartQuantityView.layer.masksToBounds = true
-        _cartShopping.addSubview(_cartQuantityView)
-        _cartQuantityView.snp.makeConstraints { (make) -> Void in
-            make.right.equalTo(10)
-            make.top.equalTo(_cartDetailView.snp.top).offset(-5)
+        // Select All Btn
+        let _width = 24.0
+        self._selectAllBtn = UIButton()
+        self._selectAllBtn.setImage(UIImage(named: "unselected"), for: .normal)
+        self._selectAllBtn.isSelected = false
+        _cartSelectAll.addSubview(self._selectAllBtn)
+        self._selectAllBtn.snp.makeConstraints { (make) -> Void in
+//            make.top.equalTo(_cartDetailView.snp.top).offset(5)
+            make.centerY.equalTo(_cartDetailView)
             make.width.height.equalTo(_width)
+            make.left.equalTo(5)
         }
         
-        // Quantity Value
-        self._quantityValue = UILabel()
-        self._quantityValue.text = cartData["quantity"]
-        self._quantityValue.sizeToFit()
-        self._quantityValue.textAlignment = .center
-        self._quantityValue.font = Specs.font.regular
-        self._quantityValue.textColor = Specs.color.white
-        _cartQuantityView.addSubview(self._quantityValue)
-        self._quantityValue.snp.makeConstraints { (make) -> Void in
-            make.center.equalTo(_cartQuantityView)
+        // Select All Label
+        let _selectAllLabel = UILabel()
+        _selectAllLabel.text = "全选"
+        _selectAllLabel.font = Specs.font.smallBold
+        _cartSelectAll.addSubview(_selectAllLabel)
+        _selectAllLabel.snp.makeConstraints { (make) -> Void in
+            make.centerY.equalTo(_cartDetailView)
+            make.left.equalTo(self._selectAllBtn.snp.right).offset(5)
         }
         
         // 总价 Label
         let _totalLabel = UILabel()
-        _totalLabel.text = "合计：￥"
+        _totalLabel.text = "合计:￥"
         _totalLabel.sizeToFit()
         _totalLabel.textAlignment = .left
-        _totalLabel.font = Specs.font.regular
+        _totalLabel.font = UIFont.systemFont(ofSize: 22.0)
         _totalLabel.textColor = Specs.color.black
         _cartDetailView.addSubview(_totalLabel)
         _totalLabel.snp.makeConstraints { (make) -> Void in
-            make.left.equalTo(_cartShopping.snp.right).offset(30)
+            make.left.equalTo(_selectAllLabel.snp.right).offset(10)
             make.centerY.equalTo(_cartDetailView)
             make.height.equalTo(20)
         }
@@ -208,7 +242,7 @@ class HPickingView: UIViewController {
         self._totalValue.text = cartData["total"]
         self._totalValue.sizeToFit()
         self._totalValue.textAlignment = .left
-        self._totalValue.font = UIFont.systemFont(ofSize: 25.0)
+        self._totalValue.font = UIFont.systemFont(ofSize: 22.0)
         self._totalValue.textColor = Specs.color.black
         _cartDetailView.addSubview(self._totalValue)
         self._totalValue.snp.makeConstraints { (make) -> Void in
@@ -230,9 +264,9 @@ class HPickingView: UIViewController {
         
         // Btn
         self._submitAdd = UIButton()
-        self._submitAdd.setTitle("提 交", for: .normal)
+        self._submitAdd.setTitle("去结算(0)", for: .normal)
         self._submitAdd.setTitleColor(Specs.color.white, for: UIControlState())
-        self._submitAdd.backgroundColor = Specs.color.main
+        self._submitAdd.backgroundColor = Specs.color.red
         _cartBtnView.addSubview(self._submitAdd)
         self._submitAdd.snp.makeConstraints { (make) -> Void in
             make.top.equalTo(_cartBtnView.snp.top)

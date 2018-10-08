@@ -190,6 +190,6 @@ extension SettingsViewController: UITableViewDelegate, UITableViewDataSource {
             _target = GoodDetailViewController()
         }
         _target.hidesBottomBarWhenPushed = true
-        _push(view: self, target: _target, rootView: false)
+        _push(view: self, target: _target, rootView: true)
     }
 }

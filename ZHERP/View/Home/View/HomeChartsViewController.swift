@@ -45,7 +45,7 @@ class HomeChartsViewController: UIViewController {
         chartView.xAxis.gridLineWidth = 2 //x轴对应网格线的大小
         self.view.addSubview(chartView)
         
-        let showTodayBillBtn = UIButton(frame: CGRect(x: 35, y: 25, width: 120, height: 40))
+        let showTodayBillBtn = UIButton(frame: CGRect(x: 35, y: 30, width: 120, height: 30))
         showTodayBillBtn.setTitle("查看今日流水", for: .normal)
         showTodayBillBtn.titleLabel?.font = UIFont.systemFont(ofSize: 12.0)
         showTodayBillBtn.setTitleColor(Specs.color.white, for: .normal)

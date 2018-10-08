@@ -248,7 +248,7 @@ extension GoodOperateFViewController: UITableViewDelegate, UITableViewDataSource
                 _target.valueArr["sn"] = self.sn
             }
             _target.navTitle = "添加货品"
-            _push(view: self, target: _target)
+            _push(view: self, target: _target, rootView: false)
             return
         }
         if (self.callBackAssignArray != nil) {
