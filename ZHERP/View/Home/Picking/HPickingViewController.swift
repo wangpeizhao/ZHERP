@@ -39,6 +39,8 @@ class HPickingViewController: UIViewController , UIGestureRecognizerDelegate, HP
     
     var _isEditcart: Bool = false
     
+    var _tabBarView: UIView!
+    
     
     var dataArr : [Int: [String:String]] = [
         0: ["sn": "2018090612344519995",
@@ -77,6 +79,42 @@ class HPickingViewController: UIViewController , UIGestureRecognizerDelegate, HP
 //         "name": "六神花露水003",
          "name": "美的（Midea）电饭煲 气动涡轮防溢 金属机身 圆灶釜内胆4L电饭锅MB-WFS4037",
         "cost": "2350.00", "location": "广州白马3434", "status": "-1"],
+        3: ["sn": "2018090612344519995",
+            "id": "1253",
+            "suk": "CD_PPC01CD_PPC01",
+            "avatar": "php",
+            "warehouse": "深圳仓库",
+            "price": "80000.88",
+            "total": "987452.00",
+            "quantity": "12",
+            "stock": "5600",
+            //         "name": "六神花露水003",
+            "name": "美的（Midea）电饭煲 气动涡轮防溢 金属机身 圆灶釜内胆4L电饭锅MB-WFS4037",
+            "cost": "2350.00", "location": "广州白马3434", "status": "-1"],
+        4: ["sn": "2018090612344519995",
+            "id": "1252",
+            "suk": "CD_PPC01CD_PPC01",
+            "avatar": "php",
+            "warehouse": "深圳仓库",
+            "price": "80000.88",
+            "total": "987452.00",
+            "quantity": "12",
+            "stock": "5600",
+            //         "name": "六神花露水003",
+            "name": "美的（Midea）电饭煲 气动涡轮防溢 金属机身 圆灶釜内胆4L电饭锅MB-WFS4037",
+            "cost": "2350.00", "location": "广州白马3434", "status": "-1"],
+        5: ["sn": "2018090612344519995",
+            "id": "1251",
+            "suk": "CD_PPC01CD_PPC01",
+            "avatar": "php",
+            "warehouse": "深圳仓库",
+            "price": "80000.88",
+            "total": "987452.00",
+            "quantity": "12",
+            "stock": "5600",
+            //         "name": "六神花露水003",
+            "name": "美的（Midea）电饭煲 气动涡轮防溢 金属机身 圆灶釜内胆4L电饭锅MB-WFS4037",
+            "cost": "2350.00", "location": "广州白马3434", "status": "-1"],
     ]
     
     override func viewDidLoad() {
@@ -136,8 +174,9 @@ class HPickingViewController: UIViewController , UIGestureRecognizerDelegate, HP
                     self.cover.isHidden = false
                 }
             } else {
+                self._tabBarView.isHidden = true
                 UIView.animate(withDuration: 0.4, animations: {
-                    self.view.frame.origin.y = -deltaY
+                    self.view.frame.origin.y = -deltaY + 80
                 })
             }
         }
@@ -360,6 +399,7 @@ class HPickingViewController: UIViewController , UIGestureRecognizerDelegate, HP
             UIView.animate(withDuration: 0.4, animations: {
                 self.view.frame.origin.y = 0
             })
+            self._tabBarView.isHidden = false
         }
         self._isEditcart = false
     }
@@ -416,6 +456,7 @@ class HPickingViewController: UIViewController , UIGestureRecognizerDelegate, HP
         
         let _frame = CGRect(x: 0, y: self.navHeight + SearchBtnHeight, width: ScreenWidth, height: ScreenHeight - self.tabBarHeight * 2 - SearchBtnHeight)
         self.tableView = UITableView(frame: _frame, style: .grouped)
+//        self.tableView = UITableView(frame: self.view.frame, style: .grouped)
         
         self.tableView!.delegate = self
         self.tableView!.dataSource = self
@@ -424,13 +465,15 @@ class HPickingViewController: UIViewController , UIGestureRecognizerDelegate, HP
         self.tableView?.register(UINib(nibName: "HPickingGoodTableViewCell", bundle: nil), forCellReuseIdentifier: CELL_IDENTIFY_ID)
         self.tableView!.tableHeaderView = UIView.init(frame: CGRect(x: 0, y: 0, width: 0, height: 0.1))
         
+        self.tableView.keyboardDismissMode = .onDrag
+        
+        self.view.addSubview(self.tableView!)
 //        self.tableView.separatorStyle = UITableViewCellSeparatorStyle.singleLine
 //        //设置分割线颜色
 //        self.tableView.separatorColor = UIColor.red
         //设置分割线内边距
         self.tableView.separatorInset = UIEdgeInsetsMake(0, 0, 0, 0)
 
-        self.view.addSubview(self.tableView!)
         
         //表格在编辑状态下允许多选
 //        self.tableView!.allowsMultipleSelectionDuringEditing = true
@@ -466,10 +509,10 @@ class HPickingViewController: UIViewController , UIGestureRecognizerDelegate, HP
     
     fileprivate func _setTabBarCart() {
         // tabBarView
-        let _tabBarView = UIView()
-        _tabBarView.backgroundColor = UIColor.orange
-        self.view.addSubview(_tabBarView)
-        _tabBarView.snp.makeConstraints { (make) -> Void in
+        self._tabBarView = UIView()
+        self._tabBarView.backgroundColor = UIColor.orange
+        self.view.addSubview(self._tabBarView)
+        self._tabBarView.snp.makeConstraints { (make) -> Void in
             make.left.right.equalTo(0)
             make.bottom.equalTo(0)
             make.height.equalTo(self.tabBarHeight)
@@ -477,7 +520,7 @@ class HPickingViewController: UIViewController , UIGestureRecognizerDelegate, HP
         }
         
         let _HPickingView = self._HPickingView.cartDetailView(cartData: self.valueArr)
-        _tabBarView.addSubview(_HPickingView)
+        self._tabBarView.addSubview(_HPickingView)
         self._HPickingView._submitAdd.addTarget(self, action: #selector(actionCart), for: .touchUpInside)
         self._HPickingView._selectAllBtn.addTarget(self, action: #selector(actionSelectAll(_:)), for: .touchUpInside)
         
@@ -485,7 +528,7 @@ class HPickingViewController: UIViewController , UIGestureRecognizerDelegate, HP
         self.view.addSubview(self._tabBarCartView)
 //        self._tabBarCartView.snp.makeConstraints { (make) -> Void in
 //            make.left.right.equalTo(0)
-//            make.bottom.equalTo(_tabBarView.snp.top).offset(-250)
+//            make.bottom.equalTo(self._tabBarView.snp.top).offset(-250)
 //            make.height.equalTo(self.tabBarHeight * 2)
 //            make.width.equalTo(ScreenWidth)
 //        }
