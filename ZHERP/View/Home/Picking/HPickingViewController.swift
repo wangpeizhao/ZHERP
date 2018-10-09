@@ -43,6 +43,8 @@ class HPickingViewController: UIViewController , UIGestureRecognizerDelegate, HP
     
     var _tableViewHeight: CGFloat = 0.0
     
+    var _max: Int = 999
+    
     
     var dataArr : [Int: [String:String]] = [
         0: ["sn": "2018090612344519995",
@@ -258,32 +260,35 @@ class HPickingViewController: UIViewController , UIGestureRecognizerDelegate, HP
     }
     
     @objc func actionSelect(_ sender: UIButton) {
-        let _id = sender.tag
+        let _indexPath: IndexPath = IndexPath(row: sender.tag, section: 0)
+        let _cell: HPickingGoodTableViewCell = self.tableView.cellForRow(at: _indexPath as IndexPath) as! HPickingGoodTableViewCell
+        let _id = _cell.name.tag
         if (!self.selectedIds.contains(_id)) {
             self.selectedIds.append(_id)
             sender.setImage(UIImage(named: "selected"), for: .normal)
+            _cell.tintColor = Specs.color.red
         } else {
             self.selectedIds = self.selectedIds.filter{$0 != _id}
             sender.setImage(UIImage(named: "unselected"), for: .normal)
             sender.isSelected = false
+            _cell.tintColor = UIColor.hexInt(0x999999)
         }
         self._setCartQuantity()
     }
     
     @objc func actionPlus(_ sender: UIButton) {
-        let _max = 999
         let _indexPath: IndexPath = IndexPath(row: sender.tag, section: 0)
         let _cell: HPickingGoodTableViewCell = self.tableView.cellForRow(at: _indexPath as IndexPath) as! HPickingGoodTableViewCell
         let _val = self.selectedGoods[_cell.name.tag] != nil ? self.selectedGoods[_cell.name.tag]! : 0
-        if _val >= _max {
-            _alert(view: self, message: "最多只能买\(_max)件哦！")
-            _cell.quantity.text = "\(_max)"
+        if _val >= self._max {
+            _alert(view: self, message: "最多只能买\(self._max)件哦！")
+            _cell.quantity.text = "\(self._max)"
             _cell.plus.setTitleColor(UIColor.hexInt(0xdddddd), for: UIControlState())
-            self.selectedGoods[_cell.name.tag] = _max
+            self.selectedGoods[_cell.name.tag] = self._max
             self._setCartQuantity()
             return
         }
-        if (_val + 1 == _max) {
+        if (_val + 1 == self._max) {
             _cell.plus.setTitleColor(UIColor.hexInt(0xdddddd), for: UIControlState())
         }
         _cell.quantity.text = "\(_val + 1)"
@@ -296,7 +301,6 @@ class HPickingViewController: UIViewController , UIGestureRecognizerDelegate, HP
     }
     
     @objc func actionMinus(_ sender: UIButton) {
-        let _max = 999
         let _indexPath: IndexPath = IndexPath(row: sender.tag, section: 0)
         let _cell: HPickingGoodTableViewCell = self.tableView.cellForRow(at: _indexPath as IndexPath) as! HPickingGoodTableViewCell
         let _val = Int(_cell.quantity.text!)!
@@ -308,7 +312,7 @@ class HPickingViewController: UIViewController , UIGestureRecognizerDelegate, HP
             _cell.minus.setTitleColor(UIColor.hexInt(0xdddddd), for: UIControlState())
         }
         _cell.quantity.text = "\(_val - 1)"
-        if (_val == _max) {
+        if (_val == self._max) {
             _cell.plus.setTitleColor(UIColor.hexInt(0x000000), for: UIControlState())
         }
         self.selectedGoods[_cell.name.tag] = _val - 1
@@ -391,7 +395,25 @@ class HPickingViewController: UIViewController , UIGestureRecognizerDelegate, HP
     @objc func actionTextField(_ sender: UITextField) {
         sender.resignFirstResponder()
         let _val = Int(sender.text!)
-        self.selectedGoods[sender.tag] = _val
+        
+        let _indexPath: IndexPath = IndexPath(row: sender.tag, section: 0)
+        let _cell: HPickingGoodTableViewCell = self.tableView.cellForRow(at: _indexPath as IndexPath) as! HPickingGoodTableViewCell
+        let _id = _cell.name.tag
+        
+        if _val! >= self._max {
+            _alert(view: self, message: "最多只能买\(self._max)件哦！")
+            _cell.quantity.text = "\(self._max)"
+            _cell.plus.setTitleColor(UIColor.hexInt(0xdddddd), for: UIControlState())
+            self.selectedGoods[_id] = self._max
+            self._setCartQuantity()
+            return
+        }
+        
+        if _val! > 1 {
+            _cell.minus.setTitleColor(UIColor.hexInt(0x000000), for: UIControlState())
+        }
+        
+        self.selectedGoods[_id] = _val
         self._setCartQuantity()
     }
     
@@ -686,7 +708,7 @@ extension HPickingViewController: UITableViewDelegate, UITableViewDataSource {
             cell.quantity.keyboardType = .numbersAndPunctuation
             cell.quantity.returnKeyType = .done
             cell.quantity.delegate = self
-            cell.quantity.tag = Int(_data["id"]!)!
+            cell.quantity.tag = indexPath.row //Int(_data["id"]!)!
             
             cell.plus.layer.borderWidth = 1.0
             cell.plus.layer.cornerRadius = 2.0
@@ -703,16 +725,16 @@ extension HPickingViewController: UITableViewDelegate, UITableViewDataSource {
             cell.minus.setTitleColor(UIColor.hexInt(0x000000), for: .selected)
             
             cell.selectBtn.addTarget(self, action: #selector(actionSelect(_:)), for: .touchUpInside)
-            cell.selectBtn.tag = Int(_data["id"]!)!
+            cell.selectBtn.tag = indexPath.row //Int(_data["id"]!)!
             if (!self.selectedIds.isEmpty && self.selectedIds.contains(Int(_data["id"]!)!)) {
                 cell.selectBtn.setImage(UIImage(named: "selected"), for: .normal)
+                cell.tintColor = Specs.color.red
             } else {
                 cell.selectBtn.setImage(UIImage(named: "unselected"), for: .normal)
+                cell.tintColor = UIColor.hexInt(0x999999)
             }
         }
         cell.tag = indexPath.row
-        cell.tintColor = Specs.color.red
-        
         return cell
     }
     

@@ -108,11 +108,45 @@ class HomeViewController: BaseViewController{
             _open(view: self, vcName: "login", withNav: false)
         }
         super.viewWillAppear(animated)
+        // 设置弹出提示框的底层视图控制器 代码初始化放在这 返回的时候才可改变通知
+        self._initNotifications()
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    fileprivate func _initNotifications() {
+        let notiSetting = UIApplication.shared.currentUserNotificationSettings
+        if notiSetting?.types == UIUserNotificationType.init(rawValue: 0) {
+            print("_initNotifications true")
+//            self.switchNoti.isOn = false
+        } else {
+            print("_initNotifications false")
+//            self.switchNoti.isOn = true
+//            self.switchNoti.isEnabled = false
+            
+            //打开APP系统设置页
+            let urlObj = URL(string:UIApplicationOpenSettingsURLString)
+            // 前往设置
+            UIApplication.shared.open(urlObj! as URL, options: [ : ]) { (result) in
+                // 如果判断是否返回成功
+                if result {
+                    
+                    let notiSetting = UIApplication.shared.currentUserNotificationSettings
+                    if notiSetting?.types == UIUserNotificationType.init(rawValue: 0) {
+//                        self.switchNoti.isOn = false
+//                        self.switchNoti.isEnabled = true
+                    } else {
+//                        self.switchNoti.isOn = true
+//                        self.switchNoti.isEnabled = false
+                    }
+                    
+                    
+                }
+            }
+        }
     }
 
 }

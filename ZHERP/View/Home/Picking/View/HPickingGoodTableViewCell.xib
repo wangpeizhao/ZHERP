@@ -71,22 +71,22 @@
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                         <textInputTraits key="textInputTraits"/>
                     </textField>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="￥" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8Lm-hU-uit">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="￥" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8Lm-hU-uit">
                         <rect key="frame" x="112" y="59" width="13" height="15"/>
                         <fontDescription key="fontDescription" type="system" weight="ultraLight" pointSize="12"/>
                         <color key="textColor" red="0.84166531735751293" green="0.058372340425840032" blue="0.22068029354987193" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="89" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="U3b-KQ-gLy">
-                        <rect key="frame" x="123" y="54" width="23" height="22"/>
+                        <rect key="frame" x="123" y="52" width="23" height="22"/>
                         <fontDescription key="fontDescription" type="system" pointSize="18"/>
                         <color key="textColor" red="0.84166531739999995" green="0.058372340430000003" blue="0.22068029350000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text=".09" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sWg-FO-r0u">
-                        <rect key="frame" x="146" y="60" width="19" height="15"/>
+                        <rect key="frame" x="146" y="59" width="19" height="15"/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="22" id="oaZ-Br-QKs"/>
+                            <constraint firstAttribute="height" constant="15" id="oaZ-Br-QKs"/>
                         </constraints>
                         <fontDescription key="fontDescription" type="system" weight="ultraLight" pointSize="12"/>
                         <color key="textColor" red="0.84166531739999995" green="0.058372340430000003" blue="0.22068029350000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
@@ -124,7 +124,7 @@
                     <constraint firstItem="sWg-FO-r0u" firstAttribute="bottom" secondItem="8Lm-hU-uit" secondAttribute="bottom" id="E8b-IZ-gBc"/>
                     <constraint firstAttribute="trailing" secondItem="JT0-jc-8PT" secondAttribute="trailing" constant="20" id="HDu-gm-0w7"/>
                     <constraint firstItem="8Lm-hU-uit" firstAttribute="bottom" secondItem="Fh3-Y2-bZI" secondAttribute="bottom" id="Ibx-wG-QXS"/>
-                    <constraint firstItem="8Lm-hU-uit" firstAttribute="leading" secondItem="Fh3-Y2-bZI" secondAttribute="trailing" constant="10" id="Iip-3a-dgO"/>
+                    <constraint firstItem="8Lm-hU-uit" firstAttribute="leading" secondItem="Fh3-Y2-bZI" secondAttribute="trailing" constant="8" id="Iip-3a-dgO"/>
                     <constraint firstItem="ueI-ax-SEZ" firstAttribute="leading" secondItem="ahb-4t-Xbi" secondAttribute="trailing" constant="20" id="JIO-J7-3Em"/>
                     <constraint firstItem="ahb-4t-Xbi" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="40" id="MaH-sw-mYq"/>
                     <constraint firstAttribute="bottom" secondItem="ahb-4t-Xbi" secondAttribute="bottom" constant="8" id="X2j-UD-JXE"/>
