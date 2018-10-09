@@ -195,7 +195,7 @@ class HPickingView: UIViewController {
         let _cartSelectAll = UIView()
         _cartDetailView.addSubview(_cartSelectAll)
         _cartSelectAll.snp.makeConstraints { (make) -> Void in
-            make.left.equalTo(10)
+            make.left.equalTo(8)
             make.centerY.equalTo(_cartDetailView)
             make.width.height.equalTo(_cartDetailView)
         }
@@ -210,7 +210,7 @@ class HPickingView: UIViewController {
 //            make.top.equalTo(_cartDetailView.snp.top).offset(5)
             make.centerY.equalTo(_cartDetailView)
             make.width.height.equalTo(_width)
-            make.left.equalTo(5)
+            make.left.equalTo(0)
         }
         
         // Select All Label

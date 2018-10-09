@@ -41,6 +41,8 @@ class HPickingViewController: UIViewController , UIGestureRecognizerDelegate, HP
     
     var _tabBarView: UIView!
     
+    var _tableViewHeight: CGFloat = 0.0
+    
     
     var dataArr : [Int: [String:String]] = [
         0: ["sn": "2018090612344519995",
@@ -176,7 +178,7 @@ class HPickingViewController: UIViewController , UIGestureRecognizerDelegate, HP
             } else {
                 self._tabBarView.isHidden = true
                 UIView.animate(withDuration: 0.4, animations: {
-                    self.view.frame.origin.y = -deltaY + 80
+                    self.tableView.frame.size.height = self._tableViewHeight - deltaY
                 })
             }
         }
@@ -272,7 +274,7 @@ class HPickingViewController: UIViewController , UIGestureRecognizerDelegate, HP
         let _max = 999
         let _indexPath: IndexPath = IndexPath(row: sender.tag, section: 0)
         let _cell: HPickingGoodTableViewCell = self.tableView.cellForRow(at: _indexPath as IndexPath) as! HPickingGoodTableViewCell
-        let _val = Int(_cell.quantity.text!)!
+        let _val = self.selectedGoods[_cell.name.tag] != nil ? self.selectedGoods[_cell.name.tag]! : 0
         if _val >= _max {
             _alert(view: self, message: "最多只能买\(_max)件哦！")
             _cell.quantity.text = "\(_max)"
@@ -386,6 +388,13 @@ class HPickingViewController: UIViewController , UIGestureRecognizerDelegate, HP
         self.tableView!.mj_header.endRefreshing()
     }
     
+    @objc func actionTextField(_ sender: UITextField) {
+        sender.resignFirstResponder()
+        let _val = Int(sender.text!)
+        self.selectedGoods[sender.tag] = _val
+        self._setCartQuantity()
+    }
+    
     fileprivate func _setCartQuantity() {
         self._HPickingView._submitAdd.setTitle("去结算(\(self.cartSum(object: self.selectedGoods, selected: self.selectedIds)))", for: .normal)
     }
@@ -397,7 +406,7 @@ class HPickingViewController: UIViewController , UIGestureRecognizerDelegate, HP
         self._HPickingView._amountTextfield.resignFirstResponder()
         if (!self._isEditcart) {
             UIView.animate(withDuration: 0.4, animations: {
-                self.view.frame.origin.y = 0
+                self.tableView.frame.size.height = self._tableViewHeight
             })
             self._tabBarView.isHidden = false
         }
@@ -412,7 +421,7 @@ class HPickingViewController: UIViewController , UIGestureRecognizerDelegate, HP
             let index = arc4random_uniform(UInt32(imagePaths.count))
             let _imagePath = imagePaths[Int(index)]
             self.dataArr[count + i] = [
-                "id": "\(1211 + count + i)",
+                "id": "\(1291 + count + i)",
                 "avatar": _imagePath,
                 "sn": "2018090612344519995",
                 "suk": "AB_PPC\(count + i)",
@@ -424,6 +433,7 @@ class HPickingViewController: UIViewController , UIGestureRecognizerDelegate, HP
                 "name": "美的（Midea）电饭煲 气动涡轮防溢 金属机身 圆灶釜内胆4L电饭锅MB-WFS4037六神花露水003",
                 "title": "美的（Midea）电饭煲 气动涡轮防溢 金属机身 圆灶釜内胆4L电饭锅MB-WFS4037",
                 "cost": "2350.00", "location": "广州白马3434", "status": "-1"]
+            self.selectedGoods[1291 + count + i] = 12
         }
     }
     
@@ -453,8 +463,9 @@ class HPickingViewController: UIViewController , UIGestureRecognizerDelegate, HP
         self._HPickingView._delegate = self
         _HPickingView.tabBarHeight = self.tabBarHeight
         self.addChildViewController(_HPickingView)
-        
-        let _frame = CGRect(x: 0, y: self.navHeight + SearchBtnHeight, width: ScreenWidth, height: ScreenHeight - self.tabBarHeight * 2 - SearchBtnHeight)
+
+        self._tableViewHeight = ScreenHeight - self.navHeight - SearchBtnHeight - 19
+        let _frame = CGRect(x: 0, y: self.navHeight + SearchBtnHeight, width: ScreenWidth, height: self._tableViewHeight)
         self.tableView = UITableView(frame: _frame, style: .grouped)
 //        self.tableView = UITableView(frame: self.view.frame, style: .grouped)
         
@@ -662,11 +673,11 @@ extension HPickingViewController: UITableViewDelegate, UITableViewDataSource {
             if (_quantity == 1) {
                 cell.minus.setTitleColor(UIColor.hexInt(0xdddddd), for: UIControlState())
             }
-            let _inputView = UIView(frame: CGRect(x: 0, y: 0, width: ScreenWidth, height: 40))
-            _inputView.backgroundColor = Specs.color.gray
-            cell.quantity.inputAccessoryView = _inputView
+            cell.quantity.inputAccessoryView = self._inputView(tag: indexPath.row)
             cell.quantity.keyboardType = .numbersAndPunctuation
             cell.quantity.returnKeyType = .done
+            cell.quantity.delegate = self
+            cell.quantity.tag = Int(_data["id"]!)!
             
             cell.plus.layer.borderWidth = 1.0
             cell.plus.layer.cornerRadius = 2.0
@@ -705,24 +716,11 @@ extension HPickingViewController: UITableViewDelegate, UITableViewDataSource {
 //        layer.strokeColor = UIColor.red.cgColor;
 //        return layer;
 //    }()
-        
-    
-//    //处理列表项的选中事件
-//    private func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath){
-//        let cell = self.tableView?.cellForRow(at: indexPath as IndexPath)
-//        cell?.accessoryType = .checkmark
-//    }
-//
-//    //处理列表项的取消选中事件
-//    private func tableView(tableView: UITableView, didDeselectRowAtIndexPath indexPath: IndexPath) {
-//        let cell = self.tableView?.cellForRow(at: indexPath as IndexPath)
-//        cell?.accessoryType = .none
-//    }
     
     // UITableViewDelegate 方法，处理列表项的选中事件
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-//        let _data = self.dataArr[indexPath.item]
+        let _data = self.dataArr[indexPath.item]
         
         let cell = self.tableView?.cellForRow(at: indexPath as IndexPath)
         cell?.accessoryType = .checkmark
@@ -734,24 +732,93 @@ extension HPickingViewController: UITableViewDelegate, UITableViewDataSource {
             "warehouse": "深圳仓库",
             "price": "80000.88",
             "total": "987452.00",
-            "quantity": "12",
+            "quantity": _data!["quantity"]!,
             "stock": "5600",
         ]
 
         _push(view: self, target: _target, rootView: false)
     }
     
-    public func cartSum(object: [Int: Int], selected: [Int]) -> Int {
+    fileprivate func cartSum(object: [Int: Int], selected: [Int]) -> Int {
         var sum = 0
         if object.count == 0 {
             return sum
         }
-//        let objectValues = object.values
         for (index, val) in object {
             if (selected.contains(index)) {
                 sum += val
             }
         }
         return sum
+    }
+    
+    fileprivate func _inputView(tag: Int) -> UIView {
+        let _inputView = UIView(frame: CGRect(x: 0, y: 0, width: ScreenWidth, height: 40))
+        _inputView.backgroundColor = UIColor.hexInt(0xf0f1f3)
+        
+        // 确定
+        let _sureBtn = UIButton()
+        _sureBtn.tag = tag
+        _sureBtn.setTitle("确定", for: .normal)
+        _sureBtn.setTitleColor(UIColor.hexInt(0xee606e), for: UIControlState())
+        _sureBtn.addTarget(self, action: #selector(actionSure(_:)), for: .touchUpInside)
+        _sureBtn.titleLabel?.font = UIFont.systemFont(ofSize: Specs.fontSize.regular)
+        _inputView.addSubview(_sureBtn)
+        _sureBtn.snp.makeConstraints {(make) -> Void in
+            make.right.equalTo(-20)
+            make.centerY.equalTo(_inputView)
+        }
+        
+        // 取消
+        let _cancelBtn = UIButton()
+        _cancelBtn.tag = tag
+        _cancelBtn.setTitle("取消", for: .normal)
+        _cancelBtn.setTitleColor(UIColor.hexInt(0x767779), for: UIControlState())
+        _cancelBtn.addTarget(self, action: #selector(actionCancel(_:)), for: .touchUpInside)
+        _cancelBtn.titleLabel?.font = UIFont.systemFont(ofSize: Specs.fontSize.regular)
+        _inputView.addSubview(_cancelBtn)
+        _cancelBtn.snp.makeConstraints {(make) -> Void in
+            make.left.equalTo(20)
+            make.centerY.equalTo(_inputView)
+        }
+        
+        return _inputView
+    }
+    
+    @objc func actionSure(_ sender: UIButton) {
+        print("actionSure")
+        let _indexPath: IndexPath = IndexPath(row: sender.tag, section: 0)
+        let _cell: HPickingGoodTableViewCell = self.tableView.cellForRow(at: _indexPath as IndexPath) as! HPickingGoodTableViewCell
+        _cell.quantity.resignFirstResponder()
+    }
+    
+    @objc func actionCancel(_ sender: UIButton) {
+        let _indexPath: IndexPath = IndexPath(row: sender.tag, section: 0)
+        let _cell: HPickingGoodTableViewCell = self.tableView.cellForRow(at: _indexPath as IndexPath) as! HPickingGoodTableViewCell
+        let _id = _cell.name.tag
+        _cell.quantity.text = "\(self.selectedGoods[_id] ?? 1)"
+        self.selectedGoods[_id] = self.selectedGoods[_id] ?? 1
+        self._setCartQuantity()
+        _cell.quantity.resignFirstResponder()
+    }
+}
+
+extension HPickingViewController: UITextFieldDelegate {
+    // 输入框询问是否可以编辑 true 可以编辑  false 不能编辑
+    func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
+        print("textFieldShouldBeginEditing")
+//        self.actionTextField(textField)
+        return true
+    }
+    // 输入框结束编辑状态
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        print("textFieldDidEndEditing")
+        self.actionTextField(textField)
+    }
+    // 输入框按下键盘 return 收回键盘
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        print("textFieldShouldReturn")
+        self.actionTextField(textField)
+        return true
     }
 }

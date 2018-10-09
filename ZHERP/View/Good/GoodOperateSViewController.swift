@@ -243,6 +243,7 @@ class GoodOperateSViewController: UIViewController, UIImagePickerControllerDeleg
         }
         
         self.tableView?.tableHeaderView = UIView.init(frame: CGRect(x: 0, y: 0, width: 0, height: 0.01))
+        self.tableView?.keyboardDismissMode = .onDrag
         self.view.addSubview(self.tableView!)
         
         //处理键盘遮挡问题
