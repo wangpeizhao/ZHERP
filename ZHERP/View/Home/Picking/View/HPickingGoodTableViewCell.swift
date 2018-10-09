@@ -16,6 +16,7 @@ class HPickingGoodTableViewCell: UITableViewCell {
     @IBOutlet weak var name: UILabel!
     @IBOutlet weak var stock: UILabel!
     @IBOutlet weak var location: UILabel!
+    @IBOutlet weak var priceIcon: UILabel!
     @IBOutlet weak var priceInt: UILabel!
     @IBOutlet weak var priceDecimal: UILabel!
     @IBOutlet weak var plus: UIButton!
@@ -45,6 +46,13 @@ class HPickingGoodTableViewCell: UITableViewCell {
         self.minus?.layer.borderWidth = 1.0
         self.minus?.layer.cornerRadius = 4.0
     }
+    
+//    func setValueForCell(model:Goods){
+//        self.titleLab?.text = model.name
+//        self.priceLab?.text = model.price
+//        self.desLab?.text = model.desTitle
+//        self.coverImageView?.image = UIImage(named:model.coverIamge!)
+//    }
     
     override func awakeFromNib() {
         super.awakeFromNib()

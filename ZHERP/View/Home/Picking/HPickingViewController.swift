@@ -638,6 +638,8 @@ extension HPickingViewController: UITableViewDelegate, UITableViewDataSource {
         
         let cell: HPickingGoodTableViewCell = tableView.dequeueReusableCell(withIdentifier: CELL_IDENTIFY_ID, for: indexPath) as! HPickingGoodTableViewCell
 //        let cell = HPickingGoodTableViewCell(style:UITableViewCellStyle.default, reuseIdentifier: "HPickingGoodTableViewCell")
+//        cell.setValueForCell(model: dataArr![indexPath.row])
+        
         if !(self.dataArr[sectionNo]?.isEmpty)! {
             var _data = self.dataArr[sectionNo]!
             let _priceArr: Array = _data["price"]!.components(separatedBy: ".")
@@ -656,6 +658,13 @@ extension HPickingViewController: UITableViewDelegate, UITableViewDataSource {
             cell.priceInt.sizeToFit()
             cell.priceDecimal.text = _priceArr[1].isEmpty ? ".00" : ".\(_priceArr[1])"
             cell.priceDecimal.sizeToFit()
+            
+            cell.priceInt.snp.makeConstraints {(make) -> Void in
+                make.bottom.equalTo(cell.priceIcon.snp.bottom)
+            }
+            cell.priceDecimal.snp.makeConstraints {(make) -> Void in
+                make.bottom.equalTo(cell.priceIcon.snp.bottom)
+            }
 
             cell.accessoryType = .none
             

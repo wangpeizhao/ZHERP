@@ -146,6 +146,7 @@
                 <outlet property="name" destination="Hc8-aF-xYv" id="cwf-DA-eZQ"/>
                 <outlet property="plus" destination="JT0-jc-8PT" id="mhe-wI-zl9"/>
                 <outlet property="priceDecimal" destination="sWg-FO-r0u" id="skR-pu-bKI"/>
+                <outlet property="priceIcon" destination="8Lm-hU-uit" id="FLD-Be-KAR"/>
                 <outlet property="priceInt" destination="U3b-KQ-gLy" id="HJv-sn-Lnx"/>
                 <outlet property="quantity" destination="BdU-ud-jl3" id="ffP-yI-2xW"/>
                 <outlet property="selectBtn" destination="MBl-uy-0lp" id="SuL-cs-Why"/>

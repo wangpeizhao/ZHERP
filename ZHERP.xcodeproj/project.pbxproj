@@ -15,6 +15,7 @@
 		2C35D2D12141085B00AEC12F /* BillsDailyReportTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2C35D2CF2141085A00AEC12F /* BillsDailyReportTableViewCell.xib */; };
 		2C35D2D321411E5D00AEC12F /* BillsDaliyDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C35D2D221411E5D00AEC12F /* BillsDaliyDetailViewController.swift */; };
 		2C35D2D5214124EE00AEC12F /* BillsDelegateDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C35D2D4214124EE00AEC12F /* BillsDelegateDataSource.swift */; };
+		2C544164216C919A009D4B0B /* HPickingModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C544163216C919A009D4B0B /* HPickingModel.swift */; };
 		2C58976E215F17D9000FC663 /* QRBarCodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C58976D215F17D9000FC663 /* QRBarCodeViewController.swift */; };
 		2C589770215F2E7E000FC663 /* CodeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C58976F215F2E7E000FC663 /* CodeManager.swift */; };
 		2C589772215F6B04000FC663 /* QRBarCodeCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C589771215F6B04000FC663 /* QRBarCodeCollectionViewCell.swift */; };
@@ -256,6 +257,7 @@
 		2C35D2CF2141085A00AEC12F /* BillsDailyReportTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BillsDailyReportTableViewCell.xib; sourceTree = "<group>"; };
 		2C35D2D221411E5D00AEC12F /* BillsDaliyDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BillsDaliyDetailViewController.swift; sourceTree = "<group>"; };
 		2C35D2D4214124EE00AEC12F /* BillsDelegateDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BillsDelegateDataSource.swift; sourceTree = "<group>"; };
+		2C544163216C919A009D4B0B /* HPickingModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = HPickingModel.swift; path = ZHERP/View/Home/Picking/View/HPickingModel.swift; sourceTree = SOURCE_ROOT; };
 		2C58976D215F17D9000FC663 /* QRBarCodeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRBarCodeViewController.swift; sourceTree = "<group>"; };
 		2C58976F215F2E7E000FC663 /* CodeManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CodeManager.swift; sourceTree = "<group>"; };
 		2C589771215F6B04000FC663 /* QRBarCodeCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRBarCodeCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -1210,6 +1212,7 @@
 		9EE227DE2144EAB100E1CDD1 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				2C544163216C919A009D4B0B /* HPickingModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1767,6 +1770,7 @@
 				9EFB82772157F12A007A2893 /* GoodOperateImageViewCell.swift in Sources */,
 				9E88ED1620FB3BA500DF091F /* PostProvider.swift in Sources */,
 				9E523E6A2108D54600CF921F /* NoDisturbingViewController.swift in Sources */,
+				2C544164216C919A009D4B0B /* HPickingModel.swift in Sources */,
 				9E88ED1C20FB462600DF091F /* OrderTableViewController.swift in Sources */,
 				9EFB826A215694BD007A2893 /* HGImageCompleteButton.swift in Sources */,
 				9EE227E521451AC600E1CDD1 /* HPickingView.swift in Sources */,
