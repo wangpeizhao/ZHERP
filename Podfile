@@ -33,6 +33,7 @@ target 'ZHERP' do
   # Pods for ZHERP
   libraries
   pod 'MJRefresh'
+  pod 'CryptoSwift'
 
   target 'ZHERPTests' do
     inherit! :search_paths

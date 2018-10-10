@@ -9,6 +9,7 @@
 import UIKit
 //import Charts
 import UserNotifications
+import CryptoSwift
 
 class HomeViewController: BaseViewController{
     
@@ -81,6 +82,9 @@ class HomeViewController: BaseViewController{
 //        SwiftNotice.showNoticeWithText(NoticeType.success, text:"操作成功", autoClear: true, autoClearTime: 3)
         //方法2
         self.noticeSuccess("操作成功", autoClear: true, autoClearTime: 3)
+        
+        let hash = "123".md5()
+        print(hash)
     }
     
     //请求通知权限
