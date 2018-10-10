@@ -35,6 +35,10 @@
 	<string>纵横ERP将访问您的相册/相机，请允许！</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>纵横ERP需要访问您的相册</string>
+	<key>UIBackgroundModes</key>
+	<array>
+		<string>remote-notification</string>
+	</array>
 	<key>UIFileSharingEnabled</key>
 	<true/>
 	<key>UIMainStoryboardFile</key>
