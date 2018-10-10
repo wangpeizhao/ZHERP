@@ -770,17 +770,18 @@ extension HPickingViewController: UITableViewDelegate, UITableViewDataSource {
         _push(view: self, target: _target, rootView: false)
     }
     
-    fileprivate func cartSum(object: [Int: Int], selected: [Int]) -> Int {
+    fileprivate func cartSum(object: [Int: Int], selected: [Int]) -> String {
         var sum = 0
         if object.count == 0 {
-            return sum
+            return "\(sum)"
         }
         for (index, val) in object {
             if (selected.contains(index)) {
                 sum += val
             }
         }
-        return sum
+        //        let sum = prices.reduce(0, +) // reduce 方法把数组元素组合计算为一个值，并且会接受一个初始值，这个初始值的类型可以和数组元素类型不同。
+        return sum > 99 ? "99+" : "\(sum)"
     }
     
     fileprivate func _inputView(tag: Int) -> UIView {

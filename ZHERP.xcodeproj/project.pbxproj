@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		2C0C6E2F215B7DF7006166E9 /* OrderDelegateDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C0C6E2E215B7DF7006166E9 /* OrderDelegateDataSource.swift */; };
+		2C224AF6216DF51E00F1715B /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C224AF4216DF51D00F1715B /* MBProgressHUD.m */; };
+		2C224AF9216DF83200F1715B /* SwiftNotice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C224AF8216DF83200F1715B /* SwiftNotice.swift */; };
 		2C2BD1CC21279ED300F6C6C3 /* GoodDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C2BD1CB21279ED300F6C6C3 /* GoodDetailViewController.swift */; };
 		2C35D2C92140D76400AEC12F /* BillsTodayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C35D2C82140D76400AEC12F /* BillsTodayViewController.swift */; };
 		2C35D2CB2140FF4400AEC12F /* BillsReportViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C35D2CA2140FF4400AEC12F /* BillsReportViewController.swift */; };
@@ -250,6 +252,10 @@
 		0018AC5B628E580B5DB4DE45 /* Pods_ZHERPTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ZHERPTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		0953297FAA824E19B8F904F9 /* Pods-ZHERPTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZHERPTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ZHERPTests/Pods-ZHERPTests.debug.xcconfig"; sourceTree = "<group>"; };
 		2C0C6E2E215B7DF7006166E9 /* OrderDelegateDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderDelegateDataSource.swift; sourceTree = "<group>"; };
+		2C224AF3216DA12800F1715B /* ZHERP.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ZHERP.entitlements; sourceTree = "<group>"; };
+		2C224AF4216DF51D00F1715B /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
+		2C224AF5216DF51D00F1715B /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
+		2C224AF8216DF83200F1715B /* SwiftNotice.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftNotice.swift; sourceTree = "<group>"; };
 		2C2BD1CB21279ED300F6C6C3 /* GoodDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoodDetailViewController.swift; sourceTree = "<group>"; };
 		2C35D2C82140D76400AEC12F /* BillsTodayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BillsTodayViewController.swift; sourceTree = "<group>"; };
 		2C35D2CA2140FF4400AEC12F /* BillsReportViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BillsReportViewController.swift; sourceTree = "<group>"; };
@@ -540,6 +546,14 @@
 			path = Bill;
 			sourceTree = "<group>";
 		};
+		2C224AF7216DF82300F1715B /* SwiftNotice */ = {
+			isa = PBXGroup;
+			children = (
+				2C224AF8216DF83200F1715B /* SwiftNotice.swift */,
+			);
+			path = SwiftNotice;
+			sourceTree = "<group>";
+		};
 		2C35D2C72140D70600AEC12F /* Bills */ = {
 			isa = PBXGroup;
 			children = (
@@ -743,6 +757,7 @@
 		9E29031720F7B99800F11C63 /* ZHERP */ = {
 			isa = PBXGroup;
 			children = (
+				2C224AF3216DA12800F1715B /* ZHERP.entitlements */,
 				2C6104DB215383A3004BE3F4 /* HTML */,
 				9E62C2B3213BD30600C8A578 /* PlistData */,
 				9E523E80210CCD9900CF921F /* Classes */,
@@ -789,6 +804,8 @@
 		9E29034620F7B9B400F11C63 /* Object-C */ = {
 			isa = PBXGroup;
 			children = (
+				2C224AF5216DF51D00F1715B /* MBProgressHUD.h */,
+				2C224AF4216DF51D00F1715B /* MBProgressHUD.m */,
 				9E29036020F81C7500F11C63 /* Header.h */,
 				9E523EA0211B42A800CF921F /* bridge.m */,
 				9E523E9F211B42A700CF921F /* ZHERP-Bridging-Header.h */,
@@ -849,6 +866,7 @@
 		9E523DEB21045F3300CF921F /* ThirdParty */ = {
 			isa = PBXGroup;
 			children = (
+				2C224AF7216DF82300F1715B /* SwiftNotice */,
 				9EFB8260215694A7007A2893 /* HGImagePicker */,
 				9EE227D82144A56600E1CDD1 /* ImageHelper */,
 				9EE227D32144A40600E1CDD1 /* SliderGallery */,
@@ -1400,6 +1418,14 @@
 					9E29031420F7B99800F11C63 = {
 						CreatedOnToolsVersion = 9.4.1;
 						LastSwiftMigration = 0940;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 0;
+							};
+							com.apple.Push = {
+								enabled = 0;
+							};
+						};
 					};
 					9E29032820F7B99B00F11C63 = {
 						CreatedOnToolsVersion = 9.4.1;
@@ -1601,6 +1627,7 @@
 				9E523E422107EB3600CF921F /* TestViewController.swift in Sources */,
 				9E523E74210A379500CF921F /* EditAvatarViewController.swift in Sources */,
 				9E88ED4320FE624D00DF091F /* RegisterViewController.swift in Sources */,
+				2C224AF9216DF83200F1715B /* SwiftNotice.swift in Sources */,
 				9E523E87210CCF5400CF921F /* ZHSearchController.swift in Sources */,
 				9E88ED1E20FB464B00DF091F /* GoodTableViewController.swift in Sources */,
 				2C2BD1CC21279ED300F6C6C3 /* GoodDetailViewController.swift in Sources */,
@@ -1620,6 +1647,7 @@
 				9E523E672108C5D400CF921F /* NotifyTableViewCell.swift in Sources */,
 				2C91B499216AF313007BBFEB /* HPickingGoodTableViewCell.swift in Sources */,
 				9E523E8E210D537B00CF921F /* GoodViewController.swift in Sources */,
+				2C224AF6216DF51E00F1715B /* MBProgressHUD.m in Sources */,
 				9EE227E3214511A400E1CDD1 /* HAllocatingView.swift in Sources */,
 				9E523EA1211B42A800CF921F /* bridge.m in Sources */,
 				2CB62BAC214F4FD00048AF61 /* HDeliveringViewController.swift in Sources */,

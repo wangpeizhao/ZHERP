@@ -7,10 +7,10 @@
 //
 
 import UIKit
-import Charts
+//import Charts
+import UserNotifications
 
 class HomeViewController: BaseViewController{
-    
     
     var reportView: HomeReportViewController?
     var chartsView: HomeChartsViewController?
@@ -20,6 +20,8 @@ class HomeViewController: BaseViewController{
     let CELL_IDENTIFY_ID = "CELL_IDENTIFY_ID"
     var navHeight: CGFloat!
     var tabBarHeight: CGFloat!
+    
+    var notificationHandler: NotificationHandler?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -54,6 +56,156 @@ class HomeViewController: BaseViewController{
 
         self.view.addSubview(self.tableView!)
         
+        
+        self.notificationHandler = NotificationHandler(view: self)
+        
+        //请求通知权限
+        self._requestAuthorization()
+        
+        // http://www.hangge.com/blog/cache/detail_2031.html
+        // https://github.com/jdg/MBProgressHUD
+        //初始化HUD窗口，并置于当前的View当中显示
+        let hud = MBProgressHUD.showAdded(to: self.view, animated: true)
+        //纯文本模式
+//        hud.mode = .text
+        //设置提示标题
+        hud.label.text = "请稍等"
+        //设置提示详情
+        hud.detailsLabel.text = "具体要等多久我也不知道"
+        hud.removeFromSuperViewOnHide = true //隐藏时从父视图中移除
+        hud.hide(animated: true, afterDelay: 5)  //2秒钟后自动隐藏
+        
+        // http://www.hangge.com/blog/cache/detail_2033.html
+        // https://github.com/johnlui/SwiftNotice
+        //方法1
+//        SwiftNotice.showNoticeWithText(NoticeType.success, text:"操作成功", autoClear: true, autoClearTime: 3)
+        //方法2
+        self.noticeSuccess("操作成功", autoClear: true, autoClearTime: 3)
+    }
+    
+    //请求通知权限
+    fileprivate func _requestAuthorization() {
+//        UNUserNotificationCenter.current()
+//            .requestAuthorization(options: [.alert, .sound, .badge]) {
+//                (accepted, error) in
+//                if !accepted {
+//                    print("用户不允许消息通知。")
+//                }
+//        }
+        UNUserNotificationCenter.current().getNotificationSettings {
+            settings in
+            switch settings.authorizationStatus {
+            case .authorized:
+                print("用户允许推送消息。")
+                self._userNotifications()
+                self._userNotificationsTiming()
+                // 获取已提交的推送消息
+                UNUserNotificationCenter.current().getDeliveredNotifications { (notifications) in
+                    //遍历所有已推送的通知
+//                    for notification in notifications {
+//                        print(notification)
+//                    }
+                }
+                return
+            case .notDetermined:
+                print("需要用户选择允许与否。")
+                //请求授权
+                UNUserNotificationCenter.current()
+                    .requestAuthorization(options: [.alert, .sound, .badge]) {
+                        (accepted, error) in
+                        if !accepted {
+                            print("用户拒绝了消息通知。")
+                            DispatchQueue.main.async(execute: { () -> Void in
+                                let alertController = UIAlertController(title: "消息推送已关闭",
+                                                                        message: "想要及时获取最新消息。点击“设置”，开启通知。",
+                                                                        preferredStyle: .alert)
+                                
+                                let cancelAction = UIAlertAction(title:"取消", style: .cancel, handler:nil)
+                                
+                                let settingsAction = UIAlertAction(title:"设置", style: .default, handler: {
+                                    (action) -> Void in
+                                    let url = URL(string: UIApplicationOpenSettingsURLString)
+                                    if let url = url, UIApplication.shared.canOpenURL(url) {
+                                        if #available(iOS 10, *) {
+                                            UIApplication.shared.open(url, options: [:],
+                                                                      completionHandler: {
+                                                                        (success) in
+                                            })
+                                        } else {
+                                            UIApplication.shared.openURL(url)
+                                        }
+                                    }
+                                })
+                                
+                                alertController.addAction(cancelAction)
+                                alertController.addAction(settingsAction)
+                                
+                                self.present(alertController, animated: true, completion: nil)
+                            })
+                        }
+                }
+            case .denied:
+                print("消息推送已关闭。")
+            }
+        }
+        //设置通知代理
+        UNUserNotificationCenter.current().delegate = self.notificationHandler
+    }
+    
+    fileprivate func _userNotifications() {
+        //设置推送内容
+        let _content = UNMutableNotificationContent()
+        _content.title = "纵横ERP最新消息"
+        _content.body = "纵横ERP上线啦，欢迎使用"
+        _content.badge = 3
+        _content.subtitle = "上线通知"
+        _content.userInfo = ["actionName": "MrParker", "articleId": 10086]
+        
+        //设置通知触发器
+        let _trigger = UNTimeIntervalNotificationTrigger(timeInterval: 10, repeats: false)
+        
+        //设置请求标识符
+        let _requestIdentifier = "www.zhskills.com"
+        
+        //设置一个通知请求
+        let _request = UNNotificationRequest(identifier: _requestIdentifier, content: _content, trigger: _trigger)
+        
+        //将通知请求添加到发送中心
+        UNUserNotificationCenter.current().add(_request, withCompletionHandler: {(error) -> Void in
+            if error == nil {
+                print("Time Single Notification scheduled: \(_requestIdentifier)")
+            }
+        })
+    }
+    
+    fileprivate func _userNotificationsTiming() {
+        //设置推送内容
+        let _content = UNMutableNotificationContent()
+        _content.title = "纵横ERP最新订单消息"
+        _content.body = "纵横ERP刚出新订单啦"
+        _content.badge = 4
+        _content.subtitle = "订单通知"
+        
+        //设置通知触发器
+        var components = DateComponents()
+//        components.weekday = 4 //周4
+        components.hour = 11 //上午10点
+        components.minute = 40 //40分
+        components.second = 10 //10秒
+        let trigger = UNCalendarNotificationTrigger(dateMatching: components, repeats: true)
+        
+        //设置请求标识符
+        let _requestIdentifier = "www.zhskills.com.timing"
+        
+        //设置一个通知请求
+        let _request = UNNotificationRequest(identifier: _requestIdentifier, content: _content, trigger: trigger)
+        
+        //将通知请求添加到发送中心
+        UNUserNotificationCenter.current().add(_request, withCompletionHandler: {(error) -> Void in
+            if error == nil {
+                print("Time Interval Notification scheduled: \(_requestIdentifier)")
+            }
+        })
     }
     
     @objc func actionMemeber() {
@@ -109,7 +261,7 @@ class HomeViewController: BaseViewController{
         }
         super.viewWillAppear(animated)
         // 设置弹出提示框的底层视图控制器 代码初始化放在这 返回的时候才可改变通知
-        self._initNotifications()
+//        self._initNotifications()
     }
 
     override func didReceiveMemoryWarning() {
@@ -117,37 +269,37 @@ class HomeViewController: BaseViewController{
         // Dispose of any resources that can be recreated.
     }
     
-    fileprivate func _initNotifications() {
-        let notiSetting = UIApplication.shared.currentUserNotificationSettings
-        if notiSetting?.types == UIUserNotificationType.init(rawValue: 0) {
-            print("_initNotifications true")
-//            self.switchNoti.isOn = false
-        } else {
-            print("_initNotifications false")
-//            self.switchNoti.isOn = true
-//            self.switchNoti.isEnabled = false
-            
-            //打开APP系统设置页
-            let urlObj = URL(string:UIApplicationOpenSettingsURLString)
-            // 前往设置
-            UIApplication.shared.open(urlObj! as URL, options: [ : ]) { (result) in
-                // 如果判断是否返回成功
-                if result {
-                    
-                    let notiSetting = UIApplication.shared.currentUserNotificationSettings
-                    if notiSetting?.types == UIUserNotificationType.init(rawValue: 0) {
-//                        self.switchNoti.isOn = false
-//                        self.switchNoti.isEnabled = true
-                    } else {
-//                        self.switchNoti.isOn = true
-//                        self.switchNoti.isEnabled = false
-                    }
-                    
-                    
-                }
-            }
-        }
-    }
+//    fileprivate func _initNotifications() {
+//        let notiSetting = UIApplication.shared.currentUserNotificationSettings
+//        if notiSetting?.types == UIUserNotificationType.init(rawValue: 0) {
+//            print("_initNotifications true")
+////            self.switchNoti.isOn = false
+//        } else {
+//            print("_initNotifications false")
+////            self.switchNoti.isOn = true
+////            self.switchNoti.isEnabled = false
+//            
+//            //打开APP系统设置页
+//            let urlObj = URL(string:UIApplicationOpenSettingsURLString)
+//            // 前往设置
+//            UIApplication.shared.open(urlObj! as URL, options: [ : ]) { (result) in
+//                // 如果判断是否返回成功
+//                if result {
+//                    
+//                    let notiSetting = UIApplication.shared.currentUserNotificationSettings
+//                    if notiSetting?.types == UIUserNotificationType.init(rawValue: 0) {
+////                        self.switchNoti.isOn = false
+////                        self.switchNoti.isEnabled = true
+//                    } else {
+////                        self.switchNoti.isOn = true
+////                        self.switchNoti.isEnabled = false
+//                    }
+//                    
+//                    
+//                }
+//            }
+//        }
+//    }
 
 }
 
@@ -221,5 +373,47 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: CELL_IDENTIFY_ID, for: indexPath)
         
         return cell
+    }
+}
+
+class NotificationHandler: NSObject, UNUserNotificationCenterDelegate {
+    
+    var _view: UIViewController
+    
+    init(view: UIViewController) {
+        self._view = view
+    }
+    
+    //在应用内展示通知
+    func userNotificationCenter(_ center: UNUserNotificationCenter,
+                                willPresent notification: UNNotification,
+                                withCompletionHandler completionHandler:
+        @escaping (UNNotificationPresentationOptions) -> Void) {
+        completionHandler([.alert, .sound])
+        
+        // 如果不想显示某个通知，可以直接用空 options 调用 completionHandler:
+        // completionHandler([])
+    }
+    
+    //对通知进行响应（用户与通知进行交互时被调用）
+    func userNotificationCenter(_ center: UNUserNotificationCenter,
+                                didReceive response: UNNotificationResponse,
+                                withCompletionHandler completionHandler:
+        @escaping () -> Void) {
+        print(response.notification.request.content.title)
+        print(response.notification.request.content.body)
+        //获取通知附加数据
+        let userInfo = response.notification.request.content.userInfo
+        print(userInfo)
+        let _value = userInfo[AnyHashable("actionName")] as! String
+        if _value == "MrParker" {
+            let _articleId = userInfo[AnyHashable("articleId")] as! Int
+            print(_articleId)
+            let _target = SProtocolViewController()
+//            let _view = HomeViewController()
+            _push(view: _view, target: _target)
+        }
+        //完成了工作
+        completionHandler()
     }
 }

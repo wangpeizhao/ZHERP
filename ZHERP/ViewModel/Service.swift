@@ -24,6 +24,11 @@ class ValidationService {
             return .just(.empty)
         }
         
+        //判断用户名是否只有数字和字母
+        if username.rangeOfCharacter(from: CharacterSet.alphanumerics.inverted) != nil {
+            return .just(.failed(message: "用户名只能包含数字和字母"))
+        }
+        
         if username.count < minCharactersCount {
             return .just(.failed(message: "号码长度至少6个字符"))
         }
@@ -31,6 +36,19 @@ class ValidationService {
         if usernameValid(username) {
             return .just(.failed(message: "账户已存在"))
         }
+        
+        //发起网络请求检查用户名是否已存在
+//        return networkService
+//            .usernameAvailable(username)
+//            .map { available in
+//                //根据查询情况返回不同的验证结果
+//                if available {
+//                    return .ok(message: "用户名可用")
+//                } else {
+//                    return .failed(message: "用户名已存在")
+//                }
+//            }
+//            .startWith(.validating) //在发起网络请求前，先返回一个“正在检查”的验证结果
         
         return .just(.ok(message: "用户名可用"))
     }

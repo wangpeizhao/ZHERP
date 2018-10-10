@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import UserNotifications
 
 class NotifyViewController: UIViewController, UITableViewDataSource ,UITableViewDelegate {
     
@@ -74,6 +75,141 @@ class NotifyViewController: UIViewController, UITableViewDataSource ,UITableView
 //        self.tableView!.translatesAutoresizingMaskIntoConstraints = false
         self.view.addSubview(self.tableView!)
         
+        //请求通知权限
+        self._requestAuthorization()
+    }
+    
+    //请求通知权限
+    fileprivate func _requestAuthorization() {
+        //        UNUserNotificationCenter.current()
+        //            .requestAuthorization(options: [.alert, .sound, .badge]) {
+        //                (accepted, error) in
+        //                if !accepted {
+        //                    print("用户不允许消息通知。")
+        //                }
+        //        }
+        UNUserNotificationCenter.current().getNotificationSettings {
+            settings in
+            switch settings.authorizationStatus {
+            case .authorized:
+                return
+            case .notDetermined:
+                //请求授权
+                UNUserNotificationCenter.current()
+                    .requestAuthorization(options: [.alert, .sound, .badge]) {
+                        (accepted, error) in
+                        if !accepted {
+                            print("用户不允许消息通知。")
+                        }
+                }
+            case .denied:
+                DispatchQueue.main.async(execute: { () -> Void in
+                    let alertController = UIAlertController(title: "消息推送已关闭",
+                                                            message: "想要及时获取最新消息。点击“设置”，开启通知。",
+                                                            preferredStyle: .alert)
+                    
+                    let cancelAction = UIAlertAction(title:"取消", style: .cancel, handler:nil)
+                    
+                    let settingsAction = UIAlertAction(title:"设置", style: .default, handler: {
+                        (action) -> Void in
+                        let url = URL(string: UIApplicationOpenSettingsURLString)
+                        if let url = url, UIApplication.shared.canOpenURL(url) {
+                            if #available(iOS 10, *) {
+                                UIApplication.shared.open(url, options: [:],
+                                                          completionHandler: {
+                                                            (success) in
+                                })
+                            } else {
+                                UIApplication.shared.openURL(url)
+                            }
+                        }
+                    })
+                    
+                    alertController.addAction(cancelAction)
+                    alertController.addAction(settingsAction)
+                    
+                    self.present(alertController, animated: true, completion: nil)
+                })
+            }
+            
+            
+            var message = "是否允许通知："
+            switch settings.authorizationStatus {
+            case .authorized:
+                message.append("允许")
+            case .notDetermined:
+                message.append("未确定")
+            case .denied:
+                message.append("不允许")
+            }
+            
+            message.append("\n声音：")
+            switch settings.soundSetting{
+            case .enabled:
+                message.append("开启")
+            case .disabled:
+                message.append("关闭")
+            case .notSupported:
+                message.append("不支持")
+            }
+            
+            message.append("\n应用图标标记：")
+            switch settings.badgeSetting{
+            case .enabled:
+                message.append("开启")
+            case .disabled:
+                message.append("关闭")
+            case .notSupported:
+                message.append("不支持")
+            }
+            
+            message.append("\n在锁定屏幕上显示：")
+            switch settings.lockScreenSetting{
+            case .enabled:
+                message.append("开启")
+            case .disabled:
+                message.append("关闭")
+            case .notSupported:
+                message.append("不支持")
+            }
+            
+            message.append("\n在历史记录中显示：")
+            switch settings.notificationCenterSetting{
+            case .enabled:
+                message.append("开启")
+            case .disabled:
+                message.append("关闭")
+            case .notSupported:
+                message.append("不支持")
+            }
+            
+            message.append("\n横幅显示：")
+            switch settings.alertSetting{
+            case .enabled:
+                message.append("开启")
+            case .disabled:
+                message.append("关闭")
+            case .notSupported:
+                message.append("不支持")
+            }
+            
+            message.append("\n显示预览：")
+            if #available(iOS 11.0, *) {
+                switch settings.showPreviewsSetting{
+                case .always:
+                    message.append("始终（默认）")
+                case .whenAuthenticated:
+                    message.append("解锁时")
+                case .never:
+                    message.append("从不")
+                }
+            } else {
+                // Fallback on earlier versions
+            }
+            
+            
+            print(message)
+        }
     }
     
     @objc func actionBack() {
@@ -164,7 +300,6 @@ class NotifyViewController: UIViewController, UITableViewDataSource ,UITableView
     
     // UITableViewDelegate 方法，处理列表项的选中事件
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
         self.tableView!.deselectRow(at: indexPath, animated: true)
         let modelForRow = self.dataArray![indexPath.section]![indexPath.row]
         let action: String = modelForRow[0]

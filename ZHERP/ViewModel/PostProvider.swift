@@ -29,8 +29,7 @@ struct PostProvider {
                 
             }.asObservable()
 //        provider.request(.post(postId: number))
-        return provider.rx
-            .request(PostAPI.post(postId: number))
+        return provider.rx.request(.post(postId: number)) // PostAPI.post
 //            .mapArray()
             .filter(statusCode: 200)
             .map(Post.self)

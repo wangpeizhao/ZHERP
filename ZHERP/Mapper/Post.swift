@@ -42,11 +42,11 @@ struct Channel: Mappable {
     }
     
     mutating func mapping(map: Map) {
-        name <- map["name"]
-        nameEn <- map["name_en"]
-        channelId <- map["channel_id"]
-        seqId <- map["seq_id"]
-        abbrEn <- map["abbr_en"]
+        name        <- map["name"]
+        nameEn      <- map["name_en"]
+        channelId   <- map["channel_id"]
+        seqId       <- map["seq_id"]
+        abbrEn      <- map["abbr_en"]
     }
 }
 
