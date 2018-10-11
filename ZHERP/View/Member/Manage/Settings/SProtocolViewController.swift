@@ -38,6 +38,8 @@ class SProtocolViewController: UIViewController, WKUIDelegate, WKNavigationDeleg
         
         webview.addObserver(self, forKeyPath: "estimatedProgress", options: .new, context: nil)
         webview.load(URLRequest.init(url: URL.init(string: "http://bm.51afa.com/protocol.html")!))
+        
+        UIApplication.shared.applicationIconBadgeNumber = 0
     }
     
     override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {

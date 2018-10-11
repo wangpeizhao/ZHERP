@@ -23,6 +23,7 @@ class HomeViewController: BaseViewController{
     var tabBarHeight: CGFloat!
     
     var notificationHandler: NotificationHandler?
+    var _applicationIconBadgeNumber = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -88,6 +89,9 @@ class HomeViewController: BaseViewController{
         
 //        print(UIApplication.shared.applicationIconBadgeNumber)
 //        UIApplication.shared.applicationIconBadgeNumber = 0
+        
+//        UIApplication.shared.applicationIconBadgeNumber = UIApplication.shared.scheduledLocalNotifications?.count ?? 0
+        self._applicationIconBadgeNumber = UIApplication.shared.applicationIconBadgeNumber
     }
     
     //请求通知权限
@@ -104,6 +108,10 @@ class HomeViewController: BaseViewController{
             switch settings.authorizationStatus {
             case .authorized:
                 print("用户允许推送消息。")
+                //取消全部未发送通知
+                UNUserNotificationCenter.current().removeAllPendingNotificationRequests()
+                // 删除所有已推送出去的通知
+                UNUserNotificationCenter.current().removeAllDeliveredNotifications()
                 self._userNotifications()
                 self._userNotificationsTiming()
                 // 获取已提交的推送消息
@@ -111,6 +119,13 @@ class HomeViewController: BaseViewController{
                     //遍历所有已推送的通知
 //                    for notification in notifications {
 //                        print(notification)
+//                    }
+                }
+                // 获取所有待推送的通知
+                UNUserNotificationCenter.current().getPendingNotificationRequests { (requests) in
+                    //遍历所有未推送的request
+//                    for request in requests {
+//                        print(request)
 //                    }
                 }
                 return
@@ -160,11 +175,12 @@ class HomeViewController: BaseViewController{
     }
     
     fileprivate func _userNotifications() {
+        self._applicationIconBadgeNumber += 1
         //设置推送内容
         let _content = UNMutableNotificationContent()
         _content.title = "纵横ERP最新消息"
         _content.body = "纵横ERP上线啦，欢迎使用"
-//        _content.badge = 3
+        _content.badge = self._applicationIconBadgeNumber as NSNumber
         _content.subtitle = "上线通知"
         _content.userInfo = ["actionName": "MrParker", "articleId": 10086]
         
@@ -186,18 +202,20 @@ class HomeViewController: BaseViewController{
     }
     
     fileprivate func _userNotificationsTiming() {
+        self._applicationIconBadgeNumber += 1
         //设置推送内容
         let _content = UNMutableNotificationContent()
         _content.title = "纵横ERP最新订单消息"
         _content.body = "纵横ERP刚出新订单啦"
-        _content.badge = 4
+        _content.badge = self._applicationIconBadgeNumber as NSNumber
         _content.subtitle = "订单通知"
+        _content.userInfo = ["actionName": "MrParker", "articleId": 10087]
         
         //设置通知触发器
         var components = DateComponents()
 //        components.weekday = 4 //周4
-        components.hour = 11 //上午10点
-        components.minute = 52 //40分
+        components.hour = 14 //上午10点
+        components.minute = 50 //40分
         components.second = 10 //10秒
         let trigger = UNCalendarNotificationTrigger(dateMatching: components, repeats: true)
         
