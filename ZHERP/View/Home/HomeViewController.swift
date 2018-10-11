@@ -25,6 +25,8 @@ class HomeViewController: BaseViewController{
     var notificationHandler: NotificationHandler?
     var _applicationIconBadgeNumber = 0
     
+    var _ReachabilityChecking: ReachabilityChecking?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -92,6 +94,10 @@ class HomeViewController: BaseViewController{
         
 //        UIApplication.shared.applicationIconBadgeNumber = UIApplication.shared.scheduledLocalNotifications?.count ?? 0
         self._applicationIconBadgeNumber = UIApplication.shared.applicationIconBadgeNumber
+        
+        self._ReachabilityChecking = ReachabilityChecking()
+        self._ReachabilityChecking?._view = self.view
+        self._ReachabilityChecking?.startHost(at: 0)
     }
     
     //请求通知权限
@@ -326,6 +332,10 @@ class HomeViewController: BaseViewController{
 //        }
 //    }
 
+    
+    deinit {
+        self._ReachabilityChecking?.stopNotifier()
+    }
 }
 
 extension HomeViewController: UITableViewDelegate, UITableViewDataSource {

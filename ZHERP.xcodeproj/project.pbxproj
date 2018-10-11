@@ -164,6 +164,8 @@
 		9E62C2AE213B81A200C8A578 /* WarehouseOperateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E62C2AD213B81A200C8A578 /* WarehouseOperateViewController.swift */; };
 		9E62C2B5213BD32900C8A578 /* address.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9E62C2B4213BD32900C8A578 /* address.plist */; };
 		9E62C2B8213BF1E400C8A578 /* AddressPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E62C2B7213BF1E400C8A578 /* AddressPickerViewController.swift */; };
+		9E63E8F7216FAB0300E89BA7 /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E63E8F6216FAB0300E89BA7 /* Reachability.swift */; };
+		9E63E8F9216FAB3D00E89BA7 /* ReachabilityChecking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E63E8F8216FAB3D00E89BA7 /* ReachabilityChecking.swift */; };
 		9E88ED0720FB3B3800DF091F /* PostAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E88ED0620FB3B3800DF091F /* PostAPI.swift */; };
 		9E88ED0F20FB3B7700DF091F /* Response+ObjectMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E88ED0B20FB3B7600DF091F /* Response+ObjectMapper.swift */; };
 		9E88ED1020FB3B7700DF091F /* ObservableType+ObjectMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E88ED0C20FB3B7600DF091F /* ObservableType+ObjectMapper.swift */; };
@@ -425,6 +427,8 @@
 		9E62C2AD213B81A200C8A578 /* WarehouseOperateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WarehouseOperateViewController.swift; sourceTree = "<group>"; };
 		9E62C2B4213BD32900C8A578 /* address.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = address.plist; sourceTree = "<group>"; };
 		9E62C2B7213BF1E400C8A578 /* AddressPickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressPickerViewController.swift; sourceTree = "<group>"; };
+		9E63E8F6216FAB0300E89BA7 /* Reachability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
+		9E63E8F8216FAB3D00E89BA7 /* ReachabilityChecking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReachabilityChecking.swift; sourceTree = "<group>"; };
 		9E88ED0620FB3B3800DF091F /* PostAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostAPI.swift; sourceTree = "<group>"; };
 		9E88ED0B20FB3B7600DF091F /* Response+ObjectMapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Response+ObjectMapper.swift"; sourceTree = "<group>"; };
 		9E88ED0C20FB3B7600DF091F /* ObservableType+ObjectMapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ObservableType+ObjectMapper.swift"; sourceTree = "<group>"; };
@@ -889,6 +893,7 @@
 		9E523DEB21045F3300CF921F /* ThirdParty */ = {
 			isa = PBXGroup;
 			children = (
+				9E63E8F5216FAAF300E89BA7 /* Reachability */,
 				2CFCE45D216EEB6600CF6BCD /* DiskCache */,
 				2C224AF7216DF82300F1715B /* SwiftNotice */,
 				9EFB8260215694A7007A2893 /* HGImagePicker */,
@@ -1079,6 +1084,15 @@
 				9E62C2B7213BF1E400C8A578 /* AddressPickerViewController.swift */,
 			);
 			path = AddressPicker;
+			sourceTree = "<group>";
+		};
+		9E63E8F5216FAAF300E89BA7 /* Reachability */ = {
+			isa = PBXGroup;
+			children = (
+				9E63E8F6216FAB0300E89BA7 /* Reachability.swift */,
+				9E63E8F8216FAB3D00E89BA7 /* ReachabilityChecking.swift */,
+			);
+			path = Reachability;
 			sourceTree = "<group>";
 		};
 		9E88ED0520FB3B0600DF091F /* View */ = {
@@ -1712,6 +1726,7 @@
 				2C6104D021537D26004BE3F4 /* SResponsibilityViewController.swift in Sources */,
 				9EE26B5121248C2000619D98 /* ZHQRCodeViewController.swift in Sources */,
 				2C6B1F41213E77F500CF82DE /* WSupplierOperateViewController.swift in Sources */,
+				9E63E8F7216FAB0300E89BA7 /* Reachability.swift in Sources */,
 				9E62C2B8213BF1E400C8A578 /* AddressPickerViewController.swift in Sources */,
 				2C5C7A07215C855300533AE1 /* OrderDetailTableViewCell.swift in Sources */,
 				9E29031B20F7B99800F11C63 /* ViewController.swift in Sources */,
@@ -1786,6 +1801,7 @@
 				9E5D7E54214C149C00DE7036 /* UICollectionGridViewController.swift in Sources */,
 				9E88ED1020FB3B7700DF091F /* ObservableType+ObjectMapper.swift in Sources */,
 				2C589772215F6B04000FC663 /* QRBarCodeCollectionViewCell.swift in Sources */,
+				9E63E8F9216FAB3D00E89BA7 /* ReachabilityChecking.swift in Sources */,
 				9E88ED3920FCEA4500DF091F /* Member.swift in Sources */,
 				9E523DE22100DD0500CF921F /* Protocol.swift in Sources */,
 				2C6B1F3D213E5BF200CF82DE /* WLocationDeatilViewController.swift in Sources */,
