@@ -133,12 +133,23 @@ class ZHQRCodeViewController: UIViewController {
             
             metadataOutput.metadataObjectTypes = ZHQRCodeManager.zh_metadataObjectTypes(type: self.config.scannerType)
             
-            DispatchQueue.main.async {
-                let videoPreviewLayer = AVCaptureVideoPreviewLayer(session: self.session)
-                videoPreviewLayer.videoGravity = .resizeAspectFill
-                videoPreviewLayer.frame = self.view.layer.bounds
-                self.view.layer.insertSublayer(videoPreviewLayer, at: 0)
+            DispatchQueue.global(qos: .default).async {
+                //处理耗时操作的代码块...
+                
+                //操作完成，调用主线程来刷新界面
+                DispatchQueue.main.async {
+                    let videoPreviewLayer = AVCaptureVideoPreviewLayer(session: self.session)
+                    videoPreviewLayer.videoGravity = .resizeAspectFill
+                    videoPreviewLayer.frame = self.view.layer.bounds
+                    self.view.layer.insertSublayer(videoPreviewLayer, at: 0)
+                }
             }
+//            DispatchQueue.main.async {
+//                let videoPreviewLayer = AVCaptureVideoPreviewLayer(session: self.session)
+//                videoPreviewLayer.videoGravity = .resizeAspectFill
+//                videoPreviewLayer.frame = self.view.layer.bounds
+//                self.view.layer.insertSublayer(videoPreviewLayer, at: 0)
+//            }
             
             self.session.startRunning()
         }

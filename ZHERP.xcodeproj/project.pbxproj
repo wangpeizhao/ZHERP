@@ -68,6 +68,11 @@
 		2CE96F1B211C0D0700B4CE5A /* OrderSearchResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CE96F1A211C0D0700B4CE5A /* OrderSearchResultViewController.swift */; };
 		2CEA8C4A212A503E00004AE6 /* UIImage-Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CEA8C49212A503E00004AE6 /* UIImage-Extensions.swift */; };
 		2CEA8C4C212AB17500004AE6 /* HomeCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CEA8C4B212AB17400004AE6 /* HomeCollectionViewCell.swift */; };
+		2CFCE461216EEB7000CF6BCD /* String+MD5.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CFCE45E216EEB7000CF6BCD /* String+MD5.swift */; };
+		2CFCE462216EEB7000CF6BCD /* ZZDiskCacheHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CFCE45F216EEB7000CF6BCD /* ZZDiskCacheHelper.swift */; };
+		2CFCE463216EEB7000CF6BCD /* ZZDiskCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CFCE460216EEB7000CF6BCD /* ZZDiskCache.swift */; };
+		2CFCE466216EEB7A00CF6BCD /* CacheDemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CFCE464216EEB7A00CF6BCD /* CacheDemoViewController.swift */; };
+		2CFCE467216EEB7A00CF6BCD /* Student.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CFCE465216EEB7A00CF6BCD /* Student.swift */; };
 		43D0F869FCB1EFFD2A515717 /* Pods_ZHERPUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9ADCE7C4B0A7D41C0DA234D6 /* Pods_ZHERPUITests.framework */; };
 		4D5DC0AAB0D07F80968B0079 /* Pods_ZHERP.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 532FEF4AFB84E941C848EBDE /* Pods_ZHERP.framework */; };
 		8F0E2D4FE6DC9F693DE6136E /* Pods_ZHERPTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0018AC5B628E580B5DB4DE45 /* Pods_ZHERPTests.framework */; };
@@ -314,6 +319,11 @@
 		2CE96F1A211C0D0700B4CE5A /* OrderSearchResultViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderSearchResultViewController.swift; sourceTree = "<group>"; };
 		2CEA8C49212A503E00004AE6 /* UIImage-Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage-Extensions.swift"; sourceTree = "<group>"; };
 		2CEA8C4B212AB17400004AE6 /* HomeCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCollectionViewCell.swift; sourceTree = "<group>"; };
+		2CFCE45E216EEB7000CF6BCD /* String+MD5.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+MD5.swift"; sourceTree = "<group>"; };
+		2CFCE45F216EEB7000CF6BCD /* ZZDiskCacheHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZZDiskCacheHelper.swift; sourceTree = "<group>"; };
+		2CFCE460216EEB7000CF6BCD /* ZZDiskCache.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZZDiskCache.swift; sourceTree = "<group>"; };
+		2CFCE464216EEB7A00CF6BCD /* CacheDemoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CacheDemoViewController.swift; sourceTree = "<group>"; };
+		2CFCE465216EEB7A00CF6BCD /* Student.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Student.swift; sourceTree = "<group>"; };
 		30C77E137814C4E429C7FF16 /* Pods-ZHERPUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZHERPUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ZHERPUITests/Pods-ZHERPUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		532FEF4AFB84E941C848EBDE /* Pods_ZHERP.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ZHERP.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		829D37B56E7E23231666AB1E /* Pods-ZHERP.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZHERP.release.xcconfig"; path = "Pods/Target Support Files/Pods-ZHERP/Pods-ZHERP.release.xcconfig"; sourceTree = "<group>"; };
@@ -714,6 +724,19 @@
 			path = UIImage;
 			sourceTree = "<group>";
 		};
+		2CFCE45D216EEB6600CF6BCD /* DiskCache */ = {
+			isa = PBXGroup;
+			children = (
+				2CFCE45E216EEB7000CF6BCD /* String+MD5.swift */,
+				2CFCE460216EEB7000CF6BCD /* ZZDiskCache.swift */,
+				2CFCE45F216EEB7000CF6BCD /* ZZDiskCacheHelper.swift */,
+				2CFCE465216EEB7A00CF6BCD /* Student.swift */,
+				2CFCE464216EEB7A00CF6BCD /* CacheDemoViewController.swift */,
+			);
+			name = DiskCache;
+			path = ../../..;
+			sourceTree = "<group>";
+		};
 		38F99A7220F4798064F30D64 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -866,6 +889,7 @@
 		9E523DEB21045F3300CF921F /* ThirdParty */ = {
 			isa = PBXGroup;
 			children = (
+				2CFCE45D216EEB6600CF6BCD /* DiskCache */,
 				2C224AF7216DF82300F1715B /* SwiftNotice */,
 				9EFB8260215694A7007A2893 /* HGImagePicker */,
 				9EE227D82144A56600E1CDD1 /* ImageHelper */,
@@ -1627,6 +1651,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9E523E422107EB3600CF921F /* TestViewController.swift in Sources */,
+				2CFCE463216EEB7000CF6BCD /* ZZDiskCache.swift in Sources */,
 				9E523E74210A379500CF921F /* EditAvatarViewController.swift in Sources */,
 				9E88ED4320FE624D00DF091F /* RegisterViewController.swift in Sources */,
 				2C224AF9216DF83200F1715B /* SwiftNotice.swift in Sources */,
@@ -1645,6 +1670,7 @@
 				9ED7E51721418FF500F8F735 /* BillsWeekViewController.swift in Sources */,
 				9E5D7E5B214E748A00DE7036 /* HInventoryDetailViewController.swift in Sources */,
 				2CBF49042122A3B800199C1D /* QRCode.swift in Sources */,
+				2CFCE466216EEB7A00CF6BCD /* CacheDemoViewController.swift in Sources */,
 				9E1A0A0921553ACD00F0B2B6 /* GoodOperateFViewController.swift in Sources */,
 				9E523E672108C5D400CF921F /* NotifyTableViewCell.swift in Sources */,
 				2C91B499216AF313007BBFEB /* HPickingGoodTableViewCell.swift in Sources */,
@@ -1661,6 +1687,7 @@
 				2C5C7A04215C71F800533AE1 /* OrderModel.swift in Sources */,
 				9E88ED2520FB53AE00DF091F /* OrderDetailViewController.swift in Sources */,
 				9EFB826E215694BD007A2893 /* HGImagePickerController.swift in Sources */,
+				2CFCE461216EEB7000CF6BCD /* String+MD5.swift in Sources */,
 				2CB62BB1214F9DE30048AF61 /* UIResponder-Extensions.swift in Sources */,
 				9E523E7B210C238400CF921F /* ForgetViewController.swift in Sources */,
 				2C35D2D02141085A00AEC12F /* BillsDailyReportTableViewCell.swift in Sources */,
@@ -1703,6 +1730,7 @@
 				2C986C75213F973D00F081BC /* SMemberRoleManagerViewController.swift in Sources */,
 				2C35D2D5214124EE00AEC12F /* BillsDelegateDataSource.swift in Sources */,
 				9E549937213ED506001E4C36 /* WCategoryOperateViewController.swift in Sources */,
+				2CFCE467216EEB7A00CF6BCD /* Student.swift in Sources */,
 				9EE26B81212C734100619D98 /* GoodTableViewCell.swift in Sources */,
 				2C9AC88F214244EB004F252D /* StatisticChartsViewController.swift in Sources */,
 				9E523E89210D449300CF921F /* OrderViewController.swift in Sources */,
@@ -1774,6 +1802,7 @@
 				9E88ED2020FB469000DF091F /* StatisticViewController.swift in Sources */,
 				9E523E98210D548500CF921F /* OrderCompleteViewController.swift in Sources */,
 				2CC1319321114279004C8097 /* SearchViewController.swift in Sources */,
+				2CFCE462216EEB7000CF6BCD /* ZZDiskCacheHelper.swift in Sources */,
 				9E1A0A072155274900F0B2B6 /* GoodOperateSViewController.swift in Sources */,
 				2C986C7F213FCF2200F081BC /* SMemberDetailViewController.swift in Sources */,
 				9E29031920F7B99800F11C63 /* AppDelegate.swift in Sources */,

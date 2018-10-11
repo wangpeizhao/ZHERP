@@ -85,6 +85,9 @@ class HomeViewController: BaseViewController{
         
         let hash = "123".md5()
         print(hash)
+        
+//        print(UIApplication.shared.applicationIconBadgeNumber)
+//        UIApplication.shared.applicationIconBadgeNumber = 0
     }
     
     //请求通知权限
@@ -161,7 +164,7 @@ class HomeViewController: BaseViewController{
         let _content = UNMutableNotificationContent()
         _content.title = "纵横ERP最新消息"
         _content.body = "纵横ERP上线啦，欢迎使用"
-        _content.badge = 3
+//        _content.badge = 3
         _content.subtitle = "上线通知"
         _content.userInfo = ["actionName": "MrParker", "articleId": 10086]
         
@@ -194,7 +197,7 @@ class HomeViewController: BaseViewController{
         var components = DateComponents()
 //        components.weekday = 4 //周4
         components.hour = 11 //上午10点
-        components.minute = 40 //40分
+        components.minute = 52 //40分
         components.second = 10 //10秒
         let trigger = UNCalendarNotificationTrigger(dateMatching: components, repeats: true)
         
